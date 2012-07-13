@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        
+        <record id="product_normal_form_view_excclude_commisions" model="ir.ui.view">
+            <field name="name">product.normal.form.exclude_commissions</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="commission_exent"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
