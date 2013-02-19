@@ -101,10 +101,10 @@ class sale_order(osv.osv):
                         self.pool.get('sale.order.agent').unlink(cr, uid, sale_order_agent[1])
         return super(sale_order, self).write(cr, uid, ids, values, context=context)
 
-    def onchange_partner_id(self, cr, uid, ids, part):
+    def onchange_partner_id(self, cr, uid, ids, part, context=None):
         """heredamos el evento de cambio del campo partner_id para actualizar el campo agent_id"""
         sale_agent_ids=[]
-        res = super(sale_order, self).onchange_partner_id(cr, uid, ids, part)
+        res = super(sale_order, self).onchange_partner_id(cr, uid, ids, part, context=context)
         if res.get('value', False) and part:
             sale_order_agent = self.pool.get('sale.order.agent')
             if ids:
