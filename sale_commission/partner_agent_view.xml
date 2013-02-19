@@ -5,7 +5,6 @@
         <record model="ir.ui.view" id="view_partner_agent_comision_tree">
             <field name="name">partner.agent.comision.tree.inherit</field>
             <field name="model">res.partner.agent</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Agents">
                     <field name="partner_id"/>
@@ -18,7 +17,6 @@
         <record model="ir.ui.view" id="view_partner_agent_comision_form">
             <field name="name">partner.agent.comision.form.inherit</field>
             <field name="model">res.partner.agent</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Agents">
                     <field name="agent_id" on_change="onchange_agent_id(agent_id)"/>
