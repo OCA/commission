@@ -5,7 +5,6 @@
         <record id="view_partner_form_add_agent" model="ir.ui.view">
             <field name="name">res.partner.form.add_agent</field>
             <field name="model">res.partner</field>
-            <field name="type">form</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="priority" eval="18"/>
             <field name="arch" type="xml">
@@ -18,7 +17,6 @@
         <record id="view_partner_form_add_agents" model="ir.ui.view">
             <field name="name">res.partner.form.add_agents</field>
             <field name="model">res.partner</field>
-            <field name="type">form</field>
             <field name="inherit_id" ref="view_partner_form_add_agent"/>
             <field name="arch" type="xml">
                 <field name="user_id" position="after">
