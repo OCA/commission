@@ -109,7 +109,7 @@ class account_invoice(osv.osv):
     _columns = {
         'agent_id': fields.many2one('sale.agent', 'Agent'),
         'agent_code':fields.related ('agent_id', 'code', readonly=True, type='char', string='Agent code' ),
-        'country':fields.related ('address_invoice_id', 'country_id', readonly=True, type='many2one', string= 'Country', relation='res.country' ),
+        'country':fields.related ('partner_id', 'country_id', readonly=True, type='many2one', string= 'Country', relation='res.country' ),
     }
 
     def onchange_partner_id(self, cr, uid, ids, type, part, date_invoice=False, payment_term=False, partner_bank_id=False, company_id=False):
