@@ -18,7 +18,6 @@
         <record id="view_order_agent_form_inherit" model="ir.ui.view">
             <field name="name">sale.agent.order.inherit.form</field>
             <field name="model">sale.order</field>
-            <field name="type">form</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <field name="origin" position="after">
@@ -39,7 +38,6 @@
         <record model="ir.ui.view" id="view_sale_agent_comision_tree">
             <field name="name">sale.agent.comision.tree</field>
             <field name="model">sale.order.agent</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Agents">
                     <field name="sale_id"/>
@@ -52,7 +50,6 @@
         <record model="ir.ui.view" id="sale_order_agent_comision_form">
             <field name="name">sale.order.agent.comision.form.</field>
             <field name="model">sale.order.agent</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Agents">
                     <field name="agent_id" on_change="onchange_agent_id(agent_id)"/>

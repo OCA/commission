@@ -4,7 +4,6 @@
     <record id="view_settled_invoice" model="ir.ui.view">
             <field name="name">Make invoices</field>
             <field name="model">settled.invoice.wizard</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
               <form string="Create invoices">
                     <separator colspan="4" string="Create invoice" />
