@@ -10,7 +10,6 @@
         <record model="ir.ui.view" id="view_saleagent_tree">
             <field name="name">saleagent.info.tree</field>
             <field name="model">sale.agent</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Saleagent">
                     <field name="code"  select="1"/>
@@ -26,7 +25,6 @@
         <record model="ir.ui.view" id="view_saleagent_form">
             <field name="name">saleagent.info.form</field>
             <field name="model">sale.agent</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Agent" col="6">
                     
@@ -63,7 +61,6 @@
         <record id="view_sale_agen_search model" model="ir.ui.view">
             <field name="name">commission.sale.agent.search</field>
             <field name="model">sale.agent</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Search Agent">
                     <group>
@@ -100,7 +97,6 @@
         <record model="ir.ui.view" id="commission_tree">
             <field name="name">commission.tree</field>
             <field name="model">commission</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Commissions">
                     <field name="name"  select="1"/>
@@ -112,7 +108,6 @@
         <record model="ir.ui.view" id="commission_form">
             <field name="name">Commissions</field>
             <field name="model">commission</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Commission">
                     <separator string="General info." colspan="4"/>

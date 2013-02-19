@@ -5,7 +5,6 @@
         <record id="view_settled_wizard" model="ir.ui.view">
             <field name="name">Select period to settle</field>
             <field name="model">settled.wizard</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Select period to Settle">
                     <field name="date_from" />
@@ -19,7 +18,6 @@
         <record id="view_recalculate_commision_wizard" model="ir.ui.view">
             <field name="name">Select period to recalculate</field>
             <field name="model">recalculate.commission.wizard</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Select period to recalculate commissions">
                     <field name="date_from" />
@@ -84,7 +82,6 @@
         <record model="ir.ui.view" id="view_settlement_line_tree">
             <field name="name">Settlement Lines</field>
             <field name="model">settlement.line</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Settlement lines">
                     <field name="invoice_id"/>
@@ -101,7 +98,6 @@
         <record model="ir.ui.view" id="view_settlement_agent_form">
             <field name="name">Settlement Agent</field>
             <field name="model">settlement.agent</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Settlement agent">
                     <field name="agent_id"/>
@@ -123,7 +119,6 @@
         <record model="ir.ui.view" id="view_settlement_agent_tree">
             <field name="name">Settlement_agent_tree</field>
             <field name="model">settlement.agent</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Settlement agent">
                     <field name="settlement_id"/>
@@ -131,7 +126,6 @@
                     <field name="total_per"/>
                     <field name="total_sections"/>
                     <field name="total"/>
-                    <newline/>
                 </tree>
             </field>
         </record>
@@ -140,7 +134,6 @@
         <record id="view_settlement_agent_search" model="ir.ui.view">
             <field name="name">commission.settlement.agent.summary.search</field>
             <field name="model">settlement.agent</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Agent summary">
                     <group>
@@ -163,7 +156,6 @@
         <record model="ir.ui.view" id="view_settled_invoice_agent_tree">
             <field name="name">Settled_invoice_agent_tree</field>
             <field name="model">settled.invoice.agent</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Settled invoices summary">
                     <field name="agent_id"/>
@@ -173,7 +165,6 @@
                     <field name="invoice_amount"/>
                     <field name="settled_amount" sum="Settled total"/>
                     <!--field name="currency_id"/-->
-                    <newline/>
                 </tree>
             </field>
         </record>
@@ -182,7 +173,6 @@
         <record id="view_settled_invoice_summary_search" model="ir.ui.view">
             <field name="name">commission.settled.invoice.summary.search</field>
             <field name="model">settled.invoice.agent</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Invoice summary">
                     <group>
@@ -204,7 +194,6 @@
         <record model="ir.ui.view" id="view_settled_invoice_agent_form">
             <field name="name">Settled_invoice_agent_form</field>
             <field name="model">settled.invoice.agent</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Settled invoices summary">
                     <field name="agent_id"/>
@@ -222,7 +211,6 @@
          <record id="view_settlement_search" model="ir.ui.view">
             <field name="name">settlement.search</field>
             <field name="model">settlement</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Settlement">
                     <group>
@@ -240,7 +228,6 @@
         <record model="ir.ui.view" id="view_settlement_tree">
             <field name="name">settlements_tree</field>
             <field name="model">settlement</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Settlements" colors="gray:state == 'cancel';red:state == 'settled'">
                     <field name="name"/>
@@ -278,7 +265,6 @@
         <record model="ir.ui.view" id="view_settlement_form">
             <field name="name">Settlements</field>
             <field name="model">settlement</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Settlements">
                     <field name="name"/>
