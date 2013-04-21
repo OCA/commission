@@ -7,13 +7,15 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.1\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2011-05-02 11:44+0000\n"
-"PO-Revision-Date: 2011-05-02 15:04+0100\n"
-"Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
+"PO-Revision-Date: 2013-04-21 00:31+0000\n"
+"Last-Translator: Raimon Esteve (www.zikzakmedia.com) "
+"<resteve@zikzakmedia.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
+"X-Launchpad-Export-Date: 2013-04-21 04:57+0000\n"
+"X-Generator: Launchpad (build 16567)\n"
 
 #. module: sale_commission
 #: field:res.partner,agent:0
@@ -113,8 +115,12 @@ msgstr "Agents i comissions"
 
 #. module: sale_commission
 #: help:sale.agent,employee_id:0
-msgid "Employee associated to agent, is necessary for set an employee to settle commissions in wage."
-msgstr "Empleat associat a l'agent, es necessari associar un empleat per liquidar les comissions en la nòmina (no implementat)."
+msgid ""
+"Employee associated to agent, is necessary for set an employee to settle "
+"commissions in wage."
+msgstr ""
+"Empleat associat a l'agent, es necessari associar un empleat per liquidar "
+"les comissions en la nòmina (no implementat)."
 
 #. module: sale_commission
 #: view:settlement.agent:0
@@ -683,8 +689,13 @@ msgstr "Línies de detalle"
 #: code:addons/sale_commission/partner_agent.py:81
 #: code:addons/sale_commission/sale_order.py:68
 #, python-format
-msgid "A commission has been assigned by sections that does not match that defined for the agent by default, so that these sections shall apply only on this bill."
-msgstr "S'ha assignat una comissió per trams que no coincideix amb la definició per defecte de l'agent. Aquest tram només s'aplica a aquesta factura"
+msgid ""
+"A commission has been assigned by sections that does not match that defined "
+"for the agent by default, so that these sections shall apply only on this "
+"bill."
+msgstr ""
+"S'ha assignat una comissió per trams que no coincideix amb la definició per "
+"defecte de l'agent. Aquest tram només s'aplica a aquesta factura"
 
 #. module: sale_commission
 #: view:commission:0
@@ -810,4 +821,3 @@ msgstr "Total"
 #: model:ir.model,name:sale_commission.model_recalculate_commission_wizard
 msgid "recalculate.commission.wizard"
 msgstr "recalculate.commission.wizard"
-
