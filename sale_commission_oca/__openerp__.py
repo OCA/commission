@@ -20,37 +20,35 @@
 #
 ##############################################################################
 {
-    'name' : 'Sales commissions',
+    'name': 'Sales commissions',
     'version': '1.0',
-    'author' : 'Pexego',
+    'author': 'Pexego',
     "category": "Generic Modules/Sales & Purchases",
-    'depends' : [
-                    'base',
-                    'account',
-                    'product',
-                    'sale', 
-                    'hr',
-                    'stock'
-                ],
+    'depends': [
+        'base',
+        'account',
+        'product',
+        'sale',
+        'hr',
+        'stock'
+    ],
     'description': 'Sales commissions',
-    'init_xml' : [],
-    'update_xml': [
-                    'security/ir.model.access.csv',
-                    'saleagent_view.xml',
-                    'partner_agent_view.xml',
-                    'wizard/wizard_invoice.xml',
-                    'partner_view.xml',
-                    'settled_view.xml',
-                    'invoice_view.xml',
-                    'sale_order_view.xml',
-                    'product_view.xml',
-                    'stock_picking_view.xml',
-                    'cc_commission_report.xml', 
-                ],
-    'demo_xml': [
-                ],
+    'data': [
+        'security/ir.model.access.csv',
+        'sale_agent_view.xml',
+        'partner_agent_view.xml',
+        'wizard/wizard_invoice.xml',
+        'partner_view.xml',
+        'settled_view.xml',
+        'invoice_view.xml',
+        'sale_order_view.xml',
+        'product_view.xml',
+        'stock_picking_view.xml',
+        'cc_commission_report.xml',
+    ],
+    'demo': [
+    ],
     'active': False,
     'installable': True
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-
