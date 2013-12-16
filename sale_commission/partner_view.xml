@@ -9,7 +9,7 @@
             <field name="priority" eval="18"/>
             <field name="arch" type="xml">
                     <field name="supplier" position="after">
-                        <field name="agent"  string="Consultancy"></field>
+                        <field name="agent" string="Consultancy"/>
                     </field>
             </field>
         </record>
