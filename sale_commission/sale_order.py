@@ -22,11 +22,11 @@
 
 """Modificamos las ventas para incluir el comportamiento de comisiones"""
 
-from osv import fields, osv
+from osv import fields, orm
 from tools.translate import _
 
 
-class sale_order_agent(osv.osv):
+class sale_order_agent(orm.Model):
     _name = "sale.order.agent"
 
     def name_get(self, cr, uid, ids, context=None):
@@ -52,14 +52,12 @@ class sale_order_agent(osv.osv):
         if agent_id:
             agent = self.pool.get('sale.agent').browse(cr, uid, agent_id)
             v['commission_id'] = agent.commission.id
-
         result['value'] = v
         return result
 
     def onchange_commission_id(self, cr, uid, ids, agent_id=False, commission_id=False):
         """al cambiar la comisión comprobamos la selección"""
         result = {}
-
         if commission_id:
             partner_commission = self.pool.get('commission').browse(cr, uid, commission_id)
             if partner_commission.sections:
@@ -73,14 +71,11 @@ class sale_order_agent(osv.osv):
                                                          'sections shall apply only on this bill.')
         return result
 
-sale_order_agent()
 
-
-class sale_order(osv.osv):
+class sale_order(orm.Model):
     """Modificamos las ventas para incluir el comportamiento de comisiones"""
 
     _inherit = "sale.order"
-
     _columns = {
         'sale_agent_ids': fields.one2many('sale.order.agent', 'sale_id', 'Agents',
                                           states={'draft': [('readonly', False)]})
@@ -96,9 +91,6 @@ class sale_order(osv.osv):
         return res
 
     def write(self, cr, uid, ids, values, context=None):
-        """
-        """
-
         if 'sale_agent_ids' in values:
             for sale_order_agent in values['sale_agent_ids']:
                 for id in ids:
@@ -142,10 +134,8 @@ class sale_order(osv.osv):
                 self.pool.get('stock.picking').write(cr, uid, pickings, {'agent_ids': [[6, 0, agents]], })
         return res
 
-sale_order()
 
-
-class sale_order_line(osv.osv):
+class sale_order_line(orm.Model):
     """Modificamos las lineas ventas para incluir las comisiones en las facturas creadas desde ventas"""
 
     _inherit = "sale.order.line"
@@ -169,5 +159,3 @@ class sale_order_line(osv.osv):
                     line_agent_id = self.pool.get('invoice.line.agent').create(cr, uid, vals)
                     self.pool.get('invoice.line.agent').calculate_commission(cr, uid, [line_agent_id])
         return res
-
-sale_order_line()

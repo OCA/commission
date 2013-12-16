@@ -22,13 +22,13 @@
 
 """Objetos sobre las liquidación"""
 
-from osv import fields, osv
+from osv import fields, orm, osv
 from tools.translate import _
 import time
 import tools
 
 
-class settled_wizard (osv.osv_memory):
+class settled_wizard (orm.TransientModel):
     """settled.wizard"""
 
     _name = 'settled.wizard'
@@ -65,10 +65,7 @@ class settled_wizard (osv.osv_memory):
         }
 
 
-settled_wizard()
-
-
-class recalculate_commision_wizard (osv.osv_memory):
+class recalculate_commision_wizard (orm.TransientModel):
     """settled.wizard"""
 
     _name = 'recalculate.commission.wizard'
@@ -113,10 +110,7 @@ class recalculate_commision_wizard (osv.osv_memory):
         }
 
 
-recalculate_commision_wizard()
-
-
-class settlement (osv.osv):
+class settlement (orm.Model):
     """Objeto Liquidación"""
 
     _name = 'settlement'
@@ -186,10 +180,8 @@ class settlement (osv.osv):
 
         return super(settlement, self).unlink(cr, uid, ids, context=context)
 
-settlement()
 
-
-class settlement_agent (osv.osv):
+class settlement_agent (orm.Model):
     """Liquidaciones de Agentes"""
 
     _name = 'settlement.agent'
@@ -410,10 +402,8 @@ class settlement_agent (osv.osv):
         total = total_per + total_sections
         self.write(cr, uid, ids, {'total_per': total_per, 'total_sections': total_sections, 'total': total})
 
-settlement_agent()
 
-
-class settlement_line (osv.osv):
+class settlement_line (orm.Model):
     """Línea de las liquidaciones de los agentes
      Una línea por línea de factura
     """
@@ -471,10 +461,8 @@ class settlement_line (osv.osv):
                                           'commission': cc_commission_amount,
                                           'currency_id': user.company_id.currency_id.id})
 
-settlement_line()
 
-
-class settled_invoice_agent(osv.osv):
+class settled_invoice_agent(orm.Model):
     _name = "settled.invoice.agent"
     _description = "Resumen de facturas liquidadas"
     _auto = False
@@ -507,5 +495,3 @@ class settled_invoice_agent(osv.osv):
               GROUP BY account_invoice_line.invoice_id, settlement_agent.agent_id, settlement_agent.id
 
            )""")
-
-settled_invoice_agent()

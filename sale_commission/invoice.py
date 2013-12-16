@@ -22,15 +22,14 @@
 
 """invoice agents"""
 
-from osv import fields, osv
+from osv import fields, orm
 from tools.translate import _
 
 
-class invoice_line_agent(osv.osv):
+class invoice_line_agent(orm.Model):
     """invoice agents"""
 
     _name = "invoice.line.agent"
-
     _columns = {
         'invoice_line_id': fields.many2one('account.invoice.line', 'Invoice Line', required=True, ondelete='cascade',
                                            help=''),
@@ -66,7 +65,6 @@ class invoice_line_agent(osv.osv):
                 v['quantity'] = agent_line[0].invoice_line_id.price_subtotal * (agent.commission.fix_qty / 100.0)
             else:
                 v['quantity'] = 0
-
         result['value'] = v
         return result
 
@@ -92,27 +90,20 @@ class invoice_line_agent(osv.osv):
         return result
 
 
-invoice_line_agent()
-
-
-class account_invoice_line(osv.osv):
+class account_invoice_line(orm.Model):
     """Enlazamos las comisiones a la factura"""
 
     _inherit = "account.invoice.line"
-
     _columns = {
         'commission_ids': fields.one2many('invoice.line.agent', 'invoice_line_id', 'Commissions',
                                           help="Commissions asociated to invoice line."),
     }
 
-account_invoice_line()
 
-
-class account_invoice(osv.osv):
+class account_invoice(orm.Model):
     """heredamos las facturas para añadirles el representante de venta"""
 
     _inherit = "account.invoice"
-
     _columns = {
         'agent_id': fields.many2one('sale.agent', 'Agent'),
         'agent_code': fields.related('agent_id', 'code', readonly=True, type='char', string='Agent code'),
@@ -126,12 +117,10 @@ class account_invoice(osv.osv):
         res = super(account_invoice, self).onchange_partner_id(
             cr, uid, ids, type, part, date_invoice=date_invoice, payment_term=payment_term,
             partner_bank_id=partner_bank_id, company_id=company_id)
-
         if part and res.get('value', False):
             partner = self.pool.get('res.partner').browse(cr, uid, part)
             if partner.commission_ids:
                 res['value']['agent_id'] = partner.commission_ids[0].agent_id.id
-
         return res
 
     def _refund_cleanup_lines(self, cr, uid, lines, context=None):
@@ -141,5 +130,3 @@ class account_invoice(osv.osv):
             if 'commission_ids' in line[2]:
                 line[2]['commission_ids'] = [(6, 0, line[2].get('commission_ids', [])), ]
         return res
-
-account_invoice()
