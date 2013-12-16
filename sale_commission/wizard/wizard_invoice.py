@@ -23,18 +23,17 @@
 from osv import fields, osv
 from tools.translate import _
 
+
 class settled_invoice_wizard (osv.osv_memory):
     """settled.invoice.wizard"""
 
     _name = 'settled.invoice.wizard'
     _columns = {
-        'journal_id':fields.many2one('account.journal', 'Target journal', required=True, select=1),
-        'product_id':fields.many2one('product.product', 'Product for account', required=True, select=1),
+        'journal_id': fields.many2one('account.journal', 'Target journal', required=True, select=1),
+        'product_id': fields.many2one('product.product', 'Product for account', required=True, select=1),
     }
     _defaults = {
     }
-
-
 
     def create_invoice(self, cr, uid, ids, context=None):
         if context is None:
@@ -44,8 +43,8 @@ class settled_invoice_wizard (osv.osv_memory):
         settlement_obj = self.pool.get('settlement')
 
         for o in self.browse(cr, uid, ids, context=context):
-            res = settlement_obj.action_invoice_create(cr, uid, context['active_ids'],
-                journal_id=o.journal_id.id, product_id=o.product_id.id, context=context)
+            res = settlement_obj.action_invoice_create(
+                cr, uid, context['active_ids'], journal_id=o.journal_id.id, product_id=o.product_id.id, context=context)
 
         invoice_ids = res.values()
 
@@ -55,14 +54,14 @@ class settled_invoice_wizard (osv.osv_memory):
             raise osv.except_osv(_('Error'), _('No Invoices were created'))
 
         #change state settlement
-        settlement_obj.write(cr, uid, context['active_ids'], {'state':'invoiced'})
+        settlement_obj.write(cr, uid, context['active_ids'], {'state': 'invoiced'})
 
-        action_model,action_id = data_pool.get_object_reference(cr, uid, 'account', "action_invoice_tree2")
+        action_model, action_id = data_pool.get_object_reference(cr, uid, 'account', "action_invoice_tree2")
 
         if action_model:
             action_pool = self.pool.get(action_model)
             action = action_pool.read(cr, uid, action_id, context=context)
-            action['domain'] = "[('id','in', ["+','.join(map(str,invoice_ids[0]))+"])]"
+            action['domain'] = "[('id','in', [" + ','.join(map(str, invoice_ids[0])) + "])]"
         return action
 
-settled_invoice_wizard ()
+settled_invoice_wizard()

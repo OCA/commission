@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution	
+#    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>). All Rights Reserved
 #    $Id$
 #
@@ -24,6 +24,7 @@
 
 from osv import fields, osv
 
+
 class res_partner(osv.osv):
     """añadimos algún campo relacionado con elas comisiones"""
 
@@ -31,10 +32,10 @@ class res_partner(osv.osv):
     _inherit = "res.partner"
     _columns = {
         'commission_ids': fields.one2many('res.partner.agent', 'partner_id', 'Agents'),
-        'agent': fields.boolean('Creditor/Agent', help="If you check this field will be available as creditor or agent.")
+        'agent': fields.boolean('Creditor/Agent',
+                                help="If you check this field will be available as creditor or agent.")
     }
-    
+
 res_partner()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-
