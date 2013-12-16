@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution	
+#    OpenERP, Open Source Management Solution
 #   Copyright (C) 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>). All Rights Reserved
 #    $Id$
 #
@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-import saleagent
+import sale_agent
 import invoice
 import partner_agent
 import partner
@@ -30,4 +30,3 @@ import stock_picking
 import wizard
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-
