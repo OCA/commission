@@ -38,8 +38,10 @@ class commission(orm.Model):
         'type': 'fijo',
     }
 
-    def calcula_tramos(self, cr, uid, ids, base):
-        commission = self.browse(cr, uid, ids)[0]
+    def calcula_tramos(self, cr, uid, ids, base, context=None):
+        if context is None:
+            context = {}
+        commission = self.browse(cr, uid, ids, context=context)[0]
         #Cálculo de tramos
         for section in commission.sections:
             if base >= section.commission_from and (base < section.commission_until or section.commission_until == 0):
@@ -90,9 +92,11 @@ class sale_agent(orm.Model):
         'type': 'asesor',
     }
 
-    def calcula_tramos(self, cr, uid, ids, base):
+    def calcula_tramos(self, cr, uid, ids, base, context=None):
         """calcula los tramos por factura"""
-        agente = self.browse(cr, uid, ids)[0]
+        if context is None:
+            context = {}
+        agente = self.browse(cr, uid, ids, context=context)[0]
         return agente.commission.calcula_tramos(base)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -33,7 +33,7 @@ class sale_order_agent(orm.Model):
         """devuelve como nombre del agente del partner el nombre del agente"""
         if context is None:
             context = {}
-        return [(obj.id, obj.agent_id.name) for obj in self.browse(cr, uid, ids)]
+        return [(obj.id, obj.agent_id.name) for obj in self.browse(cr, uid, ids, context=context)]
 
     _columns = {
         'sale_id': fields.many2one('sale.order', 'Sale order', required=False, ondelete='cascade', help=''),
@@ -42,23 +42,27 @@ class sale_order_agent(orm.Model):
                                          help=''),
     }
 
-    def onchange_agent_id(self, cr, uid, ids, agent_id):
+    def onchange_agent_id(self, cr, uid, ids, agent_id, context=None):
         """al cambiar el agente cargamos sus comisión"""
+        if context is None:
+            context = {}
         result = {}
         v = {}
         if agent_id:
-            agent = self.pool.get('sale.agent').browse(cr, uid, agent_id)
+            agent = self.pool.get('sale.agent').browse(cr, uid, agent_id, context=context)
             v['commission_id'] = agent.commission.id
         result['value'] = v
         return result
 
-    def onchange_commission_id(self, cr, uid, ids, agent_id=False, commission_id=False):
+    def onchange_commission_id(self, cr, uid, ids, agent_id=False, commission_id=False, context=None):
         """al cambiar la comisión comprobamos la selección"""
+        if context is None:
+            context = {}
         result = {}
         if commission_id:
-            partner_commission = self.pool.get('commission').browse(cr, uid, commission_id)
+            partner_commission = self.pool.get('commission').browse(cr, uid, commission_id, context=context)
             if partner_commission.sections and agent_id:
-                agent = self.pool.get('sale.agent').browse(cr, uid, agent_id)
+                agent = self.pool.get('sale.agent').browse(cr, uid, agent_id, context=context)
                 if agent.commission.id != partner_commission.id:
                     result['warning'] = {
                         'title': _('Fee installments!'),
@@ -79,6 +83,8 @@ class sale_order(orm.Model):
     }
 
     def create(self, cr, uid, values, context=None):
+        if context is None:
+            context = {}
         agent_pool = self.pool.get('sale.order.agent')
         res = super(sale_order, self).create(cr, uid, values, context=context)
         if 'sale_agent_ids' in values:
@@ -87,6 +93,8 @@ class sale_order(orm.Model):
         return res
 
     def write(self, cr, uid, ids, values, context=None):
+        if context is None:
+            context = {}
         agent_pool = self.pool.get('sale.order.agent')
         if 'sale_agent_ids' in values:
             for sale_order_agent in values['sale_agent_ids']:
@@ -94,18 +102,21 @@ class sale_order(orm.Model):
                     if sale_order_agent[2]:
                         sale_order_agent[2]['sale_id'] = id
                     else:
-                        agent_pool.unlink(cr, uid, sale_order_agent[1])
+                        agent_pool.unlink(cr, uid, sale_order_agent[1], context=context)
         return super(sale_order, self).write(cr, uid, ids, values, context=context)
 
     def onchange_partner_id(self, cr, uid, ids, part, context=None):
         """heredamos el evento de cambio del campo partner_id para actualizar el campo agent_id"""
+        if context is None:
+            context = {}
         sale_agent_ids = []
         res = super(sale_order, self).onchange_partner_id(cr, uid, ids, part, context=context)
         if res.get('value', False) and part:
             sale_order_agent = self.pool.get('sale.order.agent')
             if ids:
-                sale_order_agent.unlink(cr, uid, sale_order_agent.search(cr, uid, [('sale_id', '=', ids)]))
-            partner = self.pool.get('res.partner').browse(cr, uid, part)
+                sale_order_agent.unlink(cr, uid, sale_order_agent.search(cr, uid, [('sale_id', '=', ids)],
+                                                                         context=context))
+            partner = self.pool.get('res.partner').browse(cr, uid, part, context=context)
             for partner_agent in partner.commission_ids:
                 vals = {
                     'agent_id': partner_agent.agent_id.id,
@@ -116,20 +127,22 @@ class sale_order(orm.Model):
                 if ids:
                     for id in ids:
                         vals['sale_id'] = id
-                sale_agent_id = sale_order_agent.create(cr, uid, vals)
+                sale_agent_id = sale_order_agent.create(cr, uid, vals, context=context)
                 sale_agent_ids.append(int(sale_agent_id))
             res['value']['sale_agent_ids'] = sale_agent_ids
         return res
 
     def action_ship_create(self, cr, uid, ids, context=None):
         """extend this method to add agent_id to picking"""
+        if context is None:
+            context = {}
         picking_pool = self.pool.get('stock.picking')
         res = super(sale_order, self).action_ship_create(cr, uid, ids, context=context)
-        for order in self.browse(cr, uid, ids):
+        for order in self.browse(cr, uid, ids, context=context):
             pickings = [x.id for x in order.picking_ids]
             agents = [x.agent_id.id for x in order.sale_agent_ids]
             if pickings and agents:
-                picking_pool.write(cr, uid, pickings, {'agent_ids': [[6, 0, agents]], })
+                picking_pool.write(cr, uid, pickings, {'agent_ids': [[6, 0, agents]], }, context=context)
         return res
 
 
@@ -142,11 +155,11 @@ class sale_order_line(orm.Model):
         if context is None:
             context = {}
         invoice_line_pool = self.pool.get('account.invoice.line')
-        invoice_line_agent_pool = self.pool.get('account.invoice.agent')
+        invoice_line_agent_pool = self.pool.get('invoice.line.agent')
         res = super(sale_order_line, self).invoice_line_create(cr, uid, ids, context)
         so_ref = self.browse(cr, uid, ids)[0].order_id
         for so_agent_id in so_ref.sale_agent_ids:
-            inv_lines = invoice_line_pool.browse(cr, uid, res)
+            inv_lines = invoice_line_pool.browse(cr, uid, res, context=context)
             for inv_line in inv_lines:
                 if inv_line.product_id and inv_line.product_id.commission_exent is not True:
                     vals = {
@@ -155,6 +168,6 @@ class sale_order_line(orm.Model):
                         'commission_id': so_agent_id.commission_id.id,
                         'settled': False
                     }
-                    line_agent_id = invoice_line_agent_pool.create(cr, uid, vals)
-                    invoice_line_agent_pool.calculate_commission(cr, uid, [line_agent_id])
+                    line_agent_id = invoice_line_agent_pool.create(cr, uid, vals, context=context)
+                    invoice_line_agent_pool.calculate_commission(cr, uid, [line_agent_id], context=context)
         return res
