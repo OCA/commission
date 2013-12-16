@@ -22,11 +22,11 @@
 
 """objeto de comportamiento many2many que relaciona agentes o comerciales con partners"""
 
-from osv import fields, osv
+from osv import fields, orm
 from tools.translate import _
 
 
-class res_partner_agent(osv.osv):
+class res_partner_agent(orm.Model):
     """objeto de comportamiento many2many que relaciona agentes o comerciales con partners"""
     _name = "res.partner.agent"
 
@@ -93,8 +93,5 @@ class res_partner_agent(osv.osv):
                                                          'sections shall apply only on this bill.')
 
         return result
-
-
-res_partner_agent()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

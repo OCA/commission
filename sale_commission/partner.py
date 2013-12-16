@@ -22,10 +22,10 @@
 
 """añadimos algún campo relacionado con el intrastat"""
 
-from osv import fields, osv
+from osv import fields, orm
 
 
-class res_partner(osv.osv):
+class res_partner(orm.Model):
     """añadimos algún campo relacionado con elas comisiones"""
 
     _name = "res.partner"
@@ -35,7 +35,5 @@ class res_partner(osv.osv):
         'agent': fields.boolean('Creditor/Agent',
                                 help="If you check this field will be available as creditor or agent.")
     }
-
-res_partner()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

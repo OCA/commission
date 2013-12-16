@@ -22,10 +22,10 @@
 
 """Modificamos la creación de factura desde albarán para incluir el comportamiento de comisiones"""
 
-from osv import osv, fields
+from osv import orm, fields
 
 
-class product_product(osv.osv):
+class product_product(orm.Model):
     _inherit = 'product.product'
     _columns = {
         'commission_exent': fields.boolean('Commission exent')
@@ -33,14 +33,12 @@ class product_product(osv.osv):
     _defaults = {
         'commission_exent': lambda *a: False,
     }
-product_product()
 
 
-class stock_picking(osv.osv):
+class stock_picking(orm.Model):
     """Modificamos la creación de factura desde albarán para incluir el comportamiento de comisiones"""
 
     _inherit = 'stock.picking'
-
     _columns = {
         'agent_ids': fields.many2many('sale.agent', 'sale_agent_clinic_rel', 'agent_id', 'clinic_id', 'Agentes')
     }
@@ -62,5 +60,3 @@ class stock_picking(osv.osv):
                 line_agent_id = self.pool.get('invoice.line.agent').create(cursor, user, vals)
                 self.pool.get('invoice.line.agent').calculate_commission(cursor, user, [line_agent_id])
         return
-
-stock_picking()

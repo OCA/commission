@@ -20,10 +20,10 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+from osv import fields, orm
 
 
-class commission(osv.osv):
+class commission(orm.Model):
     """Objeto comisión"""
 
     _name = "commission"
@@ -47,10 +47,8 @@ class commission(osv.osv):
                 return res
         return 0.0
 
-commission()
 
-
-class commission_section(osv.osv):
+class commission_section(orm.Model):
     """periodo de las comisiones"""
 
     _name = "commission.section"
@@ -63,15 +61,12 @@ class commission_section(osv.osv):
 
     }
 
-commission_section()
 
-
-class sale_agent(osv.osv):
+class sale_agent(orm.Model):
     """Agente de ventas"""
 
     _name = "sale.agent"
     _description = "Sale agent"
-
     _columns = {
         'name': fields.char('Saleagent Name', size=125, required=True),
         'type': fields.selection((('asesor', 'Adviser'), ('comercial', 'Commercial')), 'Type', required=True),
@@ -99,8 +94,5 @@ class sale_agent(osv.osv):
         """calcula los tramos por factura"""
         agente = self.browse(cr, uid, ids)[0]
         return agente.commission.calcula_tramos(base)
-
-
-sale_agent()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

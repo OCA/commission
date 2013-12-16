@@ -33,8 +33,7 @@
         'stock'
     ],
     'description': 'Sales commissions',
-    'init_xml': [],
-    'update_xml': [
+    'data': [
         'security/ir.model.access.csv',
         'saleagent_view.xml',
         'partner_agent_view.xml',
@@ -47,7 +46,7 @@
         'stock_picking_view.xml',
         'cc_commission_report.xml',
     ],
-    'demo_xml': [
+    'demo': [
     ],
     'active': False,
     'installable': True
