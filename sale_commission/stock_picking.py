@@ -31,7 +31,7 @@ class product_product(orm.Model):
         'commission_exent': fields.boolean('Commission exent')
     }
     _defaults = {
-        'commission_exent': lambda *a: False,
+        'commission_exent': False,
     }
 
 
@@ -45,9 +45,9 @@ class stock_picking(orm.Model):
 
     def _invoice_line_hook(self, cursor, user, move_line, invoice_line_id):
         '''Call after the creation of the invoice line'''
+        agent_pool = self.pool.get('invoice.line.agent')
         super(stock_picking, self)._invoice_line_hook(cursor, user, move_line, invoice_line_id)
-
-        if move_line and move_line.sale_line_id and move_line.sale_line_id.product_id.commission_exent is not True:
+        if move_line and move_line.sale_line_id and not move_line.sale_line_id.product_id.commission_exent:
             so_ref = move_line.sale_line_id.order_id
             for so_agent_id in so_ref.sale_agent_ids:
                 vals = {
@@ -56,7 +56,5 @@ class stock_picking(orm.Model):
                     'commission_id': so_agent_id.commission_id.id,
                     'settled': False
                 }
-
-                line_agent_id = self.pool.get('invoice.line.agent').create(cursor, user, vals)
-                self.pool.get('invoice.line.agent').calculate_commission(cursor, user, [line_agent_id])
-        return
+                line_agent_id = agent_pool.create(cursor, user, vals)
+                agent_pool.calculate_commission(cursor, user, [line_agent_id])

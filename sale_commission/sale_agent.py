@@ -35,7 +35,7 @@ class commission(orm.Model):
         'sections': fields.one2many('commission.section', 'commission_id', 'Sections')
     }
     _defaults = {
-        'type': lambda *a: 'fijo',
+        'type': 'fijo',
     }
 
     def calcula_tramos(self, cr, uid, ids, base):
@@ -86,8 +86,8 @@ class sale_agent(orm.Model):
         'settlement_ids': fields.one2many('settlement.agent', 'agent_id', 'Settlements executed', readonly=True)
     }
     _defaults = {
-        'active': lambda *a: True,
-        'type': lambda *a: 'asesor',
+        'active': True,
+        'type': 'asesor',
     }
 
     def calcula_tramos(self, cr, uid, ids, base):
