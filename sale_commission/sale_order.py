@@ -33,10 +33,7 @@ class sale_order_agent(orm.Model):
         """devuelve como nombre del agente del partner el nombre del agente"""
         if context is None:
             context = {}
-        res = []
-        for obj in self.browse(cr, uid, ids):
-            res.append((obj.id, obj.agent_id.name))
-        return res
+        return [(obj.id, obj.agent_id.name) for obj in self.browse(cr, uid, ids)]
 
     _columns = {
         'sale_id': fields.many2one('sale.order', 'Sale order', required=False, ondelete='cascade', help=''),
@@ -60,15 +57,15 @@ class sale_order_agent(orm.Model):
         result = {}
         if commission_id:
             partner_commission = self.pool.get('commission').browse(cr, uid, commission_id)
-            if partner_commission.sections:
-                if agent_id:
-                    agent = self.pool.get('sale.agent').browse(cr, uid, agent_id)
-                    if agent.commission.id != partner_commission.id:
-                        result['warning'] = {}
-                        result['warning']['title'] = _('Fee installments!')
-                        result['warning']['message'] = _('A commission has been assigned by sections that does not '
-                                                         'match that defined for the agent by default, so that these '
-                                                         'sections shall apply only on this bill.')
+            if partner_commission.sections and agent_id:
+                agent = self.pool.get('sale.agent').browse(cr, uid, agent_id)
+                if agent.commission.id != partner_commission.id:
+                    result['warning'] = {
+                        'title': _('Fee installments!'),
+                        'message': _('A commission has been assigned by sections that does not '
+                                     'match that defined for the agent by default, so that these '
+                                     'sections shall apply only on this bill.')
+                    }
         return result
 
 
@@ -82,22 +79,22 @@ class sale_order(orm.Model):
     }
 
     def create(self, cr, uid, values, context=None):
-        """
-        """
+        agent_pool = self.pool.get('sale.order.agent')
         res = super(sale_order, self).create(cr, uid, values, context=context)
         if 'sale_agent_ids' in values:
             for sale_order_agent in values['sale_agent_ids']:
-                self.pool.get('sale.order.agent').write(cr, uid, sale_order_agent[1], {'sale_id': res})
+                agent_pool.write(cr, uid, sale_order_agent[1], {'sale_id': res})
         return res
 
     def write(self, cr, uid, ids, values, context=None):
+        agent_pool = self.pool.get('sale.order.agent')
         if 'sale_agent_ids' in values:
             for sale_order_agent in values['sale_agent_ids']:
                 for id in ids:
                     if sale_order_agent[2]:
                         sale_order_agent[2]['sale_id'] = id
                     else:
-                        self.pool.get('sale.order.agent').unlink(cr, uid, sale_order_agent[1])
+                        agent_pool.unlink(cr, uid, sale_order_agent[1])
         return super(sale_order, self).write(cr, uid, ids, values, context=context)
 
     def onchange_partner_id(self, cr, uid, ids, part, context=None):
@@ -115,6 +112,7 @@ class sale_order(orm.Model):
                     'commission_id': partner_agent.commission_id.id,
                     #'sale_id':ids
                 }
+                # FIXME: What is going on in this block?
                 if ids:
                     for id in ids:
                         vals['sale_id'] = id
@@ -125,13 +123,13 @@ class sale_order(orm.Model):
 
     def action_ship_create(self, cr, uid, ids, context=None):
         """extend this method to add agent_id to picking"""
+        picking_pool = self.pool.get('stock.picking')
         res = super(sale_order, self).action_ship_create(cr, uid, ids, context=context)
-
         for order in self.browse(cr, uid, ids):
             pickings = [x.id for x in order.picking_ids]
             agents = [x.agent_id.id for x in order.sale_agent_ids]
             if pickings and agents:
-                self.pool.get('stock.picking').write(cr, uid, pickings, {'agent_ids': [[6, 0, agents]], })
+                picking_pool.write(cr, uid, pickings, {'agent_ids': [[6, 0, agents]], })
         return res
 
 
@@ -143,11 +141,12 @@ class sale_order_line(orm.Model):
     def invoice_line_create(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-
+        invoice_line_pool = self.pool.get('account.invoice.line')
+        invoice_line_agent_pool = self.pool.get('account.invoice.agent')
         res = super(sale_order_line, self).invoice_line_create(cr, uid, ids, context)
         so_ref = self.browse(cr, uid, ids)[0].order_id
         for so_agent_id in so_ref.sale_agent_ids:
-            inv_lines = self.pool.get('account.invoice.line').browse(cr, uid, res)
+            inv_lines = invoice_line_pool.browse(cr, uid, res)
             for inv_line in inv_lines:
                 if inv_line.product_id and inv_line.product_id.commission_exent is not True:
                     vals = {
@@ -156,6 +155,6 @@ class sale_order_line(orm.Model):
                         'commission_id': so_agent_id.commission_id.id,
                         'settled': False
                     }
-                    line_agent_id = self.pool.get('invoice.line.agent').create(cr, uid, vals)
-                    self.pool.get('invoice.line.agent').calculate_commission(cr, uid, [line_agent_id])
+                    line_agent_id = invoice_line_agent_pool.create(cr, uid, vals)
+                    invoice_line_agent_pool.calculate_commission(cr, uid, [line_agent_id])
         return res

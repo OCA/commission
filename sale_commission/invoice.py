@@ -43,8 +43,8 @@ class invoice_line_agent(orm.Model):
         'quantity': fields.float('Settled amount')
     }
     _defaults = {
-        'settled': lambda *a: False,
-        'quantity': lambda *a: 0
+        'settled': False,
+        'quantity': 0
     }
 
     def calculate_commission(self, cr, uid, ids):
@@ -77,16 +77,15 @@ class invoice_line_agent(orm.Model):
             agent_line = self.browse(cr, uid, ids)
             v['quantity'] = agent_line[0].invoice_line_id.price_subtotal * (partner_commission.fix_qty / 100.0)
             result['value'] = v
-            if partner_commission.sections:
-                if agent_id:
-                    agent = self.pool.get('sale.agent').browse(cr, uid, agent_id)
-
-                    if agent.commission.id != partner_commission.id:
-                        result['warning'] = {}
-                        result['warning']['title'] = _('Fee installments!')
-                        result['warning']['message'] = _('A commission has been assigned by sections that does not '
-                                                         'match that defined for the agent by default, so that these '
-                                                         'sections shall apply only on this bill.')
+            if partner_commission.sections and agent_id:
+                agent = self.pool.get('sale.agent').browse(cr, uid, agent_id)
+                if agent.commission.id != partner_commission.id:
+                    result['warning'] = {
+                        'title': _('Fee installments!'),
+                        'message': _('A commission has been assigned by sections that does not '
+                                     'match that defined for the agent by default, so that these '
+                                     'sections shall apply only on this bill.')
+                    }
         return result
 
 

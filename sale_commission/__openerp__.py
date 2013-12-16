@@ -35,7 +35,7 @@
     'description': 'Sales commissions',
     'data': [
         'security/ir.model.access.csv',
-        'saleagent_view.xml',
+        'sale_agent_view.xml',
         'partner_agent_view.xml',
         'wizard/wizard_invoice.xml',
         'partner_view.xml',

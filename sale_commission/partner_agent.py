@@ -34,11 +34,7 @@ class res_partner_agent(orm.Model):
         """devuelve como nombre del agente del partner el nombre del agente"""
         if context is None:
             context = {}
-        res = []
-        for obj in self.browse(cr, uid, ids):
-            res.append((obj.id, obj.agent_id.name))
-
-        return res
+        return [(obj.id, obj.agent_id.name) for obj in self.browse(cr, uid, ids)]
 
     def _get_partner_agents_to_update_from_sale_agents(self, cr, uid, ids, context=None):
         """
@@ -47,12 +43,9 @@ class res_partner_agent(orm.Model):
         """
         if context is None:
             context = {}
-        result = []
-        for agent_obj_id in self.browse(cr, uid, ids):
-            partner_agents_ids = self.pool.get('res.partner.agent').search(cr, uid,
-                                                                           [('agent_id', '=', agent_obj_id.id)])
-            result.extend(partner_agents_ids)
-        return result
+        agent_pool = self.pool.get('res.partner.agent')
+        agent_obj_ids = [agent_obj_id.id for agent_obj_id in self.browse(cr, uid, ids)]
+        return agent_pool.search(cr, uid, [('agent_id', 'in', agent_obj_ids)])
 
     _columns = {
         'partner_id': fields.many2one('res.partner', 'Partner', required=True, ondelete='cascade', help='', select=1),
@@ -72,26 +65,23 @@ class res_partner_agent(orm.Model):
         if agent_id:
             agent = self.pool.get('sale.agent').browse(cr, uid, agent_id)
             v['commission_id'] = agent.commission.id
-
         result['value'] = v
         return result
 
     def onchange_commission_id(self, cr, uid, ids, agent_id=False, commission_id=False):
         """al cambiar la comisión comprobamos la selección"""
         result = {}
-
         if commission_id:
             partner_commission = self.pool.get('commission').browse(cr, uid, commission_id)
-            if partner_commission.sections:
-                if agent_id:
-                    agent = self.pool.get('sale.agent').browse(cr, uid, agent_id)
-                    if agent.commission.id != partner_commission.id:
-                        result['warning'] = {}
-                        result['warning']['title'] = _('Fee installments!')
-                        result['warning']['message'] = _('A commission has been assigned by sections that does not '
-                                                         'match that defined for the agent by default, so that these '
-                                                         'sections shall apply only on this bill.')
-
+            if partner_commission.sections and agent_id:
+                agent = self.pool.get('sale.agent').browse(cr, uid, agent_id)
+                if agent.commission.id != partner_commission.id:
+                    result['warning'] = {
+                        'title': _('Fee installments!'),
+                        'message': _('A commission has been assigned by sections that does not '
+                                     'match that defined for the agent by default, so that these '
+                                     'sections shall apply only on this bill.')
+                    }
         return result
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

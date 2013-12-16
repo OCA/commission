@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-import saleagent
+import sale_agent
 import invoice
 import partner_agent
 import partner
