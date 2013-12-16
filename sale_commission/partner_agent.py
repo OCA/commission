@@ -34,7 +34,7 @@ class res_partner_agent(orm.Model):
         """devuelve como nombre del agente del partner el nombre del agente"""
         if context is None:
             context = {}
-        return [(obj.id, obj.agent_id.name) for obj in self.browse(cr, uid, ids)]
+        return [(obj.id, obj.agent_id.name) for obj in self.browse(cr, uid, ids, context=context)]
 
     def _get_partner_agents_to_update_from_sale_agents(self, cr, uid, ids, context=None):
         """
@@ -44,8 +44,8 @@ class res_partner_agent(orm.Model):
         if context is None:
             context = {}
         agent_pool = self.pool.get('res.partner.agent')
-        agent_obj_ids = [agent_obj_id.id for agent_obj_id in self.browse(cr, uid, ids)]
-        return agent_pool.search(cr, uid, [('agent_id', 'in', agent_obj_ids)])
+        agent_obj_ids = [agent_obj_id.id for agent_obj_id in self.browse(cr, uid, ids, context=context)]
+        return agent_pool.search(cr, uid, [('agent_id', 'in', agent_obj_ids)], context=context)
 
     _columns = {
         'partner_id': fields.many2one('res.partner', 'Partner', required=True, ondelete='cascade', help='', select=1),
@@ -58,23 +58,25 @@ class res_partner_agent(orm.Model):
                                       'res.partner.agent': (lambda self, cr, uid, ids, c={}: ids, None, 20)})
     }
 
-    def onchange_agent_id(self, cr, uid, ids, agent_id):
+    def onchange_agent_id(self, cr, uid, ids, agent_id, context=None):
         """al cambiar el agente cargamos sus comisión"""
         result = {}
         v = {}
         if agent_id:
-            agent = self.pool.get('sale.agent').browse(cr, uid, agent_id)
+            agent = self.pool.get('sale.agent').browse(cr, uid, agent_id, context=context)
             v['commission_id'] = agent.commission.id
         result['value'] = v
         return result
 
-    def onchange_commission_id(self, cr, uid, ids, agent_id=False, commission_id=False):
+    def onchange_commission_id(self, cr, uid, ids, agent_id=False, commission_id=False, context=None):
         """al cambiar la comisión comprobamos la selección"""
+        if context is None:
+            context = {}
         result = {}
         if commission_id:
-            partner_commission = self.pool.get('commission').browse(cr, uid, commission_id)
+            partner_commission = self.pool.get('commission').browse(cr, uid, commission_id, context=context)
             if partner_commission.sections and agent_id:
-                agent = self.pool.get('sale.agent').browse(cr, uid, agent_id)
+                agent = self.pool.get('sale.agent').browse(cr, uid, agent_id, context=context)
                 if agent.commission.id != partner_commission.id:
                     result['warning'] = {
                         'title': _('Fee installments!'),

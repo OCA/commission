@@ -47,20 +47,24 @@ class invoice_line_agent(orm.Model):
         'quantity': 0
     }
 
-    def calculate_commission(self, cr, uid, ids):
-        for line_agent in self.browse(cr, uid, ids):
+    def calculate_commission(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+        for line_agent in self.browse(cr, uid, ids, context):
             if line_agent.commission_id.type == 'fijo' and line_agent.commission_id.fix_qty:
                 quantity = line_agent.invoice_line_id.price_subtotal * (line_agent.commission_id.fix_qty / 100.0)
-                self.write(cr, uid, line_agent.id, {'quantity': quantity})
+                self.write(cr, uid, line_agent.id, {'quantity': quantity}, context=context)
 
-    def onchange_agent_id(self, cr, uid, ids, agent_id):
+    def onchange_agent_id(self, cr, uid, ids, agent_id, context=None):
         """al cambiar el agente se le carga la comisión"""
+        if context is None:
+            context = {}
         result = {}
         v = {}
         if agent_id:
-            agent = self.pool.get('sale.agent').browse(cr, uid, agent_id)
+            agent = self.pool.get('sale.agent').browse(cr, uid, agent_id, context=context)
             v['commission_id'] = agent.commission.id
-            agent_line = self.browse(cr, uid, ids)
+            agent_line = self.browse(cr, uid, ids, context=context)
             if agent_line:
                 v['quantity'] = agent_line[0].invoice_line_id.price_subtotal * (agent.commission.fix_qty / 100.0)
             else:
@@ -68,17 +72,19 @@ class invoice_line_agent(orm.Model):
         result['value'] = v
         return result
 
-    def onchange_commission_id(self, cr, uid, ids, agent_id, commission_id):
+    def onchange_commission_id(self, cr, uid, ids, agent_id, commission_id, context=None):
         """alerta al usuario sobre la comisión elegida"""
+        if context is None:
+            context = {}
         result = {}
         v = {}
         if commission_id:
-            partner_commission = self.pool.get('commission').browse(cr, uid, commission_id)
-            agent_line = self.browse(cr, uid, ids)
+            partner_commission = self.pool.get('commission').browse(cr, uid, commission_id, context=context)
+            agent_line = self.browse(cr, uid, ids, context=context)
             v['quantity'] = agent_line[0].invoice_line_id.price_subtotal * (partner_commission.fix_qty / 100.0)
             result['value'] = v
             if partner_commission.sections and agent_id:
-                agent = self.pool.get('sale.agent').browse(cr, uid, agent_id)
+                agent = self.pool.get('sale.agent').browse(cr, uid, agent_id, context=context)
                 if agent.commission.id != partner_commission.id:
                     result['warning'] = {
                         'title': _('Fee installments!'),
@@ -111,20 +117,24 @@ class account_invoice(orm.Model):
     }
 
     def onchange_partner_id(self, cr, uid, ids, type, part, date_invoice=False, payment_term=False,
-                            partner_bank_id=False, company_id=False):
+                            partner_bank_id=False, company_id=False, context=None):
         """Al cambiar la empresa nos treamos el representante asociado a la empresa"""
+        if context is None:
+            context = {}
         res = super(account_invoice, self).onchange_partner_id(
             cr, uid, ids, type, part, date_invoice=date_invoice, payment_term=payment_term,
-            partner_bank_id=partner_bank_id, company_id=company_id)
+            partner_bank_id=partner_bank_id, company_id=company_id, context=context)
         if part and res.get('value', False):
-            partner = self.pool.get('res.partner').browse(cr, uid, part)
+            partner = self.pool.get('res.partner').browse(cr, uid, part, context=context)
             if partner.commission_ids:
                 res['value']['agent_id'] = partner.commission_ids[0].agent_id.id
         return res
 
     def _refund_cleanup_lines(self, cr, uid, lines, context=None):
         """ugly function to map all fields of account.invoice.line when creates refund invoice"""
-        res = super(account_invoice, self)._refund_cleanup_lines(cr, uid, lines, context)
+        if context is None:
+            context = {}
+        res = super(account_invoice, self)._refund_cleanup_lines(cr, uid, lines, context=context)
         for line in res:
             if 'commission_ids' in line[2]:
                 line[2]['commission_ids'] = [(6, 0, line[2].get('commission_ids', [])), ]
