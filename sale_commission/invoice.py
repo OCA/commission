@@ -121,9 +121,8 @@ class account_invoice(orm.Model):
         """Al cambiar la empresa nos treamos el representante asociado a la empresa"""
         if context is None:
             context = {}
-        res = super(account_invoice, self).onchange_partner_id(
-            cr, uid, ids, type, part, date_invoice=date_invoice, payment_term=payment_term,
-            partner_bank_id=partner_bank_id, company_id=company_id, context=context)
+        res = super(account_invoice, self).onchange_partner_id(cr, uid, ids, 
+            type, part, date_invoice, payment_term, partner_bank_id, company_id)
         if part and res.get('value', False):
             partner = self.pool.get('res.partner').browse(cr, uid, part, context=context)
             if partner.commission_ids:
