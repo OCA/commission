@@ -184,17 +184,17 @@ class settlement_agent (orm.Model):
 
     _name = 'settlement.agent'
 
-    def _invoice_line_hook(self, cursor, user, move_line, invoice_line_id):
+    def _invoice_line_hook(self, cursor, user, move_line, invoice_line_id, context=None):
         '''Call after the creation of the invoice line'''
         return
 
     def _get_address_invoice(self, cr, uid, settlement, context=None):
-        '''Return {'contact': address, 'invoice': address} for invoice'''
+        '''Return {'default: address, 'contact': address, 'invoice': address} for invoice'''
         if context is None:
             context = {}
         partner_obj = self.pool.get('res.partner')
         partner = settlement.agent_id.partner_id
-        return partner_obj.address_get(cr, uid, [partner.id], ['contact', 'invoice'], context=context)
+        return partner_obj.address_get(cr, uid, [partner.id], ['default', 'contact', 'invoice']), context=context)
 
     def _invoice_hook(self, cr, uid, picking, invoice_id, context=None):
         '''Call after the creation of the invoice'''
@@ -230,7 +230,7 @@ class settlement_agent (orm.Model):
                                      _('Agent to settle hasn\'t assigned partner.'))
            #El tipo es de facura de proveedor
             account_id = partner.property_account_payable.id
-            address_contact_id, address_invoice_id = \
+            address_default_id, address_contact_id, address_invoice_id = \
                 self._get_address_invoice(cr, uid, settlement, context=context).values()
             # No se agrupa
             invoice_vals = {
