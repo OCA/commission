@@ -21,7 +21,7 @@
 ##############################################################################
 {
     'name': 'Sales commissions',
-    'version': '1.0',
+    'version': '1.1',
     'author': 'Pexego',
     "category": "Generic Modules/Sales & Purchases",
     'depends': [
@@ -32,7 +32,21 @@
         'hr',
         'stock'
     ],
-    'description': 'Sales commissions',
+    'description': """
+Sales commissions
+=================
+
+This modules allow you to define sales agents and assign customers to them.
+You can then generate the supplier invoices to pay their commissions.
+
+Video : http://www.youtube.com/watch?v=NDqRnF1qKS0
+
+Contributors
+============
+Davide Corio <davide.corio@domsense.com>
+Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>
+Sandy Carter <sandy.carter@savoirfairelinux.com>
+    """,
     'data': [
         'security/ir.model.access.csv',
         'sale_agent_view.xml',
