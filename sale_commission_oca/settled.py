@@ -194,7 +194,7 @@ class settlement_agent (orm.Model):
             context = {}
         partner_obj = self.pool.get('res.partner')
         partner = settlement.agent_id.partner_id
-        return partner_obj.address_get(cr, uid, [partner.id], ['default', 'contact', 'invoice']), context=context)
+        return partner_obj.address_get(cr, uid, [partner.id], ['default', 'contact', 'invoice'], context=context)
 
     def _invoice_hook(self, cr, uid, picking, invoice_id, context=None):
         '''Call after the creation of the invoice'''
