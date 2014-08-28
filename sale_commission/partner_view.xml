@@ -8,9 +8,9 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="priority" eval="18"/>
             <field name="arch" type="xml">
-                    <field name="supplier" position="after">
-                        <field name="agent" string="Consultancy"/>
-                    </field>
+                   <xpath expr="//page[@string='Sales &amp; Purchases']//field[@name='supplier']" position="after">
+                   	   <field name="agent" string="Consultancy"/>
+                   </xpath>
             </field>
         </record>
 
@@ -20,18 +20,14 @@
             <field name="inherit_id" ref="view_partner_form_add_agent"/>
             <field name="arch" type="xml">
                 <field name="user_id" position="after">
-                    <group colspan="4">
-                        <separator colspan="4" string="Agents/Consultancy"/>
-                        <field name="commission_ids" colspan="4" nolabel="1">
+                        <field string="Agents/Consultancy" name="commission_ids">
                             <tree string="Agents and Commissions" editable="top">
                                 <field name="agent_id" on_change="onchange_agent_id(agent_id)"/>
                                 <field name="commission_id" on_change="onchange_commission_id(agent_id,commission_id)"/>
                             </tree>
                         </field>
-                    </group>
                 </field>
             </field>
         </record>
-
     </data>
 </openerp>
