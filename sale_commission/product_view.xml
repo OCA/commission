@@ -8,7 +8,9 @@
             <field name="inherit_id" ref="product.product_normal_form_view"/>
             <field name="arch" type="xml">
 	      <field name="description_sale" position="after">
-                    <field name="commission_exent"/>
+                    <group>
+                    	<field name="commission_exent"/>
+                    </group>
                 </field>
             </field>
         </record>
