@@ -9,8 +9,8 @@
             <field name="priority" eval="18"/>
             <field name="arch" type="xml">
                    <xpath expr="//page[@string='Sales &amp; Purchases']//field[@name='supplier']" position="after">
-                           <field name="agent" string="Consultancy"/>
-				   </xpath>
+                   	   <field name="agent" string="Consultancy"/>
+                   </xpath>
             </field>
         </record>
 
@@ -26,7 +26,6 @@
                                 <field name="commission_id" on_change="onchange_commission_id(agent_id,commission_id)"/>
                             </tree>
                         </field>
-                  
                 </field>
             </field>
         </record>
