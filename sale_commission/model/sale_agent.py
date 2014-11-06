@@ -29,7 +29,7 @@ class commission(models.Model):
     _name = "commission"
     _description = "Commission"
 
-    name = fields.Char('Name', size=64, required=True)
+    name = fields.Char('Name', required=True)
 
     type = fields.Selection(
         (
@@ -85,7 +85,10 @@ class sale_agent(models.Model):
     _name = "sale.agent"
     _description = "Sale agent"
 
-    name = fields.Char(string="Saleagent Name", size=125, required=True),
+    name = fields.Char(
+        string="Sale agent Name",
+        required=True
+    )
 
     type = fields.Selection(
         (
@@ -138,6 +141,7 @@ class sale_agent(models.Model):
             ("s", "Semiannual"),
             ("a", "Annual")),
         string="Settlement period",
+        default="m",
         required=True
     )
 
