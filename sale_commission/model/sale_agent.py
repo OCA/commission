@@ -32,10 +32,7 @@ class commission(models.Model):
     name = fields.Char('Name', required=True)
 
     type = fields.Selection(
-        (
-            ("fijo", "Fix percentage"),
-            ("tramos", "By sections")
-        ),
+        (("fijo", "Fix percentage"), ("tramos", "By sections")),
         string="Type",
         required=True,
         default="fijo"
@@ -91,10 +88,7 @@ class sale_agent(models.Model):
     )
 
     type = fields.Selection(
-        (
-            ("asesor", "Adviser"),
-            ("comercial", "Commercial")
-        ),
+        (("asesor", "Adviser"), ("comercial", "Commercial")),
         string="Type",
         required=True,
         default="asesor"
@@ -136,10 +130,9 @@ class sale_agent(models.Model):
 
     settlement = fields.Selection(
         (
-            ("m", "Monthly"),
-            ("t", "Quarterly"),
-            ("s", "Semiannual"),
-            ("a", "Annual")),
+            ("m", "Monthly"), ("t", "Quarterly"),
+            ("s", "Semi-annual"), ("a", "Annual")
+        ),
         string="Settlement period",
         default="m",
         required=True

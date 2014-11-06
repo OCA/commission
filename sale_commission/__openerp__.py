@@ -53,20 +53,21 @@ Giorgio Borelli <giorgio.borelli@abstract.it>
         "base",
         "account",
         "hr",
-        "sale"
+        "sale",
+        "stock"
     ],
     "data": [
         "security/ir.model.access.csv",
         "view/sale_agent_view.xml",
-        # 'partner_agent_view.xml',
+        "view/partner_agent_view.xml",
         # 'wizard/wizard_invoice.xml',
-        # 'partner_view.xml',
+        "view/partner_view.xml",
         # 'settled_view.xml',
         # 'invoice_view.xml',
-        # 'sale_order_view.xml',
-        # 'product_view.xml',
-        # 'stock_picking_view.xml',
-        # 'cc_commission_report.xml',
+        "view/sale_order_view.xml",
+        "view/product_view.xml",
+        "view/stock_picking_view.xml",
+        # 'cc_commission_report.xml'
     ],
     "demo": [
         'demo/sale_agent_demo.xml',
