@@ -106,7 +106,6 @@ class settlement(models.Model):
 
     name = fields.Char(
         string="Settlement period",
-        size=64,
         required=True,
         readonly=True
     )
