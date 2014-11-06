@@ -32,12 +32,7 @@ class res_partner_agent(models.Model):
     """objeto de comportamiento many2many
     que relaciona agentes o comerciales con partners"""
     _name = "res.partner.agent"
-
-    def name_get(self, cr, uid, ids, context=None):
-        """devuelve como nombre del agente del partner el nombre del agente"""
-        if context is None:
-            context = {}
-        return [(obj.id, obj.agent_id.name) for obj in self.browse(cr, uid, ids, context=context)]
+    _rec_name = "agent_name"
 
     def _get_partner_agents_to_update_from_sale_agents(self, cr, uid, ids, context=None):
         """devuelve los ids de partner agents a actualizar
@@ -63,6 +58,11 @@ class res_partner_agent(models.Model):
         string="Agent",
         required=True,
         ondelete="cascade"
+    )
+
+    agent_name = fields.Char(
+        string="Agent name",
+        related="agent_id.name"
     )
 
     commission_id = fields.Many2one(

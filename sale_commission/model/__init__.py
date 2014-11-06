@@ -26,4 +26,4 @@ from . import partner_agent
 from . import partner
 from . import settled
 from . import sale_order
-# import stock_picking
+from . import stock_picking

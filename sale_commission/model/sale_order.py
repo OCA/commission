@@ -20,23 +20,23 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-"""Modificamos las ventas para incluir el comportamiento de comisiones"""
 from openerp import models, fields, api, _
 
 
 class sale_order_agent(models.Model):
     _name = "sale.order.agent"
-
-    def name_get(self, cr, uid, ids, context=None):
-        """devuelve como nombre del agente del partner el nombre del agente"""
-        if context is None:
-            context = {}
-        return [(obj.id, obj.agent_id.name) for obj in self.browse(cr, uid, ids, context=context)]
+    _rec_name = "agent_name"
 
     sale_id = fields.Many2one(
         "sale.order",
         string="Sale order",
+        required=False,
+        ondelete="cascade"
+    )
+
+    commission_id = fields.Many2one(
+        "commission",
+        string="Commission",
         required=False,
         ondelete="cascade"
     )
@@ -48,46 +48,44 @@ class sale_order_agent(models.Model):
         ondelete="cascade"
     )
 
-    commission_id = fields.Many2one(
-        "commission",
-        string="Applied commission",
-        required=True,
-        ondelete="cascade",
+    agent_name = fields.Char(
+        string="Agent name",
+        related="agent_id.name"
     )
 
-    def onchange_agent_id(self, cr, uid, ids, agent_id, context=None):
-        """al cambiar el agente cargamos sus comisión"""
-        if context is None:
-            context = {}
-        result = {}
-        v = {}
-        if agent_id:
-            agent = self.pool.get('sale.agent').browse(cr, uid, agent_id, context=context)
-            v['commission_id'] = agent.commission.id
-        result['value'] = v
-        return result
+    @api.onchange("agent_id")
+    def do_set_default_commission(self):
+        """Set default commission when sale agent has changed"""
+        self.commission_id = self.agent_id.commission
 
-    def onchange_commission_id(self, cr, uid, ids, agent_id=False, commission_id=False, context=None):
-        """al cambiar la comisión comprobamos la selección"""
-        if context is None:
-            context = {}
+    @api.onchange("commission_id")
+    def do_check_commission(self):
+        """Check selected commission and raise a warning
+        when selected commission is not the default provided for sale agent
+        and default partner commission have sections
+        """
+        context = {}
         result = {}
-        if commission_id:
-            partner_commission = self.pool.get('commission').browse(cr, uid, commission_id, context=context)
-            if partner_commission.sections and agent_id:
-                agent = self.pool.get('sale.agent').browse(cr, uid, agent_id, context=context)
-                if agent.commission.id != partner_commission.id:
-                    result['warning'] = {
-                        'title': _('Fee installments!'),
-                        'message': _('A commission has been assigned by sections that does not '
-                                     'match that defined for the agent by default, so that these '
-                                     'sections shall apply only on this bill.')
+        commission = self.commission_id
+        if commission.id:
+            agent_commission = self.agent_id.commission
+            if self.agent_id and commission.sections:
+                if commission.id != agent_commission.id:
+                    return {
+                        "warning": {
+                            "title": _('Fee installments!'),
+                            "message": _(
+                                "Selected commission has been assigned "
+                                "by sections and it does not match "
+                                "the one defined to the selected agent."
+                                "These sections shall apply only on this bill."
+                            )
+                        }
                     }
-        return result
 
 
 class sale_order(models.Model):
-    """Modificamos las ventas para incluir el comportamiento de comisiones"""
+    """Include commission behavior in sale order model"""
 
     _inherit = "sale.order"
 
@@ -98,41 +96,58 @@ class sale_order(models.Model):
         states={"draft": [("readonly", False)]}
     )
 
-    def create(self, cr, uid, values, context=None):
-        if context is None:
-            context = {}
-        agent_pool = self.pool.get('sale.order.agent')
-        res = super(sale_order, self).create(cr, uid, values, context=context)
-        if 'sale_agent_ids' in values:
-            for sale_order_agent in values['sale_agent_ids']:
-                agent_pool.write(cr, uid, sale_order_agent[1], {'sale_id': res})
-        return res
+    # XXX: porting to Odoo v8.0
+    # it doesn't work and I think it is not necessary
+    # def create(self, cr, uid, values, context=None):
+    #     """Add sale order reference on sale.order.agent
+    #     """
+    #     if context is None:
+    #         context = {}
+    #     agent_pool = self.pool.get('sale.order.agent')
+    #     res = super(sale_order, self).create(cr, uid, values, context=context)
+    #     if 'sale_agent_ids' in values:
+    #         for sale_order_agent in values['sale_agent_ids']:
+    #             agent_pool.write(cr, uid, sale_order_agent[1], {'sale_id': res})
+    #     return res
 
-    def write(self, cr, uid, ids, values, context=None):
-        if context is None:
-            context = {}
-        agent_pool = self.pool.get('sale.order.agent')
-        if 'sale_agent_ids' in values:
-            for sale_order_agent in values['sale_agent_ids']:
-                for id in ids:
-                    if sale_order_agent[2]:
-                        sale_order_agent[2]['sale_id'] = id
-                    else:
-                        agent_pool.unlink(cr, uid, sale_order_agent[1], context=context)
-        return super(sale_order, self).write(cr, uid, ids, values, context=context)
+    # XXX: porting to Odoo v8.0
+    # it doesn't work and I think it is not necessary
+    # def write(self, cr, uid, ids, values, context=None):
+    #     """Rebuild sale.order reference on sale.order.agent
+    #     """
+    #     if context is None:
+    #         context = {}
+    #     agent_pool = self.pool.get('sale.order.agent')
+    #     if 'sale_agent_ids' in values:
+    #         import pdb; pdb.set_trace( )
+    #         for sale_order_agent in values['sale_agent_ids']:
+    #             for id in ids:
+    #                 if sale_order_agent[2]:
+    #                     sale_order_agent[2]['sale_id'] = id
+    #                 else:
+    #                     agent_pool.unlink(cr, uid, sale_order_agent[1], context=context)
+    #     return super(sale_order, self).write(cr, uid, ids, values, context=context)
 
     def onchange_partner_id(self, cr, uid, ids, part, context=None):
-        """heredamos el evento de cambio del campo partner_id para actualizar el campo agent_id"""
+        """Agent id field will be changed according to new partner
+        """
         if context is None:
             context = {}
         sale_agent_ids = []
-        res = super(sale_order, self).onchange_partner_id(cr, uid, ids, part, context=context)
+        res = super(sale_order, self).onchange_partner_id(
+            cr, uid, ids, part, context=context
+        )
         if res.get('value', False) and part:
             sale_order_agent = self.pool.get('sale.order.agent')
             if ids:
-                sale_order_agent.unlink(cr, uid, sale_order_agent.search(cr, uid, [('sale_id', '=', ids)],
-                                                                         context=context))
-            partner = self.pool.get('res.partner').browse(cr, uid, part, context=context)
+                agent_id = sale_order_agent.search(
+                    cr, uid,
+                    [('sale_id', '=', ids)],
+                    context=context
+                )
+                sale_order_agent.unlink(cr, uid, agent_id, context=context)
+            partner_obj = self.pool.get('res.partner')
+            partner = partner_obj.browse(cr, uid, part, context=context)
             for partner_agent in partner.commission_ids:
                 vals = {
                     'agent_id': partner_agent.agent_id.id,
@@ -143,7 +158,9 @@ class sale_order(models.Model):
                 if ids:
                     for id in ids:
                         vals['sale_id'] = id
-                sale_agent_id = sale_order_agent.create(cr, uid, vals, context=context)
+                sale_agent_id = sale_order_agent.create(
+                    cr, uid, vals, context=context
+                )
                 sale_agent_ids.append(int(sale_agent_id))
             res['value']['sale_agent_ids'] = sale_agent_ids
         return res
@@ -163,7 +180,9 @@ class sale_order(models.Model):
 
 
 class sale_order_line(models.Model):
-    """Modificamos las lineas ventas para incluir las comisiones en las facturas creadas desde ventas"""
+    """It includes the commission in each invoice line
+    when an invoice is created
+    """
 
     _inherit = "sale.order.line"
 
@@ -173,17 +192,17 @@ class sale_order_line(models.Model):
         invoice_line_pool = self.pool.get('account.invoice.line')
         invoice_line_agent_pool = self.pool.get('invoice.line.agent')
         res = super(sale_order_line, self).invoice_line_create(cr, uid, ids, context)
-        so_ref = self.browse(cr, uid, ids)[0].order_id
-        for so_agent_id in so_ref.sale_agent_ids:
-            inv_lines = invoice_line_pool.browse(cr, uid, res, context=context)
-            for inv_line in inv_lines:
-                if inv_line.product_id and inv_line.product_id.commission_exent is not True:
-                    vals = {
-                        'invoice_line_id': inv_line.id,
-                        'agent_id': so_agent_id.agent_id.id,
-                        'commission_id': so_agent_id.commission_id.id,
-                        'settled': False
-                    }
-                    line_agent_id = invoice_line_agent_pool.create(cr, uid, vals, context=context)
-                    invoice_line_agent_pool.calculate_commission(cr, uid, [line_agent_id], context=context)
-        return res
+    #     so_ref = self.browse(cr, uid, ids)[0].order_id
+    #     for so_agent_id in so_ref.sale_agent_ids:
+    #         inv_lines = invoice_line_pool.browse(cr, uid, res, context=context)
+    #         for inv_line in inv_lines:
+    #             if inv_line.product_id and inv_line.product_id.commission_exent is not True:
+    #                 vals = {
+    #                     'invoice_line_id': inv_line.id,
+    #                     'agent_id': so_agent_id.agent_id.id,
+    #                     'commission_id': so_agent_id.commission_id.id,
+    #                     'settled': False
+    #                 }
+    #                 line_agent_id = invoice_line_agent_pool.create(cr, uid, vals, context=context)
+    #                 invoice_line_agent_pool.calculate_commission(cr, uid, [line_agent_id], context=context)
+    #     return res
