@@ -57,7 +57,7 @@ Giorgio Borelli <giorgio.borelli@abstract.it>
     ],
     "data": [
         "security/ir.model.access.csv",
-        # 'sale_agent_view.xml',
+        "view/sale_agent_view.xml",
         # 'partner_agent_view.xml',
         # 'wizard/wizard_invoice.xml',
         # 'partner_view.xml',

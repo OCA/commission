@@ -98,7 +98,7 @@ class sale_agent(models.Model):
         string="Type",
         required=True,
         default="asesor"
-    ),
+    )
 
     partner_id = fields.Many2one(
         "res.partner",
@@ -145,7 +145,7 @@ class sale_agent(models.Model):
         required=True
     )
 
-    active = fields.Boolean(string="Active", default=True),
+    active = fields.Boolean(string="Active", default=True)
 
     retention_id = fields.Many2one(
         "account.tax",
