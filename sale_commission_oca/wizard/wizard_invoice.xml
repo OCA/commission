@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="view_settled_invoice" model="ir.ui.view">
+            <field name="name">Make invoices</field>
+            <field name="model">settled.invoice.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Create invoices">
+                    <group>
+                        <field name="product_id" />
+                        <field name="journal_id" />
+                    </group>
+                    <footer>
+
+                        <button name="create_invoice"
+                                string="Create"
+                                type="object"
+                                class="oe_highlight" />
+                        or
+                        <button special="cancel"
+                                string="_Cancel"
+                                class="oe_link" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <act_window name="Create invoices"
+            res_model="settled.invoice.wizard"
+            src_model="settlement"
+            key2="client_action_multi"
+            multi="True"
+            view_mode="form"
+            view_type="form"
+            target="new"
+            id="action_settled_invoice"
+            />
+
+    </data>
+</openerp>

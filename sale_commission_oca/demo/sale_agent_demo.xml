@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="demo_commission" model="commission">
+            <field name="name">10% fixed commission</field>
+            <field name="fix_qty">10.0</field>
+        </record>
+
+        <record id="res_partner_sale_agent" model="res.partner">
+            <field name="name">Pritesh Sales Agent</field>
+            <field name="city">Ahmedabad</field>
+            <field name="zip">380007</field>
+            <field name="country_id"
+                   model="res.country"
+                   search="[('name','=','India')]" />
+            <field name="street">56 Beijing street</field>
+        </record>
+
+        <record id="demo_saleagent" model="sale.agent">
+            <field name="name">Pritesh Sales Agent</field>
+            <field name="commission" ref="demo_commission" />
+            <field name="partner_id" ref="res_partner_sale_agent" />
+        </record>
+
+        <record id="res_partner_eiffel" model="res.partner">
+            <field name="name">Eiffel pvt ltd</field>
+            <field name="city">Ahmedabad</field>
+            <field name="name">Eiffel India</field>
+            <field name="zip">380007</field>
+            <field name="country_id"
+                   model="res.country"
+                   search="[('name','=','India')]" />
+            <field name="street">Wall Street 2</field>
+            <!-- <field name="agent_id" ref="saleagent_partner" /> -->
+        </record>
+
+        <record id="res_partner_tiny" model="res.partner">
+            <field name="name">Tiny Belgium</field>
+            <field name="city">Belgium</field>
+            <field name="name">Tiny Belgium</field>
+            <field name="zip">2457</field>
+            <field name="country_id"
+                   model="res.country"
+                   search="[('name','=','India')]" />
+            <field name="street">Belgium Gao</field>
+            <!-- <field name="agent_id" ref="saleagent_partner" /> -->
+        </record>
+
+        <record id="res_partner_agent_1" model="res.partner.agent">
+            <field name="partner_id" ref="res_partner_tiny" />
+            <field name="agent_id" ref="demo_saleagent" />
+            <field name="commission_id" ref="demo_commission" />
+        </record>
+
+        <record id="res_partner_agent_2" model="res.partner.agent">
+            <field name="partner_id" ref="res_partner_eiffel" />
+            <field name="agent_id" ref="demo_saleagent" />
+            <field name="commission_id" ref="demo_commission" />
+        </record>
+
+    </data>
+</openerp>

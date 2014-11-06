@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <!--record id="view_order_comm_tree" model="ir.ui.view">
+            <field name="name">sale.order.comm.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                    <field name="partner_shipping_id" position="after">
+                        <field name="agent_code" select="2"/>
+                        <field name="country" select="2"/>
+                    </field>
+            </field>
+        </record-->
+
+        <record id="view_order_agent_form_inherit" model="ir.ui.view">
+            <field name="name">sale.agent.order.inherit.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                       <field name="sale_agent_ids"
+                              string="Agents/Consultancy">
+                            <tree string="Agents and Commissions"
+                                  editable="top">
+                                <field name="agent_id" />
+                                <field name="commission_id" />
+                            </tree>
+                        </field>
+                </field>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_sale_agent_commission_tree">
+            <field name="name">sale.agent.commission.tree</field>
+            <field name="model">sale.order.agent</field>
+            <field name="arch" type="xml">
+                <tree string="Agents">
+                    <field name="sale_id"/>
+                    <field name="agent_id" />
+                    <field name="commission_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sale_order_agent_commission_form">
+            <field name="name">sale.order.agent.commission.form</field>
+            <field name="model">sale.order.agent</field>
+            <field name="arch" type="xml">
+                <form string="Agents">
+                    <field name="agent_id" />
+                    <field name="commission_id" />
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>
