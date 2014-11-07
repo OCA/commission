@@ -354,15 +354,11 @@ class settlement_line(models.Model):
     """
     _name = "settlement.line"
 
-    # TODO: migrate settlement.line.currency default value
     def _default_currency(self):
-        import pdb; pdb.set_trace( )
-    # _defaults = {
-    # #     'currency_id': (lambda self, cr, uid, context:
-    #     user_obj = self.pool.get('res.users')
-    #     user = user_obj.browse(cr, uid, uid, context=context)
-    #     user.company_id.currency_id.id
-    # # }
+        # BBB: I think this is wrong...
+        # sale order o invoice could be in a different currency
+        company = self.env.user.company_id
+        return company.currency_id.id
 
     invoice_id = fields.Many2one(
         "account.invoice",
