@@ -29,17 +29,6 @@ class res_partner_agent(models.Model):
     _name = "res.partner.agent"
     _rec_name = "agent_name"
 
-    def _get_partner_agents_to_update_from_sale_agents(self, cr, uid, ids, context=None):
-        """devuelve los ids de partner agents a actualizar
-        desde el lanzamiento de un evento de actualización
-        en agentes de ventas
-        """
-        if context is None:
-            context = {}
-        agent_pool = self.pool.get('res.partner.agent')
-        agent_obj_ids = [agent_obj_id.id for agent_obj_id in self.browse(cr, uid, ids, context=context)]
-        return agent_pool.search(cr, uid, [('agent_id', 'in', agent_obj_ids)], context=context)
-
     partner_id = fields.Many2one(
         "res.partner",
         string="Partner",
@@ -72,11 +61,7 @@ class res_partner_agent(models.Model):
         related="agent_id.type",
         selection=[('asesor', 'Adviser'), ('comercial', 'Commercial')],
         readonly=True,
-        # TODO: migrate store attribute
-        # store={
-        #     'sale.agent': (_get_partner_agents_to_update_from_sale_agents, ['type'], 10),
-        #     'res.partner.agent': (lambda self, cr, uid, ids, c={}: ids, None, 20)
-        # }
+        store=True
     )
 
     @api.onchange("agent_id")
@@ -90,8 +75,6 @@ class res_partner_agent(models.Model):
         when selected commission is not the default provided for sale agent
         and default partner commission have sections
         """
-        context = {}
-        result = {}
         commission = self.commission_id
         if commission.id:
             agent_commission = self.agent_id.commission
