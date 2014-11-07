@@ -15,10 +15,10 @@
                 <tree string="Sale Agent">
                     <field name="code" />
                     <field name="name" />
-                    <field name="active" />
                     <field name="partner_id" />
                     <field name="commission" />
                     <field name="settlement" />
+                    <field name="active" />
                 </tree>
             </field>
         </record>
@@ -31,12 +31,12 @@
                     <group>
                     	<group>
                     		<group>
-                    			<field name="name"/>
-                    			<field name="type"/>
+                    			<field name="name" />
+                    			<field name="type" />
                     		</group>
                     		<group>
-                    			<field name="code"/>
-	                    		<field name="active"/>
+                    			<field name="code" />
+	                    		<field name="active" />
                     		</group>
                     	</group>
                        <group string="Related entity or employee"

@@ -34,29 +34,25 @@
         </record>
 
 
-        <record model="ir.ui.view" id="view_sale_agent_comision_tree">
-            <field name="name">sale.agent.comision.tree</field>
+        <record model="ir.ui.view" id="view_sale_agent_commission_tree">
+            <field name="name">sale.agent.commission.tree</field>
             <field name="model">sale.order.agent</field>
             <field name="arch" type="xml">
                 <tree string="Agents">
                     <field name="sale_id"/>
-                    <field name="agent_id"
-                           on_change="onchange_agent_id(agent_id)"/>
-                    <field name="commission_id"
-                           on_change="onchange_commission_id(agent_id,commission_id)"/>
+                    <field name="agent_id" />
+                    <field name="commission_id" />
                 </tree>
             </field>
         </record>
 
-        <record model="ir.ui.view" id="sale_order_agent_comision_form">
-            <field name="name">sale.order.agent.comision.form.</field>
+        <record model="ir.ui.view" id="sale_order_agent_commission_form">
+            <field name="name">sale.order.agent.commission.form</field>
             <field name="model">sale.order.agent</field>
             <field name="arch" type="xml">
                 <form string="Agents">
-                    <field name="agent_id"
-                           on_change="onchange_agent_id(agent_id)"/>
-                    <field name="commission_id"
-                           on_change="onchange_commission_id(agent_id,commission_id)"/>
+                    <field name="agent_id" />
+                    <field name="commission_id" />
                 </form>
             </field>
         </record>

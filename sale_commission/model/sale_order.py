@@ -96,8 +96,7 @@ class sale_order(models.Model):
         states={"draft": [("readonly", False)]}
     )
 
-    # XXX: porting to Odoo v8.0
-    # it doesn't work and I think it is not necessary
+    # XXX: It doesn't work with Odoo v8.0 and I think it is not necessary
     # def create(self, cr, uid, values, context=None):
     #     """Add sale order reference on sale.order.agent
     #     """
@@ -110,8 +109,7 @@ class sale_order(models.Model):
     #             agent_pool.write(cr, uid, sale_order_agent[1], {'sale_id': res})
     #     return res
 
-    # XXX: porting to Odoo v8.0
-    # it doesn't work and I think it is not necessary
+    # XXX: It doesn't work with Odoo v8.0 and I think it is not necessary
     # def write(self, cr, uid, ids, values, context=None):
     #     """Rebuild sale.order reference on sale.order.agent
     #     """
@@ -192,17 +190,17 @@ class sale_order_line(models.Model):
         invoice_line_pool = self.pool.get('account.invoice.line')
         invoice_line_agent_pool = self.pool.get('invoice.line.agent')
         res = super(sale_order_line, self).invoice_line_create(cr, uid, ids, context)
-    #     so_ref = self.browse(cr, uid, ids)[0].order_id
-    #     for so_agent_id in so_ref.sale_agent_ids:
-    #         inv_lines = invoice_line_pool.browse(cr, uid, res, context=context)
-    #         for inv_line in inv_lines:
-    #             if inv_line.product_id and inv_line.product_id.commission_exent is not True:
-    #                 vals = {
-    #                     'invoice_line_id': inv_line.id,
-    #                     'agent_id': so_agent_id.agent_id.id,
-    #                     'commission_id': so_agent_id.commission_id.id,
-    #                     'settled': False
-    #                 }
-    #                 line_agent_id = invoice_line_agent_pool.create(cr, uid, vals, context=context)
-    #                 invoice_line_agent_pool.calculate_commission(cr, uid, [line_agent_id], context=context)
-    #     return res
+        so_ref = self.browse(cr, uid, ids)[0].order_id
+        for so_agent_id in so_ref.sale_agent_ids:
+            inv_lines = invoice_line_pool.browse(cr, uid, res, context=context)
+            for inv_line in inv_lines:
+                if inv_line.product_id and inv_line.product_id.commission_exent is not True:
+                    vals = {
+                        'invoice_line_id': inv_line.id,
+                        'agent_id': so_agent_id.agent_id.id,
+                        'commission_id': so_agent_id.commission_id.id,
+                        'settled': False
+                    }
+                    line_agent_id = invoice_line_agent_pool.create(cr, uid, vals, context=context)
+                    invoice_line_agent_pool.calculate_commission(cr, uid, [line_agent_id], context=context)
+        return res
