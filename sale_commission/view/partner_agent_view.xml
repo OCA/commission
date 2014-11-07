@@ -20,10 +20,8 @@
             <field name="arch" type="xml">
                 <form string="Agents">
                     <group>
-                        <field name="agent_id"
-                               on_change="onchange_agent_id(agent_id)" />
-                        <field name="commission_id"
-                               on_change="onchange_commission_id(agent_id,commission_id)" />
+                        <field name="agent_id" />
+                        <field name="commission_id" />
                     </group>
                 </form>
             </field>
