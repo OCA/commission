@@ -2,7 +2,7 @@
 <openerp>
     <data>
 
-        <record id="product_normal_form_view_exclude_commisions"
+        <record id="product_normal_form_view_exclude_commissions"
                 model="ir.ui.view">
             <field name="name">product.normal.form.exclude_commissions</field>
             <field name="model">product.product</field>

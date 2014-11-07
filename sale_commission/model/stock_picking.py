@@ -39,7 +39,7 @@ class stock_picking(models.Model):
 
     agent_ids = fields.Many2many(
         "sale.agent",
-        string="Agentes"
+        string="Agents"
     )
 
     # TODO: migrate this
