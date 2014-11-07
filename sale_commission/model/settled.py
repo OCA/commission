@@ -55,6 +55,7 @@ class settlement(models.Model):
         default=fields.Datetime.now()
     )
 
+    # TODO: I think a workflow is necessary to manage 'cancel' state/transition
     state = fields.Selection(
         [
             ("invoiced", "Invoiced"),
@@ -62,6 +63,7 @@ class settlement(models.Model):
             ("cancel", "Cancel")
         ],
         string="State",
+        readonly=True,
         default="settled"
     )
 
