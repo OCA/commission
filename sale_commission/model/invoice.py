@@ -23,7 +23,7 @@
 
 """invoice agents"""
 
-from openerp import models, fields, _
+from openerp import models, fields, api, _
 
 
 class invoice_line_agent(models.Model):
@@ -83,55 +83,47 @@ class invoice_line_agent(models.Model):
                 vals = {'quantity': subtotal * (fix_qty / 100.0)}
                 self.write(cr, uid, line_agent.id, vals, context=context)
 
-    def onchange_agent_id(self, cr, uid, ids, agent_id, context=None):
-        """al cambiar el agente se le carga la comisión"""
-        if context is None:
-            context = {}
+    @api.onchange("agent_id")
+    def do_set_commission_and_recalulate(self):
+        """Change commission and recalculate commissions
+        """
+        agent = self.agent_id
         result = {}
         v = {}
-        if agent_id:
-            agent_obj = self.pool.get('sale.agent')
-            agent = agent_obj.browse(cr, uid, agent_id, context=context)
-            v['commission_id'] = agent.commission.id
-            agent_line = self.browse(cr, uid, ids, context=context)
-            if agent_line:
-                subtotal = agent_line[0].invoice_line_id.price_subtotal
-                v['quantity'] = subtotal * (agent.commission.fix_qty / 100.0)
-            else:
-                v['quantity'] = 0
+        if self.agent_id:
+            self.commission_id = self.agent_id.commission
+            subtotal = self.invoice_line_id.price_subtotal
+            self.quantity = subtotal * (agent.commission.fix_qty / 100.0)
         result['value'] = v
         return result
 
-    def onchange_commission_id(self, cr, uid, ids, agent_id,
-                               commission_id, context=None):
-        """alerta al usuario sobre la comisión elegida"""
-        if context is None:
-            context = {}
-        result = {}
-        v = {}
-        if commission_id:
+    @api.onchange("commission_id")
+    def do_check_commission_and_recalculate(self):
+        """Recalculate commissions, check selected commission
+        and raise a warning when selected commission
+        is not the default provided for sale agent
+        and default partner commission have sections
+        """
+        commission = self.commission_id
+        if commission:
             commission_obj = self.pool.get('commission')
-            agent_obj = self.pool.get('sale.agent')
-            partner_commission = commission_obj.browse(
-                cr, uid, commission_id, context=context
-            )
-            agent_line = self.browse(cr, uid, ids, context=context)
-            subtotal = agent_line[0].invoice_line_id.price_subtotal
-            v['quantity'] = subtotal * (partner_commission.fix_qty / 100.0)
-            result['value'] = v
-            if partner_commission.sections and agent_id:
-                agent = agent_obj.browse(cr, uid, agent_id, context=context)
-                if agent.commission.id != partner_commission.id:
-                    result['warning'] = {
-                        'title': _('Fee installments!'),
-                        'message': _(
-                            "Selected commission has been assigned "
-                            "by sections and it does not match "
-                            "the one defined to the selected agent."
-                            "These sections shall apply only on this bill."
-                        )
+            agent_commission = self.agent_id.commission
+            subtotal = self.invoice_line_id.price_subtotal
+            self.quantity = subtotal * (agent.commission.fix_qty / 100.0)
+
+            if self.agent_id and commission.sections:
+                if commission.id != agent_commission.id:
+                    return {
+                        "warning": {
+                            "title": _('Fee installments!'),
+                            "message": _(
+                                "Selected commission has been assigned "
+                                "by sections and it does not match "
+                                "the one defined to the selected agent."
+                                "These sections shall apply only on this bill."
+                            )
+                        }
                     }
-        return result
 
 
 class account_invoice_line(models.Model):
