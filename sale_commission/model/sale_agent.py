@@ -52,7 +52,9 @@ class commission(models.Model):
         commission = self.browse(cr, uid, ids, context=context)[0]
         #Cálculo de tramos
         for section in commission.sections:
-            if base >= section.commission_from and (base < section.commission_until or section.commission_until == 0):
+            if base >= section.commission_from and (
+                    base < section.commission_until or
+                    section.commission_until == 0):
                 res = base * section.percent / 100.0
                 return res
         return 0.0
@@ -104,7 +106,7 @@ class sale_agent(models.Model):
     code = fields.Char(
         string="Code",
         related="partner_id.ref",
-        # readonly=True,
+        readonly=True,
         help="Related company code"
     )
 

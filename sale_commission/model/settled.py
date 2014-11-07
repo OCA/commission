@@ -20,87 +20,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 """Objetos sobre las liquidación"""
-import time
+
 from openerp import models, fields, api, _
 from openerp import tools
 
 
-class settled_wizard (models.TransientModel):
-    """settled.wizard"""
-
-    _name = "settled.wizard"
-
-    date_from = fields.Date('From', required=True)
-    date_to = fields.Date('To', required=True)
-
-    def settlement_exec(self, cr, uid, ids, context=None):
-        """se ejecuta correctamente desde dos."""
-        if context is None:
-            context = {}
-        pool_liq = self.pool.get('settlement')
-        for o in self.browse(cr, uid, ids, context=context):
-            vals = {
-                'name': o.date_from + " // " + o.date_to,
-                'date_from': o.date_from,
-                'date_to': o.date_to
-            }
-            liq_id = pool_liq.create(cr, uid, vals, context=context)
-            pool_liq.calcula(cr, uid, liq_id, context['active_ids'], o.date_from, o.date_to, context=context)
-
-        return {
-            'type': 'ir.actions.act_window_close',
-        }
-
-    def action_cancel(self, cr, uid, ids, connect=None, context=None):
-        """Cancel Liquidation"""
-        return {
-            'type': 'ir.actions.act_window_close',
-        }
-
-
-class recalculate_commission_wizard(models.TransientModel):
-    """settled.wizard"""
-
-    _name = "recalculate.commission.wizard"
-
-    date_from = fields.Date(string="From", required=True)
-    date_to = fields.Date(string="To", required=True)
-
-    def recalculate_exec(self, cr, uid, ids, context=None):
-        """se ejecuta correctamente desde dos."""
-        if context is None:
-            context = {}
-        user = self.pool.get('res.users').browse(cr, uid, uid, context=context)
-        agent_pool = self.pool.get('invoice.line.agent')
-        for o in self.browse(cr, uid, ids, context=context):
-            sql = 'SELECT  invoice_line_agent.id FROM account_invoice_line ' \
-                  'INNER JOIN invoice_line_agent ON invoice_line_agent.invoice_line_id=account_invoice_line.id ' \
-                  'INNER JOIN account_invoice ON account_invoice_line.invoice_id = account_invoice.id ' \
-                  'WHERE invoice_line_agent.agent_id in (' + ",".join(map(str, context['active_ids'])) + ') ' \
-                  'AND invoice_line_agent.settled=False ' \
-                  'AND account_invoice.state<>\'draft\' AND account_invoice.type=\'out_invoice\'' \
-                  'AND account_invoice.date_invoice >= \'' + o.date_from + '\' ' \
-                  'AND account_invoice.date_invoice <= \'' + o.date_to + '\' ' \
-                  'AND account_invoice.company_id = ' + str(user.company_id.id)
-            cr.execute(sql)
-            res = cr.fetchall()
-            inv_line_agent_ids = [x[0] for x in res]
-            agent_pool.calculate_commission(cr, uid, inv_line_agent_ids, context=context)
-        return {
-            'type': 'ir.actions.act_window_close',
-        }
-
-    def action_cancel(self, cr, uid, ids, connect=None, context=None):
-        """Cancel Calculation"""
-        return {
-            'type': 'ir.actions.act_window_close',
-        }
-
-
 class settlement(models.Model):
-    """Object Liquidation"""
+    """Settlement model"""
 
     _name = "settlement"
 
@@ -138,7 +65,8 @@ class settlement(models.Model):
         default="settled"
     )
 
-    def action_invoice_create(self, cursor, user, ids, journal_id, product_id, context=None):
+    def action_invoice_create(self, cursor, user, ids,
+                              journal_id, product_id, context=None):
         if context is None:
             context = {}
         agents_pool = self.pool.get('settlement.agent')
@@ -150,7 +78,7 @@ class settlement(models.Model):
             res[settlement.id] = invoices_agent.values()
         return res
 
-    def calcula(self, cr, uid, ids, agent_ids, date_from, date_to, context=None):
+    def calculate(self, cr, uid, ids, agent_ids, date_from, date_to, context=None):
         """genera una entrada de liquidación por agente"""
          # Busca todas las líneas de liquidación facturadas en un período
         if context is None:
@@ -163,7 +91,7 @@ class settlement(models.Model):
             # genera una entrada de liquidación por agente
             liq_agent_id = settlement_agent_pool.create(cr, uid, {'agent_id': agent.id, 'settlement_id': ids},
                                                         context=context)
-            settlement_agent_pool.calcula(cr, uid, liq_agent_id, date_from, date_to, context=context)
+            settlement_agent_pool.calculate(cr, uid, liq_agent_id, date_from, date_to, context=context)
             liq_agent = settlement_agent_pool.browse(cr, uid, liq_agent_id, context=context)
             total = total + liq_agent.total
         return self.write(cr, uid, ids, {'total': total}, context=context)
@@ -336,7 +264,7 @@ class settlement_agent(models.Model):
             self._invoice_hook(cr, uid, settlement, invoice_id, context=context)
         return res
 
-    def calcula(self, cr, uid, ids, date_from, date_to, context=None):
+    def calculate(self, cr, uid, ids, date_from, date_to, context=None):
         if context is None:
             context = {}
         settlement_line_pool = self.pool.get('settlement.line')
@@ -376,7 +304,7 @@ class settlement_agent(models.Model):
             linea_id = settlement_line_pool.create(cr, uid,
                                                    {'invoice_line_id': inv_line_id, 'settlement_agent_id': ids},
                                                    context=context)
-            settlement_line_pool.calcula(cr, uid, linea_id, context=context)
+            settlement_line_pool.calculate(cr, uid, linea_id, context=context)
             line = settlement_line_pool.browse(cr, uid, linea_id, context=context)
             # Marca la comision en la factura como liquidada y establece la cantidad
             # Si es por tramos la cantidad será cero, pero se reflejará sobre el tramo del Agente
@@ -476,7 +404,7 @@ class settlement_line(models.Model):
     )
     commission = fields.Float(string="Quantity", readonly=True)
 
-    def calcula(self, cr, uid, ids, context=None):
+    def calculate(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
         currency_pool = self.pool.get('res.currency')
