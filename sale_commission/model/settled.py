@@ -426,6 +426,16 @@ class settlement_line(models.Model):
     """
     _name = "settlement.line"
 
+    # TODO: migrate settlement.line.currency default value
+    def _default_currency(self):
+        import pdb; pdb.set_trace( )
+    # _defaults = {
+    # #     'currency_id': (lambda self, cr, uid, context:
+    #     user_obj = self.pool.get('res.users')
+    #     user = user_obj.browse(cr, uid, uid, context=context)
+    #     user.company_id.currency_id.id
+    # # }
+
     invoice_id = fields.Many2one(
         "account.invoice",
         string="Invoice",
@@ -452,10 +462,12 @@ class settlement_line(models.Model):
     )
 
     amount = fields.Float(string="Invoice line amount", readonly=True)
+
     currency_id = fields.Many2one(
         "res.currency",
         string="Currency",
-        readonly=True
+        readonly=True,
+        default=_default_currency
     )
     commission_id = fields.Many2one(
         "commission",
@@ -463,12 +475,6 @@ class settlement_line(models.Model):
         readonly=True
     )
     commission = fields.Float(string="Quantity", readonly=True)
-
-    # TODO: migrate default value
-    # _defaults = {
-    #     'currency_id': (lambda self, cr, uid, context:
-    #                     self.pool.get('res.users').browse(cr, uid, uid, context=context).company_id.currency_id.id)
-    # }
 
     def calcula(self, cr, uid, ids, context=None):
         if context is None:
@@ -521,6 +527,7 @@ class settled_invoice_agent(models.Model):
         readonly=True,
         select=1
     )
+
     invoice_id = fields.Many2one(
         "account.invoice",
         string="Invoice",

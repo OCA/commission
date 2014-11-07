@@ -72,7 +72,7 @@ class res_partner_agent(models.Model):
         related="agent_id.type",
         selection=[('asesor', 'Adviser'), ('comercial', 'Commercial')],
         readonly=True,
-        # TODO: migrate
+        # TODO: migrate store attribute
         # store={
         #     'sale.agent': (_get_partner_agents_to_update_from_sale_agents, ['type'], 10),
         #     'res.partner.agent': (lambda self, cr, uid, ids, c={}: ids, None, 20)

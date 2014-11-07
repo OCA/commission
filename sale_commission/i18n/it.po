@@ -767,7 +767,7 @@ msgstr "Reports"
 #: field:invoice.line.agent,quantity:0
 #: field:settled.invoice.agent,settled_amount:0
 msgid "Settled amount"
-msgstr "Import liquidato"
+msgstr "Importo liquidato"
 
 #. module: sale_commission
 #: field:invoice.line.agent,commission_id:0

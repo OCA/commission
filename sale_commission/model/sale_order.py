@@ -117,7 +117,6 @@ class sale_order(models.Model):
     #         context = {}
     #     agent_pool = self.pool.get('sale.order.agent')
     #     if 'sale_agent_ids' in values:
-    #         import pdb; pdb.set_trace( )
     #         for sale_order_agent in values['sale_agent_ids']:
     #             for id in ids:
     #                 if sale_order_agent[2]:
