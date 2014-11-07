@@ -79,34 +79,34 @@ class res_partner_agent(models.Model):
         # }
     )
 
-    # TODO: migrate
-    def onchange_agent_id(self, cr, uid, ids, agent_id, context=None):
-        """al cambiar el agente cargamos sus comisión"""
-        result = {}
-        v = {}
-        if agent_id:
-            agent = self.pool.get('sale.agent').browse(cr, uid, agent_id, context=context)
-            v['commission_id'] = agent.commission.id
-        result['value'] = v
-        return result
+    @api.onchange("agent_id")
+    def do_set_default_commission(self):
+        """Set default commission when sale agent has changed"""
+        self.commission_id = self.agent_id.commission
 
-    # TODO: migrate
-    def onchange_commission_id(self, cr, uid, ids, agent_id=False, commission_id=False, context=None):
-        """al cambiar la comisión comprobamos la selección"""
-        if context is None:
-            context = {}
+    @api.onchange("commission_id")
+    def do_check_commission(self):
+        """Check selected commission and raise a warning
+        when selected commission is not the default provided for sale agent
+        and default partner commission have sections
+        """
+        context = {}
         result = {}
-        if commission_id:
-            partner_commission = self.pool.get('commission').browse(cr, uid, commission_id, context=context)
-            if partner_commission.sections and agent_id:
-                agent = self.pool.get('sale.agent').browse(cr, uid, agent_id, context=context)
-                if agent.commission.id != partner_commission.id:
-                    result['warning'] = {
-                        'title': _('Fee installments!'),
-                        'message': _('A commission has been assigned by sections that does not '
-                                     'match that defined for the agent by default, so that these '
-                                     'sections shall apply only on this bill.')
+        commission = self.commission_id
+        if commission.id:
+            agent_commission = self.agent_id.commission
+            if self.agent_id and commission.sections:
+                if commission.id != agent_commission.id:
+                    return {
+                        "warning": {
+                            "title": _('Fee installments!'),
+                            "message": _(
+                                "Selected commission has been assigned "
+                                "by sections and it does not match "
+                                "the one defined to the selected agent."
+                                "These sections shall apply only on this bill."
+                            )
+                        }
                     }
-        return result
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
