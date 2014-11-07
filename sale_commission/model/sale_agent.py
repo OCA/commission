@@ -103,8 +103,8 @@ class sale_agent(models.Model):
 
     code = fields.Char(
         string="Code",
-        relation="partner_id.ref",
-        readonly=True,
+        related="partner_id.ref",
+        # readonly=True,
         help="Related company code"
     )
 

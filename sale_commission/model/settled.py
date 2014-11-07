@@ -60,7 +60,7 @@ class settled_wizard (models.TransientModel):
         }
 
 
-class recalculate_commision_wizard(models.TransientModel):
+class recalculate_commission_wizard(models.TransientModel):
     """settled.wizard"""
 
     _name = "recalculate.commission.wizard"
@@ -429,12 +429,12 @@ class settlement_line(models.Model):
     invoice_id = fields.Many2one(
         "account.invoice",
         string="Invoice",
-        relation="invoice_line_id.invoice_id"
+        related="invoice_line_id.invoice_id"
     )
 
     invoice_date = fields.Date(
         string="Invoice Date",
-        relation="invoice_id.date_invoice",
+        related="invoice_id.date_invoice",
         readonly=True
     )
 
@@ -499,15 +499,20 @@ class settlement_line(models.Model):
                                                               user.company_id.currency_id.id, amount, round=False,
                                                               context=context) or
                                         amount)
-                self.write(cr, uid, ids, {'amount': cc_amount_subtotal,
-                                          'commission_id': commission_app.id,
-                                          'commission': cc_commission_amount,
-                                          'currency_id': user.company_id.currency_id.id})
+                self.write(
+                    cr, uid, ids,
+                    {
+                        'amount': cc_amount_subtotal,
+                        'commission_id': commission_app.id,
+                        'commission': cc_commission_amount,
+                        'currency_id': user.company_id.currency_id.id
+                    }
+                )
 
 
 class settled_invoice_agent(models.Model):
     _name = "settled.invoice.agent"
-    _description = "Resumen de facturas liquidadas"
+    _description = "Sale Agents' invoices summary"
     _auto = False
 
     agent_id = fields.Many2one(
@@ -533,13 +538,13 @@ class settled_invoice_agent(models.Model):
 
     invoice_number = fields.Char(
         string="Invoice no",
-        relation="invoice_id.number",
+        related="invoice_id.number",
         readonly=True
     )
 
     invoice_date = fields.Date(
         string="Invoice date",
-        relation="invoice_id.date_invoice",
+        related="invoice_id.date_invoice",
         readonly=True,
         select=1
     )

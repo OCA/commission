@@ -40,12 +40,12 @@ class invoice_line_agent(models.Model):
     invoice_id = fields.Many2one(
         "account.invoice",
         string="Invoice",
-        relation="invoice_line_id.invoice_id"
+        related="invoice_line_id.invoice_id"
     )
 
     invoice_date = fields.Date(
         string="Invoice date",
-        relation="invoice_id.date_invoice",
+        related="invoice_id.date_invoice",
         readonly=True
     )
 
@@ -140,14 +140,14 @@ class account_invoice(models.Model):
     agent_id = fields.Many2one('sale.agent', 'Agent')
     agent_code = fields.Char(
         string="Agent code",
-        relation="agent_id.code",
+        related="agent_id.code",
         readonly=True,
 
     )
     country = fields.Many2one(
         "res.country",
         string="Country",
-        relation="partner_id.country_id",
+        related="partner_id.country_id",
         readonly=True
     )
 

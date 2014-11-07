@@ -20,17 +20,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-"""objeto de comportamiento many2many que relaciona agentes o comerciales con partners"""
-
-# from osv import fields, orm
-# from tools.translate import _
 from openerp import models, fields, api, _
 
 
 class res_partner_agent(models.Model):
-    """objeto de comportamiento many2many
-    que relaciona agentes o comerciales con partners"""
+    """This model relates sales agents to partnes
+    """
     _name = "res.partner.agent"
     _rec_name = "agent_name"
 
@@ -74,15 +69,17 @@ class res_partner_agent(models.Model):
 
     type = fields.Selection(
         string="Type",
-        relation="agent_id.type",
+        related="agent_id.type",
         selection=[('asesor', 'Adviser'), ('comercial', 'Commercial')],
         readonly=True,
+        # TODO: migrate
         # store={
         #     'sale.agent': (_get_partner_agents_to_update_from_sale_agents, ['type'], 10),
         #     'res.partner.agent': (lambda self, cr, uid, ids, c={}: ids, None, 20)
         # }
     )
 
+    # TODO: migrate
     def onchange_agent_id(self, cr, uid, ids, agent_id, context=None):
         """al cambiar el agente cargamos sus comisión"""
         result = {}
@@ -93,6 +90,7 @@ class res_partner_agent(models.Model):
         result['value'] = v
         return result
 
+    # TODO: migrate
     def onchange_commission_id(self, cr, uid, ids, agent_id=False, commission_id=False, context=None):
         """al cambiar la comisión comprobamos la selección"""
         if context is None:
