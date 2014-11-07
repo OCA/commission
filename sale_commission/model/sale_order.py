@@ -167,12 +167,15 @@ class sale_order(models.Model):
         if context is None:
             context = {}
         picking_pool = self.pool.get('stock.picking')
-        res = super(sale_order, self).action_ship_create(cr, uid, ids, context=context)
+        res = super(sale_order, self).action_ship_create(
+            cr, uid, ids, context=context
+        )
         for order in self.browse(cr, uid, ids, context=context):
             pickings = [x.id for x in order.picking_ids]
             agents = [x.agent_id.id for x in order.sale_agent_ids]
             if pickings and agents:
-                picking_pool.write(cr, uid, pickings, {'agent_ids': [[6, 0, agents]], }, context=context)
+                vals = {'agent_ids': [[6, 0, agents]], }
+                picking_pool.write(cr, uid, pickings, vals, context=context)
         return res
 
 
@@ -188,18 +191,25 @@ class sale_order_line(models.Model):
             context = {}
         invoice_line_pool = self.pool.get('account.invoice.line')
         invoice_line_agent_pool = self.pool.get('invoice.line.agent')
-        res = super(sale_order_line, self).invoice_line_create(cr, uid, ids, context)
+        res = super(sale_order_line, self).invoice_line_create(
+            cr, uid, ids, context
+        )
         so_ref = self.browse(cr, uid, ids)[0].order_id
         for so_agent_id in so_ref.sale_agent_ids:
             inv_lines = invoice_line_pool.browse(cr, uid, res, context=context)
             for inv_line in inv_lines:
-                if inv_line.product_id and inv_line.product_id.commission_exent is not True:
+                exent = inv_line.product_id.commission_exent
+                if inv_line.product_id and exent is not True:
                     vals = {
                         'invoice_line_id': inv_line.id,
                         'agent_id': so_agent_id.agent_id.id,
                         'commission_id': so_agent_id.commission_id.id,
                         'settled': False
                     }
-                    line_agent_id = invoice_line_agent_pool.create(cr, uid, vals, context=context)
-                    invoice_line_agent_pool.calculate_commission(cr, uid, [line_agent_id], context=context)
+                    line_agent_id = invoice_line_agent_pool.create(
+                        cr, uid, vals, context=context
+                    )
+                    invoice_line_agent_pool.calculate_commission(
+                        cr, uid, [line_agent_id], context=context
+                    )
         return res
