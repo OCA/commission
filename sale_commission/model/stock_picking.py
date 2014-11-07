@@ -42,7 +42,7 @@ class stock_picking(models.Model):
         string="Agents"
     )
 
-    # TODO: migrate this
+    # TODO: migrate stock.picking._invoice_line_hook
     # def _invoice_line_hook(self, cr, uid, move_line, invoice_line_id, context=None):
     #     '''Call after the creation of the invoice line'''
     #     if context is None:
