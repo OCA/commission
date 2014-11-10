@@ -2,25 +2,23 @@
 <openerp>
     <data>
 
-<!-- TODO: migrate stock.picking views, they don't exist in Odoo v8 -->
-<!--         <record id="stock_picking_form_add_agent_field" model="ir.ui.view">
+        <record id="stock_picking_form_add_agent_field" model="ir.ui.view">
             <field name="name">stock.picking.form.add_agent_field</field>
             <field name="model">stock.picking</field>
             <field name="type">form</field>
-            <field name="inherit_id" ref="stock.view_picking_out_form"/>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
             <field name="arch" type="xml">
-                <field name="move_type" position="after" >
-                    <group colspan="2" col="2">
-                    <separator colspan="2" string="Agents/Consultancy"/>
-                    <field name="agent_ids" colspan="2" rowspan="4" readonly="1" nolabel="1">
-                        <tree string="Agents" >
-                            <field name="name"/>
-                        </tree>
-                    </field>
-                    </group>
-                </field>
+                <notebook position="inside">
+                    <page string="Agents/Consultancy">
+                        <field name="agent_ids" readonly="1" nolabel="1">
+                            <tree string="Agents" >
+                                <field name="name"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
             </field>
-        </record> -->
+        </record>
 
         <!--record id="stock_picking_tree_add_agent_field" model="ir.ui.view">
             <field name="name">stock.picking.tree.add_agent_field</field>
