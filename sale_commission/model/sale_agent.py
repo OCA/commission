@@ -20,7 +20,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields, api
+from openerp import models, fields
 
 
 class commission(models.Model):
@@ -50,7 +50,7 @@ class commission(models.Model):
         if context is None:
             context = {}
         commission = self.browse(cr, uid, ids, context=context)[0]
-        #Cálculo de tramos
+        # Cálculo de tramos
         for section in commission.sections:
             if base >= section.commission_from and (
                     base < section.commission_until or

@@ -22,7 +22,7 @@
 ##############################################################################
 """Objetos sobre las liquidación"""
 
-from openerp import models, fields, api, _
+from openerp import models, fields, _
 from openerp import tools
 from openerp import exceptions
 
@@ -91,7 +91,7 @@ class settlement(models.Model):
     def calculate(self, cr, uid, ids, agent_ids,
                   date_from, date_to, context=None):
         """genera una entrada de liquidación por agente"""
-         # Busca todas las líneas de liquidación facturadas en un período
+        # Busca todas las líneas de liquidación facturadas en un período
         if context is None:
             context = {}
         sale_agent_pool = self.pool.get('sale.agent')
@@ -241,7 +241,7 @@ class settlement_agent(models.Model):
                 raise exceptions.Warning(
                     _('Agent to settle hasn\'t assigned partner.')
                 )
-           #El tipo es de facura de proveedor
+            # El tipo es de facura de proveedor
             account_id = partner.property_account_payable.id
             address_default_id, address_contact_id, address_invoice_id = (
                 self._get_address_invoice(
@@ -294,7 +294,7 @@ class settlement_agent(models.Model):
                 name = invoice.invoice_number
                 price_unit = invoice.settled_amount
                 discount = 0
-                #set UoS if it's a sale and the picking doesn't have one
+                # set UoS if it's a sale and the picking doesn't have one
                 uos_id = False
                 account_id = account_fiscal_position_pool.map_account(
                     cr, uid,
@@ -431,9 +431,9 @@ class settlement_agent(models.Model):
                         'base': line.invoice_line_id.price_subtotal,
                         'lines': [line]
                     }
-        #Tramos para cada tipo de comisión creados
+        # Tramos para cada tipo de comisión creados
         for tramo in sections:
-            #Cálculo de la comisión  para cada tramo
+            # Cálculo de la comisión  para cada tramo
             tramo = sections[tramo]
             sections[tramo].update(
                 {

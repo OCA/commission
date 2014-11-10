@@ -20,7 +20,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields, api, _
+from openerp import models, fields, _
 from openerp import exceptions
 
 
@@ -60,7 +60,7 @@ class settled_invoice_wizard(models.TransientModel):
         action = {}
         if not invoice_ids[0]:
             raise exceptions.Warning(_('No Invoices were created'))
-        #change state settlement
+        # change state settlement
         settlement_obj.write(
             cr, uid,
             context['active_ids'],
