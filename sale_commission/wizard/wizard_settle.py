@@ -77,15 +77,26 @@ class recalculate_commission_wizard(models.TransientModel):
         user = self.pool.get('res.users').browse(cr, uid, uid, context=context)
         agent_pool = self.pool.get('invoice.line.agent')
         for o in self.browse(cr, uid, ids, context=context):
-            sql = 'SELECT  invoice_line_agent.id FROM account_invoice_line ' \
-                  'INNER JOIN invoice_line_agent ON invoice_line_agent.invoice_line_id=account_invoice_line.id ' \
-                  'INNER JOIN account_invoice ON account_invoice_line.invoice_id = account_invoice.id ' \
-                  'WHERE invoice_line_agent.agent_id in (' + ",".join(map(str, context['active_ids'])) + ') ' \
-                  'AND invoice_line_agent.settled=False ' \
-                  'AND account_invoice.state<>\'draft\' AND account_invoice.type=\'out_invoice\'' \
-                  'AND account_invoice.date_invoice >= \'' + o.date_from + '\' ' \
-                  'AND account_invoice.date_invoice <= \'' + o.date_to + '\' ' \
-                  'AND account_invoice.company_id = ' + str(user.company_id.id)
+            sql = """
+                SELECT  invoice_line_agent.id FROM account_invoice_line
+                  INNER JOIN invoice_line_agent
+                  ON invoice_line_agent.invoice_line_id=account_invoice_line.id
+                  INNER JOIN account_invoice
+                  ON account_invoice_line.invoice_id = account_invoice.id
+                  WHERE
+                    invoice_line_agent.agent_id in ({})
+                  AND invoice_line_agent.settled=False
+                  AND account_invoice.state<>'draft'
+                  AND account_invoice.type='out_invoice'
+                  AND account_invoice.date_invoice >= '{}'
+                  AND account_invoice.date_invoice <= '{}'
+                  AND account_invoice.company_id = {}
+            """.format(
+                ",".join(map(str, context['active_ids'])),
+                o.date_from,
+                o.date_to,
+                user.company_id.id
+            )
             cr.execute(sql)
             res = cr.fetchall()
             inv_line_agent_ids = [x[0] for x in res]

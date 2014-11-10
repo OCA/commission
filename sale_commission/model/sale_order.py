@@ -103,10 +103,12 @@ class sale_order(models.Model):
     #     if context is None:
     #         context = {}
     #     agent_pool = self.pool.get('sale.order.agent')
-    #     res = super(sale_order, self).create(cr, uid, values, context=context)
+    #     res = super(sale_order, self).create(
+    #          cr, uid, values, context=context)
     #     if 'sale_agent_ids' in values:
     #         for sale_order_agent in values['sale_agent_ids']:
-    #             agent_pool.write(cr, uid, sale_order_agent[1], {'sale_id': res})
+    #             agent_pool.write(
+    #           cr, uid, sale_order_agent[1], {'sale_id': res})
     #     return res
 
     # XXX: It doesn't work with Odoo v8.0 and I think it is not necessary
@@ -122,8 +124,10 @@ class sale_order(models.Model):
     #                 if sale_order_agent[2]:
     #                     sale_order_agent[2]['sale_id'] = id
     #                 else:
-    #                     agent_pool.unlink(cr, uid, sale_order_agent[1], context=context)
-    #     return super(sale_order, self).write(cr, uid, ids, values, context=context)
+    #                     agent_pool.unlink(
+    #           cr, uid, sale_order_agent[1], context=context)
+    #     return super(sale_order, self).write(
+    #           cr, uid, ids, values, context=context)
 
     def onchange_partner_id(self, cr, uid, ids, part, context=None):
         """Agent id field will be changed according to new partner
