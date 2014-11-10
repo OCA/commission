@@ -24,6 +24,7 @@
 
 from openerp import models, fields, api, _
 from openerp import tools
+from openerp import exceptions
 
 
 class settlement(models.Model):
@@ -117,7 +118,9 @@ class settlement(models.Model):
             context = {}
         for settle in self.browse(cr, uid, ids, context=context):
             if settle.state != 'cancel':
-                raise osv.except_osv(_('Error!'), _("You can\'t delete it, if it isn't in cancel state."))
+                raise exceptions.Warning(
+                    _("You can\'t delete it, if it isn't in cancel state.")
+                )
         return super(settlement, self).unlink(cr, uid, ids, context=context)
 
 
@@ -194,12 +197,17 @@ class settlement_agent(models.Model):
             payment_term_id = False
             partner = settlement.agent_id and settlement.agent_id.partner_id
             if not partner:
-                raise osv.except_osv(_('Error, partner fail !'),
-                                     _('Agent to settle hasn\'t assigned partner.'))
+                raise exceptions.Warning(
+                    _('Agent to settle hasn\'t assigned partner.')
+                )
            #El tipo es de facura de proveedor
             account_id = partner.property_account_payable.id
-            address_default_id, address_contact_id, address_invoice_id = \
-                self._get_address_invoice(cr, uid, settlement, context=context).values()
+            address_default_id, address_contact_id, address_invoice_id = (
+                self._get_address_invoice(
+                    cr, uid, settlement, context=context
+                ).values()
+            )
+
             # No se agrupa
             invoice_vals = {
                 'name': settlement.settlement_id.name,
@@ -245,9 +253,11 @@ class settlement_agent(models.Model):
                 discount = 0
                 #set UoS if it's a sale and the picking doesn't have one
                 uos_id = False
-                account_id = account_fiscal_position_pool.map_account(cr, uid,
-                                                                      partner.property_account_position, account_id,
-                                                                      context=context)
+                account_id = account_fiscal_position_pool.map_account(
+                    cr, uid,
+                    partner.property_account_position,
+                    account_id,
+                    context=context)
                 invoice_line_id = invoice_line_obj.create(cr, uid, {
                     'name': name,
                     'origin': origin,
