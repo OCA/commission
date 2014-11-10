@@ -21,6 +21,7 @@
 #
 ##############################################################################
 from openerp import models, fields, api, _
+from openerp import exceptions
 
 
 class settled_invoice_wizard(models.TransientModel):
@@ -53,7 +54,7 @@ class settled_invoice_wizard(models.TransientModel):
         invoice_ids = res.values()
         action = {}
         if not invoice_ids[0]:
-            raise osv.except_osv(_('Error'), _('No Invoices were created'))
+            raise exceptions.Warning(_('No Invoices were created'))
         #change state settlement
         settlement_obj.write(cr, uid, context['active_ids'], {'state': 'invoiced'}, context=context)
         action_model, action_id = data_pool.get_object_reference(cr, uid, 'account', "action_invoice_tree2")
