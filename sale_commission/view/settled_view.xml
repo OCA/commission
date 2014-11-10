@@ -23,18 +23,26 @@
             <field name="model">settlement.agent</field>
             <field name="arch" type="xml">
                 <form string="Settlement agent">
-                    <field name="agent_id"/>
-                    <field name="total_per"/>
-                    <field name="total_sections"/>
-                    <field name="total"/>
-                    <notebook colspan="4">
-                        <page string="Invoices">
-                            <field name="invoices" colspan="4" nolabel="1"/>
-                        </page>
-                        <page string="Line details">
-                            <field name="lines" colspan="4" nolabel="1"/>
-                        </page>
-                    </notebook>
+                    <group>
+                        <field name="agent_id"/>
+                        <field name="total_per"/>
+                        <field name="total_sections"/>
+                        <field name="total"/>
+                    </group>
+                    <group colspan="4">
+                        <notebook colspan="4">
+                            <page string="Invoices">
+                                <field name="invoices"
+                                       colspan="4"
+                                       nolabel="1" />
+                            </page>
+                            <page string="Line details">
+                                <field name="lines"
+                                       colspan="4"
+                                       nolabel="1" />
+                            </page>
+                        </notebook>
+                    </group>
                 </form>
             </field>
         </record>
@@ -68,8 +76,12 @@
                     </group>
                     <newline/>
                     <group expand="0" string="Group By...">
-                        <filter string="Settlement" context="{'group_by': 'settlement_id'}" icon="terp-dolar"/>
-                        <filter string="Agent" context="{'group_by': 'agent_id'}" icon="terp-personal"/>
+                        <filter string="Settlement"
+                                context="{'group_by': 'settlement_id'}"
+                                icon="terp-dolar" />
+                        <filter string="Agent"
+                                context="{'group_by': 'agent_id'}"
+                                icon="terp-personal" />
                     </group>
                 </search>
             </field>
@@ -107,8 +119,12 @@
                     </group>
                     <newline/>
                     <group expand="0" string="Group By...">
-                        <filter string="Agent" context="{'group_by': 'agent_id'}" icon="terp-personal"/>
-                        <filter string="Invoice" context="{'group_by': 'invoice_id'}" icon="terp-dolar"/>
+                        <filter string="Agent"
+                                context="{'group_by': 'agent_id'}"
+                                icon="terp-personal" />
+                        <filter string="Invoice"
+                                context="{'group_by': 'invoice_id'}"
+                                icon="terp-dolar" />
                     </group>
                 </search>
             </field>
@@ -119,14 +135,15 @@
             <field name="model">settled.invoice.agent</field>
             <field name="arch" type="xml">
                 <form string="Settled invoices summary">
-                    <field name="agent_id"/>
-                    <field name="invoice_id"/>
-                    <field name="invoice_number"/>
-                    <field name="invoice_date"/>
-                    <field name="invoice_amount"/>
-                    <field name="settled_amount"/>
-                    <!--field name="currency_id"/-->
-                    <newline/>
+                    <group>
+                        <field name="agent_id"/>
+                        <field name="invoice_id"/>
+                        <field name="invoice_number"/>
+                        <field name="invoice_date"/>
+                        <field name="invoice_amount"/>
+                        <field name="settled_amount"/>
+                        <!--field name="currency_id"/-->
+                    </group>
                 </form>
             </field>
         </record>
@@ -136,14 +153,18 @@
             <field name="model">settlement</field>
             <field name="arch" type="xml">
                 <search string="Settlement">
-                    <group>
-                        <filter icon="terp-check" string="Settled" domain="[('state', '=', ('settled'))]"/>
-                        <filter icon="terp-dolar" string="Invoices" domain="[('state', '=', ('invoiced'))]"/>
-                        <filter icon="terp-gtk-stop" string="Cancel" domain="[('state', '=', ('cancel'))]"/>
-                    </group>
                     <field name="name"/>
                     <field name="date_from"/>
                     <field name="date_to"/>
+
+                    <group expand="0" string="Filter by...">
+                        <filter icon="terp-check" string="Settled"
+                                domain="[('state', '=', ('settled'))]" />
+                        <filter icon="terp-dolar" string="Invoices"
+                                domain="[('state', '=', ('invoiced'))]" />
+                        <filter icon="terp-gtk-stop" string="Cancel"
+                                domain="[('state', '=', ('cancel'))]" />
+                    </group>
                 </search>
             </field>
         </record>
@@ -190,27 +211,7 @@
             <field name="model">settlement</field>
             <field name="arch" type="xml">
                 <form string="Settlements">
-                    <group>
-                        <field name="name"/>
-                        <field name="total"/>
-                        <field name="date_from"/>
-                        <field name="date_to"/>
-                    </group>
-                    <group colspan="4">
-                        <label string="Agents summary"/>
-                        <field name="settlement_agent_id" nolabel="1">
-                            <tree string="Agents summary" editable="top">
-                                <field name="agent_id"/>
-                                <field name="total_per"/>
-                                <field name="total_sections"/>
-                                <field name="total" sum="Settled total"/>
-                            </tree>
-                        </field>
-                    </group>
-                    <group>
-                        <field name="state"/>
-                    </group>
-                    <group colspan="4">
+                    <header>
                         <button name="%(action_settled_invoice)d"
                                 string="Create Invoices"
                                 attrs="{'invisible': [('state','!=','settled')]}"
@@ -221,11 +222,38 @@
                                 name="action_cancel"
                                 type="object"
                                 states="settled" />
-                    </group>
+
+                        <field name="state"
+                               widget="statusbar"
+                               statusbar_visible="settled,invoiced,cancel" statusbar_colors='{"invoiced":"blue","cancel":"red"}' />
+                    </header>
+
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="total"/>
+                            </group>
+                            <group>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                            </group>
+                        </group>
+                        <separator string="Agents summary" />
+                        <group colspan="4">
+                            <field name="settlement_agent_id" nolabel="1">
+                                <tree string="Agents summary" editable="top">
+                                    <field name="agent_id"/>
+                                    <field name="total_per"/>
+                                    <field name="total_sections"/>
+                                    <field name="total" sum="Settled total"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
                 </form>
             </field>
         </record>
-
 
         <record model="ir.actions.act_window" id="act_settlement">
             <field name="name">Settlement Summary</field>
@@ -234,7 +262,7 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_settlement_tree"/>
-
+            <field name="search_view_id" ref="view_settlement_search"/>
         </record>
 
         <menuitem name="Settlements"
