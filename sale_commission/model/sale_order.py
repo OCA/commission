@@ -64,8 +64,7 @@ class sale_order_agent(models.Model):
         when selected commission is not the default provided for sale agent
         and default partner commission have sections
         """
-        context = {}
-        result = {}
+
         commission = self.commission_id
         if commission.id:
             agent_commission = self.agent_id.commission
@@ -153,7 +152,7 @@ class sale_order(models.Model):
                 vals = {
                     'agent_id': partner_agent.agent_id.id,
                     'commission_id': partner_agent.commission_id.id,
-                    #'sale_id':ids
+                    # 'sale_id':ids
                 }
                 # FIXME: What is going on in this block?
                 if ids:

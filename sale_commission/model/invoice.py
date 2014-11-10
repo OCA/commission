@@ -106,10 +106,11 @@ class invoice_line_agent(models.Model):
         """
         commission = self.commission_id
         if commission:
-            commission_obj = self.pool.get('commission')
+            # XXX: unused
+            # commission_obj = self.pool.get('commission')
             agent_commission = self.agent_id.commission
             subtotal = self.invoice_line_id.price_subtotal
-            self.quantity = subtotal * (agent.commission.fix_qty / 100.0)
+            self.quantity = subtotal * (agent_commission.fix_qty / 100.0)
 
             if self.agent_id and commission.sections:
                 if commission.id != agent_commission.id:
