@@ -9,7 +9,6 @@
             <field name="priority" eval="18"/>
             <field name="arch" type="xml">
                    <xpath expr="//page[@string='Sales &amp; Purchases']//field[@name='supplier']" position="after">
-                       <!-- TODO: display only on customers -->
                    	   <field name="agent" string="Consultancy" />
                    </xpath>
             </field>
