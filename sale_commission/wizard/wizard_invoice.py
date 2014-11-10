@@ -50,16 +50,32 @@ class settled_invoice_wizard(models.TransientModel):
         settlement_obj = self.pool.get('settlement')
         for o in self.browse(cr, uid, ids, context=context):
             res = settlement_obj.action_invoice_create(
-                cr, uid, context['active_ids'], journal_id=o.journal_id.id, product_id=o.product_id.id, context=context)
+                cr, uid,
+                context['active_ids'],
+                journal_id=o.journal_id.id,
+                product_id=o.product_id.id,
+                context=context
+            )
         invoice_ids = res.values()
         action = {}
         if not invoice_ids[0]:
             raise exceptions.Warning(_('No Invoices were created'))
         #change state settlement
-        settlement_obj.write(cr, uid, context['active_ids'], {'state': 'invoiced'}, context=context)
-        action_model, action_id = data_pool.get_object_reference(cr, uid, 'account', "action_invoice_tree2")
+        settlement_obj.write(
+            cr, uid,
+            context['active_ids'],
+            {'state': 'invoiced'},
+            context=context
+        )
+        action_model, action_id = data_pool.get_object_reference(
+            cr, uid,
+            'account',
+            "action_invoice_tree2"
+        )
         if action_model:
             action_pool = self.pool.get(action_model)
             action = action_pool.read(cr, uid, action_id, context=context)
-            action['domain'] = "[('id','in', [" + ','.join(map(str, invoice_ids[0])) + "])]"
+            action['domain'] = "[('id','in', [{}])]".format(
+                ','.join(map(str, invoice_ids[0]))
+            )
         return action
