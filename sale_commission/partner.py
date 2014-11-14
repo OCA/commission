@@ -26,6 +26,7 @@ from osv import fields, orm
 
 
 class res_partner(orm.Model):
+
     """añadimos algún campo relacionado con elas comisiones"""
 
     _name = "res.partner"
