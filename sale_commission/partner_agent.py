@@ -27,6 +27,7 @@ from tools.translate import _
 
 
 class res_partner_agent(orm.Model):
+
     """objeto de comportamiento many2many que relaciona agentes o comerciales con partners"""
     _name = "res.partner.agent"
 
@@ -44,7 +45,8 @@ class res_partner_agent(orm.Model):
         if context is None:
             context = {}
         agent_pool = self.pool.get('res.partner.agent')
-        agent_obj_ids = [agent_obj_id.id for agent_obj_id in self.browse(cr, uid, ids, context=context)]
+        agent_obj_ids = [
+            agent_obj_id.id for agent_obj_id in self.browse(cr, uid, ids, context=context)]
         return agent_pool.search(cr, uid, [('agent_id', 'in', agent_obj_ids)], context=context)
 
     _columns = {
@@ -63,7 +65,8 @@ class res_partner_agent(orm.Model):
         result = {}
         v = {}
         if agent_id:
-            agent = self.pool.get('sale.agent').browse(cr, uid, agent_id, context=context)
+            agent = self.pool.get('sale.agent').browse(
+                cr, uid, agent_id, context=context)
             v['commission_id'] = agent.commission.id
         result['value'] = v
         return result
@@ -74,9 +77,11 @@ class res_partner_agent(orm.Model):
             context = {}
         result = {}
         if commission_id:
-            partner_commission = self.pool.get('commission').browse(cr, uid, commission_id, context=context)
+            partner_commission = self.pool.get('commission').browse(
+                cr, uid, commission_id, context=context)
             if partner_commission.sections and agent_id:
-                agent = self.pool.get('sale.agent').browse(cr, uid, agent_id, context=context)
+                agent = self.pool.get('sale.agent').browse(
+                    cr, uid, agent_id, context=context)
                 if agent.commission.id != partner_commission.id:
                     result['warning'] = {
                         'title': _('Fee installments!'),

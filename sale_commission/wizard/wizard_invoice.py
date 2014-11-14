@@ -25,6 +25,7 @@ from tools.translate import _
 
 
 class settled_invoice_wizard (orm.TransientModel):
+
     """settled.invoice.wizard"""
 
     _name = 'settled.invoice.wizard'
@@ -47,11 +48,14 @@ class settled_invoice_wizard (orm.TransientModel):
         action = {}
         if not invoice_ids[0]:
             raise osv.except_osv(_('Error'), _('No Invoices were created'))
-        #change state settlement
-        settlement_obj.write(cr, uid, context['active_ids'], {'state': 'invoiced'}, context=context)
-        action_model, action_id = data_pool.get_object_reference(cr, uid, 'account', "action_invoice_tree2")
+        # change state settlement
+        settlement_obj.write(
+            cr, uid, context['active_ids'], {'state': 'invoiced'}, context=context)
+        action_model, action_id = data_pool.get_object_reference(
+            cr, uid, 'account', "action_invoice_tree2")
         if action_model:
             action_pool = self.pool.get(action_model)
             action = action_pool.read(cr, uid, action_id, context=context)
-            action['domain'] = "[('id','in', [" + ','.join(map(str, invoice_ids[0])) + "])]"
+            action[
+                'domain'] = "[('id','in', [" + ','.join(map(str, invoice_ids[0])) + "])]"
         return action

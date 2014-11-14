@@ -24,6 +24,7 @@ from osv import fields, orm
 
 
 class commission(orm.Model):
+
     """Objeto comisión"""
 
     _name = "commission"
@@ -42,7 +43,7 @@ class commission(orm.Model):
         if context is None:
             context = {}
         commission = self.browse(cr, uid, ids, context=context)[0]
-        #Cálculo de tramos
+        # Cálculo de tramos
         for section in commission.sections:
             if base >= section.commission_from and (base < section.commission_until or section.commission_until == 0):
                 res = base * section.percent / 100.0
@@ -51,6 +52,7 @@ class commission(orm.Model):
 
 
 class commission_section(orm.Model):
+
     """periodo de las comisiones"""
 
     _name = "commission.section"
@@ -65,6 +67,7 @@ class commission_section(orm.Model):
 
 
 class sale_agent(orm.Model):
+
     """Agente de ventas"""
 
     _name = "sale.agent"
