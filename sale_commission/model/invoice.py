@@ -88,14 +88,10 @@ class invoice_line_agent(models.Model):
         """Change commission and recalculate commissions
         """
         agent = self.agent_id
-        result = {}
-        v = {}
         if self.agent_id:
             self.commission_id = self.agent_id.commission
             subtotal = self.invoice_line_id.price_subtotal
             self.quantity = subtotal * (agent.commission.fix_qty / 100.0)
-        result['value'] = v
-        return result
 
     @api.onchange("commission_id")
     def do_check_commission_and_recalculate(self):
