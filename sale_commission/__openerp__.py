@@ -68,7 +68,7 @@ Giorgio Borelli <giorgio.borelli@abstract.it>
         "view/sale_order_view.xml",
         "view/product_view.xml",
         "view/stock_picking_view.xml",
-        # 'cc_commission_report.xml'
+        "report/cc_commission_report.xml"
     ],
     "demo": [
         'demo/sale_agent_demo.xml',
