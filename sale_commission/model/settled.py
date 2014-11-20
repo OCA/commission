@@ -344,8 +344,8 @@ class settlement_agent(models.Model):
                 AND account_invoice.state<>'draft'
                 AND account_invoice.type='out_invoice'
                 AND account_invoice.date_invoice >= '{}'
-                AND account_invoice.date_invoice <= ''
-                AND account_invoice.company_id = {}'
+                AND account_invoice.date_invoice <= '{}'
+                AND account_invoice.company_id = {}
             """.format(
             set_agent.agent_id.id,
             date_from,
