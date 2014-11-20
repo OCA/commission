@@ -276,7 +276,10 @@ class settlement_agent(models.Model):
             if not account_id:
                 account_id = product.categ_id.property_account_expense_categ.id
             # Cálculo de los impuestos a aplicar
-            taxes = product.supplier_taxes_id
+            taxes = []
+            if product.supplier_taxes_id:
+                taxes.append(product.supplier_taxes_id)
+
             # se añade la retención seleccionada de la ficha del agente
             if settlement.agent_id and settlement.agent_id.retention_id:
                 taxes.append(settlement.agent_id.retention_id)
