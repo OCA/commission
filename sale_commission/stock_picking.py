@@ -48,7 +48,7 @@ class stock_picking(orm.Model):
         if context is None:
             context = {}
         agent_pool = self.pool.get('invoice.line.agent')
-        super(stock_picking, self)._invoice_line_hook(cr, uid, move_line, invoice_line_id, context=context)
+        super(stock_picking, self)._invoice_line_hook(cr, uid, move_line, invoice_line_id)
         if move_line and move_line.sale_line_id and not move_line.sale_line_id.product_id.commission_exent:
             so_ref = move_line.sale_line_id.order_id
             for so_agent_id in so_ref.sale_agent_ids:
