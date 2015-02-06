@@ -22,6 +22,7 @@
     'name': 'Sales commissions',
     'version': '1.1',
     'author': "Pexego,Odoo Community Association (OCA)",
+    'license': 'GPL-3 or any later version',
     "category": "Generic Modules/Sales & Purchases",
     'depends': [
         'base',
