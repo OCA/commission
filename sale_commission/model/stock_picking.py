@@ -3,8 +3,6 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>).
-#    All Rights Reserved
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -27,8 +25,8 @@ class product_product(models.Model):
 
     _inherit = 'product.product'
 
-    commission_exent = fields.Boolean(
-        string="Commission exent",
+    commission_free = fields.Boolean(
+        string="Free of commission",
         default=False
     )
 
@@ -45,9 +43,7 @@ class stock_picking(models.Model):
     def _invoice_line_hook(self, cr, uid, move_line,
                            invoice_line_id, context=None):
         '''Call after the creation of the invoice line'''
-        if context is None:
-            context = {}
-        agent_pool = self.pool.get('invoice.line.agent')
+        agent_pool = self.pool['invoice.line.agent']
         super(stock_picking, self)._invoice_line_hook(
             cr, uid,
             move_line,
@@ -55,8 +51,8 @@ class stock_picking(models.Model):
             context=context
         )
 
-        exent = move_line.sale_line_id.product_id.commission_exent
-        if move_line and move_line.sale_line_id and not exent:
+        commission_free = move_line.sale_line_id.product_id.commission_free
+        if move_line and move_line.sale_line_id and not commission_free:
             so_ref = move_line.sale_line_id.order_id
             for so_agent_id in so_ref.sale_agent_ids:
                 vals = {

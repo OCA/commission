@@ -3,8 +3,6 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>).
-#    All Rights Reserved
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -32,10 +30,10 @@ class settled_wizard (models.TransientModel):
     date_to = fields.Date('To', required=True)
 
     def settlement_exec(self, cr, uid, ids, context=None):
-        """se ejecuta correctamente desde dos."""
+        """Execute correctly for both."""
         if context is None:
             context = {}
-        pool_liq = self.pool.get('settlement')
+        pool_liq = self.pool['settlement']
         for o in self.browse(cr, uid, ids, context=context):
             vals = {
                 'name': o.date_from + " // " + o.date_to,
@@ -71,11 +69,11 @@ class recalculate_commission_wizard(models.TransientModel):
     date_to = fields.Date(string="To", required=True)
 
     def recalculate_exec(self, cr, uid, ids, context=None):
-        """se ejecuta correctamente desde dos."""
+        """Execute correctly for both."""
         if context is None:
             context = {}
-        user = self.pool.get('res.users').browse(cr, uid, uid, context=context)
-        agent_pool = self.pool.get('invoice.line.agent')
+        user = self.pool['res.users'].browse(cr, uid, uid, context=context)
+        agent_pool = self.pool['invoice.line.agent']
         for o in self.browse(cr, uid, ids, context=context):
             sql = """
                 SELECT  invoice_line_agent.id FROM account_invoice_line
