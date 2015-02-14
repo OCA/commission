@@ -3,8 +3,6 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>).
-#    All Rights Reserved
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -95,50 +93,15 @@ class sale_order(models.Model):
         states={"draft": [("readonly", False)]}
     )
 
-    # XXX: It doesn't work with Odoo v8.0 and I think it is not necessary
-    # def create(self, cr, uid, values, context=None):
-    #     """Add sale order reference on sale.order.agent
-    #     """
-    #     if context is None:
-    #         context = {}
-    #     agent_pool = self.pool.get('sale.order.agent')
-    #     res = super(sale_order, self).create(
-    #          cr, uid, values, context=context)
-    #     if 'sale_agent_ids' in values:
-    #         for sale_order_agent in values['sale_agent_ids']:
-    #             agent_pool.write(
-    #           cr, uid, sale_order_agent[1], {'sale_id': res})
-    #     return res
-
-    # XXX: It doesn't work with Odoo v8.0 and I think it is not necessary
-    # def write(self, cr, uid, ids, values, context=None):
-    #     """Rebuild sale.order reference on sale.order.agent
-    #     """
-    #     if context is None:
-    #         context = {}
-    #     agent_pool = self.pool.get('sale.order.agent')
-    #     if 'sale_agent_ids' in values:
-    #         for sale_order_agent in values['sale_agent_ids']:
-    #             for id in ids:
-    #                 if sale_order_agent[2]:
-    #                     sale_order_agent[2]['sale_id'] = id
-    #                 else:
-    #                     agent_pool.unlink(
-    #           cr, uid, sale_order_agent[1], context=context)
-    #     return super(sale_order, self).write(
-    #           cr, uid, ids, values, context=context)
-
     def onchange_partner_id(self, cr, uid, ids, part, context=None):
         """Agent id field will be changed according to new partner
         """
-        if context is None:
-            context = {}
         sale_agent_ids = []
         res = super(sale_order, self).onchange_partner_id(
             cr, uid, ids, part, context=context
         )
-        if res.get('value', False) and part:
-            sale_order_agent = self.pool.get('sale.order.agent')
+        if res.get('value') and part:
+            sale_order_agent = self.pool['sale.order.agent']
             if ids:
                 agent_id = sale_order_agent.search(
                     cr, uid,
@@ -146,39 +109,36 @@ class sale_order(models.Model):
                     context=context
                 )
                 sale_order_agent.unlink(cr, uid, agent_id, context=context)
-            partner_obj = self.pool.get('res.partner')
+            partner_obj = self.pool['res.partner']
             partner = partner_obj.browse(cr, uid, part, context=context)
             for partner_agent in partner.commission_ids:
                 vals = {
                     'agent_id': partner_agent.agent_id.id,
                     'commission_id': partner_agent.commission_id.id,
-                    # 'sale_id':ids
                 }
                 # FIXME: What is going on in this block?
                 if ids:
                     for id in ids:
                         vals['sale_id'] = id
-                sale_agent_id = sale_order_agent.create(
-                    cr, uid, vals, context=context
-                )
-                sale_agent_ids.append(int(sale_agent_id))
+                        sale_agent_id = sale_order_agent.create(
+                            cr, uid, vals, context=context
+                        )
+                        sale_agent_ids.append(int(sale_agent_id))
             res['value']['sale_agent_ids'] = sale_agent_ids
         return res
 
     def action_ship_create(self, cr, uid, ids, context=None):
         """extend this method to add agent_id to picking"""
-        if context is None:
-            context = {}
-        picking_pool = self.pool.get('stock.picking')
+        picking_pool = self.pool['stock.picking']
         res = super(sale_order, self).action_ship_create(
             cr, uid, ids, context=context
         )
         for order in self.browse(cr, uid, ids, context=context):
-            pickings = [x.id for x in order.picking_ids]
-            agents = [x.agent_id.id for x in order.sale_agent_ids]
-            if pickings and agents:
-                vals = {'agent_ids': [[6, 0, agents]], }
-                picking_pool.write(cr, uid, pickings, vals, context=context)
+            picking_ids = [x.id for x in order.picking_ids]
+            agent_ids = [x.agent_id.id for x in order.sale_agent_ids]
+            if picking_ids and agent_ids:
+                vals = {'agent_ids': [[6, 0, agent_ids]], }
+                picking_pool.write(cr, uid, picking_ids, vals, context=context)
         return res
 
 
@@ -190,19 +150,17 @@ class sale_order_line(models.Model):
     _inherit = "sale.order.line"
 
     def invoice_line_create(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-        invoice_line_pool = self.pool.get('account.invoice.line')
-        invoice_line_agent_pool = self.pool.get('invoice.line.agent')
+        invoice_line_pool = self.pool['account.invoice.line']
+        invoice_line_agent_pool = self.pool['invoice.line.agent']
         res = super(sale_order_line, self).invoice_line_create(
-            cr, uid, ids, context
+            cr, uid, ids, context=context
         )
-        so_ref = self.browse(cr, uid, ids)[0].order_id
+        so_ref = self.browse(cr, uid, ids, context=context)[0].order_id
         for so_agent_id in so_ref.sale_agent_ids:
             inv_lines = invoice_line_pool.browse(cr, uid, res, context=context)
             for inv_line in inv_lines:
-                exent = inv_line.product_id.commission_exent
-                if inv_line.product_id and exent is not True:
+                commission_free = inv_line.product_id.commission_free
+                if inv_line.product_id and commission_free is not True:
                     vals = {
                         'invoice_line_id': inv_line.id,
                         'agent_id': so_agent_id.agent_id.id,

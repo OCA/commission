@@ -3,8 +3,6 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>).
-#    All Rights Reserved
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -56,10 +54,10 @@ class res_partner_agent(models.Model):
         ondelete="cascade"
     )
 
-    type = fields.Selection(
+    agent_type = fields.Selection(
         string="Type",
-        related="agent_id.type",
-        selection=[('asesor', 'Adviser'), ('comercial', 'Commercial')],
+        related="agent_id.agent_type",
+        selection=[('adviser', 'Adviser'), ('comercial', 'Commercial')],
         readonly=True,
         store=True
     )
