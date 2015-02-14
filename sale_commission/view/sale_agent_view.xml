@@ -32,7 +32,7 @@
                     	<group>
                     		<group>
                     			<field name="name" />
-                    			<field name="type" />
+                    			<field name="agent_type" />
                     		</group>
                     		<group>
                     			<field name="code" />
@@ -42,11 +42,11 @@
                        <group string="Related entity or employee"
                               colspan="2">
 	                        <field name="partner_id"
-                                   attrs="{'required':[('type','=','asesor')], 'invisible':[('type','!=','asesor')]}"
+                                   attrs="{'required':[('agent_type','=','adviser')], 'invisible':[('agent_type','!=','adviser')]}"
                                    domain="[('agent','=',True)]"
                                    select="2" />
 	                        <field name="employee_id"
-                                   attrs="{'required':[('type','=','comercial')], 'invisible':[('type','!=','comercial')]}"
+                                   attrs="{'required':[('agent_type','=','comercial')], 'invisible':[('agent_type','!=','comercial')]}"
                                    select="2" />
 	                    </group>
                     </group>
@@ -89,10 +89,10 @@
                     <group expand="0" string="Filter by...">
                         <filter icon="terp-personal"
                                 string="Commercial"
-                                domain="[('type','=','comercial')]" />
+                                domain="[('agent_type','=','comercial')]" />
                         <filter icon="terp-personal"
                                 string="Adviser"
-                                domain="[('type','=','asesor')]" />
+                                domain="[('agent_type','=','adviser')]" />
                     </group>
 
                     <group expand="0" string="Group By...">
@@ -125,7 +125,7 @@
             <field name="arch" type="xml">
                 <tree string="Commissions">
                     <field name="name" />
-                    <field name="type" />
+                    <field name="commission_type" />
                 </tree>
             </field>
         </record>
@@ -139,17 +139,17 @@
                     <separator string="General information" colspan="4"/>
                     <group>
                         <field name="name"/>
-                        <field name="type"/>
+                        <field name="commission_type"/>
                     </group>
 
                     <group string="Rates definition" colspan="4">
                         <field name="fix_qty"
-                               attrs="{'invisible':[('type','!=','fijo')]}" />
+                               attrs="{'invisible':[('commission_type','!=','fixed')]}" />
                         <field name="sections"
                                widget="one2many_list"
                                colspan="4"
                                nolabel="1"
-                               attrs="{'invisible':[('type','!=','tramos')]}">
+                               attrs="{'invisible':[('commission_type','!=','section')]}">
                             <tree string="sections" editable="top">
                                 <field name="commission_from"/>
                                 <field name="commission_until"/>

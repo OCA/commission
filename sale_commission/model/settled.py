@@ -3,8 +3,6 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>).
-#    All Rights Reserved
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -20,7 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-"""Objetos sobre las liquidación"""
 
 from openerp import models, fields, _
 from openerp import tools
@@ -70,8 +67,6 @@ class settlement(models.Model):
 
     def action_invoice_create(self, cursor, user, ids,
                               journal_id, product_id, context=None):
-        if context is None:
-            context = {}
         agents_pool = self.pool.get('settlement.agent')
         res = {}
         for settlement in self.browse(cursor, user, ids, context=context):
@@ -90,16 +85,14 @@ class settlement(models.Model):
 
     def calculate(self, cr, uid, ids, agent_ids,
                   date_from, date_to, context=None):
-        """genera una entrada de liquidación por agente"""
-        # Busca todas las líneas de liquidación facturadas en un período
-        if context is None:
-            context = {}
-        sale_agent_pool = self.pool.get('sale.agent')
-        settlement_agent_pool = self.pool.get('settlement.agent')
+        """generate one settlement line per agent"""
+        # Search for all settlements in a period
+        sale_agent_pool = self.pool['sale.agent']
+        settlement_agent_pool = self.pool['settlement.agent']
         agents = sale_agent_pool.browse(cr, uid, agent_ids, context=context)
         total = 0
         for agent in agents:
-            # genera una entrada de liquidación por agente
+            # generate one settlement line per agent
             liq_agent_id = settlement_agent_pool.create(
                 cr, uid,
                 {'agent_id': agent.id, 'settlement_id': ids},
@@ -122,9 +115,7 @@ class settlement(models.Model):
 
     def action_cancel(self, cr, uid, ids, context=None):
         """Cancel the liquidation"""
-        if context is None:
-            context = {}
-        agent_pool = self.pool.get('invoice.line.agent')
+        agent_pool = self.pool['invoice.line.agent']
         for settle in self.browse(cr, uid, ids, context=context):
             for settle_line in settle.settlement_agent_id:
                 for line in settle_line.lines:
@@ -141,19 +132,17 @@ class settlement(models.Model):
         return self.write(cr, uid, ids, {'state': 'cancel'}, context=context)
 
     def unlink(self, cr, uid, ids, context=None):
-        """permite borrar liquidaciones canceladas"""
-        if context is None:
-            context = {}
+        """Allow to delete cancelled settlements"""
         for settle in self.browse(cr, uid, ids, context=context):
             if settle.state != 'cancel':
                 raise exceptions.Warning(
-                    _("You can\'t delete it, if it isn't in cancel state.")
+                    _("You can't delete it, if it isn't in cancel state.")
                 )
         return super(settlement, self).unlink(cr, uid, ids, context=context)
 
 
 class settlement_agent(models.Model):
-    """Liquidaciones de Agentes"""
+    """Agent's settlement"""
 
     _name = 'settlement.agent'
 
@@ -170,9 +159,7 @@ class settlement_agent(models.Model):
             'invoice': address
         } for invoice
         """
-        if context is None:
-            context = {}
-        partner_obj = self.pool.get('res.partner')
+        partner_obj = self.pool['res.partner']
         partner = settlement.agent_id.partner_id
         return partner_obj.address_get(
             cr, uid,
@@ -227,21 +214,19 @@ class settlement_agent(models.Model):
     def action_invoice_create(self, cr, uid,
                               ids, journal_id, product_id, context=None):
         '''Return ids of created invoices for the settlements'''
-        if context is None:
-            context = {}
-        invoice_obj = self.pool.get('account.invoice')
-        invoice_line_obj = self.pool.get('account.invoice.line')
-        product_pool = self.pool.get('product.product')
-        account_fiscal_position_pool = self.pool.get('account.fiscal.position')
+        invoice_obj = self.pool['account.invoice']
+        invoice_line_obj = self.pool['account.invoice.line']
+        product_pool = self.pool['product.product']
+        account_fiscal_position_pool = self.pool['account.fiscal.position']
         res = {}
         for settlement in self.browse(cr, uid, ids, context=context):
             payment_term_id = False
             partner = settlement.agent_id and settlement.agent_id.partner_id
             if not partner:
                 raise exceptions.Warning(
-                    _('Agent to settle hasn\'t assigned partner.')
+                    _("Agent to settle hasn't assigned partner.")
                 )
-            # El tipo es de facura de proveedor
+            # Invoice is from a supplier
             account_id = partner.property_account_payable.id
             address_default_id, address_contact_id, address_invoice_id = (
                 self._get_address_invoice(
@@ -249,7 +234,7 @@ class settlement_agent(models.Model):
                 ).values()
             )
 
-            # No se agrupa
+            # Don't group
             invoice_vals = {
                 'name': settlement.settlement_id.name,
                 'origin': (settlement.settlement_id.name or ''),
@@ -270,17 +255,17 @@ class settlement_agent(models.Model):
                 cr, uid, invoice_vals, context=context
             )
             res[settlement.id] = invoice_id
-            # El producto se selecciona en el wizard correspondiente
+            # The product is chosen in the appropriate wizard
             product = product_pool.browse(cr, uid, product_id, context=context)
             account_id = product.product_tmpl_id.property_account_expense.id
             if not account_id:
                 account_id = product.categ_id.property_account_expense_categ.id
-            # Cálculo de los impuestos a aplicar
+            # Tax calculations to be applied
             taxes = []
             if product.supplier_taxes_id:
                 taxes.append(product.supplier_taxes_id)
 
-            # se añade la retención seleccionada de la ficha del agente
+            # Append the retention associated to the agent
             if settlement.agent_id and settlement.agent_id.retention_id:
                 taxes.append(settlement.agent_id.retention_id)
             if settlement.agent_id and settlement.agent_id.partner_id:
@@ -329,13 +314,11 @@ class settlement_agent(models.Model):
         return res
 
     def calculate(self, cr, uid, ids, date_from, date_to, context=None):
-        if context is None:
-            context = {}
-        settlement_line_pool = self.pool.get('settlement.line')
-        invoice_line_agent_pool = self.pool.get('invoice.line.agent')
+        settlement_line_pool = self.pool['settlement.line']
+        invoice_line_agent_pool = self.pool['invoice.line.agent']
         set_agent = self.browse(cr, uid, ids, context=context)
-        user = self.pool.get('res.users').browse(cr, uid, uid, context=context)
-        # Recalculamos todas las lineas sujetas a comision
+        user = self.pool['res.users'].browse(cr, uid, uid, context=context)
+        # Recalculate all the line that has commission
         sql = """
             SELECT  invoice_line_agent.id FROM account_invoice_line
                 INNER JOIN invoice_line_agent
@@ -395,11 +378,11 @@ class settlement_agent(models.Model):
             line = settlement_line_pool.browse(
                 cr, uid, linea_id, context=context
             )
-            # Marca la comision en la factura como liquidada
-            # y establece la cantidad
-            # Si es por tramos la cantidad será cero,
-            # pero se reflejará sobre el tramo del Agente
-            if line.commission_id.type == "fijo":
+            # Mark the commission in the invoice as settled
+            # and calculate the quantity
+            # If we use sections then the quantity is zero,
+            # although will reflect the Agent
+            if line.commission_id.commission_type == "fixed":
                 total_per = total_per + line.commission
                 inv_ag_ids = invoice_line_agent_pool.search(
                     cr, uid,
@@ -415,18 +398,17 @@ class settlement_agent(models.Model):
                     context=context
                 )
             product_id = line.invoice_line_id.product_id
-            is_commission_exent = product_id.commission_exent
-            if line.commission_id.type == "tramos" and not is_commission_exent:
-                # Hacemos un agregado de la base de cálculo agrupándolo
-                # por las distintas comisiones en tramos que
-                # tenga el agente asignadas
+            is_commission_free = product_id.commission_free
+            if line.commission_id.commission_type == "section" and not is_commission_free:
+                # We aggregate the base value by grouping 
+                # by the distinct sections that the agent
+                # has assigned for it
                 if line.commission_id.id in sections:
                     sections[line.commission_id.id]['base'] = (
                         sections[line.commission_id.id]['base'] +
                         line.invoice_line_id.price_subtotal
                     )
-                    # Añade la línea de la que se añade esta base
-                    # para el cálculo por tramos
+                    # Append the lines for the calculation by sections
                     sections[line.commission_id.id]['lines'].append(line)
                 else:
                     sections[line.commission_id.id] = {
@@ -434,9 +416,9 @@ class settlement_agent(models.Model):
                         'base': line.invoice_line_id.price_subtotal,
                         'lines': [line]
                     }
-        # Tramos para cada tipo de comisión creados
+        # Iterate over each section created
         for tramo in sections:
-            # Cálculo de la comisión  para cada tramo
+            # Calculate the commision for each section
             tramo = sections[tramo]
             sections[tramo].update(
                 {
@@ -444,7 +426,7 @@ class settlement_agent(models.Model):
                 }
             )
             total_sections = total_sections + sections[tramo]['commission']
-            # reparto de la comisión para cada linea
+            # Split the commision for each line
             for linea_tramo in sections[tramo]['lines']:
                 subtotal = linea_tramo.invoice_line_id.price_subtotal
                 com_por_linea = (sections[tramo]['commission'] *
@@ -472,8 +454,8 @@ class settlement_agent(models.Model):
 
 
 class settlement_line(models.Model):
-    """Línea de las liquidaciones de los agentes
-     Una línea por línea de factura
+    """ Settlement line for the agents
+     One line per invoice
     """
     _name = "settlement.line"
 
@@ -524,23 +506,21 @@ class settlement_line(models.Model):
     commission = fields.Float(string="Quantity", readonly=True)
 
     def calculate(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
         currency_pool = self.pool.get('res.currency')
         line = self.browse(cr, uid, ids, context=context)
         amount = 0
         user = self.pool.get('res.users').browse(cr, uid, uid, context=context)
-        # Recorre los agentes y condiciones asignados a la factura
+        # Iterate over the agents and commission in the invoice
         for commission in line.invoice_line_id.commission_ids:
-            # selecciona el asignado al agente para el que está liquidando
+            # Check if the agent correspond to the one was settled
             if commission.agent_id.id == line.settlement_agent_id.agent_id.id:
-                commission_app = commission.commission_id  # Obtiene el objeto
+                commission_app = commission.commission_id  # Get the object
                 invoice_line_amount = line.invoice_line_id.price_subtotal
-                if commission_app.type == "fijo":
+                if commission_app.commission_type == "fixed":
                     commission_per = commission_app.fix_qty
                     subtotal = line.invoice_line_id.price_subtotal
                     amount = amount + subtotal * float(commission_per) / 100
-                elif commission_app.type == "tramos":
+                elif commission_app.commission_type == "section":
                     invoice_line_amount = 0
                     amount = 0
                 invoice_currency_id = line.invoice_id.currency_id.id

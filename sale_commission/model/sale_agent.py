@@ -3,8 +3,6 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>).
-#    All Rights Reserved
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -31,11 +29,11 @@ class commission(models.Model):
 
     name = fields.Char('Name', required=True)
 
-    type = fields.Selection(
-        (("fijo", "Fix percentage"), ("tramos", "By sections")),
+    commission_type = fields.Selection(
+        (("fixed", "Fix percentage"), ("section", "By sections")),
         string="Type",
         required=True,
-        default="fijo"
+        default="fixed"
     )
 
     fix_qty = fields.Float(string="Fix Percentage")
@@ -46,11 +44,9 @@ class commission(models.Model):
         string="Sections"
     )
 
-    def calcula_tramos(self, cr, uid, ids, base, context=None):
-        if context is None:
-            context = {}
+    def calcula_tramos(self, cr, uid, ids, base, context=None):        
         commission = self.browse(cr, uid, ids, context=context)[0]
-        # Cálculo de tramos
+        # Calculate sections
         for section in commission.sections:
             if base >= section.commission_from and (
                     base < section.commission_until or
@@ -89,11 +85,11 @@ class sale_agent(models.Model):
         required=True
     )
 
-    type = fields.Selection(
-        (("asesor", "Adviser"), ("comercial", "Commercial")),
+    agent_type = fields.Selection(
+        (("adviser", "Adviser"), ("comercial", "Commercial")),
         string="Type",
         required=True,
-        default="asesor"
+        default="adviser"
     )
 
     partner_id = fields.Many2one(
@@ -155,8 +151,6 @@ class sale_agent(models.Model):
     )
 
     def calcula_tramos(self, cr, uid, ids, base, context=None):
-        """calcula los tramos por factura"""
-        if context is None:
-            context = {}
+        """Calculate the sections by invoice"""
         agente = self.browse(cr, uid, ids, context=context)[0]
         return agente.commission.calcula_tramos(base)

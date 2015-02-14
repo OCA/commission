@@ -3,8 +3,6 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>).
-#    All Rights Reserved
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -46,8 +44,8 @@ class settled_invoice_wizard(models.TransientModel):
     def create_invoice(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        data_pool = self.pool.get('ir.model.data')
-        settlement_obj = self.pool.get('settlement')
+        data_pool = self.pool['ir.model.data']
+        settlement_obj = self.pool['settlement']
         for o in self.browse(cr, uid, ids, context=context):
             res = settlement_obj.action_invoice_create(
                 cr, uid,
@@ -73,7 +71,7 @@ class settled_invoice_wizard(models.TransientModel):
             "action_invoice_tree2"
         )
         if action_model:
-            action_pool = self.pool.get(action_model)
+            action_pool = self.pool[action_model]
             action = action_pool.read(cr, uid, action_id, context=context)
             action['domain'] = "[('id','in', [{}])]".format(
                 ','.join(map(str, invoice_ids[0]))
