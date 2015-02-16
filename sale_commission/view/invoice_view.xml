@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="invoice_line_agent_tree" model="ir.ui.view">
+            <field name="name">invoice.line.agent.tree</field>
+            <field name="model">invoice.line.agent</field>
+            <field name="arch" type="xml">
+                <tree string="Commissions and Agents" >
+                    <field name="agent_id" />
+                    <field name="commission_id" />
+                    <field name="settled" />
+                    <field name="quantity" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="invoice_line_agent_form" model="ir.ui.view">
+            <field name="name">invoice.line.agent.form</field>
+            <field name="model">invoice.line.agent</field>
+            <field name="arch" type="xml">
+                <form string="Commissions and Agents" >
+                    <group>
+                        <field name="agent_id" />
+                        <field name="commission_id" />
+                        <field name="settled" />
+                        <field name="quantity" readonly="1"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="invoice_line_form_agent" model="ir.ui.view">
+            <field name="name">account.invoice.line.agent.form</field>
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="account.view_invoice_line_form" />
+            <field name="arch" type="xml">
+	        <field name="name" position="after">
+    		    <separator string="Commissions" colspan="2"/>
+    		    <field name="commission_ids" colspan="2" nolabel="1"/>
+        		    <!-- BBB: Should it be removed?
+                            <separator string="Notes" colspan="2"/>
+                            <field colspan="2" name="note" nolabel="1"/>
+        		    -->
+        		</field>
+            </field>
+        </record>
+
+
+        <record id="invoice_supplier_form_add_agent_field" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form.add_agent_field</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_line']/tree"
+                       position="attributes">
+                    <attribute name="editable" eval="False" />
+                </xpath>
+                <field name="period_id" position="after">
+                    <field name="agent_id"/>
+                </field>
+            </field>
+        </record>
+
+
+        <record id="invoice_form_add_agent_field" model="ir.ui.view">
+            <field name="name">account.invoice.form.add_agent_field</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <!-- BBB: this makes possible to edit/view each invoice line
+                     in a popup form and also set/view sale agent information.
+                -->
+                <xpath expr="//field[@name='invoice_line']/tree"
+                       position="attributes">
+                    <attribute name="editable" eval="False" />
+                </xpath>
+                <field name="move_id" position="after">
+                    <field name="agent_id"/>
+                </field>
+            </field>
+        </record>
+
+
+        <record id="invoice_form_add_code_country" model="ir.ui.view">
+            <field name="name">account.invoice.form.add_code_country</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+                <field name="date_due" position="after">
+                    <field name="agent_code" select="2"/>
+                    <field name="country" select="2"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
