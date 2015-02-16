@@ -44,7 +44,7 @@ class commission(models.Model):
         string="Sections"
     )
 
-    def calcula_tramos(self, cr, uid, ids, base, context=None):        
+    def calcula_tramos(self, cr, uid, ids, base, context=None):
         commission = self.browse(cr, uid, ids, context=context)[0]
         # Calculate sections
         for section in commission.sections:
