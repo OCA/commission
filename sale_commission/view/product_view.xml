@@ -13,8 +13,8 @@
                          name="options"
                          groups="base.group_user">
                         <div>
-                            <field name="commission_exent"/>
-                            <label for="commission_exent"/>
+                            <field name="commission_free"/>
+                            <label for="commission_free"/>
                         </div>
                     </div>
                 </field>

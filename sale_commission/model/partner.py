@@ -3,8 +3,6 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>).
-#    All Rights Reserved
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -26,7 +24,6 @@ from openerp import models, fields
 class res_partner(models.Model):
     """Add some fields related to commissions"""
 
-    _name = "res.partner"
     _inherit = "res.partner"
 
     commission_ids = fields.One2many(
