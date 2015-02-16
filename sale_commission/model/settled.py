@@ -399,8 +399,9 @@ class settlement_agent(models.Model):
                 )
             product_id = line.invoice_line_id.product_id
             is_commission_free = product_id.commission_free
-            if line.commission_id.commission_type == "section" and not is_commission_free:
-                # We aggregate the base value by grouping 
+            if (line.commission_id.commission_type == "section" and
+                    not is_commission_free):
+                # We aggregate the base value by grouping
                 # by the distinct sections that the agent
                 # has assigned for it
                 if line.commission_id.id in sections:
@@ -532,10 +533,7 @@ class settlement_line(models.Model):
                         company_currency_id,
                         invoice_line_amount,
                         round=False,
-                        context=context)
-                    or
-                    invoice_line_amount
-                )
+                        context=context) or invoice_line_amount)
                 cc_commission_amount = (
                     invoice_currency_id != company_currency_id and
                     currency_pool.compute(
@@ -543,10 +541,7 @@ class settlement_line(models.Model):
                         company_currency_id,
                         amount,
                         round=False,
-                        context=context)
-                    or
-                    amount
-                )
+                        context=context) or amount)
                 self.write(
                     cr, uid, ids,
                     {
