@@ -3,18 +3,17 @@
     <data>
 
         <record id="product_normal_form_view_exclude_commissions"
-                model="ir.ui.view">
-            <field name="name">product.normal.form.exclude_commissions</field>
+            model="ir.ui.view">
+            <field name="name">product.normal.form.exclude_commissions
+            </field>
             <field name="model">product.product</field>
-            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
             <field name="arch" type="xml">
-	            <field name="sale_ok" position="after">
-                    <div class="oe_left"
-                         name="options"
-                         groups="base.group_user">
+                <field name="sale_ok" position="after">
+                    <div class="oe_left" name="options" groups="base.group_user">
                         <div>
-                            <field name="commission_free"/>
-                            <label for="commission_free"/>
+                            <field name="commission_free" />
+                            <label for="commission_free" />
                         </div>
                     </div>
                 </field>

@@ -18,10 +18,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import sale_agent
-from . import invoice
-from . import partner_agent
-from . import partner
-from . import settled
-from . import sale_order
-from . import stock_picking
+from openerp import models, fields
+
+
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
+
+    commission_free = fields.Boolean(string="Free of commission",
+                                     default=False)

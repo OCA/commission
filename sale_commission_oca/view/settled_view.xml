@@ -190,8 +190,8 @@
             <field name="arch" type="xml">
                 <search string="Search Agent">
                     <group>
-                        <filter icon="terp-sale" string="Commercial" domain="[('type','=','comercial')]"/>
-                        <filter icon="terp-purchase" string="Adviser" domain="[('type','=','asesor')]"/>
+                        <filter icon="terp-sale" string="Commercial" domain="[('type','=','commercial')]"/>
+                        <filter icon="terp-purchase" string="Adviser" domain="[('type','=','adviser')]"/>
                         <field name="code"/>
                         <field name="name"/>
                         <field name="commission"/>
