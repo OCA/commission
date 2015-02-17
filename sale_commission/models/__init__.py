@@ -18,24 +18,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields
 
-
-class res_partner(models.Model):
-    """Add some fields related to commissions"""
-
-    _inherit = "res.partner"
-
-    commission_ids = fields.One2many(
-        "res.partner.agent",
-        "partner_id",
-        string="Agents"
-    )
-
-    agent = fields.Boolean(
-        string="Creditor/Agent",
-        help="If you check this field will be available as creditor or agent."
-    )
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+from . import sale_agent
+from . import invoice
+from . import partner_agent
+from . import partner
+from . import settled
+from . import sale_order
+from . import product
