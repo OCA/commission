@@ -1,13 +1,7 @@
 <?xml version="1.0"?>
 <openerp>
     <data>
-
-        <!--
-            ======================
-            Sale agent Information
-            ======================
-        -->
-
+        <!-- ====================== Sale agent Information ====================== -->
         <record model="ir.ui.view" id="view_saleagent_tree">
             <field name="name">saleagent.info.tree</field>
             <field name="model">sale.agent</field>
@@ -22,86 +16,75 @@
                 </tree>
             </field>
         </record>
-
         <record model="ir.ui.view" id="view_saleagent_form">
             <field name="name">saleagent.info.form</field>
             <field name="model">sale.agent</field>
             <field name="arch" type="xml">
                 <form string="Agent" col="6">
                     <group>
-                    	<group>
-                    		<group>
-                    			<field name="name" />
-                    			<field name="agent_type" />
-                    		</group>
-                    		<group>
-                    			<field name="code" />
-	                    		<field name="active" />
-                    		</group>
-                    	</group>
-                       <group string="Related entity or employee"
-                              colspan="2">
-	                        <field name="partner_id"
-                                   attrs="{'required':[('agent_type','=','adviser')], 'invisible':[('agent_type','!=','adviser')]}"
-                                   domain="[('agent','=',True)]"
-                                   select="2" />
-	                        <field name="employee_id"
-                                   attrs="{'required':[('agent_type','=','comercial')], 'invisible':[('agent_type','!=','comercial')]}"
-                                   select="2" />
-	                    </group>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="agent_type" />
+                            </group>
+                            <group>
+                                <field name="code" />
+                                <field name="active" />
+                            </group>
+                        </group>
+                        <group string="Related entity or employee"
+                            colspan="2">
+                            <field name="partner_id"
+                                attrs="{'required':[('agent_type','=','adviser')], 'invisible':[('agent_type','!=','adviser')]}"
+                                domain="[('agent','=',True)]" select="2" />
+                        </group>
                     </group>
                     <notebook colspan="4">
                         <page string="Commission">
                             <group>
-                                <field name="settlement"/>
+                                <field name="settlement" />
                             </group>
                             <group>
-                                <field name="commission"/>
+                                <field name="commission" />
                                 <field name="retention_id"
-                                       domain="[('parent_id','=',False),('type_tax_use','&lt;&gt;','purchase')]"
-                                       />
+                                    domain="[('parent_id','=',False),('type_tax_use','&lt;&gt;','purchase')]" />
                             </group>
                         </page>
                         <page string="Customer assigned">
                             <field colspan="4" name="customer"
-                                   nolabel="1" readonly="1" />
+                                nolabel="1" readonly="1" />
                         </page>
                         <page string="Settlements executed">
                             <field name="settlement_ids" nolabel="1"
-                                   colspan="4" readonly="1" />
+                                colspan="4" readonly="1" />
                         </page>
                     </notebook>
                 </form>
             </field>
         </record>
 
-
         <record id="view_sale_agent_search" model="ir.ui.view">
             <field name="name">commission.sale.agent.search</field>
             <field name="model">sale.agent</field>
             <field name="arch" type="xml">
                 <search string="Search Agent">
-                    <field name="code"/>
-                    <field name="name"/>
-                    <field name="commission"/>
-                    <field name="settlement"/>
+                    <field name="code" />
+                    <field name="name" />
+                    <field name="commission" />
+                    <field name="settlement" />
 
                     <group expand="0" string="Filter by...">
-                        <filter icon="terp-personal"
-                                string="Commercial"
-                                domain="[('agent_type','=','comercial')]" />
-                        <filter icon="terp-personal"
-                                string="Adviser"
-                                domain="[('agent_type','=','adviser')]" />
+                        <filter icon="terp-personal" string="Commercial"
+                            domain="[('agent_type','=','commercial')]" />
+                        <filter icon="terp-personal" string="Adviser"
+                            domain="[('agent_type','=','asesor')]" />
                     </group>
 
                     <group expand="0" string="Group By...">
                         <filter string="Commission"
-                                context="{'group_by': 'commission'}"
-                                icon="terp-dolar" />
+                            context="{'group_by': 'commission'}" icon="terp-dolar" />
                         <filter string="Settlement"
-                                context="{'group_by': 'settlement'}"
-                                icon="terp-dolar" />
+                            context="{'group_by': 'settlement'}" icon="terp-dolar" />
                     </group>
                 </search>
             </field>
@@ -115,7 +98,7 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_saleagent_tree" />
-            <field name="search_view_id" ref="view_sale_agent_search"/>
+            <field name="search_view_id" ref="view_sale_agent_search" />
         </record>
 
 
@@ -136,24 +119,23 @@
             <field name="model">commission</field>
             <field name="arch" type="xml">
                 <form string="Commission">
-                    <separator string="General information" colspan="4"/>
+                    <separator string="General information"
+                        colspan="4" />
                     <group>
-                        <field name="name"/>
-                        <field name="commission_type"/>
+                        <field name="name" />
+                        <field name="commission_type" />
                     </group>
 
                     <group string="Rates definition" colspan="4">
                         <field name="fix_qty"
-                               attrs="{'invisible':[('commission_type','!=','fixed')]}" />
-                        <field name="sections"
-                               widget="one2many_list"
-                               colspan="4"
-                               nolabel="1"
-                               attrs="{'invisible':[('commission_type','!=','section')]}">
+                            attrs="{'invisible':[('commission_type','!=','fixed')]}" />
+                        <field name="sections" widget="one2many_list"
+                            colspan="4" nolabel="1"
+                            attrs="{'invisible':[('commission_type','!=','section')]}">
                             <tree string="sections" editable="top">
-                                <field name="commission_from"/>
-                                <field name="commission_until"/>
-                                <field name="percent"/>
+                                <field name="commission_from" />
+                                <field name="commission_until" />
+                                <field name="percent" />
                             </tree>
                         </field>
                     </group>
@@ -163,39 +145,28 @@
         </record>
 
 
-        <record model="ir.actions.act_window"
-                id="action_commission_view">
+        <record model="ir.actions.act_window" id="action_commission_view">
             <field name="name">Commission Types</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">commission</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="commission_tree"/>
+            <field name="view_id" ref="commission_tree" />
         </record>
 
 
-        <menuitem name="Commissions"
-                  id="menu_sale_commissions"
-                  parent="base.menu_base_partner"
-                  />
+        <menuitem name="Commissions" id="menu_sale_commissions"
+            parent="base.menu_base_partner" />
 
-        <menuitem name="Sale agents"
-                  id="menu_sale_commissions_agent"
-                  parent="menu_sale_commissions"
-                  action="action_saleagent_form"
-                  sequence="10"
-                  />
+        <menuitem name="Sale agents" id="menu_sale_commissions_agent"
+            parent="menu_sale_commissions" action="action_saleagent_form"
+            sequence="10" />
 
-        <menuitem name="Commissions"
-                  id="menu_sale_commissions_conf"
-                  parent="base.menu_base_config"
-                  />
+        <menuitem name="Commissions" id="menu_sale_commissions_conf"
+            parent="base.menu_base_config" />
 
-        <menuitem name="Commission Types"
-                  id="menu_sale_commissions_types"
-                  parent="menu_sale_commissions_conf"
-                  action="action_commission_view"
-                  />
+        <menuitem name="Commission Types" id="menu_sale_commissions_types"
+            parent="menu_sale_commissions_conf" action="action_commission_view" />
 
     </data>
 </openerp>

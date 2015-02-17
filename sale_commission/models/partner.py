@@ -21,21 +21,13 @@
 from openerp import models, fields
 
 
-class res_partner(models.Model):
+class ResPartner(models.Model):
     """Add some fields related to commissions"""
-
     _inherit = "res.partner"
 
-    commission_ids = fields.One2many(
-        "res.partner.agent",
-        "partner_id",
-        string="Agents"
-    )
-
+    agent_ids = fields.One2many("res.partner.agent", "partner_id",
+                                string="Agents")
     agent = fields.Boolean(
         string="Creditor/Agent",
         help="If you check this field will be available as creditor or agent."
     )
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

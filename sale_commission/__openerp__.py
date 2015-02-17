@@ -28,33 +28,16 @@
         'base',
         'account',
         'product',
-        'sale',
-        'hr',
-        'stock'
+        'sale'
     ],
-    'description': """
-Sales commissions
-=================
-
-This modules allow you to define sales agents and assign customers to them.
-You can then generate the supplier invoices to pay their commissions.
-
-Video : http://www.youtube.com/watch?v=NDqRnF1qKS0
-
-Contributors
-============
-Davide Corio <davide.corio@domsense.com>
-Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>
-Sandy Carter <sandy.carter@savoirfairelinux.com>
-Giorgio Borelli <giorgio.borelli@abstract.it>
-    """,
-    "depends": [
-        "base",
-        "account",
-        "hr",
-        "sale",
-        "stock"
-    ],
+    'contributors': [
+        "Davide Corio <davide.corio@domsense.com>",
+        "Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>",
+        "Sandy Carter <sandy.carter@savoirfairelinux.com>",
+        "Giorgio Borelli <giorgio.borelli@abstract.it>",
+        "Daniel Campos <danielcampos@avanzosc.es>",
+        "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
+        "Ana Juaristi <ajuaristio@gmail.com>"],
     "data": [
         "security/ir.model.access.csv",
         "view/sale_agent_view.xml",
@@ -66,13 +49,11 @@ Giorgio Borelli <giorgio.borelli@abstract.it>
         "view/invoice_view.xml",
         "view/sale_order_view.xml",
         "view/product_view.xml",
-        "view/stock_picking_view.xml",
         "report/cc_commission_report.xml"
     ],
     "demo": [
         'demo/sale_agent_demo.xml',
     ],
-    "active": False,
+    "active": True,
     "installable": True
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
