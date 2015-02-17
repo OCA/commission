@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-
         <record id="stock_picking_form_add_agent_field" model="ir.ui.view">
             <field name="name">stock.picking.form.add_agent_field</field>
             <field name="model">stock.picking</field>
@@ -19,7 +18,6 @@
                 </notebook>
             </field>
         </record>
-
         <!--record id="stock_picking_tree_add_agent_field" model="ir.ui.view">
             <field name="name">stock.picking.tree.add_agent_field</field>
             <field name="model">stock.picking</field>
@@ -32,6 +30,5 @@
                 </field>
             </field>
         </record-->
-
     </data>
 </openerp>

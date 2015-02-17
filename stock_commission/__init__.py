@@ -2,7 +2,6 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -18,7 +17,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import models
-from . import wizard
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+from . import models

@@ -2,7 +2,6 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -18,10 +17,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import sale_agent
-from . import invoice
-from . import partner_agent
-from . import partner
-from . import settled
-from . import sale_order
-from . import stock_picking
+from . import models

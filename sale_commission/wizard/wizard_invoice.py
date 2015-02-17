@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields, _
+from openerp import models, fields, api, _
 from openerp import exceptions
 
 
@@ -27,53 +27,33 @@ class settled_invoice_wizard(models.TransientModel):
 
     _name = 'settled.invoice.wizard'
 
-    journal_id = fields.Many2one(
-        'account.journal',
-        'Target journal',
-        required=True,
-        select=1
-    )
+    journal_id = fields.Many2one('account.journal', 'Target journal',
+                                 required=True, select=1)
+    product_id = fields.Many2one('product.product', 'Product for account',
+                                 required=True, select=1)
 
-    product_id = fields.Many2one(
-        'product.product',
-        'Product for account',
-        required=True,
-        select=1
-    )
-
-    def create_invoice(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-        data_pool = self.pool['ir.model.data']
-        settlement_obj = self.pool['settlement']
-        for o in self.browse(cr, uid, ids, context=context):
-            res = settlement_obj.action_invoice_create(
-                cr, uid,
-                context['active_ids'],
-                journal_id=o.journal_id.id,
-                product_id=o.product_id.id,
-                context=context
-            )
+    @api.multi
+    def create_invoice(self):
+        settlement_obj = self.env['settlement']
+        self.ensure_one()
+        res = settlement_obj.action_invoice_create(self.journal_id,
+                                                   self.product_id)
         invoice_ids = res.values()
-        action = {}
         if not invoice_ids[0]:
             raise exceptions.Warning(_('No Invoices were created'))
         # change state settlement
-        settlement_obj.write(
-            cr, uid,
-            context['active_ids'],
-            {'state': 'invoiced'},
-            context=context
-        )
-        action_model, action_id = data_pool.get_object_reference(
-            cr, uid,
-            'account',
-            "action_invoice_tree2"
-        )
-        if action_model:
-            action_pool = self.pool[action_model]
-            action = action_pool.read(cr, uid, action_id, context=context)
-            action['domain'] = "[('id','in', [{}])]".format(
-                ','.join(map(str, invoice_ids[0]))
-            )
-        return action
+        settlement = settlement_obj.browse(self.env.context['active_ids'])
+        settlement.state = 'invoiced'
+        action = self.env.ref('account.action_invoice_tree2')
+        domain = "[('id','in', [{}])]".format(
+            ','.join(map(str, invoice_ids[0])))
+        vals = {
+            'domain': domain,
+            'name': action.name,
+            'view_mode': action.view_mode,
+            'view_type': action.view_type,
+            'views': [],
+            'res_model': action.res_model,
+            'type': action.type,
+            }
+        return vals
