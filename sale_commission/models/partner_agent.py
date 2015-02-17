@@ -21,46 +21,22 @@
 from openerp import models, fields, api, _
 
 
-class res_partner_agent(models.Model):
-    """This model relates sales agents to partnes
-    """
+class ResPartnerAgent(models.Model):
+    """This model relates sales agents to partnes"""
     _name = "res.partner.agent"
     _rec_name = "agent_name"
 
-    partner_id = fields.Many2one(
-        "res.partner",
-        string="Partner",
-        required=True,
-        ondelete="cascade",
-        select=1
-    )
-
-    agent_id = fields.Many2one(
-        "sale.agent",
-        string="Agent",
-        required=True,
-        ondelete="cascade"
-    )
-
-    agent_name = fields.Char(
-        string="Agent name",
-        related="agent_id.name"
-    )
-
-    commission_id = fields.Many2one(
-        "commission",
-        string="Applied commission",
-        required=True,
-        ondelete="cascade"
-    )
-
-    agent_type = fields.Selection(
-        string="Type",
-        related="agent_id.agent_type",
-        selection=[('adviser', 'Adviser'), ('comercial', 'Commercial')],
-        readonly=True,
-        store=True
-    )
+    partner_id = fields.Many2one("res.partner", required=True,
+                                 ondelete="cascade", select=1)
+    agent_id = fields.Many2one("sale.agent", string="Agent", required=True,
+                               ondelete="cascade")
+    agent_name = fields.Char(string="Agent name", related="agent_id.name")
+    commission_id = fields.Many2one("commission", string="Applied commission",
+                                    required=True, ondelete="cascade")
+    agent_type = fields.Selection(string="Type", related="agent_id.agent_type",
+                                  selection=[('adviser', 'Adviser'),
+                                             ('commercial', 'Commercial')],
+                                  readonly=True, store=True)
 
     @api.onchange("agent_id")
     def do_set_default_commission(self):
@@ -77,7 +53,7 @@ class res_partner_agent(models.Model):
         if commission.id:
             agent_commission = self.agent_id.commission
             if self.agent_id and commission.sections:
-                if commission.id != agent_commission.id:
+                if commission != agent_commission:
                     return {
                         "warning": {
                             "title": _('Fee installments!'),
@@ -89,5 +65,3 @@ class res_partner_agent(models.Model):
                             )
                         }
                     }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
