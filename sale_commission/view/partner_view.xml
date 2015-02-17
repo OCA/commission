@@ -22,7 +22,7 @@
             <field name="arch" type="xml">
                 <field name="user_id" position="after">
                         <field string="Agents/Consultancy"
-                               name="commission_ids">
+                               name="agent_ids">
                             <tree string="Agents and Commissions"
                                   editable="top">
                                 <field name="agent_id" />
