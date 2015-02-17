@@ -18,7 +18,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import models
-from . import wizard
+from openerp import models, fields
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+
+class ResPartner(models.Model):
+    """Add some fields related to commissions"""
+    _inherit = "res.partner"
+
+    agent_ids = fields.One2many("res.partner.agent", "partner_id",
+                                string="Agents")
+    agent = fields.Boolean(
+        string="Creditor/Agent",
+        help="If you check this field will be available as creditor or agent."
+    )
