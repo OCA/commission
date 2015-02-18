@@ -64,7 +64,8 @@ class SaleAgent(models.Model):
 
     name = fields.Char(string="Sale agent Name", required=True)
     agent_type = fields.Selection((("adviser", "Adviser"),
-                                   ("commercial", "Commercial")), string="Type",
+                                   ("commercial", "Commercial")),
+                                  string="Type",
                                   required=True, default="adviser")
     partner_id = fields.Many2one(
         "res.partner", ondelete="cascade",
