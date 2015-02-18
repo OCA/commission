@@ -348,15 +348,13 @@ class settlement_line(models.Model):
                     invoice_currency != company_currency and
                     invoice_currency.compute(company_currency.id,
                                              invoice_line_amount,
-                                             round=False)
-                    or
+                                             round=False) or
                     invoice_line_amount
                 )
                 cc_commission_amount = (
                     invoice_currency != company_currency and
                     invoice_currency.compute(company_currency.id, amount,
-                                             round=False,)
-                    or
+                                             round=False,) or
                     amount
                 )
                 self.write({'amount': cc_amount_subtotal,
