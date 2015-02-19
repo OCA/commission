@@ -1,6 +1,8 @@
-
 # -*- encoding: utf-8 -*-
 ##############################################################################
+#
+#    Copyright (C) 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
 #    by the Free Software Foundation, either version 3 of the License, or
@@ -17,21 +19,21 @@
 ##############################################################################
 
 {
-    'name': 'HR commission',
-    'version': '1.0',
-    'author': 'Pexego',
-    "category": "Generic Modules/Sales & Purchases",
-    'depends': ['sale_commission', 'hr'],
+    'name': 'HR commissions',
+    'version': '8.0.1.0.0',
+    'author': 'Serv. Tecnol. Avanzados - Pedro M. Baeza',
+    "category": "Human Resources",
+    'depends': [
+        'sale_commission',
+        'hr'
+    ],
+    'license': 'AGPL-3',
     'contributors': [
-        "Davide Corio <davide.corio@domsense.com>",
-        "Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>",
-        "Sandy Carter <sandy.carter@savoirfairelinux.com>",
-        "Giorgio Borelli <giorgio.borelli@abstract.it>",
-        "Daniel Campos <danielcampos@avanzosc.es>",
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
-        "Ana Juaristi <ajuaristio@gmail.com>"],
-    "data": ["views/sale_agent_view.xml"],
-    "active": True,
+    ],
+    "data": [
+        "views/res_partner_view.xml",
+    ],
     "installable": True,
     "auto_install": True,
 }
