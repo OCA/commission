@@ -1,13 +1,8 @@
-Commissions in HR
-==================
+Commission in warehouse management
+==================================
 
-This module links sale_commission with hr module. For now, it only adds another
-type of agent whose commissions are not invoiced in the corresponding wizard.
-
-Known issues / Roadmap
-======================
-* Add demo data.
-* Restore all 6.1 functionality about linking with wages.
+This module links sale_commision module with stock one, propagagating agents
+and comissions from sale order lines to invoices when invoicing pickings.
 
 Credits
 =======

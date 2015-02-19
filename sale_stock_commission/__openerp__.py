@@ -19,21 +19,19 @@
 ##############################################################################
 
 {
-    'name': 'HR commissions',
+    'name': 'Sale stock commissions',
     'version': '1.0',
     'author': 'Serv. Tecnol. Avanzados - Pedro M. Baeza',
-    "category": "Human Resources",
+    "category": "Generic Modules/Sales & Purchases",
+    'license': 'AGPL-3',
     'depends': [
         'sale_commission',
-        'hr'
+        'sale_stock'
     ],
-    'license': 'AGPL-3',
     'contributors': [
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
     ],
-    "data": [
-        "views/res_partner_view.xml",
-    ],
+    "data": [],
     "installable": True,
     "auto_install": True,
 }
