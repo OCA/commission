@@ -3,6 +3,8 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>).
+#    Copyright (C) 2015 Avanzosc (<http://www.avanzosc.es>)
+#    Copyright (C) 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -18,101 +20,87 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields, api, _
-
-
-class SaleOrderAgent(models.Model):
-    _name = "sale.order.agent"
-    _rec_name = "agent_name"
-
-    sale_id = fields.Many2one("sale.order", string="Sale order",
-                              required=False, ondelete="cascade")
-    commission_id = fields.Many2one("commission", string="Commission",
-                                    required=False, ondelete="cascade")
-    agent_id = fields.Many2one("sale.agent", string="Agent", required=True,
-                               ondelete="cascade")
-    agent_name = fields.Char(string="Agent name", related="agent_id.name")
-
-    @api.onchange("agent_id")
-    def do_set_default_commission(self):
-        """Set default commission when sale agent has changed"""
-        self.commission_id = self.agent_id.commission
-
-    @api.onchange("commission_id")
-    def do_check_commission(self):
-        """Check selected commission and raise a warning
-        when selected commission is not the default provided for sale agent
-        and default partner commission have sections
-        """
-        commission = self.commission_id
-        if commission.id:
-            agent_commission = self.agent_id.commission
-            if self.agent_id and commission.sections:
-                if commission.id != agent_commission.id:
-                    return {
-                        "warning": {
-                            "title": _('Fee installments!'),
-                            "message": _(
-                                "Selected commission has been assigned "
-                                "by sections and it does not match "
-                                "the one defined to the selected agent."
-                                "These sections shall apply only on this bill."
-                            )
-                        }
-                    }
+from openerp import models, fields, api
 
 
 class SaleOrder(models.Model):
-    """Include commission behavior in sale order model"""
     _inherit = "sale.order"
 
-    sale_agent_ids = fields.One2many("sale.order.agent", "sale_id",
-                                     string="Agents", copy=True,
-                                     states={"draft": [("readonly", False)]})
+    @api.one
+    @api.depends('order_line.agents.amount')
+    def _get_commission_total(self):
+        self.commission_total = 0.0
+        for line in self.order_line:
+            self.commission_total += sum(x.amount for x in line.agents)
 
-    @api.multi
-    @api.onchange("partner_id")
-    def onchange_partner_id(self, part):
-        """Agent id field will be changed according to new partner"""
-        sale_agent_ids = []
-        partner_obj = self.env['res.partner']
-        res = super(SaleOrder, self).onchange_partner_id(part)
-        if res.get('value') and part:
-            partner = partner_obj.browse(part)
-            for partner_agent in partner.agent_ids:
-                vals = {
-                    'agent_id': partner_agent.agent_id.id,
-                    'commission_id': partner_agent.commission_id.id,
-                }
-                for sale_id in self.ids:
-                    vals['sale_id'] = sale_id
-                sale_agent_ids.append(tuple([0, 0, vals]))
-            res['value']['sale_agent_ids'] = sale_agent_ids
-        return res
+    commission_total = fields.Float(
+        string="Commissions", compute="_get_commission_total",
+        store=True)
 
 
 class SaleOrderLine(models.Model):
-    """It includes the commission in each invoice line when an invoice is
-    created"""
     _inherit = "sale.order.line"
 
-    @api.multi
-    def invoice_line_create(self):
-        invoice_line_pool = self.env['account.invoice.line']
-        invoice_line_agent_pool = self.env['invoice.line.agent']
-        res = super(SaleOrderLine, self).invoice_line_create()
-        data = self[0]
-        for so_agent_id in data.order_id.sale_agent_ids:
-            inv_lines = invoice_line_pool.browse(res)
-            for inv_line in inv_lines:
-                commission_free = inv_line.product_id.commission_free
-                if inv_line.product_id and commission_free is not True:
-                    vals = {
-                        'invoice_line_id': inv_line.id,
-                        'agent_id': so_agent_id.agent_id.id,
-                        'commission_id': so_agent_id.commission_id.id,
-                        'settled': False
-                    }
-                    line_agent = invoice_line_agent_pool.create(vals)
-                    line_agent.calculate_commission()
-        return res
+    @api.model
+    def _default_agents(self):
+        agents = []
+        if self.env.context.get('partner_id'):
+            partner = self.env['res.partner'].browse(
+                self.env.context['partner_id'])
+            for agent in partner.agents:
+                agents.append({'agent': agent.id,
+                               'commission': agent.commission.id})
+        return [(0, 0, x) for x in agents]
+
+    agents = fields.One2many(
+        string="Agents & commissions",
+        comodel_name='sale.order.line.agent', inverse_name='sale_line',
+        copy=True, readonly=True, default=_default_agents)
+    commission_free = fields.Boolean(
+        string="Comm. free", related="product_id.commission_free",
+        store=True, readonly=True)
+
+    @api.model
+    def _prepare_order_line_invoice_line(self, line, account_id=False):
+        vals = super(SaleOrderLine, self)._prepare_order_line_invoice_line(
+            line, account_id=account_id)
+        vals['agents'] = [
+            (0, 0, {'agent': x.agent.id,
+                    'commission': x.commission.id}) for x in line.agents]
+        return vals
+
+
+class SaleOrderLineAgent(models.Model):
+    _name = "sale.order.line.agent"
+    _rec_name = "agent"
+
+    sale_line = fields.Many2one(
+        comodel_name="sale.order.line", required=True, ondelete="cascade")
+    agent = fields.Many2one(
+        comodel_name="res.partner", required=True, ondelete="restrict",
+        domain="[('agent', '=', True')]")
+    commission = fields.Many2one(
+        comodel_name="sale.commission", required=True, ondelete="restrict")
+    amount = fields.Float(compute="_get_amount", store=True)
+
+    _sql_constraints = [
+        ('unique_agent', 'UNIQUE(sale_line, agent)',
+         'You can only add one time each agent.')
+    ]
+
+    @api.one
+    @api.onchange('agent')
+    def onchange_agent(self):
+        self.commission = self.agent.commission
+
+    @api.one
+    @api.depends('commission.commission_type', 'sale_line.price_subtotal')
+    def _get_amount(self):
+        self.amount = 0.0
+        if (not self.sale_line.product_id.commission_free and
+                self.commission):
+            subtotal = self.sale_line.price_subtotal
+            if self.commission.commission_type == 'fixed':
+                self.amount = subtotal * (self.commission.fix_qty / 100.0)
+            else:
+                self.amount = self.commission.calculate_section(subtotal)
