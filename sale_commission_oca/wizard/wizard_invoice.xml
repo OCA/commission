@@ -2,19 +2,25 @@
 <openerp>
     <data>
 
-        <record id="view_settled_invoice" model="ir.ui.view">
+        <record id="sale_commission_make_invoice_form" model="ir.ui.view">
             <field name="name">Make invoices</field>
-            <field name="model">settled.invoice.wizard</field>
+            <field name="model">sale.commission.make.invoice</field>
             <field name="arch" type="xml">
-                <form string="Create invoices">
+                <form string="Make invoices">
                     <group>
-                        <field name="product_id" />
-                        <field name="journal_id" />
+                        <field name="journal" />
+                        <field name="product" />
+                        <field name="date" />
+                    </group>
+                    <group string="Settlements"
+                           attrs="{'invisible': [('from_settlement', '=', True)]}">
+                        <p colspan="4">(keep empty for invoicing all the settlements)</p>
+                        <field name="from_settlement" invisible="1"/>
+                        <field name="settlements" nolabel="1" widget="many2many_list"/>
                     </group>
                     <footer>
-
-                        <button name="create_invoice"
-                                string="Create"
+                        <button name="button_create"
+                                string="Create invoices"
                                 type="object"
                                 class="oe_highlight" />
                         or
@@ -26,17 +32,17 @@
             </field>
         </record>
 
+        <act_window id="action_commission_make_invoices"
+                    name="Create commission invoices"
+                    res_model="sale.commission.make.invoice"
+                    view_mode="form"
+                    view_type="form"
+                    target="new" />
 
-        <act_window name="Create invoices"
-            res_model="settled.invoice.wizard"
-            src_model="settlement"
-            key2="client_action_multi"
-            multi="True"
-            view_mode="form"
-            view_type="form"
-            target="new"
-            id="action_settled_invoice"
-            />
+        <menuitem id="menu_commission_make_invoices"
+                  parent="menu_sale_commissions_conf"
+                  sequence="30"
+                  action="action_commission_make_invoices" />
 
     </data>
 </openerp>

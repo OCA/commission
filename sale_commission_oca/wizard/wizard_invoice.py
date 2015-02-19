@@ -3,6 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 Pexego Sistemas Inform??ticos (<http://www.pexego.es>).
+#    Copyright (C) 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -18,42 +19,40 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields, api, _
-from openerp import exceptions
+from openerp import models, fields, api
 
 
-class settled_invoice_wizard(models.TransientModel):
-    """settled.invoice.wizard"""
+class SaleCommissionMakeInvoice(models.TransientModel):
+    _name = 'sale.commission.make.invoice'
 
-    _name = 'settled.invoice.wizard'
+    def _default_journal(self):
+        return self.env['account.journal'].search([('type', '=', 'sale')])[0]
 
-    journal_id = fields.Many2one('account.journal', 'Target journal',
-                                 required=True, select=1)
-    product_id = fields.Many2one('product.product', 'Product for account',
-                                 required=True, select=1)
+    def _default_settlements(self):
+        return self.env.context.get('settlement_ids', [])
+
+    def _default_from_settlement(self):
+        return bool(self.env.context.get('settlement_ids'))
+
+    journal = fields.Many2one(
+        comodel_name='account.journal', required=True,
+        domain="[('type', '=', 'sale')]", default=_default_journal)
+    product = fields.Many2one(
+        comodel_name='product.product', string='Product for invoicing',
+        required=True)
+    settlements = fields.Many2many(
+        comodel_name='sale.commission.settlement',
+        relation="sale_commission_make_invoice_settlement_rel",
+        column1='wizard_id', column2='settlement_id',
+        domain="[('state', '=', 'settled')]", default=_default_settlements)
+    from_settlement = fields.Boolean(default=_default_from_settlement)
+    date = fields.Date()
 
     @api.multi
-    def create_invoice(self):
-        settlement_obj = self.env['settlement']
+    def button_create(self):
         self.ensure_one()
-        res = settlement_obj.action_invoice_create(self.journal_id,
-                                                   self.product_id)
-        invoice_ids = res.values()
-        if not invoice_ids[0]:
-            raise exceptions.Warning(_('No Invoices were created'))
-        # change state settlement
-        settlement = settlement_obj.browse(self.env.context['active_ids'])
-        settlement.state = 'invoiced'
-        action = self.env.ref('account.action_invoice_tree2')
-        domain = "[('id','in', [{}])]".format(
-            ','.join(map(str, invoice_ids[0])))
-        vals = {
-            'domain': domain,
-            'name': action.name,
-            'view_mode': action.view_mode,
-            'view_type': action.view_type,
-            'views': [],
-            'res_model': action.res_model,
-            'type': action.type,
-            }
-        return vals
+        if not self.settlements:
+            self.settlements = self.env['sale.commission.settlement'].search(
+                [('state', '=', 'settled'), ('agent_type', '=', 'agent')])
+        return self.settlements.make_invoices(
+            self.journal, self.product, date=self.date)
