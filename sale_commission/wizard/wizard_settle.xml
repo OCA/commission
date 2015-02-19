@@ -1,18 +1,23 @@
 <?xml version="1.0"?>
 <openerp>
     <data>
+
         <record id="view_settled_wizard" model="ir.ui.view">
             <field name="name">Select period to settle</field>
-            <field name="model">settled.wizard</field>
+            <field name="model">sale.commission.make.settle</field>
             <field name="arch" type="xml">
-                <form string="Select period to Settle">
+                <form string="Settle commissions">
                     <group>
-                        <field name="date_from" />
+                        <p colspan="4">Select the date up to which you want to make the settlements:</p>
                         <field name="date_to" />
                     </group>
+                    <group string="Agents" colspan="4">
+                        <p colspan="4">(keep empty for making the settlement of all agents)</p>
+                        <field name="agents" nolabel="1" widget="many2many_list"/>
+                    </group>
                     <footer>
-                        <button name="settlement_exec"
-                                string="Run Settlement Agents"
+                        <button name="action_settle"
+                                string="Make settlements"
                                 type="object"
                                 class="oe_highlight" />
                         or
@@ -28,39 +33,15 @@
         </record>
 
         <act_window id="action_agents_settlement"
-            name="Perform agents settlements"
-            res_model="settled.wizard"
-            src_model="sale.agent"
-            multi="True"
-            view_mode="form"
-            view_type="form"
-            target="new" />
+                    name="Settle commissions"
+                    res_model="sale.commission.make.settle"
+                    view_mode="form"
+                    view_type="form"
+                    target="new" />
 
-
-        <record id="view_recalculate_commision_wizard" model="ir.ui.view">
-            <field name="name">Select period to recalculate</field>
-            <field name="model">recalculate.commission.wizard</field>
-            <field name="arch" type="xml">
-                <form string="Select period to recalculate commissions">
-                    <group>
-                        <field name="date_from" />
-                        <field name="date_to" />
-                    </group>
-                    <footer>
-                        <button name="recalculate_exec"
-                                string="Recalculate agents commissions"
-                                type="object"
-                                class="oe_highlight" />
-                        or
-                        <button
-                            name="action_cancel"
-                            string="Cancel"
-                            class="oe_link"
-                            special="cancel" />
-                    </footer>
-                </form>
-            </field>
-        </record>
+        <menuitem id="menu_agents_settlement"
+                  parent="menu_sale_commissions_conf"
+                  action="action_agents_settlement" />
 
     </data>
 </openerp>
