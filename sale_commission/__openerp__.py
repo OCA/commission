@@ -21,7 +21,7 @@
 {
     'name': 'Sales commissions',
     'version': '1.1',
-    'author': 'Pexego',
+    'author': "Pexego,Odoo Community Association (OCA)",
     "category": "Generic Modules/Sales & Purchases",
     'depends': [
         'base',
