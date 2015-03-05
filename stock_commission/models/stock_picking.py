@@ -18,41 +18,29 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 from openerp import models, fields
 
 
-class product_product(models.Model):
-
-    _inherit = 'product.product'
-
-    commission_free = fields.Boolean(
-        string="Free of commission",
-        default=False
-    )
-
-
-class stock_picking(models.Model):
-
+class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
-    agent_ids = fields.Many2many(
-        "sale.agent",
-        string="Agents"
-    )
+    agent_ids = fields.Many2many("sale.agent", string="Agents")
 
     def _invoice_line_hook(self, cr, uid, move_line,
                            invoice_line_id, context=None):
         '''Call after the creation of the invoice line'''
-        agent_pool = self.pool['invoice.line.agent']
-        super(stock_picking, self)._invoice_line_hook(
+        if context is None:
+            context = {}
+        agent_pool = self.pool.get('invoice.line.agent')
+        super(StockPicking, self)._invoice_line_hook(
             cr, uid,
             move_line,
             invoice_line_id,
             context=context
         )
-
-        commission_free = move_line.sale_line_id.product_id.commission_free
-        if move_line and move_line.sale_line_id and not commission_free:
+        exent = move_line.sale_line_id.product_id.commission_exent
+        if move_line and move_line.sale_line_id and not exent:
             so_ref = move_line.sale_line_id.order_id
             for so_agent_id in so_ref.sale_agent_ids:
                 vals = {

@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>).
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
@@ -18,7 +15,21 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import models
-from . import wizard
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+from openerp import models, api
+
+
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    @api.model
+    def action_ship_create(self):
+        """extend this method to add agent_id to picking"""
+        res = super(SaleOrder, self).action_ship_create()
+        for order in self:
+            agents = [x.agent_id.id for x in order.sale_agent_ids]
+            if agents:
+                vals = {'agent_ids': [[6, 0, agents]], }
+                for picking in order.picking_ids:
+                    picking.write(vals)
+        return res
