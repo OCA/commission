@@ -71,3 +71,8 @@ class SaleOrderLineAgent(models.Model):
         ('unique_agent', 'UNIQUE(sale_line, agent)',
          'You can only add one time each agent.')
     ]
+
+    @api.one
+    @api.onchange('agent')
+    def onchange_agent(self):
+        self.commission = self.agent.commission

@@ -104,6 +104,11 @@ class AccountInvoiceLineAgent(models.Model):
     settled = fields.Boolean(compute="_get_settled", store=True)
 
     @api.one
+    @api.onchange('agent')
+    def onchange_agent(self):
+        self.commission = self.agent.commission
+
+    @api.one
     @api.depends('commission.commission_type', 'invoice_line.price_subtotal')
     def _get_amount(self):
         self.amount = 0.0
@@ -119,9 +124,9 @@ class AccountInvoiceLineAgent(models.Model):
     @api.depends('agent_line', 'agent_line.settlement.state', 'invoice',
                  'invoice.state')
     def _get_settled(self):
-        # Count lines of draft invoices as settled for not being included
-        # in settlements
-        self.settled = (self.invoice.state in ('draft', 'sent') or
+        # Count lines of not open or paid invoices as settled for not
+        # being included in settlements
+        self.settled = (self.invoice.state not in ('open', 'paid') or
                         any(x.settlement.state != 'cancel'
                             for x in self.agent_line))
 
