@@ -33,6 +33,9 @@ class AccountInvoice(models.Model):
         self.commission_total = 0.0
         for line in self.invoice_line:
             self.commission_total += sum(x.amount for x in line.agents)
+        # Consider also purchase refunds, although not in the initial scope
+        if self.type in ('out_refund', 'in_refund'):
+            self.commission_total = -self.commission_total
 
     commission_total = fields.Float(
         string="Commissions", compute="_get_commission_total",
@@ -45,7 +48,7 @@ class AccountInvoice(models.Model):
         res = super(AccountInvoice, self)._refund_cleanup_lines(lines)
         for line in res:
             if 'commission_ids' in line[2]:
-                commission_ids = [(6, 0, line[2].get('commission_ids', []))]
+                commission_ids = [(6, 0, line[2]['commission_ids'])]
                 line[2]['commission_ids'] = commission_ids
         return res
 
