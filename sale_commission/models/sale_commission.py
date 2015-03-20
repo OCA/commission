@@ -50,7 +50,7 @@ class SaleCommissionSection(models.Model):
     _name = "sale.commission.section"
     _description = "Commission section"
 
-    commission = fields.Many2one("commission", string="Commission")
+    commission = fields.Many2one("sale.commission", string="Commission")
     amount_from = fields.Float(string="From")
     amount_to = fields.Float(string="To")
     percent = fields.Float(string="Percent", required=True)
