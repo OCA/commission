@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Salary Rule -->
+
+        <record id="hr_salary_rule_sales_commission_in_payslip" model="hr.salary.rule">
+            <field name="amount_select">code</field>
+            <field name="code">COMMISSION</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="name">Get commission</field>
+            <field name="sequence" eval="95"/>
+            <field name="amount_python_compute">result = inputs.COM.amount</field>
+         </record>
+
+        <!-- Rule Inputs -->
+
+        <record id="hr_rule_input_commission_in_payslip" model="hr.rule.input">
+            <field name="code">COM</field>
+            <field name="name">Commission</field>
+            <field name="input_id" ref="hr_salary_rule_sales_commission_in_payslip"/>
+        </record>
+
+    </data>
+</openerp>
