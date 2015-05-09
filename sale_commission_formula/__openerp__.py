@@ -30,7 +30,7 @@
     'depends': [
         'sale_commission'],
     'data': [
-        'views/sale_commission_view.xml'],
+        'views/commission_view.xml'],
     'installable': True,
     'active': False,
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="commission_form_formula">
+            <field name="name">commission.form.formula</field>
+            <field name="model">commission</field>
+            <field name="inherit_id" ref="sale_commission.commission_form"/>
+            <field name="arch" type="xml">
+                <field name="sections" position="after">
+                    <field name="formula"
+                        attrs="{'invisible':[('commission_type','!=','formula')]}"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

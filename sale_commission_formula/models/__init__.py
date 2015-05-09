@@ -19,4 +19,4 @@
 #
 ##############################################################################
 
-from . import sale_commission
+from . import commission
