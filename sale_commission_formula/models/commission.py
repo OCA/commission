@@ -32,8 +32,8 @@ class Commission(models.Model):
 
     formula = fields.Text(
         'Formula',
-        default="""# variables available:\n# base: invoice line amount\
-(untaxed)""")
+        default="""# Use 'line' to access all the invoice line attributes\n
+result = 0 # use 'result' to return the commission amount""")
 
 
 class SettlementLine(models.Model):
@@ -44,16 +44,17 @@ class SettlementLine(models.Model):
         line = self.browse(cr, uid, ids, context=context)
         amount = 0
         user = self.pool.get('res.users').browse(cr, uid, uid, context=context)
-        # Iterate over the agents and commission in the invoice
         for commission in line.invoice_line_id.commission_ids:
             if commission.agent_id.id == line.settlement_agent_id.agent_id.id:
                 commission_app = commission.commission_id  # Get the object
                 invoice_line_amount = line.invoice_line_id.price_subtotal
                 if commission_app.commission_type == "formula":
-                    subtotal = line.invoice_line_id.price_subtotal
-                    formula = commission_app.formula.replace(
-                        'base', str(subtotal))
-                    amount += eval(formula)
+                    formula = commission_app.formula
+                    localdict = {
+                        'line': line.invoice_line_id,
+                        }
+                    exec(formula) in localdict
+                    amount += float(localdict['result'])
                     invoice_currency_id = line.invoice_id.currency_id.id
                     company_currency_id = user.company_id.currency_id.id
                     cc_amount_subtotal = (
