@@ -21,9 +21,9 @@
 from openerp import models, fields
 
 
-class product_product(models.Model):
+class ProductTemplate(models.Model):
 
-    _inherit = 'product.product'
+    _inherit = 'product.template'
 
     commission_free = fields.Boolean(
         string="Free of commission",
