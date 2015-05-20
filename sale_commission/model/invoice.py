@@ -151,20 +151,18 @@ class account_invoice(models.Model):
         readonly=True
     )
 
-    def onchange_partner_id(self, cr, uid, ids, type, part,
+    @api.multi
+    def onchange_partner_id(self, type, part,
                             date_invoice=False, payment_term=False,
-                            partner_bank_id=False, company_id=False,
-                            context=None):
+                            partner_bank_id=False, company_id=False):
         """When change partner we find the agent associated
         """
         res = super(account_invoice, self).onchange_partner_id(
-            cr, uid, ids,
             type, part, date_invoice,
             payment_term, partner_bank_id, company_id
         )
         if part and res.get('value', False):
-            partner_obj = self.pool['res.partner']
-            partner = partner_obj.browse(cr, uid, part, context=context)
+            partner = self.env['res.partner'].browse([part])[0]
             if partner.commission_ids:
                 agent_id = partner.commission_ids[0].agent_id.id
                 res['value']['agent_id'] = agent_id
