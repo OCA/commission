@@ -3,6 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>).
+#    Copyright (C) 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -18,95 +19,87 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields
+
+from openerp import models, fields, api, exceptions, _
+from datetime import date, timedelta
+from dateutil.relativedelta import relativedelta
 
 
-class settled_wizard (models.TransientModel):
-    """settled.wizard"""
+class SaleCommissionMakeSettle(models.TransientModel):
+    _name = "sale.commission.make.settle"
 
-    _name = "settled.wizard"
+    date_to = fields.Date('Up to', required=True, default=fields.Date.today())
+    agents = fields.Many2many(comodel_name='res.partner',
+                              domain="[('agent', '=', True)]")
 
-    date_from = fields.Date('From', required=True)
-    date_to = fields.Date('To', required=True)
+    def _get_period_start(self, agent, date_to):
+        if isinstance(date_to, basestring):
+            date_to = fields.Date.from_string(date_to)
+        if agent.settlement == 'monthly':
+            return date(month=date_to.month, year=date_to.year, day=1)
+        elif agent.settlement == 'quaterly':
+            # Get first month of the date quarter
+            month = ((date_to.month - 1) // 3 + 1) * 3
+            return date(month=month, year=date_to.year, day=1)
+        elif agent.settlement == 'semi':
+            if date_to.month > 6:
+                return date(month=7, year=date_to.year, day=1)
+            else:
+                return date(month=1, year=date_to.year, day=1)
+        elif agent.settlement == 'annual':
+            return date(month=1, year=date_to.year, day=1)
+        else:
+            raise exceptions.Warning(_("Settlement period not valid."))
 
-    def settlement_exec(self, cr, uid, ids, context=None):
-        """Execute correctly for both."""
-        if context is None:
-            context = {}
-        pool_liq = self.pool['settlement']
-        for o in self.browse(cr, uid, ids, context=context):
-            vals = {
-                'name': o.date_from + " // " + o.date_to,
-                'date_from': o.date_from,
-                'date_to': o.date_to
-            }
-            liq_id = pool_liq.create(cr, uid, vals, context=context)
-            pool_liq.calculate(
-                cr, uid, liq_id,
-                context['active_ids'],
-                o.date_from,
-                o.date_to,
-                context=context
-            )
+    def _get_next_period_date(self, agent, current_date):
+        if isinstance(current_date, basestring):
+            current_date = fields.Date.from_string(current_date)
+        if agent.settlement == 'monthly':
+            return current_date + relativedelta(months=1)
+        elif agent.settlement == 'quaterly':
+            return current_date + relativedelta(months=3)
+        elif agent.settlement == 'semi':
+            return current_date + relativedelta(months=6)
+        elif agent.settlement == 'annual':
+            return current_date + relativedelta(years=1)
+        else:
+            raise exceptions.Warning(_("Settlement period not valid."))
 
-        return {
-            'type': 'ir.actions.act_window_close',
-        }
-
-    def action_cancel(self, cr, uid, ids, connect=None, context=None):
-        """Cancel Liquidation"""
-        return {
-            'type': 'ir.actions.act_window_close',
-        }
-
-
-class recalculate_commission_wizard(models.TransientModel):
-    """settled.wizard"""
-
-    _name = "recalculate.commission.wizard"
-
-    date_from = fields.Date(string="From", required=True)
-    date_to = fields.Date(string="To", required=True)
-
-    def recalculate_exec(self, cr, uid, ids, context=None):
-        """Execute correctly for both."""
-        if context is None:
-            context = {}
-        user = self.pool['res.users'].browse(cr, uid, uid, context=context)
-        agent_pool = self.pool['invoice.line.agent']
-        for o in self.browse(cr, uid, ids, context=context):
-            sql = """
-                SELECT  invoice_line_agent.id FROM account_invoice_line
-                  INNER JOIN invoice_line_agent
-                  ON invoice_line_agent.invoice_line_id=account_invoice_line.id
-                  INNER JOIN account_invoice
-                  ON account_invoice_line.invoice_id = account_invoice.id
-                  WHERE
-                    invoice_line_agent.agent_id in ({})
-                  AND invoice_line_agent.settled=False
-                  AND account_invoice.state<>'draft'
-                  AND account_invoice.type='out_invoice'
-                  AND account_invoice.date_invoice >= '{}'
-                  AND account_invoice.date_invoice <= '{}'
-                  AND account_invoice.company_id = {}
-            """.format(
-                ",".join(map(str, context['active_ids'])),
-                o.date_from,
-                o.date_to,
-                user.company_id.id
-            )
-            cr.execute(sql)
-            res = cr.fetchall()
-            inv_line_agent_ids = [x[0] for x in res]
-            agent_pool.calculate_commission(
-                cr, uid, inv_line_agent_ids, context=context
-            )
-        return {
-            'type': 'ir.actions.act_window_close',
-        }
-
-    def action_cancel(self, cr, uid, ids, connect=None, context=None):
-        """Cancel Calculation"""
-        return {
-            'type': 'ir.actions.act_window_close',
-        }
+    @api.multi
+    def action_settle(self):
+        self.ensure_one()
+        agent_line_obj = self.env['account.invoice.line.agent']
+        settlement_obj = self.env['sale.commission.settlement']
+        settlement_line_obj = self.env['sale.commission.settlement.line']
+        if not self.agents:
+            self.agents = self.env['res.partner'].search(
+                [('agent', '=', True)])
+        date_to = fields.Date.from_string(self.date_to)
+        for agent in self.agents:
+            date_to_agent = self._get_period_start(agent, date_to)
+            # Get non settled invoices
+            agent_lines = agent_line_obj.search(
+                [('invoice_date', '<', date_to_agent),
+                 ('agent', '=', agent.id),
+                 ('settled', '=', False)], order='invoice_date')
+            if agent_lines:
+                pos = 0
+                sett_to = fields.Date.to_string(date(year=1900, month=1,
+                                                     day=1))
+                while pos < len(agent_lines):
+                    if agent_lines[pos].invoice_date > sett_to:
+                        sett_from = self._get_period_start(
+                            agent, agent_lines[pos].invoice_date)
+                        sett_to = fields.Date.to_string(
+                            self._get_next_period_date(agent, sett_from) -
+                            timedelta(days=1))
+                        sett_from = fields.Date.to_string(sett_from)
+                        settlement = settlement_obj.create(
+                            {'agent': agent.id,
+                             'date_from': sett_from,
+                             'date_to': sett_to})
+                    settlement_line_obj.create(
+                        {'settlement': settlement.id,
+                         'agent_line': [(6, 0, [agent_lines[pos].id])]})
+                    pos += 1
+        return True

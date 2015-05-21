@@ -3,6 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>).
+#    Copyright (C) 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -18,62 +19,40 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields, _
-from openerp import exceptions
+from openerp import models, fields, api
 
 
-class settled_invoice_wizard(models.TransientModel):
-    """settled.invoice.wizard"""
+class SaleCommissionMakeInvoice(models.TransientModel):
+    _name = 'sale.commission.make.invoice'
 
-    _name = 'settled.invoice.wizard'
+    def _default_journal(self):
+        return self.env['account.journal'].search([('type', '=', 'sale')])[0]
 
-    journal_id = fields.Many2one(
-        'account.journal',
-        'Target journal',
-        required=True,
-        select=1
-    )
+    def _default_settlements(self):
+        return self.env.context.get('settlement_ids', [])
 
-    product_id = fields.Many2one(
-        'product.product',
-        'Product for account',
-        required=True,
-        select=1
-    )
+    def _default_from_settlement(self):
+        return bool(self.env.context.get('settlement_ids'))
 
-    def create_invoice(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-        data_pool = self.pool['ir.model.data']
-        settlement_obj = self.pool['settlement']
-        for o in self.browse(cr, uid, ids, context=context):
-            res = settlement_obj.action_invoice_create(
-                cr, uid,
-                context['active_ids'],
-                journal_id=o.journal_id.id,
-                product_id=o.product_id.id,
-                context=context
-            )
-        invoice_ids = res.values()
-        action = {}
-        if not invoice_ids[0]:
-            raise exceptions.Warning(_('No Invoices were created'))
-        # change state settlement
-        settlement_obj.write(
-            cr, uid,
-            context['active_ids'],
-            {'state': 'invoiced'},
-            context=context
-        )
-        action_model, action_id = data_pool.get_object_reference(
-            cr, uid,
-            'account',
-            "action_invoice_tree2"
-        )
-        if action_model:
-            action_pool = self.pool[action_model]
-            action = action_pool.read(cr, uid, action_id, context=context)
-            action['domain'] = "[('id','in', [{}])]".format(
-                ','.join(map(str, invoice_ids[0]))
-            )
-        return action
+    journal = fields.Many2one(
+        comodel_name='account.journal', required=True,
+        domain="[('type', '=', 'sale')]", default=_default_journal)
+    product = fields.Many2one(
+        comodel_name='product.product', string='Product for invoicing',
+        required=True)
+    settlements = fields.Many2many(
+        comodel_name='sale.commission.settlement',
+        relation="sale_commission_make_invoice_settlement_rel",
+        column1='wizard_id', column2='settlement_id',
+        domain="[('state', '=', 'settled')]", default=_default_settlements)
+    from_settlement = fields.Boolean(default=_default_from_settlement)
+    date = fields.Date()
+
+    @api.multi
+    def button_create(self):
+        self.ensure_one()
+        if not self.settlements:
+            self.settlements = self.env['sale.commission.settlement'].search(
+                [('state', '=', 'settled'), ('agent_type', '=', 'agent')])
+        return self.settlements.make_invoices(
+            self.journal, self.product, date=self.date)
