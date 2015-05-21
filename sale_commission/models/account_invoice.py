@@ -42,6 +42,22 @@ class AccountInvoice(models.Model):
         store=True)
 
     @api.multi
+    def action_cancel(self):
+        """Put settlements associated to the invoices in exception."""
+        settlements = self.env['sale.commission.settlement'].search(
+            [('invoice', 'in', self.ids)])
+        settlements.write({'state': 'except_invoice'})
+        return super(AccountInvoice, self).action_cancel()
+
+    @api.multi
+    def invoice_validate(self):
+        """Put settlements associated to the invoices again in invoice."""
+        settlements = self.env['sale.commission.settlement'].search(
+            [('invoice', 'in', self.ids)])
+        settlements.write({'state': 'invoiced'})
+        return super(AccountInvoice, self).invoice_validate()
+
+    @api.multi
     def _refund_cleanup_lines(self, lines):
         """ugly function to map all fields of account.invoice.line
         when creates refund invoice"""
