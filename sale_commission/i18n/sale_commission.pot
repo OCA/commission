@@ -161,6 +161,7 @@ msgstr ""
 
 #. module: sale_commission
 #: field:account.invoice,commission_total:0
+#: field:sale.order,commission_total:0
 #: model:ir.ui.menu,name:sale_commission.menu_sale_commissions_conf
 #: view:sale.commission:sale_commission.sale_commission_tree
 msgid "Commissions"

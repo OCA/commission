@@ -23,6 +23,21 @@
 from openerp import models, fields, api
 
 
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    @api.one
+    @api.depends('order_line.agents.amount')
+    def _get_commission_total(self):
+        self.commission_total = 0.0
+        for line in self.order_line:
+            self.commission_total += sum(x.amount for x in line.agents)
+
+    commission_total = fields.Float(
+        string="Commissions", compute="_get_commission_total",
+        store=True)
+
+
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
@@ -66,6 +81,7 @@ class SaleOrderLineAgent(models.Model):
         domain="[('agent', '=', True')]")
     commission = fields.Many2one(
         comodel_name="sale.commission", required=True, ondelete="restrict")
+    amount = fields.Float(compute="_get_amount", store=True)
 
     _sql_constraints = [
         ('unique_agent', 'UNIQUE(sale_line, agent)',
@@ -76,3 +92,15 @@ class SaleOrderLineAgent(models.Model):
     @api.onchange('agent')
     def onchange_agent(self):
         self.commission = self.agent.commission
+
+    @api.one
+    @api.depends('commission.commission_type', 'sale_line.price_subtotal')
+    def _get_amount(self):
+        self.amount = 0.0
+        if (not self.sale_line.product_id.commission_free and
+                self.commission):
+            subtotal = self.sale_line.price_subtotal
+            if self.commission.commission_type == 'fixed':
+                self.amount = subtotal * (self.commission.fix_qty / 100.0)
+            else:
+                self.amount = self.commission.calculate_section(subtotal)
