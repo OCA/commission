@@ -42,7 +42,8 @@ class Settlement(models.Model):
     state = fields.Selection(
         selection=[("settled", "Settled"),
                    ("invoiced", "Invoiced"),
-                   ("cancel", "Canceled")], string="State",
+                   ("cancel", "Canceled"),
+                   ("except_invoice", "Invoice exception")], string="State",
         readonly=True, default="settled")
     invoice = fields.Many2one(
         comodel_name="account.invoice", string="Generated invoice",
