@@ -20,6 +20,11 @@
                     <field name="agents"
                            attrs="{'readonly': [('commission_free', '=', True)]}"/>
                 </xpath>
+                <field name="amount_total" position="after">
+                    <field name="commission_total"
+                           widget="monetary"
+                           options="{'currency_field': 'currency_id'}"/>
+                </field>
             </field>
         </record>
 

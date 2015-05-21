@@ -29,7 +29,7 @@
               'Abstract, '
               'Serv. Tecnol. Avanzados - Pedro M. Baeza, '
               'Odoo Community Association (OCA)',
-    "category": "Sales Managemen",
+    "category": "Sales Management",
     'license': 'AGPL-3',
     'depends': [
         'base',
