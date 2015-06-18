@@ -19,18 +19,22 @@
 #
 ##############################################################################
 
-{
-    'name': 'Sale Commission Formula',
-    'version': '0.1',
-    'category': 'Sale',
-    'license': 'AGPL-3',
-    'summary': 'Sale commissions computed by formulas',
-    'author': "Abstract,Odoo Community Association (OCA)",
-    'website': 'http://www.abstract.it',
-    'depends': [
-        'sale_commission'],
-    'data': [
-        'views/sale_commission_view.xml'],
-    'installable': True,
-    'active': False,
-}
+from openerp import models, api
+
+
+class AccountInvoiceLineAgent(models.Model):
+    _inherit = 'account.invoice.line.agent'
+
+    @api.one
+    @api.depends('commission.commission_type', 'invoice_line.price_subtotal')
+    def _get_amount(self):
+        if self.commission.commission_type == 'formula' and (
+            not self.invoice_line.product_id.commission_free and
+                self.commission):
+            self.amount = 0.0
+            formula = self.commission.formula
+            results = {'line': self.invoice_line}
+            exec(formula) in results
+            self.amount += float(results['result'])
+        else:
+            return super(AccountInvoiceLineAgent, self)._get_amount(self)

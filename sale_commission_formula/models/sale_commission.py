@@ -19,18 +19,15 @@
 #
 ##############################################################################
 
-{
-    'name': 'Sale Commission Formula',
-    'version': '0.1',
-    'category': 'Sale',
-    'license': 'AGPL-3',
-    'summary': 'Sale commissions computed by formulas',
-    'author': "Abstract,Odoo Community Association (OCA)",
-    'website': 'http://www.abstract.it',
-    'depends': [
-        'sale_commission'],
-    'data': [
-        'views/sale_commission_view.xml'],
-    'installable': True,
-    'active': False,
-}
+from openerp import models, fields
+
+
+class Commission(models.Model):
+    _inherit = 'sale.commission'
+
+    commission_type = fields.Selection(selection_add=[("formula", "Formula")])
+
+    formula = fields.Text(
+        'Formula',
+        default="""# Use 'line' to access all the invoice line attributes\n
+result = 0 # use 'result' to return the commission amount""")
