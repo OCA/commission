@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report auto="True"
+            id="settlement_report"
+            model="settlement"
+            name="settlement.report"
+            rml="sale_commission/report/settlement_report.rml"
+            string="Settlement report"/>
+    </data>
+</openerp>

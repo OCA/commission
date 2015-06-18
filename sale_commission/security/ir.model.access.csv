@@ -1,0 +1,11 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_sale_commission_manager","access_sale_commission_manager","model_sale_commission","base.group_sale_manager",1,1,1,1
+"access_sale_commission_user","access_sale_commission_user","model_sale_commission","base.group_sale_salesman",1,0,0,0
+"access_sale_commission_section_manager","access_sale_commission_section_manager","model_sale_commission_section","base.group_sale_manager",1,1,1,1
+"access_sale_commission_section_user","access_sale_commission_section_user","model_sale_commission_section","base.group_sale_salesman",1,0,0,0
+"access_sale_order_line_agent","access_sale_order_line_agent","model_sale_order_line_agent","base.group_sale_salesman",1,1,1,1
+"access_account_invoice_line_agent","access_account_invoice_line_agent","model_account_invoice_line_agent","base.group_sale_salesman",1,1,1,1
+"access_sale_commission_settlement_manager","access_sale_commission_settlement_manager","model_sale_commission_settlement","base.group_sale_manager",1,1,1,1
+"access_sale_commission_settlement_user","access_sale_commission_settlement_manager","model_sale_commission_settlement","base.group_sale_salesman",1,0,0,0
+"access_sale_commission_settlement_line_manager","access_sale_commission_settlement_line_user","model_sale_commission_settlement_line","base.group_sale_manager",1,1,1,1
+"access_sale_commission_settlement_line_user","access_sale_commission_settlement_line_user","model_sale_commission_settlement_line","base.group_sale_salesman",1,0,0,0
