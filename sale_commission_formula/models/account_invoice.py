@@ -37,4 +37,4 @@ class AccountInvoiceLineAgent(models.Model):
             exec(formula) in results
             self.amount += float(results['result'])
         else:
-            return super(AccountInvoiceLineAgent, self)._get_amount(self)
+            return super(AccountInvoiceLineAgent, self)._get_amount()

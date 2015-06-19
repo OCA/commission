@@ -37,4 +37,4 @@ class SaleOrderLineAgent(models.Model):
             exec(formula) in results
             self.amount += float(results['result'])
         else:
-            return super(SaleOrderLineAgent, self)._get_amount(self)
+            return super(SaleOrderLineAgent, self)._get_amount()
