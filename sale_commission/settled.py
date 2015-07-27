@@ -82,13 +82,17 @@ class recalculate_commision_wizard (orm.TransientModel):
             context = {}
         user = self.pool.get('res.users').browse(cr, uid, uid, context=context)
         agent_pool = self.pool.get('invoice.line.agent')
+        pool_state = self.pool.get('settlement.agent')
+        str_state = pool_state.condition_state_invoice(self, cr, uid, ids,
+                                                       context)
         for o in self.browse(cr, uid, ids, context=context):
             sql = 'SELECT  invoice_line_agent.id FROM account_invoice_line ' \
                   'INNER JOIN invoice_line_agent ON invoice_line_agent.invoice_line_id=account_invoice_line.id ' \
                   'INNER JOIN account_invoice ON account_invoice_line.invoice_id = account_invoice.id ' \
                   'WHERE invoice_line_agent.agent_id in (' + ",".join(map(str, context['active_ids'])) + ') ' \
                   'AND invoice_line_agent.settled=False ' \
-                  'AND account_invoice.state<>\'draft\' AND account_invoice.type=\'out_invoice\'' \
+                  'AND account_invoice.state' + str_state + ' ' +\
+                  'AND account_invoice.type=\'out_invoice\'' \
                   'AND account_invoice.date_invoice >= \'' + o.date_from + '\' ' \
                   'AND account_invoice.date_invoice <= \'' + o.date_to + '\' ' \
                   'AND account_invoice.company_id = ' + str(user.company_id.id)
@@ -303,15 +307,17 @@ class settlement_agent (orm.Model):
             context = {}
         settlement_line_pool = self.pool.get('settlement.line')
         invoice_line_agent_pool = self.pool.get('invoice.line.agent')
+        str_state = self.condition_state_invoice(self, cr, uid, ids, context)
         set_agent = self.browse(cr, uid, ids, context=context)
-        user = self.pool.get('res.users').browse(cr, uid, uid, context=context)
+        user = self.pool.get('res.users').browse(cr, uid, uid, context)
         # Recalculamos todas las lineas sujetas a comision
         sql = 'SELECT  invoice_line_agent.id FROM account_invoice_line ' \
               'INNER JOIN invoice_line_agent ON invoice_line_agent.invoice_line_id=account_invoice_line.id ' \
               'INNER JOIN account_invoice ON account_invoice_line.invoice_id = account_invoice.id ' \
               'WHERE invoice_line_agent.agent_id=' + str(set_agent.agent_id.id) + ' ' \
               'AND invoice_line_agent.settled=True ' \
-              'AND account_invoice.state<>\'draft\' AND account_invoice.type=\'out_invoice\''\
+              'AND account_invoice.state' + str_state + ' ' + \
+              'AND account_invoice.type=\'out_invoice\''\
               'AND account_invoice.date_invoice >= \'' + date_from + '\' ' \
               'AND account_invoice.date_invoice <= \'' + date_to + '\' ' \
               'AND account_invoice.company_id = ' + str(user.company_id.id)
@@ -324,7 +330,8 @@ class settlement_agent (orm.Model):
               'INNER JOIN account_invoice ON account_invoice_line.invoice_id = account_invoice.id ' \
               'WHERE invoice_line_agent.agent_id=' + str(set_agent.agent_id.id) + ' ' \
               'AND invoice_line_agent.settled=False ' \
-              'AND account_invoice.state<>\'draft\' AND account_invoice.type=\'out_invoice\'' \
+              'AND account_invoice.state' + str_state + ' ' + \
+              'AND account_invoice.type=\'out_invoice\'' \
               'AND account_invoice.date_invoice >= \'' + date_from + '\' ' \
               'AND account_invoice.date_invoice <= \'' + date_to + '\' ' \
               'AND account_invoice.company_id = ' + str(user.company_id.id)
@@ -380,6 +387,25 @@ class settlement_agent (orm.Model):
         total = total_per + total_sections
         self.write(cr, uid, ids, {'total_per': total_per, 'total_sections': total_sections, 'total': total},
                    context=context)
+
+    def condition_state_invoice(self, cr, uid, ids, state=['draft'],
+                                conditions='<>', context=None):
+
+        ret = ''
+
+        if state:
+            if conditions.__len__() > 1:
+                ret = ' ' + conditions + ' ' + str(state).replace('[',
+                                                                  '(').replace(
+                    ']', ')') + ' '
+            else:
+                ret = ' ' + conditions + ' ' + str(state).replace('[',
+                                                                  '').replace(
+                    ']', ' ')
+        else:
+            return
+
+        return ret
 
 
 class settlement_line (orm.Model):
