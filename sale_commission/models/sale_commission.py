@@ -57,17 +57,20 @@ class SaleCommission(models.Model):
         required=True, default="own_sales",
     )
 
-    def has_company_scope(self):
-        return self.scope in ("company_sales", "company_margin")
-
-    def has_own_scope(self):
-        return self.scope in ("own_sales", "own_margin")
+    has_company_scope = fields.Boolean(compute="_compute_scope")
+    has_own_scope = fields.Boolean(compute="_compute_scope")
 
     agent_ids = fields.Many2many(
         string="Agents", comodel_name="res.partner",
         relation="agent_commission_rel",
         column2="partner_id", column1="commission_id",
     )
+
+    @api.one
+    def _compute_scope(self):
+        self.has_company_scope = self.scope in ("company_sales",
+                                                "company_margin")
+        self.has_own_scope = self.scope in ("own_sales", "own_margin")
 
     @api.multi
     def compute_sale_commission(self, sale_line):
@@ -118,7 +121,7 @@ class SaleCommission(models.Model):
                     {'agent': agent.id,
                      'commission': comm.id}
                     for comm in agent.commissions
-                    if comm.has_own_scope()
+                    if comm.has_own_scope
                 )
             for agent in partner_obj.search(
                     [('company_id', '=', partner.company_id.id),
@@ -127,7 +130,7 @@ class SaleCommission(models.Model):
                     {'agent': agent.id,
                      'commission': comm.id}
                     for comm in agent.commissions
-                    if comm.has_company_scope()
+                    if comm.has_company_scope
                 )
 
         return res
