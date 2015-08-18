@@ -26,6 +26,7 @@ from dateutil.relativedelta import relativedelta
 
 from ..models import sale_commission as sc
 
+
 class SaleCommissionMakeSettle(models.TransientModel):
     _name = "sale.commission.make.settle"
 
@@ -74,13 +75,11 @@ class SaleCommissionMakeSettle(models.TransientModel):
         else:
             raise exceptions.Warning(_("Settlement period not valid."))
 
-
     @api.multi
     def action_settle(self):
         self.ensure_one()
         commission_line_obj = self.env['account.invoice.line.commission']
         settlement_obj = self.env['sale.commission.settlement']
-        settlement_line_obj = self.env['sale.commission.settlement.line']
         if not self.agents:
             self.agents = self.env['res.partner'].search(
                 [('agent', '=', True)])

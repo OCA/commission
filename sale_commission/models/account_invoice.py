@@ -113,7 +113,6 @@ class AccountInvoiceLineAgentCommission(models.Model):
     settled = fields.Boolean(compute="_get_settled", store=True)
     settlement_id = fields.Many2one("sale.commission.settlement")
 
-
     @api.one
     @api.depends('commission.commission_type', 'invoice_line.price_subtotal')
     def _get_amount(self):

@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from datetime import date, timedelta
+from datetime import date
 
 from openerp.tests import TransactionCase
 

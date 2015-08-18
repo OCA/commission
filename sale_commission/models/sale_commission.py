@@ -84,7 +84,7 @@ class SaleCommission(models.Model):
             )
         return self.compute_commission(
             sale_line.product_id,
-            sale_line.price_subtotal,
+            base,
         )
 
     # Currently implementation is the same, use same function. Both provided

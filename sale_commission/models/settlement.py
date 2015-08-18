@@ -52,7 +52,6 @@ class Settlement(models.Model):
         comodel_name='res.currency', readonly=True,
         default=_default_currency)
 
-
     @api.one
     @api.depends('lines', 'lines.amount')
     def _get_total(self):
@@ -187,6 +186,6 @@ class SettlementLine(models.Model):
                         ON settlement.id = comm_line.settlement_id
             )
             """.format(
-                table = self._table,
+                table=self._table,
             ),
         )
