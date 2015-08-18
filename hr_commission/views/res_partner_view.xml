@@ -7,7 +7,7 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="sale_commission.view_partner_form_agent" />
             <field name="arch" type="xml">
-                <field name="commission" position="after">
+                <field name="agent_type" position="after">
                     <field name="employee"
                            attrs="{'invisible': [('agent_type', '!=', 'salesman')]}" />
                 </field>
