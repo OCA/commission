@@ -89,7 +89,7 @@ class SaleCommission(models.Model):
 
     @api.multi
     def compute_invoice_commission(self, invoice_line):
-        """ Compute the commission on a sale order line """
+        """ Compute the commission on a invoice line """
         if self.scope in ("own_sales", "company_sales"):
             base = invoice_line.price_subtotal
         elif self.scope in ("own_margin", "company_margin"):
