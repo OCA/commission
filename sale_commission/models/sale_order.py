@@ -49,7 +49,7 @@ class SaleOrderLine(models.Model):
     commissions = fields.One2many(
         string="Agents & commissions",
         comodel_name='sale.order.line.commission', inverse_name='sale_line',
-        copy=True, readonly=True, default=_default_commissions)
+        copy=True, default=_default_commissions)
     commission_free = fields.Boolean(
         string="Comm. free", related="product_id.commission_free",
         store=True, readonly=True)

@@ -19,10 +19,19 @@
             <field name="inherit_id" ref="account.view_invoice_line_form" />
             <field name="arch" type="xml">
                 <field name="company_id" position="after">
-                    <field name="commission_free"/>
-                    <field name="commissions"
-                           attrs="{'readonly': [('commission_free', '=', True)]}"/>
+                  <field name="commission_free"/>
                 </field>
+                <xpath expr="//label[@for='name']" position="before">
+                  <group string="Commissions" colspan="4" attrs="{'invisible': [('commission_free', '=', True)]}">
+                    <field name="commissions" nolabel="1">
+                      <tree string="Commissions">
+                        <field name="agent" />
+                        <field name="commission" />
+                        <field name="amount" />
+                      </tree>
+                    </field>
+                  </group>
+                </xpath>
             </field>
         </record>
 
@@ -36,8 +45,7 @@
                 </field>
                 <xpath expr="//field[@name='invoice_line']/tree//field[@name='price_subtotal']" position="after">
                     <field name="commission_free"/>
-                    <field name="commissions"
-                           attrs="{'readonly': [('commission_free', '=', True)]}"/>
+                    <field name="commissions" invisible="1" />
                 </xpath>
                 <field name="amount_total" position="after">
                     <field name="commission_total"

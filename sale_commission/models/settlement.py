@@ -23,6 +23,11 @@
 
 from openerp import models, fields, api, exceptions, tools, _
 
+SETTLEMENT_STATES = [("settled", "Settled"),
+                     ("invoiced", "Invoiced"),
+                     ("cancel", "Canceled"),
+                     ("except_invoice", "Invoice exception")]
+
 
 class Settlement(models.Model):
     _name = "sale.commission.settlement"
@@ -30,6 +35,7 @@ class Settlement(models.Model):
     def _default_currency(self):
         return self.env.user.company_id.currency_id.id
 
+    name = fields.Char(compute="_get_name", store=True)
     total = fields.Float(compute="_get_total", readonly=True, store=True)
     date_from = fields.Date(string="From")
     date_to = fields.Date(string="To")
@@ -39,12 +45,9 @@ class Settlement(models.Model):
     lines = fields.One2many(
         comodel_name="account.invoice.line.commission",
         inverse_name="settlement_id", string="Settlement lines", readonly=True)
-    state = fields.Selection(
-        selection=[("settled", "Settled"),
-                   ("invoiced", "Invoiced"),
-                   ("cancel", "Canceled"),
-                   ("except_invoice", "Invoice exception")], string="State",
-        readonly=True, default="settled")
+    state = fields.Selection(selection=SETTLEMENT_STATES,
+                             string="State", readonly=True,
+                             default="settled")
     invoice = fields.Many2one(
         comodel_name="account.invoice", string="Generated invoice",
         readonly=True)
@@ -56,6 +59,17 @@ class Settlement(models.Model):
     @api.depends('lines', 'lines.amount')
     def _get_total(self):
         self.total = sum(x.amount for x in self.lines)
+
+    @api.one
+    @api.depends('agent', 'date_from', 'date_to')
+    def _get_name(self):
+        date_from = fields.Date.from_string(self.date_from)
+        date_to = fields.Date.from_string(self.date_to)
+        self.name = "{0} [{1} - {2}]".format(
+            self.agent.name,
+            self.date_from,
+            self.date_to,
+        )
 
     @api.multi
     def action_cancel(self):
@@ -164,9 +178,12 @@ class SettlementLine(models.Model):
     invoice = fields.Many2one(comodel_name='account.invoice',
                               string="Invoice", readonly=True)
     agent = fields.Many2one(comodel_name="res.partner", readonly=True)
-    settled_amount = fields.Float(readonly=True)
+    settled_amount = fields.Float(string="Amount", readonly=True)
     commission = fields.Many2one(comodel_name="sale.commission",
                                  readonly=True)
+    settlement_state = fields.Selection(string="State",
+                                        selection=SETTLEMENT_STATES,
+                                        readonly=True)
 
     def init(self, cr):
         tools.drop_view_if_exists(cr, self._table)
@@ -175,15 +192,16 @@ class SettlementLine(models.Model):
             CREATE OR REPLACE VIEW {table} AS (
                 SELECT comm_line.id             AS id
                      , settlement.id            AS settlement
+                     , settlement.state         AS settlement_state
                      , comm_line.invoice_date   AS date
                      , comm_line.invoice_line   AS invoice_line
-                     , comm_line.invoice        AS invoice_id
+                     , comm_line.invoice        AS invoice
                      , comm_line.agent          AS agent
                      , comm_line.amount         AS settled_amount
                      , comm_line.commission     AS commission
-                FROM sale_commission_settlement settlement
-                INNER JOIN account_invoice_line_commission comm_line
-                        ON settlement.id = comm_line.settlement_id
+                FROM account_invoice_line_commission comm_line
+                LEFT JOIN sale_commission_settlement settlement
+                      ON settlement.id = comm_line.settlement_id
             )
             """.format(
                 table=self._table,
