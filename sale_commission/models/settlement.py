@@ -67,8 +67,8 @@ class Settlement(models.Model):
         date_to = fields.Date.from_string(self.date_to)
         self.name = "{0} [{1} - {2}]".format(
             self.agent.name,
-            self.date_from,
-            self.date_to,
+            date_from,
+            date_to,
         )
 
     @api.multi
