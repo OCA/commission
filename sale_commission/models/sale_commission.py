@@ -80,16 +80,27 @@ class SaleCommission(models.Model):
         elif self.scope in ("own_margin", "company_margin"):
             # Compute margin: subtotal - unit cost * qty
             base = sale_line.price_subtotal - (
-                sale_line.product_id.standard_price * sale_line.quantity
+                sale_line.product_id.standard_price * sale_line.product_uom_qty
             )
         return self.compute_commission(
             sale_line.product_id,
             base,
         )
 
-    # Currently implementation is the same, use same function. Both provided
-    # to avoid breakage if we need different fields in invoice and SO
-    compute_invoice_commission = compute_sale_commission
+    @api.multi
+    def compute_invoice_commission(self, invoice_line):
+        """ Compute the commission on a sale order line """
+        if self.scope in ("own_sales", "company_sales"):
+            base = invoice_line.price_subtotal
+        elif self.scope in ("own_margin", "company_margin"):
+            # Compute margin: subtotal - unit cost * qty
+            base = invoice_line.price_subtotal - (
+                invoice_line.product_id.standard_price * invoice_line.quantity
+            )
+        return self.compute_commission(
+            invoice_line.product_id,
+            base,
+        )
 
     @api.multi
     def compute_commission(self, product_id, price_subtotal):
