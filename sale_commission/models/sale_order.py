@@ -97,10 +97,6 @@ class SaleOrderLineAgent(models.Model):
     @api.depends('commission.commission_type', 'sale_line.price_subtotal')
     def _get_amount(self):
         self.amount = 0.0
-        if (not self.sale_line.product_id.commission_free and
-                self.commission):
-            subtotal = self.sale_line.price_subtotal
-            if self.commission.commission_type == 'fixed':
-                self.amount = subtotal * (self.commission.fix_qty / 100.0)
-            else:
-                self.amount = self.commission.calculate_section(subtotal)
+        if self.commission:
+            self.amount = self.commission.compute_sale_commission(
+                self.sale_line)

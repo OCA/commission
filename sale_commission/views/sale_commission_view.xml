@@ -25,6 +25,8 @@
                         </group>
                         <group>
                             <field name="commission_type" />
+                            <field name="period" />
+                            <field name="scope" />
                         </group>
                     </group>
                     <group string="Rates definition" colspan="4">
