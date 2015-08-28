@@ -12,11 +12,11 @@
                 </field>
                 <xpath expr="//field[@name='order_line']/tree//field[@name='price_subtotal']" position="after">
                     <field name="commission_free"/>
-                    <field name="agents" invisible="1" />
+                    <field name="commissions" invisible="1" />
                 </xpath>
                 <xpath expr="//field[@name='order_line']/form//field[@name='address_allotment_id']" position="after">
                     <field name="commission_free"/>
-                    <field name="agents" invisible="1" />
+                    <field name="commissions" invisible="1" />
                 </xpath>
                 <field name="amount_total" position="after">
                     <field name="commission_total"
@@ -27,12 +27,13 @@
         </record>
 
         <record model="ir.ui.view" id="view_sale_order_line_tree">
-            <field name="name">sale.order.line.agent.tree</field>
-            <field name="model">sale.order.line.agent</field>
+            <field name="name">sale.order.line.commission.tree</field>
+            <field name="model">sale.order.line.commission</field>
             <field name="arch" type="xml">
-                <tree string="Agents" editable="bottom">
-                    <field name="agent"/>
-                    <field name="commission"/>
+                <tree string="Commissions" editable="bottom">
+                    <field name="agent" />
+                    <field name="commission" />
+                    <field name="amount" />
                 </tree>
             </field>
         </record>

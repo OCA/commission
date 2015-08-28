@@ -28,11 +28,11 @@ class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
     @api.one
-    @api.depends('invoice_line.agents.amount')
+    @api.depends('invoice_line.commissions.amount')
     def _get_commission_total(self):
         self.commission_total = 0.0
         for line in self.invoice_line:
-            self.commission_total += sum(x.amount for x in line.agents)
+            self.commission_total += sum(x.amount for x in line.commissions)
         # Consider also purchase refunds, although not in the initial scope
         if self.type in ('out_refund', 'in_refund'):
             self.commission_total = -self.commission_total
@@ -57,15 +57,34 @@ class AccountInvoice(models.Model):
         settlements.write({'state': 'invoiced'})
         return super(AccountInvoice, self).invoice_validate()
 
-    @api.multi
+    @api.model
     def _refund_cleanup_lines(self, lines):
         """ugly function to map all fields of account.invoice.line
         when creates refund invoice"""
         res = super(AccountInvoice, self)._refund_cleanup_lines(lines)
-        for line in res:
-            if 'commission_ids' in line[2]:
-                commission_ids = [(6, 0, line[2]['commission_ids'])]
-                line[2]['commission_ids'] = commission_ids
+        # This gets called for tax lines as well, only act on invoice lines
+        if lines and lines._name == 'account.invoice.line':
+            for line, row in zip(lines, res):
+                row[2]['commissions'] = [
+                    (0, 0, {
+                        'commission': c.commission.id,
+                        'agent': c.agent.id,
+                    })
+                    for c in line.commissions
+                ]
+        return res
+
+    def copy_data(self, cr, uid, id, default=None, context=None):
+        res = super(AccountInvoice, self).copy_data(
+            cr, uid, id, default=default, context=context)
+        if res["partner_id"]:
+            comms = self.pool["account.invoice.line"].default_get(
+                cr, uid, ["commissions"],
+                context={"partner_id": res["partner_id"]}
+            )["commissions"]
+
+            for line in res["invoice_line"]:
+                line[2]["commissions"] = comms[:]
         return res
 
 
@@ -78,8 +97,8 @@ class AccountInvoiceLine(models.Model):
         res = self.env['sale.commission'].get_default_commissions()
         return [(0, 0, x) for x in res]
 
-    agents = fields.One2many(
-        comodel_name="account.invoice.line.agent",
+    commissions = fields.One2many(
+        comodel_name="account.invoice.line.commission",
         inverse_name="invoice_line", string="Agents & commissions",
         help="Agents/Commissions related to the invoice line.",
         default=_default_commissions, copy=False)
@@ -88,11 +107,18 @@ class AccountInvoiceLine(models.Model):
         store=True, readonly=True)
 
 
-class AccountInvoiceLineAgent(models.Model):
-    _name = "account.invoice.line.agent"
+class AccountInvoiceLineAgentCommission(models.Model):
+    _name = "account.invoice.line.commission"
+    _description = "Commissions to be paid on an invoice line"
 
     invoice_line = fields.Many2one(
         comodel_name="account.invoice.line", required=True, ondelete="cascade")
+    commission = fields.Many2one(
+        comodel_name="sale.commission", required=True, ondelete="restrict")
+    agent = fields.Many2one(
+        comodel_name="res.partner", required=True, ondelete="restrict",
+        domain="[('agent', '=', True)]")
+
     invoice = fields.Many2one(
         comodel_name="account.invoice", string="Invoice",
         related="invoice_line.invoice_id", store=True)
@@ -115,10 +141,6 @@ class AccountInvoiceLineAgent(models.Model):
     settled = fields.Boolean(compute="_get_settled", store=True)
 
     @api.one
-    @api.onchange('agent')
-    def onchange_agent(self):
-        self.commission = self.agent.commission
-
     @api.one
     @api.depends('commission.commission_type', 'invoice_line.price_subtotal')
     def _get_amount(self):
@@ -141,7 +163,3 @@ class AccountInvoiceLineAgent(models.Model):
                         any(x.settlement.state != 'cancel'
                             for x in self.agent_line))
 
-    _sql_constraints = [
-        ('unique_agent', 'UNIQUE(invoice_line, agent)',
-         'You can only add one time each agent.')
-    ]

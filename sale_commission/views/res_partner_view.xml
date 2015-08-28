@@ -23,12 +23,23 @@
                         <group>
                             <group>
                                 <field name="agent_type"/>
-                                <field name="commission"
-                                       attrs="{'required': [('agent', '=', True)]}"/>
                             </group>
                             <group>
                                 <field name="settlement"/>
                             </group>
+                            <group string="Commissions" colspan="4">
+                                <field name="commissions" nolabel="1">
+                                    <tree string="Commissions">
+                                        <field name="name" />
+                                        <field name="period" />
+                                        <field name="commission_type" />
+                                        <field name="fix_qty" />
+                                        <field name="sections" />
+                                        <field name="scope" />
+                                    </tree>
+                                </field>
+                            </group>
+
                             <group colspan="4"
                                    string="Settlements">
                                 <field name="settlements" nolabel="1">

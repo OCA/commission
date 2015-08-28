@@ -83,7 +83,7 @@ class SaleCommissionMakeSettle(models.TransientModel):
     @api.multi
     def action_settle(self):
         self.ensure_one()
-        agent_line_obj = self.env['account.invoice.line.agent']
+        commission_line_obj = self.env['account.invoice.line.commission']
         settlement_obj = self.env['sale.commission.settlement']
         settlement_line_obj = self.env['sale.commission.settlement.line']
         if not self.agents:
@@ -94,7 +94,7 @@ class SaleCommissionMakeSettle(models.TransientModel):
             agent_period = agent.settlement
             date_to_agent = self._get_period_start(agent_period, date_to)
             # Get non settled invoices
-            commission_lines = agent_line_obj.search(
+            commission_lines = commission_line_obj.search(
                 [('invoice_date', '<', date_to_agent),
                  ('agent', '=', agent.id),
                  ('settled', '=', False)], order='invoice_date')

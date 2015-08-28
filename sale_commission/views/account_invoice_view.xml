@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <record id="invoice_line_agent_tree" model="ir.ui.view">
-            <field name="name">account.invoice.line.agent.tree</field>
-            <field name="model">account.invoice.line.agent</field>
+        <record id="invoice_line_commission_tree" model="ir.ui.view">
+            <field name="name">account.invoice.line.commission.tree</field>
+            <field name="model">account.invoice.line.commission</field>
             <field name="arch" type="xml">
-                <tree string="Invoice line agents and commissions" editable="bottom">
+                <tree string="Invoice line commissions" editable="bottom">
                     <field name="agent" />
                     <field name="commission" />
                     <field name="amount" />
@@ -13,21 +13,30 @@
             </field>
         </record>
 
-        <record id="invoice_line_form_agent" model="ir.ui.view">
-            <field name="name">account.invoice.line.form.agent</field>
+        <record id="invoice_line_form_commission" model="ir.ui.view">
+            <field name="name">account.invoice.line.form.commission</field>
             <field name="model">account.invoice.line</field>
             <field name="inherit_id" ref="account.view_invoice_line_form" />
             <field name="arch" type="xml">
                 <field name="company_id" position="after">
-                    <field name="commission_free"/>
-                    <field name="agents"
-                           attrs="{'readonly': [('commission_free', '=', True)]}"/>
+                  <field name="commission_free"/>
                 </field>
+                <xpath expr="//label[@for='name']" position="before">
+                  <group string="Commissions" colspan="4" attrs="{'invisible': [('commission_free', '=', True)]}">
+                    <field name="commissions" nolabel="1">
+                      <tree string="Commissions">
+                        <field name="agent" />
+                        <field name="commission" />
+                        <field name="amount" />
+                      </tree>
+                    </field>
+                  </group>
+                </xpath>
             </field>
         </record>
 
-        <record id="invoice_form_agent" model="ir.ui.view">
-            <field name="name">account.invoice.form.agent</field>
+        <record id="invoice_form_commission" model="ir.ui.view">
+            <field name="name">account.invoice.form.commission</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form" />
             <field name="arch" type="xml">
@@ -36,7 +45,7 @@
                 </field>
                 <xpath expr="//field[@name='invoice_line']/tree//field[@name='price_subtotal']" position="after">
                     <field name="commission_free"/>
-                    <field name="agents" invisible="1" />
+                    <field name="commissions" invisible="1" />
                 </xpath>
                 <field name="amount_total" position="after">
                     <field name="commission_total"
