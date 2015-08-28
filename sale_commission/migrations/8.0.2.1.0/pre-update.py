@@ -23,19 +23,18 @@
 TABLE_RENAMES = [
     ("account_invoice_line_agent", "account_invoice_line_commission"),
     ("sale_order_line_agent", "sale_order_line_commission"),
-    ("settlement_agent_line_rel", "settlement_commission_line_rel"),
 ]
 
 COL_RENAMES = [
-    ("settlement_commission_line_rel", [
-        ("agent_line_id", "commission_line_id"),
-    ]),
+    # Columns to rename ("Table", [("col_before", "col_after")])
 ]
 
 CONSTRAINT_DROPS = [
-    "account_invoice_line_agent_unique_agent",
-    "sale_order_line_agent_unique_agent",
+    # Constraints to drop ("Table", ["constraint_name"])
+    ("account_invoice_line", ["account_invoice_line_agent_unique_agent"]),
+    ("sale_order_line", ["sale_order_line_agent_unique_agent"]),
 ]
+
 
 
 def rename_tables(cr):
@@ -66,14 +65,43 @@ def save_relation_data(cr):
     cr.execute(
         """ALTER TABLE res_partner DROP COLUMN commission"""
     )
+    cr.execute(
+        """
+        CREATE TABLE tmp_mig_settlement_line_rel AS
+          SELECT agent_line_id, settlement_id
+          FROM settlement_agent_line_rel
+        """
+    )
 
 
 def drop_constraints(cr):
-    for name in CONSTRAINT_DROPS:
-        cr.execute("DROP CONSTRAINT IF EXISTS {0}".format(name))
+    for table, names in CONSTRAINT_DROPS:
+        for name in names:
+            cr.execute(
+                """
+                ALTER TABLE {table}
+                DROP CONSTRAINT IF EXISTS {name}
+                """.format(table=table,
+                           name=name))
+
+def update_model_data(cr):
+    cr.executemany(
+        """
+        UPDATE ir_model_data
+        SET name = %(name)s
+        WHERE name = %(oldname)s
+        """,
+        [{"oldname": "invoice_line_agent_tree",
+          "name":"invoice_line_commission_tree"},
+         {"oldname": "invoice_line_form_agent",
+          "name": "invoice_line_form_commission"},
+         {"oldname": "invoice_form_agent",
+          "name": "invoice_form_commission"},
+        ])
 
 
 def migrate(cr, installed_version):
     rename_tables(cr)
+    update_model_data(cr)
     save_relation_data(cr)
     drop_constraints(cr)

@@ -28,6 +28,14 @@ def restore_relation_data(cr):
         SELECT agent_id, commission_id FROM tmp_mig_agent_commissions
         """)
     cr.execute("""DROP TABLE tmp_mig_agent_commissions""")
+    cr.execute(
+        """
+        INSERT INTO settlement_commission_line_rel
+        (commission_line_id, settlement_id)
+        SELECT agent_line_id, settlmeent_id
+        FROM tmp_mig_settlement_line_rel
+        """)
+    cr.execute("""DROP TABLE tmp_mig_settlement_line_rel""")
 
 
 def migrate(cr, installed_version):
