@@ -36,8 +36,7 @@
                 </field>
                 <xpath expr="//field[@name='invoice_line']/tree//field[@name='price_subtotal']" position="after">
                     <field name="commission_free"/>
-                    <field name="agents"
-                           attrs="{'readonly': [('commission_free', '=', True)]}"/>
+                    <field name="agents" invisible="1" />
                 </xpath>
                 <field name="amount_total" position="after">
                     <field name="commission_total"
