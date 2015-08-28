@@ -22,7 +22,7 @@
 ##############################################################################
 {
     'name': 'Sales commissions',
-    'version': '2.1',
+    'version': '8.0.2.1.0',
     'author': 'Pexego, '
               'Savoire-faire linux, '
               'Avanzosc, '
