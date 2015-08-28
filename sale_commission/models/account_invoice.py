@@ -157,4 +157,3 @@ class AccountInvoiceLineAgentCommission(models.Model):
         self.settled = (self.invoice.state not in ('open', 'paid') or
                         any(x.settlement.state != 'cancel'
                             for x in self.agent_line))
-

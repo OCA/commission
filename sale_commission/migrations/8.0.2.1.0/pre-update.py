@@ -36,7 +36,6 @@ CONSTRAINT_DROPS = [
 ]
 
 
-
 def rename_tables(cr):
     for src, dst in TABLE_RENAMES:
         cr.execute("ALTER TABLE {src} RENAME TO {dst}".format(
@@ -84,6 +83,7 @@ def drop_constraints(cr):
                 """.format(table=table,
                            name=name))
 
+
 def update_model_data(cr):
     cr.executemany(
         """
@@ -92,12 +92,12 @@ def update_model_data(cr):
         WHERE name = %(oldname)s
         """,
         [{"oldname": "invoice_line_agent_tree",
-          "name":"invoice_line_commission_tree"},
+          "name": "invoice_line_commission_tree"},
          {"oldname": "invoice_line_form_agent",
           "name": "invoice_line_form_commission"},
          {"oldname": "invoice_form_agent",
           "name": "invoice_form_commission"},
-        ])
+         ])
 
 
 def migrate(cr, installed_version):
