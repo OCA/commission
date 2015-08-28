@@ -158,21 +158,21 @@ class SettlementLine(models.Model):
     settlement = fields.Many2one(
         "sale.commission.settlement", readonly=True, ondelete="cascade",
         required=True)
-    agent_line = fields.Many2many(
-        comodel_name='account.invoice.line.agent',
-        relation='settlement_agent_line_rel', column1='settlement_id',
-        column2='agent_line_id', required=True)
-    date = fields.Date(related="agent_line.invoice_date", store=True)
+    commission_line = fields.Many2many(
+        comodel_name='account.invoice.line.commission',
+        relation='settlement_commission_line_rel', column1='settlement_id',
+        column2='commission_line_id', required=True)
+    date = fields.Date(related="commission_line.invoice_date", store=True)
     invoice_line = fields.Many2one(
         comodel_name='account.invoice.line', store=True,
-        related='agent_line.invoice_line')
+        related='commission_line.invoice_line')
     invoice = fields.Many2one(
         comodel_name='account.invoice', store=True, string="Invoice",
         related='invoice_line.invoice_id')
     agent = fields.Many2one(
-        comodel_name="res.partner", readonly=True, related="agent_line.agent",
+        comodel_name="res.partner", readonly=True, related="commission_line.agent",
         store=True)
     settled_amount = fields.Float(
-        related="agent_line.amount", readonly=True, store=True)
+        related="commission_line.amount", readonly=True, store=True)
     commission = fields.Many2one(
-        comodel_name="sale.commission", related="agent_line.commission")
+        comodel_name="sale.commission", related="commission_line.commission")

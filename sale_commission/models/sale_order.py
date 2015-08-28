@@ -79,7 +79,7 @@ class SaleOrderLineCommission(models.Model):
     amount = fields.Float(compute="_get_amount", store=True)
 
     _sql_constraints = [
-        ('unique_agent', 'UNIQUE(sale_line, agent, commission)',
+        ('unique_agent_commission', 'UNIQUE(sale_line, agent, commission)',
          'You can only add one of each commission for each agent.')
     ]
 

@@ -132,6 +132,6 @@ class SaleCommissionMakeSettle(models.TransientModel):
 
                     settlement_line_obj.create(
                         {'settlement': settlement.id,
-                         'agent_line': [(6, 0, [line.id])]})
+                         'commission_line': [(6, 0, [line.id])]})
 
         return True

@@ -127,11 +127,6 @@ class AccountInvoiceLineAgentCommission(models.Model):
         readonly=True)
     product = fields.Many2one(
         comodel_name='product.product', related="invoice_line.product_id")
-    agent = fields.Many2one(
-        comodel_name="res.partner", required=True, ondelete="restrict",
-        domain="[('agent', '=', True)]")
-    commission = fields.Many2one(
-        comodel_name="sale.commission", required=True, ondelete="restrict")
     amount = fields.Float(
         string="Amount settled", compute="_get_amount", store=True)
     agent_line = fields.Many2many(
