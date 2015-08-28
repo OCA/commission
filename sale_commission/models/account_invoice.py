@@ -70,24 +70,19 @@ class AccountInvoice(models.Model):
 
 
 class AccountInvoiceLine(models.Model):
+    """Invoice Line inherit to add commissions"""
     _inherit = "account.invoice.line"
 
     @api.model
-    def _default_agents(self):
-        agents = []
-        if self.env.context.get('partner_id'):
-            partner = self.env['res.partner'].browse(
-                self.env.context['partner_id'])
-            for agent in partner.agents:
-                agents.append({'agent': agent.id,
-                               'commission': agent.commission.id})
-        return [(0, 0, x) for x in agents]
+    def _default_commissions(self):
+        res = self.env['sale.commission'].get_default_commissions()
+        return [(0, 0, x) for x in res]
 
     agents = fields.One2many(
         comodel_name="account.invoice.line.agent",
         inverse_name="invoice_line", string="Agents & commissions",
         help="Agents/Commissions related to the invoice line.",
-        default=_default_agents, copy=True)
+        default=_default_commissions, copy=False)
     commission_free = fields.Boolean(
         string="Comm. free", related="product_id.commission_free",
         store=True, readonly=True)

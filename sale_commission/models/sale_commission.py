@@ -115,6 +115,32 @@ class SaleCommission(models.Model):
                 return base * section.percent / 100.0
         return 0.0
 
+    def get_default_commissions(self):
+        partner_obj = self.env['res.partner']
+        res = []
+        if self.env.context.get('partner_id'):
+            partner = partner_obj.browse(
+                self.env.context['partner_id'])
+            for agent in partner.agents:
+                if agent.commission and agent.commission.has_own_scope:
+                    comm = agent.commission
+                    res.append({
+                        'agent': agent.id,
+                        'commission': comm.id,
+                    })
+
+            for agent in partner_obj.search(
+                    [('company_id', '=', partner.company_id.id),
+                     ('agent', '=', True)]):
+                if agent.commission and agent.commission.has_company_scope:
+                    comm = agent.commission
+                    res.append({
+                        'agent': agent.id,
+                        'commission': comm.id,
+                    })
+
+        return res
+
 
 class SaleCommissionSection(models.Model):
     _name = "sale.commission.section"
