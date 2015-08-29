@@ -170,8 +170,8 @@ class SettlementLine(models.Model):
         comodel_name='account.invoice', store=True, string="Invoice",
         related='invoice_line.invoice_id')
     agent = fields.Many2one(
-        comodel_name="res.partner", readonly=True, related="commission_line.agent",
-        store=True)
+        comodel_name="res.partner", related="commission_line.agent",
+        readonly=True, store=True)
     settled_amount = fields.Float(
         related="commission_line.amount", readonly=True, store=True)
     commission = fields.Many2one(
