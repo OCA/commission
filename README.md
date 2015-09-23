@@ -5,3 +5,14 @@ Odoo Commission Management
 ==========================
 
 All management related with commisions and incentive in Odoo.
+
+[//]: # (addons)
+Available addons
+----------------
+addon | version | summary
+--- | --- | ---
+[hr_commission](hr_commission/) | 1.0 | HR commissions
+[sale_commission](sale_commission/) | 2.0 | Sales commissions
+[sale_stock_commission](sale_stock_commission/) | 1.0 | Sale stock commissions
+
+[//]: # (end addons)
