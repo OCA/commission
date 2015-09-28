@@ -69,11 +69,11 @@
                     <group string="Commission lines" colspan="4">
                         <field name="lines" nolabel="1">
                             <tree string="Settlement lines">
-                                <field name="date"/>
+                                <field name="invoice_date"/>
                                 <field name="invoice"/>
                                 <field name="invoice_line"/>
                                 <field name="commission"/>
-                                <field name="settled_amount"/>
+                                <field name="amount"/>
                             </tree>
                         </field>
                     </group>
@@ -97,7 +97,8 @@
                     <field name="invoice"/>
                     <field name="invoice_line"/>
                     <field name="commission"/>
-                    <field name="settled_amount" sum="Settled total"/>
+                    <field name="settlement_state" />
+                    <field name="settled_amount" sum="Total"/>
                 </tree>
             </field>
         </record>
@@ -135,7 +136,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_settlement_report">
-            <field name="name">Agents settlements analysis</field>
+            <field name="name">Commission Analysis</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">sale.commission.settlement.line</field>
             <field name="view_type">form</field>

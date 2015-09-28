@@ -23,6 +23,12 @@
 from openerp import models, fields, api, exceptions, _
 
 
+PERIOD_MONTH = "monthly"
+PERIOD_QUARTER = "quaterly"
+PERIOD_SEMI = "semi"
+PERIOD_YEAR = "annual"
+
+
 class SaleCommission(models.Model):
     _name = "sale.commission"
     _description = "Commission in sales"
@@ -36,6 +42,76 @@ class SaleCommission(models.Model):
     sections = fields.One2many(
         comodel_name="sale.commission.section", inverse_name="commission")
     active = fields.Boolean(default=True)
+    period = fields.Selection(
+        selection=[(PERIOD_MONTH, "Monthly"),
+                   (PERIOD_QUARTER, "Every quarter"),
+                   (PERIOD_SEMI, "Every semester"),
+                   (PERIOD_YEAR, "Every year")],
+        required=True, default=PERIOD_MONTH,
+    )
+    scope = fields.Selection(
+        selection=[("own_sales", "On his customer sales"),
+                   ("company_sales", "On company sales"),
+                   ("own_margin", "On his customers margin"),
+                   ("company_margin", "On company margin")],
+        required=True, default="own_sales",
+    )
+
+    has_company_scope = fields.Boolean(compute="_compute_scope")
+    has_own_scope = fields.Boolean(compute="_compute_scope")
+
+    agent_ids = fields.Many2many(
+        string="Agents", comodel_name="res.partner",
+        relation="agent_commission_rel",
+        column2="partner_id", column1="commission_id",
+    )
+
+    @api.one
+    def _compute_scope(self):
+        self.has_company_scope = self.scope in ("company_sales",
+                                                "company_margin")
+        self.has_own_scope = self.scope in ("own_sales", "own_margin")
+
+    @api.multi
+    def compute_sale_commission(self, sale_line):
+        """ Compute the commission on a sale order line """
+        if self.scope in ("own_sales", "company_sales"):
+            base = sale_line.price_subtotal
+        elif self.scope in ("own_margin", "company_margin"):
+            # Compute margin: subtotal - unit cost * qty
+            base = sale_line.price_subtotal - (
+                sale_line.product_id.standard_price * sale_line.product_uom_qty
+            )
+        return self.compute_commission(
+            sale_line.product_id,
+            base,
+        )
+
+    @api.multi
+    def compute_invoice_commission(self, invoice_line):
+        """ Compute the commission on a invoice line """
+        if self.scope in ("own_sales", "company_sales"):
+            base = invoice_line.price_subtotal
+        elif self.scope in ("own_margin", "company_margin"):
+            # Compute margin: subtotal - unit cost * qty
+            base = invoice_line.price_subtotal - (
+                invoice_line.product_id.standard_price * invoice_line.quantity
+            )
+        return self.compute_commission(
+            invoice_line.product_id,
+            base,
+        )
+
+    @api.multi
+    def compute_commission(self, product_id, price_subtotal):
+        self.ensure_one()
+        if product_id.commission_free:
+            return 0.0
+
+        if self.commission_type == 'fixed':
+            return price_subtotal * (self.fix_qty / 100.0)
+        elif self.commission_type == 'section':
+            return self.calculate_section(price_subtotal)
 
     @api.multi
     def calculate_section(self, base):
@@ -44,6 +120,31 @@ class SaleCommission(models.Model):
             if section.amount_from <= base <= section.amount_to:
                 return base * section.percent / 100.0
         return 0.0
+
+    def get_default_commissions(self):
+        partner_obj = self.env['res.partner']
+        res = []
+        if self.env.context.get('partner_id'):
+            partner = partner_obj.browse(
+                self.env.context['partner_id'])
+            for agent in partner.agents:
+                res.extend(
+                    {'agent': agent.id,
+                     'commission': comm.id}
+                    for comm in agent.commissions
+                    if comm.has_own_scope
+                )
+            for agent in partner_obj.search(
+                    [('company_id', '=', partner.company_id.id),
+                     ('agent', '=', True)]):
+                res.extend(
+                    {'agent': agent.id,
+                     'commission': comm.id}
+                    for comm in agent.commissions
+                    if comm.has_company_scope
+                )
+
+        return res
 
 
 class SaleCommissionSection(models.Model):

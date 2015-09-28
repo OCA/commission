@@ -21,7 +21,12 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api, exceptions, _
+from openerp import models, fields, api, exceptions, tools, _
+
+SETTLEMENT_STATES = [("settled", "Settled"),
+                     ("invoiced", "Invoiced"),
+                     ("cancel", "Canceled"),
+                     ("except_invoice", "Invoice exception")]
 
 
 class Settlement(models.Model):
@@ -30,6 +35,7 @@ class Settlement(models.Model):
     def _default_currency(self):
         return self.env.user.company_id.currency_id.id
 
+    name = fields.Char(compute="_get_name", store=True)
     total = fields.Float(compute="_get_total", readonly=True, store=True)
     date_from = fields.Date(string="From")
     date_to = fields.Date(string="To")
@@ -37,14 +43,11 @@ class Settlement(models.Model):
         comodel_name="res.partner", domain="[('agent', '=', True)]")
     agent_type = fields.Selection(related='agent.agent_type')
     lines = fields.One2many(
-        comodel_name="sale.commission.settlement.line",
-        inverse_name="settlement", string="Settlement lines", readonly=True)
-    state = fields.Selection(
-        selection=[("settled", "Settled"),
-                   ("invoiced", "Invoiced"),
-                   ("cancel", "Canceled"),
-                   ("except_invoice", "Invoice exception")], string="State",
-        readonly=True, default="settled")
+        comodel_name="account.invoice.line.commission",
+        inverse_name="settlement_id", string="Settlement lines", readonly=True)
+    state = fields.Selection(selection=SETTLEMENT_STATES,
+                             string="State", readonly=True,
+                             default="settled")
     invoice = fields.Many2one(
         comodel_name="account.invoice", string="Generated invoice",
         readonly=True)
@@ -53,9 +56,20 @@ class Settlement(models.Model):
         default=_default_currency)
 
     @api.one
-    @api.depends('lines', 'lines.settled_amount')
+    @api.depends('lines', 'lines.amount')
     def _get_total(self):
-        self.total = sum(x.settled_amount for x in self.lines)
+        self.total = sum(x.amount for x in self.lines)
+
+    @api.one
+    @api.depends('agent', 'date_from', 'date_to')
+    def _get_name(self):
+        date_from = fields.Date.from_string(self.date_from)
+        date_to = fields.Date.from_string(self.date_to)
+        self.name = "{0} [{1} - {2}]".format(
+            self.agent.name,
+            date_from,
+            date_to,
+        )
 
     @api.multi
     def action_cancel(self):
@@ -67,7 +81,7 @@ class Settlement(models.Model):
     @api.multi
     def unlink(self):
         """Allow to delete only cancelled settlements"""
-        if any(x.state == 'invoiced' for x in self):
+        if any(x.state != 'cancel' for x in self):
             raise exceptions.Warning(
                 _("You can't delete invoiced settlements."))
         return super(Settlement, self).unlink()
@@ -154,25 +168,42 @@ class Settlement(models.Model):
 
 class SettlementLine(models.Model):
     _name = "sale.commission.settlement.line"
+    _auto = False
 
-    settlement = fields.Many2one(
-        "sale.commission.settlement", readonly=True, ondelete="cascade",
-        required=True)
-    agent_line = fields.Many2many(
-        comodel_name='account.invoice.line.agent',
-        relation='settlement_agent_line_rel', column1='settlement_id',
-        column2='agent_line_id', required=True)
-    date = fields.Date(related="agent_line.invoice_date", store=True)
-    invoice_line = fields.Many2one(
-        comodel_name='account.invoice.line', store=True,
-        related='agent_line.invoice_line')
-    invoice = fields.Many2one(
-        comodel_name='account.invoice', store=True, string="Invoice",
-        related='invoice_line.invoice_id')
-    agent = fields.Many2one(
-        comodel_name="res.partner", readonly=True, related="agent_line.agent",
-        store=True)
-    settled_amount = fields.Float(
-        related="agent_line.amount", readonly=True, store=True)
-    commission = fields.Many2one(
-        comodel_name="sale.commission", related="agent_line.commission")
+    settlement = fields.Many2one("sale.commission.settlement",
+                                 readonly=True)
+    date = fields.Date(readonly=True)
+    invoice_line = fields.Many2one(comodel_name='account.invoice.line',
+                                   readonly=True)
+    invoice = fields.Many2one(comodel_name='account.invoice',
+                              string="Invoice", readonly=True)
+    agent = fields.Many2one(comodel_name="res.partner", readonly=True)
+    settled_amount = fields.Float(string="Amount", readonly=True)
+    commission = fields.Many2one(comodel_name="sale.commission",
+                                 readonly=True)
+    settlement_state = fields.Selection(string="State",
+                                        selection=SETTLEMENT_STATES,
+                                        readonly=True)
+
+    def init(self, cr):
+        tools.drop_view_if_exists(cr, self._table)
+        cr.execute(
+            """
+            CREATE OR REPLACE VIEW {table} AS (
+                SELECT comm_line.id             AS id
+                     , settlement.id            AS settlement
+                     , settlement.state         AS settlement_state
+                     , comm_line.invoice_date   AS date
+                     , comm_line.invoice_line   AS invoice_line
+                     , comm_line.invoice        AS invoice
+                     , comm_line.agent          AS agent
+                     , comm_line.amount         AS settled_amount
+                     , comm_line.commission     AS commission
+                FROM account_invoice_line_commission comm_line
+                LEFT JOIN sale_commission_settlement settlement
+                      ON settlement.id = comm_line.settlement_id
+            )
+            """.format(
+                table=self._table,
+            ),
+        )
