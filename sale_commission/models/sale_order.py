@@ -27,11 +27,11 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     @api.one
-    @api.depends('order_line.agents.amount')
+    @api.depends('order_line.commissions.amount')
     def _get_commission_total(self):
         self.commission_total = 0.0
         for line in self.order_line:
-            self.commission_total += sum(x.amount for x in line.agents)
+            self.commission_total += sum(x.amount for x in line.commissions)
 
     commission_total = fields.Float(
         string="Commissions", compute="_get_commission_total",
@@ -42,20 +42,14 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     @api.model
-    def _default_agents(self):
-        agents = []
-        if self.env.context.get('partner_id'):
-            partner = self.env['res.partner'].browse(
-                self.env.context['partner_id'])
-            for agent in partner.agents:
-                agents.append({'agent': agent.id,
-                               'commission': agent.commission.id})
-        return [(0, 0, x) for x in agents]
+    def _default_commissions(self):
+        res = self.env['sale.commission'].get_default_commissions()
+        return [(0, 0, x) for x in res]
 
-    agents = fields.One2many(
+    commissions = fields.One2many(
         string="Agents & commissions",
-        comodel_name='sale.order.line.agent', inverse_name='sale_line',
-        copy=True, readonly=True, default=_default_agents)
+        comodel_name='sale.order.line.commission', inverse_name='sale_line',
+        copy=True, default=_default_commissions)
     commission_free = fields.Boolean(
         string="Comm. free", related="product_id.commission_free",
         store=True, readonly=True)
@@ -64,14 +58,15 @@ class SaleOrderLine(models.Model):
     def _prepare_order_line_invoice_line(self, line, account_id=False):
         vals = super(SaleOrderLine, self)._prepare_order_line_invoice_line(
             line, account_id=account_id)
-        vals['agents'] = [
-            (0, 0, {'agent': x.agent.id,
-                    'commission': x.commission.id}) for x in line.agents]
+        vals['commissions'] = [
+            (0, 0, {'agent': c.agent.id,
+                    'commission': c.commission.id})
+            for c in line.commissions]
         return vals
 
 
-class SaleOrderLineAgent(models.Model):
-    _name = "sale.order.line.agent"
+class SaleOrderLineCommission(models.Model):
+    _name = "sale.order.line.commission"
     _rec_name = "agent"
 
     sale_line = fields.Many2one(
@@ -84,23 +79,14 @@ class SaleOrderLineAgent(models.Model):
     amount = fields.Float(compute="_get_amount", store=True)
 
     _sql_constraints = [
-        ('unique_agent', 'UNIQUE(sale_line, agent)',
-         'You can only add one time each agent.')
+        ('unique_agent_commission', 'UNIQUE(sale_line, agent, commission)',
+         'You can only add one of each commission for each agent.')
     ]
-
-    @api.one
-    @api.onchange('agent')
-    def onchange_agent(self):
-        self.commission = self.agent.commission
 
     @api.one
     @api.depends('commission.commission_type', 'sale_line.price_subtotal')
     def _get_amount(self):
         self.amount = 0.0
-        if (not self.sale_line.product_id.commission_free and
-                self.commission):
-            subtotal = self.sale_line.price_subtotal
-            if self.commission.commission_type == 'fixed':
-                self.amount = subtotal * (self.commission.fix_qty / 100.0)
-            else:
-                self.amount = self.commission.calculate_section(subtotal)
+        if self.commission:
+            self.amount = self.commission.compute_sale_commission(
+                self.sale_line)

@@ -22,7 +22,7 @@
 ##############################################################################
 {
     'name': 'Sales commissions',
-    'version': '2.0',
+    'version': '8.0.2.1.0',
     'author': 'Pexego, '
               'Savoire-faire linux, '
               'Avanzosc, '
@@ -45,6 +45,7 @@
         "Giorgio Borelli <giorgio.borelli@abstract.it>",
         "Daniel Campos <danielcampos@avanzosc.es>",
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
+        "Vincent Vinet <vincent.vinet@savoirfairelinux.com>",
     ],
     "data": [
         "security/ir.model.access.csv",
@@ -56,7 +57,6 @@
         "views/settlement_view.xml",
         "wizard/wizard_settle.xml",
         "wizard/wizard_invoice.xml",
-        # "report/cc_commission_report.xml"
     ],
     "demo": [
         # 'demo/sale_agent_demo.xml',

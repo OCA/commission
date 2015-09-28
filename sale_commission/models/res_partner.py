@@ -22,6 +22,13 @@
 ##############################################################################
 from openerp import models, fields, api
 
+from .sale_commission import (
+    PERIOD_MONTH,
+    PERIOD_QUARTER,
+    PERIOD_SEMI,
+    PERIOD_YEAR,
+)
+
 
 class ResPartner(models.Model):
     """Add some fields related to commissions"""
@@ -38,16 +45,18 @@ class ResPartner(models.Model):
     agent_type = fields.Selection(
         selection=[("agent", "External agent")], string="Type", required=True,
         default="agent")
-    commission = fields.Many2one(
+    commissions = fields.Many2many(
         string="Commission", comodel_name="sale.commission",
+        relation="agent_commission_rel",
+        column1="partner_id", column2="commission_id",
         help="This is the default commission used in the sales where this "
              "agent is assigned. It can be changed on each operation if "
              "needed.")
     settlement = fields.Selection(
-        selection=[("monthly", "Monthly"),
-                   ("quaterly", "Quarterly"),
-                   ("semi", "Semi-annual"),
-                   ("annual", "Annual")],
+        selection=[(PERIOD_MONTH, "Monthly"),
+                   (PERIOD_QUARTER, "Quarterly"),
+                   (PERIOD_SEMI, "Semi-annual"),
+                   (PERIOD_YEAR, "Annual")],
         string="Settlement period", default="monthly", required=True)
     settlements = fields.One2many(
         comodel_name="sale.commission.settlement", inverse_name="agent",
