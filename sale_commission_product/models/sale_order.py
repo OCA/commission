@@ -37,11 +37,10 @@ class SaleOrderLine(models.Model):
             date_order=date_order, packaging=packaging,
             fiscal_position=fiscal_position, flag=flag, context=context)
 
-        product_obj = self.pool.get("product.product").browse(cr, uid, product)
-        agent_list = []
-
-        if partner_id:
+        if partner_id and product:
+            agent_list = []
             partner = self.pool.get("res.partner").browse(cr, uid, partner_id)
+            product_obj = self.pool.get("product.product").browse(cr, uid, product)
             for agent in partner.agents:
                 commission_id = agent.commission.id
                 if product_obj.commission:
