@@ -49,6 +49,6 @@ class SaleOrderLine(models.Model):
                 agent_list.append({'agent': agent.id,
                                    'commission': commission_id
                                    })
-            res['value']['agents'] = [(0, 0, x) for x in agent_list]
+                res['value']['agents'] = [(0, 0, x) for x in agent_list]
 
         return res

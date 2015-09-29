@@ -38,13 +38,11 @@ class AccountInvoiceLine(models.Model):
             currency_id=currency_id,  company_id=company_id
         )
 
-        if product:
-            product_obj = self.env['product.product'].browse(product)
         agent_list = []
 
         if partner_id and product:
-            print "entra en partner_id"
             partner = self.env['res.partner'].browse(partner_id)
+            product_obj = self.env['product.product'].browse(product)
             for agent in partner.agents:
                 commission_id = agent.commission.id
                 if product_obj.commission:
