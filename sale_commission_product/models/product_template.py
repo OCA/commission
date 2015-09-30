@@ -19,13 +19,47 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
+    agents = fields.One2many(
+        string="Agents & commissions",
+        comodel_name='product.template.agent', inverse_name='product_id',
+        copy=True, readonly=True)
+
+
+class ProductTemplateAgent(models.Model):
+    _name = 'product.template.agent'
+
+    @api.multi
+    def get_commission_id_product(self, product, agent):
+        commission_id = False
+        # commission_id for all agent
+        for commission_all_agent in self.search(
+                [('product_id', '=', product), ('agent', '=', False)]):
+                    commission_id = commission_all_agent.commission.id
+        # commission_id for agent
+        for product_tmp_agent_id in self.search(
+                        [('product_id', '=', product),
+                         ('agent', '=', agent.id)]):
+                    commission_id = product_tmp_agent_id.commission.id
+        return commission_id
+
+    product_id = fields.Many2one(
+        comodel_name="product.template",
+        required=True,
+        ondelete="cascade",
+        string="")
+    agent = fields.Many2one(
+        comodel_name="res.partner", required=False, ondelete="restrict",
+        domain="[('agent', '=', True')]")
     commission = fields.Many2one(
-        comodel_name="sale.commission",
-        string="Commission",
-        required=False)
+        comodel_name="sale.commission", required=True, ondelete="restrict")
+
+    _sql_constraints = [
+        ('unique_agent', 'UNIQUE(product_id, agent)',
+         'You can only add one time each agent.')
+    ]

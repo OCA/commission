@@ -9,10 +9,19 @@
             <field name="arch" type="xml">
                 <xpath expr="//form/sheet/notebook/page[@string='Sales']/group[1]" position="after">
                     <separator colspan="2" string="Agents/Commissions"/>
-                    <group>
-                        <field name="commission"/>
-                    </group>
+                    <field name="agents" attrs="{'readonly': [('commission_free', '=', True)]}"/>
                 </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_product_template_agent_tree">
+            <field name="name">product.template.agent.tree</field>
+            <field name="model">product.template.agent</field>
+            <field name="arch" type="xml">
+                <tree string="Agents" editable="bottom">
+                    <field name="agent"/>
+                    <field name="commission"/>
+                </tree>
             </field>
         </record>
 

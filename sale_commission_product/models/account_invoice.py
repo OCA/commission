@@ -27,26 +27,23 @@ class AccountInvoiceLine(models.Model):
 
     @api.multi
     def product_id_change(
-            self, product, uom_id, qty=0, name='', type='out_invoice',
-            partner_id=False, fposition_id=False, price_unit=False,
-            currency_id=False, company_id=None
-    ):
+            self, product, uom_id, qty=0, name='',
+            type='out_invoice', partner_id=False, fposition_id=False,
+            price_unit=False, currency_id=False, company_id=None):
+
         res = super(AccountInvoiceLine, self).product_id_change(
-            product, uom_id, qty=qty,
-            name=name, type=type, partner_id=partner_id,
-            fposition_id=fposition_id, price_unit=price_unit,
-            currency_id=currency_id,  company_id=company_id
-        )
+            product, uom_id, qty, name, type, partner_id,
+            fposition_id, price_unit, currency_id, company_id)
 
         if partner_id and product:
             agent_list = []
-            partner = self.env['res.partner'].browse(partner_id)
-            product_obj = self.env['product.product'].browse(product)
+            partner = self.env["res.partner"].browse(partner_id)
             for agent in partner.agents:
+                # default commission_id for agent
                 commission_id = agent.commission.id
-                if product_obj.commission:
-                    print "entra en product"
-                    commission_id = product_obj.commission
+                commission_id_product = self.env["product.template.agent"].get_commission_id_product(product, agent)
+                if commission_id_product:
+                    commission_id = commission_id_product
                 agent_list.append({'agent': agent.id,
                                    'commission': commission_id
                                    })
