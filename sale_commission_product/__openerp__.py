@@ -22,7 +22,8 @@
 {
     'name': 'Sale commissions product',
     'version': '1.0',
-    'author': 'Asr Oss - Alejandro Sánchez',
+    'author': 'Asr Oss - Alejandro Sánchez, '
+              'Odoo Community Association (OCA)',
     "category": "Generic Modules/Sales & Purchases",
     'license': 'AGPL-3',
     'depends': [
