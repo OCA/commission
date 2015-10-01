@@ -45,9 +45,8 @@ class SaleOrderLine(models.Model):
             for agent in partner.agents:
                 # default commission_id for agent
                 commission_id = agent.commission.id
-                commission_id_product = self.env[
-                                    "product.template.agent"
-                                    ].get_commission_id_product(product, agent)
+                commission_id_product = self.env["product.template.agent"]\
+                    .get_commission_id_product(product, agent)
                 if commission_id_product:
                     commission_id = commission_id_product
 

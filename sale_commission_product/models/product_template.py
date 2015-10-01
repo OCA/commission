@@ -43,8 +43,7 @@ class ProductTemplateAgent(models.Model):
                     commission_id = commission_all_agent.commission.id
         # commission_id for agent
         for product_tmp_agent_id in self.search(
-                        [('product_id', '=', product),
-                         ('agent', '=', agent.id)]):
+                [('product_id', '=', product), ('agent', '=', agent.id)]):
                     commission_id = product_tmp_agent_id.commission.id
         return commission_id
 
