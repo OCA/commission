@@ -1,0 +1,92 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_commission_product
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-01 08:36+0000\n"
+"PO-Revision-Date: 2015-10-01 08:36+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_commission_product
+#: field:product.template.agent,agent:0
+msgid "Agent"
+msgstr ""
+
+#. module: sale_commission_product
+#: view:product.template.agent:sale_commission_product.view_product_template_agent_tree
+msgid "Agents"
+msgstr ""
+
+#. module: sale_commission_product
+#: field:product.template,agents:0
+msgid "Agents & commissions"
+msgstr ""
+
+#. module: sale_commission_product
+#: view:product.template:sale_commission_product.product_template_form_view_commission_product
+msgid "Agents/Commissions"
+msgstr ""
+
+#. module: sale_commission_product
+#: field:product.template.agent,commission:0
+msgid "Commission"
+msgstr ""
+
+#. module: sale_commission_product
+#: field:product.template.agent,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: sale_commission_product
+#: field:product.template.agent,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: sale_commission_product
+#: field:product.template.agent,id:0
+msgid "ID"
+msgstr ""
+
+#. module: sale_commission_product
+#: model:ir.model,name:sale_commission_product.model_account_invoice_line
+msgid "Invoice Line"
+msgstr ""
+
+#. module: sale_commission_product
+#: field:product.template.agent,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sale_commission_product
+#: field:product.template.agent,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sale_commission_product
+#: model:ir.model,name:sale_commission_product.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: sale_commission_product
+#: field:product.template.agent,product_id:0
+msgid "Product id"
+msgstr ""
+
+#. module: sale_commission_product
+#: model:ir.model,name:sale_commission_product.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_commission_product
+#: sql_constraint:product.template.agent:0
+msgid "You can only add one time each agent."
+msgstr ""
+

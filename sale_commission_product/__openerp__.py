@@ -33,6 +33,7 @@
         "Alejandro Sánchez <alejandro@asr-oss.com>",
     ],
     "data": [
+        "security/ir.model.access.csv",
         "views/product_template_view.xml",
     ],
     "installable": True,
