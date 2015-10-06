@@ -21,22 +21,21 @@
 
 {
     'name': 'Sale commissions product',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'author': 'Asr Oss - Alejandro Sánchez, '
               'Odoo Community Association (OCA)',
     "category": "Generic Modules/Sales & Purchases",
     'license': 'AGPL-3',
     'depends': [
         'sale_commission',
-        'sale_stock'
     ],
     'contributors': [
         "Alejandro Sánchez <alejandro@asr-oss.com>",
     ],
     "data": [
         "security/ir.model.access.csv",
-        "views/product_template_view.xml",
+        "views/product_view.xml",
     ],
     "installable": True,
-    "auto_install": True,
+    "auto_install": False,
 }

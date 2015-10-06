@@ -22,17 +22,17 @@
 from openerp import models, fields, api
 
 
-class ProductTemplate(models.Model):
-    _inherit = 'product.template'
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
 
     agents = fields.One2many(
         string="Agents & commissions",
-        comodel_name='product.template.agent', inverse_name='product_id',
+        comodel_name='product.product.agent', inverse_name='product_id',
         copy=True, readonly=True)
 
 
-class ProductTemplateAgent(models.Model):
-    _name = 'product.template.agent'
+class ProductProductAgent(models.Model):
+    _name = 'product.product.agent'
 
     @api.multi
     def get_commission_id_product(self, product, agent):
@@ -42,13 +42,13 @@ class ProductTemplateAgent(models.Model):
                 [('product_id', '=', product), ('agent', '=', False)]):
                     commission_id = commission_all_agent.commission.id
         # commission_id for agent
-        for product_tmp_agent_id in self.search(
+        for product_agent_id in self.search(
                 [('product_id', '=', product), ('agent', '=', agent.id)]):
-                    commission_id = product_tmp_agent_id.commission.id
+                    commission_id = product_agent_id.commission.id
         return commission_id
 
     product_id = fields.Many2one(
-        comodel_name="product.template",
+        comodel_name="product.product",
         required=True,
         ondelete="cascade",
         string="")

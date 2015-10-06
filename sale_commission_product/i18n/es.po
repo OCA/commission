@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-01 08:37+0000\n"
-"PO-Revision-Date: 2015-10-01 10:45+0100\n"
+"POT-Creation-Date: 2015-10-05 18:31+0000\n"
+"PO-Revision-Date: 2015-10-05 22:48+0100\n"
 "Last-Translator: Alejandro Sanchez <alejandro@asr-oss.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,42 +16,38 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_commission_product
-#: field:product.template.agent,agent:0
+#: field:product.product.agent,agent:0
 msgid "Agent"
 msgstr "Agente"
 
 #. module: sale_commission_product
-#: view:product.template.agent:sale_commission_product.view_product_template_agent_tree
+#: view:product.product.agent:sale_commission_product.view_product_product_agent_tree
 msgid "Agents"
 msgstr "Agentes"
 
 #. module: sale_commission_product
-#: field:product.template,agents:0
+#: view:product.product:sale_commission_product.product_product_form_view_commission_product
+#: field:product.product,agents:0
 msgid "Agents & commissions"
-msgstr "Agents & commissions"
+msgstr "Agentes y comisiones"
 
 #. module: sale_commission_product
-#: view:product.template:sale_commission_product.product_template_form_view_commission_product
-msgid "Agents/Commissions"
-msgstr "Agentes/Comisiones"
-
-#. module: sale_commission_product
-#: field:product.template.agent,commission:0
+#: field:product.product.agent,commission:0
 msgid "Commission"
 msgstr "Comisiones"
 
 #. module: sale_commission_product
-#: field:product.template.agent,create_uid:0
+#: field:product.product.agent,create_uid:0
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: sale_commission_product
-#: field:product.template.agent,create_date:0
+#: field:product.product.agent,create_date:0
 msgid "Created on"
 msgstr "Creado en"
 
 #. module: sale_commission_product
-#: field:product.template.agent,id:0
+#: field:product.product.agent,id:0
 msgid "ID"
 msgstr "ID"
 
@@ -61,22 +57,22 @@ msgid "Invoice Line"
 msgstr "Línea de factura"
 
 #. module: sale_commission_product
-#: field:product.template.agent,write_uid:0
+#: field:product.product.agent,write_uid:0
 msgid "Last Updated by"
 msgstr "Última actualización por"
 
 #. module: sale_commission_product
-#: field:product.template.agent,write_date:0
+#: field:product.product.agent,write_date:0
 msgid "Last Updated on"
 msgstr "Última actualización en"
 
 #. module: sale_commission_product
-#: model:ir.model,name:sale_commission_product.model_product_template
-msgid "Product Template"
-msgstr "Plantilla de producto"
+#: model:ir.model,name:sale_commission_product.model_product_product
+msgid "Product"
+msgstr "Producto"
 
 #. module: sale_commission_product
-#: field:product.template.agent,product_id:0
+#: field:product.product.agent,product_id:0
 msgid "Product id"
 msgstr "Producto"
 
@@ -86,7 +82,7 @@ msgid "Sales Order Line"
 msgstr "Línea pedido de venta"
 
 #. module: sale_commission_product
-#: sql_constraint:product.template.agent:0
+#: sql_constraint:product.product.agent:0
 msgid "You can only add one time each agent."
 msgstr "Sólo puede añadir una vez cada agente."
 

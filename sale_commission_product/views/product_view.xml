@@ -2,21 +2,21 @@
 <openerp>
     <data>
 
-        <record id="product_template_form_view_commission_product" model="ir.ui.view">
-            <field name="name">product.template.common.form.commission.product</field>
-            <field name="model">product.template</field>
-            <field name="inherit_id" ref="product.product_template_form_view" />
+        <record id="product_product_form_view_commission_product" model="ir.ui.view">
+            <field name="name">product.product.common.form.commission.product</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
             <field name="arch" type="xml">
                 <xpath expr="//form/sheet/notebook/page[@string='Sales']/group[1]" position="after">
-                    <separator colspan="2" string="Agents/Commissions"/>
+                    <separator colspan="2" string="Agents &amp; commissions"/>
                     <field name="agents" attrs="{'readonly': [('commission_free', '=', True)]}"/>
                 </xpath>
             </field>
         </record>
 
-        <record model="ir.ui.view" id="view_product_template_agent_tree">
-            <field name="name">product.template.agent.tree</field>
-            <field name="model">product.template.agent</field>
+        <record model="ir.ui.view" id="view_product_product_agent_tree">
+            <field name="name">product.product.agent.tree</field>
+            <field name="model">product.product.agent</field>
             <field name="arch" type="xml">
                 <tree string="Agents" editable="bottom">
                     <field name="agent"/>
