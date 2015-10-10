@@ -26,8 +26,9 @@ class Commission(models.Model):
     _inherit = 'sale.commission'
 
     commission_type = fields.Selection(selection_add=[("formula", "Formula")])
-
     formula = fields.Text(
         'Formula',
-        default="""# Use 'line' to access all the invoice line attributes\n
-result = 0 # use 'result' to return the commission amount""")
+        default="if line._name == 'sale.order.line':\n"
+                "    result = 0\n"
+                "if line._name == 'account.invoice.line':\n"
+                "    result = 0\n")
