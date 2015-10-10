@@ -20,6 +20,7 @@
 ##############################################################################
 
 from openerp import models, api
+from openerp.tools.safe_eval import safe_eval as eval
 
 
 class AccountInvoiceLineAgent(models.Model):
@@ -28,13 +29,13 @@ class AccountInvoiceLineAgent(models.Model):
     @api.one
     @api.depends('commission.commission_type', 'invoice_line.price_subtotal')
     def _get_amount(self):
-        if self.commission.commission_type == 'formula' and (
-            not self.invoice_line.product_id.commission_free and
-                self.commission):
+        if self.commission.commission_type == 'formula' and \
+            not self.invoice_line.product_id.commission_free and \
+                self.commission:
             self.amount = 0.0
             formula = self.commission.formula
             results = {'line': self.invoice_line}
-            exec(formula) in results
+            eval(formula, results, mode="exec", nocopy=True)
             self.amount += float(results['result'])
         else:
             return super(AccountInvoiceLineAgent, self)._get_amount()
