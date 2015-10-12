@@ -19,20 +19,4 @@
 #
 ##############################################################################
 
-{
-    'name': 'Sale Commission Formula',
-    'version': '0.1',
-    'category': 'Sale',
-    'license': 'AGPL-3',
-    'summary': 'Sale commissions computed by formulas',
-    'author': "Abstract,Odoo Community Association (OCA)",
-    'website': 'http://www.abstract.it',
-    'depends': [
-        'sale_commission'],
-    'data': [
-        'views/sale_commission_view.xml'],
-    'demo': [
-        'demo/commission_demo.xml'],
-    'installable': True,
-    'active': False,
-}
+from . import test_commission_formula
