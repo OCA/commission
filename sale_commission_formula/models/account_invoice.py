@@ -20,7 +20,7 @@
 ##############################################################################
 
 from openerp import models, api
-from openerp.tools.safe_eval import safe_eval as eval
+from openerp.tools.safe_eval import safe_eval
 
 
 class AccountInvoiceLineAgent(models.Model):
@@ -35,7 +35,7 @@ class AccountInvoiceLineAgent(models.Model):
             self.amount = 0.0
             formula = self.commission.formula
             results = {'line': self.invoice_line}
-            eval(formula, results, mode="exec", nocopy=True)
+            safe_eval(formula, results, mode="exec", nocopy=True)
             self.amount += float(results['result'])
         else:
             return super(AccountInvoiceLineAgent, self)._get_amount()
