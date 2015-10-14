@@ -61,5 +61,5 @@
     "demo": [
         # 'demo/sale_agent_demo.xml',
     ],
-    "installable": True
+    'installable': False
 }
