@@ -32,6 +32,6 @@
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
     ],
     "data": [],
-    "installable": True,
+    'installable': False,
     "auto_install": True,
 }
