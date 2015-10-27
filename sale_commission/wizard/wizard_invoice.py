@@ -26,7 +26,8 @@ class SaleCommissionMakeInvoice(models.TransientModel):
     _name = 'sale.commission.make.invoice'
 
     def _default_journal(self):
-        return self.env['account.journal'].search([('type', '=', 'purchase')])[0]
+        return self.env['account.journal'].search(
+        	[('type', '=', 'purchase')])[0]
 
     def _default_settlements(self):
         return self.env.context.get('settlement_ids', [])
