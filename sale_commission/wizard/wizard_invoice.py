@@ -26,7 +26,7 @@ class SaleCommissionMakeInvoice(models.TransientModel):
     _name = 'sale.commission.make.invoice'
 
     def _default_journal(self):
-        return self.env['account.journal'].search([('type', '=', 'sale')])[0]
+        return self.env['account.journal'].search([('type', '=', 'purchase')])[0]
 
     def _default_settlements(self):
         return self.env.context.get('settlement_ids', [])
@@ -36,7 +36,7 @@ class SaleCommissionMakeInvoice(models.TransientModel):
 
     journal = fields.Many2one(
         comodel_name='account.journal', required=True,
-        domain="[('type', '=', 'sale')]", default=_default_journal)
+        domain="[('type', '=', 'purchase')]", default=_default_journal)
     product = fields.Many2one(
         comodel_name='product.product', string='Product for invoicing',
         required=True)
