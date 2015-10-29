@@ -70,24 +70,19 @@ class AccountInvoice(models.Model):
 
 
 class AccountInvoiceLine(models.Model):
+    """Invoice Line inherit to add commissions"""
     _inherit = "account.invoice.line"
 
     @api.model
-    def _default_agents(self):
-        agents = []
-        if self.env.context.get('partner_id'):
-            partner = self.env['res.partner'].browse(
-                self.env.context['partner_id'])
-            for agent in partner.agents:
-                agents.append({'agent': agent.id,
-                               'commission': agent.commission.id})
-        return [(0, 0, x) for x in agents]
+    def _default_commissions(self):
+        res = self.env['sale.commission'].get_default_commissions()
+        return [(0, 0, x) for x in res]
 
     agents = fields.One2many(
         comodel_name="account.invoice.line.agent",
         inverse_name="invoice_line", string="Agents & commissions",
         help="Agents/Commissions related to the invoice line.",
-        default=_default_agents, copy=True)
+        default=_default_commissions, copy=False)
     commission_free = fields.Boolean(
         string="Comm. free", related="product_id.commission_free",
         store=True, readonly=True)
@@ -128,13 +123,13 @@ class AccountInvoiceLineAgent(models.Model):
     @api.depends('commission.commission_type', 'invoice_line.price_subtotal')
     def _get_amount(self):
         self.amount = 0.0
-        if (not self.invoice_line.product_id.commission_free and
-                self.commission):
-            subtotal = self.invoice_line.price_subtotal
-            if self.commission.commission_type == 'fixed':
-                self.amount = subtotal * (self.commission.fix_qty / 100.0)
-            else:
-                self.amount = self.commission.calculate_section(subtotal)
+        sign = {
+            'out_invoice': 1, 'in_invoice': -1,
+            'out_refund': -1, 'in_refund': 1,
+        }[self.invoice.type or 'out_invoice']
+        amount = self.commission.compute_invoice_commission(
+            self.invoice_line)
+        self.amount = sign * amount
 
     @api.one
     @api.depends('agent_line', 'agent_line.settlement.state', 'invoice',

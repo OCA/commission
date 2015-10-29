@@ -42,20 +42,14 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     @api.model
-    def _default_agents(self):
-        agents = []
-        if self.env.context.get('partner_id'):
-            partner = self.env['res.partner'].browse(
-                self.env.context['partner_id'])
-            for agent in partner.agents:
-                agents.append({'agent': agent.id,
-                               'commission': agent.commission.id})
-        return [(0, 0, x) for x in agents]
+    def _default_commissions(self):
+        res = self.env['sale.commission'].get_default_commissions()
+        return [(0, 0, x) for x in res]
 
     agents = fields.One2many(
         string="Agents & commissions",
         comodel_name='sale.order.line.agent', inverse_name='sale_line',
-        copy=True, readonly=True, default=_default_agents)
+        copy=True, default=_default_commissions)
     commission_free = fields.Boolean(
         string="Comm. free", related="product_id.commission_free",
         store=True, readonly=True)
@@ -97,10 +91,6 @@ class SaleOrderLineAgent(models.Model):
     @api.depends('commission.commission_type', 'sale_line.price_subtotal')
     def _get_amount(self):
         self.amount = 0.0
-        if (not self.sale_line.product_id.commission_free and
-                self.commission):
-            subtotal = self.sale_line.price_subtotal
-            if self.commission.commission_type == 'fixed':
-                self.amount = subtotal * (self.commission.fix_qty / 100.0)
-            else:
-                self.amount = self.commission.calculate_section(subtotal)
+        if self.commission:
+            self.amount = self.commission.compute_sale_commission(
+                self.sale_line)
