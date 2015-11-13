@@ -12,8 +12,6 @@ Known issues / Roadmap
 * Make it totally multi-company aware.
 * Allow to calculate and pay in other currency different from company one.
 * Allow to group by agent when generating invoices.
-* Demo data.
-* It lacks automated tests.
 
 
 Bug Tracker

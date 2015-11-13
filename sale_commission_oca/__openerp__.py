@@ -59,7 +59,10 @@
         # "report/cc_commission_report.xml"
     ],
     "demo": [
-        # 'demo/sale_agent_demo.xml',
+        'demo/sale_agent_demo.xml',
+    ],
+    'test': [
+        'test/sale_commission_demo.yml',
     ],
     "installable": True
 }
