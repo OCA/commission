@@ -25,6 +25,7 @@
                         </group>
                         <group>
                             <field name="commission_type" />
+                            <field name="invoice_state"/>
                         </group>
                     </group>
                     <group string="Rates definition" colspan="4">
