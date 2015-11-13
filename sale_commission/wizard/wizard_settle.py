@@ -87,19 +87,22 @@ class SaleCommissionMakeSettle(models.TransientModel):
                 sett_to = fields.Date.to_string(date(year=1900, month=1,
                                                      day=1))
                 while pos < len(agent_lines):
-                    if agent_lines[pos].invoice_date > sett_to:
-                        sett_from = self._get_period_start(
-                            agent, agent_lines[pos].invoice_date)
-                        sett_to = fields.Date.to_string(
-                            self._get_next_period_date(agent, sett_from) -
-                            timedelta(days=1))
-                        sett_from = fields.Date.to_string(sett_from)
-                        settlement = settlement_obj.create(
-                            {'agent': agent.id,
-                             'date_from': sett_from,
-                             'date_to': sett_to})
-                    settlement_line_obj.create(
-                        {'settlement': settlement.id,
-                         'agent_line': [(6, 0, [agent_lines[pos].id])]})
+                    if not (agent.commission.invoice_state == 'paid' and
+                                agent_lines[pos].invoice.state != 'paid'):
+
+                        if agent_lines[pos].invoice_date > sett_to:
+                            sett_from = self._get_period_start(
+                                agent, agent_lines[pos].invoice_date)
+                            sett_to = fields.Date.to_string(
+                                self._get_next_period_date(agent, sett_from) -
+                                timedelta(days=1))
+                            sett_from = fields.Date.to_string(sett_from)
+                            settlement = settlement_obj.create(
+                                {'agent': agent.id,
+                                 'date_from': sett_from,
+                                 'date_to': sett_to})
+                        settlement_line_obj.create(
+                            {'settlement': settlement.id,
+                             'agent_line': [(6, 0, [agent_lines[pos].id])]})
                     pos += 1
         return True
