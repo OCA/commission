@@ -1,27 +1,10 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011 Pexego Sistemas Inform??ticos (<http://www.pexego.es>).
-#    Copyright (C) 2015 Avanzosc (<http://www.avanzosc.es>)
-#    Copyright (C) 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# ?? 2011 Pexego Sistemas Inform??ticos (<http://www.pexego.es>)
+# ?? 2015 Avanzosc (<http://www.avanzosc.es>)
+# ?? 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import models, fields, api, exceptions, _
+from openerp import api, exceptions, fields, models, _
 
 
 class Settlement(models.Model):
@@ -30,7 +13,7 @@ class Settlement(models.Model):
     def _default_currency(self):
         return self.env.user.company_id.currency_id.id
 
-    total = fields.Float(compute="_get_total", readonly=True, store=True)
+    total = fields.Float(compute="_compute_total", readonly=True, store=True)
     date_from = fields.Date(string="From")
     date_to = fields.Date(string="To")
     agent = fields.Many2one(
@@ -52,10 +35,10 @@ class Settlement(models.Model):
         comodel_name='res.currency', readonly=True,
         default=_default_currency)
 
-    @api.one
     @api.depends('lines', 'lines.settled_amount')
-    def _get_total(self):
-        self.total = sum(x.settled_amount for x in self.lines)
+    def _compute_total(self):
+        for record in self:
+            record.total = sum(x.settled_amount for x in record.lines)
 
     @api.multi
     def action_cancel(self):
@@ -120,7 +103,9 @@ class Settlement(models.Model):
         invoice_line_vals['price_unit'] = settlement.total
         # Put period string
         partner = self.env['res.partner'].browse(invoice_vals['partner_id'])
-        lang = self.env['res.lang'].search([('code', '=', partner.lang)])
+        lang = self.env['res.lang'].search(
+            [('code', '=', partner.lang or self.env.context.get('lang',
+                                                                'en_US'))])
         date_from = fields.Date.from_string(settlement.date_from)
         date_to = fields.Date.from_string(settlement.date_to)
         invoice_line_vals['name'] += "\n" + _('Period: from %s to %s') % (

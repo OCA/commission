@@ -1,44 +1,28 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011 Pexego Sistemas Inform??ticos (<http://www.pexego.es>).
-#    Copyright (C) 2015 Avanzosc (<http://www.avanzosc.es>)
-#    Copyright (C) 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-from openerp import models, fields, api
+# ?? 2011 Pexego Sistemas Inform??ticos (<http://www.pexego.es>)
+# ?? 2015 Avanzosc (<http://www.avanzosc.es>)
+# ?? 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+
+from openerp import api, fields, models
 
 
 class AccountInvoice(models.Model):
     """Invoice inherit to add salesman"""
     _inherit = "account.invoice"
 
-    @api.one
     @api.depends('invoice_line.agents.amount')
-    def _get_commission_total(self):
-        self.commission_total = 0.0
-        for line in self.invoice_line:
-            self.commission_total += sum(x.amount for x in line.agents)
-        # Consider also purchase refunds, although not in the initial scope
-        if self.type in ('out_refund', 'in_refund'):
-            self.commission_total = -self.commission_total
+    def _compute_commission_total(self):
+        for record in self:
+            record.commission_total = 0.0
+            for line in record.invoice_line:
+                record.commission_total += sum(x.amount for x in line.agents)
+            # Consider also purchase refunds, although not in the initial scope
+            if record.type in ('out_refund', 'in_refund'):
+                record.commission_total = -record.commission_total
 
     commission_total = fields.Float(
-        string="Commissions", compute="_get_commission_total",
+        string="Commissions", compute="_compute_commission_total",
         store=True)
 
     @api.multi
@@ -112,39 +96,44 @@ class AccountInvoiceLineAgent(models.Model):
     commission = fields.Many2one(
         comodel_name="sale.commission", required=True, ondelete="restrict")
     amount = fields.Float(
-        string="Amount settled", compute="_get_amount", store=True)
+        string="Amount settled", compute="_compute_amount", store=True)
     agent_line = fields.Many2many(
         comodel_name='sale.commission.settlement.line',
         relation='settlement_agent_line_rel', column1='agent_line_id',
         column2='settlement_id')
-    settled = fields.Boolean(compute="_get_settled", store=True)
+    settled = fields.Boolean(compute="_compute_settled", store=True)
 
-    @api.one
     @api.onchange('agent')
     def onchange_agent(self):
         self.commission = self.agent.commission
 
-    @api.one
-    @api.depends('commission.commission_type', 'invoice_line.price_subtotal')
-    def _get_amount(self):
-        self.amount = 0.0
-        if (not self.invoice_line.product_id.commission_free and
-                self.commission):
-            subtotal = self.invoice_line.price_subtotal
-            if self.commission.commission_type == 'fixed':
-                self.amount = subtotal * (self.commission.fix_qty / 100.0)
-            else:
-                self.amount = self.commission.calculate_section(subtotal)
+    @api.depends('commission.commission_type', 'invoice_line.price_subtotal',
+                 'commission.amount_base_type')
+    def _compute_amount(self):
+        for line in self:
+            line.amount = 0.0
+            if (not line.invoice_line.product_id.commission_free and
+                    line.commission):
+                if line.commission.amount_base_type == 'net_amount':
+                    subtotal = (line.invoice_line.price_subtotal -
+                                (line.invoice_line.product_id.standard_price *
+                                 line.invoice_line.quantity))
+                else:
+                    subtotal = line.invoice_line.price_subtotal
+                if line.commission.commission_type == 'fixed':
+                    line.amount = subtotal * (line.commission.fix_qty / 100.0)
+                else:
+                    line.amount = line.commission.calculate_section(subtotal)
 
-    @api.one
     @api.depends('agent_line', 'agent_line.settlement.state', 'invoice',
                  'invoice.state')
-    def _get_settled(self):
+    def _compute_settled(self):
         # Count lines of not open or paid invoices as settled for not
         # being included in settlements
-        self.settled = (self.invoice.state not in ('open', 'paid') or
-                        any(x.settlement.state != 'cancel'
-                            for x in self.agent_line))
+        for line in self:
+            self.settled = (line.invoice.state not in ('open', 'paid') or
+                            any(x.settlement.state != 'cancel'
+                                for x in line.agent_line))
 
     _sql_constraints = [
         ('unique_agent', 'UNIQUE(invoice_line, agent)',
