@@ -9,6 +9,7 @@
                 <tree string="Commissions">
                     <field name="name" />
                     <field name="commission_type" />
+                    <field name="amount_base_type" />
                 </tree>
             </field>
         </record>
@@ -25,6 +26,7 @@
                         </group>
                         <group>
                             <field name="commission_type" />
+                            <field name="amount_base_type" />
                             <field name="invoice_state"/>
                         </group>
                     </group>
