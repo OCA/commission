@@ -1,40 +1,24 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>).
-#    Copyright (C) 2015 Avanzosc (<http://www.avanzosc.es>)
-#    Copyright (C) 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-from openerp import models, fields, api
+# © 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>)
+# © 2015 Avanzosc (<http://www.avanzosc.es>)
+# © 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+
+from openerp import api, fields, models
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.one
     @api.depends('order_line.agents.amount')
-    def _get_commission_total(self):
-        self.commission_total = 0.0
-        for line in self.order_line:
-            self.commission_total += sum(x.amount for x in line.agents)
+    def _compute_commission_total(self):
+        for record in self:
+            record.commission_total = 0.0
+            for line in record.order_line:
+                record.commission_total += sum(x.amount for x in line.agents)
 
     commission_total = fields.Float(
-        string="Commissions", compute="_get_commission_total",
+        string="Commissions", compute="_compute_commission_total",
         store=True)
 
 
@@ -81,26 +65,31 @@ class SaleOrderLineAgent(models.Model):
         domain="[('agent', '=', True')]")
     commission = fields.Many2one(
         comodel_name="sale.commission", required=True, ondelete="restrict")
-    amount = fields.Float(compute="_get_amount", store=True)
+    amount = fields.Float(compute="_compute_amount", store=True)
 
     _sql_constraints = [
         ('unique_agent', 'UNIQUE(sale_line, agent)',
          'You can only add one time each agent.')
     ]
 
-    @api.one
     @api.onchange('agent')
     def onchange_agent(self):
         self.commission = self.agent.commission
 
-    @api.one
-    @api.depends('commission.commission_type', 'sale_line.price_subtotal')
-    def _get_amount(self):
-        self.amount = 0.0
-        if (not self.sale_line.product_id.commission_free and
-                self.commission):
-            subtotal = self.sale_line.price_subtotal
-            if self.commission.commission_type == 'fixed':
-                self.amount = subtotal * (self.commission.fix_qty / 100.0)
-            else:
-                self.amount = self.commission.calculate_section(subtotal)
+    @api.depends('commission.commission_type', 'sale_line.price_subtotal',
+                 'commission.amount_base_type')
+    def _compute_amount(self):
+        for line in self:
+            line.amount = 0.0
+            if (not line.sale_line.product_id.commission_free and
+                    line.commission):
+                if line.commission.amount_base_type == 'net_amount':
+                    subtotal = (line.sale_line.price_subtotal -
+                                (line.sale_line.product_id.standard_price *
+                                 line.sale_line.product_uom_qty))
+                else:
+                    subtotal = line.sale_line.price_subtotal
+                if line.commission.commission_type == 'fixed':
+                    line.amount = subtotal * (line.commission.fix_qty / 100.0)
+                else:
+                    line.amount = line.commission.calculate_section(subtotal)
