@@ -131,7 +131,7 @@ class AccountInvoiceLineAgent(models.Model):
         # Count lines of not open or paid invoices as settled for not
         # being included in settlements
         for line in self:
-            self.settled = (line.invoice.state not in ('open', 'paid') or
+            line.settled = (line.invoice.state not in ('open', 'paid') or
                             any(x.settlement.state != 'cancel'
                                 for x in line.agent_line))
 
