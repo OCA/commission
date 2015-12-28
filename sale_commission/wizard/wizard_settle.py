@@ -74,6 +74,14 @@ class SaleCommissionMakeSettle(models.TransientModel):
                             agent_lines[pos].invoice.state != 'paid'):
                         pos += 1
                         continue
+                    if agent.commission.invoice_state == 'period':
+                        not_already_paid = False
+                        for move in agent_lines[pos].invoice.payment_ids:
+                            if fields.Date.today() < move.date:
+                                not_already_paid = True
+                        if not_already_paid:
+                            pos += 1
+                            continue
                     if agent_lines[pos].invoice_date > sett_to:
                         sett_from = self._get_period_start(
                             agent, agent_lines[pos].invoice_date)

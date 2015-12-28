@@ -22,7 +22,8 @@ class SaleCommission(models.Model):
     active = fields.Boolean(default=True)
     invoice_state = fields.Selection(
         [('open', 'Invoice Based'),
-         ('paid', 'Payment Based')], string='Invoice Status',
+         ('paid', 'Payment Based'),
+         ('move', 'Move Based')], string='Invoice Status',
         required=True, default='open')
     amount_base_type = fields.Selection(
         selection=[('gross_amount', 'Gross Amount'),
