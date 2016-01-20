@@ -46,10 +46,18 @@ class AccountInvoice(models.Model):
         """ugly function to map all fields of account.invoice.line
         when creates refund invoice"""
         res = super(AccountInvoice, self)._refund_cleanup_lines(lines)
-        for line in res:
-            if 'commission_ids' in line[2]:
-                commission_ids = [(6, 0, line[2]['commission_ids'])]
-                line[2]['commission_ids'] = commission_ids
+        if lines and lines[0]._name != 'account.invoice.line':
+            return res
+        for i, line in enumerate(lines):
+            vals = res[i][2]
+            agents = super(AccountInvoice, self)._refund_cleanup_lines(
+                line['agents'])
+            # Remove old reference to source invoice
+            for agent in agents:
+                agent_vals = agent[2]
+                del agent_vals['invoice']
+                del agent_vals['invoice_line']
+            vals['agents'] = agents
         return res
 
 
