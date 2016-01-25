@@ -13,7 +13,7 @@
                 </xpath>
                 <field name="user_id" position="after">
                     <field name="agents"
-                           attrs="{'invisible': [('agent', '=', True)]}"
+                           attrs="{'invisible': [('customer', '=', False)]}"
                            widget="many2many_tags"/>
                 </field>
                 <page name="sales_purchases" position="after">
