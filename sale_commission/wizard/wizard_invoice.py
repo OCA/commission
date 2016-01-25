@@ -11,7 +11,11 @@ class SaleCommissionMakeInvoice(models.TransientModel):
 
     def _default_journal(self):
         return self.env['account.journal'].search(
-            [('type', '=', 'purchase')])[0]
+            [('type', '=', 'purchase')])[:1]
+
+    def _default_refund_journal(self):
+        return self.env['account.journal'].search(
+            [('type', '=', 'purchase_refund')])[:1]
 
     def _default_settlements(self):
         return self.env.context.get('settlement_ids', [])
@@ -21,15 +25,23 @@ class SaleCommissionMakeInvoice(models.TransientModel):
 
     journal = fields.Many2one(
         comodel_name='account.journal', required=True,
-        domain="[('type', '=', 'purchase')]", default=_default_journal)
+        domain="[('type', '=', 'purchase')]",
+        default=_default_journal)
+    refund_journal = fields.Many2one(
+        string='Refund Journal',
+        comodel_name='account.journal', required=True,
+        domain="[('type', '=', 'purchase_refund')]",
+        default=_default_refund_journal)
     product = fields.Many2one(
-        comodel_name='product.product', string='Product for invoicing',
-        required=True)
+        string='Product for invoicing',
+        comodel_name='product.product', required=True)
     settlements = fields.Many2many(
         comodel_name='sale.commission.settlement',
         relation="sale_commission_make_invoice_settlement_rel",
         column1='wizard_id', column2='settlement_id',
-        domain="[('state', '=', 'settled')]", default=_default_settlements)
+        domain="[('state', '=', 'settled')]",
+        default=_default_settlements)
+
     from_settlement = fields.Boolean(default=_default_from_settlement)
     date = fields.Date()
 
@@ -40,7 +52,7 @@ class SaleCommissionMakeInvoice(models.TransientModel):
             self.settlements = self.env['sale.commission.settlement'].search(
                 [('state', '=', 'settled'), ('agent_type', '=', 'agent')])
         self.settlements.make_invoices(
-            self.journal, self.product, date=self.date)
+            self.journal, self.refund_journal, self.product, date=self.date)
         # go to results
         if len(self.settlements):
             return {
