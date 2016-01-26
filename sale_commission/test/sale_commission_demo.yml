@@ -37,17 +37,19 @@
   !python {model: sale.order}: |
     so = self.browse(cr, uid, ref("sale_order_commission_test1"))
     account_invoice_obj = self.pool.get('account.invoice')
+    from openerp import fields
     for invoice in so.invoice_ids:
-      import datetime
-      import dateutil.relativedelta
-      now = datetime.datetime.now()
-      invoice.date_invoice = now + dateutil.relativedelta.relativedelta(months=-1)
+      invoice.date_invoice = fields.Date.today()
       invoice.signal_workflow('invoice_open')
 -
   I try to create the Settlement to test the Invoice State filter
 -
   !python {model: sale.commission.make.settle}: |
-    wizard_id = self.create(cr, uid, {})
+    import datetime
+    import dateutil.relativedelta
+    now = datetime.datetime.now()
+    wizard_id = self.create(
+      cr, uid, {'date_to': now + dateutil.relativedelta.relativedelta(months=1)})
     result = self.action_settle(cr, uid, [wizard_id], context=None)
 -
   I open the Settlements to check if filter works.
@@ -76,7 +78,6 @@
     assert sale_order.invoice_ids, "Invoice should be created."
     assert sale_order.invoice_exists, "Order is not invoiced."
     assert sale_order.invoiced, "Order is not paid."
-    assert sale_order.state == 'done', 'Order should be Done.'
 -
   I create another Sale Order with a Agent who has the Type of Commission - Invoice Based
 -
@@ -113,17 +114,18 @@
   !python {model: sale.order}: |
     so = self.browse(cr, uid, ref("sale_order_commission_test2"))
     account_invoice_obj = self.pool.get('account.invoice')
+    from openerp import fields
     for invoice in so.invoice_ids:
-      import datetime
-      import dateutil.relativedelta
-      now = datetime.datetime.now()
-      invoice.date_invoice = now + dateutil.relativedelta.relativedelta(months=-1)
+      invoice.date_invoice = fields.Date.today()
       invoice.signal_workflow('invoice_open')
 -
   I create the Settlement
 -
   !python {model: sale.commission.make.settle}: |
-    wizard_id = self.create(cr, uid, {})
+    import datetime
+    import dateutil.relativedelta
+    now = datetime.datetime.now()
+    wizard_id = self.create(cr, uid, {'date_to': now + dateutil.relativedelta.relativedelta(months=1)})
     result = self.action_settle(cr, uid, [wizard_id], context=None)
 -
   I create the Commission Invoices  from Settlements.
