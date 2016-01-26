@@ -2,7 +2,7 @@
 # ?? 2015 Oihane Crucelaegui
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import exceptions
+from openerp import exceptions, fields
 import openerp.tests.common as common
 import datetime
 import dateutil.relativedelta
@@ -46,6 +46,7 @@ class TestSaleCommission(common.TransactionCase):
         })
         self.res_partner_model = self.env['res.partner']
         self.partner = self.browse_ref('base.res_partner_2')
+        self.partner.write({'supplier': False, 'agent': False})
         agent_quaterly = self.res_partner_model.create({
             'name': 'Test Agent - Quaterly',
             'agent': True,
@@ -65,7 +66,6 @@ class TestSaleCommission(common.TransactionCase):
             'lang': 'en_US',
         })
         self.sale_order_model = self.env['sale.order']
-        self.invoice_model = self.env['account.invoice']
         self.advance_inv_model = self.env['sale.advance.payment.inv']
         self.settle_model = self.env['sale.commission.settlement']
         self.make_settle_model = self.env['sale.commission.make.settle']
@@ -158,11 +158,11 @@ class TestSaleCommission(common.TransactionCase):
             "Invoice should be created after make advance invoice where type"
             " is 'Invoice all the Sale Order'.")
         for invoice in self.saleorder1.invoice_ids:
-            invoice.date_invoice = (
-                datetime.datetime.now() +
-                dateutil.relativedelta.relativedelta(months=-1))
+            invoice.date_invoice = fields.Date.today()
             invoice.signal_workflow('invoice_open')
-        wizard = self.make_settle_model.create({})
+        wizard = self.make_settle_model.create(
+            {'date_to': (datetime.datetime.now() +
+                         dateutil.relativedelta.relativedelta(months=1))})
         wizard.action_settle()
         settlements = self.settle_model.search([('state', '=', 'settled')])
         self.assertEquals(
@@ -184,8 +184,6 @@ class TestSaleCommission(common.TransactionCase):
         self.assertTrue(self.saleorder1.invoice_exists,
                         "Order is not invoiced.")
         self.assertTrue(self.saleorder1.invoiced, "Order is not paid.")
-        self.assertEquals(self.saleorder1.state, 'done',
-                          "Order should be Done.")
 
     def test_sale_commission_gross_amount_invoice(self):
         self.saleorder2.signal_workflow('order_confirm')
@@ -200,11 +198,11 @@ class TestSaleCommission(common.TransactionCase):
             "Invoice should be created after make advance invoice where type"
             " is 'Invoice all the Sale Order'.")
         for invoice in self.saleorder2.invoice_ids:
-            invoice.date_invoice = (
-                datetime.datetime.now() +
-                dateutil.relativedelta.relativedelta(months=-1))
+            invoice.date_invoice = fields.Date.today()
             invoice.signal_workflow('invoice_open')
-        wizard = self.make_settle_model.create({})
+        wizard = self.make_settle_model.create(
+            {'date_to': (datetime.datetime.now() +
+                         dateutil.relativedelta.relativedelta(months=1))})
         wizard.action_settle()
         wizard2 = self.make_inv_model.create({'product': 1})
         wizard2.button_create()
@@ -226,11 +224,11 @@ class TestSaleCommission(common.TransactionCase):
             "Invoice should be created after make advance invoice where type"
             " is 'Invoice all the Sale Order'.")
         for invoice in self.saleorder3.invoice_ids:
-            invoice.date_invoice = (
-                datetime.datetime.now() +
-                dateutil.relativedelta.relativedelta(months=-1))
+            invoice.date_invoice = fields.Date.today()
             invoice.signal_workflow('invoice_open')
-        wizard = self.make_settle_model.create({})
+        wizard = self.make_settle_model.create(
+            {'date_to': (datetime.datetime.now() +
+                         dateutil.relativedelta.relativedelta(months=1))})
         wizard.action_settle()
         settlements = self.settle_model.search([('state', '=', 'settled')])
         self.assertEquals(
@@ -252,8 +250,6 @@ class TestSaleCommission(common.TransactionCase):
         self.assertTrue(self.saleorder3.invoice_exists,
                         "Order is not invoiced.")
         self.assertTrue(self.saleorder3.invoiced, "Order is not paid.")
-        self.assertEquals(self.saleorder3.state, 'done',
-                          "Order should be Done.")
         for invoice in self.saleorder3.invoice_ids:
             refund_wiz = self.env['account.invoice.refund'].with_context(
                 active_ids=invoice.ids, active_id=invoice.id).create({
@@ -275,11 +271,11 @@ class TestSaleCommission(common.TransactionCase):
             "Invoice should be created after make advance invoice where type"
             " is 'Invoice all the Sale Order'.")
         for invoice in self.saleorder4.invoice_ids:
-            invoice.date_invoice = (
-                datetime.datetime.now() +
-                dateutil.relativedelta.relativedelta(months=-1))
+            invoice.date_invoice = fields.Date.today()
             invoice.signal_workflow('invoice_open')
-        wizard = self.make_settle_model.create({})
+        wizard = self.make_settle_model.create(
+            {'date_to': (datetime.datetime.now() +
+                         dateutil.relativedelta.relativedelta(months=1))})
         wizard.action_settle()
         wizard2 = self.make_inv_model.create({'product': 1})
         wizard2.button_create()
@@ -301,11 +297,11 @@ class TestSaleCommission(common.TransactionCase):
             "Invoice should be created after make advance invoice where type"
             " is 'Invoice all the Sale Order'.")
         for invoice in self.saleorder5.invoice_ids:
-            invoice.date_invoice = (
-                datetime.datetime.now() +
-                dateutil.relativedelta.relativedelta(months=-1))
+            invoice.date_invoice = fields.Date.today()
             invoice.signal_workflow('invoice_open')
-        wizard = self.make_settle_model.create({})
+        wizard = self.make_settle_model.create(
+            {'date_to': (datetime.datetime.now() +
+                         dateutil.relativedelta.relativedelta(months=1))})
         wizard.action_settle()
         settlements = self.settle_model.search([('state', '=', 'settled')])
         self.assertEquals(
@@ -327,8 +323,6 @@ class TestSaleCommission(common.TransactionCase):
         self.assertTrue(self.saleorder5.invoice_exists,
                         "Order is not invoiced.")
         self.assertTrue(self.saleorder5.invoiced, "Order is not paid.")
-        self.assertEquals(self.saleorder5.state, 'done',
-                          "Order should be Done.")
 
     def test_sale_commission_section_invoice(self):
         self.saleorder6.signal_workflow('order_confirm')
@@ -343,11 +337,11 @@ class TestSaleCommission(common.TransactionCase):
             "Invoice should be created after make advance invoice where type"
             " is 'Invoice all the Sale Order'.")
         for invoice in self.saleorder6.invoice_ids:
-            invoice.date_invoice = (
-                datetime.datetime.now() +
-                dateutil.relativedelta.relativedelta(months=-1))
+            invoice.date_invoice = fields.Date.today()
             invoice.signal_workflow('invoice_open')
-        wizard = self.make_settle_model.create({})
+        wizard = self.make_settle_model.create(
+            {'date_to': (datetime.datetime.now() +
+                         dateutil.relativedelta.relativedelta(months=1))})
         wizard.action_settle()
         wizard2 = self.make_inv_model.create({'product': 1})
         wizard2.button_create()
