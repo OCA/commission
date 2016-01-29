@@ -6,7 +6,7 @@
             <field name="name">Settlements tree</field>
             <field name="model">sale.commission.settlement</field>
             <field name="arch" type="xml">
-                <tree string="Settlements"
+                <tree string="Settlements" create="false"
                       colors="red: state == 'cancel'; gray: state == 'invoiced'">
                     <field name="agent"/>
                     <field name="date_from"/>
@@ -42,7 +42,7 @@
             <field name="name">Settlements</field>
             <field name="model">sale.commission.settlement</field>
             <field name="arch" type="xml">
-                <form string="Settlement">
+                <form string="Settlement" create="false">
                     <header>
                         <button string="Make invoice"
                                 attrs="{'invisible': ['|', ('state', '!=', 'settled'), ('agent_type', '!=', 'agent')]}"
@@ -91,7 +91,7 @@
             <field name="name">Settlement lines</field>
             <field name="model">sale.commission.settlement.line</field>
             <field name="arch" type="xml">
-                <tree string="Settlement lines">
+                <tree string="Settlement lines" create="false">
                     <field name="date"/>
                     <field name="agent"/>
                     <field name="invoice"/>

@@ -54,6 +54,7 @@ class SaleCommissionMakeSettle(models.TransientModel):
         agent_line_obj = self.env['account.invoice.line.agent']
         settlement_obj = self.env['sale.commission.settlement']
         settlement_line_obj = self.env['sale.commission.settlement.line']
+        settlement_ids = []
         if not self.agents:
             self.agents = self.env['res.partner'].search(
                 [('agent', '=', True)])
@@ -85,8 +86,21 @@ class SaleCommissionMakeSettle(models.TransientModel):
                             {'agent': agent.id,
                              'date_from': sett_from,
                              'date_to': sett_to})
+                        settlement_ids.append(settlement.id)
                     settlement_line_obj.create(
                         {'settlement': settlement.id,
                          'agent_line': [(6, 0, [agent_lines[pos].id])]})
                     pos += 1
-        return True
+
+        # go to results
+        if len(settlement_ids):
+            return {
+                'name': _('Created Settlements'),
+                'type': 'ir.actions.act_window',
+                'views': [[False, 'list'], [False, 'form']],
+                'res_model': 'sale.commission.settlement',
+                'domain': [['id', 'in', settlement_ids]],
+            }
+
+        else:
+            return {'type': 'ir.actions.act_window_close'}
