@@ -3,7 +3,7 @@
 # © 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 
 
 class SaleCommissionMakeInvoice(models.TransientModel):
@@ -39,5 +39,18 @@ class SaleCommissionMakeInvoice(models.TransientModel):
         if not self.settlements:
             self.settlements = self.env['sale.commission.settlement'].search(
                 [('state', '=', 'settled'), ('agent_type', '=', 'agent')])
-        return self.settlements.make_invoices(
+        self.settlements.make_invoices(
             self.journal, self.product, date=self.date)
+        # go to results
+        if len(self.settlements):
+            return {
+                'name': _('Created Invoices'),
+                'type': 'ir.actions.act_window',
+                'views': [[False, 'list'], [False, 'form']],
+                'res_model': 'account.invoice',
+                'domain': [
+                    ['id', 'in', [x.invoice.id for x in self.settlements]],
+                ],
+            }
+        else:
+            return {'type': 'ir.actions.act_window_close'}
