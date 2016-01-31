@@ -17,9 +17,6 @@ class AccountInvoice(models.Model):
             record.commission_total = 0.0
             for line in record.invoice_line:
                 record.commission_total += sum(x.amount for x in line.agents)
-            # Consider also purchase refunds, although not in the initial scope
-            if record.type in ('out_refund', 'in_refund'):
-                record.commission_total = -record.commission_total
 
     commission_total = fields.Float(
         string="Commissions", compute="_compute_commission_total",
@@ -132,6 +129,9 @@ class AccountInvoiceLineAgent(models.Model):
                     line.amount = subtotal * (line.commission.fix_qty / 100.0)
                 else:
                     line.amount = line.commission.calculate_section(subtotal)
+                # Refunds commissions are negative
+                if line.invoice.type in ('out_refund', 'in_refund'):
+                    line.amount = -line.amount
 
     @api.depends('agent_line', 'agent_line.settlement.state', 'invoice',
                  'invoice.state')

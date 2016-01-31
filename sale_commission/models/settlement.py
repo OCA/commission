@@ -71,7 +71,8 @@ class Settlement(models.Model):
         invoice_obj = self.env['account.invoice']
         invoice_vals = {
             'partner_id': settlement.agent.id,
-            'type': 'in_invoice',
+            'type': ('in_invoice' if journal.type == 'purchase' else
+                     'in_refund'),
             'date_invoice': date,
             'journal_id': journal.id,
             'company_id': self.env.user.company_id.id,
@@ -121,15 +122,26 @@ class Settlement(models.Model):
         return []
 
     @api.multi
-    def make_invoices(self, journal, product, date=False):
+    def make_invoices(self, journal, refund_journal, product, date=False):
         invoice_obj = self.env['account.invoice']
         for settlement in self:
+            # select the proper journal according to settlement's amount
+            # considering _add_extra_invoice_lines sum of values
+            extra_invoice_lines = self._add_extra_invoice_lines(settlement)
+            extra_total = sum(x['price_unit'] for x in extra_invoice_lines)
+            invoice_journal = (journal if
+                               (settlement.total + extra_total) >= 0 else
+                               refund_journal)
             invoice_vals = self._prepare_invoice_header(
-                settlement, journal, date=date)
+                settlement, invoice_journal, date=date)
             invoice_lines_vals = []
             invoice_lines_vals.append(self._prepare_invoice_line(
                 settlement, invoice_vals, product))
-            invoice_lines_vals += self._add_extra_invoice_lines(settlement)
+            invoice_lines_vals += extra_invoice_lines
+            # invert invoice values if it's a refund
+            if invoice_vals['type'] == 'in_refund':
+                for line in invoice_lines_vals:
+                    line['price_unit'] = -line['price_unit']
             invoice_vals['invoice_line'] = [(0, 0, x)
                                             for x in invoice_lines_vals]
             invoice = invoice_obj.create(invoice_vals)
