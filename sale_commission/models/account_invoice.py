@@ -86,27 +86,37 @@ class AccountInvoiceLineAgent(models.Model):
     _name = "account.invoice.line.agent"
 
     invoice_line = fields.Many2one(
-        comodel_name="account.invoice.line", required=True, ondelete="cascade")
+        comodel_name="account.invoice.line",
+        ondelete="cascade",
+        required=True, copy=False)
     invoice = fields.Many2one(
-        comodel_name="account.invoice", string="Invoice",
-        related="invoice_line.invoice_id", store=True)
+        string="Invoice", comodel_name="account.invoice",
+        related="invoice_line.invoice_id",
+        store=True)
     invoice_date = fields.Date(
-        string="Invoice date", related="invoice.date_invoice", store=True,
-        readonly=True)
+        string="Invoice date",
+        related="invoice.date_invoice",
+        store=True, readonly=True)
     product = fields.Many2one(
-        comodel_name='product.product', related="invoice_line.product_id")
+        comodel_name='product.product',
+        related="invoice_line.product_id")
     agent = fields.Many2one(
-        comodel_name="res.partner", required=True, ondelete="restrict",
-        domain="[('agent', '=', True)]")
+        comodel_name="res.partner",
+        domain="[('agent', '=', True)]",
+        ondelete="restrict",
+        required=True)
     commission = fields.Many2one(
-        comodel_name="sale.commission", required=True, ondelete="restrict")
+        comodel_name="sale.commission", ondelete="restrict", required=True)
     amount = fields.Float(
         string="Amount settled", compute="_compute_amount", store=True)
     agent_line = fields.Many2many(
         comodel_name='sale.commission.settlement.line',
-        relation='settlement_agent_line_rel', column1='agent_line_id',
-        column2='settlement_id')
-    settled = fields.Boolean(compute="_compute_settled", store=True)
+        relation='settlement_agent_line_rel',
+        column1='agent_line_id', column2='settlement_id',
+        copy=False)
+    settled = fields.Boolean(
+        compute="_compute_settled",
+        store=True, copy=False)
 
     @api.onchange('agent')
     def onchange_agent(self):
