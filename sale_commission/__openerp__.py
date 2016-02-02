@@ -6,7 +6,7 @@
 
 {
     'name': 'Sales commissions',
-    'version': '8.0.2.2.2',
+    'version': '8.0.2.3.0',
     'author': 'Pexego, '
               'Savoire-faire linux, '
               'Avanzosc, '
