@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # © 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>)
 # © 2015 Avanzosc (<http://www.avanzosc.es>)
-# © 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
+# © 2015-2016 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
+# © 2015-2016 Oihane Crucelaegui
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import api, fields, models
@@ -38,19 +39,18 @@ class SaleOrderLine(models.Model):
 
     agents = fields.One2many(
         string="Agents & commissions",
-        comodel_name='sale.order.line.agent', inverse_name='sale_line',
+        comodel_name="sale.order.line.agent", inverse_name="sale_line",
         copy=True, readonly=True, default=_default_agents)
     commission_free = fields.Boolean(
         string="Comm. free", related="product_id.commission_free",
         store=True, readonly=True)
 
-    @api.model
-    def _prepare_order_line_invoice_line(self, line, account_id=False):
-        vals = super(SaleOrderLine, self)._prepare_order_line_invoice_line(
-            line, account_id=account_id)
+    @api.multi
+    def _prepare_invoice_line(self, qty):
+        vals = super(SaleOrderLine, self)._prepare_invoice_line(qty)
         vals['agents'] = [
             (0, 0, {'agent': x.agent.id,
-                    'commission': x.commission.id}) for x in line.agents]
+                    'commission': x.commission.id}) for x in self.agents]
         return vals
 
 

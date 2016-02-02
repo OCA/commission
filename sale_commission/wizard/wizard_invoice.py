@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # © 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>)
-# © 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
+# © 2015-2016 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
+# © 2015-2016 Oihane Crucelaegui
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import models, fields, api, _
@@ -27,11 +28,11 @@ class SaleCommissionMakeInvoice(models.TransientModel):
         comodel_name='account.journal', required=True,
         domain="[('type', '=', 'purchase')]",
         default=_default_journal)
-    refund_journal = fields.Many2one(
-        string='Refund Journal',
-        comodel_name='account.journal', required=True,
-        domain="[('type', '=', 'purchase_refund')]",
-        default=_default_refund_journal)
+    # refund_journal = fields.Many2one(
+    #     string='Refund Journal',
+    #     comodel_name='account.journal', required=True,
+    #     domain="[('type', '=', 'purchase_refund')]",
+    #     default=_default_refund_journal)
     product = fields.Many2one(
         string='Product for invoicing',
         comodel_name='product.product', required=True)
@@ -52,7 +53,7 @@ class SaleCommissionMakeInvoice(models.TransientModel):
             self.settlements = self.env['sale.commission.settlement'].search(
                 [('state', '=', 'settled'), ('agent_type', '=', 'agent')])
         self.settlements.make_invoices(
-            self.journal, self.refund_journal, self.product, date=self.date)
+            self.journal, False, self.product, date=self.date)
         # go to results
         if len(self.settlements):
             return {
