@@ -6,7 +6,7 @@
 
 {
     'name': 'Sales commissions',
-    'version': '8.0.2.3.0',
+    'version': '8.0.2.4.0',
     'author': 'Pexego, '
               'Savoire-faire linux, '
               'Avanzosc, '
@@ -34,6 +34,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "security/sale_commission_security.xml",
         "views/product_template_view.xml",
         "views/res_partner_view.xml",
         "views/sale_commission_view.xml",
