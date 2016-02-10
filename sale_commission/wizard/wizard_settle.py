@@ -1,24 +1,7 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>).
-#    Copyright (C) 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>)
+# © 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import models, fields, api, exceptions, _
 from datetime import date, timedelta
@@ -71,6 +54,7 @@ class SaleCommissionMakeSettle(models.TransientModel):
         agent_line_obj = self.env['account.invoice.line.agent']
         settlement_obj = self.env['sale.commission.settlement']
         settlement_line_obj = self.env['sale.commission.settlement.line']
+        settlement_ids = []
         if not self.agents:
             self.agents = self.env['res.partner'].search(
                 [('agent', '=', True)])
@@ -87,6 +71,10 @@ class SaleCommissionMakeSettle(models.TransientModel):
                 sett_to = fields.Date.to_string(date(year=1900, month=1,
                                                      day=1))
                 while pos < len(agent_lines):
+                    if (agent.commission.invoice_state == 'paid' and
+                            agent_lines[pos].invoice.state != 'paid'):
+                        pos += 1
+                        continue
                     if agent_lines[pos].invoice_date > sett_to:
                         sett_from = self._get_period_start(
                             agent, agent_lines[pos].invoice_date)
@@ -98,8 +86,21 @@ class SaleCommissionMakeSettle(models.TransientModel):
                             {'agent': agent.id,
                              'date_from': sett_from,
                              'date_to': sett_to})
+                        settlement_ids.append(settlement.id)
                     settlement_line_obj.create(
                         {'settlement': settlement.id,
                          'agent_line': [(6, 0, [agent_lines[pos].id])]})
                     pos += 1
-        return True
+
+        # go to results
+        if len(settlement_ids):
+            return {
+                'name': _('Created Settlements'),
+                'type': 'ir.actions.act_window',
+                'views': [[False, 'list'], [False, 'form']],
+                'res_model': 'sale.commission.settlement',
+                'domain': [['id', 'in', settlement_ids]],
+            }
+
+        else:
+            return {'type': 'ir.actions.act_window_close'}

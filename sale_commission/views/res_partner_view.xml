@@ -7,13 +7,14 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form" />
             <field name="priority" eval="18"/>
+            <field name="groups_id" eval="[(4, ref('base.group_sale_salesman'))]"/>
             <field name="arch" type="xml">
                 <xpath expr="//page[@name='sales_purchases']//field[@name='supplier']" position="after">
                     <field name="agent" string="Agent" />
                 </xpath>
                 <field name="user_id" position="after">
                     <field name="agents"
-                           attrs="{'invisible': [('agent', '=', True)]}"
+                           attrs="{'invisible': [('customer', '=', False)]}"
                            widget="many2many_tags"/>
                 </field>
                 <page name="sales_purchases" position="after">

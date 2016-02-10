@@ -1,0 +1,143 @@
+-
+  In order to test Commission process of the Sale Order I do the below tests
+-
+ I create Sale Order with a Agent who has the Type of Commission - Payment Based
+-
+  !record {model: sale.order, id: sale_order_commission_test1}:
+    partner_id: base.res_partner_1
+    note: Invoice after delivery
+    payment_term: account.account_payment_term
+    order_line:
+      - product_id: product.product_product_7
+        product_uom_qty: 8
+        agents:
+          - agent: sale_commission.res_partner_pritesh_sale_agent
+            commission: sale_commission.demo_commission_paid
+-
+  I confirm the Quotation.
+-
+  !workflow {model: sale.order, action: order_confirm, ref: sale_order_commission_test1}
+-
+  I create advance invoice where type is 'Invoice all the Sale Order'.
+-
+  !python {model: sale.advance.payment.inv}: |
+    ctx = context.copy()
+    ctx.update({"active_model": 'sale.order', "active_ids": [ref("sale_order_commission_test1")], "active_id":ref("sale_order_commission_test1")})
+    pay_id = self.create(cr, uid, {'advance_payment_method': 'all'})
+    self.create_invoices(cr, uid, [pay_id], context=ctx)
+-
+  I check Invoice which made advance where type is 'Invoice all the Sale Order'.
+-
+  !python {model: sale.order}: |
+    order = self.browse(cr, uid, ref('sale_order_commission_test1'))
+    assert order.invoice_ids, "Invoice should be created after make advance invoice where type is 'Invoice all the Sale Order'."
+-
+  I open the Invoice for set Date Invoice for a month ago.
+-
+  !python {model: sale.order}: |
+    so = self.browse(cr, uid, ref("sale_order_commission_test1"))
+    account_invoice_obj = self.pool.get('account.invoice')
+    from openerp import fields
+    for invoice in so.invoice_ids:
+      invoice.date_invoice = fields.Date.today()
+      invoice.signal_workflow('invoice_open')
+-
+  I try to create the Settlement to test the Invoice State filter
+-
+  !python {model: sale.commission.make.settle}: |
+    import datetime
+    import dateutil.relativedelta
+    now = datetime.datetime.now()
+    wizard_id = self.create(
+      cr, uid, {'date_to': now + dateutil.relativedelta.relativedelta(months=1)})
+    result = self.action_settle(cr, uid, [wizard_id], context=None)
+-
+  I open the Settlements to check if filter works.
+-
+  !python {model: sale.commission.settlement}: |
+    settlement_ids = self.search(cr, uid, [('state', '=', 'settled')])
+    assert not settlement_ids, "The Type of Commission only allows create the Settlements when the Invoices are Paid."
+-
+  I pay the invoice.
+-
+  !python {model: account.invoice}: |
+    sale_order = self.pool.get('sale.order')
+    order = sale_order.browse(cr, uid, ref("sale_order_commission_test1"))
+    journal_ids = self.pool.get('account.journal').search(cr, uid, [('type', '=', 'cash'), ('company_id', '=', order.company_id.id)], limit=1)
+    for invoice in order.invoice_ids:
+        invoice.pay_and_reconcile(
+            invoice.amount_total, ref('account.cash'), ref('account.period_8'),
+            journal_ids[0], ref('account.cash'),
+            ref('account.period_8'), journal_ids[0],
+            name='test')
+-
+  I check Invoice after do manual.
+-
+  !python {model: sale.order}: |
+    sale_order = self.browse(cr, uid, ref("sale_order_commission_test1"))
+    assert sale_order.invoice_ids, "Invoice should be created."
+    assert sale_order.invoice_exists, "Order is not invoiced."
+    assert sale_order.invoiced, "Order is not paid."
+-
+  I create another Sale Order with a Agent who has the Type of Commission - Invoice Based
+-
+  !record {model: sale.order, id: sale_order_commission_test2}:
+    partner_id: base.res_partner_2
+    order_line:
+      - product_id: product.product_product_7
+        product_uom_qty: 16
+        product_uom: product.product_uom_dozen
+        agents:
+          - agent: sale_commission.res_partner_eiffel_sale_agent
+            commission: sale_commission.demo_commission
+-
+  I confirm the Quotation.
+-
+  !workflow {model: sale.order, action: order_confirm, ref: sale_order_commission_test2}
+-
+  I create advance invoice where type is 'Invoice all the Sale Order'.
+-
+  !python {model: sale.advance.payment.inv}: |
+    ctx = context.copy()
+    ctx.update({"active_model": 'sale.order', "active_ids": [ref("sale_order_commission_test2")], "active_id":ref("sale_order_commission_test2")})
+    pay_id = self.create(cr, uid, {'advance_payment_method': 'all'})
+    self.create_invoices(cr, uid, [pay_id], context=ctx)
+-
+  I check Invoice which made advance where type is 'Invoice all the Sale Order'.
+-
+  !python {model: sale.order}: |
+    order = self.browse(cr, uid, ref('sale_order_commission_test2'))
+    assert order.invoice_ids, "Invoice should be created after make advance invoice where type is 'Invoice all the Sale Order'."
+-
+  I open the Invoice for set Date Invoice for a month ago.
+-
+  !python {model: sale.order}: |
+    so = self.browse(cr, uid, ref("sale_order_commission_test2"))
+    account_invoice_obj = self.pool.get('account.invoice')
+    from openerp import fields
+    for invoice in so.invoice_ids:
+      invoice.date_invoice = fields.Date.today()
+      invoice.signal_workflow('invoice_open')
+-
+  I create the Settlement
+-
+  !python {model: sale.commission.make.settle}: |
+    import datetime
+    import dateutil.relativedelta
+    now = datetime.datetime.now()
+    wizard_id = self.create(cr, uid, {'date_to': now + dateutil.relativedelta.relativedelta(months=1)})
+    result = self.action_settle(cr, uid, [wizard_id], context=None)
+-
+  I create the Commission Invoices  from Settlements.
+-
+  !python {model: sale.commission.make.invoice}: |
+    wizard_id = self.create(cr, uid, {'product': 1})
+    result = self.button_create(cr, uid, [wizard_id], context=None)
+-
+  I open the Settlements to check if the Invoices have been created.
+-
+  !python {model: sale.commission.settlement}: |
+    settlement_ids = self.search(cr, uid, [('state', '=', 'invoiced')])
+    for settlement_id in settlement_ids:
+      obj_settlement = self.browse(cr, uid, settlement_id)
+      assert obj_settlement.invoice, "Settlements need to be in Invoiced State."
