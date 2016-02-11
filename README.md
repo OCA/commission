@@ -12,7 +12,7 @@ Unported addons
 addon | version | summary
 --- | --- | ---
 [hr_commission](hr_commission/) | 8.0.1.0.0 (unported) | HR commissions
-[sale_commission](sale_commission/) | 8.0.2.0.0 (unported) | Sales commissions
+[sale_commission](sale_commission/) | 8.0.2.3.0 (unported) | Sales commissions
 [sale_stock_commission](sale_stock_commission/) | 8.0.1.0.0 (unported) | Sale stock commissions
 
 [//]: # (end addons)
