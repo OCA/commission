@@ -180,7 +180,7 @@ class TestSaleCommission(common.TransactionCase):
         self.assertNotEquals(len(self.saleorder1.invoice_ids), 0,
                              "Invoice should be created.")
         for invoice in self.saleorder1.invoice_ids:
-            invoice.with_context(context).invoice_validate()
+            invoice.signal_workflow('invoice_open')
             self.assertEquals(invoice.state, 'open')
         wizard = self.make_settle_model.create(
             {'date_to': (fields.Datetime.from_string(fields.Datetime.now()) +
@@ -197,9 +197,8 @@ class TestSaleCommission(common.TransactionCase):
         ], limit=1)
         for invoice in self.saleorder1.invoice_ids:
             invoice.pay_and_reconcile(journals[:1], invoice.amount_total)
-        self.assertTrue(self.saleorder1.invoice_exists,
-                        "Order is not invoiced.")
-        self.assertTrue(self.saleorder1.invoiced, "Order is not paid.")
+        self.assertTrue(self.saleorder1.invoice_ids, "Order is not invoiced.")
+        self.assertEqual(self.saleorder1.invoice_ids[:1].state, "paid")
 
     def test_sale_commission_gross_amount_invoice(self):
         self.saleorder2.action_confirm()
@@ -215,7 +214,7 @@ class TestSaleCommission(common.TransactionCase):
                    "active_id": self.saleorder2.id}
         payment.with_context(context).create_invoices()
         for invoice in self.saleorder2.invoice_ids:
-            invoice.with_context(context).invoice_validate()
+            invoice.signal_workflow('invoice_open')
             self.assertEquals(invoice.state, 'open')
         wizard = self.make_settle_model.create(
             {'date_to': (fields.Datetime.from_string(fields.Datetime.now()) +
@@ -242,7 +241,7 @@ class TestSaleCommission(common.TransactionCase):
                    "active_id": self.saleorder3.id}
         payment.with_context(context).create_invoices()
         for invoice in self.saleorder3.invoice_ids:
-            invoice.with_context(context).invoice_validate()
+            invoice.signal_workflow('invoice_open')
             self.assertEquals(invoice.state, 'open')
         wizard = self.make_settle_model.create(
             {'date_to': (fields.Datetime.from_string(fields.Datetime.now()) +
@@ -261,9 +260,8 @@ class TestSaleCommission(common.TransactionCase):
             invoice.pay_and_reconcile(journals[:1], invoice.amount_total)
         self.assertNotEquals(len(self.saleorder3.invoice_ids), 0,
                              "Invoice should be created.")
-        self.assertTrue(self.saleorder3.invoice_exists,
-                        "Order is not invoiced.")
-        self.assertTrue(self.saleorder3.invoiced, "Order is not paid.")
+        self.assertTrue(self.saleorder3.invoice_ids, "Order is not invoiced.")
+        self.assertEqual(self.saleorder3.invoice_ids[:1].state, "paid")
         for invoice in self.saleorder3.invoice_ids:
             refund_wiz = self.env['account.invoice.refund'].with_context(
                 active_ids=invoice.ids, active_id=invoice.id).create({
@@ -286,7 +284,7 @@ class TestSaleCommission(common.TransactionCase):
                    "active_id": self.saleorder4.id}
         payment.with_context(context).create_invoices()
         for invoice in self.saleorder4.invoice_ids:
-            invoice.with_context(context).invoice_validate()
+            invoice.signal_workflow('invoice_open')
             self.assertEquals(invoice.state, 'open')
         wizard = self.make_settle_model.create(
             {'date_to': (fields.Datetime.from_string(fields.Datetime.now()) +
@@ -304,9 +302,6 @@ class TestSaleCommission(common.TransactionCase):
         payment = self.advance_inv_model.create({
             'advance_payment_method': 'all',
         })
-        context = {"active_model": 'sale.order',
-                   "active_ids": [self.saleorder5.id],
-                   "active_id": self.saleorder5.id}
         payment.with_context(active_model='sale.order',
                              active_ids=[self.saleorder5.id],
                              active_id=self.saleorder5.id).create_invoices()
@@ -315,7 +310,7 @@ class TestSaleCommission(common.TransactionCase):
             "Invoice should be created after make advance invoice where type"
             " is 'Invoice all the Sale Order'.")
         for invoice in self.saleorder5.invoice_ids:
-            invoice.with_context(context).invoice_validate()
+            invoice.signal_workflow('invoice_open')
             self.assertEquals(invoice.state, 'open')
         wizard = self.make_settle_model.create(
             {'date_to': (fields.Datetime.from_string(fields.Datetime.now()) +
@@ -334,9 +329,8 @@ class TestSaleCommission(common.TransactionCase):
             invoice.pay_and_reconcile(journals[:1], invoice.amount_total)
         self.assertNotEquals(len(self.saleorder5.invoice_ids), 0,
                              "Invoice should be created.")
-        self.assertTrue(self.saleorder5.invoice_exists,
-                        "Order is not invoiced.")
-        self.assertTrue(self.saleorder5.invoiced, "Order is not paid.")
+        self.assertTrue(self.saleorder5.invoice_ids, "Order is not invoiced.")
+        self.assertEqual(self.saleorder5.invoice_ids[:1].state, "paid")
 
     def test_sale_commission_section_invoice(self):
         self.saleorder6.action_confirm()
@@ -352,7 +346,7 @@ class TestSaleCommission(common.TransactionCase):
                    "active_id": self.saleorder6.id}
         payment.with_context(context).create_invoices()
         for invoice in self.saleorder6.invoice_ids:
-            invoice.with_context(context).invoice_validate()
+            invoice.signal_workflow('invoice_open')
             self.assertEquals(invoice.state, 'open')
         wizard = self.make_settle_model.create(
             {'date_to': (fields.Datetime.from_string(fields.Datetime.now()) +
