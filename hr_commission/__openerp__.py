@@ -21,7 +21,8 @@
 {
     'name': 'HR commissions',
     'version': '8.0.1.0.0',
-    'author': 'Serv. Tecnol. Avanzados - Pedro M. Baeza',
+    'author': 'Serv. Tecnol. Avanzados - Pedro M. Baeza, '
+              'Odoo Community Association (OCA)',
     "category": "Human Resources",
     'depends': [
         'sale_commission',
