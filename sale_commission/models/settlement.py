@@ -115,7 +115,7 @@ class Settlement(models.Model):
         return []
 
     @api.multi
-    def make_invoices(self, journal, refund_journal, product, date=False):
+    def make_invoices(self, journal, product, date=False):
         invoice_obj = self.env['account.invoice']
         invoice_line_obj = self.env['account.invoice.line']
         for settlement in self:
@@ -125,7 +125,7 @@ class Settlement(models.Model):
             extra_total = sum(x['price_unit'] for x in extra_invoice_lines)
             invoice_journal = (journal if
                                (settlement.total + extra_total) >= 0 else
-                               refund_journal)
+                               False)
             invoice_vals = self._prepare_invoice_header(
                 settlement, invoice_journal, date=date)
             invoice = invoice_obj.create(invoice_vals)

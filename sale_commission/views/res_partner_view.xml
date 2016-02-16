@@ -30,16 +30,16 @@
                         </group>
                         <group colspan="4"
                                string="Settlements">
-                            <!--<field name="settlements" nolabel="1">-->
-                                <!--<tree string="Settlements"-->
-                                      <!--colors="red: state == 'cancel'; gray: state == 'invoiced'">-->
-                                    <!--<field name="date_from"/>-->
-                                    <!--<field name="date_to"/>-->
-                                    <!--<field name="total"-->
-                                           <!--sum="Settled total" />-->
-                                    <!--<field name="state"/>-->
-                                <!--</tree>-->
-                            <!--</field>-->
+                            <field name="settlements" nolabel="1">>
+                                <tree string="Settlements"
+                                      colors="red: state == 'cancel'; gray: state == 'invoiced'">
+                                    <field name="date_from"/>
+                                    <field name="date_to"/>
+                                    <field name="total"
+                                           sum="Settled total" />
+                                    <field name="state"/>
+                                </tree>
+                            </field>
                         </group>
                     </group>
                 </page>

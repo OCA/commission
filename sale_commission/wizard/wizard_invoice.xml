@@ -9,7 +9,6 @@
                 <form string="Make invoices">
                     <group>
                         <field name="journal" />
-                        <!--<field name="refund_journal" />-->
                         <field name="product" />
                         <field name="date" />
                     </group>

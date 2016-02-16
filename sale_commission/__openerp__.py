@@ -9,7 +9,7 @@
     'name': 'Sales commissions',
     'version': '9.0.1.0.0',
     'author': 'Pexego, '
-              'Savoire-faire linux, '
+              'Savoir-faire linux, '
               'Avanzosc, '
               'Abstract, '
               'Serv. Tecnol. Avanzados - Pedro M. Baeza, '
@@ -23,7 +23,6 @@
         'sale',
     ],
     'contributors': [
-        'Pexego',
         'Davide Corio <davide.corio@domsense.com>',
         'Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>',
         'Sandy Carter <sandy.carter@savoirfairelinux.com>',
@@ -43,7 +42,6 @@
         'views/settlement_view.xml',
         'wizard/wizard_settle.xml',
         'wizard/wizard_invoice.xml',
-        # 'report/cc_commission_report.xml'
     ],
     'demo': [
         'demo/sale_agent_demo.xml',
