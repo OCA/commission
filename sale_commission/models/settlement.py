@@ -34,6 +34,7 @@ class Settlement(models.Model):
     currency_id = fields.Many2one(
         comodel_name='res.currency', readonly=True,
         default=_default_currency)
+    company_id = fields.Many2one('res.company', 'Company')
 
     @api.depends('lines', 'lines.settled_amount')
     def _compute_total(self):
@@ -173,3 +174,4 @@ class SettlementLine(models.Model):
         related="agent_line.amount", readonly=True, store=True)
     commission = fields.Many2one(
         comodel_name="sale.commission", related="agent_line.commission")
+    company_id = fields.Many2one('res.company', 'Company')

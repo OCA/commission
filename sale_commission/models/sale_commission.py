@@ -11,6 +11,12 @@ class SaleCommission(models.Model):
     _name = "sale.commission"
     _description = "Commission in sales"
 
+    @api.model
+    def _get_default_company_id(self):
+        company_obj = self.env['res.company']
+        company_id = company_obj._company_default_get('sale.commission')
+        return company_obj.browse(company_id)
+
     name = fields.Char('Name', required=True)
     commission_type = fields.Selection(
         selection=[("fixed", "Fixed percentage"),
@@ -28,6 +34,9 @@ class SaleCommission(models.Model):
         selection=[('gross_amount', 'Gross Amount'),
                    ('net_amount', 'Net Amount')],
         string='Base', required=True, default='gross_amount')
+
+    company_id = fields.Many2one('res.company', string='Company',
+                                 default=_get_default_company_id)
 
     @api.multi
     def calculate_section(self, base):
