@@ -123,8 +123,7 @@ class AccountInvoiceLineAgent(models.Model):
     def onchange_agent(self):
         self.commission = self.agent.commission
 
-    @api.depends('commission.commission_type', 'invoice_line.price_subtotal',
-                 'commission.amount_base_type')
+    @api.depends('invoice_line.price_subtotal')
     def _compute_amount(self):
         for line in self:
             line.amount = 0.0
