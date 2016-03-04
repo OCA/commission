@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # © 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>)
 # © 2015 Avanzosc (<http://www.avanzosc.es>)
-# © 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
+# © 2015-2016 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 {
     'name': 'Sales commissions',
-    'version': '8.0.2.3.1',
+    'version': '8.0.2.4.0',
     'author': 'Pexego, '
               'Savoire-faire linux, '
               'Avanzosc, '
@@ -19,7 +19,8 @@
         'base',
         'account',
         'product',
-        'sale'
+        'sale',
+        'web_widget_one2many_tags',
     ],
     'contributors': [
         "Pexego",

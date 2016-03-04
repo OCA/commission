@@ -118,6 +118,14 @@ class AccountInvoiceLineAgent(models.Model):
         compute="_compute_settled",
         store=True, copy=False)
 
+    @api.multi
+    def name_get(self):
+        res = []
+        for record in self:
+            name = "%s: %s" % (record.agent.name, record.commission.name)
+            res.append((record.id, name))
+        return res
+
     @api.onchange('agent')
     def onchange_agent(self):
         self.commission = self.agent.commission
