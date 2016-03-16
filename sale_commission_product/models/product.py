@@ -30,6 +30,14 @@ class ProductProductAgent(models.Model):
                     commission_id = product_agent_id.commission.id
         return commission_id
 
+    @api.multi
+    def name_get(self):
+        res = []
+        for record in self:
+            name = "%s: %s" % (record.agent.name, record.commission.name)
+            res.append((record.id, name))
+        return res
+ 
     product_id = fields.Many2one(
         comodel_name="product.product",
         required=True,
