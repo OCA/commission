@@ -9,7 +9,10 @@
             <field name="arch" type="xml">
                 <xpath expr="//form/sheet/notebook/page[@string='Sales']/group[1]" position="after">
                     <separator colspan="2" string="Agents &amp; commissions"/>
-                    <field name="agents" attrs="{'readonly': [('commission_free', '=', True)]}"/>
+                    <field name="agents"
+                           attrs="{'readonly': [('commission_free', '=', True)]}"
+                           widget="one2many_tags"
+                    />
                 </xpath>
             </field>
         </record>
