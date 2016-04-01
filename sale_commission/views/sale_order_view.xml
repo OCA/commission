@@ -36,6 +36,7 @@
                     <group>
                         <field name="agent"/>
                         <field name="commission"/>
+                        <field name="display_name" invisible="1" />
                     </group>
                 </form>
             </field>
