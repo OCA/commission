@@ -68,8 +68,13 @@ class AccountInvoiceLine(models.Model):
             partner = self.env['res.partner'].browse(
                 self.env.context['partner_id'])
             for agent in partner.agents:
-                agents.append({'agent': agent.id,
-                               'commission': agent.commission.id})
+                vals = {
+                    'agent': agent.id,
+                    'commission': agent.commission.id,
+                }
+                vals['display_name'] = self.env['account.invoice.line.agent']\
+                    .new(vals).display_name
+                agents.append(vals)
         return [(0, 0, x) for x in agents]
 
     agents = fields.One2many(
@@ -125,6 +130,10 @@ class AccountInvoiceLineAgent(models.Model):
             name = "%s: %s" % (record.agent.name, record.commission.name)
             res.append((record.id, name))
         return res
+
+    @api.depends('agent', 'commission')
+    def _compute_display_name(self):
+        return super(AccountInvoiceLineAgent, self)._compute_display_name()
 
     @api.onchange('agent')
     def onchange_agent(self):
