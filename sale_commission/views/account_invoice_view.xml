@@ -2,7 +2,6 @@
 <openerp>
     <data>
         <record id="invoice_line_agent_tree" model="ir.ui.view">
-            <field name="name">account.invoice.line.agent.tree</field>
             <field name="model">account.invoice.line.agent</field>
             <field name="arch" type="xml">
                 <tree string="Invoice line agents and commissions" editable="bottom">
@@ -14,21 +13,33 @@
             </field>
         </record>
 
+        <record id="invoice_line_agent_form" model="ir.ui.view">
+            <field name="model">account.invoice.line.agent</field>
+            <field name="arch" type="xml">
+                <form string="Agents">
+                    <group>
+                        <field name="agent"/>
+                        <field name="commission"/>
+                        <field name="display_name" invisible="0" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
         <record id="invoice_line_form_agent" model="ir.ui.view">
-            <field name="name">account.invoice.line.form.agent</field>
             <field name="model">account.invoice.line</field>
             <field name="inherit_id" ref="account.view_invoice_line_form" />
             <field name="arch" type="xml">
                 <field name="company_id" position="after">
                     <field name="commission_free"/>
                     <field name="agents"
-                           attrs="{'readonly': [('commission_free', '=', True)]}"/>
+                           attrs="{'readonly': [('commission_free', '=', True)]}"
+                    />
                 </field>
             </field>
         </record>
 
         <record id="invoice_form_agent" model="ir.ui.view">
-            <field name="name">account.invoice.form.agent</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form" />
             <field name="arch" type="xml">
@@ -38,7 +49,9 @@
                 <xpath expr="//field[@name='invoice_line']/tree//field[@name='price_subtotal']" position="after">
                     <field name="commission_free"/>
                     <field name="agents"
-                           attrs="{'readonly': [('commission_free', '=', True)]}"/>
+                           attrs="{'readonly': [('commission_free', '=', True)]}"
+                           widget="one2many_tags"
+                    />
                 </xpath>
                 <field name="amount_total" position="after">
                     <field name="commission_total"

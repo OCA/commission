@@ -3,7 +3,6 @@
     <data>
 
         <record id="view_order_agent_form_inherit" model="ir.ui.view">
-            <field name="name">sale.agent.order.inherit.form</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
@@ -13,7 +12,9 @@
                 <xpath expr="//field[@name='order_line']/tree//field[@name='price_subtotal']" position="after">
                     <field name="commission_free"/>
                     <field name="agents"
-                           attrs="{'readonly': [('commission_free', '=', True)]}"/>
+                           attrs="{'readonly': [('commission_free', '=', True)]}"
+                           widget="one2many_tags"
+                    />
                 </xpath>
                 <xpath expr="//field[@name='order_line']/form//field[@name='address_allotment_id']" position="after">
                     <field name="commission_free"/>
@@ -28,8 +29,20 @@
             </field>
         </record>
 
+        <record id="view_sale_order_line_form" model="ir.ui.view">
+            <field name="model">sale.order.line.agent</field>
+            <field name="arch" type="xml">
+                <form string="Agents">
+                    <group>
+                        <field name="agent"/>
+                        <field name="commission"/>
+                        <field name="display_name" invisible="1" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
         <record model="ir.ui.view" id="view_sale_order_line_tree">
-            <field name="name">sale.order.line.agent.tree</field>
             <field name="model">sale.order.line.agent</field>
             <field name="arch" type="xml">
                 <tree string="Agents" editable="bottom">
