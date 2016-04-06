@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_res_partner_agent_tree">
+            <field name="name">res.partner.agent.tree.inherit</field>
+            <field name="model">res.partner.agent</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Agents">
+                    <field name="partner_id"/>
+                    <field name="agent_id"/>
+                    <field name="commission_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view__res_partner_agent_form">
+            <field name="name">res.partner.agent.form.inherit</field>
+            <field name="model">res.partner.agent</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Agents">
+                    <sheet>
+                        <group>
+                            <field name="agent_id"/>
+                            <field name="commission_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

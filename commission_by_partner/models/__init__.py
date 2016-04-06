@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2015 Comunitea Servicios Tecnologicos Sl.All Rights Reserved
+#    Copyright (C) 2015 Comunitea Servicios Tecnologicos Sl.  All Rights Reserved
 #    $Javier Colmenero Fernández$ <javier@comunitea.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,28 +18,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-{
-    'name': 'Sale commissions by partner',
-    'version': '8.0.2.4.0',
-    'author': 'Comunitea',
-    "category": "Sales Management",
-    'license': 'AGPL-3',
-    'depends': [
-        'sale_commission',
-    ],
-    'contributors': [
-        "Comunitea",
-        "Javier Colmenero Fernández <javier@comunitea.com>",
-    ],
-    "data": [
-        'security/ir.model.access.csv',
-        'views/partner_agent_view.xml',
-        'views/res_partner_view.xml'
-    ],
-    "demo": [
-    ],
-    'test': [
-    ],
-    "installable": True
-}
+from . import partner_agent
+from . import res_partner

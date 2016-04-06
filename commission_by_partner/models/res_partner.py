@@ -18,28 +18,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from openerp import models, fields
 
-{
-    'name': 'Sale commissions by partner',
-    'version': '8.0.2.4.0',
-    'author': 'Comunitea',
-    "category": "Sales Management",
-    'license': 'AGPL-3',
-    'depends': [
-        'sale_commission',
-    ],
-    'contributors': [
-        "Comunitea",
-        "Javier Colmenero Fernández <javier@comunitea.com>",
-    ],
-    "data": [
-        'security/ir.model.access.csv',
-        'views/partner_agent_view.xml',
-        'views/res_partner_view.xml'
-    ],
-    "demo": [
-    ],
-    'test': [
-    ],
-    "installable": True
-}
+
+class ResPartner(models.Model):
+    _inherit = "res.partner"
+
+    commission_ids = fields.One2many('res.partner.agent', 'partner_id',
+                                     'Agents')
