@@ -1,0 +1,104 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* commission_by_partner
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-04-07 16:38+0000\n"
+"PO-Revision-Date: 2016-04-07 16:38+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: commission_by_partner
+#: code:addons/commission_by_partner/models/partner_agent.py:54
+#, python-format
+msgid "A commission has been assigned by sections that does not match that defined for the agent by default, so that these sections shall apply only on this bill."
+msgstr "Se ha asignado una comisión por tramos que no coincide con la definida por defecto para el agente, por lo que ese tramo solo se aplica a esta factura."
+
+#. module: commission_by_partner
+#: field:res.partner.agent,agent_id:0
+msgid "Agent"
+msgstr "Agente"
+
+#. module: commission_by_partner
+#: view:res.partner.agent:commission_by_partner.view__res_partner_agent_form
+#: view:res.partner.agent:commission_by_partner.view_res_partner_agent_tree
+msgid "Agents"
+msgstr "Agentes"
+
+#. module: commission_by_partner
+#: view:res.partner:commission_by_partner.view_res_partner_form_add_agents_commissions
+msgid "Agents and Commissions"
+msgstr "Agentes y comisiones"
+
+#. module: commission_by_partner
+#: view:res.partner:commission_by_partner.view_res_partner_form_add_agents_commissions
+msgid "Agents/Consultancy"
+msgstr "Agentes/Comerciales"
+
+#. module: commission_by_partner
+#: field:res.partner.agent,commission_id:0
+msgid "Applied commission"
+msgstr "Comisión aplicada"
+
+#. module: commission_by_partner
+#: field:res.partner.agent,company_id:0
+msgid "Company"
+msgstr "Compañía"
+
+#. module: commission_by_partner
+#: field:res.partner.agent,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: commission_by_partner
+#: field:res.partner.agent,create_date:0
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: commission_by_partner
+#: field:res.partner.agent,display_name:0
+msgid "Display Name"
+msgstr "Nombre visualizado"
+
+#. module: commission_by_partner
+#: field:res.partner.agent,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: commission_by_partner
+#: model:ir.model,name:commission_by_partner.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Línea de factura"
+
+#. module: commission_by_partner
+#: field:res.partner.agent,__last_update:0
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: commission_by_partner
+#: field:res.partner.agent,write_uid:0
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: commission_by_partner
+#: field:res.partner.agent,write_date:0
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: commission_by_partner
+#: model:ir.model,name:commission_by_partner.model_res_partner
+#: field:res.partner.agent,partner_id:0
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: commission_by_partner
+#: model:ir.model,name:commission_by_partner.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea pedido de venta"
