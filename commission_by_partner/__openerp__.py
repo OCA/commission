@@ -4,7 +4,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 {
     'name': 'Sale commissions by partner',
-    'version': '8.0.2.4.0',
+    'version': '8.0.2.4.1',
     'author': 'Comunitea',
     "category": "Sales Management",
     'license': 'AGPL-3',
@@ -26,5 +26,6 @@
     ],
     'test': [
     ],
-    "installable": True
+    "installable": True,
+    "post_init_hook": "post_init_hook",
 }

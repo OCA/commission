@@ -6,17 +6,22 @@
 Sales commissions by partner
 =================
 
-This module allows to define different commissiont to an angent in each partner.
+This module allows to define different agents and commissions by partner.
 
+In partner form view we can define several agents with specific commissions to
+each partner instead several agents with the same default commission defined in
+the agent.
 
 
 Known issues / Roadmap
 ======================
+If previous data of field 'agents' in res.partner exists it will be coppied
+into the new field 'commission_ids'.
 
+If no default commission defined in the partners agents then will no be coppied
+into 'commission_ids' field.
 
-Bug Tracker
-===========
-
+The field agents from sale_commission module will be invisible.
 
 
 Credits
@@ -26,16 +31,10 @@ Contributors
 ------------
 * Comunitea
 * Javier Colmenero <javier@comunitea.com>
-* Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>
-* Sandy Carter <sandy.carter@savoirfairelinux.com>
-* Giorgio Borelli <giorgio.borelli@abstract.it>
-* Daniel Campos <danielcampos@avanzosc.es>
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
-* Oihane Crucelaegui <oihanecruce@gmail.com>
 
 Icon
 ----
-
+* https://openclipart.org/detail/43969/pile-of-golden-coins-by-j_alves
 
 Maintainer
 ----------
