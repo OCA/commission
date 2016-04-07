@@ -18,7 +18,9 @@
     "data": [
         'security/ir.model.access.csv',
         'views/partner_agent_view.xml',
-        'views/res_partner_view.xml'
+        'views/res_partner_view.xml',
+        'views/sale_order_view.xml',
+        'views/account_invoice_view.xml',
     ],
     "demo": [
     ],

@@ -34,3 +34,20 @@ class AccountInvoiceLine(models.Model):
         inverse_name="invoice_line", string="Agents & commissions",
         help="Agents/Commissions related to the invoice line.",
         default=_default_agents, copy=True)
+
+
+class AccountInvoiceLineAgent(models.Model):
+    _inherit = "account.invoice.line.agent"
+
+    @api.onchange('agent')
+    def onchange_agent(self):
+        res_commission = super(AccountInvoiceLineAgent, self).onchange_agent()
+        if self.env.context.get('partner_id'):
+            domain = [
+                ('partner_id', '=', self.env.context['partner_id']),
+                ('agent_id', '=', self.agent.id),
+            ]
+            rel_objs = self.env['res.partner.agent'].search(domain, limit=1)
+            if rel_objs:
+                res_commission = rel_objs.commission_id.id
+        self.commission = res_commission

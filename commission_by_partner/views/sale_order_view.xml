@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_order_agent_by_partner_form_inherit" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_commission.view_order_agent_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree//field[@name='agents']" position="attributes">
+                   <attribute name="context">{'partner_id': partner_id}</attribute>         
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form//field[@name='agents']" position="attributes">
+                   <attribute name="context">{'partner_id': partner_id}</attribute>        
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

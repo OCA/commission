@@ -32,3 +32,20 @@ class SaleOrderLine(models.Model):
         string="Agents & commissions",
         comodel_name='sale.order.line.agent', inverse_name='sale_line',
         copy=True, readonly=True, default=_default_agents)
+
+
+class SaleOrderLineAgent(models.Model):
+    _inherit = "sale.order.line.agent"
+
+    @api.onchange('agent')
+    def onchange_agent(self):
+        res_commission = super(SaleOrderLineAgent, self).onchange_agent()
+        if self.env.context.get('partner_id'):
+            domain = [
+                ('partner_id', '=', self.env.context['partner_id']),
+                ('agent_id', '=', self.agent.id),
+            ]
+            rel_objs = self.env['res.partner.agent'].search(domain, limit=1)
+            if rel_objs:
+                res_commission = rel_objs.commission_id.id
+        self.commission = res_commission
