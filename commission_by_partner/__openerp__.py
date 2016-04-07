@@ -17,6 +17,7 @@
     ],
     "data": [
         'security/ir.model.access.csv',
+        "security/commission_security.xml",
         'views/partner_agent_view.xml',
         'views/res_partner_view.xml',
         'views/sale_order_view.xml',

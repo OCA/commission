@@ -12,6 +12,8 @@ In partner form view we can define several agents with specific commissions to
 each partner instead several agents with the same default commission defined in
 the agent.
 
+Allows multicompany behavior.
+
 
 Known issues / Roadmap
 ======================

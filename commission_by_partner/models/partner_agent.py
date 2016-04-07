@@ -12,6 +12,12 @@ class ResPartnerAgent(models.Model):
     """
     _name = "res.partner.agent"
 
+    @api.model
+    def _get_default_company_id(self):
+        company_obj = self.env['res.company']
+        company_id = company_obj._company_default_get('res.partner.agent')
+        return company_obj.browse(company_id)
+
     partner_id = fields.Many2one('res.partner', 'Partner', required=True,
                                  ondelete='cascade', help='', select=1)
     agent_id = fields.Many2one('res.partner', 'Agent', required=True,
@@ -19,6 +25,8 @@ class ResPartnerAgent(models.Model):
                                domain="[('agent', '=', True)]")
     commission_id = fields.Many2one('sale.commission', 'Applied commission',
                                     required=True, help='')
+    company_id = fields.Many2one('res.company', string='Company',
+                                 default=_get_default_company_id)
 
     def name_get(self, cr, uid, ids, context=None):
         """devuelve como nombre del agente del partner el nombre del agente"""
