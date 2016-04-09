@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-15 00:27+0000\n"
+"POT-Creation-Date: 2016-04-03 00:45+0000\n"
 "PO-Revision-Date: 2016-03-15 00:43+0000\n"
 "Last-Translator: Ivan Todorovich <ivan.todorovich@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-commission-8-0/language/es/)\n"
@@ -61,12 +61,14 @@ msgid "Agent line"
 msgstr "Línea de agente"
 
 #. module: sale_commission
+#: view:account.invoice.line.agent:sale_commission.invoice_line_agent_form
 #: model:ir.actions.act_window,name:sale_commission.action_agent_form
 #: model:ir.ui.menu,name:sale_commission.menu_agent_form
 #: view:res.partner:sale_commission.view_res_partner_filter
 #: field:res.partner,agents:0
 #: view:sale.commission.make.settle:sale_commission.view_settled_wizard
 #: field:sale.commission.make.settle,agents:0
+#: view:sale.order.line.agent:sale_commission.view_sale_order_line_form
 #: view:sale.order.line.agent:sale_commission.view_sale_order_line_tree
 msgid "Agents"
 msgstr "Agentes"
