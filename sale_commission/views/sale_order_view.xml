@@ -13,13 +13,15 @@
                     <field name="commission_free"/>
                     <field name="agents"
                            attrs="{'readonly': [('commission_free', '=', True)]}"
+                           context="{'partner_id': partner_id}"
                            widget="one2many_tags"
                     />
                 </xpath>
                 <xpath expr="//field[@name='order_line']/form//field[@name='address_allotment_id']" position="after">
                     <field name="commission_free"/>
                     <field name="agents"
-                           attrs="{'readonly': [('commission_free', '=', True)]}"/>
+                           attrs="{'readonly': [('commission_free', '=', True)]}"
+                           context="{'partner_id': partner_id}"/>
                 </xpath>
                 <field name="amount_total" position="after">
                     <field name="commission_total"
