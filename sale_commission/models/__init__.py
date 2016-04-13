@@ -8,4 +8,4 @@ from . import res_partner
 from . import sale_order
 from . import account_invoice
 from . import settlement
-from . import partner_agent
+from . import res_partner_agent
