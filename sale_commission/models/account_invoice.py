@@ -122,6 +122,8 @@ class AccountInvoiceLineAgent(models.Model):
     settled = fields.Boolean(
         compute="_compute_settled",
         store=True, copy=False)
+    company_id = fields.Many2one("res.company", "Company",
+                                 related="invoice.company_id", store=True)
 
     @api.multi
     def name_get(self):

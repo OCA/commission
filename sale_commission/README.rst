@@ -17,7 +17,6 @@ You can define which base amount is going to be taken into account: net amount
 
 Known issues / Roadmap
 ======================
-* Make it totally multi-company aware.
 * Allow to calculate and pay in other currency different from company one.
 * Allow to group by agent when generating invoices.
 

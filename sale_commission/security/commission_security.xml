@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="sale_commission_multicompany_rule" model="ir.rule">
+            <field name="name">Sale commission multi-company</field>
+            <field name="model_id" ref="model_sale_commission"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|','|',('company_id.child_ids','child_of',[user.company_id.id]),('company_id','child_of',[user.company_id.id]),('company_id','=',False)]</field>
+        </record>
+
+        <record id="account_invoice_line_agent_multicompany_rule" model="ir.rule">
+            <field name="name">Invoice line agent multi-company</field>
+            <field name="model_id" ref="model_account_invoice_line_agent"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        </record>
+
+        <record id="sale_commission_settlement_multicompany_rule" model="ir.rule">
+            <field name="name">Settlement multi-company</field>
+            <field name="model_id" ref="model_sale_commission_settlement"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        </record>
+
+        <record id="sale_commission_settlement_line_multicompany_rule" model="ir.rule">
+            <field name="name">Settlement line multi-company</field>
+            <field name="model_id" ref="model_sale_commission_settlement_line"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        </record>
+
+    </data>
+</openerp>
