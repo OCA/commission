@@ -14,7 +14,6 @@ def migrate_agents_field(cr):
         INNER JOIN res_partner rp ON rp.id=par.agent_id
         INNER JOIN res_partner rp2 ON rp.id=par.partner_id
         WHERE rp.commission is not null);""")
-    cr.execute(""""DROP TABLE old_partner_agent_rel""")
 
 
 def migrate(cr, version):
