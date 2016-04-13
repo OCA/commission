@@ -2,6 +2,7 @@
 <openerp>
     <data>
 
+<<<<<<< 0d02f9003f07daec004a093d5a81f50bc93564fa
         <record id="sale_commission_multicompany_rule" model="ir.rule">
             <field name="name">Sale commission multi-company</field>
             <field name="model_id" ref="model_sale_commission"/>
@@ -26,6 +27,11 @@
         <record id="sale_commission_settlement_line_multicompany_rule" model="ir.rule">
             <field name="name">Settlement line multi-company</field>
             <field name="model_id" ref="model_sale_commission_settlement_line"/>
+=======
+        <record id="res_partner_agent_multicompany_rule" model="ir.rule">
+            <field name="name">Res Partner Agent multi-company</field>
+            <field name="model_id" ref="model_res_partner_agent"/>
+>>>>>>> [ADD]sale_commission: We are able to set agents with specific commissions by partner
             <field name="global" eval="True"/>
             <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
         </record>

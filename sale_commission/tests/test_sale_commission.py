@@ -125,7 +125,7 @@ class TestSaleCommission(common.TransactionCase):
                 'product_id': self.ref('product.product_product_7'),
                 'product_uom_qty': 8.0,
                 'agents': [(0, 0, {
-                    'agent':  self.ref(
+                    'agent': self.ref(
                         'sale_commission.res_partner_pritesh_sale_agent'),
                     'commission': commission_section_paid.id,
                 })]
@@ -138,7 +138,7 @@ class TestSaleCommission(common.TransactionCase):
                 'product_uom_qty': 16.0,
                 'product_uom': self.ref('product.product_uom_dozen'),
                 'agents': [(0, 0, {
-                    'agent':  self.ref(
+                    'agent': self.ref(
                         'sale_commission.res_partner_pritesh_sale_agent'),
                     'commission': commission_section_invoice.id,
                 })]
@@ -360,7 +360,13 @@ class TestSaleCommission(common.TransactionCase):
     def test_sale_default_agent(self):
         sale_agent = self.browse_ref(
             'sale_commission.res_partner_pritesh_sale_agent')
-        self.partner.agents = [(6, 0, [sale_agent.id])]
+
+        # self.partner.agents = [(, 0, [sale_agent.id])]
+        vals = {
+            'partner_id': self.partner.id,
+            'agent_id': sale_agent.id,
+        }
+        self.partner.commission_ids = [(0, 0, vals)]
         saleorder = self.sale_order_model.with_context(
             partner_id=self.partner.id).create({
                 'partner_id': self.partner.id,
@@ -386,3 +392,47 @@ class TestSaleCommission(common.TransactionCase):
                     'percent': 20.0,
                 })]
             })
+
+    def test_order_line_agent_onchange(self):
+        partner_com = self.env['res.partner.agent'].create({
+            'partner_id': self.partner.id,
+            'agent_id': self.ref(
+                'sale_commission.res_partner_pritesh_sale_agent'),
+            'default_commission': False,
+            'commission_id': self.ref('sale_commission.demo_commission_paid')
+        })
+        sale_agent_line = self.saleorder1.order_line[0].agents[0]
+        sale_agent_line.with_context(partner_id=self.partner.id)
+        sal = self.env['sale.order.line.agent'].\
+            with_context(partner_id=self.partner.id).browse(sale_agent_line.id)
+        sal.onchange_agent()
+        self.assertTrue(
+            sale_agent_line.commission.id == partner_com.commission_id.id)
+
+    def test_invoice_line_agent_onchange(self):
+        self.saleorder1.signal_workflow('order_confirm')
+        payment = self.advance_inv_model.create({
+            'advance_payment_method': 'all',
+        })
+        payment.with_context(active_model='sale.order',
+                             active_ids=[self.saleorder1.id],
+                             active_id=self.saleorder1.id).create_invoices()
+        self.assertNotEquals(
+            len(self.saleorder1.invoice_ids), 0,
+            "Invoice should be created after make advance invoice where type"
+            " is 'Invoice all the Sale Order'.")
+        my_invoice = self.saleorder1.invoice_ids[0]
+        partner_com = self.env['res.partner.agent'].create({
+            'partner_id': self.partner.id,
+            'agent_id': self.ref(
+                'sale_commission.res_partner_pritesh_sale_agent'),
+            'default_commission': False,
+            'commission_id': self.ref('sale_commission.demo_commission_paid')
+        })
+        inv_line_agent = my_invoice.invoice_line[0].agents[0]
+        ila = self.env['account.invoice.line.agent'].\
+            with_context(partner_id=self.partner.id).browse(inv_line_agent.id)
+        ila.onchange_agent()
+        my_invoice.action_cancel()
+        self.assertTrue(
+            inv_line_agent.commission.id == partner_com.commission_id.id)

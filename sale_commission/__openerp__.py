@@ -32,10 +32,13 @@
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
         "Oihane Crucelaegui <oihanecruce@gmail.com>",
         "Iván Todorovich <ivan.todorovich@gmail.com",
+        "Javier Colmenero <javier@comunitea.com>"
     ],
     "data": [
         "security/commission_security.xml",
         "security/ir.model.access.csv",
+        "security/commission_security.xml",
+        "views/partner_agent_view.xml",
         "views/product_template_view.xml",
         "views/res_partner_view.xml",
         "views/sale_commission_view.xml",

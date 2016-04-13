@@ -30,10 +30,13 @@ class SaleOrderLine(models.Model):
         if self.env.context.get('partner_id'):
             partner = self.env['res.partner'].browse(
                 self.env.context['partner_id'])
-            for agent in partner.agents:
+
+            for com_obj in partner.commission_ids:
+                commission_id = com_obj.agent_id.commission.id \
+                    if com_obj.default_commission else com_obj.commission_id.id
                 vals = {
-                    'agent': agent.id,
-                    'commission': agent.commission.id,
+                    'agent': com_obj.agent_id.id,
+                    'commission': commission_id
                 }
                 vals['display_name'] = self.env['sale.order.line.agent']\
                     .new(vals).display_name
@@ -79,7 +82,16 @@ class SaleOrderLineAgent(models.Model):
 
     @api.onchange('agent')
     def onchange_agent(self):
-        self.commission = self.agent.commission
+        res_commission = self.agent.commission
+        if self.env.context.get('partner_id'):
+            domain = [
+                ('partner_id', '=', self.env.context['partner_id']),
+                ('agent_id', '=', self.agent.id),
+            ]
+            rel_objs = self.env['res.partner.agent'].search(domain, limit=1)
+            if rel_objs:
+                res_commission = rel_objs.commission_id.id
+        self.commission = res_commission
 
     @api.depends('sale_line.price_subtotal')
     def _compute_amount(self):

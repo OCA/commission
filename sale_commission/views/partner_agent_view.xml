@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_res_partner_agent_tree">
+            <field name="name">res.partner.agent.tree.inherit</field>
+            <field name="model">res.partner.agent</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Agents &amp; commissions">
+                    <field name="agent_id"/>
+                    <field name="default_commission"/>
+                    <field name="commission_id" attrs="{'invisible': [('default_commission', '=', True)]}"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view__res_partner_agent_form">
+            <field name="name">res.partner.agent.form.inherit</field>
+            <field name="model">res.partner.agent</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Agents &amp; commissions">
+                    <sheet>
+                        <group>
+                            <field name="agent_id"/>
+                            <field name="default_commission"/>
+                            <field name="commission_id" attrs="{'invisible': [('default_commission', '=', True)]}"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

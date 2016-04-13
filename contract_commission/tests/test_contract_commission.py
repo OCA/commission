@@ -34,7 +34,8 @@ class TestContractCommission(common.TransactionCase):
                      'price_unit': 1.0,
                  })]}
         )
-        self.partner.agents = [(6, 0, self.agent.ids)]
+        self.partner.commission_ids = [(0, 0, {'partner_id': self.partner.id,
+                                               'agent_id': self.agent.id})]
 
     def test_invoice_commissions(self):
         self.contract.recurring_create_invoice()

@@ -11,10 +11,6 @@ class ResPartner(models.Model):
     """Add some fields related to commissions"""
     _inherit = "res.partner"
 
-    agents = fields.Many2many(
-        comodel_name="res.partner", relation="partner_agent_rel",
-        column1="partner_id", column2="agent_id",
-        domain="[('agent', '=', True)]")
     # Fields for the partner when it acts as an agent
     agent = fields.Boolean(
         string="Creditor/Agent",
@@ -36,6 +32,9 @@ class ResPartner(models.Model):
     settlements = fields.One2many(
         comodel_name="sale.commission.settlement", inverse_name="agent",
         readonly=True)
+    commission_ids = fields.One2many(comodel_name='res.partner.agent',
+                                     inverse_name='partner_id',
+                                     string='Agents')
 
     @api.onchange('agent_type')
     def onchange_agent_type(self):

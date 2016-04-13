@@ -13,9 +13,16 @@
                     <field name="agent" string="Agent" />
                 </xpath>
                 <field name="user_id" position="after">
-                    <field name="agents"
-                           attrs="{'invisible': [('customer', '=', False)]}"
-                           widget="many2many_tags"/>
+                    <group string="Agents &amp; commissions" colspan="4" attrs="{'invisible': [('customer', '=', False)]}">
+                        <field name="commission_ids" colspan="4" nolabel="1">
+                            <tree string="Agents &amp; Commissions" editable="top">
+                                <field name="agent_id"/>
+                                <field name="default_commission"/>
+                                <field name="commission_id" attrs="{'readonly': [('default_commission', '=', True)],
+                                                                    'required': [('default_commission', '=', False)]}"/>
+                            </tree>
+                        </field>
+                    </group>
                 </field>
                 <page name="sales_purchases" position="after">
                     <page name="agent_information"
