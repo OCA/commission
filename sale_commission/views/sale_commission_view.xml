@@ -23,6 +23,7 @@
                         <group>
                             <field name="name" />
                             <field name="active" />
+                            <field name="company_id" />
                         </group>
                         <group>
                             <field name="commission_type" />

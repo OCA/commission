@@ -85,11 +85,15 @@ class SaleCommissionMakeSettle(models.TransientModel):
                         settlement = settlement_obj.create(
                             {'agent': agent.id,
                              'date_from': sett_from,
-                             'date_to': sett_to})
+                             'date_to': sett_to,
+                             'company_id':
+                                agent_lines[pos].invoice_line.company_id.id})
                         settlement_ids.append(settlement.id)
                     settlement_line_obj.create(
                         {'settlement': settlement.id,
-                         'agent_line': [(6, 0, [agent_lines[pos].id])]})
+                         'agent_line': [(6, 0, [agent_lines[pos].id])],
+                         'company_id':
+                            agent_lines[pos].invoice_line.company_id.id})
                     pos += 1
 
         # go to results

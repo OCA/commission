@@ -55,7 +55,8 @@ class SaleOrderLine(models.Model):
             line, account_id=account_id)
         vals['agents'] = [
             (0, 0, {'agent': x.agent.id,
-                    'commission': x.commission.id}) for x in line.agents]
+                    'commission': x.commission.id})
+            for x in line.agents]
         return vals
 
 
