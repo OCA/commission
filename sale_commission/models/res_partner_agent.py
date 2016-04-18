@@ -45,6 +45,11 @@ class ResPartnerAgent(models.Model):
         if self.agent_id:
             self.commission_id = self.agent_id.commission.id
 
+    @api.onchange('default_commission')
+    def onchange_default_commission(self):
+        if self.default_commission:
+            self.commission_id = self.agent_id.commission.id
+
     @api.onchange('commission_id', 'agent_id')
     def onchange_commission_id(self):
         res = {}
@@ -75,6 +80,6 @@ class ResPartnerAgent(models.Model):
             agent = self.agent_id
             if vals.get('agent_id', False):
                 agent = self.env['res.partner'].browse(vals['agent_id'])
-                vals['commission_id'] = agent.commission.id
+            vals['commission_id'] = agent.commission.id
         res = super(ResPartnerAgent, self).write(vals)
         return res
