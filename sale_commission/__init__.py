@@ -4,4 +4,5 @@
 
 from . import models
 from . import wizard
+from . import report
 from .hooks import set_commission_total
