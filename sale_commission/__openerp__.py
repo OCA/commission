@@ -41,9 +41,11 @@
         "views/sale_order_view.xml",
         "views/account_invoice_view.xml",
         "views/settlement_view.xml",
+        "views/report_settlement.xml",
         "wizard/wizard_settle.xml",
         "wizard/wizard_invoice.xml",
-        # "report/cc_commission_report.xml"
+        # "report/cc_commission_report.xml",
+        "report/settlement_report.xml",
     ],
     "demo": [
         'demo/sale_agent_demo.xml',
