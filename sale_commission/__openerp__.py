@@ -45,7 +45,6 @@
         "views/report_settlement.xml",
         "wizard/wizard_settle.xml",
         "wizard/wizard_invoice.xml",
-        # "report/cc_commission_report.xml",
         "report/settlement_report.xml",
     ],
     "demo": [
