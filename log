@@ -1,0 +1,200 @@
+    loaded, processed = load_module_graph(cr, graph, progressdict, report=report, skip_modules=loaded_modules, perform_checks=perform_checks)
+  File "/opt/odoo/openerp/modules/loading.py", line 157, in load_module_graph
+    init_module_models(cr, package.name, models)
+  File "/opt/odoo/openerp/modules/module.py", line 290, in init_module_models
+    obj.init(cr)
+  File "/opt/odoo/openerp/api.py", line 268, in wrapper
+    return old_api(self, *args, **kwargs)
+  File "/opt/odoo/addons/sale_commission/report/sale_commission_analysis_report.py", line 110, in init
+    )""" % (self._select(), self._from(), self._group_by()))
+  File "/opt/odoo/openerp/sql_db.py", line 158, in wrapper
+    return f(self, *args, **kwargs)
+  File "/opt/odoo/openerp/sql_db.py", line 234, in execute
+    res = self._obj.execute(query, params)
+ProgrammingError: syntax error at or near "."
+LINE 28:             ai.partner_id,
+                       ^
+2016-05-05 08:21:04,819 17116 WARNING masterled openerp.modules.graph: module sd_subir_pdf: not installable, skipped
+2016-05-05 08:21:04,875 17116 WARNING masterled openerp.modules.graph: Some modules were not loaded.
+2016-05-05 08:21:07,303 17116 ERROR masterled werkzeug: Error on request:
+Traceback (most recent call last):
+  File "/home/odoo/odoo/lib/python2.7/site-packages/werkzeug/serving.py", line 180, in run_wsgi
+    execute(self.server.app)
+  File "/home/odoo/odoo/lib/python2.7/site-packages/werkzeug/serving.py", line 168, in execute
+    application_iter = app(environ, start_response)
+  File "/opt/odoo/openerp/service/server.py", line 290, in app
+    return self.app(e, s)
+  File "/opt/odoo/openerp/service/wsgi_server.py", line 216, in application
+    return application_unproxied(environ, start_response)
+  File "/opt/odoo/openerp/service/wsgi_server.py", line 202, in application_unproxied
+    result = handler(environ, start_response)
+  File "/opt/odoo/openerp/http.py", line 1292, in __call__
+    return self.dispatch(environ, start_response)
+  File "/opt/odoo/openerp/http.py", line 1266, in __call__
+    return self.app(environ, start_wrapped)
+  File "/home/odoo/odoo/lib/python2.7/site-packages/werkzeug/wsgi.py", line 591, in __call__
+    return self.app(environ, start_response)
+  File "/opt/odoo/openerp/http.py", line 1430, in dispatch
+    ir_http = request.registry['ir.http']
+  File "/opt/odoo/openerp/http.py", line 348, in registry
+    return openerp.modules.registry.RegistryManager.get(self.db) if self.db else None
+  File "/opt/odoo/openerp/modules/registry.py", line 339, in get
+    update_module)
+  File "/opt/odoo/openerp/modules/registry.py", line 370, in new
+    openerp.modules.load_modules(registry._db, force_demo, status, update_module)
+  File "/opt/odoo/openerp/modules/loading.py", line 351, in load_modules
+    force, status, report, loaded_modules, update_module)
+  File "/opt/odoo/openerp/modules/loading.py", line 255, in load_marked_modules
+    loaded, processed = load_module_graph(cr, graph, progressdict, report=report, skip_modules=loaded_modules, perform_checks=perform_checks)
+  File "/opt/odoo/openerp/modules/loading.py", line 157, in load_module_graph
+    init_module_models(cr, package.name, models)
+  File "/opt/odoo/openerp/modules/module.py", line 290, in init_module_models
+    obj.init(cr)
+  File "/opt/odoo/openerp/api.py", line 268, in wrapper
+    return old_api(self, *args, **kwargs)
+  File "/opt/odoo/addons/sale_commission/report/sale_commission_analysis_report.py", line 110, in init
+    )""" % (self._select(), self._from(), self._group_by()))
+  File "/opt/odoo/openerp/sql_db.py", line 158, in wrapper
+    return f(self, *args, **kwargs)
+  File "/opt/odoo/openerp/sql_db.py", line 234, in execute
+    res = self._obj.execute(query, params)
+ProgrammingError: syntax error at or near "."
+LINE 28:             ai.partner_id,
+                       ^
+2016-05-05 08:21:24,364 17116 WARNING masterled openerp.modules.graph: module sd_subir_pdf: not installable, skipped
+2016-05-05 08:21:24,616 17116 WARNING masterled openerp.modules.graph: Some modules were not loaded.
+2016-05-05 08:21:26,996 17116 ERROR masterled werkzeug: Error on request:
+Traceback (most recent call last):
+  File "/home/odoo/odoo/lib/python2.7/site-packages/werkzeug/serving.py", line 180, in run_wsgi
+    execute(self.server.app)
+  File "/home/odoo/odoo/lib/python2.7/site-packages/werkzeug/serving.py", line 168, in execute
+    application_iter = app(environ, start_response)
+  File "/opt/odoo/openerp/service/server.py", line 290, in app
+    return self.app(e, s)
+  File "/opt/odoo/openerp/service/wsgi_server.py", line 216, in application
+    return application_unproxied(environ, start_response)
+  File "/opt/odoo/openerp/service/wsgi_server.py", line 202, in application_unproxied
+    result = handler(environ, start_response)
+  File "/opt/odoo/openerp/http.py", line 1292, in __call__
+    return self.dispatch(environ, start_response)
+  File "/opt/odoo/openerp/http.py", line 1266, in __call__
+    return self.app(environ, start_wrapped)
+  File "/home/odoo/odoo/lib/python2.7/site-packages/werkzeug/wsgi.py", line 591, in __call__
+    return self.app(environ, start_response)
+  File "/opt/odoo/openerp/http.py", line 1430, in dispatch
+    ir_http = request.registry['ir.http']
+  File "/opt/odoo/openerp/http.py", line 348, in registry
+    return openerp.modules.registry.RegistryManager.get(self.db) if self.db else None
+  File "/opt/odoo/openerp/modules/registry.py", line 339, in get
+    update_module)
+  File "/opt/odoo/openerp/modules/registry.py", line 370, in new
+    openerp.modules.load_modules(registry._db, force_demo, status, update_module)
+  File "/opt/odoo/openerp/modules/loading.py", line 351, in load_modules
+    force, status, report, loaded_modules, update_module)
+  File "/opt/odoo/openerp/modules/loading.py", line 255, in load_marked_modules
+    loaded, processed = load_module_graph(cr, graph, progressdict, report=report, skip_modules=loaded_modules, perform_checks=perform_checks)
+  File "/opt/odoo/openerp/modules/loading.py", line 157, in load_module_graph
+    init_module_models(cr, package.name, models)
+  File "/opt/odoo/openerp/modules/module.py", line 290, in init_module_models
+    obj.init(cr)
+  File "/opt/odoo/openerp/api.py", line 268, in wrapper
+    return old_api(self, *args, **kwargs)
+  File "/opt/odoo/addons/sale_commission/report/sale_commission_analysis_report.py", line 110, in init
+    )""" % (self._select(), self._from(), self._group_by()))
+  File "/opt/odoo/openerp/sql_db.py", line 158, in wrapper
+    return f(self, *args, **kwargs)
+  File "/opt/odoo/openerp/sql_db.py", line 234, in execute
+    res = self._obj.execute(query, params)
+ProgrammingError: syntax error at or near "."
+LINE 28:             ai.partner_id,
+                       ^
+2016-05-05 08:21:45,128 17194 WARNING masterled openerp.modules.graph: module sd_subir_pdf: not installable, skipped
+2016-05-05 08:21:45,178 17194 WARNING masterled openerp.modules.graph: Some modules were not loaded.
+2016-05-05 08:21:47,899 17194 ERROR masterled werkzeug: Error on request:
+Traceback (most recent call last):
+  File "/home/odoo/odoo/lib/python2.7/site-packages/werkzeug/serving.py", line 180, in run_wsgi
+    execute(self.server.app)
+  File "/home/odoo/odoo/lib/python2.7/site-packages/werkzeug/serving.py", line 168, in execute
+    application_iter = app(environ, start_response)
+  File "/opt/odoo/openerp/service/server.py", line 290, in app
+    return self.app(e, s)
+  File "/opt/odoo/openerp/service/wsgi_server.py", line 216, in application
+    return application_unproxied(environ, start_response)
+  File "/opt/odoo/openerp/service/wsgi_server.py", line 202, in application_unproxied
+    result = handler(environ, start_response)
+  File "/opt/odoo/openerp/http.py", line 1292, in __call__
+    return self.dispatch(environ, start_response)
+  File "/opt/odoo/openerp/http.py", line 1430, in dispatch
+    ir_http = request.registry['ir.http']
+  File "/opt/odoo/openerp/http.py", line 348, in registry
+    return openerp.modules.registry.RegistryManager.get(self.db) if self.db else None
+  File "/opt/odoo/openerp/modules/registry.py", line 339, in get
+    update_module)
+  File "/opt/odoo/openerp/modules/registry.py", line 370, in new
+    openerp.modules.load_modules(registry._db, force_demo, status, update_module)
+  File "/opt/odoo/openerp/modules/loading.py", line 351, in load_modules
+    force, status, report, loaded_modules, update_module)
+  File "/opt/odoo/openerp/modules/loading.py", line 255, in load_marked_modules
+    loaded, processed = load_module_graph(cr, graph, progressdict, report=report, skip_modules=loaded_modules, perform_checks=perform_checks)
+  File "/opt/odoo/openerp/modules/loading.py", line 157, in load_module_graph
+    init_module_models(cr, package.name, models)
+  File "/opt/odoo/openerp/modules/module.py", line 290, in init_module_models
+    obj.init(cr)
+  File "/opt/odoo/openerp/api.py", line 268, in wrapper
+    return old_api(self, *args, **kwargs)
+  File "/opt/odoo/addons/sale_commission/report/sale_commission_analysis_report.py", line 110, in init
+    )""" % (self._select(), self._from(), self._group_by()))
+  File "/opt/odoo/openerp/sql_db.py", line 158, in wrapper
+    return f(self, *args, **kwargs)
+  File "/opt/odoo/openerp/sql_db.py", line 234, in execute
+    res = self._obj.execute(query, params)
+ProgrammingError: syntax error at or near ";"
+LINE 41:             aila.commission;
+                                    ^
+2016-05-05 08:21:47,947 17194 WARNING masterled openerp.modules.graph: module sd_subir_pdf: not installable, skipped
+2016-05-05 08:21:47,998 17194 WARNING masterled openerp.modules.graph: Some modules were not loaded.
+2016-05-05 08:21:50,362 17194 ERROR masterled werkzeug: Error on request:
+Traceback (most recent call last):
+  File "/home/odoo/odoo/lib/python2.7/site-packages/werkzeug/serving.py", line 180, in run_wsgi
+    execute(self.server.app)
+  File "/home/odoo/odoo/lib/python2.7/site-packages/werkzeug/serving.py", line 168, in execute
+    application_iter = app(environ, start_response)
+  File "/opt/odoo/openerp/service/server.py", line 290, in app
+    return self.app(e, s)
+  File "/opt/odoo/openerp/service/wsgi_server.py", line 216, in application
+    return application_unproxied(environ, start_response)
+  File "/opt/odoo/openerp/service/wsgi_server.py", line 202, in application_unproxied
+    result = handler(environ, start_response)
+  File "/opt/odoo/openerp/http.py", line 1292, in __call__
+    return self.dispatch(environ, start_response)
+  File "/opt/odoo/openerp/http.py", line 1266, in __call__
+    return self.app(environ, start_wrapped)
+  File "/home/odoo/odoo/lib/python2.7/site-packages/werkzeug/wsgi.py", line 591, in __call__
+    return self.app(environ, start_response)
+  File "/opt/odoo/openerp/http.py", line 1430, in dispatch
+    ir_http = request.registry['ir.http']
+  File "/opt/odoo/openerp/http.py", line 348, in registry
+    return openerp.modules.registry.RegistryManager.get(self.db) if self.db else None
+  File "/opt/odoo/openerp/modules/registry.py", line 339, in get
+    update_module)
+  File "/opt/odoo/openerp/modules/registry.py", line 370, in new
+    openerp.modules.load_modules(registry._db, force_demo, status, update_module)
+  File "/opt/odoo/openerp/modules/loading.py", line 351, in load_modules
+    force, status, report, loaded_modules, update_module)
+  File "/opt/odoo/openerp/modules/loading.py", line 255, in load_marked_modules
+    loaded, processed = load_module_graph(cr, graph, progressdict, report=report, skip_modules=loaded_modules, perform_checks=perform_checks)
+  File "/opt/odoo/openerp/modules/loading.py", line 157, in load_module_graph
+    init_module_models(cr, package.name, models)
+  File "/opt/odoo/openerp/modules/module.py", line 290, in init_module_models
+    obj.init(cr)
+  File "/opt/odoo/openerp/api.py", line 268, in wrapper
+    return old_api(self, *args, **kwargs)
+  File "/opt/odoo/addons/sale_commission/report/sale_commission_analysis_report.py", line 110, in init
+    )""" % (self._select(), self._from(), self._group_by()))
+  File "/opt/odoo/openerp/sql_db.py", line 158, in wrapper
+    return f(self, *args, **kwargs)
+  File "/opt/odoo/openerp/sql_db.py", line 234, in execute
+    res = self._obj.execute(query, params)
+ProgrammingError: syntax error at or near ";"
+LINE 41:             aila.commission;
+                                    ^
