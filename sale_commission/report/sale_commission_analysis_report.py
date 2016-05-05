@@ -22,7 +22,7 @@
 from openerp import tools
 from openerp.osv import fields, osv
 
-class sale_commission_analysis_report(osv.osv):
+class SaleCommissionAnalysisReport(osv.osv):
     _name = "sale.commission.analysis.report"
     _description = "Sale Commission Analysis Report"
     _auto = False
