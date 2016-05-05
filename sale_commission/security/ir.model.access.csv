@@ -9,5 +9,5 @@
 "access_sale_commission_settlement_user","access_sale_commission_settlement_manager","model_sale_commission_settlement","base.group_sale_salesman",1,0,0,0
 "access_sale_commission_settlement_line_manager","access_sale_commission_settlement_line_user","model_sale_commission_settlement_line","base.group_sale_manager",1,1,1,1
 "access_sale_commission_settlement_line_user","access_sale_commission_settlement_line_user","model_sale_commission_settlement_line","base.group_sale_salesman",1,0,0,0
-"access_sale_commission_analysis_report_manager","access_sale_commission_analysis_report_manager","model_sale_comission_analysis_report","base.group_sale_manager",1,1,1,1
-"access_sale_commission_analysis_report_user","access_sale_commission_analysis_report_user","model_sale_comission_analysis_report","base.group_sale_salesman",1,0,0,0
+"access_sale_commission_analysis_report_manager","access_sale_commission_analysis_report_manager","model_sale_commission_analysis_report","base.group_sale_manager",1,1,1,1
+"access_sale_commission_analysis_report_user","access_sale_commission_analysis_report_user","model_sale_commission_analysis_report","base.group_sale_salesman",1,0,0,0
