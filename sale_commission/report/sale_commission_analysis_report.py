@@ -42,7 +42,7 @@ class SaleCommissionAnalysisReport(models.Model):
     categ_id = fields.Many2one(
         'product.category',
         'Category of Product',
-         readonly=True)
+        readonly=True)
     product_id = fields.Many2one('product.product', 'Product', readonly=True)
     uom_id = fields.Many2one('product.uom', 'Unit of Measure', readonly=True)
     quantity = fields.Float('# of Qty', readonly=True)
