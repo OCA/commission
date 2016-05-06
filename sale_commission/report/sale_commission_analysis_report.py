@@ -40,7 +40,7 @@ class SaleCommissionAnalysisReport(models.Model):
     partner_id = fields.Many2one('res.partner', 'Partner', readonly=True)
     agent_id = fields.Many2one('res.partner', 'Agent', readonly=True)
     categ_id = fields.Many2one('product.category',
-        'Category of Product', readonly=True)
+            'Category of Product', readonly=True)
     product_id = fields.Many2one('product.product', 'Product', readonly=True)
     uom_id = fields.Many2one('product.uom', 'Unit of Measure', readonly=True)
     quantity = fields.Float('# of Qty', readonly=True)
@@ -48,12 +48,11 @@ class SaleCommissionAnalysisReport(models.Model):
     price_subtotal = fields.Float('Price subtotal', readonly=True)
     percentage = fields.Integer('Percentage of commission', readonly=True)
     amount = fields.Float('Amount', readonly=True)
-    invoice_line_id = fields.Many2one('account.invoice.line', 
-        'Invoice line', readonly=True)
+    invoice_line_id = fields.Many2one('account.invoice.line',
+            'Invoice line', readonly=True)
     settled = fields.Boolean('Settled', readonly=True)
     commission_id = fields.Many2one('sale.commission',
-        'Sale commission', readonly=True)
-    
+            'Sale commission', readonly=True)
 
     def _select(self):
         select_str = """
@@ -78,7 +77,7 @@ class SaleCommissionAnalysisReport(models.Model):
 
     def _from(self):
         from_str = """
-            account_invoice_line_agent aila 
+            account_invoice_line_agent aila
             LEFT JOIN account_invoice_line ail ON ail.id = aila.invoice_line
             LEFT JOIN account_invoice ai ON ai.id = ail.invoice_id
             LEFT JOIN sale_commission sc ON sc.id = aila.commission
