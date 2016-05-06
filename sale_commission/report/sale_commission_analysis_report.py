@@ -19,7 +19,8 @@
 #
 ##############################################################################
 
-from openerp import fields,models,tools
+from openerp import fields, models, tools
+
 
 class SaleCommissionAnalysisReport(models.Model):
     _name = "sale.commission.analysis.report"
@@ -28,17 +29,18 @@ class SaleCommissionAnalysisReport(models.Model):
     _rec_name = 'commission_id'
 
     invoice_state = fields.Selection([
-            ('cancel', 'Cancelled'),
-            ('draft', 'Draft'),
-            ('open', 'Open'),
-            ('paid', 'Paid'),
-            ('proforma', 'Proforma'),
-            ('proforma2', 'Proforma2')], 'Invoice Status', readonly=True)
+        ('cancel', 'Cancelled'),
+        ('draft', 'Draft'),
+        ('open', 'Open'),
+        ('paid', 'Paid'),
+        ('proforma', 'Proforma'),
+        ('proforma2', 'Proforma2')], 'Invoice Status', readonly=True)
     date_invoice = fields.Date('Date Invoice', readonly=True)
     company_id = fields.Many2one('res.company', 'Company', readonly=True)
     partner_id = fields.Many2one('res.partner', 'Partner', readonly=True)
     agent_id = fields.Many2one('res.partner', 'Agent', readonly=True)
-    categ_id = fields.Many2one('product.category','Category of Product', readonly=True)
+    categ_id = fields.Many2one('product.category',
+        'Category of Product', readonly=True)
     product_id = fields.Many2one('product.product', 'Product', readonly=True)
     uom_id = fields.Many2one('product.uom', 'Unit of Measure', readonly=True)
     quantity = fields.Float('# of Qty', readonly=True)
@@ -46,9 +48,11 @@ class SaleCommissionAnalysisReport(models.Model):
     price_subtotal = fields.Float('Price subtotal', readonly=True)
     percentage = fields.Integer('Percentage of commission', readonly=True)
     amount = fields.Float('Amount', readonly=True)
-    invoice_line_id = fields.Many2one('account.invoice.line', 'Invoice line', readonly=True)
+    invoice_line_id = fields.Many2one('account.invoice.line', 
+        'Invoice line', readonly=True)
     settled = fields.Boolean('Settled', readonly=True)
-    commission_id = fields.Many2one('sale.commission', 'Sale commission', readonly=True)
+    commission_id = fields.Many2one('sale.commission',
+        'Sale commission', readonly=True)
     
 
     def _select(self):
@@ -110,6 +114,3 @@ class SaleCommissionAnalysisReport(models.Model):
             FROM ( %s )
             %s
             )""" % (self._select(), self._from(), self._group_by()))
-
-
-
