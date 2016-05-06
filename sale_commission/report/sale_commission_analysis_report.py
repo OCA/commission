@@ -19,39 +19,37 @@
 #
 ##############################################################################
 
-from openerp import tools
-from openerp.osv import fields, osv
+from openerp import fields,models,tools
 
-class SaleCommissionAnalysisReport(osv.osv):
+class SaleCommissionAnalysisReport(models.Model):
     _name = "sale.commission.analysis.report"
     _description = "Sale Commission Analysis Report"
     _auto = False
     _rec_name = 'commission_id'
 
-    _columns = {
-        'invoice_state': fields.selection([
+    invoice_state = fields.Selection([
             ('cancel', 'Cancelled'),
             ('draft', 'Draft'),
             ('open', 'Open'),
             ('paid', 'Paid'),
             ('proforma', 'Proforma'),
-            ('proforma2', 'Proforma2')], 'Invoice Status', readonly=True),
-        'date_invoice': fields.date('Date Invoice', readonly=True),
-        'company_id': fields.many2one('res.company', 'Company', readonly=True),
-        'partner_id': fields.many2one('res.partner', 'Partner', readonly=True),
-        'agent_id': fields.many2one('res.partner', 'Agent', readonly=True),
-        'categ_id': fields.many2one('product.category','Category of Product', readonly=True),
-        'product_id': fields.many2one('product.product', 'Product', readonly=True),
-        'uom_id': fields.many2one('product.uom', 'Unit of Measure', readonly=True),
-        'quantity': fields.float('# of Qty', readonly=True),
-        'price_unit': fields.float('Price unit', readonly=True),
-        'price_subtotal': fields.float('Price subtotal', readonly=True),
-        'percentage': fields.integer('Percentage of commission', readonly=True),
-        'amount': fields.float('Amount', readonly=True),
-        'invoice_line_id': fields.many2one('account.invoice.line', 'Invoice line', readonly=True),
-        'settled': fields.boolean('Settled', readonly=True),
-        'commission_id': fields.many2one('sale.commission', 'Sale commission', readonly=True),
-    }
+            ('proforma2', 'Proforma2')], 'Invoice Status', readonly=True)
+    date_invoice = fields.Date('Date Invoice', readonly=True)
+    company_id = fields.Many2one('res.company', 'Company', readonly=True)
+    partner_id = fields.Many2one('res.partner', 'Partner', readonly=True)
+    agent_id = fields.Many2one('res.partner', 'Agent', readonly=True)
+    categ_id = fields.Many2one('product.category','Category of Product', readonly=True)
+    product_id = fields.Many2one('product.product', 'Product', readonly=True)
+    uom_id = fields.Many2one('product.uom', 'Unit of Measure', readonly=True)
+    quantity = fields.Float('# of Qty', readonly=True)
+    price_unit = fields.Float('Price unit', readonly=True)
+    price_subtotal = fields.Float('Price subtotal', readonly=True)
+    percentage = fields.Integer('Percentage of commission', readonly=True)
+    amount = fields.Float('Amount', readonly=True)
+    invoice_line_id = fields.Many2one('account.invoice.line', 'Invoice line', readonly=True)
+    settled = fields.Boolean('Settled', readonly=True)
+    commission_id = fields.Many2one('sale.commission', 'Sale commission', readonly=True)
+    
 
     def _select(self):
         select_str = """
@@ -112,5 +110,6 @@ class SaleCommissionAnalysisReport(osv.osv):
             FROM ( %s )
             %s
             )""" % (self._select(), self._from(), self._group_by()))
+
 
 
