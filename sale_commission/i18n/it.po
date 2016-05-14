@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 03:20+0000\n"
-"PO-Revision-Date: 2016-05-06 10:20+0000\n"
-"Last-Translator: Nicola Malcontenti <nicola.malcontenti@gmail.com>\n"
+"POT-Creation-Date: 2016-05-07 08:17+0000\n"
+"PO-Revision-Date: 2016-05-07 08:17+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-commission-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,6 +148,7 @@ msgstr "Tassa Commissione"
 #: field:res.partner,commission:0
 #: view:sale.commission:sale_commission.sale_commission_form
 #: field:sale.commission.section,commission:0
+#: field:sale.commission.settlement.line,commission:0
 #: field:sale.order.line.agent,commission:0
 msgid "Commission"
 msgstr "Commissione"
@@ -252,6 +253,18 @@ msgstr "Data per Mese"
 #: view:sale.commission.settlement.line:sale_commission.view_settlement_line_search
 msgid "Date month"
 msgstr "Data Mese"
+
+#. module: sale_commission
+#: field:account.invoice.line.agent,display_name:0
+#: field:sale.commission,display_name:0
+#: field:sale.commission.make.invoice,display_name:0
+#: field:sale.commission.make.settle,display_name:0
+#: field:sale.commission.section,display_name:0
+#: field:sale.commission.settlement,display_name:0
+#: field:sale.commission.settlement.line,display_name:0
+#: field:sale.order.line.agent,display_name:0
+msgid "Display Name"
+msgstr ""
 
 #. module: sale_commission
 #: selection:res.partner,agent_type:0
@@ -375,6 +388,18 @@ msgid "Keep empty to use the current date"
 msgstr "Lascia vuoto per usare la data odierna"
 
 #. module: sale_commission
+#: field:account.invoice.line.agent,__last_update:0
+#: field:sale.commission,__last_update:0
+#: field:sale.commission.make.invoice,__last_update:0
+#: field:sale.commission.make.settle,__last_update:0
+#: field:sale.commission.section,__last_update:0
+#: field:sale.commission.settlement,__last_update:0
+#: field:sale.commission.settlement.line,__last_update:0
+#: field:sale.order.line.agent,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_commission
 #: field:account.invoice.line.agent,write_uid:0
 #: field:sale.commission,write_uid:0
 #: field:sale.commission.make.invoice,write_uid:0
@@ -450,6 +475,11 @@ msgstr "Percentuale"
 #, python-format
 msgid "Period: from %s to %s"
 msgstr "Periodo da %s a %s"
+
+#. module: sale_commission
+#: field:account.invoice.line.agent,product:0
+msgid "Product"
+msgstr ""
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_product_template
@@ -617,6 +647,7 @@ msgstr "Totale"
 
 #. module: sale_commission
 #: field:res.partner,agent_type:0 field:sale.commission,commission_type:0
+#: field:sale.commission.settlement,agent_type:0
 msgid "Type"
 msgstr "Tipo"
 
