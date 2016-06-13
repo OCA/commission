@@ -55,6 +55,7 @@
                                 name="action_cancel" />
                         <field name="state" widget="statusbar"/>
                     </header>
+                    <h1><field name="agent" /></h1>
                     <group>
                         <group>
                             <field name="date_from"/>
