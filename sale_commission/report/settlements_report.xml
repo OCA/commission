@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--View report Settle Commissions Detailed-->
+        <template id="settlements_report_detailed">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="report.internal_layout">
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            <h2>Settle Commissions Report</h2>
+                            <div class="row mt32 mb32">
+                                <div class="col-xs-6">
+                                    <strong>Agent:</strong>
+                                    <br/>
+                                    <span t-field="o.agent.name"/>
+                                </div>
+                                <div class="col-xs-3">
+                                    <strong>From:</strong>
+                                    <br/>
+                                    <span t-field="o.date_from"/>
+                                </div>
+                                <div class="col-xs-3">
+                                    <strong>To:</strong>
+                                    <br/>
+                                    <span t-field="o.date_to"/>
+                                </div>
+                            </div>
+                            <div t-if="o.lines">
+                                <strong>Commission lines:</strong>
+                                <table class="table table-bordered table-responsive">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <strong>INVOICE</strong>
+                                            </td>
+                                            <td>
+                                                <strong>CUSTOMER</strong>
+                                            </td>
+
+                                            <td>
+                                                <strong>COMMISSION</strong>
+                                            </td>
+                                            <td>
+                                                <strong>INVOICE DATE</strong>
+                                            </td>
+                                            <td>
+                                                <strong>PRICE SUB TOTAL</strong>
+                                            </td>
+                                            <td>
+                                                <strong>AMOUNT SETTLED</strong>
+                                            </td>
+                                        </tr>
+                                        <tr t-foreach="o.lines" t-as="line">
+                                            <td>
+                                                <span class="oe_editable" t-field="line.invoice.internal_number"/>
+                                            </td>
+                                            <td>
+                                                <span class="oe_editable" t-field="line.invoice.partner_id.name"/>
+                                            </td>
+
+                                            <td>
+                                                <span class="oe_editable" t-field="line.commission"/>
+                                            </td>
+                                            <td>
+                                                <span class="oe_editable" t-field="line.date"/>
+                                            </td>
+                                            <td>
+                                                <span class="oe_editable" t-field="line.invoice_line.price_total"/>
+                                            </td>
+                                            <td>
+                                                <span class="oe_editable" t-field="line.settled_amount"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <h2/>
+                            <h2/>
+                            <h2/>
+                            <div class="row">
+                                <div class="col-xs-4 pull-right">
+                                    <table class="table table-condensed">
+                                        <tr class="border-black">
+                                            <td>
+                                                <strong>Total:</strong>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-field="o.total"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="oe_structure"/>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <!--report Settle Commissions Detailed-->
+        <report
+                string="Report Settle Commissions"
+                id="sale.commission_settlement_act"
+                model="sale.commission.settlement"
+                report_type="qweb-pdf"
+                name="sale_commission.settlements_report_detailed"
+                file="sale_commission.settlements_report_detailed"
+        />
+
+        <!--Translate View report Settle Commissions Detailed-->
+        <template id="settlements_report_detailed_translate">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="sale_commission.settlements_report_detailed" t-lang="doc.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+
+        <!--View report Settle Commissions Condensed-->
+        <template id="settlements_report_condensed">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="report.internal_layout">
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            <h2>Settle Commissions Report Condensed:</h2>
+                            <div class="row mt32 mb32">
+                                <div class="col-xs-6">
+                                    <strong>Agent:</strong>
+                                    <br/>
+                                    <span t-field="o.agent.name"/>
+                                </div>
+                                <div class="col-xs-3">
+                                    <strong>From:</strong>
+                                    <br/>
+                                    <span t-field="o.date_from"/>
+                                </div>
+                                <div class="col-xs-3">
+                                    <strong>To:</strong>
+                                    <br/>
+                                    <span t-field="o.date_to"/>
+                                </div>
+                            </div>
+                            <div t-if="o.lines">
+                                <strong>Commission lines:</strong>
+                                <table class="table table-bordered table-responsive" id="2">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <strong>INVOICE</strong>
+                                            </td>
+                                            <td>
+                                                <strong>CUSTOMER</strong>
+                                            </td>
+                                            <td>
+                                                <strong>INVOICE DATE</strong>
+                                            </td>
+                                            <td>
+                                                <strong>PRICE SUB TOTAL</strong>
+                                            </td>
+                                            <td>
+                                                <strong>AMOUNT SETTLED</strong>
+                                            </td>
+                                        </tr>
+                                        <t t-set="invoice_verified" t-value="false"/>
+                                        <tr t-foreach="o.lines.sorted(key=lambda b: b.invoice.internal_number)" t-as="line">
+                                            <t t-if="line.invoice.internal_number != invoice_verified">
+                                                <td>
+                                                    <span class="oe_editable" t-field="line.invoice.internal_number"/>
+                                                </td>
+                                                <td>
+                                                    <span class="oe_editable" t-field="line.invoice.partner_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <span class="oe_editable" t-field="line.invoice.date_invoice"/>
+                                                </td>
+                                                <td>
+                                                    <span class="oe_editable" t-field="line.invoice.amount_untaxed"/>
+                                                </td>
+                                                <td>
+                                                    <span class="oe_editable" t-field="line.invoice.commission_total"/>
+                                                </td>
+                                                <t t-set="invoice_verified" t-value="line.invoice.internal_number"/>
+                                            </t>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <h2/>
+                            <h2/>
+                            <h2/>
+                            <div class="row">
+                                <div class="col-xs-4 pull-right">
+                                    <table class="table table-condensed">
+                                        <tr class="border-black">
+                                            <td>
+                                                <strong>Total:</strong>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-field="o.total"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="oe_structure"/>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <!--Translate View report Settle Commissions Condensed-->
+        <template id="settlements_report_condensed_translate">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="sale_commission.settlements_report_condensed" t-lang="doc.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+
+        <!--report Settle Commissions Condensed-->
+        <report
+                string="Report Settle Commissions Condensed"
+                id="sale.commission_settlement_condensed_act"
+                model="sale.commission.settlement"
+                report_type="qweb-pdf"
+                name="sale_commission.settlements_report_condensed"
+                file="sale_commission.settlements_report_condensed"
+        />
+
+        <!--view do All Settle Commissions-->
+        <record model="ir.actions.act_window" id="action_all_settle_commissions">
+            <field name="name">All Settle Commissions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.commission.settlement</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_all_settle_commissions"
+                  parent="menu_sale_commissions_conf"
+                  action="action_all_settle_commissions"/>
+
+    </data>
+</openerp>

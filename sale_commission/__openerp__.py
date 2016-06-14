@@ -44,6 +44,7 @@
         "wizard/wizard_settle.xml",
         "wizard/wizard_invoice.xml",
         # "report/cc_commission_report.xml"
+        "report/settlements_report.xml",
     ],
     "demo": [
         'demo/sale_agent_demo.xml',
