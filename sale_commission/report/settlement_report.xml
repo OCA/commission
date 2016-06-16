@@ -11,6 +11,15 @@
             file="sale_commission.report_settlement"
         />
 
+        <report
+            id="action_report_settlement_condensed"
+            model="sale.commission.settlement"
+            string="Settlement Condensed"
+            report_type="qweb-pdf"
+            name="sale_commission.report_settlement_condensed"
+            file="sale_commission.report_settlement_condensed"
+        />
+
     </data>
 </openerp>
 
