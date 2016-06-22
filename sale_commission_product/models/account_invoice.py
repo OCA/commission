@@ -28,9 +28,13 @@ class AccountInvoiceLine(models.Model):
                 if commission_id_product:
                     commission_id = commission_id_product
                 if commission_id:
-                    agent_list.append({'agent': agent.id,
-                                       'commission': commission_id
-                                       })
+                    vals = {'agent': agent.id,
+                            'commission': commission_id
+                            }
+                    vals['display_name'] = self.env[
+                        'account.invoice.line.agent']\
+                        .new(vals).display_name
+                    agent_list.append(vals)
 
                 res['value']['agents'] = [(0, 0, x) for x in agent_list]
 

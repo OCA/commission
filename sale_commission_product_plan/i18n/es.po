@@ -1,0 +1,106 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * sale_commission_product_plan
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-22 14:34+0000\n"
+"PO-Revision-Date: 2016-06-22 14:34+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_commission_product_plan
+#: model:ir.actions.act_window,name:sale_commission_product_plan.sale_agent_plan_action
+#: model:ir.ui.menu,name:sale_commission_product_plan.sale_agent_plan_menu
+#: view:sale.agent.plan:sale_commission_product_plan.sale_agent_plan_view_form
+msgid "Agent plan"
+msgstr "Plan de agente"
+
+#. module: sale_commission_product_plan
+#: view:sale.agent.plan:sale_commission_product_plan.sale_agent_plan_view_tree
+msgid "Agent plans"
+msgstr "Planes de agentes"
+
+#. module: sale_commission_product_plan
+#: view:product.product:sale_commission_product_plan.product_product_form_view_remove_commission
+msgid "Agents & commissions"
+msgstr "Agentes y comisiones"
+
+#. module: sale_commission_product_plan
+#: field:sale.agent.plan.line,commission:0
+msgid "Commission"
+msgstr "Comisión"
+
+#. module: sale_commission_product_plan
+#: field:sale.agent.plan,create_uid:0
+#: field:sale.agent.plan.line,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: sale_commission_product_plan
+#: field:sale.agent.plan,create_date:0
+#: field:sale.agent.plan.line,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: sale_commission_product_plan
+#: field:sale.agent.plan,display_name:0
+#: field:sale.agent.plan.line,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: sale_commission_product_plan
+#: field:sale.agent.plan,id:0
+#: field:sale.agent.plan.line,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_commission_product_plan
+#: field:sale.agent.plan,__last_update:0
+#: field:sale.agent.plan.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: sale_commission_product_plan
+#: field:sale.agent.plan,write_uid:0
+#: field:sale.agent.plan.line,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: sale_commission_product_plan
+#: field:sale.agent.plan,write_date:0
+#: field:sale.agent.plan.line,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: sale_commission_product_plan
+#: field:sale.agent.plan,lines:0
+msgid "Lines"
+msgstr "Lineas"
+
+#. module: sale_commission_product_plan
+#: field:sale.agent.plan,name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: sale_commission_product_plan
+#: model:ir.model,name:sale_commission_product_plan.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: sale_commission_product_plan
+#: field:res.partner,plan:0
+#: field:sale.agent.plan.line,plan:0
+msgid "Plan"
+msgstr "Plan"
+
+#. module: sale_commission_product_plan
+#: field:sale.agent.plan.line,product:0
+msgid "Product"
+msgstr "Producto"

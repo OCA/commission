@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2016 Comunitea
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+    <data>
+
+        <record id="product_product_form_view_remove_commission" model="ir.ui.view">
+            <field name="name">product.product.form.remove.commission</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="sale_commission_product.product_product_form_view_commission_product"/>
+            <field name="arch" type="xml">
+                <separator string="Agents &amp; commissions" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </separator>
+                <field name="agents" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

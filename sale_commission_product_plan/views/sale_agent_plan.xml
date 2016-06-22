@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2016 Comunitea
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+    <data>
+
+        <record id="sale_agent_plan_view_tree" model="ir.ui.view">
+            <field name="name">sale.agent.plan.tree.view</field>
+            <field name="model">sale.agent.plan</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Agent plans">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="sale_agent_plan_view_form" model="ir.ui.view">
+            <field name="name">sale.agent.plan.form.view</field>
+            <field name="model">sale.agent.plan</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Agent plan">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <field name="lines">
+                            <tree editable="bottom">
+                                <field name="product" domain="[('commission_free', '=', False)]"/>
+                                <field name="commission"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="sale_agent_plan_view_search" model="ir.ui.view">
+            <field name="name">sale.agent.plan.search.view</field>
+            <field name="model">sale.agent.plan</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search>
+                   <field name="name"/>
+               </search>
+            </field>
+        </record>
+
+        <record id="sale_agent_plan_action" model="ir.actions.act_window">
+            <field name="name">Agent plan</field>
+            <field name="res_model">sale.agent.plan</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="sale_agent_plan_view_tree"/>
+            <field name="search_view_id" ref="sale_agent_plan_view_search"/>
+        </record>
+
+        <menuitem name="Agent plan" parent="sale_commission.menu_sale_commissions_conf"
+            action="sale_agent_plan_action" id="sale_agent_plan_menu" sequence="1"/>
+
+    </data>
+</openerp>
