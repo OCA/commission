@@ -23,7 +23,7 @@
 from openerp import api, exceptions, fields, models, _
 
 
-class Settlement(models.Model):
+class SettlementLine(models.Model):
     _name = "sale.commission.settlement.line"
     _inherit = "sale.commission.settlement.line"
 
@@ -32,3 +32,8 @@ class Settlement(models.Model):
                                 related='invoice.partner_id',
                                 store=True,
                                 )
+    subtotal = fields.Float(
+                            comodel_name='account.invoice.line',
+                            related='invoice_line.price_subtotal',
+                            store=True,
+                            )

@@ -5,6 +5,10 @@ This module adds the partner field to sale_commision information to keep track
 of the partner related to each commissioned invoice, trying to adapt to an
 usual requirement from commission agents.
 
+It also adds the related field "subtotal", which points to the amount of the
+corresponding invoice line, also useful when it comes to discuss agent's
+invoices. 
+
 Bug Tracker
 ===========
 
