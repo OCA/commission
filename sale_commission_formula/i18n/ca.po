@@ -3,76 +3,75 @@
 # * sale_commission_formula
 # 
 # Translators:
-# Andrea Cometa <a.cometa@apuliasoftware.it>, 2016
-# Nicola Malcontenti <nicola.malcontenti@gmail.com>, 2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 07:09+0000\n"
-"PO-Revision-Date: 2016-10-03 10:11+0000\n"
-"Last-Translator: Andrea Cometa <a.cometa@apuliasoftware.it>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-commission-8-0/language/it/)\n"
+"POT-Creation-Date: 2017-01-07 01:16+0000\n"
+"PO-Revision-Date: 2017-01-17 19:06+0000\n"
+"Last-Translator: Carles Antoli <carlesantoli@hotmail.com>\n"
+"Language-Team: Catalan (http://www.transifex.com/oca/OCA-commission-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
+"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
 msgid "Account Invoice Line common fields"
-msgstr "Campi comuni righe fattura"
+msgstr "Camps comuns de la factura"
 
 #. module: sale_commission_formula
 #: model:ir.model,name:sale_commission_formula.model_sale_commission
 msgid "Commission in sales"
-msgstr "Commissioni nelle Vendite"
+msgstr "Comissió de les vendes"
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
 msgid "Discount (%)"
-msgstr "Sconto (%)"
+msgstr "Descompte (%)"
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
 msgid "Field"
-msgstr "Campo"
+msgstr "Camp"
 
 #. module: sale_commission_formula
 #: field:sale.commission,formula:0
 msgid "Formula"
-msgstr "Formula"
+msgstr "Fórmula"
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
 msgid "Instructions"
-msgstr "Istruzioni"
+msgstr "Instruccions"
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
 msgid "Label"
-msgstr "Etichetta"
+msgstr "Etiqueta"
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
 msgid "Quantity"
-msgstr "Quantità"
+msgstr "Quantitat"
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
 msgid "Sale Oder Line common fields"
-msgstr "Campi Usuali Delle Righe di Ordine di Vendita"
+msgstr "Camps comuns de la línia de comanda de venda"
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
 msgid "Subtotal"
-msgstr "Totale"
+msgstr "Subtotal"
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
 msgid "Unit Price"
-msgstr "Prezzo Unitario"
+msgstr "Preu unitari"
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
@@ -84,29 +83,29 @@ msgid ""
 "  or line._name == 'account.invoice.line'.\n"
 "\n"
 "  Use 'result' to return the commission amount."
-msgstr "Usa 'line' per accedere ai campi della riga.\nSiccome i nomi dei campi possono variare a seconda\ndell model, conviene usare formule diverse.\nPer farlo si può, ad esempio sfruttare line._name == 'sale.order.line'\no line._name == 'account.invoice.line'.\nUsa infine 'result' per ritornare il totale della commissione"
+msgstr "Utilitzi 'line' per accedir als camps de la línia.\nCom a nom de camps poden variar, es tenen que diferenciar les\nfórmules per sale.order.line i account.invoice.line.\nPots, per instancia, utilitzar line._name == 'sale.order.line'\no line._name == 'account.invoice.line'.\n\nUtilitzi 'result' per tornar l'import de la comissió."
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
 msgid "discount"
-msgstr "sconto"
+msgstr "Descompte"
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
 msgid "price_subtotal"
-msgstr "Prezzo Totale"
+msgstr "price_subtotal"
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
 msgid "price_unit"
-msgstr "Prezzo Unitario"
+msgstr "price_unit"
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
 msgid "product_uom_qty"
-msgstr "Quantità Unità di Misura"
+msgstr "product_uom_qty"
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
 msgid "quantity"
-msgstr "Quantità"
+msgstr "quantitat"
