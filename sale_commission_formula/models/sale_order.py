@@ -23,4 +23,4 @@ class SaleOrderLineAgent(models.Model):
                 safe_eval(formula, results, mode="exec", nocopy=True)
                 line_agent.amount += float(results['result'])
             else:
-                return super(SaleOrderLineAgent, line_agent)._compute_amount()
+                super(SaleOrderLineAgent, line_agent)._compute_amount()
