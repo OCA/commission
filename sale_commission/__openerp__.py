@@ -6,7 +6,7 @@
 
 {
     'name': 'Sales commissions',
-    'version': '8.0.2.4.0',
+    'version': '8.0.2.5.0',
     'author': 'Pexego, '
               'Savoire-faire linux, '
               'Avanzosc, '
@@ -31,7 +31,8 @@
         "Daniel Campos <danielcampos@avanzosc.es>",
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
         "Oihane Crucelaegui <oihanecruce@gmail.com>",
-        "Iván Todorovich <ivan.todorovich@gmail.com",
+        "Iván Todorovich <ivan.todorovich@gmail.com>",
+        "Aitor Bouzas <desarrollo@coolabora.com>",
     ],
     "data": [
         "security/ir.model.access.csv",
@@ -41,9 +42,11 @@
         "views/sale_order_view.xml",
         "views/account_invoice_view.xml",
         "views/settlement_view.xml",
+        "views/report_settlement.xml",
         "wizard/wizard_settle.xml",
         "wizard/wizard_invoice.xml",
-        # "report/cc_commission_report.xml"
+        "report/settlement_report.xml",
+        "report/sale_commission_analysis_report_view.xml",
     ],
     "demo": [
         'demo/sale_agent_demo.xml',
