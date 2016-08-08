@@ -9,6 +9,7 @@ from openerp import api, exceptions, fields, models, _
 
 class Settlement(models.Model):
     _name = "sale.commission.settlement"
+    _rec_name = "agent"
 
     def _default_currency(self):
         return self.env.user.company_id.currency_id.id

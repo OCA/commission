@@ -13,9 +13,8 @@ class SaleOrder(models.Model):
     @api.depends('order_line.agents.amount')
     def _compute_commission_total(self):
         for record in self:
-            record.commission_total = 0.0
-            for line in record.order_line:
-                record.commission_total += sum(x.amount for x in line.agents)
+            record.commission_total = sum(
+                record.mapped('order_line.agents.amount'))
 
     commission_total = fields.Float(
         string="Commissions", compute="_compute_commission_total",
