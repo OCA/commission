@@ -4,3 +4,4 @@
 
 from . import models
 from . import wizard
+from .hooks import set_commission_total
