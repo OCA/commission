@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-14 08:24+0000\n"
+"POT-Creation-Date: 2016-08-11 16:25+0000\n"
 "PO-Revision-Date: 2016-05-23 11:35+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-commission-8-0/language/de/)\n"
@@ -127,7 +127,7 @@ msgid "Canceled"
 msgstr "Storniert"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:47
+#: code:addons/sale_commission/models/settlement.py:48
 #, python-format
 msgid "Cannot cancel an invoiced settlement."
 msgstr "Abgerechnete verrechnungen können nicht storniert werden."
@@ -424,7 +424,7 @@ msgid "Last Updated on"
 msgstr "Zuletzt aktualisiert am"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:62
+#: code:addons/sale_commission/models/settlement.py:63
 #: view:sale.commission.settlement:sale_commission.view_settlement_form
 #, python-format
 msgid "Make invoice"
@@ -471,7 +471,7 @@ msgid "Percent"
 msgstr "Prozent"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:112
+#: code:addons/sale_commission/models/settlement.py:113
 #, python-format
 msgid "Period: from %s to %s"
 msgstr "Periode: von %s bis %s"
@@ -663,7 +663,7 @@ msgid "You can only add one time each agent."
 msgstr "Sie dürfen je Vertriebler nur eine Zeit hinzufügen."
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:55
+#: code:addons/sale_commission/models/settlement.py:56
 #, python-format
 msgid "You can't delete invoiced settlements."
 msgstr "Sie dürfen abgerechnete Provisionen nicht löschen."

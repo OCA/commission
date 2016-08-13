@@ -3,12 +3,12 @@
 # * sale_commission
 # 
 # Translators:
-# Ivan Todorovich <ivan.todorovich@gmail.com>, 2016
+# Iván Todorovich <ivan.todorovich@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-07 08:17+0000\n"
+"POT-Creation-Date: 2016-08-11 16:25+0000\n"
 "PO-Revision-Date: 2016-05-07 08:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-commission-8-0/language/es/)\n"
@@ -127,7 +127,7 @@ msgid "Canceled"
 msgstr "Cancelada"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:47
+#: code:addons/sale_commission/models/settlement.py:48
 #, python-format
 msgid "Cannot cancel an invoiced settlement."
 msgstr "No se puede cancelar una liquidación facturada."
@@ -424,7 +424,7 @@ msgid "Last Updated on"
 msgstr "Última actualización en"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:62
+#: code:addons/sale_commission/models/settlement.py:63
 #: view:sale.commission.settlement:sale_commission.view_settlement_form
 #, python-format
 msgid "Make invoice"
@@ -471,7 +471,7 @@ msgid "Percent"
 msgstr "Porcentaje"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:112
+#: code:addons/sale_commission/models/settlement.py:113
 #, python-format
 msgid "Period: from %s to %s"
 msgstr "Periodo: de %s a %s"
@@ -663,7 +663,7 @@ msgid "You can only add one time each agent."
 msgstr "Sólo puede añadir una vez cada agente."
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:55
+#: code:addons/sale_commission/models/settlement.py:56
 #, python-format
 msgid "You can't delete invoiced settlements."
 msgstr "No puede eliminar liquidaciones facturadas."
