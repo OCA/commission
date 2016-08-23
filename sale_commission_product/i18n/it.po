@@ -1,0 +1,101 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_commission_product
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+# Andrea Cometa <a.cometa@apuliasoftware.it>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-17 07:09+0000\n"
+"PO-Revision-Date: 2016-09-17 07:09+0000\n"
+"Last-Translator: Andrea Cometa <a.cometa@apuliasoftware.it>, 2016\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_commission_product
+#: field:product.product.agent,agent:0
+msgid "Agent"
+msgstr "Agente"
+
+#. module: sale_commission_product
+#: view:product.product.agent:sale_commission_product.view_product_product_agent_tree
+msgid "Agents"
+msgstr "Agenti"
+
+#. module: sale_commission_product
+#: view:product.product:sale_commission_product.product_product_form_view_commission_product
+#: field:product.product,agents:0
+msgid "Agents & commissions"
+msgstr "Agenti & Commissioni"
+
+#. module: sale_commission_product
+#: field:product.product.agent,commission:0
+msgid "Commission"
+msgstr "Commissione"
+
+#. module: sale_commission_product
+#: field:product.product.agent,create_uid:0
+msgid "Created by"
+msgstr "Creata da"
+
+#. module: sale_commission_product
+#: field:product.product.agent,create_date:0
+msgid "Created on"
+msgstr "Creata il "
+
+#. module: sale_commission_product
+#: field:product.product.agent,display_name:0
+msgid "Display Name"
+msgstr "Nome da visualizzare"
+
+#. module: sale_commission_product
+#: field:product.product.agent,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_commission_product
+#: model:ir.model,name:sale_commission_product.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Riga di Fattura"
+
+#. module: sale_commission_product
+#: field:product.product.agent,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: sale_commission_product
+#: field:product.product.agent,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: sale_commission_product
+#: field:product.product.agent,write_date:0
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: sale_commission_product
+#: model:ir.model,name:sale_commission_product.model_product_product
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: sale_commission_product
+#: field:product.product.agent,product_id:0
+msgid "Product id"
+msgstr "id Prodotto"
+
+#. module: sale_commission_product
+#: model:ir.model,name:sale_commission_product.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Riga Ordine di Vendita"
+
+#. module: sale_commission_product
+#: sql_constraint:product.product.agent:0
+msgid "You can only add one time each agent."
+msgstr "Puoi aggiungere un solo agente alla volta"
