@@ -4,7 +4,7 @@
 
 {
     'name': 'Sale commissions product',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.0.1',
     'author': 'Asr Oss - Alejandro Sánchez, '
               'Odoo Community Association (OCA)',
     "category": "Generic Modules/Sales & Purchases",
