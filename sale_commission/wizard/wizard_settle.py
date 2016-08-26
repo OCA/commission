@@ -65,7 +65,9 @@ class SaleCommissionMakeSettle(models.TransientModel):
             agent_lines = agent_line_obj.search(
                 [('invoice_date', '<', date_to_agent),
                  ('agent', '=', agent.id),
-                 ('settled', '=', False)], order='invoice_date')
+                 ('settled', '=', False),
+                 ('invoice.type', 'in', ('out_invoice', 'out_refund'))],
+                order='invoice_date')
             for company in agent_lines.mapped('invoice_line.company_id'):
                 for agent_lines_company in agent_lines.filtered(
                         lambda r: r.invoice_line.company_id == company):
