@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Iván Todorovich <ivan.todorovich@gmail.com>, 2016
+# Iván Todorovich <ivan.todorovich@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-11 16:25+0000\n"
-"PO-Revision-Date: 2016-05-07 08:17+0000\n"
+"POT-Creation-Date: 2016-08-24 02:39+0000\n"
+"PO-Revision-Date: 2016-08-23 09:38+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-commission-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -479,7 +480,7 @@ msgstr "Periodo: de %s a %s"
 #. module: sale_commission
 #: field:account.invoice.line.agent,product:0
 msgid "Product"
-msgstr ""
+msgstr "Producto"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_product_template
