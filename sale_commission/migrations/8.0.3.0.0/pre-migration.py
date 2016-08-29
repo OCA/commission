@@ -10,4 +10,5 @@ def migrate(cr, version):
     cr.execute("""
         UPDATE sale_commission_settlement scs
         SET company_id = res_partner.company_id
+        FROM res_partner
         WHERE res_partner.id = scs.agent""")
