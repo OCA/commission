@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-24 02:39+0000\n"
-"PO-Revision-Date: 2016-08-23 09:38+0000\n"
+"POT-Creation-Date: 2016-08-29 09:32+0000\n"
+"PO-Revision-Date: 2016-08-27 18:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-commission-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -128,7 +128,7 @@ msgid "Canceled"
 msgstr "Cancelada"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:48
+#: code:addons/sale_commission/models/settlement.py:49
 #, python-format
 msgid "Cannot cancel an invoiced settlement."
 msgstr "No se puede cancelar una liquidación facturada."
@@ -184,6 +184,14 @@ msgid "Commissions"
 msgstr "Comisiones"
 
 #. module: sale_commission
+#: field:account.invoice.line.agent,company_id:0
+#: field:sale.commission,company_id:0
+#: field:sale.commission.settlement,company_id:0
+#: field:sale.commission.settlement.line,company_id:0
+msgid "Company"
+msgstr ""
+
+#. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_commission_make_invoices
 #: model:ir.ui.menu,name:sale_commission.menu_commission_make_invoices
 msgid "Create commission invoices"
@@ -201,7 +209,7 @@ msgid "Created Invoices"
 msgstr "Facturas creadas"
 
 #. module: sale_commission
-#: code:addons/sale_commission/wizard/wizard_settle.py:98
+#: code:addons/sale_commission/wizard/wizard_settle.py:108
 #, python-format
 msgid "Created Settlements"
 msgstr "Liquidaciones creadas"
@@ -425,7 +433,7 @@ msgid "Last Updated on"
 msgstr "Última actualización en"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:63
+#: code:addons/sale_commission/models/settlement.py:64
 #: view:sale.commission.settlement:sale_commission.view_settlement_form
 #, python-format
 msgid "Make invoice"
@@ -472,7 +480,7 @@ msgid "Percent"
 msgstr "Porcentaje"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:113
+#: code:addons/sale_commission/models/settlement.py:114
 #, python-format
 msgid "Period: from %s to %s"
 msgstr "Periodo: de %s a %s"
@@ -617,7 +625,7 @@ msgid "State"
 msgstr "Estado"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/sale_commission.py:55
+#: code:addons/sale_commission/models/sale_commission.py:64
 #, python-format
 msgid "The lower limit cannot be greater than upper one."
 msgstr "El límite inferior no puede ser mayor que el superior."
@@ -664,7 +672,7 @@ msgid "You can only add one time each agent."
 msgstr "Sólo puede añadir una vez cada agente."
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:56
+#: code:addons/sale_commission/models/settlement.py:57
 #, python-format
 msgid "You can't delete invoiced settlements."
 msgstr "No puede eliminar liquidaciones facturadas."
