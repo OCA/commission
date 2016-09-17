@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-29 09:32+0000\n"
-"PO-Revision-Date: 2016-08-27 18:56+0000\n"
+"POT-Creation-Date: 2016-09-03 06:49+0000\n"
+"PO-Revision-Date: 2016-09-09 12:25+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-commission-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -272,7 +272,7 @@ msgstr "Data Mese"
 #: field:sale.commission.settlement.line,display_name:0
 #: field:sale.order.line.agent,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nome da visualizzare"
 
 #. module: sale_commission
 #: selection:res.partner,agent_type:0
@@ -333,7 +333,7 @@ msgstr "Raggruppa per"
 #: field:sale.commission.settlement,id:0
 #: field:sale.commission.settlement.line,id:0 field:sale.order.line.agent,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,invoice:0
@@ -405,7 +405,7 @@ msgstr "Lascia vuoto per usare la data odierna"
 #: field:sale.commission.settlement.line,__last_update:0
 #: field:sale.order.line.agent,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,write_uid:0
@@ -417,7 +417,7 @@ msgstr ""
 #: field:sale.commission.settlement.line,write_uid:0
 #: field:sale.order.line.agent,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,write_date:0
@@ -429,7 +429,7 @@ msgstr ""
 #: field:sale.commission.settlement.line,write_date:0
 #: field:sale.order.line.agent,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:64
@@ -487,7 +487,7 @@ msgstr "Periodo da %s a %s"
 #. module: sale_commission
 #: field:account.invoice.line.agent,product:0
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_product_template
