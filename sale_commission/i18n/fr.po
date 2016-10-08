@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-03 06:49+0000\n"
-"PO-Revision-Date: 2016-09-16 21:46+0000\n"
+"POT-Creation-Date: 2016-09-17 07:09+0000\n"
+"PO-Revision-Date: 2016-10-04 09:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-commission-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -91,7 +91,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.order.line.agent,amount:0
 msgid "Amount"
-msgstr ""
+msgstr "Montant"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,amount:0
@@ -107,7 +107,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission,amount_base_type:0
 msgid "Base"
-msgstr ""
+msgstr "Base"
 
 #. module: sale_commission
 #: selection:sale.commission,commission_type:0
@@ -187,7 +187,7 @@ msgstr ""
 #: field:sale.commission.settlement,company_id:0
 #: field:sale.commission.settlement.line,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Société"
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_commission_make_invoices
@@ -339,7 +339,7 @@ msgstr "ID"
 #: model:ir.model,name:sale_commission.model_account_invoice
 #: field:sale.commission.settlement.line,invoice:0
 msgid "Invoice"
-msgstr ""
+msgstr "Facture"
 
 #. module: sale_commission
 #: selection:sale.commission,invoice_state:0
@@ -684,7 +684,7 @@ msgstr ""
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
 #: view:sale.commission.make.settle:sale_commission.view_settled_wizard
 msgid "or"
-msgstr ""
+msgstr "ou"
 
 #. module: sale_commission
 #: view:sale.commission:sale_commission.sale_commission_form
