@@ -5,7 +5,6 @@
 # Translators:
 # Iván Todorovich <ivan.todorovich@gmail.com>, 2016
 # Iván Todorovich <ivan.todorovich@gmail.com>, 2016
-=======
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
@@ -1161,10 +1160,6 @@ msgstr "Mes"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,display_name:0
-<<<<<<< 0d02f9003f07daec004a093d5a81f50bc93564fa
-=======
-#: field:res.partner.agent,display_name:0
->>>>>>> [ADD]sale_commission: We are able to set agents with specific commissions by partner
 #: field:sale.commission,display_name:0
 #: field:sale.commission.make.invoice,display_name:0
 #: field:sale.commission.make.settle,display_name:0
