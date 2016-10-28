@@ -14,6 +14,12 @@
             <field name="invoice_state">paid</field>
         </record>
 
+        <record id="demo_commission_partial_payments" model="sale.commission">
+            <field name="name">20% fixed commission - Partial Payments Based</field>
+            <field name="fix_qty">20.0</field>
+            <field name="invoice_state">partial_payments</field>
+        </record>
+
         <!-- Create de Agents -->
         <record id="res_partner_pritesh_sale_agent" model="res.partner">
             <field name="name">Pritesh Sales Agent</field>
@@ -52,6 +58,67 @@
             <field name="commission" ref="demo_commission" />
             <field name="lang">en_US</field>
         </record>
+
+        <record id="partial_payments_sale_agent" model="res.partner">
+            <field name="name">Partial Payments</field>
+            <field name="city">Belgium</field>
+            <field name="zip">2458</field>
+            <field name="country_id" model="res.country"
+                search="[('name','=','India')]" />
+            <field name="street">Belgium Gao</field>
+            <field name="agent" eval="1" />
+            <field name="commission" ref="demo_commission_partial_payments" />
+            <field name="lang">en_US</field>
+        </record>
+
+        <!-- Create Payment Term 07 / 28 -->
+        <record id="demo_payment_term_07_28" model="account.payment.term">
+            <field eval="1" name="active"/>
+            <field name="name">07 / 28</field>
+        </record>
+
+        <record id="account_payment_term_line_dias_07" model="account.payment.term.line">
+            <field model="account.payment.term" name="payment_id" search="[('name', '=', u'07 / 28')]"/>
+            <field eval="7" name="days"/>
+            <field name="value">procent</field>
+            <field eval="0.5" name="value_amount"/>
+        </record>
+
+        <record id="account_payment_term_line_dias_28" model="account.payment.term.line">
+            <field model="account.payment.term" name="payment_id" search="[('name', '=', u'07 / 28')]"/>
+            <field eval="28" name="days"/>
+            <field name="value">balance</field>
+            <field eval="0.5" name="value_amount"/>
+        </record>
+
+        <!-- Create Invoice to demonstrate the Partial Payments -->
+        <record id="invoice_partial_payments" model="account.invoice">
+            <field name="currency_id" ref="base.EUR"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="journal_id" ref="account.sales_journal"/>
+            <field name="state">draft</field>
+            <field name="type">out_invoice</field>
+            <field name="account_id" ref="account.a_recv"/>
+            <field name="partner_id" ref="base.res_partner_12"/>
+            <field name="date_invoice" eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"/>
+            <field name="payment_term" ref="demo_payment_term_07_28"/>
+        </record>
+
+        <record id="invoice_line_partial_payments" model="account.invoice.line">
+            <field name="name">Motherboard A20Z71</field>
+            <field name="invoice_id" ref="invoice_partial_payments"/>
+            <field name="price_unit">2000</field>
+            <field name="quantity">10</field>
+            <field name="account_id" ref="account.a_sale"/>
+        </record>
+
+        <record id="line_agent_partial_payments" model="account.invoice.line.agent">
+            <field name="invoice_line" ref="invoice_line_partial_payments"/>
+            <field name="agent" ref="partial_payments_sale_agent"/>
+            <field name="commission" ref="demo_commission_partial_payments"/>
+        </record>
+
+        <workflow action="invoice_open" model="account.invoice" ref="invoice_partial_payments"/>
 
     </data>
 </openerp>
