@@ -73,7 +73,7 @@
                         <group string="Commission lines" colspan="4">
                             <field name="lines" nolabel="1">
                                 <tree string="Settlement lines">
-                                    <field name="date"/>
+                                    <field name="effective_date"/>
                                     <field name="invoice"/>
                                     <field name="invoice_line"/>
                                     <field name="commission"/>
@@ -98,7 +98,7 @@
             <field name="model">sale.commission.settlement.line</field>
             <field name="arch" type="xml">
                 <tree string="Settlement lines" create="false">
-                    <field name="date"/>
+                    <field name="effective_date"/>
                     <field name="agent"/>
                     <field name="invoice"/>
                     <field name="invoice_line"/>
@@ -114,11 +114,11 @@
             <field name="arch" type="xml">
                 <search string="Settlement lines search">
                     <field name="agent"/>
-                    <field name="date"/>
+                    <field name="effective_date"/>
                     <field name="commission"/>
                     <filter string="This year"
                             name="thisyear"
-                            domain="['|', ('date', '=', False), '&amp;',('date','&lt;=', time.strftime('%%Y-12-31')),('date','&gt;=',time.strftime('%%Y-01-01'))]" />
+                            domain="['|', ('effective_date', '=', False), '&amp;',('effective_date','&lt;=', time.strftime('%%Y-12-31')),('effective_date','&gt;=',time.strftime('%%Y-01-01'))]" />
                     <separator/>
                     <group expand="1" string="Group By">
                         <filter string="Agent" name="group_agent" context="{'group_by': 'agent'}"/>
@@ -134,7 +134,7 @@
              <field name="arch" type="xml">
                  <graph string="Settlement analysis" type="pivot">
                     <field name="agent" type="row"/>
-                    <field name="date" interval="month" type="col"/>
+                    <field name="effective_date" interval="month" type="col"/>
                     <field name="settled_amount" type="measure"/>
                  </graph>
              </field>

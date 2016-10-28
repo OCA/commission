@@ -80,6 +80,20 @@ class SaleCommissionMakeSettle(models.TransientModel):
                                     'paid'):
                                 pos += 1
                                 continue
+                            if (agent.commission.invoice_state ==
+                                    'partial_payments'):
+                                dict_settlement_line = \
+                                    self._get_partial_payments(
+                                        agent_lines_company[pos])
+                                if dict_settlement_line['value'] == 0:
+                                    pos += 1
+                                    continue
+                            else:
+                                dict_settlement_line = {
+                                    'value':
+                                        agent_lines_company[pos].amount,
+                                    'effective_date':
+                                        agent_lines_company[pos].invoice_date}
                             if agent_lines_company[pos].invoice_date > sett_to:
                                 sett_from = self._get_period_start(
                                     agent,
@@ -97,9 +111,13 @@ class SaleCommissionMakeSettle(models.TransientModel):
                                 settlement_ids.append(settlement.id)
                             settlement_line_obj.create(
                                 {'settlement': settlement.id,
-                                 'agent_line': [(6, 0,
-                                                 [agent_lines_company[pos].id])
-                                                ]})
+                                 'agent_line': [
+                                     (6, 0, [agent_lines_company[pos].id])],
+                                 'settled_amount':
+                                     dict_settlement_line['value'],
+                                 'effective_date':
+                                     dict_settlement_line['effective_date'],
+                                 })
                             pos += 1
 
         # go to results
@@ -114,3 +132,39 @@ class SaleCommissionMakeSettle(models.TransientModel):
 
         else:
             return {'type': 'ir.actions.act_window_close'}
+
+    @api.multi
+    def _get_partial_payments(self, agent_line):
+        payment_value = 0.0
+        effective_date = ''
+        for payment in agent_line.invoice.payment_ids:
+            payment_value += payment.credit
+            if effective_date != '':
+                if effective_date < payment.date:
+                    effective_date = payment.date
+            else:
+                effective_date = payment.date
+        percent_paid = (
+            ((payment_value * 100) / agent_line.invoice.amount_total) / 100)
+        settled = self.env['sale.commission.settlement.line'].search(
+            ['&', ('invoice_line', '=', agent_line.invoice_line.id),
+             ('settlement.state', '!=', 'cancel')])
+        total_settled = 0.0
+        if settled:
+            total_settled = sum(
+                line.settled_amount for line in settled)
+        obj_precision = self.env['decimal.precision']
+        account_precision = obj_precision.precision_get('Account')
+        if total_settled:
+            total_amount_pay = round(
+                ((agent_line.amount * percent_paid) - total_settled),
+                account_precision)
+        else:
+            total_amount_pay = round(
+                (agent_line.amount * percent_paid), account_precision)
+        if total_amount_pay > 0:
+            return {
+                'value': total_amount_pay,
+                'effective_date': effective_date}
+        else:
+            return {'value': 0, 'effective_date': False}

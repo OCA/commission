@@ -6,6 +6,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import api, exceptions, fields, models, _
+from openerp.exceptions import Warning as UserError
 
 
 class SaleCommission(models.Model):
@@ -29,8 +30,9 @@ class SaleCommission(models.Model):
     active = fields.Boolean(default=True)
     invoice_state = fields.Selection(
         [('open', 'Invoice Based'),
-         ('paid', 'Payment Based')], string='Invoice Status',
-        required=True, default='open')
+         ('paid', 'Payment Based'),
+         ('partial_payments', 'Partial Payments Based')],
+        string='Invoice Status', required=True, default='open')
     amount_base_type = fields.Selection(
         selection=[('gross_amount', 'Gross Amount'),
                    ('net_amount', 'Net Amount')],
@@ -46,6 +48,14 @@ class SaleCommission(models.Model):
             if section.amount_from <= base <= section.amount_to:
                 return base * section.percent / 100.0
         return 0.0
+
+    @api.constrains('fix_qty')
+    def _check_fix_qty(self):
+        for record in self:
+            if record.fix_qty < 0 or record.fix_qty > 100:
+                raise UserError(
+                    'The field Fixed percentage must'
+                    ' be a value between 0 and 100.')
 
 
 class SaleCommissionSection(models.Model):

@@ -5,6 +5,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import api, exceptions, fields, models, _
+from openerp.addons import decimal_precision as dp
 
 
 class Settlement(models.Model):
@@ -14,7 +15,9 @@ class Settlement(models.Model):
     def _default_currency(self):
         return self.env.user.company_id.currency_id.id
 
-    total = fields.Float(compute="_compute_total", readonly=True, store=True)
+    total = fields.Float(
+        compute="_compute_total", readonly=True, store=True,
+        digits_compute=dp.get_precision('Account'))
     date_from = fields.Date(string="From")
     date_to = fields.Date(string="To")
     agent = fields.Many2one(
@@ -162,6 +165,10 @@ class SettlementLine(models.Model):
         relation='settlement_agent_line_rel', column1='settlement_id',
         column2='agent_line_id', required=True)
     date = fields.Date(related="agent_line.invoice_date", store=True)
+    effective_date = fields.Date(
+        string="Effective date",
+        help="In case of commission type is based in Payments use this date"
+             " in case of based in Invoice use invoice date.")
     invoice_line = fields.Many2one(
         comodel_name='account.invoice.line', store=True,
         related='agent_line.invoice_line')
@@ -172,7 +179,7 @@ class SettlementLine(models.Model):
         comodel_name="res.partner", readonly=True, related="agent_line.agent",
         store=True)
     settled_amount = fields.Float(
-        related="agent_line.amount", readonly=True, store=True)
+        string='Settled Amount', digits_compute=dp.get_precision('Account'))
     commission = fields.Many2one(
         comodel_name="sale.commission", related="agent_line.commission")
     company_id = fields.Many2one('res.company', 'Company',
