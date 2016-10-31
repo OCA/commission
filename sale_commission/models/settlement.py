@@ -184,3 +184,6 @@ class SettlementLine(models.Model):
         comodel_name="sale.commission", related="agent_line.commission")
     company_id = fields.Many2one('res.company', 'Company',
                                  related="settlement.company_id", store=True)
+    partner_id = fields.Many2one(
+        comodel_name='res.partner', store=True, string="Partner",
+        related='invoice_line.partner_id')
