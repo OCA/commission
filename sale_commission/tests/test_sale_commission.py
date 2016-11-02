@@ -436,3 +436,52 @@ class TestSaleCommission(common.TransactionCase):
         my_invoice.action_cancel()
         self.assertTrue(
             inv_line_agent.commission.id == partner_com.commission_id.id)
+
+    def test_res_partner_agent_name_get(self):
+        agent = self.env.ref('sale_commission.res_partner_pritesh_sale_agent')
+        partner_com = self.env['res.partner.agent'].create({
+            'partner_id': self.partner.id,
+            'agent_id': agent.id,
+            'default_commission': True,
+            'commission_id': self.ref('sale_commission.demo_commission_paid')
+        })
+
+        name_get = partner_com.name_get()
+        self.assertTrue(name_get == [(partner_com.id, agent.name)])
+
+    def test_res_partner_agent_onchanges(self):
+        agent = self.env.ref('sale_commission.res_partner_pritesh_sale_agent')
+        partner_com = self.env['res.partner.agent'].create({
+            'partner_id': self.partner.id,
+            'agent_id': agent.id,
+            'default_commission': True,
+            'commission_id': self.ref('sale_commission.demo_commission_paid')
+        })
+
+        partner_com.onchange_agent_id()
+        self.assertTrue(partner_com.agent_id.commission.id ==
+                        partner_com.commission_id.id)
+
+        partner_com.onchange_default_commission()
+        self.assertTrue(partner_com.agent_id.commission.id ==
+                        partner_com.commission_id.id)
+        # Test new write code
+        vals = {
+            'sections': [(0, 0, {
+                'amount_from': 1.0,
+                'amount_to': 100.0,
+                'percent': 10.0,
+            })]
+        }
+        partner_com.commission_id.write(vals)
+        vals = {
+            'default_commission': False,
+            'commission_id': self.ref('sale_commission.demo_commission_paid'),
+            'agent_id': agent.id,
+            'invoice_state': 'paid',
+        }
+        partner_com.write(vals)
+        partner_com.agent_id.commission = \
+            self.ref('sale_commission.demo_commission')
+        res = partner_com.onchange_commission_id()
+        self.assertTrue(res is not False)  # Check warning

@@ -31,9 +31,8 @@ class ResPartnerAgent(models.Model):
         help="Uncheck this field to set a specific commission "
              "for this partner")
 
-    def name_get(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
+    @api.multi
+    def name_get(self):
         res = []
         for obj in self:
             res.append((obj.id, obj.agent_id.name))
