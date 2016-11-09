@@ -43,6 +43,7 @@ Contributors
 * Daniel Campos <danielcampos@avanzosc.es>
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Oihane Crucelaegui <oihanecruce@gmail.com>
+* Andrea Cometa <a.cometa@apuliasoftware.it>
 
 Icon
 ----
