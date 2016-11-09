@@ -88,9 +88,11 @@ class SaleOrderLineAgent(models.Model):
             if (not line.sale_line.product_id.commission_free and
                     line.commission):
                 if line.commission.amount_base_type == 'net_amount':
-                    subtotal = (line.sale_line.price_subtotal -
-                                (line.sale_line.product_id.standard_price *
-                                 line.sale_line.product_uom_qty))
+                    l = line.sale_line
+                    subtotal = l.tax_id.compute_all(
+                        (l.price_unit * (1 - (l.discount or 0.0) / 100.0)),
+                        l.product_uom_qty, l.product_id, l.order_id.partner_id)[
+                        'total']
                 else:
                     subtotal = line.sale_line.price_subtotal
                 if line.commission.commission_type == 'fixed':
