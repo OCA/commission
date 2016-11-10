@@ -148,14 +148,14 @@ class AccountInvoiceLineAgent(models.Model):
             line.amount = 0.0
             if (not line.invoice_line.product_id.commission_free and
                     line.commission):
+                l = line.invoice_line
+                subtotal = l.invoice_line_tax_id.compute_all(
+                    (l.price_unit * (1 - (l.discount or 0.0) / 100.0)),
+                    l.quantity, l.product_id, line.invoice.partner_id)
                 if line.commission.amount_base_type == 'net_amount':
-                    l = line.invoice_line
-                    subtotal = l.invoice_line_tax_id.compute_all(
-                        (l.price_unit * (1 - (l.discount or 0.0) / 100.0)),
-                        l.quantity, l.product_id, line.invoice.partner_id)[
-                        'total']
+                    subtotal = subtotal['total']
                 else:
-                    subtotal = line.invoice_line.price_subtotal
+                    subtotal = subtotal['total_included']
                 if line.commission.commission_type == 'fixed':
                     line.amount = subtotal * (line.commission.fix_qty / 100.0)
                 else:
