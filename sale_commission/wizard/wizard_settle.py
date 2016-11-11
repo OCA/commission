@@ -60,7 +60,8 @@ class SaleCommissionMakeSettle(models.TransientModel):
                 [('agent', '=', True)])
         date_to = fields.Date.from_string(self.date_to)
         for agent in self.agents:
-            date_to_agent = self._get_period_start(agent, date_to)
+            date_from = self._get_period_start(agent, date_to)
+            date_to_agent = self._get_next_period_date(agent, date_from)
             # Get non settled invoices
             agent_lines = agent_line_obj.search(
                 [('invoice_date', '<', date_to_agent),
