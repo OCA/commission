@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 07:09+0000\n"
-"PO-Revision-Date: 2016-10-05 06:37+0000\n"
+"POT-Creation-Date: 2016-11-11 10:57+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Croatian (http://www.transifex.com/oca/OCA-commission-8-0/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -323,7 +323,7 @@ msgstr ""
 #: view:sale.commission.settlement:sale_commission.view_settlement_search
 #: view:sale.commission.settlement.line:sale_commission.view_settlement_line_search
 msgid "Group By"
-msgstr ""
+msgstr "Grupiraj po"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,id:0 field:sale.commission,id:0
@@ -339,7 +339,7 @@ msgstr "ID"
 #: model:ir.model,name:sale_commission.model_account_invoice
 #: field:sale.commission.settlement.line,invoice:0
 msgid "Invoice"
-msgstr ""
+msgstr "Račun"
 
 #. module: sale_commission
 #: selection:sale.commission,invoice_state:0
@@ -349,7 +349,7 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_invoice_line
 msgid "Invoice Line"
-msgstr ""
+msgstr "Stavka računa"
 
 #. module: sale_commission
 #: field:sale.commission,invoice_state:0
@@ -455,7 +455,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission,name:0
 msgid "Name"
-msgstr ""
+msgstr "Naziv"
 
 #. module: sale_commission
 #: selection:sale.commission,amount_base_type:0
@@ -620,10 +620,10 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission.settlement,state:0
 msgid "State"
-msgstr ""
+msgstr "Status"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/sale_commission.py:64
+#: code:addons/sale_commission/models/sale_commission.py:65
 #, python-format
 msgid "The lower limit cannot be greater than upper one."
 msgstr ""
@@ -650,13 +650,13 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission.settlement,total:0
 msgid "Total"
-msgstr ""
+msgstr "Ukupno"
 
 #. module: sale_commission
 #: field:res.partner,agent_type:0 field:sale.commission,commission_type:0
 #: field:sale.commission.settlement,agent_type:0
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 #. module: sale_commission
 #: field:sale.commission.make.settle,date_to:0

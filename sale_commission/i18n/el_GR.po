@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-03 06:49+0000\n"
-"PO-Revision-Date: 2016-09-09 12:26+0000\n"
+"POT-Creation-Date: 2016-11-11 10:57+0000\n"
+"PO-Revision-Date: 2016-11-22 16:30+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Greek (Greece) (http://www.transifex.com/oca/OCA-commission-8-0/language/el_GR/)\n"
 "MIME-Version: 1.0\n"
@@ -118,7 +118,7 @@ msgstr ""
 #: view:sale.commission.make.settle:sale_commission.view_settled_wizard
 #: view:sale.commission.settlement:sale_commission.view_settlement_form
 msgid "Cancel"
-msgstr ""
+msgstr "Άκυρο"
 
 #. module: sale_commission
 #: selection:sale.commission.settlement,state:0
@@ -249,7 +249,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission.make.invoice,date:0
 msgid "Date"
-msgstr ""
+msgstr "Ημερομηνία"
 
 #. module: sale_commission
 #: view:sale.commission.settlement:sale_commission.view_settlement_search
@@ -297,7 +297,7 @@ msgstr ""
 #: field:sale.commission.section,amount_from:0
 #: field:sale.commission.settlement,date_from:0
 msgid "From"
-msgstr ""
+msgstr "Από"
 
 #. module: sale_commission
 #: field:sale.commission.make.invoice,from_settlement:0
@@ -339,7 +339,7 @@ msgstr "Κωδικός"
 #: model:ir.model,name:sale_commission.model_account_invoice
 #: field:sale.commission.settlement.line,invoice:0
 msgid "Invoice"
-msgstr ""
+msgstr "Τιμολόγιο"
 
 #. module: sale_commission
 #: selection:sale.commission,invoice_state:0
@@ -465,7 +465,7 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_res_partner
 msgid "Partner"
-msgstr ""
+msgstr "Συνεργάτης"
 
 #. module: sale_commission
 #: selection:sale.commission,invoice_state:0
@@ -623,7 +623,7 @@ msgid "State"
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/sale_commission.py:64
+#: code:addons/sale_commission/models/sale_commission.py:65
 #, python-format
 msgid "The lower limit cannot be greater than upper one."
 msgstr ""

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-03 06:49+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2016-11-11 10:57+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Thai (http://www.transifex.com/oca/OCA-commission-8-0/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -222,7 +222,7 @@ msgstr ""
 #: field:sale.commission.settlement.line,create_uid:0
 #: field:sale.order.line.agent,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "สร้างโดย"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,create_date:0
@@ -234,7 +234,7 @@ msgstr ""
 #: field:sale.commission.settlement.line,create_date:0
 #: field:sale.order.line.agent,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "สร้างเมื่อ"
 
 #. module: sale_commission
 #: field:res.partner,agent:0
@@ -271,7 +271,7 @@ msgstr ""
 #: field:sale.commission.settlement.line,display_name:0
 #: field:sale.order.line.agent,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "ชื่อที่ใช้แสดง"
 
 #. module: sale_commission
 #: selection:res.partner,agent_type:0
@@ -323,7 +323,7 @@ msgstr ""
 #: view:sale.commission.settlement:sale_commission.view_settlement_search
 #: view:sale.commission.settlement.line:sale_commission.view_settlement_line_search
 msgid "Group By"
-msgstr ""
+msgstr "จัดกลุ่มโดย"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,id:0 field:sale.commission,id:0
@@ -332,7 +332,7 @@ msgstr ""
 #: field:sale.commission.settlement,id:0
 #: field:sale.commission.settlement.line,id:0 field:sale.order.line.agent,id:0
 msgid "ID"
-msgstr ""
+msgstr "รหัส"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,invoice:0
@@ -404,7 +404,7 @@ msgstr ""
 #: field:sale.commission.settlement.line,__last_update:0
 #: field:sale.order.line.agent,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "แก้ไขครั้งสุดท้ายเมื่อ"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,write_uid:0
@@ -416,7 +416,7 @@ msgstr ""
 #: field:sale.commission.settlement.line,write_uid:0
 #: field:sale.order.line.agent,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "อัพเดทครั้งสุดท้ายโดย"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,write_date:0
@@ -428,7 +428,7 @@ msgstr ""
 #: field:sale.commission.settlement.line,write_date:0
 #: field:sale.order.line.agent,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "อัพเดทครั้งสุดท้ายเมื่อ"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:64
@@ -455,7 +455,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission,name:0
 msgid "Name"
-msgstr ""
+msgstr "ชื่อ"
 
 #. module: sale_commission
 #: selection:sale.commission,amount_base_type:0
@@ -623,7 +623,7 @@ msgid "State"
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/sale_commission.py:64
+#: code:addons/sale_commission/models/sale_commission.py:65
 #, python-format
 msgid "The lower limit cannot be greater than upper one."
 msgstr ""
@@ -650,13 +650,13 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission.settlement,total:0
 msgid "Total"
-msgstr ""
+msgstr "รวม"
 
 #. module: sale_commission
 #: field:res.partner,agent_type:0 field:sale.commission,commission_type:0
 #: field:sale.commission.settlement,agent_type:0
 msgid "Type"
-msgstr ""
+msgstr "ชนิด"
 
 #. module: sale_commission
 #: field:sale.commission.make.settle,date_to:0
@@ -684,7 +684,7 @@ msgstr ""
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
 #: view:sale.commission.make.settle:sale_commission.view_settled_wizard
 msgid "or"
-msgstr ""
+msgstr "หรือ"
 
 #. module: sale_commission
 #: view:sale.commission:sale_commission.sale_commission_form

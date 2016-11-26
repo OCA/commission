@@ -1,0 +1,110 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_commission_formula
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: commission (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-11 10:57+0000\n"
+"PO-Revision-Date: 2016-03-15 00:28+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Russian (http://www.transifex.com/oca/OCA-commission-8-0/language/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#. module: sale_commission_formula
+#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+msgid "Account Invoice Line common fields"
+msgstr ""
+
+#. module: sale_commission_formula
+#: model:ir.model,name:sale_commission_formula.model_sale_commission
+msgid "Commission in sales"
+msgstr ""
+
+#. module: sale_commission_formula
+#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+msgid "Discount (%)"
+msgstr ""
+
+#. module: sale_commission_formula
+#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+msgid "Field"
+msgstr "Поле"
+
+#. module: sale_commission_formula
+#: field:sale.commission,formula:0
+msgid "Formula"
+msgstr ""
+
+#. module: sale_commission_formula
+#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+msgid "Instructions"
+msgstr ""
+
+#. module: sale_commission_formula
+#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+msgid "Label"
+msgstr ""
+
+#. module: sale_commission_formula
+#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+msgid "Quantity"
+msgstr ""
+
+#. module: sale_commission_formula
+#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+msgid "Sale Oder Line common fields"
+msgstr ""
+
+#. module: sale_commission_formula
+#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+msgid "Subtotal"
+msgstr ""
+
+#. module: sale_commission_formula
+#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+msgid "Unit Price"
+msgstr ""
+
+#. module: sale_commission_formula
+#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+msgid ""
+"Use 'line' to access all the line fields.\n"
+"  As field names may vary, you should differentiate the\n"
+"  formulas for sale.order.line and account.invoice.line.\n"
+"  You can, for instance, use line._name == 'sale.order.line'\n"
+"  or line._name == 'account.invoice.line'.\n"
+"\n"
+"  Use 'result' to return the commission amount."
+msgstr ""
+
+#. module: sale_commission_formula
+#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+msgid "discount"
+msgstr ""
+
+#. module: sale_commission_formula
+#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+msgid "price_subtotal"
+msgstr ""
+
+#. module: sale_commission_formula
+#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+msgid "price_unit"
+msgstr ""
+
+#. module: sale_commission_formula
+#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+msgid "product_uom_qty"
+msgstr ""
+
+#. module: sale_commission_formula
+#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+msgid "quantity"
+msgstr ""

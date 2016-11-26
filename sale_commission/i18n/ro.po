@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-03 06:49+0000\n"
-"PO-Revision-Date: 2016-09-09 12:24+0000\n"
+"POT-Creation-Date: 2016-11-11 10:57+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/oca/OCA-commission-8-0/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -623,7 +623,7 @@ msgid "State"
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/sale_commission.py:64
+#: code:addons/sale_commission/models/sale_commission.py:65
 #, python-format
 msgid "The lower limit cannot be greater than upper one."
 msgstr ""
@@ -684,7 +684,7 @@ msgstr ""
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
 #: view:sale.commission.make.settle:sale_commission.view_settled_wizard
 msgid "or"
-msgstr ""
+msgstr "sau"
 
 #. module: sale_commission
 #: view:sale.commission:sale_commission.sale_commission_form
