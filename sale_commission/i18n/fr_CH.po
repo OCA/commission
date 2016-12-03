@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-11 10:57+0000\n"
-"PO-Revision-Date: 2016-11-25 14:57+0000\n"
+"POT-Creation-Date: 2016-11-26 04:03+0000\n"
+"PO-Revision-Date: 2016-12-01 10:40+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (Switzerland) (http://www.transifex.com/oca/OCA-commission-8-0/language/fr_CH/)\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission,active:0
 msgid "Active"
-msgstr ""
+msgstr "Actif"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,agent:0
@@ -271,7 +271,7 @@ msgstr ""
 #: field:sale.commission.settlement.line,display_name:0
 #: field:sale.order.line.agent,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom affiché"
 
 #. module: sale_commission
 #: selection:res.partner,agent_type:0
@@ -349,7 +349,7 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_invoice_line
 msgid "Invoice Line"
-msgstr ""
+msgstr "Ligne de facture"
 
 #. module: sale_commission
 #: field:sale.commission,invoice_state:0
@@ -404,7 +404,7 @@ msgstr ""
 #: field:sale.commission.settlement.line,__last_update:0
 #: field:sale.order.line.agent,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,write_uid:0
@@ -465,7 +465,7 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_res_partner
 msgid "Partner"
-msgstr ""
+msgstr "Partenaire"
 
 #. module: sale_commission
 #: selection:sale.commission,invoice_state:0
@@ -486,12 +486,12 @@ msgstr ""
 #. module: sale_commission
 #: field:account.invoice.line.agent,product:0
 msgid "Product"
-msgstr ""
+msgstr "Produit"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Template de produit"
 
 #. module: sale_commission
 #: field:sale.commission.make.invoice,product:0
