@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-11 10:57+0000\n"
-"PO-Revision-Date: 2016-11-25 14:55+0000\n"
+"POT-Creation-Date: 2016-11-26 04:03+0000\n"
+"PO-Revision-Date: 2016-12-09 17:18+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-commission-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -297,7 +297,7 @@ msgstr ""
 #: field:sale.commission.section,amount_from:0
 #: field:sale.commission.settlement,date_from:0
 msgid "From"
-msgstr ""
+msgstr "À partir du"
 
 #. module: sale_commission
 #: field:sale.commission.make.invoice,from_settlement:0
@@ -645,7 +645,7 @@ msgstr ""
 #: field:sale.commission.section,amount_to:0
 #: field:sale.commission.settlement,date_to:0
 msgid "To"
-msgstr ""
+msgstr "Jusqu'au"
 
 #. module: sale_commission
 #: field:sale.commission.settlement,total:0
