@@ -39,7 +39,7 @@ class AccountInvoice(models.Model):
         settlements.write({'state': 'invoiced'})
         return super(AccountInvoice, self).invoice_validate()
 
-    @api.multi
+    @api.model
     def _refund_cleanup_lines(self, lines):
         """ugly function to map all fields of account.invoice.line
         when creates refund invoice"""
