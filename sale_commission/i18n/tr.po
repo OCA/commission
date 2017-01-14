@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-31 02:11+0000\n"
-"PO-Revision-Date: 2017-01-06 08:26+0000\n"
+"POT-Creation-Date: 2017-01-07 01:16+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-commission-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -91,7 +91,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.order.line.agent,amount:0
 msgid "Amount"
-msgstr ""
+msgstr "Tutar"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,amount:0
@@ -386,7 +386,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission.make.invoice,journal:0
 msgid "Journal"
-msgstr ""
+msgstr "Yevmiye Defteri"
 
 #. module: sale_commission
 #: help:account.invoice.line.agent,invoice_date:0
@@ -486,7 +486,7 @@ msgstr ""
 #. module: sale_commission
 #: field:account.invoice.line.agent,product:0
 msgid "Product"
-msgstr ""
+msgstr "Ürün"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_product_template
@@ -521,12 +521,12 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Satış Siparişi"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Satış Siparişi Hattı"
 
 #. module: sale_commission
 #: selection:res.partner,agent_type:0
