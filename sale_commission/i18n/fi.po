@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 01:16+0000\n"
-"PO-Revision-Date: 2017-01-13 09:29+0000\n"
+"POT-Creation-Date: 2017-01-14 01:36+0000\n"
+"PO-Revision-Date: 2017-01-17 12:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-commission-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission,active:0
 msgid "Active"
-msgstr ""
+msgstr "Aktiivinen"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,agent:0
@@ -91,7 +91,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.order.line.agent,amount:0
 msgid "Amount"
-msgstr ""
+msgstr "Määrä"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,amount:0
@@ -187,7 +187,7 @@ msgstr ""
 #: field:sale.commission.settlement,company_id:0
 #: field:sale.commission.settlement.line,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Yritys"
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_commission_make_invoices

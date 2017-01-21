@@ -22,23 +22,23 @@ msgstr ""
 #. module: sale_commission_product
 #: field:product.product.agent,agent:0
 msgid "Agent"
-msgstr ""
+msgstr "Agent"
 
 #. module: sale_commission_product
 #: view:product.product.agent:sale_commission_product.view_product_product_agent_tree
 msgid "Agents"
-msgstr ""
+msgstr "Agents"
 
 #. module: sale_commission_product
 #: view:product.product:sale_commission_product.product_product_form_view_commission_product
 #: field:product.product,agents:0
 msgid "Agents & commissions"
-msgstr ""
+msgstr "Agents i comissions"
 
 #. module: sale_commission_product
 #: field:product.product.agent,commission:0
 msgid "Commission"
-msgstr ""
+msgstr "Comissió"
 
 #. module: sale_commission_product
 #: field:product.product.agent,create_uid:0
@@ -63,7 +63,7 @@ msgstr "ID"
 #. module: sale_commission_product
 #: model:ir.model,name:sale_commission_product.model_account_invoice_line
 msgid "Invoice Line"
-msgstr ""
+msgstr "Línia factura"
 
 #. module: sale_commission_product
 #: field:product.product.agent,__last_update:0
@@ -83,19 +83,19 @@ msgstr "Darrera Actualització el"
 #. module: sale_commission_product
 #: model:ir.model,name:sale_commission_product.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Producte"
 
 #. module: sale_commission_product
 #: field:product.product.agent,product_id:0
 msgid "Product id"
-msgstr ""
+msgstr "Id producte"
 
 #. module: sale_commission_product
 #: model:ir.model,name:sale_commission_product.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Línia de comanda de vendes"
 
 #. module: sale_commission_product
 #: sql_constraint:product.product.agent:0
 msgid "You can only add one time each agent."
-msgstr ""
+msgstr "Només es pot afegir un cop per cada agent."
