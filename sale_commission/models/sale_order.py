@@ -2,6 +2,7 @@
 # © 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>)
 # © 2015 Avanzosc (<http://www.avanzosc.es>)
 # © 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
+# © 2016 Andrea Cometa (<http://www.apuliasoftware.it>)
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import api, fields, models
@@ -99,12 +100,15 @@ class SaleOrderLineAgent(models.Model):
             line.amount = 0.0
             if (not line.sale_line.product_id.commission_free and
                     line.commission):
+                l = line.sale_line
+                subtotal = l.tax_id.compute_all(
+                    (l.price_unit * (1 - (l.discount or 0.0) / 100.0)),
+                    l.product_uom_qty, l.product_id, l.order_id.partner_id)
+
                 if line.commission.amount_base_type == 'net_amount':
-                    subtotal = (line.sale_line.price_subtotal -
-                                (line.sale_line.product_id.standard_price *
-                                 line.sale_line.product_uom_qty))
+                    subtotal = subtotal['total']
                 else:
-                    subtotal = line.sale_line.price_subtotal
+                    subtotal = subtotal['total_included']
                 if line.commission.commission_type == 'fixed':
                     line.amount = subtotal * (line.commission.fix_qty / 100.0)
                 else:

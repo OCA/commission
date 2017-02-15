@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 07:09+0000\n"
-"PO-Revision-Date: 2016-09-25 14:54+0000\n"
+"POT-Creation-Date: 2017-01-07 01:16+0000\n"
+"PO-Revision-Date: 2017-01-13 09:30+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/oca/OCA-commission-8-0/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -249,7 +249,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission.make.invoice,date:0
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
 #. module: sale_commission
 #: view:sale.commission.settlement:sale_commission.view_settlement_search
@@ -271,7 +271,7 @@ msgstr ""
 #: field:sale.commission.settlement.line,display_name:0
 #: field:sale.order.line.agent,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Име за Показване"
 
 #. module: sale_commission
 #: selection:res.partner,agent_type:0
@@ -323,7 +323,7 @@ msgstr ""
 #: view:sale.commission.settlement:sale_commission.view_settlement_search
 #: view:sale.commission.settlement.line:sale_commission.view_settlement_line_search
 msgid "Group By"
-msgstr ""
+msgstr "Групирай По"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,id:0 field:sale.commission,id:0
@@ -339,7 +339,7 @@ msgstr "ID"
 #: model:ir.model,name:sale_commission.model_account_invoice
 #: field:sale.commission.settlement.line,invoice:0
 msgid "Invoice"
-msgstr ""
+msgstr "Фактура"
 
 #. module: sale_commission
 #: selection:sale.commission,invoice_state:0
@@ -623,7 +623,7 @@ msgid "State"
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/sale_commission.py:64
+#: code:addons/sale_commission/models/sale_commission.py:65
 #, python-format
 msgid "The lower limit cannot be greater than upper one."
 msgstr ""
@@ -656,7 +656,7 @@ msgstr "Общо"
 #: field:res.partner,agent_type:0 field:sale.commission,commission_type:0
 #: field:sale.commission.settlement,agent_type:0
 msgid "Type"
-msgstr ""
+msgstr "Вид"
 
 #. module: sale_commission
 #: field:sale.commission.make.settle,date_to:0

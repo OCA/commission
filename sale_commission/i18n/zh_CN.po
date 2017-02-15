@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 07:09+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2017-01-07 01:16+0000\n"
+"PO-Revision-Date: 2017-01-13 09:31+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-commission-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -118,7 +118,7 @@ msgstr ""
 #: view:sale.commission.make.settle:sale_commission.view_settled_wizard
 #: view:sale.commission.settlement:sale_commission.view_settlement_form
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #. module: sale_commission
 #: selection:sale.commission.settlement,state:0
@@ -249,7 +249,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission.make.invoice,date:0
 msgid "Date"
-msgstr ""
+msgstr "日期"
 
 #. module: sale_commission
 #: view:sale.commission.settlement:sale_commission.view_settlement_search
@@ -271,7 +271,7 @@ msgstr ""
 #: field:sale.commission.settlement.line,display_name:0
 #: field:sale.order.line.agent,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "显示名称"
 
 #. module: sale_commission
 #: selection:res.partner,agent_type:0
@@ -323,7 +323,7 @@ msgstr ""
 #: view:sale.commission.settlement:sale_commission.view_settlement_search
 #: view:sale.commission.settlement.line:sale_commission.view_settlement_line_search
 msgid "Group By"
-msgstr ""
+msgstr "分组"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,id:0 field:sale.commission,id:0
@@ -339,7 +339,7 @@ msgstr "ID"
 #: model:ir.model,name:sale_commission.model_account_invoice
 #: field:sale.commission.settlement.line,invoice:0
 msgid "Invoice"
-msgstr ""
+msgstr "发票"
 
 #. module: sale_commission
 #: selection:sale.commission,invoice_state:0
@@ -404,7 +404,7 @@ msgstr ""
 #: field:sale.commission.settlement.line,__last_update:0
 #: field:sale.order.line.agent,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "最后修改时间"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,write_uid:0
@@ -455,7 +455,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission,name:0
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #. module: sale_commission
 #: selection:sale.commission,amount_base_type:0
@@ -465,7 +465,7 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_res_partner
 msgid "Partner"
-msgstr ""
+msgstr "业务伙伴"
 
 #. module: sale_commission
 #: selection:sale.commission,invoice_state:0
@@ -521,7 +521,7 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "销售订单"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order_line
@@ -623,7 +623,7 @@ msgid "State"
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/sale_commission.py:64
+#: code:addons/sale_commission/models/sale_commission.py:65
 #, python-format
 msgid "The lower limit cannot be greater than upper one."
 msgstr ""
@@ -650,13 +650,13 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission.settlement,total:0
 msgid "Total"
-msgstr ""
+msgstr "总计"
 
 #. module: sale_commission
 #: field:res.partner,agent_type:0 field:sale.commission,commission_type:0
 #: field:sale.commission.settlement,agent_type:0
 msgid "Type"
-msgstr ""
+msgstr "类型"
 
 #. module: sale_commission
 #: field:sale.commission.make.settle,date_to:0
@@ -684,7 +684,7 @@ msgstr ""
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
 #: view:sale.commission.make.settle:sale_commission.view_settled_wizard
 msgid "or"
-msgstr ""
+msgstr "或"
 
 #. module: sale_commission
 #: view:sale.commission:sale_commission.sale_commission_form

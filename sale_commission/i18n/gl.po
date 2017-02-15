@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-03 06:49+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2017-01-07 01:16+0000\n"
+"PO-Revision-Date: 2017-01-13 09:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-commission-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -249,7 +249,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission.make.invoice,date:0
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: sale_commission
 #: view:sale.commission.settlement:sale_commission.view_settlement_search
@@ -339,7 +339,7 @@ msgstr "ID"
 #: model:ir.model,name:sale_commission.model_account_invoice
 #: field:sale.commission.settlement.line,invoice:0
 msgid "Invoice"
-msgstr ""
+msgstr "Factura"
 
 #. module: sale_commission
 #: selection:sale.commission,invoice_state:0
@@ -404,7 +404,7 @@ msgstr ""
 #: field:sale.commission.settlement.line,__last_update:0
 #: field:sale.order.line.agent,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,write_uid:0
@@ -465,7 +465,7 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_res_partner
 msgid "Partner"
-msgstr ""
+msgstr "Empresa"
 
 #. module: sale_commission
 #: selection:sale.commission,invoice_state:0
@@ -623,7 +623,7 @@ msgid "State"
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/sale_commission.py:64
+#: code:addons/sale_commission/models/sale_commission.py:65
 #, python-format
 msgid "The lower limit cannot be greater than upper one."
 msgstr ""
@@ -684,7 +684,7 @@ msgstr ""
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
 #: view:sale.commission.make.settle:sale_commission.view_settled_wizard
 msgid "or"
-msgstr ""
+msgstr "ou"
 
 #. module: sale_commission
 #: view:sale.commission:sale_commission.sale_commission_form

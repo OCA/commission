@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-13 23:49+0000\n"
+"POT-Creation-Date: 2016-12-17 00:50+0000\n"
 "PO-Revision-Date: 2016-03-15 00:28+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-commission-8-0/language/pt_BR/)\n"
@@ -35,7 +35,7 @@ msgstr ""
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
 msgid "Field"
-msgstr ""
+msgstr "Campo"
 
 #. module: sale_commission_formula
 #: field:sale.commission,formula:0
@@ -55,7 +55,7 @@ msgstr ""
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
 msgid "Quantity"
-msgstr ""
+msgstr "Quantidade"
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
