@@ -34,6 +34,7 @@
                     <field name="commission_free"/>
                     <field name="agents"
                            attrs="{'readonly': [('commission_free', '=', True)]}"
+                           context="{'partner_id': parent.partner_id}"
                     />
                 </field>
             </field>
@@ -50,6 +51,7 @@
                     <field name="commission_free"/>
                     <field name="agents"
                            attrs="{'readonly': [('commission_free', '=', True)]}"
+                           context="{'partner_id': parent.partner_id}"
                            widget="one2many_tags"
                     />
                 </xpath>

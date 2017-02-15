@@ -1077,12 +1077,9 @@ msgid "Commissions"
 msgstr "Comisiones"
 
 #. module: sale_commission
-#: field:account.invoice.line.agent,company_id:0
-#: field:sale.commission,company_id:0
-#: field:sale.commission.settlement,company_id:0
-#: field:sale.commission.settlement.line,company_id:0
+#: field:res.partner.agent,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Compañia"
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_commission_make_invoices
@@ -1391,6 +1388,13 @@ msgstr "Periodo: de %s a %s"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,product:0
+#: model:ir.model,name:sale_commission.model_stock_picking
+msgid "Picking List"
+msgstr "Albarán"
+
+#. module: sale_commission
+#: field:account.invoice.line.agent,product:0
+#: model:ir.model,name:sale_commission.model_product_product
 msgid "Product"
 msgstr "Producto"
 
@@ -1568,6 +1572,7 @@ msgstr "Total"
 
 #. module: sale_commission
 #: field:res.partner,agent_type:0 field:sale.commission,commission_type:0
+#: field:sale.commission,commission_type:0
 #: field:sale.commission.settlement,agent_type:0
 msgid "Type"
 msgstr "Tipo"
