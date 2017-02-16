@@ -31,7 +31,7 @@
         "Daniel Campos <danielcampos@avanzosc.es>",
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
         "Oihane Crucelaegui <oihanecruce@gmail.com>",
-        "Iván Todorovich <ivan.todorovich@gmail.com"
+        "Iván Todorovich <ivan.todorovich@gmail.com>",
         "Akretion - Magno Costa <magno.costa@akretion.com.br>",
     ],
     "data": [
