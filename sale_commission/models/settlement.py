@@ -16,7 +16,7 @@ class Settlement(models.Model):
         return self.env.user.company_id.currency_id.id
 
     total = fields.Float(
-        compute="_compute_total", readonly=True, store=True,
+        compute="_compute_total", store=True,
         digits_compute=dp.get_precision('Account'))
     date_from = fields.Date(string="From")
     date_to = fields.Date(string="To")
@@ -167,7 +167,7 @@ class SettlementLine(models.Model):
     date = fields.Date(related="agent_line.invoice_date", store=True)
     effective_date = fields.Date(
         string="Effective date",
-        help="In case of commission type is based in Payments use this date"
+        help="In case of commission type is based in Payments use this date,"
              " in case of based in Invoice use invoice date.")
     invoice_line = fields.Many2one(
         comodel_name='account.invoice.line', store=True,
