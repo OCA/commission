@@ -166,6 +166,34 @@ class TestSaleCommission(common.TransactionCase):
             })]
         })
 
+        self.saleorder8 = self.sale_order_model.create({
+            'partner_id': self.ref('base.res_partner_2'),
+            'date_order':
+                datetime.datetime.now() -
+                dateutil.relativedelta.relativedelta(months=1, days=7),
+            'payment_term': self.ref(
+                'sale_commission.demo_payment_term_07_28'),
+            'order_line': [(0, 0, {
+                'product_id': self.ref('product.product_product_21'),
+                'product_uom_qty': 10.0,
+                'product_uom': self.ref('product.product_uom_unit'),
+                'agents': [
+                    (0, 0, {
+                        'agent':  self.ref(
+                            'sale_commission.partial_payments_sale_agent'),
+                        'commission': self.ref(
+                            'sale_commission.demo_commission_partial_payments')
+                    }),
+                    (0, 0, {
+                        'agent': self.ref(
+                            'sale_commission.partial_payments_sale_agent_1'),
+                        'commission': self.ref(
+                            'sale_commission.demo_commission_partial_payments')
+                    })
+                ]
+            })]
+        })
+
     def test_sale_commission_gross_amount_payment(self):
         self.saleorder1.signal_workflow('order_confirm')
         payment = self.advance_inv_model.create({
@@ -523,6 +551,117 @@ class TestSaleCommission(common.TransactionCase):
                     (self.saleorder7.commission_total / 2), settlement.total,
                     "The Type of Commission only allows create the Settlements"
                     " to proportional of Partial Payments.")
+        wizard2 = self.make_inv_model.create({'product': 1})
+        wizard2.button_create()
+        settlements = self.settle_model.search([('state', '=', 'invoiced')])
+        for settlement in settlements:
+            self.assertNotEquals(len(settlement.invoice), 0,
+                                 "Settlements need to be in Invoiced State.")
+
+    def test_sale_commission_gross_amount_partial_payments_two_agents(self):
+        self.saleorder8.signal_workflow('order_confirm')
+        payment = self.advance_inv_model.create({
+            'advance_payment_method': 'all'
+        })
+        payment.with_context(active_model='sale.order',
+                             active_ids=[self.saleorder8.id],
+                             active_id=self.saleorder8.id).create_invoices()
+        self.assertNotEquals(
+            len(self.saleorder8.invoice_ids), 0,
+            "Invoice should be created after make advance invoice where type"
+            " is 'Invoice all the Sale Order'.")
+        for invoice in self.saleorder8.invoice_ids:
+            invoice.date_invoice = fields.Date.today()
+            invoice.signal_workflow('invoice_open')
+        wizard = self.make_settle_model.create(
+            {'date_to': (datetime.datetime.now() +
+                         dateutil.relativedelta.relativedelta(months=1))})
+        wizard.action_settle()
+        settlements = self.settle_model.search([('state', '=', 'settled')])
+        self.assertEquals(
+            len(settlements), 0,
+            "The Type of Commission only allows create the Settlements when"
+            " the Partial Payments of Invoices are Paid.")
+        journals = self.env['account.journal'].search([
+            ('type', '=', 'cash'),
+            ('company_id', '=', self.saleorder1.company_id.id)
+        ], limit=1)
+        for invoice in self.saleorder8.invoice_ids:
+            move_line_07 = self.env['account.move.line'].search(
+                ['&', ('move_id', '=', invoice.move_id.id),
+                 ('date_maturity', '=', invoice.date_due)])
+            account_voucher_07 = self.account_voucher.create({
+                'partner_id': self.saleorder7.partner_id.id,
+                'amount': invoice.amount_total / 2,
+                'journal_id': journals[:1].id,
+                'date': invoice.date_due,
+                'company_id': invoice.company_id.id,
+                'account_id': 9,
+                'line_cr_ids': [
+                    [0, 0, {
+                        'date_due': invoice.date_due,
+                        'reconcile': True,
+                        'date_original': invoice.date_due,
+                        'move_line_id': move_line_07.id,
+                        'amount_unreconciled': 10000,
+                        'amount': 10000,
+                        'amount_original': 10000,
+                        'account_id': 9,
+                    }]]
+
+            })
+            account_voucher_07.button_proforma_voucher()
+
+        wizard = self.make_settle_model.create(
+            {'date_to': (datetime.datetime.now() +
+                         dateutil.relativedelta.relativedelta(months=1))})
+        wizard.action_settle()
+        settlements = self.settle_model.search([('id', '!=', None)])
+        if settlements:
+            for settlement in settlements:
+                self.assertEquals(
+                    ((self.saleorder8.commission_total / 2) / 2),
+                    settlement.total,
+                    "The Type of Commission only allows create the Settlements"
+                    " to proportional of Partial Payments.")
+
+        move_line_28 = self.env['account.move.line'].search(
+            ['&', ('move_id', '=', invoice.move_id.id),
+             ('date_maturity', '!=', invoice.date_due)])
+        account_voucher_28 = self.account_voucher.create({
+            'partner_id': self.saleorder7.partner_id.id,
+            'amount': invoice.amount_total / 2,
+            'journal_id': journals[:1].id,
+            'date': move_line_28.date_maturity,
+            'company_id': invoice.company_id.id,
+            'account_id': 9,
+            'line_cr_ids': [
+                [0, 0, {
+                    'date_due': move_line_28.date_maturity,
+                    'reconcile': True,
+                    'date_original': '2016-09-01',
+                    'move_line_id': move_line_28.id,
+                    'amount_unreconciled': 10000,
+                    'amount': 10000,
+                    'amount_original': 10000,
+                    'account_id': 9,
+                }]]
+
+        })
+        account_voucher_28.button_proforma_voucher()
+        wizard = self.make_settle_model.create(
+            {'date_to': (datetime.datetime.now() +
+                         dateutil.relativedelta.relativedelta(months=1))})
+        wizard.action_settle()
+        settlements = self.settle_model.search([('id', '!=', None)])
+        if settlements:
+            for settlement in settlements:
+                self.assertEquals(
+                    ((self.saleorder8.commission_total / 2) / 2),
+                    settlement.total,
+                    "The Type of Commission only allows create the Settlements"
+                    " to proportional of Partial Payments"
+                    " and divided per two agents.")
         wizard2 = self.make_inv_model.create({'product': 1})
         wizard2.button_create()
         settlements = self.settle_model.search([('state', '=', 'invoiced')])

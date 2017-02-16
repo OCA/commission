@@ -71,6 +71,18 @@
             <field name="lang">en_US</field>
         </record>
 
+        <record id="partial_payments_sale_agent_1" model="res.partner">
+            <field name="name">Partial Payments 1</field>
+            <field name="city">Belgium</field>
+            <field name="zip">3569</field>
+            <field name="country_id" model="res.country"
+                search="[('name','=','India')]" />
+            <field name="street">Belgium Gao</field>
+            <field name="agent" eval="1" />
+            <field name="commission" ref="demo_commission_partial_payments" />
+            <field name="lang">en_US</field>
+        </record>
+
         <!-- Create Payment Term 07 / 28 -->
         <record id="demo_payment_term_07_28" model="account.payment.term">
             <field eval="1" name="active"/>
