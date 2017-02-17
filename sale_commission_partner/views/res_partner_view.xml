@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_partner_form_agent_commission" model="ir.ui.view">
+            <field name="name">res.partner.form.agent.commission</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="sale_commission.view_partner_form_agent" />
+            <field name="priority" eval="18"/>
+            <field name="groups_id" eval="[(4, ref('base.group_sale_salesman'))]"/>
+            <field name="arch" type="xml">
+                <field name="agents" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="commission" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <xpath expr="//page[@name='sales_purchases']/group/group[1]"
+                       position="after">
+                    <field name="agents_partner" string="Agents"
+                           attrs="{'invisible': [('agent', '=', True)]}">
+                        <tree editable="top">
+                            <field name="agent_id" />
+                            <field name="commission" />
+                        </tree>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
