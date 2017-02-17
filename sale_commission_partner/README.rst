@@ -6,20 +6,11 @@
 Sales commissions partner
 =========================
 
-This module allows to define sales agents with their commissions and assign
-them in customers and sales orders.
+This module allows to define partners with specific sales agents and related
+commissions.
 
-You can then make the settlements of these commissions, and generate the
-corresponding supplier invoices to pay their commissions fees.
-
-You can define which base amount is going to be taken into account: net amount
-(based on margin) or gross amount (line subtotal amount)
-
-Known issues / Roadmap
-======================
-* Allow to calculate and pay in other currency different from company one.
-* Allow to group by agent when generating invoices.
-
+Agents still maintain their default commission, but your customer can have his
+specific commission.
 
 Bug Tracker
 ===========
@@ -36,14 +27,6 @@ Credits
 Contributors
 ------------
 * Andrea Cometa <a.cometa@apuliasoftware.it>
-* Pexego.
-* Davide Corio <davide.corio@domsense.com>
-* Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>
-* Sandy Carter <sandy.carter@savoirfairelinux.com>
-* Giorgio Borelli <giorgio.borelli@abstract.it>
-* Daniel Campos <danielcampos@avanzosc.es>
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
-* Oihane Crucelaegui <oihanecruce@gmail.com>
 
 Icon
 ----

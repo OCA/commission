@@ -29,18 +29,3 @@ class SaleOrderLine(models.Model):
         string="Agents & commissions",
         comodel_name='sale.order.line.agent', inverse_name='sale_line',
         copy=True, readonly=True, default=_default_agents)
-
-
-class SaleOrderLineAgent(models.Model):
-    _inherit = "sale.order.line.agent"
-
-    commission = fields.Many2one(
-        comodel_name="sale.commission", required=True, ondelete="restrict")
-
-    @api.onchange('agent')
-    def onchange_agent(self):
-        if self.agent in self.sale_line.order_id.partner_id.agent_partner:
-            for a in self.sale_line.order_id.partner_id.agent_partner:
-                if a == self.agent:
-                    print a, a.commission
-                    self.commission = a.commission
