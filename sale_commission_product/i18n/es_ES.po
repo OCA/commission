@@ -4,14 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Javier García-Panach <panaka7@gmail.com>, 2017
+# Fernando Lara <gennesis45@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 01:16+0000\n"
-"PO-Revision-Date: 2017-01-07 01:16+0000\n"
-"Last-Translator: Javier García-Panach <panaka7@gmail.com>, 2017\n"
+"POT-Creation-Date: 2017-01-21 01:27+0000\n"
+"PO-Revision-Date: 2017-01-21 01:27+0000\n"
+"Last-Translator: Fernando Lara <gennesis45@gmail.com>, 2017\n"
 "Language-Team: Spanish (Spain) (https://www.transifex.com/oca/teams/23907/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,7 +53,7 @@ msgstr "Creado en"
 #. module: sale_commission_product
 #: field:product.product.agent,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre para mostrar"
 
 #. module: sale_commission_product
 #: field:product.product.agent,id:0
@@ -68,7 +68,7 @@ msgstr ""
 #. module: sale_commission_product
 #: field:product.product.agent,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación en"
 
 #. module: sale_commission_product
 #: field:product.product.agent,write_uid:0
