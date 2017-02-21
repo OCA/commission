@@ -251,6 +251,12 @@ class TestSaleCommission(common.TransactionCase):
                 self.saleorder1.commission_total, settlement.total,
                 "The value Total for Commission isn't"
                 " the same in the Settlement.")
+        for invoice in self.saleorder1.invoice_ids:
+            for line in invoice.invoice_line:
+                for agent_line in line.agents:
+                    self.assertEquals(
+                        agent_line.settled, True,
+                        "The Agent Line in Invoice need to be Settled")
 
     def test_sale_commission_gross_amount_invoice(self):
         self.saleorder2.signal_workflow('order_confirm')
@@ -280,6 +286,12 @@ class TestSaleCommission(common.TransactionCase):
             self.assertEquals(
                 self.saleorder2.commission_total, settlement.total,
                 "The value Total for Commission isn't the same in Settlement")
+        for invoice in self.saleorder2.invoice_ids:
+            for line in invoice.invoice_line:
+                for agent_line in line.agents:
+                    self.assertEquals(
+                        agent_line.settled, True,
+                        "The Agent Line in Invoice need to be Settled")
 
     def test_sale_commission_net_amount_payment(self):
         self.saleorder3.signal_workflow('order_confirm')
@@ -531,6 +543,13 @@ class TestSaleCommission(common.TransactionCase):
                     "The Type of Commission only allows create the Settlements"
                     " to proportional of Partial Payments.")
 
+        for invoice in self.saleorder7.invoice_ids:
+            for line in invoice.invoice_line:
+                for agent_line in line.agents:
+                    self.assertEquals(
+                        agent_line.settled, False,
+                        "The Agent Line in Invoice can't be Settled")
+
         move_line_28 = self.env['account.move.line'].search(
             ['&', ('move_id', '=', invoice.move_id.id),
              ('date_maturity', '!=', invoice.date_due)])
@@ -572,6 +591,12 @@ class TestSaleCommission(common.TransactionCase):
         for settlement in settlements:
             self.assertNotEquals(len(settlement.invoice), 0,
                                  "Settlements need to be in Invoiced State.")
+        for invoice in self.saleorder7.invoice_ids:
+            for line in invoice.invoice_line:
+                for agent_line in line.agents:
+                    self.assertEquals(
+                        agent_line.settled, True,
+                        "The Agent Line in Invoice need to be Settled")
 
     def test_sale_commission_gross_amount_partial_payments_two_agents(self):
         self.saleorder8.signal_workflow('order_confirm')
@@ -640,6 +665,13 @@ class TestSaleCommission(common.TransactionCase):
                     "The Type of Commission only allows create the Settlements"
                     " to proportional of Partial Payments.")
 
+        for invoice in self.saleorder8.invoice_ids:
+            for line in invoice.invoice_line:
+                for agent_line in line.agents:
+                    self.assertEquals(
+                        agent_line.settled, False,
+                        "The Agent Line in Invoice can't be Settled")
+
         move_line_28 = self.env['account.move.line'].search(
             ['&', ('move_id', '=', invoice.move_id.id),
              ('date_maturity', '!=', invoice.date_due)])
@@ -684,6 +716,12 @@ class TestSaleCommission(common.TransactionCase):
             self.assertNotEquals(
                 len(settlement.invoice), 0,
                 "Settlements need to be in Invoiced State.")
+        for invoice in self.saleorder8.invoice_ids:
+            for line in invoice.invoice_line:
+                for agent_line in line.agents:
+                    self.assertEquals(
+                        agent_line.settled, True,
+                        "The Agent Line in Invoice need to be Settled")
 
     def test_wrong_fix_qty(self):
         with self.assertRaises(exceptions.ValidationError):
