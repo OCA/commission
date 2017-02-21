@@ -171,15 +171,17 @@ class AccountInvoiceLineAgent(models.Model):
         # Count lines of not open or paid invoices as settled for not
         # being included in settlements
         for record in self:
-            settled = record.env['sale.commission.settlement.line'].search(
-                ['&', ('invoice_line', '=', record.invoice_line.id),
-                 ('settlement.state', '!=', 'cancel')])
-            total_settled_amount = 0.0
-            if settled:
-                total_settled_amount = sum(
-                    line.settled_amount for line in settled)
-            record.settled = (
-                record.amount == total_settled_amount)
+            for agent in record.agent:
+                settled = record.env['sale.commission.settlement.line'].search(
+                    [('invoice_line', '=', record.invoice_line.id),
+                     ('agent', '=', agent.id),
+                     ('settlement.state', '!=', 'cancel')])
+                total_settled_amount = 0.0
+                if settled:
+                    total_settled_amount = sum(
+                        line.settled_amount for line in settled)
+                record.settled = (
+                    record.amount == total_settled_amount)
 
     _sql_constraints = [
         ('unique_agent', 'UNIQUE(invoice_line, agent)',
