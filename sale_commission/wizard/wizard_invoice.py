@@ -41,6 +41,7 @@ class SaleCommissionMakeInvoice(models.TransientModel):
         column1='wizard_id', column2='settlement_id',
         domain="[('state', '=', 'settled')]",
         default=_default_settlements)
+    grouping_invoice = fields.Boolean('Grouping Invoice by Agent')
 
     from_settlement = fields.Boolean(default=_default_from_settlement)
     date = fields.Date()
@@ -52,7 +53,8 @@ class SaleCommissionMakeInvoice(models.TransientModel):
             self.settlements = self.env['sale.commission.settlement'].search(
                 [('state', '=', 'settled'), ('agent_type', '=', 'agent')])
         self.settlements.make_invoices(
-            self.journal, self.refund_journal, self.product, date=self.date)
+            self.journal, self.refund_journal, self.product,
+            self.grouping_invoice, date=self.date)
         # go to results
         if len(self.settlements):
             return {

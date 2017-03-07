@@ -12,6 +12,7 @@
                         <field name="refund_journal" />
                         <field name="product" />
                         <field name="date" />
+                        <field name="grouping_invoice" />
                     </group>
                     <group string="Settlements"
                            attrs="{'invisible': [('from_settlement', '=', True)]}">
