@@ -111,9 +111,13 @@ class Settlement(models.Model):
                                                                 'en_US'))])
         date_from = fields.Date.from_string(settlement.date_from)
         date_to = fields.Date.from_string(settlement.date_to)
-        invoice_line_vals['name'] += "\n" + _('Period: from %s to %s') % (
-            date_from.strftime(lang.date_format),
-            date_to.strftime(lang.date_format))
+        for line in settlement.lines:
+            ref_invoice_number = line.invoice.number
+        invoice_line_vals['name'] += (
+            "\n" + _('Period: from %s to %s') % (
+                date_from.strftime(lang.date_format),
+                date_to.strftime(lang.date_format)) +
+            "\n" + _('Invoice Ref.: %s') % ref_invoice_number)
         # invert invoice values if it's a refund
         if invoice_vals['type'] == 'in_refund':
             invoice_line_vals['price_unit'] = -invoice_line_vals['price_unit']
@@ -191,7 +195,8 @@ class Settlement(models.Model):
                 if invoice_lines_vals_refund:
                     self._create_grouping_invoice(
                         settlement_header_refund, settlements_refund_objs,
-                        invoice_journal_refund, date, invoice_lines_vals_refund)
+                        invoice_journal_refund, date,
+                        invoice_lines_vals_refund)
         else:
             for settlement in self:
                 # select the proper journal according to settlement's amount
