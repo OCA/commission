@@ -3,20 +3,20 @@
 # * sale_commission_product
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-04 01:26+0000\n"
 "PO-Revision-Date: 2017-03-04 01:26+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/zh_CN/)\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: zh_CN\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: nl_NL\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_commission_product
 #: field:product.product.agent,agent:0
@@ -42,22 +42,22 @@ msgstr ""
 #. module: sale_commission_product
 #: field:product.product.agent,create_uid:0
 msgid "Created by"
-msgstr "创建者"
+msgstr ""
 
 #. module: sale_commission_product
 #: field:product.product.agent,create_date:0
 msgid "Created on"
-msgstr "创建时间"
+msgstr ""
 
 #. module: sale_commission_product
 #: field:product.product.agent,display_name:0
 msgid "Display Name"
-msgstr "显示名称"
+msgstr ""
 
 #. module: sale_commission_product
 #: field:product.product.agent,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: sale_commission_product
 #: model:ir.model,name:sale_commission_product.model_account_invoice_line
@@ -67,22 +67,22 @@ msgstr ""
 #. module: sale_commission_product
 #: field:product.product.agent,__last_update:0
 msgid "Last Modified on"
-msgstr "最后修改时间"
+msgstr ""
 
 #. module: sale_commission_product
 #: field:product.product.agent,write_uid:0
 msgid "Last Updated by"
-msgstr "最后更新者"
+msgstr ""
 
 #. module: sale_commission_product
 #: field:product.product.agent,write_date:0
 msgid "Last Updated on"
-msgstr "上次更新日期"
+msgstr ""
 
 #. module: sale_commission_product
 #: model:ir.model,name:sale_commission_product.model_product_product
 msgid "Product"
-msgstr "产品"
+msgstr "Product"
 
 #. module: sale_commission_product
 #: field:product.product.agent,product_id:0
