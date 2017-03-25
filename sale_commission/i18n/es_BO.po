@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-11 01:29+0000\n"
-"PO-Revision-Date: 2017-03-23 20:09+0000\n"
+"PO-Revision-Date: 2017-03-23 20:10+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Turkish (http://www.transifex.com/oca/OCA-commission-8-0/language/tr/)\n"
+"Language-Team: Spanish (Bolivia) (http://www.transifex.com/oca/OCA-commission-8-0/language/es_BO/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: tr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: es_BO\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_commission
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
@@ -30,7 +30,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission,active:0
 msgid "Active"
-msgstr "Aktif"
+msgstr ""
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,agent:0
@@ -91,7 +91,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.order.line.agent,amount:0
 msgid "Amount"
-msgstr "Tutar"
+msgstr ""
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,amount:0
@@ -118,7 +118,7 @@ msgstr ""
 #: view:sale.commission.make.settle:sale_commission.view_settled_wizard
 #: view:sale.commission.settlement:sale_commission.view_settlement_form
 msgid "Cancel"
-msgstr "Vazgeç"
+msgstr ""
 
 #. module: sale_commission
 #: selection:sale.commission.settlement,state:0
@@ -187,7 +187,7 @@ msgstr ""
 #: field:sale.commission.settlement,company_id:0
 #: field:sale.commission.settlement.line,company_id:0
 msgid "Company"
-msgstr "Şirket"
+msgstr ""
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_commission_make_invoices
@@ -222,7 +222,7 @@ msgstr ""
 #: field:sale.commission.settlement.line,create_uid:0
 #: field:sale.order.line.agent,create_uid:0
 msgid "Created by"
-msgstr "Oluşturan"
+msgstr ""
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,create_date:0
@@ -234,7 +234,7 @@ msgstr "Oluşturan"
 #: field:sale.commission.settlement.line,create_date:0
 #: field:sale.order.line.agent,create_date:0
 msgid "Created on"
-msgstr "Oluşturuldu"
+msgstr ""
 
 #. module: sale_commission
 #: field:res.partner,agent:0
@@ -249,7 +249,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission.make.invoice,date:0
 msgid "Date"
-msgstr "Tarih"
+msgstr ""
 
 #. module: sale_commission
 #: view:sale.commission.settlement:sale_commission.view_settlement_search
@@ -271,7 +271,7 @@ msgstr ""
 #: field:sale.commission.settlement.line,display_name:0
 #: field:sale.order.line.agent,display_name:0
 msgid "Display Name"
-msgstr "Görünen İsim"
+msgstr ""
 
 #. module: sale_commission
 #: selection:res.partner,agent_type:0
@@ -323,7 +323,7 @@ msgstr ""
 #: view:sale.commission.settlement:sale_commission.view_settlement_search
 #: view:sale.commission.settlement.line:sale_commission.view_settlement_line_search
 msgid "Group By"
-msgstr "Grupla"
+msgstr ""
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,id:0 field:sale.commission,id:0
@@ -332,14 +332,14 @@ msgstr "Grupla"
 #: field:sale.commission.settlement,id:0
 #: field:sale.commission.settlement.line,id:0 field:sale.order.line.agent,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,invoice:0
 #: model:ir.model,name:sale_commission.model_account_invoice
 #: field:sale.commission.settlement.line,invoice:0
 msgid "Invoice"
-msgstr "Fatura"
+msgstr ""
 
 #. module: sale_commission
 #: selection:sale.commission,invoice_state:0
@@ -349,7 +349,7 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_invoice_line
 msgid "Invoice Line"
-msgstr "Fatura kalemi"
+msgstr ""
 
 #. module: sale_commission
 #: field:sale.commission,invoice_state:0
@@ -386,7 +386,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission.make.invoice,journal:0
 msgid "Journal"
-msgstr "Yevmiye Defteri"
+msgstr ""
 
 #. module: sale_commission
 #: help:account.invoice.line.agent,invoice_date:0
@@ -404,7 +404,7 @@ msgstr ""
 #: field:sale.commission.settlement.line,__last_update:0
 #: field:sale.order.line.agent,__last_update:0
 msgid "Last Modified on"
-msgstr "Son değişiklik"
+msgstr ""
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,write_uid:0
@@ -416,7 +416,7 @@ msgstr "Son değişiklik"
 #: field:sale.commission.settlement.line,write_uid:0
 #: field:sale.order.line.agent,write_uid:0
 msgid "Last Updated by"
-msgstr "Son güncelleyen"
+msgstr ""
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,write_date:0
@@ -428,7 +428,7 @@ msgstr "Son güncelleyen"
 #: field:sale.commission.settlement.line,write_date:0
 #: field:sale.order.line.agent,write_date:0
 msgid "Last Updated on"
-msgstr "Son güncelleme"
+msgstr ""
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:64
@@ -455,7 +455,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission,name:0
 msgid "Name"
-msgstr "Adı"
+msgstr ""
 
 #. module: sale_commission
 #: selection:sale.commission,amount_base_type:0
@@ -465,7 +465,7 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_res_partner
 msgid "Partner"
-msgstr "İş Ortağı"
+msgstr ""
 
 #. module: sale_commission
 #: selection:sale.commission,invoice_state:0
@@ -486,7 +486,7 @@ msgstr ""
 #. module: sale_commission
 #: field:account.invoice.line.agent,product:0
 msgid "Product"
-msgstr "Ürün"
+msgstr ""
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_product_template
@@ -521,12 +521,12 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order
 msgid "Sales Order"
-msgstr "Satış Siparişi"
+msgstr ""
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Satış Siparişi Hattı"
+msgstr ""
 
 #. module: sale_commission
 #: selection:res.partner,agent_type:0
@@ -620,7 +620,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission.settlement,state:0
 msgid "State"
-msgstr "Durum"
+msgstr ""
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/sale_commission.py:65
@@ -650,13 +650,13 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission.settlement,total:0
 msgid "Total"
-msgstr "Toplam"
+msgstr "Total"
 
 #. module: sale_commission
 #: field:res.partner,agent_type:0 field:sale.commission,commission_type:0
 #: field:sale.commission.settlement,agent_type:0
 msgid "Type"
-msgstr "Tipi"
+msgstr ""
 
 #. module: sale_commission
 #: field:sale.commission.make.settle,date_to:0
@@ -684,7 +684,7 @@ msgstr ""
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
 #: view:sale.commission.make.settle:sale_commission.view_settled_wizard
 msgid "or"
-msgstr "ya da"
+msgstr ""
 
 #. module: sale_commission
 #: view:sale.commission:sale_commission.sale_commission_form
