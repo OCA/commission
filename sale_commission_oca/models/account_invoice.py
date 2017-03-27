@@ -52,7 +52,7 @@ class AccountInvoice(models.Model):
                 del agent_vals['invoice_line']
             vals['agents'] = agents
         return res
- 
+
     @api.onchange('partner_id', 'company_id')
     def _onchange_partner_id(self):
         self.ensure_one()
@@ -78,7 +78,10 @@ class AccountInvoice(models.Model):
             for line in invoice.invoice_line_ids:
                 line.agents.unlink()
                 line_agents_data = invoice._prepare_line_agents_data(line)
-                line.agents = [(0, 0, line_agent_data) for line_agent_data in line_agents_data]
+                line.agents = [(
+                    0,
+                    0,
+                    line_agent_data) for line_agent_data in line_agents_data]
 
 
 class AccountInvoiceLine(models.Model):
