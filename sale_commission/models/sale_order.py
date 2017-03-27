@@ -43,7 +43,11 @@ class SaleOrder(models.Model):
             for line in order.order_line:
                 line.agents.unlink()
                 line_agents_data = order._prepare_line_agents_data(line)
-                line.agents = [(0, 0, line_agent_data) for line_agent_data in line_agents_data]
+                line.agents = [(
+                    0,
+                    0,
+                    line_agent_data) for line_agent_data in line_agents_data]
+
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
