@@ -7,6 +7,7 @@ Odoo Commission Management
 All management related with commisions and incentive in Odoo.
 
 [//]: # (addons)
+
 Unported addons
 ---------------
 addon | version | summary
