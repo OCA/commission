@@ -12,8 +12,8 @@ invoices generated from contracts.
 Installation
 ============
 
-This module is auto-installed when you have *account_analytic_analysis* and
-*sale_commission* modules installed.
+This module is auto-installed when you have *contract* and *sale_commission*
+modules installed.
 
 Usage
 =====
@@ -23,38 +23,41 @@ will now be assigned to the generated invoices.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/110/8.0
+   :target: https://runbot.odoo-community.org/runbot/110/9.0
 
 Known issues / Roadmap
 ======================
 
-* Allow to set specific commissions for each contract instead taking the ones
-  set at partner level.
+* Allow to set specific commissions for each contract instead of taking the
+  ones set at partner level.
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/OCA/commission/issues>`_.
-In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/OCA/commission/issues/new?body=module:%20
-contract_commission%0Aversion:%20
-8.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
-
+Bugs are tracked on `GitHub Issues
+<https://github.com/OCA/commission/issues>`_. In case of trouble, please
+check there if your issue has already been reported. If you spotted it first,
+help us smash it by providing detailed and welcomed feedback.
 
 Credits
 =======
 
+Images
+------
+
+* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
+
 Contributors
 ------------
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
+* Vicent Cubells <vicent.cubells@tecnativa.com>
 
 Icon
 ----
 * http://commons.wikimedia.org/wiki/File:Percent_18e.svg
 * https://openclipart.org/detail/43969/pile-of-golden-coins-by-j_alves
-* Subicon made by `Freepik <http://www.flaticon.com/authors/freepik>_ from
-  www.flaticon.com
+* Subicon made by `Freepik from www.flaticon.com
+  <http://www.flaticon.com/authors/freepik>`_
 
 Maintainer
 ----------
