@@ -31,7 +31,3 @@ msgid ""
 "go to 'Human Resources' and check 'Employees'"
 msgstr "Es muss ein (und nur ein) Mitarbeiter mit diesem Partner verknüpft sein. Hierzu gehen Sie im Hauptmenü 'Mitarbeiter' un dann auf 'Mitarbeiter'."
 
-#. module: hr_commission
-#: field:res.partner,users:0
-msgid "Users"
-msgstr "Benutzer"

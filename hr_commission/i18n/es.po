@@ -30,7 +30,3 @@ msgid ""
 "go to 'Human Resources' and check 'Employees'"
 msgstr "Debe haber un (y sólo un) empleado enlazado a esta empresa. Para hacer esto, vaya a 'Recursos humanos' y compruebe la sección 'Empleados'"
 
-#. module: hr_commission
-#: field:res.partner,users:0
-msgid "Users"
-msgstr "Usuarios"
