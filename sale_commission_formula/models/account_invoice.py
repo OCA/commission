@@ -3,8 +3,8 @@
 # © 2016 Davide Corio - Abstract
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import models, api
-from openerp.tools.safe_eval import safe_eval
+from odoo import models, api
+from odoo.tools.safe_eval import safe_eval
 
 
 class AccountInvoiceLineAgent(models.Model):
