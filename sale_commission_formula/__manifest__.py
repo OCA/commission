@@ -5,7 +5,7 @@
 
 {
     'name': 'Sale Commission Formula',
-    'version': '8.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'Sale',
     'license': 'AGPL-3',
     'summary': 'Sale commissions computed by formulas',
@@ -18,5 +18,4 @@
     'demo': [
         'demo/commission_demo.xml'],
     'installable': True,
-    'active': False,
 }
