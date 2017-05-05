@@ -32,10 +32,10 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form" />
             <field name="arch" type="xml">
-                <field name="invoice_line" position="attributes">
+                <field name="invoice_line_ids" position="attributes">
                     <attribute name="context">{'partner_id': partner_id}</attribute>
                 </field>
-                <xpath expr="//field[@name='invoice_line']/tree//field[@name='price_subtotal']" position="after">
+                <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='price_subtotal']" position="after">
                     <field name="commission_free"/>
                     <field name="agents"
                            attrs="{'readonly': [('commission_free', '=', True)]}"/>

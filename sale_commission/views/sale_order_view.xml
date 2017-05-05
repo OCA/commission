@@ -15,7 +15,7 @@
                     <field name="agents"
                            attrs="{'readonly': [('commission_free', '=', True)]}"/>
                 </xpath>
-                <xpath expr="//field[@name='order_line']/form//field[@name='address_allotment_id']" position="after">
+                <xpath expr="//field[@name='order_line']/form//field[@name='discount']" position="after">
                     <field name="commission_free"/>
                     <field name="agents"
                            attrs="{'readonly': [('commission_free', '=', True)]}"/>

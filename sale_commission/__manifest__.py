@@ -6,7 +6,7 @@
 
 {
     'name': 'Sales commissions',
-    'version': '8.0.2.3.0',
+    'version': '10.0',
     'author': 'Pexego, '
               'Savoire-faire linux, '
               'Avanzosc, '
@@ -19,7 +19,8 @@
         'base',
         'account',
         'product',
-        'sale'
+        'sale',
+        # 'web_widget_one2many_tags',
     ],
     'contributors': [
         "Pexego",
@@ -50,5 +51,6 @@
     'test': [
         'test/sale_commission_demo.yml',
     ],
-    'installable': False
+    'installable': True,
+    # "pre_init_hook": "set_commission_total",
 }

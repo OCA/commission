@@ -30,8 +30,8 @@
                             <field name="invoice_state"/>
                         </group>
                     </group>
-                    <group string="Rates definition" colspan="4">
-                        <field name="fix_qty"
+                    <group string="Rates definition" colspan="4" col="4">
+                        <field name="fix_qty" colspan="2"
                                attrs="{'invisible': [('commission_type', '!=', 'fixed')], 'required': [('commission_type', '=', 'fixed')]}" />
                         <field name="sections" widget="one2many_list"
                                colspan="4"
@@ -58,7 +58,7 @@
 
         <menuitem name="Commissions"
                   id="menu_sale_commissions_conf"
-                  parent="base.menu_base_config" />
+                  parent="sales_team.menu_sales" sequence="80"/>
 
         <menuitem name="Commission types"
                   id="menu_sale_commissions_types"
