@@ -142,7 +142,7 @@ class Settlement(models.Model):
             if invoice_vals['type'] == 'in_refund':
                 for line in invoice_lines_vals:
                     line['price_unit'] = -line['price_unit']
-            invoice_vals['invoice_line'] = [(0, 0, x)
+            invoice_vals['invoice_line_ids'] = [(0, 0, x)
                                             for x in invoice_lines_vals]
             invoice = invoice_obj.create(invoice_vals)
             settlement.state = 'invoiced'

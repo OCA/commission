@@ -143,7 +143,7 @@
         </record>
 
         <menuitem id="menu_action_settlement_report"
-                  parent="base.next_id_64"
+                  parent="sales_team.menu_sale_report"
                   sequence="80"
                   action="action_settlement_report" />
 

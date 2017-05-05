@@ -7,9 +7,9 @@
             <field name="model">sale.commission.make.settle</field>
             <field name="arch" type="xml">
                 <form string="Settle commissions">
-                    <group>
-                        <p colspan="4">Select the date up to which you want to make the settlements:</p>
-                        <field name="date_to" />
+                    <group colspan="4">
+                        <p>Select the date up to which you want to make the settlements:</p><br/>
+                        <field name="date_to"/>
                     </group>
                     <group string="Agents" colspan="4">
                         <p colspan="4">(keep empty for making the settlement of all agents)</p>

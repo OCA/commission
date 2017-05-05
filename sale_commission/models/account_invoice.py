@@ -11,11 +11,11 @@ class AccountInvoice(models.Model):
     """Invoice inherit to add salesman"""
     _inherit = "account.invoice"
 
-    @api.depends('invoice_line.agents.amount')
+    @api.depends('invoice_line_ids.agents.amount')
     def _compute_commission_total(self):
         for record in self:
             record.commission_total = 0.0
-            for line in record.invoice_line:
+            for line in record.invoice_line_ids:
                 record.commission_total += sum(x.amount for x in line.agents)
 
     commission_total = fields.Float(
@@ -53,7 +53,7 @@ class AccountInvoice(models.Model):
             for agent in agents:
                 agent_vals = agent[2]
                 del agent_vals['invoice']
-                del agent_vals['invoice_line']
+                del agent_vals['invoice_line_ids']
             vals['agents'] = agents
         return res
 
