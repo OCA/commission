@@ -86,8 +86,12 @@ class SaleCommissionMakeSettle(models.TransientModel):
                                 continue
                             if (agent.commission.invoice_state ==
                                     'partial_payments' and
-                                    agent_lines_company[pos].invoice.state in
-                                    ('open', 'paid')):
+                                    agent_lines_company[pos].invoice.state not
+                                    in ('open', 'paid')):
+                                pos += 1
+                                continue
+                            if (agent.commission.invoice_state ==
+                                    'partial_payments'):
                                 dict_settlement_line = \
                                     self._get_partial_payments(
                                         agent_lines_company[pos], date_to)
