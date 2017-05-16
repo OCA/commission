@@ -17,8 +17,7 @@ class AccountInvoiceLine(models.Model):
         res = super(AccountInvoiceLine, self).product_id_change(
             product, uom_id, qty, name, type, partner_id,
             fposition_id, price_unit, currency_id, company_id)
-
-        if partner_id and product:
+        if type in ('out_invoice', 'out_refund') and partner_id and product:
             agent_list = []
             partner = self.env["res.partner"].browse(partner_id)
             for agent in partner.agents:
@@ -28,9 +27,10 @@ class AccountInvoiceLine(models.Model):
                     .get_commission_id_product(product, agent)
                 if commission_id_product:
                     commission_id = commission_id_product
-                agent_list.append({'agent': agent.id,
-                                   'commission': commission_id
-                                   })
+                if commission_id:
+                    agent_list.append({'agent': agent.id,
+                                       'commission': commission_id
+                                       })
 
                 res['value']['agents'] = [(0, 0, x) for x in agent_list]
 
