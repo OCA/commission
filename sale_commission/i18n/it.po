@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-18 01:24+0000\n"
-"PO-Revision-Date: 2017-02-24 16:31+0000\n"
+"POT-Creation-Date: 2017-05-17 00:54+0000\n"
+"PO-Revision-Date: 2017-05-13 18:15+0000\n"
 "Last-Translator: Andrea Cometa <a.cometa@apuliasoftware.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-commission-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -209,7 +209,7 @@ msgid "Created Invoices"
 msgstr "Fatture Create"
 
 #. module: sale_commission
-#: code:addons/sale_commission/wizard/wizard_settle.py:108
+#: code:addons/sale_commission/wizard/wizard_settle.py:110
 #, python-format
 msgid "Created Settlements"
 msgstr "Liquidazioni create"
