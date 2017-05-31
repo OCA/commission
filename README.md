@@ -8,12 +8,18 @@ All management related with commisions and incentive in Odoo.
 
 [//]: # (addons)
 
+Available addons
+----------------
+addon | version | summary
+--- | --- | ---
+[sale_commission](sale_commission/) | 9.0.1.0.0 | Sales commissions
+
+
 Unported addons
 ---------------
 addon | version | summary
 --- | --- | ---
 [hr_commission](hr_commission/) | 8.0.1.0.0 (unported) | HR commissions
-[sale_commission](sale_commission/) | 8.0.2.3.0 (unported) | Sales commissions
 [sale_stock_commission](sale_stock_commission/) | 8.0.1.0.0 (unported) | Sale stock commissions
 
 [//]: # (end addons)
