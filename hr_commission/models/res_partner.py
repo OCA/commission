@@ -1,25 +1,10 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2015 Avanzosc (<http://www.avanzosc.es>)
-#    Copyright (C) 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-from openerp import models, fields, api, exceptions, _
+# © 2015 AvanzOSC
+# © 2015-2016 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
+# © 2016 Oihane Crucelaegui
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+
+from openerp import api, exceptions, fields, models, _
 
 
 class ResPartner(models.Model):
@@ -29,16 +14,17 @@ class ResPartner(models.Model):
     agent_type = fields.Selection(
         selection_add=[("salesman", "Salesman (employee)")])
     employee = fields.Many2one(
-        comodel_name="hr.employee", compute="_get_employee")
+        comodel_name="hr.employee", compute="_compute_employee")
     users = fields.One2many(comodel_name="res.users",
                             inverse_name="partner_id")
 
-    @api.one
     @api.depends('users')
-    def _get_employee(self):
-        self.employee = False
-        if len(self.users) == 1 and len(self.users[0].employee_ids) == 1:
-            self.employee = self.users[0].employee_ids[0]
+    def _compute_employee(self):
+        for partner in self:
+            partner.employee = False
+            if len(partner.users) == 1 and\
+                    len(partner.users[0].employee_ids) == 1:
+                partner.employee = partner.users[0].employee_ids[0]
 
     @api.constrains('agent_type', 'employee')
     def _check_employee(self):

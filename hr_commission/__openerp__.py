@@ -1,39 +1,26 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see http://www.gnu.org/licenses/.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# © 2015-2016 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
+# © 2016 Oihane Crucelaegui
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 {
     'name': 'HR commissions',
-    'version': '8.0.1.0.0',
-    'author': 'Serv. Tecnol. Avanzados - Pedro M. Baeza',
-    "category": "Human Resources",
+    'version': '9.0.1.0.0',
+    'author': 'Serv. Tecnol. Avanzados - Pedro M. Baeza, '
+              'Odoo Community Association (OCA)',
+    'category': 'Human Resources',
     'depends': [
         'sale_commission',
-        'hr'
+        'hr',
     ],
     'license': 'AGPL-3',
     'contributors': [
-        "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
+        'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>',
+        'Oihane Crucelaegui <oihanecruce@gmail.com>',
     ],
-    "data": [
-        "views/res_partner_view.xml",
+    'data': [
+        'views/res_partner_view.xml',
     ],
-    'installable': False,
-    "auto_install": True,
+    'installable': True,
+    'auto_install': True,
 }
