@@ -21,6 +21,7 @@
         'product',
         'sale',
         'web_widget_one2many_tags',
+        'stock_account',
     ],
     'contributors': [
         "Pexego",
@@ -31,7 +32,8 @@
         "Daniel Campos <danielcampos@avanzosc.es>",
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
         "Oihane Crucelaegui <oihanecruce@gmail.com>",
-        "Iván Todorovich <ivan.todorovich@gmail.com",
+        "Iván Todorovich <ivan.todorovich@gmail.com>",
+        "Aitor Bouzas <desarrollo@coolabora.com>",
     ],
     "data": [
         "security/commission_security.xml",
