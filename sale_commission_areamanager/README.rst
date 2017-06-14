@@ -6,11 +6,14 @@
 Sales commission Area Manager
 =============================
 
-This module allows extends the functionality of Sale Commission and allow 
-you to compute settlement to the Area Manager agent
+This module extends the functionality of Sale Commission and allow
+you to compute settlement to the Area Manager agent.
+Area Manager is computed when saving Sale Order or Account Invoice.
 
 Usage
 =====
+
+For an agent, you can configure an area manager, with their own commission. For every area manager, different commissions can be applied, depending on the sub agent who is doing sale order.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -35,7 +38,9 @@ Images
 
 Contributors
 ------------
+
 * Nicola Malcontenti <nicola.malcontenti@agilebg.com>
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 
 Icon
 ----

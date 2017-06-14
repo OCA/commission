@@ -16,7 +16,7 @@
                             </group>
                             <group col="2">
                                 <field name="area_manager"/>
-                                <field name="area_manager_id" attrs="{'invisible': [('area_manager', '=', False)]}"/>
+                                <field name="area_manager_id" attrs="{'invisible': [('area_manager', '=', True)]}" context="{'default_agent': True, 'default_area_manager': True}"/>
                                 <field name="commission_for_areamanager" attrs="{'invisible': [('area_manager', '=', True)]}"/>
                             </group>
                             <group colspan="4" string="Related Agents" attrs="{'invisible': [('area_manager', '=', False)]}">
