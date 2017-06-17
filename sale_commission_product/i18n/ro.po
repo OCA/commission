@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 01:26+0000\n"
-"PO-Revision-Date: 2017-03-04 01:26+0000\n"
+"POT-Creation-Date: 2017-05-17 00:54+0000\n"
+"PO-Revision-Date: 2017-05-17 00:54+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Romanian (https://www.transifex.com/oca/teams/23907/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -92,7 +92,7 @@ msgstr ""
 #. module: sale_commission_product
 #: model:ir.model,name:sale_commission_product.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Linie comandă vânzare"
 
 #. module: sale_commission_product
 #: sql_constraint:product.product.agent:0
