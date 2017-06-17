@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Peter Hageman <hageman.p@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 01:26+0000\n"
-"PO-Revision-Date: 2017-03-04 01:26+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-08-12 01:21+0000\n"
+"PO-Revision-Date: 2017-08-12 01:21+0000\n"
+"Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,42 +43,42 @@ msgstr ""
 #. module: sale_commission_product
 #: field:product.product.agent,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: sale_commission_product
 #: field:product.product.agent,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: sale_commission_product
 #: field:product.product.agent,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Weergavenaam"
 
 #. module: sale_commission_product
 #: field:product.product.agent,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_commission_product
 #: model:ir.model,name:sale_commission_product.model_account_invoice_line
 msgid "Invoice Line"
-msgstr ""
+msgstr "Factuurregel"
 
 #. module: sale_commission_product
 #: field:product.product.agent,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Laatst gewijzigd op"
 
 #. module: sale_commission_product
 #: field:product.product.agent,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: sale_commission_product
 #: field:product.product.agent,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: sale_commission_product
 #: model:ir.model,name:sale_commission_product.model_product_product
@@ -92,7 +93,7 @@ msgstr ""
 #. module: sale_commission_product
 #: model:ir.model,name:sale_commission_product.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Verkooporderregel"
 
 #. module: sale_commission_product
 #: sql_constraint:product.product.agent:0
