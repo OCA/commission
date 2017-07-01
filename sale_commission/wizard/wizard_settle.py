@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # © 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>)
 # © 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
+# © 2016 Andrea Cometa (<http://www.apuliasoftware.it>)
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import models, fields, api, exceptions, _
@@ -60,7 +61,8 @@ class SaleCommissionMakeSettle(models.TransientModel):
                 [('agent', '=', True)])
         date_to = fields.Date.from_string(self.date_to)
         for agent in self.agents:
-            date_to_agent = self._get_period_start(agent, date_to)
+            date_from = self._get_period_start(agent, date_to)
+            date_to_agent = self._get_next_period_date(agent, date_from)
             # Get non settled invoices
             agent_lines = agent_line_obj.search(
                 [('invoice_date', '<', date_to_agent),
