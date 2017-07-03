@@ -12,6 +12,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[contract_commission](contract_commission/) | 9.0.1.0.0 | Commissions in contract invoices
 [sale_commission](sale_commission/) | 9.0.1.0.0 | Sales commissions
 
 
