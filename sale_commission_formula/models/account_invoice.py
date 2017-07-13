@@ -12,7 +12,7 @@ class AccountInvoiceLineAgent(models.Model):
 
     @api.model
     def _get_formula_input_dict(self):
-        return {'line': self.sale_line,
+        return {'line': self.invoice_line,
                 'self': self}
 
     @api.depends('commission.commission_type', 'invoice_line.price_subtotal',
