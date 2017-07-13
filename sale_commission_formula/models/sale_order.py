@@ -10,6 +10,11 @@ from odoo.tools.safe_eval import safe_eval
 class SaleOrderLineAgent(models.Model):
     _inherit = 'sale.order.line.agent'
 
+    @api.model
+    def _get_formula_input_dict(self):
+        return {'line': self.sale_line,
+                'self': self}
+
     @api.depends('commission.commission_type', 'sale_line.price_subtotal',
                  'commission.amount_base_type')
     def _compute_amount(self):
@@ -19,7 +24,7 @@ class SaleOrderLineAgent(models.Model):
                     line_agent.commission):
                 line_agent.amount = 0.0
                 formula = line_agent.commission.formula
-                results = {'line': line_agent.sale_line}
+                results = line_agent._get_formula_input_dict()
                 safe_eval(formula, results, mode="exec", nocopy=True)
                 line_agent.amount += float(results['result'])
             else:
