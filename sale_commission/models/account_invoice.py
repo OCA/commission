@@ -1,21 +1,17 @@
 # -*- coding: utf-8 -*-
-# © 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>)
-# © 2015 Avanzosc (<http://www.avanzosc.es>)
-# © 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class AccountInvoice(models.Model):
     """Invoice inherit to add salesman"""
     _inherit = "account.invoice"
 
-    @api.depends('invoice_line.agents.amount')
+    @api.depends('invoice_line_ids.agents.amount')
     def _compute_commission_total(self):
         for record in self:
             record.commission_total = 0.0
-            for line in record.invoice_line:
+            for line in record.invoice_line_ids:
                 record.commission_total += sum(x.amount for x in line.agents)
 
     commission_total = fields.Float(
@@ -56,6 +52,33 @@ class AccountInvoice(models.Model):
                 del agent_vals['invoice_line']
             vals['agents'] = agents
         return res
+ 
+    @api.onchange('partner_id', 'company_id')
+    def _onchange_partner_id(self):
+        self.ensure_one()
+        res = super(AccountInvoice, self)._onchange_partner_id()
+        # workaround for https://github.com/odoo/odoo/issues/17618
+        for line in self.invoice_line_ids:
+            line.agents = None
+        return res
+
+    @api.model
+    def _prepare_line_agents_data(self, line):
+        rec = []
+        for agent in self.partner_id.agents:
+            rec.append({
+                'agent': agent.id,
+                'commission': agent.commission.id,
+            })
+        return rec
+
+    @api.multi
+    def recompute_lines_agents(self):
+        for invoice in self:
+            for line in invoice.invoice_line_ids:
+                line.agents.unlink()
+                line_agents_data = invoice._prepare_line_agents_data(line)
+                line.agents = [(0, 0, line_agent_data) for line_agent_data in line_agents_data]
 
 
 class AccountInvoiceLine(models.Model):
@@ -122,8 +145,7 @@ class AccountInvoiceLineAgent(models.Model):
     def onchange_agent(self):
         self.commission = self.agent.commission
 
-    @api.depends('commission.commission_type', 'invoice_line.price_subtotal',
-                 'commission.amount_base_type')
+    @api.depends('invoice_line.price_subtotal')
     def _compute_amount(self):
         for line in self:
             line.amount = 0.0
