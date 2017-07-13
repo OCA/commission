@@ -30,7 +30,6 @@
         <record id="res_partner_eiffel_sale_agent" model="res.partner">
             <field name="name">Eiffel pvt ltd</field>
             <field name="city">Ahmedabad</field>
-            <field name="name">Eiffel India</field>
             <field name="zip">380007</field>
             <field name="country_id" model="res.country"
                 search="[('name','=','India')]" />
@@ -43,7 +42,6 @@
         <record id="res_partner_tiny_sale_agent" model="res.partner">
             <field name="name">Tiny Belgium</field>
             <field name="city">Belgium</field>
-            <field name="name">Tiny Belgium</field>
             <field name="zip">2457</field>
             <field name="country_id" model="res.country"
                 search="[('name','=','India')]" />

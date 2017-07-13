@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
-# ?? 2015 Oihane Crucelaegui
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import exceptions, fields
+from odoo import exceptions, fields
 import openerp.tests.common as common
-import datetime
 import dateutil.relativedelta
 
 
@@ -70,11 +67,18 @@ class TestSaleCommission(common.TransactionCase):
         self.settle_model = self.env['sale.commission.settlement']
         self.make_settle_model = self.env['sale.commission.make.settle']
         self.make_inv_model = self.env['sale.commission.make.invoice']
+        self.product = self.browse_ref('product.product_product_5')
+        self.product.write({
+            'invoice_policy': 'order',
+        })
         self.saleorder1 = self.sale_order_model.create({
             'partner_id': self.partner.id,
             'order_line': [(0, 0, {
-                'product_id': self.ref('product.product_product_7'),
+                'name': self.product.name,
+                'product_id': self.product.id,
                 'product_uom_qty': 8.0,
+                'product_uom': self.ref('product.product_uom_unit'),
+                'price_unit': self.product.lst_price,
                 'agents': [(0, 0, {
                     'agent': self.ref(
                         'sale_commission.res_partner_pritesh_sale_agent'),
@@ -86,9 +90,11 @@ class TestSaleCommission(common.TransactionCase):
         self.saleorder2 = self.sale_order_model.create({
             'partner_id': self.partner.id,
             'order_line': [(0, 0, {
-                'product_id': self.ref('product.product_product_7'),
+                'name': self.product.name,
+                'product_id': self.product.id,
                 'product_uom_qty': 16.0,
                 'product_uom': self.ref('product.product_uom_dozen'),
+                'price_unit': self.product.lst_price,
                 'agents': [(0, 0, {
                     'agent': agent_quaterly.id,
                     'commission': self.ref(
@@ -99,8 +105,11 @@ class TestSaleCommission(common.TransactionCase):
         self.saleorder3 = self.sale_order_model.create({
             'partner_id': self.partner.id,
             'order_line': [(0, 0, {
-                'product_id': self.ref('product.product_product_7'),
+                'name': self.product.name,
+                'product_id': self.product.id,
                 'product_uom_qty': 8.0,
+                'product_uom': self.ref('product.product_uom_unit'),
+                'price_unit': self.product.lst_price,
                 'agents': [(0, 0, {
                     'agent': agent_semi.id,
                     'commission': commission_net_paid.id,
@@ -110,9 +119,11 @@ class TestSaleCommission(common.TransactionCase):
         self.saleorder4 = self.sale_order_model.create({
             'partner_id': self.partner.id,
             'order_line': [(0, 0, {
-                'product_id': self.ref('product.product_product_7'),
+                'name': self.product.name,
+                'product_id': self.product.id,
                 'product_uom_qty': 16.0,
                 'product_uom': self.ref('product.product_uom_dozen'),
+                'price_unit': self.product.lst_price,
                 'agents': [(0, 0, {
                     'agent': agent_annual.id,
                     'commission': commission_net_invoice.id,
@@ -122,8 +133,11 @@ class TestSaleCommission(common.TransactionCase):
         self.saleorder5 = self.sale_order_model.create({
             'partner_id': self.partner.id,
             'order_line': [(0, 0, {
-                'product_id': self.ref('product.product_product_7'),
+                'name': self.product.name,
+                'product_id': self.product.id,
                 'product_uom_qty': 8.0,
+                'product_uom': self.ref('product.product_uom_unit'),
+                'price_unit': self.product.lst_price,
                 'agents': [(0, 0, {
                     'agent':  self.ref(
                         'sale_commission.res_partner_pritesh_sale_agent'),
@@ -134,9 +148,11 @@ class TestSaleCommission(common.TransactionCase):
         self.saleorder6 = self.sale_order_model.create({
             'partner_id': self.partner.id,
             'order_line': [(0, 0, {
-                'product_id': self.ref('product.product_product_7'),
+                'name': self.product.name,
+                'product_id': self.product.id,
                 'product_uom_qty': 16.0,
                 'product_uom': self.ref('product.product_uom_dozen'),
+                'price_unit': self.product.lst_price,
                 'agents': [(0, 0, {
                     'agent':  self.ref(
                         'sale_commission.res_partner_pritesh_sale_agent'),
@@ -146,22 +162,25 @@ class TestSaleCommission(common.TransactionCase):
         })
 
     def test_sale_commission_gross_amount_payment(self):
-        self.saleorder1.signal_workflow('order_confirm')
-        payment = self.advance_inv_model.create({
-            'advance_payment_method': 'all',
-        })
-        payment.with_context(active_model='sale.order',
-                             active_ids=[self.saleorder1.id],
-                             active_id=self.saleorder1.id).create_invoices()
-        self.assertNotEquals(
+        self.saleorder1.action_confirm()
+        self.assertEquals(
             len(self.saleorder1.invoice_ids), 0,
             "Invoice should be created after make advance invoice where type"
             " is 'Invoice all the Sale Order'.")
+        payment = self.advance_inv_model.create({
+            'advance_payment_method': 'all',
+        })
+        context = {"active_model": 'sale.order',
+                   "active_ids": [self.saleorder1.id],
+                   "active_id": self.saleorder1.id}
+        payment.with_context(context).create_invoices()
+        self.assertNotEquals(len(self.saleorder1.invoice_ids), 0,
+                             "Invoice should be created.")
         for invoice in self.saleorder1.invoice_ids:
-            invoice.date_invoice = fields.Date.today()
-            invoice.signal_workflow('invoice_open')
+            invoice.action_invoice_open()
+            self.assertEquals(invoice.state, 'open')
         wizard = self.make_settle_model.create(
-            {'date_to': (datetime.datetime.now() +
+            {'date_to': (fields.Datetime.from_string(fields.Datetime.now()) +
                          dateutil.relativedelta.relativedelta(months=1))})
         wizard.action_settle()
         settlements = self.settle_model.search([('state', '=', 'settled')])
@@ -174,34 +193,28 @@ class TestSaleCommission(common.TransactionCase):
             ('company_id', '=', self.saleorder1.company_id.id)
         ], limit=1)
         for invoice in self.saleorder1.invoice_ids:
-            invoice.pay_and_reconcile(
-                invoice.amount_total, self.ref('account.cash'),
-                self.ref('account.period_8'), journals[:1].id,
-                self.ref('account.cash'), self.ref('account.period_8'),
-                journals[:1].id, name='test')
-        self.assertNotEquals(len(self.saleorder1.invoice_ids), 0,
-                             "Invoice should be created.")
-        self.assertTrue(self.saleorder1.invoice_exists,
-                        "Order is not invoiced.")
-        self.assertTrue(self.saleorder1.invoiced, "Order is not paid.")
+            invoice.pay_and_reconcile(journals[:1], invoice.amount_total)
+        self.assertTrue(self.saleorder1.invoice_ids, "Order is not invoiced.")
+        self.assertEqual(self.saleorder1.invoice_ids[:1].state, "paid")
 
     def test_sale_commission_gross_amount_invoice(self):
-        self.saleorder2.signal_workflow('order_confirm')
-        payment = self.advance_inv_model.create({
-            'advance_payment_method': 'all',
-        })
-        payment.with_context(active_model='sale.order',
-                             active_ids=[self.saleorder2.id],
-                             active_id=self.saleorder2.id).create_invoices()
-        self.assertNotEquals(
+        self.saleorder2.action_confirm()
+        self.assertEquals(
             len(self.saleorder2.invoice_ids), 0,
             "Invoice should be created after make advance invoice where type"
             " is 'Invoice all the Sale Order'.")
+        payment = self.advance_inv_model.create({
+            'advance_payment_method': 'all',
+        })
+        context = {"active_model": 'sale.order',
+                   "active_ids": [self.saleorder2.id],
+                   "active_id": self.saleorder2.id}
+        payment.with_context(context).create_invoices()
         for invoice in self.saleorder2.invoice_ids:
-            invoice.date_invoice = fields.Date.today()
-            invoice.signal_workflow('invoice_open')
+            invoice.action_invoice_open()
+            self.assertEquals(invoice.state, 'open')
         wizard = self.make_settle_model.create(
-            {'date_to': (datetime.datetime.now() +
+            {'date_to': (fields.Datetime.from_string(fields.Datetime.now()) +
                          dateutil.relativedelta.relativedelta(months=1))})
         wizard.action_settle()
         wizard2 = self.make_inv_model.create({'product': 1})
@@ -212,44 +225,35 @@ class TestSaleCommission(common.TransactionCase):
                                  "Settlements need to be in Invoiced State.")
 
     def test_sale_commission_net_amount_payment(self):
-        self.saleorder3.signal_workflow('order_confirm')
-        payment = self.advance_inv_model.create({
-            'advance_payment_method': 'all',
-        })
-        payment.with_context(active_model='sale.order',
-                             active_ids=[self.saleorder3.id],
-                             active_id=self.saleorder3.id).create_invoices()
-        self.assertNotEquals(
+        self.saleorder3.action_confirm()
+        self.assertEquals(
             len(self.saleorder3.invoice_ids), 0,
             "Invoice should be created after make advance invoice where type"
             " is 'Invoice all the Sale Order'.")
+        payment = self.advance_inv_model.create({
+            'advance_payment_method': 'all',
+        })
+        context = {"active_model": 'sale.order',
+                   "active_ids": [self.saleorder3.id],
+                   "active_id": self.saleorder3.id}
+        payment.with_context(context).create_invoices()
         for invoice in self.saleorder3.invoice_ids:
-            invoice.date_invoice = fields.Date.today()
-            invoice.signal_workflow('invoice_open')
+            invoice.action_invoice_open()
+            self.assertEquals(invoice.state, 'open')
         wizard = self.make_settle_model.create(
-            {'date_to': (datetime.datetime.now() +
+            {'date_to': (fields.Datetime.from_string(fields.Datetime.now()) +
                          dateutil.relativedelta.relativedelta(months=1))})
         wizard.action_settle()
-        settlements = self.settle_model.search([('state', '=', 'settled')])
-        self.assertEquals(
-            len(settlements), 0,
-            "The Type of Commission only allows create the Settlements when"
-            " the Invoices are Paid.")
         journals = self.env['account.journal'].search([
             ('type', '=', 'cash'),
             ('company_id', '=', self.saleorder3.company_id.id)
         ], limit=1)
         for invoice in self.saleorder3.invoice_ids:
-            invoice.pay_and_reconcile(
-                invoice.amount_total, self.ref('account.cash'),
-                self.ref('account.period_8'), journals[:1].id,
-                self.ref('account.cash'), self.ref('account.period_8'),
-                journals[:1].id, name='test')
+            invoice.pay_and_reconcile(journals[:1], invoice.amount_total)
         self.assertNotEquals(len(self.saleorder3.invoice_ids), 0,
                              "Invoice should be created.")
-        self.assertTrue(self.saleorder3.invoice_exists,
-                        "Order is not invoiced.")
-        self.assertTrue(self.saleorder3.invoiced, "Order is not paid.")
+        self.assertTrue(self.saleorder3.invoice_ids, "Order is not invoiced.")
+        self.assertEqual(self.saleorder3.invoice_ids[:1].state, "paid")
         for invoice in self.saleorder3.invoice_ids:
             refund_wiz = self.env['account.invoice.refund'].with_context(
                 active_ids=invoice.ids, active_id=invoice.id).create({
@@ -259,22 +263,23 @@ class TestSaleCommission(common.TransactionCase):
             refund_wiz.invoice_refund()
 
     def test_sale_commission_net_amount_invoice(self):
-        self.saleorder4.signal_workflow('order_confirm')
-        payment = self.advance_inv_model.create({
-            'advance_payment_method': 'all',
-        })
-        payment.with_context(active_model='sale.order',
-                             active_ids=[self.saleorder4.id],
-                             active_id=self.saleorder4.id).create_invoices()
-        self.assertNotEquals(
+        self.saleorder4.action_confirm()
+        self.assertEquals(
             len(self.saleorder4.invoice_ids), 0,
             "Invoice should be created after make advance invoice where type"
             " is 'Invoice all the Sale Order'.")
+        payment = self.advance_inv_model.create({
+            'advance_payment_method': 'all',
+        })
+        context = {"active_model": 'sale.order',
+                   "active_ids": [self.saleorder4.id],
+                   "active_id": self.saleorder4.id}
+        payment.with_context(context).create_invoices()
         for invoice in self.saleorder4.invoice_ids:
-            invoice.date_invoice = fields.Date.today()
-            invoice.signal_workflow('invoice_open')
+            invoice.action_invoice_open()
+            self.assertEquals(invoice.state, 'open')
         wizard = self.make_settle_model.create(
-            {'date_to': (datetime.datetime.now() +
+            {'date_to': (fields.Datetime.from_string(fields.Datetime.now()) +
                          dateutil.relativedelta.relativedelta(months=1))})
         wizard.action_settle()
         wizard2 = self.make_inv_model.create({'product': 1})
@@ -285,7 +290,7 @@ class TestSaleCommission(common.TransactionCase):
                                  "Settlements need to be in Invoiced State.")
 
     def test_sale_commission_section_payment(self):
-        self.saleorder5.signal_workflow('order_confirm')
+        self.saleorder5.action_confirm()
         payment = self.advance_inv_model.create({
             'advance_payment_method': 'all',
         })
@@ -297,10 +302,10 @@ class TestSaleCommission(common.TransactionCase):
             "Invoice should be created after make advance invoice where type"
             " is 'Invoice all the Sale Order'.")
         for invoice in self.saleorder5.invoice_ids:
-            invoice.date_invoice = fields.Date.today()
-            invoice.signal_workflow('invoice_open')
+            invoice.action_invoice_open()
+            self.assertEquals(invoice.state, 'open')
         wizard = self.make_settle_model.create(
-            {'date_to': (datetime.datetime.now() +
+            {'date_to': (fields.Datetime.from_string(fields.Datetime.now()) +
                          dateutil.relativedelta.relativedelta(months=1))})
         wizard.action_settle()
         settlements = self.settle_model.search([('state', '=', 'settled')])
@@ -313,34 +318,30 @@ class TestSaleCommission(common.TransactionCase):
             ('company_id', '=', self.saleorder5.company_id.id)
         ], limit=1)
         for invoice in self.saleorder5.invoice_ids:
-            invoice.pay_and_reconcile(
-                invoice.amount_total, self.ref('account.cash'),
-                self.ref('account.period_8'), journals[:1].id,
-                self.ref('account.cash'), self.ref('account.period_8'),
-                journals[:1].id, name='test')
+            invoice.pay_and_reconcile(journals[:1], invoice.amount_total)
         self.assertNotEquals(len(self.saleorder5.invoice_ids), 0,
                              "Invoice should be created.")
-        self.assertTrue(self.saleorder5.invoice_exists,
-                        "Order is not invoiced.")
-        self.assertTrue(self.saleorder5.invoiced, "Order is not paid.")
+        self.assertTrue(self.saleorder5.invoice_ids, "Order is not invoiced.")
+        self.assertEqual(self.saleorder5.invoice_ids[:1].state, "paid")
 
     def test_sale_commission_section_invoice(self):
-        self.saleorder6.signal_workflow('order_confirm')
-        payment = self.advance_inv_model.create({
-            'advance_payment_method': 'all',
-        })
-        payment.with_context(active_model='sale.order',
-                             active_ids=[self.saleorder6.id],
-                             active_id=self.saleorder6.id).create_invoices()
-        self.assertNotEquals(
+        self.saleorder6.action_confirm()
+        self.assertEquals(
             len(self.saleorder6.invoice_ids), 0,
             "Invoice should be created after make advance invoice where type"
             " is 'Invoice all the Sale Order'.")
+        payment = self.advance_inv_model.create({
+            'advance_payment_method': 'all',
+        })
+        context = {"active_model": 'sale.order',
+                   "active_ids": [self.saleorder6.id],
+                   "active_id": self.saleorder6.id}
+        payment.with_context(context).create_invoices()
         for invoice in self.saleorder6.invoice_ids:
-            invoice.date_invoice = fields.Date.today()
-            invoice.signal_workflow('invoice_open')
+            invoice.action_invoice_open()
+            self.assertEquals(invoice.state, 'open')
         wizard = self.make_settle_model.create(
-            {'date_to': (datetime.datetime.now() +
+            {'date_to': (fields.Datetime.from_string(fields.Datetime.now()) +
                          dateutil.relativedelta.relativedelta(months=1))})
         wizard.action_settle()
         wizard2 = self.make_inv_model.create({'product': 1})
@@ -365,8 +366,10 @@ class TestSaleCommission(common.TransactionCase):
             partner_id=self.partner.id).create({
                 'partner_id': self.partner.id,
                 'order_line': [(0, 0, {
-                    'product_id': self.ref('product.product_product_7'),
+                    'name': self.product.name,
+                    'product_id': self.product.id,
                     'product_uom_qty': 8.0,
+                    'product_uom': self.ref('product.product_uom_unit'),
                 })],
             })
         self.assertNotEquals(len(saleorder.mapped('order_line.agents')), 0,

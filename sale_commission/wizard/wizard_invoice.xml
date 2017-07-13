@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
-
+<odoo>
         <record id="sale_commission_make_invoice_form" model="ir.ui.view">
             <field name="name">Make invoices</field>
             <field name="model">sale.commission.make.invoice</field>
             <field name="arch" type="xml">
                 <form string="Make invoices">
-                    <group>
+                    <group colspan="2">
                         <field name="journal" />
-                        <field name="refund_journal" />
                         <field name="product" />
-                        <field name="date" />
+                        <field name="date"/>
                     </group>
                     <group string="Settlements"
                            attrs="{'invisible': [('from_settlement', '=', True)]}">
                         <p colspan="4">(keep empty for invoicing all the settlements)</p>
                         <field name="from_settlement" invisible="1"/>
-                        <field name="settlements" nolabel="1" widget="many2many_list"/>
+                        <group colspan="4">
+                            <field name="settlements"/>
+                        </group>
                     </group>
                     <footer>
                         <button name="button_create"
@@ -41,9 +40,8 @@
                     target="new" />
 
         <menuitem id="menu_commission_make_invoices"
-                  parent="menu_sale_commissions_conf"
+                  parent="menu_sale_commissions_management"
                   sequence="30"
                   action="action_commission_make_invoices" />
 
-    </data>
-</openerp>
+</odoo>
