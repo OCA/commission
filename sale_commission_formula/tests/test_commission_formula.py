@@ -27,11 +27,11 @@ class TestCommissionFormula(TransactionCase):
 
     def test_invoice_commission(self):
         # we confirm the sale order and create the corresponding invoice
-        self.sale_order.action_button_confirm()
+        self.sale_order.action_confirm()
         invoice_id = self.sale_order.action_invoice_create()
         invoice = self.env['account.invoice'].browse(invoice_id)
         # we add the commissions on the first invoice line
-        invoice_line = invoice.invoice_line[0]
+        invoice_line = invoice.invoice_line_ids[0]
         invoice_line.agents = [(0, 0, self.agent_commissions)]
         # we test the '5% + 10% extra' commissions on the invoice too
         self.assertEqual(41.25, invoice.commission_total)
