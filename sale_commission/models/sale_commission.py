@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
-# © 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>)
-# © 2015 Avanzosc (<http://www.avanzosc.es>)
-# © 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import api, exceptions, fields, models, _
+from odoo import api, exceptions, fields, models, _
 
 
 class SaleCommission(models.Model):
@@ -28,6 +24,8 @@ class SaleCommission(models.Model):
         selection=[('gross_amount', 'Gross Amount'),
                    ('net_amount', 'Net Amount')],
         string='Base', required=True, default='gross_amount')
+    settlements = fields.Many2many(
+        comodel_name='sale.commission.settlement')
 
     @api.multi
     def calculate_section(self, base):
@@ -47,9 +45,10 @@ class SaleCommissionSection(models.Model):
     amount_to = fields.Float(string="To")
     percent = fields.Float(string="Percent", required=True)
 
-    @api.one
+    @api.multi
     @api.constrains('amount_from', 'amount_to')
     def _check_amounts(self):
-        if self.amount_to < self.amount_from:
-            raise exceptions.ValidationError(
-                _("The lower limit cannot be greater than upper one."))
+        for section in self:
+            if section.amount_to < section.amount_from:
+                raise exceptions.ValidationError(
+                    _("The lower limit cannot be greater than upper one."))
