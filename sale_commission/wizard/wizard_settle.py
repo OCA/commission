@@ -22,7 +22,7 @@ class SaleCommissionMakeSettle(models.TransientModel):
             return date(month=date_to.month, year=date_to.year, day=1)
         elif agent.settlement == 'quaterly':
             # Get first month of the date quarter
-            month = ((date_to.month - 1) // 3 + 1) * 3
+            month = (date_to.month - 1) // 3 + 1
             return date(month=month, year=date_to.year, day=1)
         elif agent.settlement == 'semi':
             if date_to.month > 6:
@@ -63,7 +63,7 @@ class SaleCommissionMakeSettle(models.TransientModel):
             date_to_agent = self._get_period_start(agent, date_to)
             # Get non settled invoices
             agent_lines = agent_line_obj.search(
-                [('invoice_date', '<', date_to_agent),
+                [('invoice_date', '<', date_to),
                  ('agent', '=', agent.id),
                  ('settled', '=', False),
                  ('invoice.type', 'in', ('out_invoice', 'out_refund'))],
