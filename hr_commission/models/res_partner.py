@@ -40,7 +40,7 @@ class ResPartner(models.Model):
         if len(self.users) == 1 and len(self.users[0].employee_ids) == 1:
             self.employee = self.users[0].employee_ids[0]
 
-    @api.constrains('agent_type', 'employee')
+    @api.constrains('agent_type', 'users')
     def _check_employee(self):
         if self.agent_type == 'salesman' and not self.employee:
             raise exceptions.ValidationError(
