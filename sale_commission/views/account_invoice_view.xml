@@ -44,7 +44,7 @@
                     <attribute name="editable"/>
             </xpath>
             <xpath expr="//field[@name='invoice_line_ids']" position="after">
-                <button name="recompute_lines_agents" type="object" string="Recompute lines agents"></button>
+                <button name="recompute_lines_agents" type="object" string="Recompute lines agents" states="draft"></button>
             </xpath>
             <field name="amount_total" position="after">
                 <field name="commission_total"
