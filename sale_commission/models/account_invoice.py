@@ -62,6 +62,33 @@ class AccountInvoice(models.Model):
             line.agents = None
         return res
 
+    @api.onchange('journal_id')
+    def _onchange_journal_id(self):
+        self.ensure_one()
+        res = super(AccountInvoice, self)._onchange_journal_id()
+        # workaround for https://github.com/odoo/odoo/issues/17618
+        for line in self.invoice_line_ids:
+            line.agents = None
+        return res
+
+    @api.onchange('payment_term_id', 'date_invoice')
+    def _onchange_payment_term_date_invoice(self):
+        self.ensure_one()
+        res = super(AccountInvoice, self)._onchange_payment_term_date_invoice()
+        if not self.env.context.get('skip_agents_delete'):
+            # workaround for https://github.com/odoo/odoo/issues/17618
+            for line in self.invoice_line_ids:
+                line.agents = None
+        return res
+
+    @api.multi
+    def action_date_assign(self):
+        # this is needed because action_date_assign calls
+        # _onchange_payment_term_date_invoice to write to DB
+        return super(AccountInvoice, self.with_context({
+            'skip_agents_delete': True
+        })).action_date_assign()
+
     @api.model
     def _prepare_line_agents_data(self, line):
         rec = []

@@ -27,6 +27,15 @@ class SaleOrder(models.Model):
             order_line.agents = None
         return res
 
+    @api.onchange('fiscal_position_id')
+    def _compute_tax_id(self):
+        self.ensure_one()
+        res = super(SaleOrder, self)._compute_tax_id()
+        # workaround for https://github.com/odoo/odoo/issues/17618
+        for order_line in self.order_line:
+            order_line.agents = None
+        return res
+
     @api.model
     def _prepare_line_agents_data(self, line):
         rec = []

@@ -19,7 +19,7 @@ class SaleCommissionMakeSettle(models.TransientModel):
             return date(month=date_to.month, year=date_to.year, day=1)
         elif agent.settlement == 'quaterly':
             # Get first month of the date quarter
-            month = ((date_to.month - 1) // 3 + 1) * 3
+            month = (date_to.month - 1) // 3 * 3 + 1
             return date(month=month, year=date_to.year, day=1)
         elif agent.settlement == 'semi':
             if date_to.month > 6:
