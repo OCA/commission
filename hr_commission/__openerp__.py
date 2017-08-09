@@ -13,7 +13,7 @@
     "website": "https://www.tecnativa.com/",
     'depends': [
         'sale_commission',
-        'hr'
+        'hr',
     ],
     "data": [
         "views/res_partner_view.xml",
