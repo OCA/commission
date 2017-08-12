@@ -3,15 +3,15 @@
 # * hr_commission
 # 
 # Translators:
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: commission (8.0)\n"
+"Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-14 08:24+0000\n"
-"PO-Revision-Date: 2016-05-23 11:11+0000\n"
-"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-commission-8-0/language/de/)\n"
+"POT-Creation-Date: 2017-08-11 02:51+0000\n"
+"PO-Revision-Date: 2017-08-11 02:51+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,15 +19,21 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: hr_commission
+#: model:ir.model.fields,field_description:hr_commission.field_res_partner_employee_id
+msgid "Employee id"
+msgstr ""
+
+#. module: hr_commission
 #: model:ir.model,name:hr_commission.model_res_partner
 msgid "Partner"
 msgstr "Partner"
 
 #. module: hr_commission
-#: code:addons/hr_commission/models/res_partner.py:47
+#: code:addons/hr_commission/models/res_partner.py:35
 #, python-format
 msgid ""
 "There must one (and only one) employee linked to this partner. To do this, "
 "go to 'Human Resources' and check 'Employees'"
-msgstr "Es muss ein (und nur ein) Mitarbeiter mit diesem Partner verknüpft sein. Hierzu gehen Sie im Hauptmenü 'Mitarbeiter' un dann auf 'Mitarbeiter'."
-
+msgstr ""
+"Es muss ein (und nur ein) Mitarbeiter mit diesem Partner verknüpft sein. "
+"Hierzu gehen Sie im Hauptmenü 'Mitarbeiter' un dann auf 'Mitarbeiter'."
