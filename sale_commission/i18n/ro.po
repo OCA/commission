@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-17 00:54+0000\n"
-"PO-Revision-Date: 2017-06-14 00:21+0000\n"
+"POT-Creation-Date: 2017-08-03 07:28+0000\n"
+"PO-Revision-Date: 2017-08-11 11:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/oca/OCA-commission-8-0/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -455,7 +455,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nume"
 
 #. module: sale_commission
 #: selection:sale.commission,amount_base_type:0
@@ -620,7 +620,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission.settlement,state:0
 msgid "State"
-msgstr ""
+msgstr "Județ"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/sale_commission.py:65

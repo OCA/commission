@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 01:26+0000\n"
-"PO-Revision-Date: 2017-03-06 09:10+0000\n"
+"POT-Creation-Date: 2017-08-03 07:28+0000\n"
+"PO-Revision-Date: 2017-08-11 11:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Vietnamese (Viet Nam) (http://www.transifex.com/oca/OCA-commission-8-0/language/vi_VN/)\n"
 "MIME-Version: 1.0\n"
@@ -207,7 +207,7 @@ msgid "Created Invoices"
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/wizard/wizard_settle.py:108
+#: code:addons/sale_commission/wizard/wizard_settle.py:110
 #, python-format
 msgid "Created Settlements"
 msgstr ""
@@ -455,7 +455,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission,name:0
 msgid "Name"
-msgstr ""
+msgstr "Tên"
 
 #. module: sale_commission
 #: selection:sale.commission,amount_base_type:0
