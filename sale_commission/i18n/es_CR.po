@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-25 03:34+0000\n"
-"PO-Revision-Date: 2017-03-31 05:23+0000\n"
+"POT-Creation-Date: 2017-08-12 01:21+0000\n"
+"PO-Revision-Date: 2017-08-21 07:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (Costa Rica) (http://www.transifex.com/oca/OCA-commission-8-0/language/es_CR/)\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission,active:0
 msgid "Active"
-msgstr ""
+msgstr "Activo"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,agent:0
@@ -207,7 +207,7 @@ msgid "Created Invoices"
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/wizard/wizard_settle.py:108
+#: code:addons/sale_commission/wizard/wizard_settle.py:110
 #, python-format
 msgid "Created Settlements"
 msgstr ""

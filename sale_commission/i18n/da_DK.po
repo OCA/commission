@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-12 01:21+0000\n"
-"PO-Revision-Date: 2017-08-21 08:01+0000\n"
+"PO-Revision-Date: 2017-08-21 07:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Indonesian (http://www.transifex.com/oca/OCA-commission-8-0/language/id/)\n"
+"Language-Team: Danish (Denmark) (http://www.transifex.com/oca/OCA-commission-8-0/language/da_DK/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: id\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: da_DK\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_commission
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
@@ -30,7 +30,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission,active:0
 msgid "Active"
-msgstr "Aktif"
+msgstr ""
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,agent:0
@@ -118,7 +118,7 @@ msgstr ""
 #: view:sale.commission.make.settle:sale_commission.view_settled_wizard
 #: view:sale.commission.settlement:sale_commission.view_settlement_form
 msgid "Cancel"
-msgstr "Batalkan"
+msgstr ""
 
 #. module: sale_commission
 #: selection:sale.commission.settlement,state:0
@@ -187,7 +187,7 @@ msgstr ""
 #: field:sale.commission.settlement,company_id:0
 #: field:sale.commission.settlement.line,company_id:0
 msgid "Company"
-msgstr "Perusahaan"
+msgstr ""
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_commission_make_invoices
@@ -222,7 +222,7 @@ msgstr ""
 #: field:sale.commission.settlement.line,create_uid:0
 #: field:sale.order.line.agent,create_uid:0
 msgid "Created by"
-msgstr "Dibuat oleh"
+msgstr ""
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,create_date:0
@@ -234,7 +234,7 @@ msgstr "Dibuat oleh"
 #: field:sale.commission.settlement.line,create_date:0
 #: field:sale.order.line.agent,create_date:0
 msgid "Created on"
-msgstr "Dibuat pada"
+msgstr ""
 
 #. module: sale_commission
 #: field:res.partner,agent:0
@@ -249,7 +249,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission.make.invoice,date:0
 msgid "Date"
-msgstr "Tanggal"
+msgstr ""
 
 #. module: sale_commission
 #: view:sale.commission.settlement:sale_commission.view_settlement_search
@@ -271,7 +271,7 @@ msgstr ""
 #: field:sale.commission.settlement.line,display_name:0
 #: field:sale.order.line.agent,display_name:0
 msgid "Display Name"
-msgstr "Nama Tampilan"
+msgstr ""
 
 #. module: sale_commission
 #: selection:res.partner,agent_type:0
@@ -323,7 +323,7 @@ msgstr ""
 #: view:sale.commission.settlement:sale_commission.view_settlement_search
 #: view:sale.commission.settlement.line:sale_commission.view_settlement_line_search
 msgid "Group By"
-msgstr "Dikelompokan berdasarkan .."
+msgstr ""
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,id:0 field:sale.commission,id:0
@@ -332,14 +332,14 @@ msgstr "Dikelompokan berdasarkan .."
 #: field:sale.commission.settlement,id:0
 #: field:sale.commission.settlement.line,id:0 field:sale.order.line.agent,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,invoice:0
 #: model:ir.model,name:sale_commission.model_account_invoice
 #: field:sale.commission.settlement.line,invoice:0
 msgid "Invoice"
-msgstr "Faktur"
+msgstr ""
 
 #. module: sale_commission
 #: selection:sale.commission,invoice_state:0
@@ -360,7 +360,7 @@ msgstr ""
 #: field:account.invoice.line.agent,invoice_date:0
 #: field:sale.commission.settlement.line,date:0
 msgid "Invoice date"
-msgstr ""
+msgstr "Faktura dato"
 
 #. module: sale_commission
 #: selection:sale.commission.settlement,state:0
@@ -386,7 +386,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission.make.invoice,journal:0
 msgid "Journal"
-msgstr "Jurnal"
+msgstr ""
 
 #. module: sale_commission
 #: help:account.invoice.line.agent,invoice_date:0
@@ -404,7 +404,7 @@ msgstr ""
 #: field:sale.commission.settlement.line,__last_update:0
 #: field:sale.order.line.agent,__last_update:0
 msgid "Last Modified on"
-msgstr "Terakhir Dimodifikasi pada"
+msgstr ""
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,write_uid:0
@@ -416,7 +416,7 @@ msgstr "Terakhir Dimodifikasi pada"
 #: field:sale.commission.settlement.line,write_uid:0
 #: field:sale.order.line.agent,write_uid:0
 msgid "Last Updated by"
-msgstr "Diperbaharui oleh"
+msgstr ""
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,write_date:0
@@ -428,7 +428,7 @@ msgstr "Diperbaharui oleh"
 #: field:sale.commission.settlement.line,write_date:0
 #: field:sale.order.line.agent,write_date:0
 msgid "Last Updated on"
-msgstr "Diperbaharui pada"
+msgstr ""
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:64
@@ -455,7 +455,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission,name:0
 msgid "Name"
-msgstr "Nama"
+msgstr ""
 
 #. module: sale_commission
 #: selection:sale.commission,amount_base_type:0
@@ -650,13 +650,13 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission.settlement,total:0
 msgid "Total"
-msgstr "Total"
+msgstr ""
 
 #. module: sale_commission
 #: field:res.partner,agent_type:0 field:sale.commission,commission_type:0
 #: field:sale.commission.settlement,agent_type:0
 msgid "Type"
-msgstr "Jenis"
+msgstr ""
 
 #. module: sale_commission
 #: field:sale.commission.make.settle,date_to:0
@@ -684,7 +684,7 @@ msgstr ""
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
 #: view:sale.commission.make.settle:sale_commission.view_settled_wizard
 msgid "or"
-msgstr "atau"
+msgstr ""
 
 #. module: sale_commission
 #: view:sale.commission:sale_commission.sale_commission_form
