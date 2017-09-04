@@ -79,6 +79,22 @@
     assert sale_order.invoice_exists, "Order is not invoiced."
     assert sale_order.invoiced, "Order is not paid."
 -
+  I try to create the Settlement after paid Invoice
+-
+  !python {model: sale.commission.make.settle}: |
+    import datetime
+    import dateutil.relativedelta
+    now = datetime.datetime.now()
+    wizard_id = self.create(
+      cr, uid, {'date_to': now + dateutil.relativedelta.relativedelta(months=1)})
+    result = self.action_settle(cr, uid, [wizard_id], context=None)
+-
+  I open the Settlements to check if was create.
+-
+  !python {model: sale.commission.settlement}: |
+    settlement_ids = self.search(cr, uid, [('state', '=', 'settled')])
+    assert settlement_ids, "After Invoice are Paid need to be possible create Settlements."
+-
   I create another Sale Order with a Agent who has the Type of Commission - Invoice Based
 -
   !record {model: sale.order, id: sale_order_commission_test2}:

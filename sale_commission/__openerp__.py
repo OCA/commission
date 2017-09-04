@@ -6,7 +6,7 @@
 
 {
     'name': 'Sales commissions',
-    'version': '8.0.3.0.0',
+    'version': '8.0.4.0.0',
     'author': 'Pexego, '
               'Savoire-faire linux, '
               'Avanzosc, '
@@ -31,7 +31,8 @@
         "Daniel Campos <danielcampos@avanzosc.es>",
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
         "Oihane Crucelaegui <oihanecruce@gmail.com>",
-        "Iván Todorovich <ivan.todorovich@gmail.com",
+        "Iván Todorovich <ivan.todorovich@gmail.com>",
+        "Akretion - Magno Costa <magno.costa@akretion.com.br>",
     ],
     "data": [
         "security/commission_security.xml",

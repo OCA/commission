@@ -6,6 +6,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import api, fields, models
+from openerp.addons import decimal_precision as dp
 
 
 class SaleOrder(models.Model):
@@ -19,7 +20,7 @@ class SaleOrder(models.Model):
 
     commission_total = fields.Float(
         string="Commissions", compute="_compute_commission_total",
-        store=True)
+        store=True, digits_compute=dp.get_precision('Account'))
 
 
 class SaleOrderLine(models.Model):
@@ -71,7 +72,9 @@ class SaleOrderLineAgent(models.Model):
         domain="[('agent', '=', True')]")
     commission = fields.Many2one(
         comodel_name="sale.commission", required=True, ondelete="restrict")
-    amount = fields.Float(compute="_compute_amount", store=True)
+    amount = fields.Float(
+        compute="_compute_amount", store=True,
+        digits_compute=dp.get_precision('Account'))
 
     _sql_constraints = [
         ('unique_agent', 'UNIQUE(sale_line, agent)',

@@ -6,6 +6,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import api, fields, models
+from openerp.addons import decimal_precision as dp
 
 
 class AccountInvoice(models.Model):
@@ -21,7 +22,7 @@ class AccountInvoice(models.Model):
 
     commission_total = fields.Float(
         string="Commissions", compute="_compute_commission_total",
-        store=True)
+        store=True, digits_compute=dp.get_precision('Account'))
 
     @api.multi
     def action_cancel(self):
@@ -114,15 +115,15 @@ class AccountInvoiceLineAgent(models.Model):
     commission = fields.Many2one(
         comodel_name="sale.commission", ondelete="restrict", required=True)
     amount = fields.Float(
-        string="Amount settled", compute="_compute_amount", store=True)
+        string="Amount settled", compute="_compute_amount", store=True,
+        digits_compute=dp.get_precision('Account'))
     agent_line = fields.Many2many(
         comodel_name='sale.commission.settlement.line',
         relation='settlement_agent_line_rel',
         column1='agent_line_id', column2='settlement_id',
         copy=False)
     settled = fields.Boolean(
-        compute="_compute_settled",
-        store=True, copy=False)
+        compute="_compute_settled", store=True, copy=False)
     company_id = fields.Many2one("res.company", "Company",
                                  related="invoice.company_id", store=True)
 
@@ -169,10 +170,18 @@ class AccountInvoiceLineAgent(models.Model):
     def _compute_settled(self):
         # Count lines of not open or paid invoices as settled for not
         # being included in settlements
-        for line in self:
-            line.settled = (line.invoice.state not in ('open', 'paid') or
-                            any(x.settlement.state != 'cancel'
-                                for x in line.agent_line))
+        for record in self:
+            for agent in record.agent:
+                settled = record.env['sale.commission.settlement.line'].search(
+                    [('invoice_line', '=', record.invoice_line.id),
+                     ('agent', '=', agent.id),
+                     ('settlement.state', '!=', 'cancel')])
+                total_settled_amount = 0.0
+                if settled:
+                    total_settled_amount = sum(
+                        line.settled_amount for line in settled)
+                record.settled = (
+                    record.amount == total_settled_amount)
 
     _sql_constraints = [
         ('unique_agent', 'UNIQUE(invoice_line, agent)',
