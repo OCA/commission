@@ -616,6 +616,8 @@ msgstr "Buscar liquidaciones"
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
 #: field:sale.commission.make.invoice,settlements:0
 #: view:sale.commission.settlement:sale_commission.view_settlement_tree
+#: model:ir.ui.menu,name:sale_commission.menu_sale_settlements
+#: model:ir.actions.act_window,name:sale_commission.action_settlement
 msgid "Settlements"
 msgstr "Liquidaciones"
 
