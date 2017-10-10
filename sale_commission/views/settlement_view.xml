@@ -24,6 +24,7 @@
                 <field name="agent"/>
                 <field name="date_from"/>
                 <field name="date_to"/>
+                <field name="state"/>
                 <filter string="This year"
                         name="thisyear"
                         domain="[('date_from', '&gt;=', time.strftime('%%Y-01-01')), ('date_to', '&lt;=', time.strftime('%%Y-12-31'))]" />
@@ -31,6 +32,7 @@
                 <group expand="1" string="Group By">
                     <filter string="Agent" name="group_agent" context="{'group_by': 'agent'}"/>
                     <filter string="Date from month" name="group_date" context="{'group_by': 'date_from:month'}"/>
+                    <filter string="State" name="group_state" context="{'group_by': 'state'}"/>
                  </group>
             </search>
         </field>
@@ -84,6 +86,17 @@
             </form>
         </field>
     </record>
+
+    <record model="ir.actions.act_window" id="action_settlement">
+        <field name="name">Settlements</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.commission.settlement</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_sale_settlements" parent="base.menu_sales"
+              action="action_settlement" groups="base.group_sale_manager" />
 
     <record model="ir.ui.view" id="view_settlement_line_tree">
         <field name="name">Settlement lines</field>
