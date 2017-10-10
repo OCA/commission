@@ -24,33 +24,28 @@
             <field name="street">56 Beijing street</field>
             <field name="agent" eval="1" />
             <field name="commission" ref="demo_commission_paid" />
-            <field name="lang">en_US</field>
         </record>
 
         <record id="res_partner_eiffel_sale_agent" model="res.partner">
             <field name="name">Eiffel pvt ltd</field>
             <field name="city">Ahmedabad</field>
-            <field name="name">Eiffel India</field>
             <field name="zip">380007</field>
             <field name="country_id" model="res.country"
                 search="[('name','=','India')]" />
             <field name="street">Wall Street 2</field>
             <field name="agent" eval="1" />
             <field name="commission" ref="demo_commission" />
-            <field name="lang">en_US</field>
         </record>
 
         <record id="res_partner_tiny_sale_agent" model="res.partner">
             <field name="name">Tiny Belgium</field>
             <field name="city">Belgium</field>
-            <field name="name">Tiny Belgium</field>
             <field name="zip">2457</field>
             <field name="country_id" model="res.country"
                 search="[('name','=','India')]" />
             <field name="street">Belgium Gao</field>
             <field name="agent" eval="1" />
             <field name="commission" ref="demo_commission" />
-            <field name="lang">en_US</field>
         </record>
 
     </data>

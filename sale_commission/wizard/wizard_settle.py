@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
-# © 2011 Pexego Sistemas Informáticos (<http://www.pexego.es>)
-# © 2015 Pedro M. Baeza (<http://www.serviciosbaeza.com>)
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import models, fields, api, exceptions, _
+from odoo import models, fields, api, exceptions, _
 from datetime import date, timedelta
 from dateutil.relativedelta import relativedelta
 
@@ -22,7 +19,7 @@ class SaleCommissionMakeSettle(models.TransientModel):
             return date(month=date_to.month, year=date_to.year, day=1)
         elif agent.settlement == 'quaterly':
             # Get first month of the date quarter
-            month = ((date_to.month - 1) // 3 + 1) * 3
+            month = (date_to.month - 1) // 3 * 3 + 1
             return date(month=month, year=date_to.year, day=1)
         elif agent.settlement == 'semi':
             if date_to.month > 6:
