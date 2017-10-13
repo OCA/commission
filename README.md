@@ -14,6 +14,6 @@ addon | version | summary
 --- | --- | ---
 [contract_commission](contract_commission/) | 9.0.1.0.0 | Commissions in contract invoices
 [hr_commission](hr_commission/) | 9.0.1.0.0 | HR commissions
-[sale_commission](sale_commission/) | 9.0.1.0.0 | Sales commissions
+[sale_commission](sale_commission/) | 9.0.1.1.0 | Sales commissions
 
 [//]: # (end addons)
