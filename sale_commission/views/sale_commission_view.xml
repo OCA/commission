@@ -59,7 +59,9 @@
 
     <menuitem name="Commissions Management"
               id="menu_sale_commissions_management"
-              parent="sales_team.menu_base_partner" />
+              parent="sale.sale_menu_root"
+              sequence="4"
+    />
 
     <menuitem name="Commission types"
               id="menu_sale_commissions_types"
