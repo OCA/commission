@@ -170,6 +170,13 @@ class AccountInvoiceLineAgent(models.Model):
     settled = fields.Boolean(
         compute="_compute_settled",
         store=True, copy=False)
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        compute="_compute_company",
+        store=True,
+        readonly=True,
+        copy=False
+    )
 
     @api.onchange('agent')
     def onchange_agent(self):
@@ -204,6 +211,11 @@ class AccountInvoiceLineAgent(models.Model):
             line.settled = (line.invoice.state not in ('open', 'paid') or
                             any(x.settlement.state != 'cancel'
                                 for x in line.agent_line))
+
+    @api.depends('agent', 'invoice_line')
+    def _compute_company(self):
+        for line in self:
+            line.company_id = line.invoice_line.company_id
 
     _sql_constraints = [
         ('unique_agent', 'UNIQUE(invoice_line, agent)',

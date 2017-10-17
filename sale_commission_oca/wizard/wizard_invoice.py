@@ -24,6 +24,11 @@ class SaleCommissionMakeInvoice(models.TransientModel):
         comodel_name='account.journal', required=True,
         domain="[('type', '=', 'purchase')]",
         default=_default_journal)
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        related='journal.company_id',
+        readonly=True
+    )
     product = fields.Many2one(
         string='Product for invoicing',
         comodel_name='product.product', required=True)
@@ -31,7 +36,8 @@ class SaleCommissionMakeInvoice(models.TransientModel):
         comodel_name='sale.commission.settlement',
         relation="sale_commission_make_invoice_settlement_rel",
         column1='wizard_id', column2='settlement_id',
-        domain="[('state', '=', 'settled')]",
+        domain="[('state', '=', 'settled'),('agent_type', '=', 'agent'),"
+               "('company_id', '=', company_id)]",
         default=_default_settlements)
     from_settlement = fields.Boolean(default=_default_from_settlement)
     date = fields.Date()
@@ -40,8 +46,11 @@ class SaleCommissionMakeInvoice(models.TransientModel):
     def button_create(self):
         self.ensure_one()
         if not self.settlements:
-            self.settlements = self.env['sale.commission.settlement'].search(
-                [('state', '=', 'settled'), ('agent_type', '=', 'agent')])
+            self.settlements = self.env['sale.commission.settlement'].search([
+                ('state', '=', 'settled'),
+                ('agent_type', '=', 'agent'),
+                ('company_id', '=', self.journal.company_id.id)
+            ])
         self.settlements.make_invoices(
             self.journal, self.product, date=self.date)
         # go to results

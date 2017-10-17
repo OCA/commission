@@ -7,6 +7,7 @@
             <tree string="Settlements"
                   colors="red: state == 'cancel'; gray: state == 'invoiced'">
                 <field name="agent"/>
+                <field name="company_id" groups="base.group_multi_company"/>
                 <field name="date_from"/>
                 <field name="date_to"/>
                 <field name="total"
@@ -24,6 +25,7 @@
                 <field name="agent"/>
                 <field name="date_from"/>
                 <field name="date_to"/>
+                <field name="company_id"/>
                 <filter string="This year"
                         name="thisyear"
                         domain="[('date_from', '&gt;=', time.strftime('%%Y-01-01')), ('date_to', '&lt;=', time.strftime('%%Y-12-31'))]" />
@@ -55,10 +57,12 @@
                 </header>
                 <group>
                     <group>
+                        <field name="agent"/>
                         <field name="date_from"/>
                         <field name="invoice" attrs="{'invisible': [('state', '!=', 'invoiced')]}"/>
                     </group>
                     <group>
+                        <field name="company_id" groups="base.group_multi_company"/>
                         <field name="date_to"/>
                         <field name="currency_id" invisible="1"/>
                         <field name="agent_type" invisible="1"/>
@@ -133,15 +137,15 @@
     </record>
 
     <record model="ir.actions.act_window" id="action_settle_commission">
-        <field name="name">Settlments</field>
+        <field name="name">Settlements</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.commission.settlement</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem name="Settlments"
-              id="menu_sattle_commissions"
+    <menuitem name="Settlements"
+              id="menu_settle_commissions"
               parent="menu_sale_commissions_management"
               action="action_settle_commission" />
 
