@@ -97,7 +97,7 @@ class SaleOrderLineAgent(models.Model):
         comodel_name="sale.order.line", required=True, ondelete="cascade")
     agent = fields.Many2one(
         comodel_name="res.partner", required=True, ondelete="restrict",
-        domain="[('agent', '=', True')]")
+        domain="[('agent', '=', True)]")
     commission = fields.Many2one(
         comodel_name="sale.commission", required=True, ondelete="restrict")
     amount = fields.Float(compute="_compute_amount", store=True)
