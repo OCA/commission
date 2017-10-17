@@ -9,11 +9,13 @@ class SaleCommissionMakeSettle(models.TransientModel):
     _name = "sale.commission.make.settle"
 
     date_to = fields.Date('Up to', required=True, default=fields.Date.today())
-    agents = fields.Many2many(comodel_name='res.partner',
-                              domain="[('agent', '=', True)]")
+    agents = fields.Many2many(
+        comodel_name='res.partner',
+        domain="[('agent', '=', True)]"
+    )
 
     def _get_period_start(self, agent, date_to):
-        if isinstance(date_to, basestring):
+        if isinstance(date_to, str):
             date_to = fields.Date.from_string(date_to)
         if agent.settlement == 'monthly':
             return date(month=date_to.month, year=date_to.year, day=1)
@@ -32,7 +34,7 @@ class SaleCommissionMakeSettle(models.TransientModel):
             raise exceptions.Warning(_("Settlement period not valid."))
 
     def _get_next_period_date(self, agent, current_date):
-        if isinstance(current_date, basestring):
+        if isinstance(current_date, str):
             current_date = fields.Date.from_string(current_date)
         if agent.settlement == 'monthly':
             return current_date + relativedelta(months=1)
@@ -63,32 +65,49 @@ class SaleCommissionMakeSettle(models.TransientModel):
                 [('invoice_date', '<', date_to_agent),
                  ('agent', '=', agent.id),
                  ('settled', '=', False)], order='invoice_date')
-            if agent_lines:
+            for company in agent_lines.mapped('company_id'):
+                agent_lines_company = agent_lines.filtered(
+                    lambda r: r.invoice_line.company_id == company)
+                if not agent_lines_company:
+                    continue
                 pos = 0
-                sett_to = fields.Date.to_string(date(year=1900, month=1,
+                sett_to = fields.Date.to_string(date(year=1900,
+                                                     month=1,
                                                      day=1))
-                while pos < len(agent_lines):
-                    if (agent.commission.invoice_state == 'paid' and
-                            agent_lines[pos].invoice.state != 'paid'):
+                while pos < len(agent_lines_company):
+                    line = agent_lines_company[pos]
+                    if (
+                        line.commission.invoice_state == 'paid' and
+                        line.invoice.state != 'paid'
+                    ):
                         pos += 1
                         continue
-                    if agent_lines[pos].invoice_date > sett_to:
+                    if line.invoice_date > sett_to:
                         sett_from = self._get_period_start(
-                            agent, agent_lines[pos].invoice_date)
+                            agent, line.invoice_date)
                         sett_to = fields.Date.to_string(
-                            self._get_next_period_date(agent, sett_from) -
-                            timedelta(days=1))
+                            self._get_next_period_date(
+                                agent, sett_from) - timedelta(days=1))
                         sett_from = fields.Date.to_string(sett_from)
-                        settlement = settlement_obj.create(
-                            {'agent': agent.id,
-                             'date_from': sett_from,
-                             'date_to': sett_to})
+                        settlement = settlement_obj.search([
+                            ('agent', '=', agent.id),
+                            ('date_from', '=', sett_from),
+                            ('date_to', '=', sett_to),
+                            ('company_id', '=', company.id)
+                        ], limit=1)
+                        if not settlement:
+                            settlement = settlement_obj.create({
+                                'agent': agent.id,
+                                'date_from': sett_from,
+                                'date_to': sett_to,
+                                'company_id': company.id,
+                            })
                         settlement_ids.append(settlement.id)
-                    settlement_line_obj.create(
-                        {'settlement': settlement.id,
-                         'agent_line': [(6, 0, [agent_lines[pos].id])]})
+                    settlement_line_obj.create({
+                        'settlement': settlement.id,
+                        'agent_line': [(6, 0, [line.id])],
+                    })
                     pos += 1
-
         # go to results
         if len(settlement_ids):
             return {

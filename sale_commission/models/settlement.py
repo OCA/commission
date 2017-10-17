@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, exceptions, fields, models, _
+from odoo.exceptions import UserError
 
 
 class Settlement(models.Model):
@@ -32,6 +33,10 @@ class Settlement(models.Model):
     currency_id = fields.Many2one(
         comodel_name='res.currency', readonly=True,
         default=_default_currency)
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        required=True
+    )
 
     @api.depends('lines', 'lines.settled_amount')
     def _compute_total(self):
@@ -72,7 +77,7 @@ class Settlement(models.Model):
                      'in_refund'),
             'date_invoice': date,
             'journal_id': journal.id,
-            'company_id': self.env.user.company_id.id,
+            'company_id': settlement.company_id.id,
             'state': 'draft',
         })
         # Get other invoice values from partner onchange
@@ -120,11 +125,10 @@ class Settlement(models.Model):
             # considering _add_extra_invoice_lines sum of values
             extra_invoice_lines = self._add_extra_invoice_lines(settlement)
             extra_total = sum(x['price_unit'] for x in extra_invoice_lines)
-            invoice_journal = (journal if
-                               (settlement.total + extra_total) >= 0 else
-                               False)
+            if (settlement.total + extra_total) < 0:
+                raise UserError(_('Value cannot be negative'))
             invoice_vals = self._prepare_invoice_header(
-                settlement, invoice_journal, date=date)
+                settlement, journal, date=date)
             invoice = invoice_obj.create(invoice_vals)
             invoice_line_vals = self._prepare_invoice_line(
                 settlement, invoice, product)
@@ -159,3 +163,15 @@ class SettlementLine(models.Model):
         related="agent_line.amount", readonly=True, store=True)
     commission = fields.Many2one(
         comodel_name="sale.commission", related="agent_line.commission")
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        related='settlement.company_id'
+    )
+
+    @api.constrains('company_id', 'agent_line')
+    def _check_company(self):
+        for record in self:
+            if record.agent_line.company_id != record.company_id:
+                raise UserError(_(
+                    'Company must be the same'
+                ))
