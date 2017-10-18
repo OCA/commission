@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 # © 2016 Nicola Malcontenti - Agile Business Group
 # © 2016 Davide Corio - Abstract
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+# License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 {
     'name': 'Sale Commission Formula',
-    'version': '10.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': 'Sale',
     'license': 'AGPL-3',
     'summary': 'Sale commissions computed by formulas',
