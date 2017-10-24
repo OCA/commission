@@ -621,8 +621,8 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_settle_commission
 #: model:ir.ui.menu,name:sale_commission.menu_sattle_commissions
-msgid "Settlments"
-msgstr ""
+msgid "Settlements"
+msgstr "Abatimentos"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_state
