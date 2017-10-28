@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-17 00:54+0000\n"
-"PO-Revision-Date: 2017-04-25 17:36+0000\n"
+"POT-Creation-Date: 2017-10-10 00:40+0000\n"
+"PO-Revision-Date: 2017-10-23 10:55+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-commission-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -208,7 +208,7 @@ msgid "Created Invoices"
 msgstr "Ustvarjeni računi"
 
 #. module: sale_commission
-#: code:addons/sale_commission/wizard/wizard_settle.py:110
+#: code:addons/sale_commission/wizard/wizard_settle.py:108
 #, python-format
 msgid "Created Settlements"
 msgstr "Ustvarjene poravnave"
@@ -610,6 +610,8 @@ msgid "Settlement search"
 msgstr "Iskanje poravnave"
 
 #. module: sale_commission
+#: model:ir.actions.act_window,name:sale_commission.action_settlement
+#: model:ir.ui.menu,name:sale_commission.menu_sale_settlements
 #: view:res.partner:sale_commission.view_partner_form_agent
 #: field:res.partner,settlements:0
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
@@ -619,6 +621,7 @@ msgid "Settlements"
 msgstr "Poravnave"
 
 #. module: sale_commission
+#: view:sale.commission.settlement:sale_commission.view_settlement_search
 #: field:sale.commission.settlement,state:0
 msgid "State"
 msgstr "Stanje"

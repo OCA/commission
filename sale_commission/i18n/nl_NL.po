@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-12 01:21+0000\n"
-"PO-Revision-Date: 2017-08-29 08:01+0000\n"
+"POT-Creation-Date: 2017-10-10 00:40+0000\n"
+"PO-Revision-Date: 2017-09-22 21:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-commission-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -207,7 +207,7 @@ msgid "Created Invoices"
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/wizard/wizard_settle.py:110
+#: code:addons/sale_commission/wizard/wizard_settle.py:108
 #, python-format
 msgid "Created Settlements"
 msgstr ""
@@ -323,7 +323,7 @@ msgstr ""
 #: view:sale.commission.settlement:sale_commission.view_settlement_search
 #: view:sale.commission.settlement.line:sale_commission.view_settlement_line_search
 msgid "Group By"
-msgstr ""
+msgstr "Groeperen op"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,id:0 field:sale.commission,id:0
@@ -455,7 +455,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission,name:0
 msgid "Name"
-msgstr ""
+msgstr "Naam"
 
 #. module: sale_commission
 #: selection:sale.commission,amount_base_type:0
@@ -609,6 +609,8 @@ msgid "Settlement search"
 msgstr ""
 
 #. module: sale_commission
+#: model:ir.actions.act_window,name:sale_commission.action_settlement
+#: model:ir.ui.menu,name:sale_commission.menu_sale_settlements
 #: view:res.partner:sale_commission.view_partner_form_agent
 #: field:res.partner,settlements:0
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
@@ -618,9 +620,10 @@ msgid "Settlements"
 msgstr ""
 
 #. module: sale_commission
+#: view:sale.commission.settlement:sale_commission.view_settlement_search
 #: field:sale.commission.settlement,state:0
 msgid "State"
-msgstr ""
+msgstr "Provincie"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/sale_commission.py:65

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-12 01:21+0000\n"
-"PO-Revision-Date: 2017-08-28 14:46+0000\n"
+"POT-Creation-Date: 2017-10-10 00:40+0000\n"
+"PO-Revision-Date: 2017-09-22 21:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-commission-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -208,7 +208,7 @@ msgid "Created Invoices"
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/wizard/wizard_settle.py:110
+#: code:addons/sale_commission/wizard/wizard_settle.py:108
 #, python-format
 msgid "Created Settlements"
 msgstr ""
@@ -610,6 +610,8 @@ msgid "Settlement search"
 msgstr "Pesquisar assentamentos"
 
 #. module: sale_commission
+#: model:ir.actions.act_window,name:sale_commission.action_settlement
+#: model:ir.ui.menu,name:sale_commission.menu_sale_settlements
 #: view:res.partner:sale_commission.view_partner_form_agent
 #: field:res.partner,settlements:0
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
@@ -619,6 +621,7 @@ msgid "Settlements"
 msgstr "Assentamentos"
 
 #. module: sale_commission
+#: view:sale.commission.settlement:sale_commission.view_settlement_search
 #: field:sale.commission.settlement,state:0
 msgid "State"
 msgstr "Status"
