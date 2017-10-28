@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-31 04:12+0000\n"
-"PO-Revision-Date: 2017-05-31 04:12+0000\n"
+"POT-Creation-Date: 2017-10-13 00:41+0000\n"
+"PO-Revision-Date: 2017-10-13 00:41+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
@@ -509,6 +509,11 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_commission
+#: selection:res.partner,agent_type:0
+msgid "Salesman (employee)"
+msgstr ""
+
+#. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_sections
 msgid "Sections"
 msgstr "Secciones"
@@ -584,8 +589,10 @@ msgid "Settlement search"
 msgstr "Buscar liquidaciones"
 
 #. module: sale_commission
+#: model:ir.actions.act_window,name:sale_commission.action_settlement
 #: model:ir.model.fields,field_description:sale_commission.field_res_partner_settlements
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice_settlements
+#: model:ir.ui.menu,name:sale_commission.menu_sale_settlements
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
 #: model:ir.ui.view,arch_db:sale_commission.view_partner_form_agent
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_tree
@@ -594,6 +601,7 @@ msgstr "Liquidaciones"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_state
+#: model:ir.ui.view,arch_db:sale_commission.view_settlement_search
 msgid "State"
 msgstr "Estado"
 
