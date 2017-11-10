@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_agent_form_inherit" model="ir.ui.view">
+        <field name="name">sale.agent.order.inherit.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="order_line" position="attributes">
+                <attribute name="context">{'partner_id': partner_id}</attribute>
+            </field>
+            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                <attribute name="editable"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='price_subtotal']" position="after">
+                <field name="commission_free"/>
+                <field name="agents"
+                       attrs="{'readonly': [('commission_free', '=', True)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form//field[@name='customer_lead']/.." position="after">
+                <field name="commission_free"/>
+                <field name="agents"
+                       attrs="{'readonly': [('commission_free', '=', True)]}"/>
+            </xpath>
+            <field name="amount_total" position="after">
+                <field name="commission_total"
+                       widget="monetary"
+                       options="{'currency_field': 'currency_id'}"/>
+            </field>
+            <xpath expr="//field[@name='order_line']" position="after">
+                <button name="recompute_lines_agents" type="object" string="Recompute lines agents" states="draft"></button>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_sale_order_line_tree">
+        <field name="name">sale.order.line.agent.tree</field>
+        <field name="model">sale.order.line.agent</field>
+        <field name="arch" type="xml">
+            <tree string="Agents" editable="bottom">
+                <field name="agent"/>
+                <field name="commission"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

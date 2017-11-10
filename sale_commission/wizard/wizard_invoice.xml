@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <record id="sale_commission_make_invoice_form" model="ir.ui.view">
+            <field name="name">Make invoices</field>
+            <field name="model">sale.commission.make.invoice</field>
+            <field name="arch" type="xml">
+                <form string="Make invoices">
+                    <group colspan="2">
+                        <field name="journal" />
+                        <field name="company_id"/>
+                        <field name="product" />
+                        <field name="date"/>
+                    </group>
+                    <group string="Settlements"
+                           attrs="{'invisible': [('from_settlement', '=', True)]}">
+                        <p colspan="4">(keep empty for invoicing all the settlements)</p>
+                        <field name="from_settlement" invisible="1"/>
+                        <group colspan="4">
+                            <field name="settlements"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="button_create"
+                                string="Create invoices"
+                                type="object"
+                                class="oe_highlight" />
+                        or
+                        <button special="cancel"
+                                string="_Cancel"
+                                class="oe_link" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_commission_make_invoices"
+                    name="Create commission invoices"
+                    res_model="sale.commission.make.invoice"
+                    view_mode="form"
+                    view_type="form"
+                    target="new" />
+
+        <menuitem id="menu_commission_make_invoices"
+                  parent="menu_sale_commissions_management"
+                  sequence="30"
+                  action="action_commission_make_invoices" />
+
+</odoo>
