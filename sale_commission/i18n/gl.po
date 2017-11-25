@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-10 00:40+0000\n"
-"PO-Revision-Date: 2017-09-22 21:22+0000\n"
+"POT-Creation-Date: 2017-11-04 02:16+0000\n"
+"PO-Revision-Date: 2017-11-23 23:27+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-commission-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr ""
 #. module: sale_commission
 #: field:sale.commission,active:0
 msgid "Active"
-msgstr ""
+msgstr "Activo"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,agent:0
@@ -123,7 +123,7 @@ msgstr "Cancelar"
 #. module: sale_commission
 #: selection:sale.commission.settlement,state:0
 msgid "Canceled"
-msgstr ""
+msgstr "Cancelado"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:49
@@ -659,7 +659,7 @@ msgstr "Total"
 #: field:res.partner,agent_type:0 field:sale.commission,commission_type:0
 #: field:sale.commission.settlement,agent_type:0
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: sale_commission
 #: field:sale.commission.make.settle,date_to:0
