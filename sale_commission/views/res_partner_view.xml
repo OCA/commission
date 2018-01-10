@@ -18,6 +18,7 @@
             <page name="sales_purchases" position="after">
                 <page name="agent_information"
                       string="Agent information"
+                      groups="sales_team.group_sale_manager"
                       attrs="{'invisible': [('agent', '=', False)]}">
                     <group>
                         <group>

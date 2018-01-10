@@ -60,6 +60,7 @@
     <menuitem name="Commissions Management"
               id="menu_sale_commissions_management"
               parent="sale.sale_menu_root"
+              groups="sales_team.group_sale_manager"
               sequence="4"
     />
 
