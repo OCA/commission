@@ -1,19 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_commission
+# 	* sale_commission
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-11 01:22+0000\n"
+"POT-Creation-Date: 2018-01-22 16:00-0600\n"
 "PO-Revision-Date: 2015-03-11 01:22+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 2.0.6\n"
 
 #. module: sale_commission
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
@@ -69,7 +71,7 @@ msgid "Agents"
 msgstr ""
 
 #. module: sale_commission
-#: field:account.invoice.line,agents:0
+#: field:account.invoice.line,agents:0 
 #: field:sale.order.line,agents:0
 msgid "Agents & commissions"
 msgstr ""
@@ -162,6 +164,11 @@ msgstr ""
 #: model:ir.actions.act_window,name:sale_commission.action_commission
 #: model:ir.ui.menu,name:sale_commission.menu_sale_commissions_types
 msgid "Commission types"
+msgstr ""
+
+#. module: sale_commission
+#: model:ir.ui.menu,name:sale_commission.menu_sale_commissions_management
+msgid "Commissions Management"
 msgstr ""
 
 #. module: sale_commission
@@ -510,6 +517,7 @@ msgstr ""
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
 #: field:sale.commission.make.invoice,settlements:0
 #: view:sale.commission.settlement:sale_commission.view_settlement_tree
+#: model:ir.ui.menu,name:sale_commission.menu_settle_commissions
 msgid "Settlements"
 msgstr ""
 

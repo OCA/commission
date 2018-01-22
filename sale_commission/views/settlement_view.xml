@@ -133,7 +133,7 @@
     </record>
 
     <record model="ir.actions.act_window" id="action_settle_commission">
-        <field name="name">Settlments</field>
+        <field name="name">Settlements</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.commission.settlement</field>
         <field name="view_type">form</field>
