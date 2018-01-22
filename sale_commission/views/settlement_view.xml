@@ -140,8 +140,8 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem name="Settlments"
-              id="menu_sattle_commissions"
+    <menuitem name="Settlements"
+              id="menu_settle_commissions"
               parent="menu_sale_commissions_management"
               action="action_settle_commission" />
 
