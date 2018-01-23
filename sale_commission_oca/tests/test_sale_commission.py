@@ -57,6 +57,12 @@ class TestSaleCommission(TransactionCase):
         self.journal = self.env['account.journal'].search(
             [('type', '=', 'purchase')], limit=1
         )
+        self.agent_monthly = self.res_partner_model.create({
+            'name': 'Test Agent - Monthly',
+            'agent': True,
+            'settlement': 'monthly',
+            'lang': 'en_US',
+        })
         self.agent_quaterly = self.res_partner_model.create({
             'name': 'Test Agent - Quaterly',
             'agent': True,
@@ -426,3 +432,70 @@ class TestSaleCommission(TransactionCase):
             agent.agent = self.agent_semi
             agent.onchange_agent()
             self.assertEqual(self.agent_semi.commission, agent.commission)
+
+    def test_check_new_invoice_with_settle_invoiced(self):
+        self.check_new_invoice_with_settle_invoiced(
+            self.agent_monthly,
+            self.commission_section_invoice,
+            1
+        )
+
+    def check_new_invoice_with_settle_invoiced(self, agent, commission,
+                                               period):
+        sale_order = self._create_sale_order(
+            agent,
+            commission
+        )
+        sale_order.action_confirm()
+        self.assertEqual(len(sale_order.invoice_ids), 0)
+        payment = self.advance_inv_model.create({
+            'advance_payment_method': 'all',
+        })
+        context = {"active_model": 'sale.order',
+                   "active_ids": [sale_order.id],
+                   "active_id": sale_order.id}
+        payment.with_context(context).create_invoices()
+        self.assertEqual(len(sale_order.invoice_ids), 1)
+        for invoice in sale_order.invoice_ids:
+            invoice.action_invoice_open()
+            self.assertEqual(invoice.state, 'open')
+        wizard = self.make_settle_model.create(
+            {'date_to': (fields.Datetime.from_string(fields.Datetime.now()) +
+                         dateutil.relativedelta.relativedelta(months=period))})
+        wizard.action_settle()
+        settlements = self.settle_model.search([('state', '=', 'settled')])
+        self.assertEqual(len(settlements), 1)
+        self.env['sale.commission.make.invoice'].with_context(
+            settlement_ids=settlements.ids
+        ).create({
+            'journal': self.journal.id,
+            'product': self.product.id,
+            'date': fields.Datetime.now(),
+        }).button_create()
+        for settlement in settlements:
+            self.assertEqual(settlement.state, 'invoiced')
+        # create new invoice
+        sale_order2 = self._create_sale_order(
+            agent,
+            commission
+        )
+        sale_order2.action_confirm()
+        self.assertEqual(len(sale_order2.invoice_ids), 0)
+        payment2 = self.advance_inv_model.create({
+            'advance_payment_method': 'all',
+        })
+        context2 = {"active_model": 'sale.order',
+                    "active_ids": [sale_order2.id],
+                    "active_id": sale_order2.id}
+        payment2.with_context(context2).create_invoices()
+        self.assertEqual(len(sale_order2.invoice_ids), 1)
+        for invoice in sale_order2.invoice_ids:
+            invoice.action_invoice_open()
+            self.assertEqual(invoice.state, 'open')
+        wizard = self.make_settle_model.create(
+            {'date_to': (fields.Datetime.from_string(fields.Datetime.now()) +
+                         dateutil.relativedelta.relativedelta(months=period))})
+        wizard.action_settle()
+        settlements = self.settle_model.search([('state', 'in', ['settled',
+                                                                 'invoiced'])])
+        self.assertEqual(len(settlements), 2)

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-14 15:14+0000\n"
-"PO-Revision-Date: 2017-12-14 15:14+0000\n"
+"POT-Creation-Date: 2018-03-22 08:15+0000\n"
+"PO-Revision-Date: 2018-03-22 08:15+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -224,7 +224,7 @@ msgid "Created Invoices"
 msgstr "Faturas criadas"
 
 #. module: sale_commission
-#: code:addons/sale_commission/wizard/wizard_settle.py:114
+#: code:addons/sale_commission/wizard/wizard_settle.py:115
 #, python-format
 msgid "Created Settlements"
 msgstr "Abatimentos criados"
