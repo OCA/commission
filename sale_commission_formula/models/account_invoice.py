@@ -26,5 +26,8 @@ class AccountInvoiceLineAgent(models.Model):
                 results = line_obj._get_formula_input_dict()
                 safe_eval(formula, results, mode="exec", nocopy=True)
                 line_obj.amount += float(results['result'])
+                # Refunds commissions are negative
+                if line_obj.invoice.type in ('out_refund', 'in_refund'):
+                    line_obj.amount = -line_obj.amount
             else:
                 return super(AccountInvoiceLineAgent, self)._compute_amount()
