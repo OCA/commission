@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
-
 {
     'name': 'Sales commissions',
-    'version': '11.0.1.1.1',
+    'version': '11.0.1.2.1',
     'author': 'Odoo Community Association (OCA)',
     'category': 'Sales Management',
     'license': 'AGPL-3',
