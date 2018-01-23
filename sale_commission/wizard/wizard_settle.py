@@ -93,7 +93,8 @@ class SaleCommissionMakeSettle(models.TransientModel):
                             ('agent', '=', agent.id),
                             ('date_from', '=', sett_from),
                             ('date_to', '=', sett_to),
-                            ('company_id', '=', company.id)
+                            ('company_id', '=', company.id),
+                            ('state', '=', 'settled')
                         ], limit=1)
                         if not settlement:
                             settlement = settlement_obj.create({
