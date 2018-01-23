@@ -43,3 +43,26 @@ class TestCommissionFormula(TransactionCase):
         })
         # we test the '5% + 10% extra' commissions on the invoice too
         self.assertEqual(41.25, invoice.commission_total)
+
+    def test_invoice_refund_commission(self):
+        # we confirm the sale order and create the corresponding invoice
+        self.sale_order.action_confirm()
+        self.so_line.qty_delivered = self.so_line.product_uom_qty
+        invoice_id = self.sale_order.action_invoice_create()
+        invoice = self.env['account.invoice'].browse(invoice_id)
+        # we add the commissions on the first invoice line
+        invoice_line = invoice.invoice_line_ids[0]
+        self.env['account.invoice.line.agent'].create({
+            'invoice_line': invoice_line.id,
+            'agent': self.agent.id,
+            'commission': self.commission.id,
+        })
+        # we test the '5% + 10% extra' commissions on the invoice too
+        self.assertEqual(41.25, invoice.commission_total)
+        invoice.action_invoice_open()
+        self.env['account.invoice.refund'].create({
+            'filter_refund': 'cancel',
+            'description': 'Wrong product',
+        }).with_context(active_ids=invoice.id).invoice_refund()
+        self.assertEqual(-41.25,
+                         invoice.refund_invoice_ids[0].commission_total)
