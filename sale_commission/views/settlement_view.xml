@@ -133,15 +133,15 @@
     </record>
 
     <record model="ir.actions.act_window" id="action_settle_commission">
-        <field name="name">Settlments</field>
+        <field name="name">Settlements</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.commission.settlement</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem name="Settlments"
-              id="menu_sattle_commissions"
+    <menuitem name="Settlements"
+              id="menu_settle_commissions"
               parent="menu_sale_commissions_management"
               action="action_settle_commission" />
 

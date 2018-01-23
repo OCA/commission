@@ -165,6 +165,11 @@ msgid "Commission types"
 msgstr "Tipos de comisión"
 
 #. module: sale_commission
+#: model:ir.ui.menu,name:sale_commission.menu_sale_commissions_management
+msgid "Commissions Management"
+msgstr "Gestión de comisiones"
+
+#. module: sale_commission
 #: field:account.invoice,commission_total:0
 #: field:sale.order,commission_total:0
 #: model:ir.ui.menu,name:sale_commission.menu_sale_commissions_conf
@@ -500,6 +505,7 @@ msgstr "Buscar liquidaciones"
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
 #: field:sale.commission.make.invoice,settlements:0
 #: view:sale.commission.settlement:sale_commission.view_settlement_tree
+#: model:ir.ui.menu,name:sale_commission.menu_settle_commissions
 msgid "Settlements"
 msgstr "Liquidaciones"
 

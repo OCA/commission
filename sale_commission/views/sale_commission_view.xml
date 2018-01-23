@@ -56,8 +56,8 @@
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-
-    <menuitem name="Commissions Management"
+	
+	<menuitem name="Commissions Management"
               id="menu_sale_commissions_management"
               parent="sales_team.menu_base_partner" />
 
