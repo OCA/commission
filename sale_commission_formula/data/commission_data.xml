@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+      <record id="commission_5perc10extra" model="sale.commission">
+        <field name="name">5% + 10% extra</field>
+        <field name="commission_type">formula</field>
+        <field name="active">True</field>
+        <field name="formula">if line._name == 'sale.order.line':
+    partial = (line.price_subtotal / 100)*5
+    result = partial + (partial / 100)*10
+    if line._name == 'account.invoice.line':
+    partial = (line.price_subtotal / 100)*5
+    result = partial + (partial / 100)*10
+        </field>
+      </record>
+
+</odoo>

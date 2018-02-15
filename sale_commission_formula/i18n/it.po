@@ -1,0 +1,123 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_commission_formula
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-14 15:14+0000\n"
+"PO-Revision-Date: 2017-12-14 15:14+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_commission_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
+msgid ""
+"<span class=\"instructions\">\n"
+"  Use 'line' to access all the line fields.\n"
+"  As field names may vary, you should differentiate the\n"
+"  formulas for sale.order.line and account.invoice.line.\n"
+"  You can, for instance, use line._name == 'sale.order.line'\n"
+"  or line._name == 'account.invoice.line'.\n"
+"\n"
+"  Use 'result' to return the commission amount.\n"
+"                        </span>"
+msgstr ""
+
+#. module: sale_commission_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
+msgid "Account Invoice Line common fields"
+msgstr "Campi comuni righe fattura"
+
+#. module: sale_commission_formula
+#: model:ir.model,name:sale_commission_formula.model_sale_commission
+msgid "Commission in sales"
+msgstr "Commissioni nelle Vendite"
+
+#. module: sale_commission_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
+msgid "Discount (%)"
+msgstr "Sconto (%)"
+
+#. module: sale_commission_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
+msgid "Field"
+msgstr "Campo"
+
+#. module: sale_commission_formula
+#: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission_formula
+msgid "Formula"
+msgstr "Formula"
+
+#. module: sale_commission_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
+msgid "Instructions"
+msgstr "Istruzioni"
+
+#. module: sale_commission_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
+msgid "Label"
+msgstr "Etichetta"
+
+#. module: sale_commission_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
+msgid "Quantity"
+msgstr "Quantità"
+
+#. module: sale_commission_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
+msgid "Sale Oder Line common fields"
+msgstr "Campi Usuali Delle Righe di Ordine di Vendita"
+
+#. module: sale_commission_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
+msgid "Subtotal"
+msgstr "Totale"
+
+#. module: sale_commission_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
+msgid "Unit Price"
+msgstr "Prezzo Unitario"
+
+#. module: sale_commission_formula
+#: model:ir.model,name:sale_commission_formula.model_account_invoice_line_agent
+msgid "account.invoice.line.agent"
+msgstr "account.invoice.line.agent"
+
+#. module: sale_commission_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
+msgid "discount"
+msgstr "sconto"
+
+#. module: sale_commission_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
+msgid "price_subtotal"
+msgstr "Prezzo Totale"
+
+#. module: sale_commission_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
+msgid "price_unit"
+msgstr "Prezzo Unitario"
+
+#. module: sale_commission_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
+msgid "product_uom_qty"
+msgstr "Quantità Unità di Misura"
+
+#. module: sale_commission_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
+msgid "quantity"
+msgstr "Quantità"
+
+#. module: sale_commission_formula
+#: model:ir.model,name:sale_commission_formula.model_sale_order_line_agent
+msgid "sale.order.line.agent"
+msgstr "sale.order.line.agent"
