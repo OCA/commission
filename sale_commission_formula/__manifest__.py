@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # © 2016 Nicola Malcontenti - Agile Business Group
 # © 2016 Davide Corio - Abstract
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
@@ -15,9 +16,9 @@
     'data': [
         'views/sale_commission_view.xml',
         'data/commission_data.xml'
-           ],
+    ],
     'demo': [
         'demo/commission_demo.xml'
-            ],
+    ],
     'installable': True,
 }

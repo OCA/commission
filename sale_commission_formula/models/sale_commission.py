@@ -11,7 +11,7 @@ class Commission(models.Model):
 
     commission_type = fields.Selection(selection_add=[("formula", "Formula")])
     formula = fields.Char('Formula',
-                            default="if line._name == 'sale.order.line':\n"
-                                    "    result = 0\n"
-                                    "if line._name == 'account.invoice.line':\n"
-                                    "    result = 0\n")
+                          default="if line._name == 'sale.order.line':\n"
+                                  "    result = 0\n"
+                                  "if line._name == 'account.invoice.line':\n"
+                                  "    result = 0\n")
