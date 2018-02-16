@@ -27,7 +27,7 @@ class TestCommissionFormula(TransactionCase):
 
     def test_invoice_commission(self):
         # we confirm the sale order and create the corresponding invoice
-        self.sale_order.action_button_confirm()
+        self.sale_order.action_confirm()
         invoice_id = self.sale_order.action_invoice_create()
         invoice = self.env['account.invoice'].browse(invoice_id)
         # we add the commissions on the first invoice line
