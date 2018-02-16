@@ -22,10 +22,11 @@ if line._name == 'account.invoice.line':
         <field name="customer">False</field>
         <field name="commission" ref="commission_5perc10extra"/>
       </record>
-    <!-- Todo causes error "null value in column "access_token" from "website_quote" violates not-null constraint
+
+    <!-- Todo causes error "null value in column "access_token" from "website_quote" violates not-null constraint -->
       <record id="sale_order_1" model="sale.order">
           <field name="partner_id" ref="base.res_partner_2"/>
-          <field name="access_token">eval="lambda self: str(uuid.uuid4())"</field>
+       <!--    <field name="access_token">eval="lambda self: str(uuid.uuid4())"</field> -->
           <field name="partner_invoice_id" ref="base.res_partner_2"/>
           <field name="partner_shipping_id" ref="base.res_partner_2"/>
           <field name="user_id" ref="base.user_demo"/>
@@ -41,5 +42,4 @@ if line._name == 'account.invoice.line':
           <field name="product_uom" ref="product.product_uom_unit"/>
           <field name="price_unit">750.00</field>
       </record>
-      -->
 </odoo>
