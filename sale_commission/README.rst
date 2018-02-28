@@ -46,6 +46,8 @@ Contributors
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Oihane Crucelaegui <oihanecruce@gmail.com>
 * Nicola Malcontenti <nicola.malcontenti@agilebg.com>
+* `Tecnativa <https://www.tecnativa.com>`_:
+  * Carlos Dauden
 
 Images
 -------

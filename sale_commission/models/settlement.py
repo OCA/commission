@@ -3,6 +3,13 @@
 from odoo import api, exceptions, fields, models, _
 
 
+def _execute_onchanges(records, field_name):
+    """Helper methods that executes all onchanges associated to a field."""
+    for onchange in records._onchange_methods.get(field_name, []):
+        for record in records:
+            onchange(record)
+
+
 class Settlement(models.Model):
     _name = "sale.commission.settlement"
     _description = "Settlement"
@@ -76,7 +83,7 @@ class Settlement(models.Model):
             'state': 'draft',
         })
         # Get other invoice values from partner onchange
-        invoice._onchange_partner_id()
+        _execute_onchanges(invoice, 'partner_id')
         return invoice._convert_to_write(invoice._cache)
 
     def _prepare_invoice_line(self, settlement, invoice, product):
@@ -86,7 +93,7 @@ class Settlement(models.Model):
             'quantity': 1,
         })
         # Get other invoice line values from product onchange
-        invoice_line._onchange_product_id()
+        _execute_onchanges(invoice_line, 'product_id')
         invoice_line_vals = invoice_line._convert_to_write(invoice_line._cache)
         # Put commission fee
         if invoice.type == 'in_refund':
