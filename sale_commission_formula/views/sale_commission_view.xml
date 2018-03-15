@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+      <template id="assets_backend" name="sale_commission_formula_assets_backend" inherit_id="web.assets_backend">
+          <xpath expr="." position="inside">
+              <link rel="stylesheet" href="/sale_commission_formula/static/src/css/sale_commission_formula.css"/>
+          </xpath>
+      </template>
+
+        <record model="ir.ui.view" id="sale_commission_form_formula">
+            <field name="name">sale.commission.form.formula</field>
+            <field name="model">sale.commission</field>
+            <field name="inherit_id" ref="sale_commission.sale_commission_form"/>
+            <field name="arch" type="xml">
+                <field name="sections" position="after">
+                    <group>
+                      <field name="formula"
+                          attrs="{'invisible':[('commission_type','!=','formula')]}">
+                      </field>
+                    </group>
+                    <group>
+                      <div
+                        attrs="{'invisible':[('commission_type','!=','formula')]}">
+                        <h2>Instructions</h2>
+                        <span class='instructions'>
+  Use 'line' to access all the line fields.
+  As field names may vary, you should differentiate the
+  formulas for sale.order.line and account.invoice.line.
+  You can, for instance, use line._name == 'sale.order.line'
+  or line._name == 'account.invoice.line'.
+
+  Use 'result' to return the commission amount.
+                        </span>
+                        <h3>Sale Oder Line common fields</h3>
+                        <table class='fields-table'>
+                          <thead>
+                            <th>Field</th>
+                            <th>Label</th>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>discount</td>
+                              <td>Discount (%)</td>
+                            </tr>
+                            <tr>
+                              <td>price_subtotal</td>
+                              <td>Subtotal</td>
+                            </tr>
+                            <tr>
+                              <td>price_unit</td>
+                              <td>Unit Price</td>
+                            </tr>
+                            <tr>
+                              <td>product_uom_qty</td>
+                              <td>Quantity</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <h3>Account Invoice Line common fields</h3>
+                        <table class='fields-table'>
+                          <thead>
+                            <th>Field</th>
+                            <th>Label</th>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>discount</td>
+                              <td>Discount (%)</td>
+                            </tr>
+                            <tr>
+                              <td>price_subtotal</td>
+                              <td>Subtotal</td>
+                            </tr>
+                            <tr>
+                              <td>price_unit</td>
+                              <td>Unit Price</td>
+                            </tr>
+                            <tr>
+                              <td>quantity</td>
+                              <td>Quantity</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                  </group>
+                </field>
+            </field>
+        </record>
+</odoo>
