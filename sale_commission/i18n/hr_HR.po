@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-10 00:40+0000\n"
-"PO-Revision-Date: 2017-09-22 21:22+0000\n"
+"POT-Creation-Date: 2018-03-03 02:37+0000\n"
+"PO-Revision-Date: 2018-03-27 12:24+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/oca/OCA-commission-8-0/language/hr_HR/)\n"
 "MIME-Version: 1.0\n"
@@ -349,7 +349,7 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_invoice_line
 msgid "Invoice Line"
-msgstr ""
+msgstr "Stavka računa"
 
 #. module: sale_commission
 #: field:sale.commission,invoice_state:0
