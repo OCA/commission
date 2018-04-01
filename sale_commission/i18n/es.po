@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/account_invoice.py:114
+#: code:addons/sale_commission/models/sale_commission_mixin.py:55
 #, python-format
 msgid "%s commission agents"
 msgstr "%s comisionistas"
@@ -35,7 +35,7 @@ msgid "(keep empty for making the settlement of all agents)"
 msgstr "(mantener vacío para realizar la liquidación de todos los agentes)"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/account_invoice.py:112
+#: code:addons/sale_commission/models/sale_commission_mixin.py:53
 #, python-format
 msgid "1 commission agent"
 msgstr "1 comisionista"
@@ -47,6 +47,7 @@ msgstr "Activo"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_agent
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_line_mixin_agent
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_agent
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line_agent
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent_agent
@@ -86,12 +87,15 @@ msgstr "Agentes"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agents
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_mixin_agents
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agents
 msgid "Agents & commissions"
 msgstr "Agentes y comisiones"
 
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_account_invoice_line_agents
+#: model:ir.model.fields,help:sale_commission.field_sale_commission_mixin_agents
+#: model:ir.model.fields,help:sale_commission.field_sale_order_line_agents
 msgid "Agents/Commissions related to the invoice line."
 msgstr "Agentes/Comisiones relacionadas con la línea de factura."
 
@@ -145,8 +149,9 @@ msgid "Check this field if the partner is a creditor or an agent."
 msgstr "Marque esta casilla si la empresa es un agente."
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/account_invoice.py:108
+#: code:addons/sale_commission/models/sale_commission_mixin.py:49
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_commission_free
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_mixin_commission_free
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_commission_free
 #, python-format
 msgid "Comm. free"
@@ -157,9 +162,12 @@ msgstr "Sin comisión"
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_commission_status
 #: model:ir.model.fields,field_description:sale_commission.field_res_partner_commission
 #: model:ir.model.fields,field_description:sale_commission.field_res_users_commission
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_line_mixin_commission
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_mixin_commission_status
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_section_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent_commission
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_commission_status
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_form
 msgid "Commission"
 msgstr "Comisión"
@@ -273,8 +281,10 @@ msgstr "Mes"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_display_name
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_display_name
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_line_mixin_display_name
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice_display_name
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_settle_display_name
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_mixin_display_name
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_section_display_name
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_display_name
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line_display_name
@@ -340,8 +350,10 @@ msgstr "Agrupar por"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_id
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_line_mixin_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_settle_id
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_mixin_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_section_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line_id
@@ -383,12 +395,6 @@ msgid "Invoice exception"
 msgstr "Excepción de factura"
 
 #. module: sale_commission
-#: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_invoice_line
-#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line_invoice_line
-msgid "Invoice line"
-msgstr "Línea de factura"
-
-#. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.invoice_line_agent_tree
 msgid "Invoice line agents and commissions"
 msgstr "Agentes y comisiones de línea de factura"
@@ -412,8 +418,10 @@ msgstr "Mantener vacío para usar la fecha actual"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent___last_update
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission___last_update
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_line_mixin___last_update
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice___last_update
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_settle___last_update
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_mixin___last_update
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_section___last_update
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement___last_update
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line___last_update
@@ -463,6 +471,16 @@ msgid "Make settlements"
 msgstr "Realizar liquidaciones"
 
 #. module: sale_commission
+#: model:ir.model,name:sale_commission.model_sale_commission_mixin
+msgid "Mixin model for applying to any object that wants to handle commissions"
+msgstr "Modelo mixin para aplicar a cualquier objeto que quiera manejar comisiones"
+
+#. module: sale_commission
+#: model:ir.model,name:sale_commission.model_sale_commission_line_mixin
+msgid "Mixin model for having commission agent lines in any object inheriting from this one"
+msgstr "Modelo mixin para tener líneas de agente de comisión en cualquier objeto heredando de éste"
+
+#. module: sale_commission
 #: selection:res.partner,settlement:0
 msgid "Monthly"
 msgstr "Mensual"
@@ -479,10 +497,18 @@ msgid "Net Amount"
 msgstr "Importe neto"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/account_invoice.py:110
+#: code:addons/sale_commission/models/sale_commission_mixin.py:51
 #, python-format
 msgid "No commission agents"
 msgstr "Sin comisionistas"
+
+#. module: sale_commission
+#: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_object_id
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_line_mixin_object_id
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line_invoice_line
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent_object_id
+msgid "Parent"
+msgstr "Padre"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_res_partner
@@ -507,6 +533,7 @@ msgstr "Periodo: de %s a %s"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_product
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_mixin_product_id
 msgid "Product"
 msgstr "Producto"
 
@@ -535,11 +562,6 @@ msgstr "Definición de porcentajes"
 #: model:ir.ui.view,arch_db:sale_commission.view_order_agent_form_inherit
 msgid "Recompute lines agents"
 msgstr "Recalcular agentes de lineas"
-
-#. module: sale_commission
-#: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent_sale_line
-msgid "Sale line"
-msgstr "Línea de venta"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order
@@ -636,13 +658,9 @@ msgstr "Buscar liquidaciones"
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
 #: model:ir.ui.view,arch_db:sale_commission.view_partner_form_agent
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_tree
-msgid "Settlements"
-msgstr "Liquidaciones"
-
-#. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_settle_commission
 #: model:ir.ui.menu,name:sale_commission.menu_sattle_commissions
-msgid "Settlments"
+msgid "Settlements"
 msgstr "Liquidaciones"
 
 #. module: sale_commission
@@ -694,6 +712,7 @@ msgstr "Hasta"
 
 #. module: sale_commission
 #: sql_constraint:account.invoice.line.agent:0
+#: sql_constraint:sale.commission.line.mixin:0
 #: sql_constraint:sale.order.line.agent:0
 msgid "You can only add one time each agent."
 msgstr "Sólo puede añadir una vez cada agente."

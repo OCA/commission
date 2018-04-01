@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+# Copyright 2014-2018 Tecnativa - Pedro M. Baeza
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class AccountInvoice(models.Model):
@@ -49,7 +51,7 @@ class AccountInvoice(models.Model):
             for agent in agents:
                 agent_vals = agent[2]
                 del agent_vals['invoice']
-                del agent_vals['invoice_line']
+                del agent_vals['object_id']
             vals['agents'] = agents
         return res
 
@@ -76,98 +78,69 @@ class AccountInvoice(models.Model):
 
 
 class AccountInvoiceLine(models.Model):
-    _inherit = "account.invoice.line"
-
-    @api.model
-    def _default_agents(self):
-        agents = []
-        if self.env.context.get('partner_id'):
-            partner = self.env['res.partner'].browse(
-                self.env.context['partner_id'])
-            for agent in partner.agents:
-                agents.append({'agent': agent.id,
-                               'commission': agent.commission.id})
-        return [(0, 0, x) for x in agents]
+    _inherit = [
+        "account.invoice.line",
+        "sale.commission.mixin",
+    ]
+    _name = "account.invoice.line"
 
     agents = fields.One2many(
         comodel_name="account.invoice.line.agent",
-        inverse_name="invoice_line", string="Agents & commissions",
-        help="Agents/Commissions related to the invoice line.",
-        default=_default_agents, copy=True)
-    commission_free = fields.Boolean(
-        string="Comm. free", related="product_id.commission_free",
-        store=True, readonly=True)
-    commission_status = fields.Char(
-        compute="_compute_commission_status",
-        string="Commission",
     )
-
-    def _compute_commission_status(self):
-        for line in self:
-            if line.commission_free:
-                line.commission_status = _("Comm. free")
-            elif len(line.agents) == 0:
-                line.commission_status = _("No commission agents")
-            elif len(line.agents) == 1:
-                line.commission_status = _("1 commission agent")
-            else:
-                line.commission_status = _(
-                    "%s commission agents"
-                ) % len(line.agents)
 
 
 class AccountInvoiceLineAgent(models.Model):
+    _inherit = "sale.commission.line.mixin"
     _name = "account.invoice.line.agent"
 
-    invoice_line = fields.Many2one(
+    object_id = fields.Many2one(
         comodel_name="account.invoice.line",
-        ondelete="cascade",
-        required=True, copy=False)
+        oldname='invoice_line',
+    )
     invoice = fields.Many2one(
-        string="Invoice", comodel_name="account.invoice",
-        related="invoice_line.invoice_id",
-        store=True)
+        string="Invoice",
+        comodel_name="account.invoice",
+        related="object_id.invoice_id",
+        store=True,
+    )
     invoice_date = fields.Date(
         string="Invoice date",
         related="invoice.date_invoice",
-        store=True, readonly=True)
+        store=True,
+        readonly=True,
+    )
     product = fields.Many2one(
         comodel_name='product.product',
-        related="invoice_line.product_id")
-    agent = fields.Many2one(
-        comodel_name="res.partner",
-        domain="[('agent', '=', True)]",
-        ondelete="restrict",
-        required=True)
-    commission = fields.Many2one(
-        comodel_name="sale.commission", ondelete="restrict", required=True)
+        related="object_id.product_id",
+    )
     amount = fields.Float(
-        string="Amount settled", compute="_compute_amount", store=True)
+        string="Amount settled",
+        compute="_compute_amount",
+        store=True,
+    )
     agent_line = fields.Many2many(
         comodel_name='sale.commission.settlement.line',
         relation='settlement_agent_line_rel',
-        column1='agent_line_id', column2='settlement_id',
-        copy=False)
+        column1='agent_line_id',
+        column2='settlement_id',
+        copy=False,
+    )
     settled = fields.Boolean(
         compute="_compute_settled",
         store=True, copy=False)
 
-    @api.onchange('agent')
-    def onchange_agent(self):
-        self.commission = self.agent.commission
-
-    @api.depends('invoice_line.price_subtotal')
+    @api.depends('object_id.price_subtotal')
     def _compute_amount(self):
         for line in self:
             line.amount = 0.0
-            if (not line.invoice_line.product_id.commission_free and
+            if (not line.object_id.commission_free and
                     line.commission):
                 if line.commission.amount_base_type == 'net_amount':
-                    subtotal = (line.invoice_line.price_subtotal -
-                                (line.invoice_line.product_id.standard_price *
-                                 line.invoice_line.quantity))
+                    subtotal = (line.object_id.price_subtotal -
+                                (line.product.standard_price *
+                                 line.object_id.quantity))
                 else:
-                    subtotal = line.invoice_line.price_subtotal
+                    subtotal = line.object_id.price_subtotal
                 if line.commission.commission_type == 'fixed':
                     line.amount = subtotal * (line.commission.fix_qty / 100.0)
                 else:
@@ -185,8 +158,3 @@ class AccountInvoiceLineAgent(models.Model):
             line.settled = (line.invoice.state not in ('open', 'paid') or
                             any(x.settlement.state != 'cancel'
                                 for x in line.agent_line))
-
-    _sql_constraints = [
-        ('unique_agent', 'UNIQUE(invoice_line, agent)',
-         'You can only add one time each agent.')
-    ]

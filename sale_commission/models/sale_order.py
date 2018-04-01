@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# Copyright 2014-2018 Tecnativa - Pedro M. Baeza
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
 
@@ -16,25 +18,6 @@ class SaleOrder(models.Model):
     commission_total = fields.Float(
         string="Commissions", compute="_compute_commission_total",
         store=True)
-
-    @api.multi
-    @api.onchange('partner_id')
-    def onchange_partner_id(self):
-        self.ensure_one()
-        res = super(SaleOrder, self).onchange_partner_id()
-        # workaround for https://github.com/odoo/odoo/issues/17618
-        for order_line in self.order_line:
-            order_line.agents = None
-        return res
-
-    @api.onchange('fiscal_position_id')
-    def _compute_tax_id(self):
-        self.ensure_one()
-        res = super(SaleOrder, self)._compute_tax_id()
-        # workaround for https://github.com/odoo/odoo/issues/17618
-        for order_line in self.order_line:
-            order_line.agents = None
-        return res
 
     @api.model
     def _prepare_line_agents_data(self, line):
@@ -59,26 +42,15 @@ class SaleOrder(models.Model):
 
 
 class SaleOrderLine(models.Model):
-    _inherit = "sale.order.line"
-
-    @api.model
-    def _default_agents(self):
-        agents = []
-        if self.env.context.get('partner_id'):
-            partner = self.env['res.partner'].browse(
-                self.env.context['partner_id'])
-            for agent in partner.agents:
-                agents.append({'agent': agent.id,
-                               'commission': agent.commission.id})
-        return [(0, 0, x) for x in agents]
+    _inherit = [
+        "sale.order.line",
+        "sale.commission.mixin",
+    ]
+    _name = "sale.order.line"
 
     agents = fields.One2many(
-        string="Agents & commissions",
-        comodel_name="sale.order.line.agent", inverse_name="sale_line",
-        copy=True, readonly=True, default=_default_agents)
-    commission_free = fields.Boolean(
-        string="Comm. free", related="product_id.commission_free",
-        store=True, readonly=True)
+        comodel_name="sale.order.line.agent",
+    )
 
     @api.multi
     def _prepare_invoice_line(self, qty):
@@ -90,39 +62,28 @@ class SaleOrderLine(models.Model):
 
 
 class SaleOrderLineAgent(models.Model):
+    _inherit = "sale.commission.line.mixin"
     _name = "sale.order.line.agent"
     _rec_name = "agent"
 
-    sale_line = fields.Many2one(
-        comodel_name="sale.order.line", required=True, ondelete="cascade")
-    agent = fields.Many2one(
-        comodel_name="res.partner", required=True, ondelete="restrict",
-        domain="[('agent', '=', True')]")
-    commission = fields.Many2one(
-        comodel_name="sale.commission", required=True, ondelete="restrict")
+    object_id = fields.Many2one(
+        comodel_name="sale.order.line",
+        oldname='sale_line',
+    )
     amount = fields.Float(compute="_compute_amount", store=True)
 
-    _sql_constraints = [
-        ('unique_agent', 'UNIQUE(sale_line, agent)',
-         'You can only add one time each agent.')
-    ]
-
-    @api.onchange('agent')
-    def onchange_agent(self):
-        self.commission = self.agent.commission
-
-    @api.depends('sale_line.price_subtotal')
+    @api.depends('object_id.price_subtotal')
     def _compute_amount(self):
         for line in self:
             line.amount = 0.0
-            if (not line.sale_line.product_id.commission_free and
+            if (not line.object_id.product_id.commission_free and
                     line.commission):
                 if line.commission.amount_base_type == 'net_amount':
-                    subtotal = (line.sale_line.price_subtotal -
-                                (line.sale_line.product_id.standard_price *
-                                 line.sale_line.product_uom_qty))
+                    subtotal = (line.object_id.price_subtotal -
+                                (line.object_id.product_id.standard_price *
+                                 line.object_id.product_uom_qty))
                 else:
-                    subtotal = line.sale_line.price_subtotal
+                    subtotal = line.object_id.price_subtotal
                 if line.commission.commission_type == 'fixed':
                     line.amount = subtotal * (line.commission.fix_qty / 100.0)
                 else:
