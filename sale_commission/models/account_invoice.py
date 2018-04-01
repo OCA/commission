@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 class AccountInvoice(models.Model):
@@ -53,42 +53,6 @@ class AccountInvoice(models.Model):
             vals['agents'] = agents
         return res
 
-    @api.onchange('partner_id', 'company_id')
-    def _onchange_partner_id(self):
-        self.ensure_one()
-        res = super(AccountInvoice, self)._onchange_partner_id()
-        # workaround for https://github.com/odoo/odoo/issues/17618
-        for line in self.invoice_line_ids:
-            line.agents = None
-        return res
-
-    @api.onchange('journal_id')
-    def _onchange_journal_id(self):
-        self.ensure_one()
-        res = super(AccountInvoice, self)._onchange_journal_id()
-        # workaround for https://github.com/odoo/odoo/issues/17618
-        for line in self.invoice_line_ids:
-            line.agents = None
-        return res
-
-    @api.onchange('payment_term_id', 'date_invoice')
-    def _onchange_payment_term_date_invoice(self):
-        self.ensure_one()
-        res = super(AccountInvoice, self)._onchange_payment_term_date_invoice()
-        if not self.env.context.get('skip_agents_delete'):
-            # workaround for https://github.com/odoo/odoo/issues/17618
-            for line in self.invoice_line_ids:
-                line.agents = None
-        return res
-
-    @api.multi
-    def action_date_assign(self):
-        # this is needed because action_date_assign calls
-        # _onchange_payment_term_date_invoice to write to DB
-        return super(AccountInvoice, self.with_context({
-            'skip_agents_delete': True
-        })).action_date_assign()
-
     @api.model
     def _prepare_line_agents_data(self, line):
         rec = []
@@ -133,6 +97,23 @@ class AccountInvoiceLine(models.Model):
     commission_free = fields.Boolean(
         string="Comm. free", related="product_id.commission_free",
         store=True, readonly=True)
+    commission_status = fields.Char(
+        compute="_compute_commission_status",
+        string="Commission",
+    )
+
+    def _compute_commission_status(self):
+        for line in self:
+            if line.commission_free:
+                line.commission_status = _("Comm. free")
+            elif len(line.agents) == 0:
+                line.commission_status = _("No commission agents")
+            elif len(line.agents) == 1:
+                line.commission_status = _("1 commission agent")
+            else:
+                line.commission_status = _(
+                    "%s commission agents"
+                ) % len(line.agents)
 
 
 class AccountInvoiceLineAgent(models.Model):
