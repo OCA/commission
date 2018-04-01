@@ -30,15 +30,15 @@ class ResPartner(models.Model):
         selection_add=[("salesman", "Salesman (employee)")])
     employee = fields.Many2one(
         comodel_name="hr.employee", compute="_get_employee")
-    users = fields.One2many(comodel_name="res.users",
-                            inverse_name="partner_id")
+    users = fields.One2many(
+        comodel_name="res.users", inverse_name="partner_id")
 
-    @api.one
+    @api.multi
     @api.depends('users')
     def _get_employee(self):
-        self.employee = False
-        if len(self.users) == 1 and len(self.users[0].employee_ids) == 1:
-            self.employee = self.users[0].employee_ids[0]
+        for partner in self:
+            if len(partner.users) == 1 and len(partner.users.employee_ids) == 1:
+                partner.employee = partner.users.employee_ids
 
     @api.constrains('agent_type', 'users')
     def _check_employee(self):
