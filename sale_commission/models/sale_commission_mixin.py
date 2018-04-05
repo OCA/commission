@@ -72,6 +72,21 @@ class SaleCommissionMixin(models.AbstractModel):
             vals['agents'] = new_commands
         return super(SaleCommissionMixin, self).write(vals)
 
+    def _prepare_agents_vals(self):
+        """Hook method for preparing the values of agents.
+
+        :param: self: Record of the object that is being handled.
+        """
+        return []
+
+    def recompute_agents(self):
+        """Force a recomputation of the agents according prepare method."""
+        for record in self:
+            record.agents.unlink()
+            record.agents = [
+                (0, 0, vals) for vals in record._prepare_agents_vals()
+            ]
+
 
 class SaleCommissionLineMixin(models.AbstractModel):
     _name = "sale.commission.line.mixin"

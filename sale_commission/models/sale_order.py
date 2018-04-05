@@ -19,26 +19,8 @@ class SaleOrder(models.Model):
         string="Commissions", compute="_compute_commission_total",
         store=True)
 
-    @api.model
-    def _prepare_line_agents_data(self, line):
-        rec = []
-        for agent in self.partner_id.agents:
-            rec.append({
-                'agent': agent.id,
-                'commission': agent.commission.id,
-            })
-        return rec
-
-    @api.multi
     def recompute_lines_agents(self):
-        for order in self:
-            for line in order.order_line:
-                line.agents.unlink()
-                line_agents_data = order._prepare_line_agents_data(line)
-                line.agents = [(
-                    0,
-                    0,
-                    line_agent_data) for line_agent_data in line_agents_data]
+        self.mapped('order_line').recompute_agents()
 
 
 class SaleOrderLine(models.Model):
@@ -52,7 +34,16 @@ class SaleOrderLine(models.Model):
         comodel_name="sale.order.line.agent",
     )
 
-    @api.multi
+    def _prepare_agents_vals(self):
+        self.ensure_one()
+        res = super(SaleOrderLine, self)._prepare_agents_vals()
+        for agent in self.order_id.partner_id.agents:
+            res.append({
+                'agent': agent.id,
+                'commission': agent.commission.id,
+            })
+        return res
+
     def _prepare_invoice_line(self, qty):
         vals = super(SaleOrderLine, self)._prepare_invoice_line(qty)
         vals['agents'] = [

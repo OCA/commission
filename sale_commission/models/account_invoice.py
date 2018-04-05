@@ -20,7 +20,6 @@ class AccountInvoice(models.Model):
         string="Commissions", compute="_compute_commission_total",
         store=True)
 
-    @api.multi
     def action_cancel(self):
         """Put settlements associated to the invoices in exception."""
         settlements = self.env['sale.commission.settlement'].search(
@@ -28,7 +27,6 @@ class AccountInvoice(models.Model):
         settlements.write({'state': 'except_invoice'})
         return super(AccountInvoice, self).action_cancel()
 
-    @api.multi
     def invoice_validate(self):
         """Put settlements associated to the invoices again in invoice."""
         settlements = self.env['sale.commission.settlement'].search(
@@ -36,7 +34,6 @@ class AccountInvoice(models.Model):
         settlements.write({'state': 'invoiced'})
         return super(AccountInvoice, self).invoice_validate()
 
-    @api.multi
     def _refund_cleanup_lines(self, lines):
         """ugly function to map all fields of account.invoice.line
         when creates refund invoice"""
@@ -55,26 +52,8 @@ class AccountInvoice(models.Model):
             vals['agents'] = agents
         return res
 
-    @api.model
-    def _prepare_line_agents_data(self, line):
-        rec = []
-        for agent in self.partner_id.agents:
-            rec.append({
-                'agent': agent.id,
-                'commission': agent.commission.id,
-            })
-        return rec
-
-    @api.multi
     def recompute_lines_agents(self):
-        for invoice in self:
-            for line in invoice.invoice_line_ids:
-                line.agents.unlink()
-                line_agents_data = invoice._prepare_line_agents_data(line)
-                line.agents = [(
-                    0,
-                    0,
-                    line_agent_data) for line_agent_data in line_agents_data]
+        self.mapped('invoice_line_ids').recompute_agents()
 
 
 class AccountInvoiceLine(models.Model):
@@ -87,6 +66,16 @@ class AccountInvoiceLine(models.Model):
     agents = fields.One2many(
         comodel_name="account.invoice.line.agent",
     )
+
+    def _prepare_agents_vals(self):
+        self.ensure_one()
+        res = super(AccountInvoiceLine, self)._prepare_agents_vals()
+        for agent in self.invoice_id.partner_id.agents:
+            res.append({
+                'agent': agent.id,
+                'commission': agent.commission.id,
+            })
+        return res
 
 
 class AccountInvoiceLineAgent(models.Model):
