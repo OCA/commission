@@ -133,17 +133,64 @@
     </record>
 
     <record model="ir.actions.act_window" id="action_settle_commission">
-        <field name="name">Settlments</field>
+        <field name="name">Settlements</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.commission.settlement</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem name="Settlments"
+    <menuitem name="Settlements"
               id="menu_sattle_commissions"
               parent="menu_sale_commissions_management"
               action="action_settle_commission" />
+
+    <record id="action_server_sale_commission_merge" model="ir.actions.server">
+          <field name="name">Merge Settlements</field>
+          <field name="type">ir.actions.server</field>
+          <field name="model_id" ref="model_sale_commission_settlement"/>
+          <field name="state">code</field>
+          <field name="code">
+                  if records:
+                    records.merge_commission_settlement()
+          </field>
+      </record>
+
+      <record id="action_sale_commission_merge" model="ir.values">
+        <field name="name">action_sale_commission_merge</field>
+        <field name="action_id" ref="action_server_sale_commission_merge" />
+        <field name="value" eval="'ir.actions.server,' + str(ref('action_server_sale_commission_merge'))" />
+        <field name="key">action</field>
+        <field name="model_id" ref="model_sale_commission_settlement"/>
+        <field name="model">sale.commission.settlement</field>
+        <field name="key2">client_action_multi</field>
+      </record>
+
+      <record model="ir.ui.view" id="view_settlement_line_pivot">
+          <field name="name">sale.commission.settlement.line.pivot</field>
+          <field name="model">sale.commission.settlement.line</field>
+          <field name="arch" type="xml">
+            <pivot string="Analytic Entries">
+                <field name="agent" type="row"/>
+                <field name="settled_amount" type="measure"/>
+            </pivot>
+          </field>
+      </record>
+
+      <record model="ir.actions.act_window" id="action_settle_commission_lines">
+          <field name="name">Settlement Lines</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">sale.commission.settlement.line</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree,pivot</field>
+      </record>
+
+      <menuitem name="Settlement Lines"
+                id="menu_sattle_commission_lines"
+                parent="sale_commission.menu_sale_commissions_management"
+                action="action_settle_commission_lines" />
+
+
 
 
 </odoo>

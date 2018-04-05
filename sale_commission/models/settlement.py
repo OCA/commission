@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, exceptions, fields, models, _
-
+from odoo.exceptions import UserError
 
 class Settlement(models.Model):
     _name = "sale.commission.settlement"
@@ -135,6 +135,39 @@ class Settlement(models.Model):
             settlement.state = 'invoiced'
             settlement.invoice = invoice.id
 
+    @api.multi
+    def merge_commission_settlement(self):
+        """ Method to merge different settlements,
+            thus to proceed with unique invoice.
+        """
+        final_agent = self[0].agent
+        initial_date = self[0].date_from
+        final_date = self[0].date_to
+        settlement_lines = []
+
+        for settlement in self:
+            if final_agent != settlement.agent:
+                raise UserError(_("Only settlements \
+                    belonging to the same agent can be merged"))
+            if settlement.state != 'settled':
+                raise UserError(_("Settlements have to be in state \
+                    'Settled' to be merged"))
+            initial_date = min(initial_date, settlement.date_from)
+            final_date = max(final_date, settlement.date_to)
+            for line in settlement.lines:
+                settlement_lines.append(line.id)
+
+        # create the new settlement with all existing lines
+        final_settlement = self.env['sale.commission.settlement'].create({
+            'agent': final_agent.id,
+            'date_from': initial_date,
+            'date_to': final_date,
+            'lines': [(6, 0, settlement_lines)],
+        })
+
+        # we now remove all previous settlements
+        self.mapped(lambda r: r.unlink())
+
 
 class SettlementLine(models.Model):
     _name = "sale.commission.settlement.line"
@@ -160,3 +193,5 @@ class SettlementLine(models.Model):
         related="agent_line.amount", readonly=True, store=True)
     commission = fields.Many2one(
         comodel_name="sale.commission", related="agent_line.commission")
+    state = fields.Selection(
+        related="settlement.state", string="State", store=True)
