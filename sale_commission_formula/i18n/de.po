@@ -3,15 +3,15 @@
 # * sale_commission_formula
 # 
 # Translators:
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: commission (8.0)\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-14 08:24+0000\n"
-"PO-Revision-Date: 2016-05-23 11:32+0000\n"
-"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-commission-8-0/language/de/)\n"
+"POT-Creation-Date: 2018-04-03 13:20+0000\n"
+"PO-Revision-Date: 2018-04-03 13:20+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,7 +19,21 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_commission_formula
-#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
+msgid ""
+"<span class=\"instructions\">\n"
+"  Use 'line' to access all the line fields.\n"
+"  As field names may vary, you should differentiate the\n"
+"  formulas for sale.order.line and account.invoice.line.\n"
+"  You can, for instance, use line._name == 'sale.order.line'\n"
+"  or line._name == 'account.invoice.line'.\n"
+"\n"
+"  Use 'result' to return the commission amount.\n"
+"                        </span>"
+msgstr ""
+
+#. module: sale_commission_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Account Invoice Line common fields"
 msgstr "Allgemeine Felder der Kontenabrechnungsposition"
 
@@ -29,83 +43,81 @@ msgid "Commission in sales"
 msgstr "Provision im Verkauf"
 
 #. module: sale_commission_formula
-#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Discount (%)"
 msgstr "Rabatt (%)"
 
 #. module: sale_commission_formula
-#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Field"
 msgstr "Feld"
 
 #. module: sale_commission_formula
-#: field:sale.commission,formula:0
+#: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission_formula
 msgid "Formula"
 msgstr "Formel"
 
 #. module: sale_commission_formula
-#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Instructions"
 msgstr "Anleitungen"
 
 #. module: sale_commission_formula
-#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Label"
 msgstr "Etikett"
 
 #. module: sale_commission_formula
-#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Quantity"
 msgstr "Menge"
 
 #. module: sale_commission_formula
-#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Sale Oder Line common fields"
 msgstr "Allg. Felder der Verkaufsauftragsposition"
 
 #. module: sale_commission_formula
-#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Subtotal"
 msgstr "Zwischensumme"
 
 #. module: sale_commission_formula
-#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Unit Price"
 msgstr "Einzelpreis"
 
 #. module: sale_commission_formula
-#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
-msgid ""
-"Use 'line' to access all the line fields.\n"
-"  As field names may vary, you should differentiate the\n"
-"  formulas for sale.order.line and account.invoice.line.\n"
-"  You can, for instance, use line._name == 'sale.order.line'\n"
-"  or line._name == 'account.invoice.line'.\n"
-"\n"
-"  Use 'result' to return the commission amount."
-msgstr "Verwenden Sie 'Position' für den Zugriff auf alle Felder.\nDa Feldbezeichnungen variieren können, sollten Sie\ndie Formeln für Auftragspositionen und\nRechnungspositionen auseinanderhalten.\nSie können beispielsweise line._name == 'sale.order.line'\noder line._name == 'account.invoice.line' verwenden.\n\nVerwenden Sie 'result', um den Provisionsbetrag zurück zu geben."
+#: model:ir.model,name:sale_commission_formula.model_account_invoice_line_agent
+msgid "account.invoice.line.agent"
+msgstr ""
 
 #. module: sale_commission_formula
-#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "discount"
 msgstr "discount"
 
 #. module: sale_commission_formula
-#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "price_subtotal"
 msgstr "price_subtotal"
 
 #. module: sale_commission_formula
-#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "price_unit"
 msgstr "price_unit"
 
 #. module: sale_commission_formula
-#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "product_uom_qty"
 msgstr "product_uom_qty"
 
 #. module: sale_commission_formula
-#: view:sale.commission:sale_commission_formula.sale_commission_form_formula
+#: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "quantity"
 msgstr "quantity"
+
+#. module: sale_commission_formula
+#: model:ir.model,name:sale_commission_formula.model_sale_order_line_agent
+msgid "sale.order.line.agent"
+msgstr ""
