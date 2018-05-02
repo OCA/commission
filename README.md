@@ -14,6 +14,7 @@ addon | version | summary
 --- | --- | ---
 [sale_commission](sale_commission/) | 10.0.1.0.7 | Sales commissions
 [sale_commission_formula](sale_commission_formula/) | 10.0.1.0.0 | Sale commissions computed by formulas
+[sale_commission_pricelist](sale_commission_pricelist/) | 10.0.1.0.0 | Sales commissions by pricelist
 
 
 Unported addons
