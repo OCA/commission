@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+      <record id="sale_commission_partner_view" model="ir.ui.view">
+          <field name="name">sale.commission.line.partner</field>
+          <field name="model">sale.commission.settlement.line</field>
+          <field name="inherit_id" ref="sale_commission.view_settlement_line_tree"></field>
+          <field name="arch" type="xml">
+            <field name="date" position="after">
+              <field name="partner_id" />
+            </field>
+            <field name="invoice_line" position="after">
+              <field name="subtotal" />
+            </field>
+
+          </field>
+      </record>
+
+      <record id="sale_commission_partner_search_view" model="ir.ui.view">
+          <field name="name">sale.commission.line.search_partner</field>
+          <field name="model">sale.commission.settlement.line</field>
+          <field name="inherit_id" ref="sale_commission.view_settlement_line_search"></field>
+          <field name="arch" type="xml">
+            <field name="date" position="after">
+              <field name="partner_id" />
+              <field name="subtotal" />
+            </field>
+          </field>
+      </record>
+      <record id="sale_commission_form_partner" model="ir.ui.view">
+          <field name="name">sale.commission.form.partner</field>
+          <field name="model">sale.commission.settlement</field>
+          <field name="inherit_id" ref="sale_commission.view_settlement_form"></field>
+          <field name="arch" type="xml">
+            <field name="date" position="after">
+              <field name="partner_id" />
+            </field>
+            <field name="invoice_line" position="after">
+              <field name="subtotal" />
+            </field>
+          </field>
+      </record>
+
+<record id="sale_commission_search_partner" model="ir.ui.view">
+    <field name="name">sale.commission.line.graph</field>
+    <field name="model">sale.commission.settlement.line</field>
+    <field name="inherit_id" ref="sale_commission.view_settlement_line_graph"></field>
+    <field name="arch" type="xml">
+      <field name="date" position="after">
+        <field name="partner_id" type="row" />
+      </field>
+    </field>
+</record>
+    </data>
+</openerp>
