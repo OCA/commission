@@ -23,7 +23,14 @@
                 <field name="commission_free"/>
                 <field name="agents"
                        attrs="{'readonly': [('commission_free', '=', True)]}"/>
+                <!-- We need to add the analytic_tag_ids until https://github.com/odoo/odoo/issues/24702 is fixed-->
+                <field name="analytic_tag_ids"
+                       groups="analytic.group_analytic_accounting"
+                       widget="many2many_tags"
+                       options="{'color_field': 'color'}"/>
+
             </field>
+
         </field>
     </record>
 
