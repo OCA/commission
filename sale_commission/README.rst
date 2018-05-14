@@ -20,7 +20,9 @@ Known issues / Roadmap
 * Make it totally multi-company aware.
 * Allow to calculate and pay in other currency different from company one.
 * Allow to group by agent when generating invoices.
-
+* We need to add in this module the analytic_tag_ids
+  fields in the invoice form view
+  until https://github.com/odoo/odoo/issues/24702 is fixed.
 
 Bug Tracker
 ===========
