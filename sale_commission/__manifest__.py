@@ -1,6 +1,6 @@
 {
     'name': 'Sales commissions',
-    'version': '11.0.1.2.1',
+    'version': '11.0.1.3.0',
     'author': 'Odoo Community Association (OCA)',
     'category': 'Sales Management',
     'license': 'AGPL-3',
