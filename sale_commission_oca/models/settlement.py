@@ -116,9 +116,15 @@ class Settlement(models.Model):
         """
         return []
 
+    def create_invoice_header(self, journal, date):
+        """Hook that can be used in order to group invoices or
+        find open invoices
+        """
+        invoice_vals = self._prepare_invoice_header(self, journal, date=date)
+        return self.env['account.invoice'].create(invoice_vals)
+
     @api.multi
     def make_invoices(self, journal, product, date=False):
-        invoice_obj = self.env['account.invoice']
         invoice_line_obj = self.env['account.invoice.line']
         for settlement in self:
             # select the proper journal according to settlement's amount
@@ -127,9 +133,7 @@ class Settlement(models.Model):
             extra_total = sum(x['price_unit'] for x in extra_invoice_lines)
             if (settlement.total + extra_total) < 0:
                 raise UserError(_('Value cannot be negative'))
-            invoice_vals = self._prepare_invoice_header(
-                settlement, journal, date=date)
-            invoice = invoice_obj.create(invoice_vals)
+            invoice = settlement.create_invoice_header(journal, date)
             invoice_line_vals = self._prepare_invoice_line(
                 settlement, invoice, product)
             invoice_line_obj.create(invoice_line_vals)
