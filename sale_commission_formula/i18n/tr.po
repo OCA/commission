@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2018
+# Ediz Duman <neps1192@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-03 13:20+0000\n"
-"PO-Revision-Date: 2018-04-03 13:20+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"POT-Creation-Date: 2018-05-05 02:07+0000\n"
+"PO-Revision-Date: 2018-05-05 02:07+0000\n"
+"Last-Translator: Ediz Duman <neps1192@gmail.com>, 2018\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,17 +36,17 @@ msgstr ""
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Account Invoice Line common fields"
-msgstr ""
+msgstr "Hesap Fatura Satırı ortak alanları"
 
 #. module: sale_commission_formula
 #: model:ir.model,name:sale_commission_formula.model_sale_commission
 msgid "Commission in sales"
-msgstr ""
+msgstr "Satış komisyonu"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Discount (%)"
-msgstr ""
+msgstr "İndirim (%)"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
@@ -55,12 +56,12 @@ msgstr "Alan"
 #. module: sale_commission_formula
 #: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission_formula
 msgid "Formula"
-msgstr ""
+msgstr "Formül"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Instructions"
-msgstr ""
+msgstr "Talimatlar"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
@@ -70,17 +71,17 @@ msgstr "Etiket"
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Quantity"
-msgstr ""
+msgstr "Miktar"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Sale Oder Line common fields"
-msgstr ""
+msgstr "Satış Sipariş Satırı ortak alanları"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Subtotal"
-msgstr ""
+msgstr "Ara Toplam"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
@@ -90,17 +91,17 @@ msgstr "Birim Fiyatı"
 #. module: sale_commission_formula
 #: model:ir.model,name:sale_commission_formula.model_account_invoice_line_agent
 msgid "account.invoice.line.agent"
-msgstr ""
+msgstr "account.invoice.line.agent"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "discount"
-msgstr ""
+msgstr "indirim"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "price_subtotal"
-msgstr ""
+msgstr "price_subtotal"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
@@ -115,9 +116,9 @@ msgstr ""
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "quantity"
-msgstr ""
+msgstr "miktar"
 
 #. module: sale_commission_formula
 #: model:ir.model,name:sale_commission_formula.model_sale_order_line_agent
 msgid "sale.order.line.agent"
-msgstr ""
+msgstr "sale.order.line.agent"

@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2018
+# Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-03 13:20+0000\n"
-"PO-Revision-Date: 2018-04-03 13:20+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"POT-Creation-Date: 2018-05-05 02:07+0000\n"
+"PO-Revision-Date: 2018-05-05 02:07+0000\n"
+"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2018\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,6 +32,14 @@ msgid ""
 "  Use 'result' to return the commission amount.\n"
 "                        </span>"
 msgstr ""
+"<span class=\"instructions\">\n"
+"  Utilizzare 'line' per accedere a tutti i campi della riga.\n"
+"  Dato che i nomi dei campi possono variare, può essere necessario distinguere le formule per sale.order.line e account.invoice.line.\n"
+"  Per esempio è possibile utilizzare line._name == 'sale.order.line'\n"
+"  o line._name == 'account.invoice.line'.\n"
+"\n"
+"  Utilizzare 'result' per ritornare l'importo della provvigione.\n"
+"                        </span>"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
@@ -95,27 +104,27 @@ msgstr ""
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "discount"
-msgstr "sconto"
+msgstr "discount"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "price_subtotal"
-msgstr "Prezzo Totale"
+msgstr "price_subtotal"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "price_unit"
-msgstr "Prezzo Unitario"
+msgstr "price_unit"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "product_uom_qty"
-msgstr "Quantità Unità di Misura"
+msgstr "product_uom_qty"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "quantity"
-msgstr "Quantità"
+msgstr "quantity"
 
 #. module: sale_commission_formula
 #: model:ir.model,name:sale_commission_formula.model_sale_order_line_agent
