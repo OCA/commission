@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Carlos Dauden - Tecnativa <carlos.dauden@tecnativa.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
@@ -37,7 +36,6 @@ class TestSaleCommissionPricelist(SavepointCase):
                 (0, 0, {
                     'name': '10% discount and commission on Test product 2',
                     'applied_on': '1_product',
-                    'sequence': 1,
                     'product_id': cls.product2.id,
                     'compute_price': 'formula',
                     'base': 'list_price',
@@ -86,7 +84,7 @@ class TestSaleCommissionPricelist(SavepointCase):
             onchange_method(cls.so_line2)
 
     def test_sale_commission_pricelist(self):
-        self.assertEquals(
+        self.assertEqual(
             self.so_line1.agents[:1].commission, self.commission_1)
-        self.assertEquals(
+        self.assertEqual(
             self.so_line2.agents[:1].commission, self.commission_2)
