@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-05 02:07+0000\n"
-"PO-Revision-Date: 2018-05-05 02:07+0000\n"
+"POT-Creation-Date: 2018-05-19 01:44+0000\n"
+"PO-Revision-Date: 2018-05-19 01:44+0000\n"
 "Last-Translator: Ediz Duman <neps1192@gmail.com>, 2018\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -21,12 +21,12 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
 msgid "(keep empty for invoicing all the settlements)"
-msgstr ""
+msgstr "(tüm hesaplaşmaları faturalamak için boş bırakınız)"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_settled_wizard
 msgid "(keep empty for making the settlement of all agents)"
-msgstr ""
+msgstr "(Tüm acentaların hesaplaşmalarını sağlamak için boş bırakın)"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_active
@@ -42,17 +42,17 @@ msgstr "Etkin"
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_line_search
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_search
 msgid "Agent"
-msgstr ""
+msgstr "Acenta"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_res_partner_filter
 msgid "Agent Partners"
-msgstr ""
+msgstr "Acenta İş Ortağı"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_partner_form_agent
 msgid "Agent information"
-msgstr ""
+msgstr "Acenta Bilgisi"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_agent_line
@@ -81,7 +81,7 @@ msgstr "Acenteler & Komisyonlar"
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_account_invoice_line_agents
 msgid "Agents/Commissions related to the invoice line."
-msgstr ""
+msgstr "Fatura satırları ile ilgili acentalar / komisyonlar."
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent_amount
@@ -92,7 +92,7 @@ msgstr "Tutar"
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_amount
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line_settled_amount
 msgid "Amount settled"
-msgstr ""
+msgstr "Hesaplaşılan Tutarı"
 
 #. module: sale_commission
 #: selection:res.partner,settlement:0
@@ -102,12 +102,12 @@ msgstr "Yıllık"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_amount_base_type
 msgid "Base"
-msgstr ""
+msgstr "Matrah"
 
 #. module: sale_commission
 #: selection:sale.commission,commission_type:0
 msgid "By sections"
-msgstr ""
+msgstr "Bölme"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_settled_wizard
@@ -118,25 +118,25 @@ msgstr "İptal"
 #. module: sale_commission
 #: selection:sale.commission.settlement,state:0
 msgid "Canceled"
-msgstr "İptal Edildi"
+msgstr "İptal Edilen"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:45
 #, python-format
 msgid "Cannot cancel an invoiced settlement."
-msgstr ""
+msgstr "Faturalanmış bir hesaplaşma iptal edilemez."
 
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_res_partner_agent
 #: model:ir.model.fields,help:sale_commission.field_res_users_agent
 msgid "Check this field if the partner is a creditor or an agent."
-msgstr ""
+msgstr "İş ortağı bir alacaklı veya bir acenta ise bu alanı kontrol edin."
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_commission_free
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_commission_free
 msgid "Comm. free"
-msgstr ""
+msgstr "Komisyonsuz"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_commission
@@ -162,7 +162,7 @@ msgstr "Komisyon Satırları"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_section
 msgid "Commission section"
-msgstr ""
+msgstr "Komisyon Bölme"
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_commission
@@ -186,7 +186,7 @@ msgstr "Komisyon Yönetimi"
 #: model:ir.actions.act_window,name:sale_commission.action_commission_make_invoices
 #: model:ir.ui.menu,name:sale_commission.menu_commission_make_invoices
 msgid "Create commission invoices"
-msgstr ""
+msgstr "Komisyon Faturaları Oluştur"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
@@ -203,7 +203,7 @@ msgstr "Oluşturulan Faturalar"
 #: code:addons/sale_commission/wizard/wizard_settle.py:95
 #, python-format
 msgid "Created Settlements"
-msgstr ""
+msgstr "Oluşturulan Hesaplaşmalar"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_create_uid
@@ -233,12 +233,12 @@ msgstr "Oluşturulma"
 #: model:ir.model.fields,field_description:sale_commission.field_res_partner_agent
 #: model:ir.model.fields,field_description:sale_commission.field_res_users_agent
 msgid "Creditor/Agent"
-msgstr ""
+msgstr "Alacaklı/Acenta"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_currency_id
 msgid "Currency id"
-msgstr ""
+msgstr "Para Birimi"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice_date
@@ -253,7 +253,7 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_line_search
 msgid "Date month"
-msgstr ""
+msgstr "Ayı Tarihi"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_display_name
@@ -270,13 +270,13 @@ msgstr "Ad Görünümü"
 #. module: sale_commission
 #: selection:res.partner,agent_type:0
 msgid "External agent"
-msgstr ""
+msgstr "Dış Acenta"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_fix_qty
 #: selection:sale.commission,commission_type:0
 msgid "Fixed percentage"
-msgstr ""
+msgstr "Sabit Yüzde"
 
 #. module: sale_commission
 #: selection:sale.commission,commission_type:0
@@ -287,23 +287,23 @@ msgstr "Formül"
 #: model:ir.model.fields,field_description:sale_commission.field_product_product_commission_free
 #: model:ir.model.fields,field_description:sale_commission.field_product_template_commission_free
 msgid "Free of commission"
-msgstr ""
+msgstr "Komisyonsuz"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_section_amount_from
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_date_from
 msgid "From"
-msgstr ""
+msgstr "Tarihinden"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice_from_settlement
 msgid "From settlement"
-msgstr ""
+msgstr "Hesaplaşmadan"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_form
 msgid "General information"
-msgstr ""
+msgstr "Genel Bilgisi"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_invoice
@@ -343,7 +343,7 @@ msgstr "Fatura"
 #. module: sale_commission
 #: selection:sale.commission,invoice_state:0
 msgid "Invoice Based"
-msgstr ""
+msgstr "Fatura Matrahından"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_invoice_line
@@ -364,7 +364,7 @@ msgstr "Fatura Tarihi"
 #. module: sale_commission
 #: selection:sale.commission.settlement,state:0
 msgid "Invoice exception"
-msgstr "Fatura istisnası"
+msgstr "Fatura İstisnası"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_invoice_line
@@ -434,17 +434,17 @@ msgstr "Son Güncelleme"
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_form
 #, python-format
 msgid "Make invoice"
-msgstr ""
+msgstr "Fatura Oluştur"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
 msgid "Make invoices"
-msgstr ""
+msgstr "Fatura Oluştur"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_settled_wizard
 msgid "Make settlements"
-msgstr ""
+msgstr "Hesaplaşma Oluştur"
 
 #. module: sale_commission
 #: selection:res.partner,settlement:0
@@ -470,7 +470,7 @@ msgstr "İş Ortağı"
 #. module: sale_commission
 #: selection:sale.commission,invoice_state:0
 msgid "Payment Based"
-msgstr ""
+msgstr "Ödeme Matrahından"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_section_percent
@@ -481,7 +481,7 @@ msgstr "Yüzde"
 #: code:addons/sale_commission/models/settlement.py:102
 #, python-format
 msgid "Period: from %s to %s"
-msgstr ""
+msgstr "Periyot: tarihinden %s tarihine %s"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_product
@@ -506,13 +506,13 @@ msgstr "Çeyrek"
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_form
 msgid "Rates definition"
-msgstr "Oran tanımları"
+msgstr "Oran Tanımları"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.invoice_form_agent
 #: model:ir.ui.view,arch_db:sale_commission.view_order_agent_form_inherit
 msgid "Recompute lines agents"
-msgstr "Acentaların Satır Yeniden Hesapla"
+msgstr "Acenta Satırlarını Yeniden Hesapla"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent_sale_line
@@ -532,12 +532,12 @@ msgstr "Satış Sipariş Satırı"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_sections
 msgid "Sections"
-msgstr ""
+msgstr "Bölmeler"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_settled_wizard
 msgid "Select the date up to which you want to make the settlements:"
-msgstr ""
+msgstr "Hesaplaşmaları yapmak istediğiniz tarihi seçin:"
 
 #. module: sale_commission
 #: selection:res.partner,settlement:0
@@ -549,62 +549,62 @@ msgstr "Yarıyıllık"
 #: model:ir.ui.menu,name:sale_commission.menu_agents_settlement
 #: model:ir.ui.view,arch_db:sale_commission.view_settled_wizard
 msgid "Settle commissions"
-msgstr ""
+msgstr "Hesaplaşma Komisyonları"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_settled
 #: selection:sale.commission.settlement,state:0
 msgid "Settled"
-msgstr ""
+msgstr "Hesaplaşılan"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_partner_form_agent
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_line_tree
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_tree
 msgid "Settled total"
-msgstr ""
+msgstr "Hesaplaşılan Toplam"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_settlement
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line_settlement
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_form
 msgid "Settlement"
-msgstr ""
+msgstr "Hesaplaşma"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_line_graph
 msgid "Settlement analysis"
-msgstr ""
+msgstr "Hesaplaşma Analizi"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_lines
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_form
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_line_tree
 msgid "Settlement lines"
-msgstr ""
+msgstr "Hesaplaşma Satırları"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_line_search
 msgid "Settlement lines search"
-msgstr ""
+msgstr "Hesaplaşma Satırları Ara"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_res_partner_settlement
 #: model:ir.model.fields,field_description:sale_commission.field_res_users_settlement
 msgid "Settlement period"
-msgstr ""
+msgstr "Hesaplaşma Periyodu"
 
 #. module: sale_commission
 #: code:addons/sale_commission/wizard/wizard_settle.py:32
 #: code:addons/sale_commission/wizard/wizard_settle.py:46
 #, python-format
 msgid "Settlement period not valid."
-msgstr ""
+msgstr "Heaplaşma dönemi geçerli değil."
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_search
 msgid "Settlement search"
-msgstr ""
+msgstr "Hesaplaşma Ara"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_res_partner_settlements
@@ -615,13 +615,13 @@ msgstr ""
 #: model:ir.ui.view,arch_db:sale_commission.view_partner_form_agent
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_tree
 msgid "Settlements"
-msgstr ""
+msgstr "Hesaplaşmalar"
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_settle_commission
 #: model:ir.ui.menu,name:sale_commission.menu_sattle_commissions
 msgid "Settlments"
-msgstr ""
+msgstr "Hesaplaşmalar"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_state
@@ -654,7 +654,7 @@ msgstr "Bu yıl"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_section_amount_to
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_date_to
 msgid "To"
-msgstr ""
+msgstr "Tarihine"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_total
@@ -667,29 +667,29 @@ msgstr "Toplam"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_commission_type
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_agent_type
 msgid "Type"
-msgstr ""
+msgstr "Türü"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_settle_date_to
 msgid "Up to"
-msgstr ""
+msgstr "Kadar"
 
 #. module: sale_commission
 #: sql_constraint:account.invoice.line.agent:0
 #: sql_constraint:sale.order.line.agent:0
 msgid "You can only add one time each agent."
-msgstr ""
+msgstr "Her acentayı yalnızca bir kez ekleyebilirsiniz."
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:53
 #, python-format
 msgid "You can't delete invoiced settlements."
-msgstr ""
+msgstr "Faturalanmış hesaplaşmalarını silemezsiniz."
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
 msgid "_Cancel"
-msgstr "_Cancel"
+msgstr "_İptal"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_invoice_line_agent
@@ -725,4 +725,4 @@ msgstr "sale.order.line.agent"
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_form
 msgid "sections"
-msgstr ""
+msgstr "bölmeler"

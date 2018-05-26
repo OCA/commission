@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-05 02:07+0000\n"
-"PO-Revision-Date: 2018-05-05 02:07+0000\n"
+"POT-Creation-Date: 2018-05-19 01:44+0000\n"
+"PO-Revision-Date: 2018-05-19 01:44+0000\n"
 "Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>, 2018\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
@@ -108,7 +108,7 @@ msgstr ""
 #. module: sale_commission
 #: selection:sale.commission,commission_type:0
 msgid "By sections"
-msgstr ""
+msgstr "Per scaglioni"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_settled_wizard
