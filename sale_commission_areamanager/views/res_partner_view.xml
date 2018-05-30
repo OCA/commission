@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_area_manager" model="ir.ui.view">
+        <field name="name">res.partner.form.area.manager</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="sale_commission.view_partner_form_agent" />
+        <field name="priority" eval="18"/>
+        <field name="arch" type="xml">
+                <page name="agent_information" position="replace">
+                    <page name="agent_information" string="Agent information" attrs="{'invisible': [('agent', '=', False)]}">
+                        <group>
+                            <group col="2">
+                                <field name="agent_type"/>
+                                <field name="commission" attrs="{'required': [('agent', '=', True)]}"/>
+                                <field name="settlement"/>
+                            </group>
+                            <group col="2">
+                                <field name="area_manager"/>
+                                <field name="area_manager_id" attrs="{'invisible': [('area_manager', '=', True)]}" context="{'default_agent': True, 'default_area_manager': True}"/>
+                                <field name="commission_for_areamanager" attrs="{'invisible': [('area_manager', '=', True)]}"/>
+                            </group>
+                            <group colspan="4" string="Related Agents" attrs="{'invisible': [('area_manager', '=', False)]}">
+                                <field name="area_manager_sub_agent_ids" nolabel="1"/>
+                            </group>
+                            <group colspan="4" string="Settlements">
+                                <field name="settlements" nolabel="1">
+                                    <tree string="Settlements" colors="red: state == 'cancel'; gray: state == 'invoiced'">
+                                        <field name="date_from"/>
+                                        <field name="date_to"/>
+                                        <field name="total" sum="Settled total"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </group>
+                    </page>
+                </page>
+        </field>
+    </record>
+</odoo>
