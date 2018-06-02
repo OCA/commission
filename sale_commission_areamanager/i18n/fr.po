@@ -1,0 +1,96 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_commission_areamanager
+# 
+# Translators:
+# Lixon Jean-Yves <jy.lixon@ls-development.net>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-31 02:47+0000\n"
+"PO-Revision-Date: 2018-05-31 02:47+0000\n"
+"Last-Translator: Lixon Jean-Yves <jy.lixon@ls-development.net>, 2018\n"
+"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: sale_commission_areamanager
+#: model:ir.ui.view,arch_db:sale_commission_areamanager.view_partner_form_area_manager
+msgid "Agent information"
+msgstr "Information du commercial"
+
+#. module: sale_commission_areamanager
+#: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_partner_area_manager_sub_agent_ids
+#: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_users_area_manager_sub_agent_ids
+msgid "Agents"
+msgstr "Commerciaux"
+
+#. module: sale_commission_areamanager
+#: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_partner_area_manager_id
+#: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_users_area_manager_id
+msgid "Area Manager"
+msgstr ""
+
+#. module: sale_commission_areamanager
+#: model:ir.model.fields,help:sale_commission_areamanager.field_res_partner_area_manager_id
+#: model:ir.model.fields,help:sale_commission_areamanager.field_res_users_area_manager_id
+msgid "Area manager for the current agent"
+msgstr ""
+
+#. module: sale_commission_areamanager
+#: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_partner_commission_for_areamanager
+#: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_users_commission_for_areamanager
+msgid "Commission For Area Manager"
+msgstr ""
+
+#. module: sale_commission_areamanager
+#: model:ir.model.fields,help:sale_commission_areamanager.field_res_partner_commission_for_areamanager
+#: model:ir.model.fields,help:sale_commission_areamanager.field_res_users_commission_for_areamanager
+msgid "Commission for area manager applied to the current agent"
+msgstr ""
+
+#. module: sale_commission_areamanager
+#: model:ir.model,name:sale_commission_areamanager.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: sale_commission_areamanager
+#: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_partner_area_manager
+#: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_users_area_manager
+msgid "Is Area Manager"
+msgstr ""
+
+#. module: sale_commission_areamanager
+#: model:ir.model,name:sale_commission_areamanager.model_res_partner
+msgid "Partner"
+msgstr ""
+
+#. module: sale_commission_areamanager
+#: model:ir.ui.view,arch_db:sale_commission_areamanager.view_partner_form_area_manager
+msgid "Related Agents"
+msgstr ""
+
+#. module: sale_commission_areamanager
+#: model:ir.model,name:sale_commission_areamanager.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_commission_areamanager
+#: model:ir.ui.view,arch_db:sale_commission_areamanager.view_partner_form_area_manager
+msgid "Settled total"
+msgstr ""
+
+#. module: sale_commission_areamanager
+#: model:ir.ui.view,arch_db:sale_commission_areamanager.view_partner_form_area_manager
+msgid "Settlements"
+msgstr ""
+
+#. module: sale_commission_areamanager
+#: model:ir.model.fields,help:sale_commission_areamanager.field_res_partner_area_manager
+#: model:ir.model.fields,help:sale_commission_areamanager.field_res_users_area_manager
+msgid "This agent is an area manager"
+msgstr ""
