@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_commission
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2016-12-28 08:06+0000\n"
 "PO-Revision-Date: 2016-12-27 08:24+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (Chile) (http://www.transifex.com/oca/OCA-commission-8-0/language/es_CL/)\n"
+"Language-Team: Spanish (Chile) (http://www.transifex.com/oca/OCA-"
+"commission-8-0/language/es_CL/)\n"
+"Language: es_CL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es_CL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_commission
@@ -609,6 +610,8 @@ msgid "Settlement search"
 msgstr ""
 
 #. module: sale_commission
+#: model:ir.actions.act_window,name:sale_commission.action_settlement
+#: model:ir.ui.menu,name:sale_commission.menu_sale_settlements
 #: view:res.partner:sale_commission.view_partner_form_agent
 #: field:res.partner,settlements:0
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
@@ -618,6 +621,7 @@ msgid "Settlements"
 msgstr ""
 
 #. module: sale_commission
+#: view:sale.commission.settlement:sale_commission.view_settlement_search
 #: field:sale.commission.settlement,state:0
 msgid "State"
 msgstr ""

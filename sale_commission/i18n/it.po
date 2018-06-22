@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_commission
-# 
+#
 # Translators:
 # Andrea Cometa <a.cometa@apuliasoftware.it>, 2016-2017
 # Marco Calcagni <mcalcagni@dinamicheaziendali.it>, 2018
@@ -13,11 +13,12 @@ msgstr ""
 "POT-Creation-Date: 2018-03-03 02:37+0000\n"
 "PO-Revision-Date: 2018-03-28 21:09+0000\n"
 "Last-Translator: Marco Calcagni <mcalcagni@dinamicheaziendali.it>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-commission-8-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-commission-8-0/"
+"language/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_commission
@@ -639,7 +640,9 @@ msgstr "Il limite inferiore non può essere più grande del maggiore"
 msgid ""
 "This is the default commission used in the sales where this agent is "
 "assigned. It can be changed on each operation if needed."
-msgstr "Questa è la commissione di default usata nelle vendite assegnate all'agente. Può essere cambiato in ogni operazione se necessario"
+msgstr ""
+"Questa è la commissione di default usata nelle vendite assegnate all'agente. "
+"Può essere cambiato in ogni operazione se necessario"
 
 #. module: sale_commission
 #: view:sale.commission.settlement:sale_commission.view_settlement_search

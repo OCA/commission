@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_commission
-# 
+#
 # Translators:
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-10-10 00:40+0000\n"
 "PO-Revision-Date: 2017-09-22 21:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-commission-8-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-commission-8-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_commission
@@ -135,7 +136,9 @@ msgstr "Abgerechnete verrechnungen können nicht storniert werden."
 #. module: sale_commission
 #: help:res.partner,agent:0
 msgid "Check this field if the partner is a creditor or an agent."
-msgstr "Wählen Sie dieses Feld an, wenn es sich um einen Kreditor oder einen Vertriebler handelt."
+msgstr ""
+"Wählen Sie dieses Feld an, wenn es sich um einen Kreditor oder einen "
+"Vertriebler handelt."
 
 #. module: sale_commission
 #: field:account.invoice.line,commission_free:0
@@ -637,7 +640,9 @@ msgstr "Die untere Grenze darf nicht größer sein als die obere."
 msgid ""
 "This is the default commission used in the sales where this agent is "
 "assigned. It can be changed on each operation if needed."
-msgstr "Dies ist die Vorgabe-Provision, die in Auftragen dieses Vertrieblers verwendet wird. Diese kann in jedem Vorgang bedarfsweise angepasst werden."
+msgstr ""
+"Dies ist die Vorgabe-Provision, die in Auftragen dieses Vertrieblers "
+"verwendet wird. Diese kann in jedem Vorgang bedarfsweise angepasst werden."
 
 #. module: sale_commission
 #: view:sale.commission.settlement:sale_commission.view_settlement_search
