@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_commission_formula
-# 
+#
 # Translators:
 # Ivan Todorovich <ivan.todorovich@gmail.com>, 2016
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2016-03-15 00:27+0000\n"
 "PO-Revision-Date: 2016-03-15 00:47+0000\n"
 "Last-Translator: Ivan Todorovich <ivan.todorovich@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-commission-8-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-commission-8-0/"
+"language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_commission_formula
@@ -83,7 +84,14 @@ msgid ""
 "  or line._name == 'account.invoice.line'.\n"
 "\n"
 "  Use 'result' to return the commission amount."
-msgstr "Utiliza la variable 'line' para acceder a todos los campos de línea.\nSiendo que los campos pueden variar, deberías diferenciar las fórmulas para sale.order.line y account.invoice.line.\nPuedes, por ejemplo, utilizar line._name == 'sale.order.line' or line._name == 'account.invoice.line'.\n\nUtiliza 'result' para devolver el importe de comisión."
+msgstr ""
+"Utiliza la variable 'line' para acceder a todos los campos de línea.\n"
+"Siendo que los campos pueden variar, deberías diferenciar las fórmulas para "
+"sale.order.line y account.invoice.line.\n"
+"Puedes, por ejemplo, utilizar line._name == 'sale.order.line' or line._name "
+"== 'account.invoice.line'.\n"
+"\n"
+"Utiliza 'result' para devolver el importe de comisión."
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula

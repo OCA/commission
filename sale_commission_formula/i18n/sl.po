@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_commission_formula
-# 
+#
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 msgid ""
@@ -11,12 +11,14 @@ msgstr ""
 "POT-Creation-Date: 2016-03-15 00:27+0000\n"
 "PO-Revision-Date: 2016-03-15 06:18+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-commission-8-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-commission-8-0/"
+"language/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
@@ -83,7 +85,14 @@ msgid ""
 "  or line._name == 'account.invoice.line'.\n"
 "\n"
 "  Use 'result' to return the commission amount."
-msgstr "Uporabite 'line' za dostop do vseh polj postavke.\n  Ker so nazivi polj lahko različni, morate razločevati med\n  formulami za sale.order.line in account.invoice.line.\n  Uporabite lahko npr. line._name == 'sale.order.line'\n  ali line._name == 'account.invoice.line'.\n\n  Uporabite 'result' za povrnitev zneska provizije."
+msgstr ""
+"Uporabite 'line' za dostop do vseh polj postavke.\n"
+"  Ker so nazivi polj lahko različni, morate razločevati med\n"
+"  formulami za sale.order.line in account.invoice.line.\n"
+"  Uporabite lahko npr. line._name == 'sale.order.line'\n"
+"  ali line._name == 'account.invoice.line'.\n"
+"\n"
+"  Uporabite 'result' za povrnitev zneska provizije."
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
