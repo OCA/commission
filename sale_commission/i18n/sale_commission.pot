@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_commission
+#	* sale_commission
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-14 15:14+0000\n"
-"PO-Revision-Date: 2017-12-14 15:14+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
-"Language: ca\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
@@ -152,7 +147,7 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission
 msgid "Commission in sales"
-msgstr "Comissió de les vendes"
+msgstr ""
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_form
@@ -305,7 +300,7 @@ msgstr ""
 #. module: sale_commission
 #: selection:sale.commission,commission_type:0
 msgid "Formula"
-msgstr "Fórmula"
+msgstr ""
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_product_product_commission_free
@@ -648,9 +643,7 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_res_partner_commission
 #: model:ir.model.fields,help:sale_commission.field_res_users_commission
-msgid ""
-"This is the default commission used in the sales where this agent is "
-"assigned. It can be changed on each operation if needed."
+msgid "This is the default commission used in the sales where this agent is assigned. It can be changed on each operation if needed."
 msgstr ""
 
 #. module: sale_commission
@@ -741,3 +734,4 @@ msgstr ""
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_form
 msgid "sections"
 msgstr ""
+
