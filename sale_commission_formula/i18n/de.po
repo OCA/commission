@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_commission_formula
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-14 15:14+0000\n"
-"PO-Revision-Date: 2017-12-14 15:14+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Finnish (https://www.transifex.com/oca/teams/23907/fi/)\n"
+"PO-Revision-Date: 2018-10-05 18:25+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
+"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fi\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.1.1\n"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
@@ -31,93 +32,102 @@ msgid ""
 "  Use 'result' to return the commission amount.\n"
 "                        </span>"
 msgstr ""
+"<span class=\"instructions\">\n"
+"  'line' für Zugriff auf alle Positions-Felder verwenden.\n"
+"  Da Feldnamen abweichen können, sollten Sie Formeln\n"
+"  für sale.order.line und account.invoice.line unterscheiden.\n"
+"  Sie können z.B. line._name == 'sale.order.line'\n"
+"  oder line._name == 'account.invoice.line' verwenden.\n"
+"\n"
+"  Nutzen Sie 'result' um den Provisionsbetrag zurück zu geben.\n"
+"                        </span>"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Account Invoice Line common fields"
-msgstr ""
+msgstr "Allgemeine Felder der Kontenabrechnungsposition"
 
 #. module: sale_commission_formula
 #: model:ir.model,name:sale_commission_formula.model_sale_commission
 msgid "Commission in sales"
-msgstr ""
+msgstr "Provision im Verkauf"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Discount (%)"
-msgstr "Alennus-%"
+msgstr "Rabatt (%)"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Field"
-msgstr ""
+msgstr "Feld"
 
 #. module: sale_commission_formula
 #: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission_formula
 msgid "Formula"
-msgstr ""
+msgstr "Formel"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Instructions"
-msgstr ""
+msgstr "Anleitungen"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Label"
-msgstr ""
+msgstr "Kennzeichnung"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Quantity"
-msgstr "Määrä"
+msgstr "Menge"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Sale Oder Line common fields"
-msgstr ""
+msgstr "Allg. Felder der Verkaufsauftragsposition"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Subtotal"
-msgstr ""
+msgstr "Zwischensumme"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Unit Price"
-msgstr ""
+msgstr "Einzelpreis"
 
 #. module: sale_commission_formula
 #: model:ir.model,name:sale_commission_formula.model_account_invoice_line_agent
 msgid "account.invoice.line.agent"
-msgstr ""
+msgstr "account.invoice.line.agent"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "discount"
-msgstr ""
+msgstr "discount"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "price_subtotal"
-msgstr ""
+msgstr "price_subtotal"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "price_unit"
-msgstr ""
+msgstr "price_unit"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "product_uom_qty"
-msgstr ""
+msgstr "product_uom_qty"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "quantity"
-msgstr ""
+msgstr "quantity"
 
 #. module: sale_commission_formula
 #: model:ir.model,name:sale_commission_formula.model_sale_order_line_agent
 msgid "sale.order.line.agent"
-msgstr ""
+msgstr "sale.order.line.agent"
