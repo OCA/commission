@@ -1,33 +1,28 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_commission_areamanager
+#	* sale_commission_areamanager
 #
-# Translators:
-# Ediz Duman <neps1192@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-31 02:47+0000\n"
-"PO-Revision-Date: 2018-05-31 02:47+0000\n"
-"Last-Translator: Ediz Duman <neps1192@gmail.com>, 2018\n"
-"Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
-"Language: tr\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: \n"
 
 #. module: sale_commission_areamanager
 #: model:ir.ui.view,arch_db:sale_commission_areamanager.view_partner_form_area_manager
 msgid "Agent information"
-msgstr "Acenta Bilgisi"
+msgstr ""
 
 #. module: sale_commission_areamanager
 #: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_partner_area_manager_sub_agent_ids
 #: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_users_area_manager_sub_agent_ids
 msgid "Agents"
-msgstr "Acenta"
+msgstr ""
 
 #. module: sale_commission_areamanager
 #: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_partner_area_manager_id
@@ -56,7 +51,7 @@ msgstr ""
 #. module: sale_commission_areamanager
 #: model:ir.model,name:sale_commission_areamanager.model_account_invoice
 msgid "Invoice"
-msgstr "Fatura"
+msgstr ""
 
 #. module: sale_commission_areamanager
 #: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_partner_area_manager
@@ -67,7 +62,7 @@ msgstr ""
 #. module: sale_commission_areamanager
 #: model:ir.model,name:sale_commission_areamanager.model_res_partner
 msgid "Partner"
-msgstr "İş Ortağı"
+msgstr ""
 
 #. module: sale_commission_areamanager
 #: model:ir.ui.view,arch_db:sale_commission_areamanager.view_partner_form_area_manager
@@ -77,20 +72,21 @@ msgstr ""
 #. module: sale_commission_areamanager
 #: model:ir.model,name:sale_commission_areamanager.model_sale_order
 msgid "Sales Order"
-msgstr "Satış Siparişi"
+msgstr ""
 
 #. module: sale_commission_areamanager
 #: model:ir.ui.view,arch_db:sale_commission_areamanager.view_partner_form_area_manager
 msgid "Settled total"
-msgstr "Hesaplaşılan Toplam"
+msgstr ""
 
 #. module: sale_commission_areamanager
 #: model:ir.ui.view,arch_db:sale_commission_areamanager.view_partner_form_area_manager
 msgid "Settlements"
-msgstr "Hesaplaşmalar"
+msgstr ""
 
 #. module: sale_commission_areamanager
 #: model:ir.model.fields,help:sale_commission_areamanager.field_res_partner_area_manager
 #: model:ir.model.fields,help:sale_commission_areamanager.field_res_users_area_manager
 msgid "This agent is an area manager"
 msgstr ""
+
