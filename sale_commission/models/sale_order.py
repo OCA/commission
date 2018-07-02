@@ -31,7 +31,9 @@ class SaleOrderLine(models.Model):
         if self.env.context.get('partner_id'):
             partner = self.env['res.partner'].browse(
                 self.env.context['partner_id'])
-            for agent in partner.agents:
+            for agent in partner.agents.filtered(
+                lambda a: a.company_id == self.env.user.company_id
+            ):
                 vals = {
                     'agent': agent.id,
                     'commission': agent.commission.id,
