@@ -30,17 +30,17 @@ class ResPartner(models.Model):
         selection_add=[("salesman", "Salesman (employee)")])
     employee = fields.Many2one(
         comodel_name="hr.employee", compute="_get_employee")
-    users = fields.One2many(comodel_name="res.users",
-                            inverse_name="partner_id")
 
     @api.one
-    @api.depends('users')
+    @api.depends('user_ids')
     def _get_employee(self):
-        self.employee = False
-        if len(self.users) == 1 and len(self.users[0].employee_ids) == 1:
-            self.employee = self.users[0].employee_ids[0]
+        try:
+            self.employee = self.user_ids[:1].employee_ids[:1]
+        except exceptions.AccessError:
+            # You have no access to employees; then it's empty
+            pass
 
-    @api.constrains('agent_type', 'users')
+    @api.constrains('agent_type', 'user_ids')
     def _check_employee(self):
         if self.agent_type == 'salesman' and not self.employee:
             raise exceptions.ValidationError(
