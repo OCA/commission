@@ -10,7 +10,7 @@ class ResPartner(models.Model):
     agents = fields.Many2many(
         comodel_name="res.partner", relation="partner_agent_rel",
         column1="partner_id", column2="agent_id",
-        domain="[('agent', '=', True)]")
+        domain=[('agent', '=', True)])
     # Fields for the partner when it acts as an agent
     agent = fields.Boolean(
         string="Creditor/Agent",
