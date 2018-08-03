@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-22 08:15+0000\n"
-"PO-Revision-Date: 2018-03-22 08:15+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"PO-Revision-Date: 2018-08-04 12:34+0000\n"
+"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.1.1\n"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
@@ -49,7 +50,7 @@ msgstr "Representante"
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_agent_line
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line_agent_line
 msgid "Agent Line"
-msgstr ""
+msgstr "Linha Agente"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_res_partner_filter
@@ -131,7 +132,7 @@ msgstr "Não é possível cancelar uma fatura liquidada."
 #: model:ir.model.fields,help:sale_commission.field_res_partner_agent
 #: model:ir.model.fields,help:sale_commission.field_res_users_agent
 msgid "Check this field if the partner is a creditor or an agent."
-msgstr "Verifique nesse campo se o parceiro é um credor ou um representante"
+msgstr "Verifique nesse campo se o parceiro é um credor ou um representante."
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_commission_free
@@ -189,23 +190,23 @@ msgstr "Gerenciamento de comissões"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_company_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line_company_id
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:179
 #, python-format
 msgid "Company must be the same"
-msgstr ""
+msgstr "A empresa deve ser a mesma"
 
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_sale_commission_make_invoice_company_id
 msgid "Company related to this journal"
-msgstr ""
+msgstr "Empresa relacionada a este periódico"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contato"
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_commission_make_invoices
@@ -263,7 +264,7 @@ msgstr "Credor/Representante"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Moeda"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice_date
@@ -323,7 +324,7 @@ msgstr "De"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice_from_settlement
 msgid "From Settlement"
-msgstr ""
+msgstr "Do Acordo"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_form
@@ -522,7 +523,7 @@ msgstr "Trimestralmente"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order
 msgid "Quotation"
-msgstr ""
+msgstr "Cotação"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_form
@@ -538,7 +539,7 @@ msgstr "Recalcular representantes nas linhas"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent_sale_line
 msgid "Sale Line"
-msgstr ""
+msgstr "Linha de Venda"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order_line
@@ -690,7 +691,7 @@ msgstr "Até"
 #: code:addons/sale_commission/models/settlement.py:135
 #, python-format
 msgid "Value cannot be negative"
-msgstr ""
+msgstr "O valor não pode ser negativo"
 
 #. module: sale_commission
 #: sql_constraint:account.invoice.line.agent:0
