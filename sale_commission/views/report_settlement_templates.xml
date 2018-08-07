@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_settlement">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <div class="row mt32 mb32">
+                            <div class="col-xs-3" t-if="o.agent">
+                                <strong>Agent:</strong>
+                                <p t-field="o.agent"/>
+                            </div>
+                            <div class="col-xs-2" t-if="o.date_from">
+                                <strong>From:</strong>
+                                <p t-field="o.date_from"/>
+                            </div>
+                            <div class="col-xs-2" t-if="o.date_to">
+                                <strong>To:</strong>
+                                <p t-field="o.date_to"/>
+                            </div>
+                        </div>
+
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Invoice date</th>
+                                    <th>Invoice</th>
+                                    <th>Invoice line</th>
+                                    <th>Commission</th>
+                                    <th class="text-right">Amount settled</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.lines" t-as="l">
+                                    <td><span t-field="l.date"/></td>
+                                    <td><span t-field="l.invoice"/></td>
+                                    <td><span t-field="l.invoice_line"/></td>
+                                    <td><span t-field="l.commission"/></td>
+                                    <td class="text-right"><span t-field="l.settled_amount"  t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="row">
+                            <div class="col-xs-4 pull-right">
+                                <table class="table table-condensed">
+                                    <tr>
+                                        <td><strong>Total</strong></td>
+                                        <td class="text-right">
+                                            <span t-field="o.total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
+
+
