@@ -50,6 +50,7 @@ Contributors
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Oihane Crucelaegui <oihanecruce@gmail.com>
 * Nicola Malcontenti <nicola.malcontenti@agilebg.com>
+* Aitor Bouzas <aitor.bouzas@adaptivecity.com>
 
 Images
 -------
