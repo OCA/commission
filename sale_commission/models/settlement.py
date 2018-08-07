@@ -134,6 +134,7 @@ class Settlement(models.Model):
             invoice_line_obj.create(invoice_line_vals)
             for invoice_line_vals in extra_invoice_lines:
                 invoice_line_obj.create(invoice_line_vals)
+            invoice.compute_taxes()
             settlement.state = 'invoiced'
             settlement.invoice = invoice.id
 
