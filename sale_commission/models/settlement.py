@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# Copyright 2014-2018 Tecnativa - Pedro M. Baeza
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, exceptions, fields, models, _
 from odoo.exceptions import UserError
@@ -33,6 +34,11 @@ class Settlement(models.Model):
     currency_id = fields.Many2one(
         comodel_name='res.currency', readonly=True,
         default=_default_currency)
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        default=lambda self: self.env.user.company_id,
+        required=True
+    )
 
     @api.depends('lines', 'lines.settled_amount')
     def _compute_total(self):
@@ -73,11 +79,12 @@ class Settlement(models.Model):
                      'in_refund'),
             'date_invoice': date,
             'journal_id': journal.id,
-            'company_id': self.env.user.company_id.id,
+            'company_id': settlement.company_id.id,
             'state': 'draft',
         })
-        # Get other invoice values from partner onchange
+        # Get other invoice values from onchanges
         invoice._onchange_partner_id()
+        invoice._onchange_journal_id()
         return invoice._convert_to_write(invoice._cache)
 
     def _prepare_invoice_line(self, settlement, invoice, product):
@@ -112,9 +119,15 @@ class Settlement(models.Model):
         """
         return []
 
+    def create_invoice_header(self, journal, date):
+        """Hook that can be used in order to group invoices or
+        find open invoices
+        """
+        invoice_vals = self._prepare_invoice_header(self, journal, date=date)
+        return self.env['account.invoice'].create(invoice_vals)
+
     @api.multi
     def make_invoices(self, journal, product, date=False):
-        invoice_obj = self.env['account.invoice']
         invoice_line_obj = self.env['account.invoice.line']
         for settlement in self:
             # select the proper journal according to settlement's amount
@@ -128,9 +141,7 @@ class Settlement(models.Model):
                 raise UserError(
                     _('Journal %s is not applicable for quantity %s')
                     % (journal.display_name, settlement.total + extra_total))
-            invoice_vals = self._prepare_invoice_header(
-                settlement, invoice_journal, date=date)
-            invoice = invoice_obj.create(invoice_vals)
+            invoice = settlement.create_invoice_header(journal, date)
             invoice_line_vals = self._prepare_invoice_line(
                 settlement, invoice, product)
             invoice_line_obj.create(invoice_line_vals)
@@ -169,5 +180,22 @@ class SettlementLine(models.Model):
         store=True)
     settled_amount = fields.Float(
         related="agent_line.amount", readonly=True, store=True)
+    currency_id = fields.Many2one(
+        related="agent_line.currency_id",
+        store=True,
+        readonly=True,
+    )
     commission = fields.Many2one(
         comodel_name="sale.commission", related="agent_line.commission")
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        related='settlement.company_id',
+    )
+
+    @api.constrains('company_id', 'agent_line')
+    def _check_company(self):
+        for record in self:
+            if record.agent_line.company_id != record.company_id:
+                raise UserError(_(
+                    'Company must be the same'
+                ))
