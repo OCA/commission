@@ -111,9 +111,17 @@ class Settlement(models.Model):
                                                                 'en_US'))])
         date_from = fields.Date.from_string(settlement.date_from)
         date_to = fields.Date.from_string(settlement.date_to)
-        invoice_line_vals['name'] += "\n" + _('Period: from %s to %s') % (
-            date_from.strftime(lang.date_format),
-            date_to.strftime(lang.date_format))
+        for line in settlement.lines:
+            ref_invoice_number = line.invoice.number
+        invoice_line_vals['name'] += (
+            "\n" + _('Period: from %s to %s') % (
+                date_from.strftime(lang.date_format),
+                date_to.strftime(lang.date_format)) +
+            "\n" + _('Invoice Ref.: %s') % ref_invoice_number)
+        # invert invoice values if it's a refund
+        if invoice_vals['type'] == 'in_refund':
+            invoice_line_vals['price_unit'] = -invoice_line_vals['price_unit']
+
         return invoice_line_vals
 
     def _add_extra_invoice_lines(self, settlement):
@@ -124,31 +132,91 @@ class Settlement(models.Model):
         return []
 
     @api.multi
-    def make_invoices(self, journal, refund_journal, product, date=False):
-        invoice_obj = self.env['account.invoice']
-        for settlement in self:
-            # select the proper journal according to settlement's amount
-            # considering _add_extra_invoice_lines sum of values
-            extra_invoice_lines = self._add_extra_invoice_lines(settlement)
-            extra_total = sum(x['price_unit'] for x in extra_invoice_lines)
-            invoice_journal = (journal if
-                               (settlement.total + extra_total) >= 0 else
-                               refund_journal)
+    def _create_grouping_invoice(self, settlement_header, settlements_objs,
+                                 journal, date, invoice_lines_vals):
+        if invoice_lines_vals:
             invoice_vals = self._prepare_invoice_header(
-                settlement, invoice_journal, date=date)
-            invoice_lines_vals = []
-            invoice_lines_vals.append(self._prepare_invoice_line(
-                settlement, invoice_vals, product))
-            invoice_lines_vals += extra_invoice_lines
-            # invert invoice values if it's a refund
-            if invoice_vals['type'] == 'in_refund':
-                for line in invoice_lines_vals:
-                    line['price_unit'] = -line['price_unit']
-            invoice_vals['invoice_line'] = [(0, 0, x)
-                                            for x in invoice_lines_vals]
-            invoice = invoice_obj.create(invoice_vals)
-            settlement.state = 'invoiced'
-            settlement.invoice = invoice.id
+                settlement_header, journal, date=date)
+            invoice_vals['invoice_line'] = [
+                (0, 0, x[0]) for x in invoice_lines_vals]
+            invoice = self.env['account.invoice'].create(invoice_vals)
+            for settlement in settlements_objs:
+                settlement.state = 'invoiced'
+                settlement.invoice = invoice.id
+
+    @api.multi
+    def make_invoices(self, journal, refund_journal, product,
+                      grouping_invoice, date=False):
+        if grouping_invoice:
+            agents = self.env['res.partner'].search(
+                [('agent', '=', True)])
+            for agent in agents:
+                # Get only settlements by agent
+                settlements_tmp = self.filtered(
+                    lambda r: r.agent.id == agent.id)
+                # Separate Settlements by Jornal type and
+                # create dict with invoice lines
+                invoice_lines_vals = []
+                invoice_lines_vals_refund = []
+                settlements_objs = self.env[
+                    'sale.commission.settlement']
+                settlements_refund_objs = self.env[
+                    'sale.commission.settlement']
+                for settlement in settlements_tmp:
+                    extra_invoice_lines = self._add_extra_invoice_lines(
+                        settlement)
+                    extra_total = sum(
+                        x['price_unit'] for x in extra_invoice_lines)
+                    invoice_journal_tmp = (
+                        journal if(settlement.total + extra_total) >= 0
+                        else refund_journal)
+                    invoice_vals = self._prepare_invoice_header(
+                        settlement, invoice_journal_tmp, date=date)
+                    invoice_lines_vals_tmp = []
+                    invoice_lines_vals_tmp.append(self._prepare_invoice_line(
+                        settlement, invoice_vals, product))
+                    invoice_lines_vals_tmp += extra_invoice_lines
+                    if invoice_vals['type'] == 'in_refund':
+                        invoice_lines_vals_refund.append(
+                            invoice_lines_vals_tmp)
+                        settlement_header_refund = settlement
+                        settlements_refund_objs |= settlement
+                        invoice_journal_refund = invoice_journal_tmp
+                    else:
+                        invoice_lines_vals.append(
+                            invoice_lines_vals_tmp)
+                        settlement_header = settlement
+                        settlements_objs |= settlement
+                        invoice_journal = invoice_journal_tmp
+                if invoice_lines_vals:
+                    self._create_grouping_invoice(
+                        settlement_header, settlements_objs,
+                        invoice_journal, date, invoice_lines_vals)
+                if invoice_lines_vals_refund:
+                    self._create_grouping_invoice(
+                        settlement_header_refund, settlements_refund_objs,
+                        invoice_journal_refund, date,
+                        invoice_lines_vals_refund)
+        else:
+            for settlement in self:
+                # select the proper journal according to settlement's amount
+                # considering _add_extra_invoice_lines sum of values
+                extra_invoice_lines = self._add_extra_invoice_lines(settlement)
+                extra_total = sum(x['price_unit'] for x in extra_invoice_lines)
+                invoice_journal = (journal if
+                                   (settlement.total + extra_total) >= 0 else
+                                   refund_journal)
+                invoice_vals = self._prepare_invoice_header(
+                    settlement, invoice_journal, date=date)
+                invoice_lines_vals = []
+                invoice_lines_vals.append(self._prepare_invoice_line(
+                    settlement, invoice_vals, product))
+                invoice_lines_vals += extra_invoice_lines
+                invoice_vals['invoice_line'] = [(0, 0, x)
+                                                for x in invoice_lines_vals]
+                invoice = self.env['account.invoice'].create(invoice_vals)
+                settlement.state = 'invoiced'
+                settlement.invoice = invoice.id
 
 
 class SettlementLine(models.Model):

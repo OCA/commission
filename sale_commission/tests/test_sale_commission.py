@@ -144,6 +144,32 @@ class TestSaleCommission(common.TransactionCase):
                 })]
             })]
         })
+        self.saleorder9 = self.sale_order_model.create({
+            'partner_id': self.partner.id,
+            'order_line': [(0, 0, {
+                'product_id': self.ref('product.product_product_7'),
+                'product_uom_qty': 16.0,
+                'product_uom': self.ref('product.product_uom_dozen'),
+                'agents': [(0, 0, {
+                    'agent':  self.ref(
+                        'sale_commission.res_partner_eiffel_sale_agent'),
+                    'commission': commission_section_invoice.id,
+                })]
+            })]
+        })
+        self.saleorder10 = self.sale_order_model.create({
+            'partner_id': self.partner.id,
+            'order_line': [(0, 0, {
+                'product_id': self.ref('product.product_product_7'),
+                'product_uom_qty': 16.0,
+                'product_uom': self.ref('product.product_uom_dozen'),
+                'agents': [(0, 0, {
+                    'agent':  self.ref(
+                        'sale_commission.res_partner_eiffel_sale_agent'),
+                    'commission': commission_section_invoice.id,
+                })]
+            })]
+        })
 
     def test_sale_commission_gross_amount_payment(self):
         self.saleorder1.signal_workflow('order_confirm')
@@ -386,3 +412,99 @@ class TestSaleCommission(common.TransactionCase):
                     'percent': 20.0,
                 })]
             })
+
+    def test_sale_commission_grouping_invoice(self):
+        self.saleorder9.signal_workflow('order_confirm')
+        payment = self.advance_inv_model.create({
+            'advance_payment_method': 'all',
+        })
+        payment.with_context(active_model='sale.order',
+                             active_ids=[self.saleorder9.id],
+                             active_id=self.saleorder9.id).create_invoices()
+        self.assertNotEquals(
+            len(self.saleorder9.invoice_ids), 0,
+            "Invoice should be created after make advance invoice where type"
+            " is 'Invoice all the Sale Order'.")
+        for invoice in self.saleorder9.invoice_ids:
+            invoice.date_invoice = fields.Date.today()
+            invoice.signal_workflow('invoice_open')
+
+        self.saleorder10.signal_workflow('order_confirm')
+        payment = self.advance_inv_model.create({
+            'advance_payment_method': 'all',
+        })
+        payment.with_context(active_model='sale.order',
+                             active_ids=[self.saleorder10.id],
+                             active_id=self.saleorder10.id).create_invoices()
+        self.assertNotEquals(
+            len(self.saleorder10.invoice_ids), 0,
+            "Invoice should be created after make advance invoice where type"
+            " is 'Invoice all the Sale Order'.")
+        for invoice in self.saleorder10.invoice_ids:
+            invoice.date_invoice = fields.Date.today()
+            invoice.signal_workflow('invoice_open')
+
+        wizard = self.make_settle_model.create(
+            {'date_to': (datetime.datetime.now() +
+                         dateutil.relativedelta.relativedelta(months=1))})
+        wizard.action_settle()
+        wizard2 = self.make_inv_model.create(
+            {'product': 1, 'grouping_invoice': True})
+        wizard2.button_create()
+        settlements = self.settle_model.search([('state', '=', 'invoiced')])
+        invoice_ids = []
+        for settlement in settlements:
+            self.assertNotEquals(len(settlement.invoice), 0,
+                                 "Settlements need to be in Invoiced State.")
+            invoice_ids.append(settlement.invoice.id)
+
+    def test_sale_commission_grouping_invoice_refund(self):
+        self.saleorder9.signal_workflow('order_confirm')
+        payment = self.advance_inv_model.create({
+            'advance_payment_method': 'all',
+        })
+        payment.with_context(active_model='sale.order',
+                             active_ids=[self.saleorder9.id],
+                             active_id=self.saleorder9.id).create_invoices()
+        self.assertNotEquals(
+            len(self.saleorder9.invoice_ids), 0,
+            "Invoice should be created after make advance invoice where type"
+            " is 'Invoice all the Sale Order'.")
+        for invoice in self.saleorder9.invoice_ids:
+            invoice.date_invoice = fields.Date.today()
+            invoice.signal_workflow('invoice_open')
+
+        self.saleorder10.signal_workflow('order_confirm')
+        payment = self.advance_inv_model.create({
+            'advance_payment_method': 'all',
+        })
+        payment.with_context(active_model='sale.order',
+                             active_ids=[self.saleorder10.id],
+                             active_id=self.saleorder10.id).create_invoices()
+        self.assertNotEquals(
+            len(self.saleorder10.invoice_ids), 0,
+            "Invoice should be created after make advance invoice where type"
+            " is 'Invoice all the Sale Order'.")
+        for invoice in self.saleorder10.invoice_ids:
+            invoice.date_invoice = fields.Date.today()
+            invoice.signal_workflow('invoice_open')
+
+        for invoice in self.saleorder10.invoice_ids:
+            refund_wiz = self.env['account.invoice.refund'].with_context(
+                active_ids=invoice.ids, active_id=invoice.id).create({
+                    'description': 'Refund test',
+                    'filter_refund': 'refund',
+                })
+            refund_wiz.invoice_refund()
+
+        wizard = self.make_settle_model.create(
+            {'date_to': (datetime.datetime.now() +
+                         dateutil.relativedelta.relativedelta(months=1))})
+        wizard.action_settle()
+        wizard2 = self.make_inv_model.create(
+            {'product': 1, 'grouping_invoice': True})
+        wizard2.button_create()
+        settlements = self.settle_model.search([('state', '=', 'invoiced')])
+        for settlement in settlements:
+            self.assertNotEquals(len(settlement.invoice), 0,
+                                 "Settlements need to be in Invoiced State.")
