@@ -101,3 +101,15 @@ class SaleOrderLineAgent(models.Model):
                     line.amount = subtotal * (line.commission.fix_qty / 100.0)
                 else:
                     line.amount = line.commission.calculate_section(subtotal)
+
+    @api.multi
+    def name_get(self):
+        res = []
+        for record in self:
+            name = "%s: %s" % (record.agent.name, record.commission.name)
+            res.append((record.id, name))
+        return res
+
+    @api.depends('agent', 'commission')
+    def _compute_display_name(self):
+        return super(SaleOrderLineAgent, self)._compute_display_name()
