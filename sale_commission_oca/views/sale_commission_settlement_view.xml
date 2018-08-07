@@ -5,7 +5,8 @@
         <field name="model">sale.commission.settlement</field>
         <field name="arch" type="xml">
             <tree string="Settlements"
-                  colors="red: state == 'cancel'; gray: state == 'invoiced'">
+                  colors="red: state == 'cancel'; gray: state == 'invoiced'"
+                  create="false">
                 <field name="agent"/>
                 <field name="company_id" groups="base.group_multi_company"/>
                 <field name="date_from"/>
@@ -33,7 +34,7 @@
                 <group expand="1" string="Group By">
                     <filter string="Agent" name="group_agent" context="{'group_by': 'agent'}"/>
                     <filter string="Date from month" name="group_date" context="{'group_by': 'date_from:month'}"/>
-                 </group>
+                </group>
             </search>
         </field>
     </record>
@@ -119,21 +120,21 @@
                 <group expand="1" string="Group By">
                     <filter string="Agent" name="group_agent" context="{'group_by': 'agent'}"/>
                     <filter string="Date month" name="group_date" context="{'group_by': 'date:month'}"/>
-                 </group>
+                </group>
             </search>
         </field>
     </record>
 
     <record id="view_settlement_line_graph" model="ir.ui.view">
-         <field name="name">sale.commission.settlement.line.graph</field>
-         <field name="model">sale.commission.settlement.line</field>
-         <field name="arch" type="xml">
-             <graph string="Settlement analysis" type="pivot">
+        <field name="name">sale.commission.settlement.line.graph</field>
+        <field name="model">sale.commission.settlement.line</field>
+        <field name="arch" type="xml">
+            <graph string="Settlement analysis" type="pivot">
                 <field name="agent" type="row"/>
                 <field name="date" interval="month" type="col"/>
                 <field name="settled_amount" type="measure"/>
-             </graph>
-         </field>
+            </graph>
+        </field>
     </record>
 
     <record model="ir.actions.act_window" id="action_settle_commission">
