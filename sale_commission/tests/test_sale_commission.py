@@ -7,6 +7,8 @@ import dateutil.relativedelta
 
 
 class TestSaleCommission(TransactionCase):
+    at_install = False
+    post_install = True
 
     def setUp(self):
         super(TestSaleCommission, self).setUp()
@@ -317,7 +319,7 @@ class TestSaleCommission(TransactionCase):
         wizard.action_settle()
         wizard2 = self.make_inv_model.create({
             'product': 1,
-            'journal_id': self.journal.id
+            'journal': self.journal.id
         })
         wizard2.button_create()
         settlements = self.settle_model.search([('state', '=', 'invoiced')])
