@@ -80,8 +80,9 @@ class Settlement(models.Model):
             'company_id': settlement.company_id.id,
             'state': 'draft',
         })
-        # Get other invoice values from partner onchange
+        # Get other invoice values from onchanges
         invoice._onchange_partner_id()
+        invoice._onchange_journal_id()
         return invoice._convert_to_write(invoice._cache)
 
     def _prepare_invoice_line(self, settlement, invoice, product):
