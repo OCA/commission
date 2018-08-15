@@ -7,6 +7,8 @@ import dateutil.relativedelta
 
 
 class TestSaleCommission(TransactionCase):
+    at_install = False
+    post_install = True
 
     def setUp(self):
         super(TestSaleCommission, self).setUp()
