@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo11-addon-sale_commission',
         'odoo11-addon-sale_commission_formula',
+        'odoo11-addon-sale_commission_pricelist',
     ],
     classifiers=[
         'Programming Language :: Python',
