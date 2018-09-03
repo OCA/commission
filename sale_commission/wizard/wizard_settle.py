@@ -47,6 +47,23 @@ class SaleCommissionMakeSettle(models.TransientModel):
         else:
             raise exceptions.Warning(_("Settlement period not valid."))
 
+    def _get_settlement_domain(self, agent, company, sett_from, sett_to):
+        return [
+            ('agent', '=', agent.id),
+            ('date_from', '=', sett_from),
+            ('date_to', '=', sett_to),
+            ('company_id', '=', company.id),
+            ('state', '=', 'settled')
+        ]
+
+    def _get_settlement_values(self, agent, company, sett_from, sett_to):
+        return {
+            'agent': agent.id,
+            'date_from': sett_from,
+            'date_to': sett_to,
+            'company_id': company.id,
+        }
+
     @api.multi
     def action_settle(self):
         self.ensure_one()
@@ -89,20 +106,13 @@ class SaleCommissionMakeSettle(models.TransientModel):
                             self._get_next_period_date(
                                 agent, sett_from) - timedelta(days=1))
                         sett_from = fields.Date.to_string(sett_from)
-                        settlement = settlement_obj.search([
-                            ('agent', '=', agent.id),
-                            ('date_from', '=', sett_from),
-                            ('date_to', '=', sett_to),
-                            ('company_id', '=', company.id),
-                            ('state', '=', 'settled')
-                        ], limit=1)
+                        settlement = settlement_obj.search(
+                            self._get_settlement_domain(
+                                agent, company, sett_from, sett_to), limit=1)
                         if not settlement:
-                            settlement = settlement_obj.create({
-                                'agent': agent.id,
-                                'date_from': sett_from,
-                                'date_to': sett_to,
-                                'company_id': company.id,
-                            })
+                            settlement = settlement_obj.create(
+                                self._get_settlement_values(
+                                    agent, company, sett_from, sett_to))
                         settlement_ids.append(settlement.id)
                     settlement_line_obj.create({
                         'settlement': settlement.id,
