@@ -48,7 +48,7 @@ class SaleCommissionMakeSettle(models.TransientModel):
             raise exceptions.Warning(_("Settlement period not valid."))
 
     def _get_settlement(self, agent, company, sett_from, sett_to):
-        return self.env['account.invoice.line.agent'].search([
+        return self.env['sale.commission.settlement'].search([
             ('agent', '=', agent.id),
             ('date_from', '=', sett_from),
             ('date_to', '=', sett_to),
