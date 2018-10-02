@@ -540,6 +540,11 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_commission
+#: selection:res.partner,agent_type:0
+msgid "Salesman (employee)"
+msgstr ""
+
+#. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_sections
 msgid "Sections"
 msgstr ""
