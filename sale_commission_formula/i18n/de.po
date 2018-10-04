@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-14 15:14+0000\n"
-"PO-Revision-Date: 2018-10-04 17:27+0000\n"
+"PO-Revision-Date: 2018-10-05 18:25+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
@@ -39,7 +39,7 @@ msgstr ""
 "  Sie können z.B. line._name == 'sale.order.line'\n"
 "  oder line._name == 'account.invoice.line' verwenden.\n"
 "\n"
-"  Use 'result' to return the commission amount.\n"
+"  Nutzen Sie 'result' um den Provisionsbetrag zurück zu geben.\n"
 "                        </span>"
 
 #. module: sale_commission_formula
@@ -75,7 +75,7 @@ msgstr "Anleitungen"
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Label"
-msgstr "Etikett"
+msgstr "Kennzeichnung"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
