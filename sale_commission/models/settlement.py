@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 from odoo import api, exceptions, fields, models, _
 from odoo.exceptions import UserError
@@ -145,6 +144,7 @@ class Settlement(models.Model):
 
 class SettlementLine(models.Model):
     _name = "sale.commission.settlement.line"
+    _description = "Line of a commission settlement"
 
     settlement = fields.Many2one(
         "sale.commission.settlement", readonly=True, ondelete="cascade",

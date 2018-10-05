@@ -23,12 +23,6 @@
                 <field name="commission_free"/>
                 <field name="agents"
                        attrs="{'readonly': [('commission_free', '=', True)]}"/>
-                <!-- We need to add the analytic_tag_ids until https://github.com/odoo/odoo/issues/24702 is fixed-->
-                <field name="analytic_tag_ids"
-                       groups="analytic.group_analytic_accounting"
-                       widget="many2many_tags"
-                       options="{'color_field': 'color'}"/>
-
             </field>
 
         </field>
@@ -44,11 +38,9 @@
             </field>
             <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='price_subtotal']" position="after">
                 <field name="commission_free"/>
-                <field name="agents"
-                       attrs="{'readonly': [('commission_free', '=', True)]}"/>
-            </xpath>
-            <xpath expr="//field[@name='invoice_line_ids']/tree" position="attributes">
-                    <attribute name="editable"/>
+                <field name="agents" readonly="1" widget="many2many_tags"/>
+                <button name="action_edit_agents"
+                        icon="fa-users" attrs="{'invisible': [('commission_free', '=', True)]}" type="object"/>
             </xpath>
             <xpath expr="//field[@name='invoice_line_ids']" position="after">
                 <button name="recompute_lines_agents" type="object" string="Recompute lines agents" states="draft"></button>
@@ -58,6 +50,21 @@
                        widget="monetary"
                        options="{'currency_field': 'currency_id'}"/>
             </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_account_invoice_line_agent_only">
+        <field name="name">account.invoice.line.agent.only</field>
+        <field name="model">account.invoice.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="commission_free" invisible="True"/>
+                <field name="agents" attrs="{'readonly': [('commission_free', '=', True)]}"/>
+                <footer class="oe_edit_only">
+                    <button string="Confirm" special="save" class="oe_highlight"/>
+                    <button string="Discard" special="cancel"/>
+                </footer>
+            </form>
         </field>
     </record>
 

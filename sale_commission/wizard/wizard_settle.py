@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 from odoo import models, fields, api, exceptions, _
 from datetime import date, timedelta
@@ -7,6 +6,7 @@ from dateutil.relativedelta import relativedelta
 
 class SaleCommissionMakeSettle(models.TransientModel):
     _name = "sale.commission.make.settle"
+    _description = "Wizard for settling commissions in invoices"
 
     date_to = fields.Date('Up to', required=True, default=fields.Date.today())
     agents = fields.Many2many(
@@ -82,7 +82,7 @@ class SaleCommissionMakeSettle(models.TransientModel):
                     ):
                         pos += 1
                         continue
-                    if line.invoice_date > sett_to:
+                    if line.invoice_date > fields.Date.to_date(sett_to):
                         sett_from = self._get_period_start(
                             agent, line.invoice_date)
                         sett_to = fields.Date.to_string(

@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 
 
 class SaleOrder(models.Model):
@@ -88,9 +87,29 @@ class SaleOrderLine(models.Model):
                     'commission': x.commission.id}) for x in self.agents]
         return vals
 
+    def action_edit_agents(self):
+        self.ensure_one()
+        view = self.env.ref('sale_commission.view_sale_order_line_agent_only')
+
+        return {
+            'name': _('Agents'),
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'sale.order.line',
+            'views': [(view.id, 'form')],
+            'view_id': view.id,
+            'target': 'new',
+            'res_id': self.id,
+            'context': dict(
+                self.env.context,
+            ),
+        }
+
 
 class SaleOrderLineAgent(models.Model):
     _name = "sale.order.line.agent"
+    _description = "Agents commission in an order's line"
     _rec_name = "agent"
 
     sale_line = fields.Many2one(

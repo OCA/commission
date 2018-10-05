@@ -9,13 +9,11 @@
             <field name="order_line" position="attributes">
                 <attribute name="context">{'partner_id': partner_id}</attribute>
             </field>
-            <xpath expr="//field[@name='order_line']/tree" position="attributes">
-                <attribute name="editable"/>
-            </xpath>
             <xpath expr="//field[@name='order_line']/tree//field[@name='price_subtotal']" position="after">
                 <field name="commission_free"/>
-                <field name="agents"
-                       attrs="{'readonly': [('commission_free', '=', True)]}"/>
+                <field name="agents" readonly="1" widget="many2many_tags"/>
+                <button name="action_edit_agents"
+                        icon="fa-users" attrs="{'invisible': [('commission_free', '=', True)]}" type="object"/>
             </xpath>
             <xpath expr="//field[@name='order_line']/form//field[@name='customer_lead']/.." position="after">
                 <field name="commission_free"/>
@@ -41,6 +39,21 @@
                 <field name="agent"/>
                 <field name="commission"/>
             </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_sale_order_line_agent_only">
+        <field name="name">sale.order.line.agent.only</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="commission_free" invisible="True"/>
+                <field name="agents" attrs="{'readonly': [('commission_free', '=', True)]}"/>
+                <footer class="oe_edit_only">
+                    <button string="Confirm" special="save" class="oe_highlight"/>
+                    <button string="Discard" special="cancel"/>
+                </footer>
+            </form>
         </field>
     </record>
 

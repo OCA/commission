@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 
 
 class AccountInvoice(models.Model):
@@ -51,34 +50,6 @@ class AccountInvoice(models.Model):
                 del agent_vals['invoice']
                 del agent_vals['invoice_line']
             vals['agents'] = agents
-        return res
-
-    @api.onchange('partner_id', 'company_id')
-    def _onchange_partner_id(self):
-        self.ensure_one()
-        res = super(AccountInvoice, self)._onchange_partner_id()
-        # workaround for https://github.com/odoo/odoo/issues/17618
-        for line in self.invoice_line_ids:
-            line.agents = None
-        return res
-
-    @api.onchange('journal_id')
-    def _onchange_journal_id(self):
-        self.ensure_one()
-        res = super(AccountInvoice, self)._onchange_journal_id()
-        # workaround for https://github.com/odoo/odoo/issues/17618
-        for line in self.invoice_line_ids:
-            line.agents = None
-        return res
-
-    @api.onchange('payment_term_id', 'date_invoice')
-    def _onchange_payment_term_date_invoice(self):
-        self.ensure_one()
-        res = super(AccountInvoice, self)._onchange_payment_term_date_invoice()
-        if not self.env.context.get('skip_agents_delete'):
-            # workaround for https://github.com/odoo/odoo/issues/17618
-            for line in self.invoice_line_ids:
-                line.agents = None
         return res
 
     @api.multi
@@ -134,9 +105,32 @@ class AccountInvoiceLine(models.Model):
         string="Comm. free", related="product_id.commission_free",
         store=True, readonly=True)
 
+    def action_edit_agents(self):
+        self.ensure_one()
+        view = self.env.ref(
+            'sale_commission.view_account_invoice_line_agent_only'
+        )
+
+        return {
+            'name': _('Agents'),
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'account.invoice.line',
+            'views': [(view.id, 'form')],
+            'view_id': view.id,
+            'target': 'new',
+            'res_id': self.id,
+            'context': dict(
+                self.env.context,
+            ),
+        }
+
 
 class AccountInvoiceLineAgent(models.Model):
     _name = "account.invoice.line.agent"
+    _description = "Agents commission in an invoice's line"
+    _rec_name = "agent"
 
     invoice_line = fields.Many2one(
         comodel_name="account.invoice.line",
