@@ -55,6 +55,9 @@
        <field name="arch" type="xml">
            <filter name="supplier" position="after">
                <filter string="Agents" name="agent" domain="[('agent', '=', 1)]" help="Agent Partners"/>
+               <separator/>
+               <filter string="No Agents Assigned" name="no_agent_assigned" domain="[('agents', '=', False)]" />
+               <filter string="Agents Assigned" name="agent_assigned" domain="[('agents', '!=', False)]" />
            </filter>
         </field>
    </record>
