@@ -4,7 +4,7 @@
 
 {
     'name': 'Sales commission Area Manager',
-    'version': '10.0.1.0.1',
+    'version': '10.0.1.1.0',
     'author': 'Agile Business Group, '
               'Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/commission',
