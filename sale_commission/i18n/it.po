@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-22 08:15+0000\n"
-"PO-Revision-Date: 2018-03-22 08:15+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2018-11-05 17:44+0000\n"
+"Last-Translator: Davide Corio <enlightx@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.2.2\n"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
@@ -300,7 +301,7 @@ msgstr "Agente Esterno"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_fix_qty
 #: selection:sale.commission,commission_type:0
 msgid "Fixed percentage"
-msgstr "Percentuale Fissata"
+msgstr "Percentuale Fissa"
 
 #. module: sale_commission
 #: selection:sale.commission,commission_type:0
@@ -327,7 +328,7 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_form
 msgid "General information"
-msgstr "informationi Generali"
+msgstr "informazioni Generali"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_invoice
@@ -563,8 +564,9 @@ msgstr "Semi-annuale"
 #: model:ir.actions.act_window,name:sale_commission.action_agents_settlement
 #: model:ir.ui.menu,name:sale_commission.menu_agents_settlement
 #: model:ir.ui.view,arch_db:sale_commission.view_settled_wizard
+#, fuzzy
 msgid "Settle commissions"
-msgstr "Decidi le commissioni"
+msgstr "Liquidazione commissioni"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_settled
