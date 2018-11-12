@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo10-addon-sale_commission',
         'odoo10-addon-sale_commission_areamanager',
         'odoo10-addon-sale_commission_formula',
+        'odoo10-addon-sale_commission_geo_assign',
         'odoo10-addon-sale_commission_pricelist',
     ],
     classifiers=[
