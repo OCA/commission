@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_commission_areamanager
-#: model:ir.ui.view,arch_db:sale_commission_areamanager.view_partner_form_area_manager
-msgid "Agent information"
-msgstr ""
-
-#. module: sale_commission_areamanager
 #: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_partner_area_manager_sub_agent_ids
 #: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_users_area_manager_sub_agent_ids
 msgid "Agents"
@@ -72,16 +67,6 @@ msgstr ""
 #. module: sale_commission_areamanager
 #: model:ir.model,name:sale_commission_areamanager.model_sale_order
 msgid "Sales Order"
-msgstr ""
-
-#. module: sale_commission_areamanager
-#: model:ir.ui.view,arch_db:sale_commission_areamanager.view_partner_form_area_manager
-msgid "Settled total"
-msgstr ""
-
-#. module: sale_commission_areamanager
-#: model:ir.ui.view,arch_db:sale_commission_areamanager.view_partner_form_area_manager
-msgid "Settlements"
 msgstr ""
 
 #. module: sale_commission_areamanager
