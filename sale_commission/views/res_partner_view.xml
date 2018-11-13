@@ -13,7 +13,8 @@
             <field name="user_id" position="after">
                 <field name="agents"
                        attrs="{'invisible': [('customer', '=', False)]}"
-                       widget="many2many_tags"/>
+                       widget="many2many_tags"
+                       context="{'default_agent': True}"/>
             </field>
             <page name="sales_purchases" position="after">
                 <page name="agent_information"
