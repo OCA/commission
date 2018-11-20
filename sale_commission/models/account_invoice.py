@@ -229,7 +229,7 @@ class AccountInvoiceLineAgent(models.Model):
         :return: bool
         """
         self.ensure_one()
-        return bool(
+        return (
             self.commission.invoice_state == 'paid' and
             self.invoice.state != 'paid'
         )
