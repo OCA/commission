@@ -221,3 +221,15 @@ class AccountInvoiceLineAgent(models.Model):
         ('unique_agent', 'UNIQUE(invoice_line, agent)',
          'You can only add one time each agent.')
     ]
+
+    @api.multi
+    def _skip_settlement(self):
+        """
+        This function should return if the commission can be payed
+        :return: bool
+        """
+        self.ensure_one()
+        return bool(
+            self.commission.invoice_state == 'paid' and
+            self.invoice.state != 'paid'
+        )
