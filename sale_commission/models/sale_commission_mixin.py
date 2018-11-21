@@ -57,19 +57,31 @@ class SaleCommissionMixin(models.AbstractModel):
                     "%s commission agents"
                 ) % len(line.agents)
 
+    @api.model
+    def _filter_agent_vals(self, vals):
+        """Remove offending commands brought by web client."""
+        new_commands = []
+        for i, command in enumerate(vals['agents']):
+            if i == 0 and command[0] == 5 and len(vals['agents']) > 1:
+                # Remove initial [5] command for avoiding integrity error
+                continue
+            if command[0] == 0 and not command[2]:
+                # Remove empty add records
+                continue
+            new_commands.append(command)
+        return new_commands
+
+    @api.model
+    def create(self, vals):
+        """Workaround for https://github.com/odoo/odoo/issues/17618."""
+        if 'agents' in vals:
+            vals['agents'] = self._filter_agent_vals(vals)
+        return super(SaleCommissionMixin, self).create(vals)
+
     def write(self, vals):
         """Workaround for https://github.com/odoo/odoo/issues/17618."""
         if 'agents' in vals:
-            new_commands = []
-            for i, command in enumerate(vals['agents']):
-                if i == 0 and command[0] == 5 and len(vals['agents']) > 1:
-                    # Remove initial [5] command for avoiding integrity error
-                    continue
-                if command[0] == 0 and not command[2]:
-                    # Remove empty add records
-                    continue
-                new_commands.append(command)
-            vals['agents'] = new_commands
+            vals['agents'] = self._filter_agent_vals(vals)
         return super(SaleCommissionMixin, self).write(vals)
 
     def _prepare_agents_vals(self):
