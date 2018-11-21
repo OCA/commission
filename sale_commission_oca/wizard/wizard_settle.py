@@ -93,10 +93,7 @@ class SaleCommissionMakeSettle(models.TransientModel):
                                                      day=1))
                 while pos < len(agent_lines_company):
                     line = agent_lines_company[pos]
-                    if (
-                        line.commission.invoice_state == 'paid' and
-                        line.invoice.state != 'paid'
-                    ):
+                    if line._skip_settlement():
                         pos += 1
                         continue
                     if line.invoice_date > sett_to:
