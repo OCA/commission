@@ -186,7 +186,7 @@ msgid "Company"
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:180
+#: code:addons/sale_commission/models/settlement.py:181
 #, python-format
 msgid "Company must be the same"
 msgstr ""
@@ -219,7 +219,7 @@ msgid "Created Invoices"
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/wizard/wizard_settle.py:124
+#: code:addons/sale_commission/wizard/wizard_settle.py:121
 #, python-format
 msgid "Created Settlements"
 msgstr ""
