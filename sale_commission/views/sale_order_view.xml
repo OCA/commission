@@ -13,14 +13,12 @@
                 <attribute name="editable"/>
             </xpath>
             <xpath expr="//field[@name='order_line']/tree//field[@name='price_subtotal']" position="after">
-                <field name="commission_free"/>
-                <field name="agents"
-                       attrs="{'readonly': [('commission_free', '=', True)]}"/>
+                <field name="commission_status"/>
             </xpath>
             <xpath expr="//field[@name='order_line']/form//field[@name='customer_lead']/.." position="after">
                 <field name="commission_free"/>
                 <field name="agents"
-                       attrs="{'readonly': [('commission_free', '=', True)]}"/>
+                       attrs="{'invisible': [('commission_free', '=', True)]}"/>
             </xpath>
             <field name="amount_total" position="after">
                 <field name="commission_total"
@@ -28,7 +26,7 @@
                        options="{'currency_field': 'currency_id'}"/>
             </field>
             <xpath expr="//field[@name='order_line']" position="after">
-                <button name="recompute_lines_agents" type="object" string="Recompute lines agents" states="draft"></button>
+                <button name="recompute_lines_agents" type="object" string="Recompute lines agents" states="draft"/>
             </xpath>
         </field>
     </record>
