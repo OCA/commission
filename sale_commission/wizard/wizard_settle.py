@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 from odoo import models, fields, api, exceptions, _
 from datetime import date, timedelta
@@ -84,7 +83,7 @@ class SaleCommissionMakeSettle(models.TransientModel):
                  ('settled', '=', False)], order='invoice_date')
             for company in agent_lines.mapped('company_id'):
                 agent_lines_company = agent_lines.filtered(
-                    lambda r: r.invoice_line.company_id == company)
+                    lambda r: r.object_id.company_id == company)
                 if not agent_lines_company:
                     continue
                 pos = 0
@@ -93,8 +92,8 @@ class SaleCommissionMakeSettle(models.TransientModel):
                                                      day=1))
                 while pos < len(agent_lines_company):
                     line = agent_lines_company[pos]
+                    pos += 1
                     if line._skip_settlement():
-                        pos += 1
                         continue
                     if line.invoice_date > sett_to:
                         sett_from = self._get_period_start(
@@ -114,7 +113,6 @@ class SaleCommissionMakeSettle(models.TransientModel):
                         'settlement': settlement.id,
                         'agent_line': [(6, 0, [line.id])],
                     })
-                    pos += 1
         # go to results
         if len(settlement_ids):
             return {
