@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 from odoo import fields
 from odoo.tests.common import TransactionCase
@@ -158,7 +157,11 @@ class TestSaleCommission(TransactionCase):
                          dateutil.relativedelta.relativedelta(months=period))})
         wizard.action_settle()
         settlements = self.settle_model.search([('state', '=', 'settled')])
-        self.assertNotEqual(len(settlements), 0)
+        self.assertTrue(settlements)
+        inv_line = sale_order.mapped('invoice_ids.invoice_line_ids')[0]
+        self.assertTrue(inv_line.any_settled)
+        with self.assertRaises(ValidationError):
+            inv_line.agents.amount = 5
         self.env['sale.commission.make.invoice'].with_context(
             settlement_ids=settlements.ids
         ).create({
@@ -370,27 +373,39 @@ class TestSaleCommission(TransactionCase):
                 })],
             })
 
-    def test_sale_order_onchange_partner(self):
+    def test_sale_order_onchange_commission_status(self):
+        # Make sure user is in English
+        self.env.user.lang = 'en_US'
         sale_order = self._create_sale_order(
             self.browse_ref('sale_commission.res_partner_pritesh_sale_agent'),
-            self.commission_section_invoice
+            self.commission_section_invoice,
         )
-        partner = self.browse_ref('base.res_partner_12')
-        partner.agent = False
-        self.agent_annual.commission = self.commission_net_invoice
-        partner.agents = self.agent_annual
-        sale_order.partner_id = partner
-        sale_order.onchange_partner_id()
-        for line in sale_order.order_line:
-            self.assertFalse(line.agents)
-        sale_order.recompute_lines_agents()
-        for line in sale_order.order_line:
-            self.assertTrue(line.agents)
-        sale_order.fiscal_position_id = self.env[
-            'account.fiscal.position'].search([], limit=1)
-        sale_order._compute_tax_id()
-        for line in sale_order.order_line:
-            self.assertFalse(line.agents)
+        self.assertIn("1", sale_order.order_line[0].commission_status)
+        self.assertNotIn("agents", sale_order.order_line[0].commission_status)
+        sale_order.mapped('order_line.agents').unlink()
+        self.assertIn("No", sale_order.order_line[0].commission_status)
+        sale_order.order_line[0].agents = [
+            (0, 0, {
+                'agent': self.env.ref(
+                    'sale_commission.res_partner_pritesh_sale_agent'
+                ).id,
+                'commission': self.env.ref(
+                    'sale_commission.demo_commission'
+                ).id,
+            }),
+            (0, 0, {
+                'agent': self.env.ref(
+                    'sale_commission.res_partner_eiffel_sale_agent'
+                ).id,
+                'commission': self.env.ref(
+                    'sale_commission.demo_commission'
+                ).id,
+            }),
+        ]
+        self.assertIn("2", sale_order.order_line[0].commission_status)
+        self.assertIn("agents", sale_order.order_line[0].commission_status)
+        sale_order.order_line[0].commission_free = True
+        self.assertIn("free", sale_order.order_line[0].commission_status)
 
     def test_invoice(self):
         self.partner.agent = False
@@ -418,17 +433,6 @@ class TestSaleCommission(TransactionCase):
         self.assertGreater(len(line.agents), 0)
         invoice.partner = partner
         invoice._onchange_partner_id()
-        self.assertEqual(len(line.agents), 0)
-        invoice.recompute_lines_agents()
-        self.assertGreater(len(line.agents), 0)
-        invoice.journal_id = self.env['account.journal'].create({
-            'name': 'TEST',
-            'code': 'T',
-            'type': 'sale',
-        })
-        invoice._onchange_journal_id()
-        self.assertEqual(len(line.agents), 0)
-        invoice.recompute_lines_agents()
         self.assertGreater(len(line.agents), 0)
         for agent in line.agents:
             agent.agent = self.agent_semi
