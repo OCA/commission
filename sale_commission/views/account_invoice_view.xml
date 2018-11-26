@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- This view is needed for proper visualization of the popup / embedded one2many -->
     <record id="invoice_line_agent_tree" model="ir.ui.view">
         <field name="name">account.invoice.line.agent.tree</field>
         <field name="model">account.invoice.line.agent</field>
@@ -23,14 +24,7 @@
                 <field name="commission_free"/>
                 <field name="agents"
                        attrs="{'readonly': [('commission_free', '=', True)]}"/>
-                <!-- We need to add the analytic_tag_ids until https://github.com/odoo/odoo/issues/24702 is fixed-->
-                <field name="analytic_tag_ids"
-                       groups="analytic.group_analytic_accounting"
-                       widget="many2many_tags"
-                       options="{'color_field': 'color'}"/>
-
             </field>
-
         </field>
     </record>
 
@@ -43,12 +37,15 @@
                 <attribute name="context">{'partner_id': partner_id}</attribute>
             </field>
             <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='price_subtotal']" position="after">
-                <field name="commission_free"/>
-                <field name="agents"
-                       attrs="{'readonly': [('commission_free', '=', True)]}"/>
-            </xpath>
-            <xpath expr="//field[@name='invoice_line_ids']/tree" position="attributes">
-                    <attribute name="editable"/>
+                <field name="commission_free" invisible="1"/>
+                <field name="agents" invisible="1"/>
+                <field name="any_settled" invisible="1"/>
+                <button name="button_edit_agents"
+                        icon="fa-users"
+                        attrs="{'invisible': ['|', ('commission_free', '=', True), ('any_settled', '=', True)]}"
+                        type="object"
+                />
+                <field name="commission_status"/>
             </xpath>
             <xpath expr="//field[@name='invoice_line_ids']" position="after">
                 <button name="recompute_lines_agents" type="object" string="Recompute lines agents" states="draft"></button>
