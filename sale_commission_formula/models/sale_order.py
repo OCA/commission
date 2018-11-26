@@ -11,15 +11,13 @@ class SaleOrderLineAgent(models.Model):
 
     @api.model
     def _get_formula_input_dict(self):
-        return {'line': self.sale_line,
+        return {'line': self.object_id,
                 'self': self}
 
-    @api.depends('commission.commission_type', 'sale_line.price_subtotal',
-                 'commission.amount_base_type')
     def _compute_amount(self):
         for line_agent in self:
             if (line_agent.commission.commission_type == 'formula' and
-                not line_agent.sale_line.product_id.commission_free and
+                not line_agent.object_id.product_id.commission_free and
                     line_agent.commission):
                 line_agent.amount = 0.0
                 formula = line_agent.commission.formula
