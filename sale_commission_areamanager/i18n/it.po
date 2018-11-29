@@ -17,11 +17,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_commission_areamanager
-#: model:ir.ui.view,arch_db:sale_commission_areamanager.view_partner_form_area_manager
-msgid "Agent information"
-msgstr "Informazioni Agente"
-
-#. module: sale_commission_areamanager
 #: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_partner_area_manager_sub_agent_ids
 #: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_users_area_manager_sub_agent_ids
 msgid "Agents"
@@ -78,17 +73,16 @@ msgid "Sales Order"
 msgstr "Ordine di vendita"
 
 #. module: sale_commission_areamanager
-#: model:ir.ui.view,arch_db:sale_commission_areamanager.view_partner_form_area_manager
-msgid "Settled total"
-msgstr "Totale Liquidato"
-
-#. module: sale_commission_areamanager
-#: model:ir.ui.view,arch_db:sale_commission_areamanager.view_partner_form_area_manager
-msgid "Settlements"
-msgstr "Liquidazioni"
-
-#. module: sale_commission_areamanager
 #: model:ir.model.fields,help:sale_commission_areamanager.field_res_partner_area_manager
 #: model:ir.model.fields,help:sale_commission_areamanager.field_res_users_area_manager
 msgid "This agent is an area manager"
 msgstr "Questo Agente è un Responsabile Area"
+
+#~ msgid "Agent information"
+#~ msgstr "Informazioni Agente"
+
+#~ msgid "Settled total"
+#~ msgstr "Totale Liquidato"
+
+#~ msgid "Settlements"
+#~ msgstr "Liquidazioni"

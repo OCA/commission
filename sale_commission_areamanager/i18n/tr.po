@@ -19,11 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_commission_areamanager
-#: model:ir.ui.view,arch_db:sale_commission_areamanager.view_partner_form_area_manager
-msgid "Agent information"
-msgstr "Acenta Bilgisi"
-
-#. module: sale_commission_areamanager
 #: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_partner_area_manager_sub_agent_ids
 #: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_users_area_manager_sub_agent_ids
 msgid "Agents"
@@ -80,17 +75,16 @@ msgid "Sales Order"
 msgstr "Satış Siparişi"
 
 #. module: sale_commission_areamanager
-#: model:ir.ui.view,arch_db:sale_commission_areamanager.view_partner_form_area_manager
-msgid "Settled total"
-msgstr "Hesaplaşılan Toplam"
-
-#. module: sale_commission_areamanager
-#: model:ir.ui.view,arch_db:sale_commission_areamanager.view_partner_form_area_manager
-msgid "Settlements"
-msgstr "Hesaplaşmalar"
-
-#. module: sale_commission_areamanager
 #: model:ir.model.fields,help:sale_commission_areamanager.field_res_partner_area_manager
 #: model:ir.model.fields,help:sale_commission_areamanager.field_res_users_area_manager
 msgid "This agent is an area manager"
 msgstr ""
+
+#~ msgid "Agent information"
+#~ msgstr "Acenta Bilgisi"
+
+#~ msgid "Settled total"
+#~ msgstr "Hesaplaşılan Toplam"
+
+#~ msgid "Settlements"
+#~ msgstr "Hesaplaşmalar"
