@@ -132,3 +132,26 @@ class SaleCommissionLineMixin(models.AbstractModel):
         ('unique_agent', 'UNIQUE(object_id, agent)',
          'You can only add one time each agent.')
     ]
+
+    @api.multi
+    def _get_commission_amount(
+            self, commission, subtotal, commission_free, product, quantity):
+        self.ensure_one()
+        amount = 0.0
+        if not commission_free and commission:
+            if commission.amount_base_type == 'net_amount':
+                # If subtotal (sale_price * quantity) is less than
+                # standard_price * quantity, it means that
+                # we are selling at lower price than we bought
+                # so set amount_base to 0
+                amount_base = max(
+                    [0,
+                     (subtotal - (product.standard_price * quantity))])
+            else:
+                amount_base = subtotal
+
+            if commission.commission_type == 'fixed':
+                amount = amount_base * (commission.fix_qty / 100.0)
+            else:
+                amount = commission.calculate_section(amount_base)
+        return amount
