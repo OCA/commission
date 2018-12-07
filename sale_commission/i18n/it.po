@@ -192,7 +192,7 @@ msgid "Company"
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:179
+#: code:addons/sale_commission/models/settlement.py:181
 #, python-format
 msgid "Company must be the same"
 msgstr ""
@@ -225,7 +225,7 @@ msgid "Created Invoices"
 msgstr "Fatture Create"
 
 #. module: sale_commission
-#: code:addons/sale_commission/wizard/wizard_settle.py:115
+#: code:addons/sale_commission/wizard/wizard_settle.py:121
 #, python-format
 msgid "Created Settlements"
 msgstr "Provvigioni Create"
@@ -494,7 +494,7 @@ msgid "Percent"
 msgstr "Percentuale"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:107
+#: code:addons/sale_commission/models/settlement.py:108
 #, python-format
 msgid "Period: from %s to %s"
 msgstr "Periodo: da %s a %s"
@@ -544,6 +544,11 @@ msgstr ""
 #: model:ir.model,name:sale_commission.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Riga d'Ordine di Vendita"
+
+#. module: sale_commission
+#: selection:res.partner,agent_type:0
+msgid "Salesman (employee)"
+msgstr ""
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_sections
@@ -688,7 +693,7 @@ msgid "Up to"
 msgstr "Fino a"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:135
+#: code:addons/sale_commission/models/settlement.py:136
 #, python-format
 msgid "Value cannot be negative"
 msgstr ""
