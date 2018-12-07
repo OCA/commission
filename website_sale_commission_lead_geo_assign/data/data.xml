@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Simone Rubino - Agile Business Group
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="crm.lead.tag" id="tag_portal_lead_agent_not_found">
+        <field name="name">No agent found</field>
+        <field name="color">3</field>
+    </record>
+
+    <data noupdate="1">
+        <!-- Assign agents to leads -->
+        <record model="ir.cron" id="event_mail_scheduler">
+            <field name="name">Assign agents to leads</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="model">crm.lead</field>
+            <field name="function">geo_assign_agents</field>
+        </record>
+    </data>
+</odoo>

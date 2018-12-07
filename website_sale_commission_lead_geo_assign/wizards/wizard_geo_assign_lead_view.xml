@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Simone Rubino - Agile Business Group
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <act_window id="wizard_geo_assign_lead_action"
+        name="Geo assign agents"
+        src_model="crm.lead"
+        res_model="wizard.geo.assign.lead"
+        view_type="form" view_mode="form"
+        key2="client_action_multi" target="new"
+        groups="sales_team.group_sale_manager"/>
+
+    <record id="wizard_geo_assign_lead_view" model="ir.ui.view">
+        <field name="name">Geo assign agents to leads</field>
+        <field name="model">wizard.geo.assign.lead</field>
+        <field name="arch" type="xml">
+            <form string="Geo assign leads">
+                <group>
+                    <field name="check_existing_agents" />
+                </group>
+                <footer>
+                    <button string="Apply" name="geo_assign_lead" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
