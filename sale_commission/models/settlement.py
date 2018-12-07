@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# Copyright 2014-2018 Tecnativa - Pedro M. Baeza
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, exceptions, fields, models, _
 from odoo.exceptions import UserError
@@ -35,6 +36,7 @@ class Settlement(models.Model):
         default=_default_currency)
     company_id = fields.Many2one(
         comodel_name='res.company',
+        default=lambda self: self.env.user.company_id,
         required=True
     )
 
@@ -158,20 +160,25 @@ class SettlementLine(models.Model):
     date = fields.Date(related="agent_line.invoice_date", store=True)
     invoice_line = fields.Many2one(
         comodel_name='account.invoice.line', store=True,
-        related='agent_line.invoice_line')
+        related='agent_line.object_id')
     invoice = fields.Many2one(
         comodel_name='account.invoice', store=True, string="Invoice",
         related='invoice_line.invoice_id')
     agent = fields.Many2one(
         comodel_name="res.partner", readonly=True, related="agent_line.agent",
         store=True)
-    settled_amount = fields.Float(
+    settled_amount = fields.Monetary(
         related="agent_line.amount", readonly=True, store=True)
+    currency_id = fields.Many2one(
+        related="agent_line.currency_id",
+        store=True,
+        readonly=True,
+    )
     commission = fields.Many2one(
         comodel_name="sale.commission", related="agent_line.commission")
     company_id = fields.Many2one(
         comodel_name='res.company',
-        related='settlement.company_id'
+        related='settlement.company_id',
     )
 
     @api.constrains('company_id', 'agent_line')
