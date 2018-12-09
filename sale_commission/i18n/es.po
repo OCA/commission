@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/sale_commission_mixin.py:55
+#: code:addons/sale_commission/models/sale_commission_mixin.py:56
 #, python-format
 msgid "%s commission agents"
 msgstr "%s comisionistas"
@@ -35,7 +35,7 @@ msgid "(keep empty for making the settlement of all agents)"
 msgstr "(mantener vacío para realizar la liquidación de todos los agentes)"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/sale_commission_mixin.py:53
+#: code:addons/sale_commission/models/sale_commission_mixin.py:54
 #, python-format
 msgid "1 commission agent"
 msgstr "1 comisionista"
@@ -149,7 +149,7 @@ msgid "Check this field if the partner is a creditor or an agent."
 msgstr "Marque esta casilla si la empresa es un agente."
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/sale_commission_mixin.py:49
+#: code:addons/sale_commission/models/sale_commission_mixin.py:50
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_commission_free
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_mixin_commission_free
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_commission_free
@@ -309,7 +309,6 @@ msgid "Formula"
 msgstr "Fórmula"
 
 #. module: sale_commission
-#: model:ir.model.fields,field_description:sale_commission.field_delivery_carrier_commission_free
 #: model:ir.model.fields,field_description:sale_commission.field_product_product_commission_free
 #: model:ir.model.fields,field_description:sale_commission.field_product_template_commission_free
 msgid "Free of commission"
@@ -473,12 +472,17 @@ msgstr "Realizar liquidaciones"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_mixin
 msgid "Mixin model for applying to any object that wants to handle commissions"
-msgstr "Modelo mixin para aplicar a cualquier objeto que quiera manejar comisiones"
+msgstr ""
+"Modelo mixin para aplicar a cualquier objeto que quiera manejar comisiones"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_line_mixin
-msgid "Mixin model for having commission agent lines in any object inheriting from this one"
-msgstr "Modelo mixin para tener líneas de agente de comisión en cualquier objeto heredando de éste"
+msgid ""
+"Mixin model for having commission agent lines in any object inheriting from "
+"this one"
+msgstr ""
+"Modelo mixin para tener líneas de agente de comisión en cualquier objeto "
+"heredando de éste"
 
 #. module: sale_commission
 #: selection:res.partner,settlement:0
@@ -497,7 +501,7 @@ msgid "Net Amount"
 msgstr "Importe neto"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/sale_commission_mixin.py:51
+#: code:addons/sale_commission/models/sale_commission_mixin.py:52
 #, python-format
 msgid "No commission agents"
 msgstr "Sin comisionistas"
@@ -651,15 +655,15 @@ msgid "Settlement search"
 msgstr "Buscar liquidaciones"
 
 #. module: sale_commission
+#: model:ir.actions.act_window,name:sale_commission.action_settle_commission
 #: model:ir.model.fields,field_description:sale_commission.field_res_partner_settlements
 #: model:ir.model.fields,field_description:sale_commission.field_res_users_settlements
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice_settlements
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlements
+#: model:ir.ui.menu,name:sale_commission.menu_sattle_commissions
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
 #: model:ir.ui.view,arch_db:sale_commission.view_partner_form_agent
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_tree
-#: model:ir.actions.act_window,name:sale_commission.action_settle_commission
-#: model:ir.ui.menu,name:sale_commission.menu_sattle_commissions
 msgid "Settlements"
 msgstr "Liquidaciones"
 
@@ -677,8 +681,12 @@ msgstr "El límite inferior no puede ser mayor que el superior."
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_res_partner_commission
 #: model:ir.model.fields,help:sale_commission.field_res_users_commission
-msgid "This is the default commission used in the sales where this agent is assigned. It can be changed on each operation if needed."
-msgstr "Ésta es la comisión por defecto usada cuando se asigna un agente. Puede ser cambiada en cada operación si es necesario."
+msgid ""
+"This is the default commission used in the sales where this agent is "
+"assigned. It can be changed on each operation if needed."
+msgstr ""
+"Ésta es la comisión por defecto usada cuando se asigna un agente. Puede ser "
+"cambiada en cada operación si es necesario."
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_line_search
@@ -763,4 +771,3 @@ msgstr "sale.order.line.agent"
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_form
 msgid "sections"
 msgstr "secciones"
-
