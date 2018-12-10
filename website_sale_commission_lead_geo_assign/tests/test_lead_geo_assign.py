@@ -39,6 +39,15 @@ class TestLeadGeoAssign(TransactionCase):
             'agent': True,
             'agent_state_ids': [(4, self.genova.id)]
         })
+
+        lead_genova2 = self.lead_model.create({
+            'name': 'lead_genova',
+            'state_id': self.genova.id,
+        })
+        # Successfully assign agent_genova to lead_genova2 upon creation
+        self.assertEqual(agent_genova, lead_genova2.partner_assigned_id)
+        self.assertNotIn(self.not_found_tag, lead_genova2.tag_ids.ids)
+
         self.lead_model.geo_assign_agents(**cron_params)
 
         # Successfully assign agent_genova to lead_genova

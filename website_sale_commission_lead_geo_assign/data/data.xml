@@ -15,6 +15,7 @@
             <field name="interval_type">hours</field>
             <field name="numbercall">-1</field>
             <field name="model">crm.lead</field>
+            <field name="active" eval="False" />
             <field name="function">geo_assign_agents</field>
         </record>
     </data>

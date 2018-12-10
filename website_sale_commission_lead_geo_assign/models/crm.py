@@ -21,3 +21,9 @@ class Lead(models.Model):
             'check_existing_agents': check_existing_agents
         })
         wiz.with_context(active_ids=leads.ids).geo_assign_lead()
+
+    @api.model
+    def create(self, vals):
+        lead = super(Lead, self).create(vals)
+        self.geo_assign_agents(leads=lead)
+        return lead
