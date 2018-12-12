@@ -39,7 +39,9 @@ class SaleOrderLine(models.Model):
     @api.model
     def create(self, vals):
         """Add agents for records created from automations instead of UI."""
-        if 'agents' not in vals:
+        # We use this form as this is the way it's returned when no real vals
+        agents_vals = vals.get('agents', [(6, 0, [])])
+        if agents_vals and agents_vals[0][0] == 6 and not agents_vals[0][2]:
             order = self.env['sale.order'].browse(vals['order_id'])
             vals['agents'] = self._prepare_agents_vals_partner(
                 order.partner_id,
