@@ -4,6 +4,7 @@ from odoo import models, fields, api, _
 
 class SaleCommissionMakeInvoice(models.TransientModel):
     _name = 'sale.commission.make.invoice'
+    _description = "Wizard for making an invoice from a settlement"
 
     def _default_journal(self):
         return self.env['account.journal'].search(
