@@ -265,7 +265,7 @@ msgid "Company"
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:188
+#: code:addons/sale_commission/models/settlement.py:190
 #, python-format
 msgid "Company must be the same"
 msgstr ""
@@ -292,13 +292,13 @@ msgid "Create invoices"
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/wizard/wizard_invoice.py:58
+#: code:addons/sale_commission/wizard/wizard_invoice.py:59
 #, python-format
 msgid "Created Invoices"
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/wizard/wizard_settle.py:119
+#: code:addons/sale_commission/wizard/wizard_settle.py:120
 #, python-format
 msgid "Created Settlements"
 msgstr ""
@@ -576,6 +576,11 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: sale_commission
+#: model:ir.model,name:sale_commission.model_sale_commission_settlement_line
+msgid "Line of a commission settlement"
+msgstr ""
+
+#. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:67
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_form
 #, python-format
@@ -674,10 +679,8 @@ msgid "Price unit"
 msgstr ""
 
 #. module: sale_commission
-#: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_source_product_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report_product_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_mixin_product_id
-#: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent_source_product_id
 msgid "Product"
 msgstr ""
 
@@ -689,12 +692,6 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice_product
 msgid "Product for invoicing"
-msgstr ""
-
-#. module: sale_commission
-#: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_source_quantity
-#: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent_source_quantity
-msgid "Quantity"
 msgstr ""
 
 #. module: sale_commission
@@ -822,8 +819,8 @@ msgid "Settlement period"
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/wizard/wizard_settle.py:33
-#: code:addons/sale_commission/wizard/wizard_settle.py:47
+#: code:addons/sale_commission/wizard/wizard_settle.py:34
+#: code:addons/sale_commission/wizard/wizard_settle.py:48
 #, python-format
 msgid "Settlement period not valid."
 msgstr ""
@@ -852,22 +849,6 @@ msgid "Settlements"
 msgstr ""
 
 #. module: sale_commission
-#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_line_mixin_source_product_id
-msgid "Source Product"
-msgstr ""
-
-#. module: sale_commission
-#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_line_mixin_source_quantity
-msgid "Source Quantity"
-msgstr ""
-
-#. module: sale_commission
-#: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_source_total
-#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_line_mixin_source_total
-msgid "Source Total"
-msgstr ""
-
-#. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_state
 msgid "State"
 msgstr ""
@@ -875,11 +856,6 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 msgid "Status"
-msgstr ""
-
-#. module: sale_commission
-#: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent_source_total
-msgid "Subtotal"
 msgstr ""
 
 #. module: sale_commission
@@ -946,6 +922,16 @@ msgid "Value cannot be negative"
 msgstr ""
 
 #. module: sale_commission
+#: model:ir.model,name:sale_commission.model_sale_commission_make_invoice
+msgid "Wizard for making an invoice from a settlement"
+msgstr ""
+
+#. module: sale_commission
+#: model:ir.model,name:sale_commission.model_sale_commission_make_settle
+msgid "Wizard for settling commissions in invoices"
+msgstr ""
+
+#. module: sale_commission
 #: sql_constraint:account.invoice.line.agent:0
 #: sql_constraint:sale.commission.line.mixin:0
 #: sql_constraint:sale.order.line.agent:0
@@ -959,7 +945,7 @@ msgid "You can't delete invoiced settlements."
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/account_invoice.py:175
+#: code:addons/sale_commission/models/account_invoice.py:168
 #, python-format
 msgid "You can't modify a settled line"
 msgstr ""
@@ -978,21 +964,6 @@ msgstr ""
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
 #: model:ir.ui.view,arch_db:sale_commission.view_settled_wizard
 msgid "or"
-msgstr ""
-
-#. module: sale_commission
-#: model:ir.model,name:sale_commission.model_sale_commission_make_invoice
-msgid "sale.commission.make.invoice"
-msgstr ""
-
-#. module: sale_commission
-#: model:ir.model,name:sale_commission.model_sale_commission_make_settle
-msgid "sale.commission.make.settle"
-msgstr ""
-
-#. module: sale_commission
-#: model:ir.model,name:sale_commission.model_sale_commission_settlement_line
-msgid "sale.commission.settlement.line"
 msgstr ""
 
 #. module: sale_commission
