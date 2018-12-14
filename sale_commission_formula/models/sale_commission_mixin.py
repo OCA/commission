@@ -17,15 +17,17 @@ class SaleCommissionLineMixin(models.AbstractModel):
             'self': self,
         }
 
-    def _compute_amount(self):
-        applicable_lines = self.filtered(lambda x: (
-            not x.source_product_id.commission_free and x.commission
-            and x.commission.commission_type == 'formula'
-        ))
-        for line in applicable_lines:
-            formula = line.commission.formula
-            results = line._get_formula_input_dict()
+    def _get_commission_amount(self, commission, subtotal, product, quantity):
+        """Get the commission amount for the data given. To be called by
+        compute methods of children models.
+        """
+        self.ensure_one()
+        if (not product.commission_free and commission and
+                commission.commission_type == 'formula'):
+            formula = commission.formula
+            results = self._get_formula_input_dict()
             safe_eval(formula, results, mode="exec", nocopy=True)
-            line.amount = float(results['result'])
-        rest = self - applicable_lines
-        super(SaleCommissionLineMixin, rest)._compute_amount()
+            return float(results['result'])
+        return super()._get_commission_amount(
+            commission, subtotal, product, quantity,
+        )
