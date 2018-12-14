@@ -90,7 +90,7 @@ class TestSaleCommission(TransactionCase):
                 'name': self.product.name,
                 'product_id': self.product.id,
                 'product_uom_qty': 1.0,
-                'product_uom': self.ref('product.product_uom_unit'),
+                'product_uom': self.ref('uom.product_uom_unit'),
                 'price_unit': self.product.lst_price,
                 'agents': [(0, 0, {
                     'agent': agent.id,
@@ -350,7 +350,7 @@ class TestSaleCommission(TransactionCase):
                     'name': self.product.name,
                     'product_id': self.product.id,
                     'product_uom_qty': 8.0,
-                    'product_uom': self.ref('product.product_uom_unit'),
+                    'product_uom': self.ref('uom.product_uom_unit'),
                 })],
             })
         self.assertNotEqual(
@@ -423,7 +423,7 @@ class TestSaleCommission(TransactionCase):
             'invoice_id': invoice.id,
             'product_id': self.product.id,
             'product_uom_qty': 1.0,
-            'product_uom': self.ref('product.product_uom_unit'),
+            'product_uom': self.ref('uom.product_uom_unit'),
 
         })
         line._onchange_product_id()
