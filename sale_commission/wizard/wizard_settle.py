@@ -6,6 +6,7 @@ from dateutil.relativedelta import relativedelta
 
 class SaleCommissionMakeSettle(models.TransientModel):
     _name = "sale.commission.make.settle"
+    _description = "Wizard for settling commissions in invoices"
 
     date_to = fields.Date('Up to', required=True, default=fields.Date.today())
     agents = fields.Many2many(
