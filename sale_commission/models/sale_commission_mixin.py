@@ -135,29 +135,30 @@ class SaleCommissionLineMixin(models.AbstractModel):
         store=True,
     )
     # Fields to be overriden with proper source (via related or computed field)
-    source_product_id = fields.Many2one(comodel_name="product.product")
-    source_total = fields.Monetary()
-    source_quantity = fields.Float()
     currency_id = fields.Many2one(comodel_name='res.currency')
 
-    @api.depends('source_total', 'source_quantity', 'source_product_id')
     def _compute_amount(self):
-        applicable_lines = self.filtered(
-            lambda x: not x.source_product_id.commission_free and x.commission
-        )
-        for line in applicable_lines:
-            if line.commission.amount_base_type == 'net_amount':
-                subtotal = (abs(line.source_total) -
-                            (line.source_product_id.standard_price *
-                                line.source_quantity))
-                if line.source_total < 0:
-                    subtotal *= -1
-            else:
-                subtotal = line.source_total
-            if line.commission.commission_type == 'fixed':
-                line.amount = subtotal * (line.commission.fix_qty / 100.0)
-            else:
-                line.amount = line.commission.calculate_section(subtotal)
+        """Compute method to be implemented by inherited models."""
+        raise NotImplementedError()
+
+    def _get_commission_amount(self, commission, subtotal, product, quantity):
+        """Get the commission amount for the data given. To be called by
+        compute methods of children models.
+        """
+        self.ensure_one()
+        if product.commission_free or not commission:
+            return 0.0
+        if commission.amount_base_type == 'net_amount':
+            # If subtotal (sale_price * quantity) is less than
+            # standard_price * quantity, it means that we are selling at
+            # lower price than we bought, so set amount_base to 0
+            subtotal = max([
+                0, subtotal - product.standard_price * quantity,
+            ])
+        if commission.commission_type == 'fixed':
+            return subtotal * (commission.fix_qty / 100.0)
+        else:
+            return commission.calculate_section(subtotal)
 
     @api.onchange('agent')
     def onchange_agent(self):
