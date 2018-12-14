@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import exceptions, fields
-import openerp.tests.common as common
+import odoo.tests.common as common
 import dateutil.relativedelta
 
 
@@ -285,6 +285,7 @@ class TestSaleCommission(common.TransactionCase):
         wizard2 = self.make_inv_model.create({'product': 1})
         wizard2.button_create()
         settlements = self.settle_model.search([('state', '=', 'invoiced')])
+        self.assertTrue(settlements)
         for settlement in settlements:
             self.assertNotEquals(len(settlement.invoice), 0,
                                  "Settlements need to be in Invoiced State.")

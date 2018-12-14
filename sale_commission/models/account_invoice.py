@@ -121,22 +121,15 @@ class AccountInvoiceLineAgent(models.Model):
     @api.depends('object_id.price_subtotal')
     def _compute_amount(self):
         for line in self:
-            line.amount = 0.0
-            if (not line.object_id.commission_free and
-                    line.commission):
-                if line.commission.amount_base_type == 'net_amount':
-                    subtotal = (line.object_id.price_subtotal -
-                                (line.product.standard_price *
-                                 line.object_id.quantity))
-                else:
-                    subtotal = line.object_id.price_subtotal
-                if line.commission.commission_type == 'fixed':
-                    line.amount = subtotal * (line.commission.fix_qty / 100.0)
-                else:
-                    line.amount = line.commission.calculate_section(subtotal)
-                # Refunds commissions are negative
-                if line.invoice.type in ('out_refund', 'in_refund'):
-                    line.amount = -line.amount
+            line.amount = self._get_commission_amount(
+                line.commission,
+                line.object_id.price_subtotal,
+                line.object_id.commission_free,
+                line.product,
+                line.object_id.quantity)
+            # Refunds commissions are negative
+            if line.invoice.type in ('out_refund', 'in_refund'):
+                line.amount = -line.amount
 
     @api.depends('agent_line', 'agent_line.settlement.state', 'invoice',
                  'invoice.state')
