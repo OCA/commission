@@ -149,6 +149,7 @@ class Settlement(models.Model):
 
 class SettlementLine(models.Model):
     _name = "sale.commission.settlement.line"
+    _description = "Line of a commission settlement"
 
     settlement = fields.Many2one(
         "sale.commission.settlement", readonly=True, ondelete="cascade",
@@ -181,7 +182,7 @@ class SettlementLine(models.Model):
         related='settlement.company_id',
     )
 
-    @api.constrains('company_id', 'agent_line')
+    @api.constrains('settlement', 'agent_line')
     def _check_company(self):
         for record in self:
             if record.agent_line.company_id != record.company_id:
