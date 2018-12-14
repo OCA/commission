@@ -47,10 +47,10 @@
                     <filter string="Agent" name="Agent" context="{'group_by':'agent_id'}"/>
                     <filter string="Customer" name="Customer" context="{'group_by':'partner_id'}"/>
                     <filter string="Category of Product" name="Category" context="{'group_by':'categ_id'}"/>
-                    <filter string="Status" context="{'group_by':'invoice_state'}"/>
-                    <filter string="Company" groups="base.group_multi_company" context="{'group_by':'company_id'}"/>
+                    <filter string="Status" name="group_by_status" context="{'group_by':'invoice_state'}"/>
+                    <filter string="Company" name="group_by_company" groups="base.group_multi_company" context="{'group_by':'company_id'}"/>
                     <separator/>
-                    <filter string="Invoice Month" context="{'group_by':'date_invoice:month'}"/>
+                    <filter string="Invoice Month" name="group_by_invoice_month" context="{'group_by':'date_invoice:month'}"/>
                 </group>
             </search>
         </field>
