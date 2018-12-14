@@ -25,7 +25,7 @@ class SaleCommissionAnalysisReport(models.Model):
         'Category of Product',
         readonly=True)
     product_id = fields.Many2one('product.product', 'Product', readonly=True)
-    uom_id = fields.Many2one('product.uom', 'Unit of Measure', readonly=True)
+    uom_id = fields.Many2one('uom.uom', 'Unit of Measure', readonly=True)
     quantity = fields.Float('# of Qty', readonly=True)
     price_unit = fields.Float('Price unit', readonly=True)
     price_subtotal = fields.Float('Price subtotal', readonly=True)
@@ -43,22 +43,23 @@ class SaleCommissionAnalysisReport(models.Model):
 
     def _select(self):
         select_str = """
-            SELECT min(aila.id) as id, ai.partner_id partner_id,
-            ai.state invoice_state,
-            ai.date_invoice,
-            ail.company_id company_id,
-            rp.id agent_id,
-            pt.categ_id categ_id,
-            ail.product_id product_id,
-            pt.uom_id,
-            ail.quantity,
-            ail.price_unit,
-            ail.price_subtotal,
-            sc.fix_qty percentage,
-            SUM(aila.amount),
-            ail.id invoice_line_id,
-            aila.settled,
-            aila.commission commission_id
+            SELECT MIN(aila.id) AS id,
+            ai.partner_id AS partner_id,
+            ai.state AS invoice_state,
+            ai.date_invoice AS date_invoice,
+            ail.company_id AS company_id,
+            rp.id AS agent_id,
+            pt.categ_id AS categ_id,
+            ail.product_id AS product_id,
+            pt.uom_id AS uom_id,
+            SUM(ail.quantity) AS quantity,
+            AVG(ail.price_unit) AS price_unit,
+            SUM(ail.price_subtotal) AS price_subtotal,
+            AVG(sc.fix_qty) AS percentage,
+            SUM(aila.amount) AS amount,
+            ail.id AS invoice_line_id,
+            aila.settled AS settled,
+            aila.commission AS commission_id
         """
         return select_str
 
@@ -84,8 +85,6 @@ class SaleCommissionAnalysisReport(models.Model):
             pt.categ_id,
             ail.product_id,
             pt.uom_id,
-            ail.quantity,
-            sc.fix_qty,
             ail.id,
             aila.settled,
             aila.commission

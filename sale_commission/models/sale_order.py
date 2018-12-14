@@ -71,20 +71,16 @@ class SaleOrderLineAgent(models.Model):
         comodel_name="sale.order.line",
         oldname="sale_line",
     )
-    # Overwritten fields for indicating the source for computing comm. amount
-    source_product_id = fields.Many2one(
-        related="object_id.product_id",
-        readonly=True,
-    )
-    source_quantity = fields.Float(
-        related="object_id.product_uom_qty",
-        readonly=True,
-    )
-    source_total = fields.Monetary(
-        related="object_id.price_subtotal",
-        readonly=True,
-    )
     currency_id = fields.Many2one(
         related="object_id.currency_id",
         readonly=True,
     )
+
+    @api.depends('object_id.price_subtotal')
+    def _compute_amount(self):
+        for line in self:
+            order_line = line.object_id
+            line.amount = line._get_commission_amount(
+                line.commission, order_line.price_subtotal,
+                order_line.product_id, order_line.product_uom_qty,
+            )

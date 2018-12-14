@@ -129,23 +129,22 @@ class AccountInvoiceLineAgent(models.Model):
         compute="_compute_company",
         store=True,
     )
-    # Overwritten fields for indicating the source for computing comm. amount
-    source_product_id = fields.Many2one(
-        related="object_id.product_id",
-        readonly=True,
-    )
-    source_quantity = fields.Float(
-        related="object_id.quantity",
-        readonly=True,
-    )
-    source_total = fields.Monetary(
-        compute="_compute_price_subtotal",
-        readonly=True,
-    )
     currency_id = fields.Many2one(
         related="object_id.currency_id",
         readonly=True,
     )
+
+    @api.depends('object_id.price_subtotal')
+    def _compute_amount(self):
+        for line in self:
+            inv_line = line.object_id
+            line.amount = line._get_commission_amount(
+                line.commission, inv_line.price_subtotal,
+                inv_line.product_id, inv_line.quantity,
+            )
+            # Refunds commissions are negative
+            if 'refund' in line.invoice.type:
+                line.amount = -line.amount
 
     @api.depends('agent_line', 'agent_line.settlement.state', 'invoice',
                  'invoice.state')
@@ -160,12 +159,6 @@ class AccountInvoiceLineAgent(models.Model):
     def _compute_company(self):
         for line in self:
             line.company_id = line.object_id.company_id
-
-    def _compute_price_subtotal(self):
-        for record in self:
-            record.source_total = record.object_id.price_subtotal
-            if 'refund' in record.object_id.invoice_id.type:
-                record.source_total *= -1
 
     @api.constrains('agent', 'amount')
     def _check_settle_integrity(self):
