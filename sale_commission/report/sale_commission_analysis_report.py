@@ -55,7 +55,7 @@ class SaleCommissionAnalysisReport(models.Model):
             ail.price_unit,
             ail.price_subtotal,
             sc.fix_qty percentage,
-            SUM(aila.amount),
+            SUM(aila.amount) AS amount,
             ail.id invoice_line_id,
             aila.settled,
             aila.commission commission_id
