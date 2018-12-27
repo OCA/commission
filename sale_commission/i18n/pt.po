@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2018-11-30 18:16+0000\n"
+"PO-Revision-Date: 2018-12-27 23:55+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: none\n"
 "Language: pt\n"
@@ -14,13 +14,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.2.2\n"
+"X-Generator: Weblate 3.3\n"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/sale_commission_mixin.py:56
-#, fuzzy, python-format
+#, python-format
 msgid "%s commission agents"
-msgstr "Gestão de Comissões"
+msgstr "%s agentes de comissões"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
@@ -34,9 +34,9 @@ msgstr "(manter vazio para comissionar todos os agentes)"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/sale_commission_mixin.py:54
-#, fuzzy, python-format
+#, python-format
 msgid "1 commission agent"
-msgstr "Gestão de Comissões"
+msgstr "1 agente de comissões"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_active
@@ -95,7 +95,7 @@ msgstr "Agentes e Comissões"
 #: model:ir.model.fields,help:sale_commission.field_sale_commission_mixin_agents
 #: model:ir.model.fields,help:sale_commission.field_sale_order_line_agents
 msgid "Agents/Commissions related to the invoice line."
-msgstr "Agentes/comissões relacionadas com a linha de fatura."
+msgstr "Agentes/Comissões relacionadas com a linha de fatura."
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent_amount
@@ -470,7 +470,7 @@ msgstr "Fazer comissionamentos"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_mixin
 msgid "Mixin model for applying to any object that wants to handle commissions"
-msgstr ""
+msgstr "Modelo mixin para aplicar a qualquer objeto que lide com comissões"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_line_mixin
@@ -478,6 +478,8 @@ msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
 msgstr ""
+"Modelo mixin para ter linhas de agentes de comissões em qualquer objeto que "
+"dele herde"
 
 #. module: sale_commission
 #: selection:res.partner,settlement:0
@@ -497,9 +499,9 @@ msgstr "Valor Líquido"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/sale_commission_mixin.py:52
-#, fuzzy, python-format
+#, python-format
 msgid "No commission agents"
-msgstr "Gestão de Comissões"
+msgstr "Sem agentes de comissões"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_object_id
@@ -507,7 +509,7 @@ msgstr "Gestão de Comissões"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line_invoice_line
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent_object_id
 msgid "Parent"
-msgstr ""
+msgstr "Ascendente"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_res_partner
