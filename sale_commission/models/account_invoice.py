@@ -121,7 +121,7 @@ class AccountInvoiceLineAgent(models.Model):
     @api.depends('object_id.price_subtotal')
     def _compute_amount(self):
         for line in self:
-            line.amount = self._get_commission_amount(
+            line.amount = line._get_commission_amount(
                 line.commission,
                 line.object_id.price_subtotal,
                 line.object_id.commission_free,
