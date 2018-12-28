@@ -276,7 +276,7 @@ msgid "Company"
 msgstr "Unternehmen"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:188
+#: code:addons/sale_commission/models/settlement.py:190
 #, python-format
 msgid "Company must be the same"
 msgstr "Das Unternehmen muss das Gleiche sein"
@@ -303,13 +303,13 @@ msgid "Create invoices"
 msgstr "Lege Rechnungen an"
 
 #. module: sale_commission
-#: code:addons/sale_commission/wizard/wizard_invoice.py:58
+#: code:addons/sale_commission/wizard/wizard_invoice.py:59
 #, python-format
 msgid "Created Invoices"
 msgstr "Angelegte Rechnungen"
 
 #. module: sale_commission
-#: code:addons/sale_commission/wizard/wizard_settle.py:119
+#: code:addons/sale_commission/wizard/wizard_settle.py:120
 #, python-format
 msgid "Created Settlements"
 msgstr "Angelegte Abrechnungen"
@@ -590,6 +590,12 @@ msgid "Last Updated on"
 msgstr "Zuletzt aktualisiert am"
 
 #. module: sale_commission
+#: model:ir.model,name:sale_commission.model_sale_commission_settlement_line
+#, fuzzy
+msgid "Line of a commission settlement"
+msgstr "sale.commission.settlement.line"
+
+#. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:67
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_form
 #, python-format
@@ -693,10 +699,8 @@ msgid "Price unit"
 msgstr ""
 
 #. module: sale_commission
-#: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_source_product_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report_product_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_mixin_product_id
-#: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent_source_product_id
 msgid "Product"
 msgstr "Produkt"
 
@@ -709,12 +713,6 @@ msgstr "Produktvorlage"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice_product
 msgid "Product for invoicing"
 msgstr "Produkt zur Abrechnung"
-
-#. module: sale_commission
-#: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_source_quantity
-#: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent_source_quantity
-msgid "Quantity"
-msgstr ""
 
 #. module: sale_commission
 #: selection:res.partner,settlement:0
@@ -845,8 +843,8 @@ msgid "Settlement period"
 msgstr "Provisionsabrechnungsperiode"
 
 #. module: sale_commission
-#: code:addons/sale_commission/wizard/wizard_settle.py:33
-#: code:addons/sale_commission/wizard/wizard_settle.py:47
+#: code:addons/sale_commission/wizard/wizard_settle.py:34
+#: code:addons/sale_commission/wizard/wizard_settle.py:48
 #, python-format
 msgid "Settlement period not valid."
 msgstr "Abrechnungsperiode nicht zulässig."
@@ -876,23 +874,6 @@ msgid "Settlements"
 msgstr "Abrechnungen"
 
 #. module: sale_commission
-#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_line_mixin_source_product_id
-#, fuzzy
-msgid "Source Product"
-msgstr "Produkt"
-
-#. module: sale_commission
-#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_line_mixin_source_quantity
-msgid "Source Quantity"
-msgstr ""
-
-#. module: sale_commission
-#: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_source_total
-#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_line_mixin_source_total
-msgid "Source Total"
-msgstr ""
-
-#. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_state
 msgid "State"
 msgstr "Status"
@@ -902,12 +883,6 @@ msgstr "Status"
 #, fuzzy
 msgid "Status"
 msgstr "Status"
-
-#. module: sale_commission
-#: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent_source_total
-#, fuzzy
-msgid "Subtotal"
-msgstr "Gesamt"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/sale_commission.py:53
@@ -982,6 +957,18 @@ msgid "Value cannot be negative"
 msgstr "Wert darf nicht negativ sein"
 
 #. module: sale_commission
+#: model:ir.model,name:sale_commission.model_sale_commission_make_invoice
+#, fuzzy
+msgid "Wizard for making an invoice from a settlement"
+msgstr "Kann eine abgerechnete Provision nicht stornieren."
+
+#. module: sale_commission
+#: model:ir.model,name:sale_commission.model_sale_commission_make_settle
+#, fuzzy
+msgid "Wizard for settling commissions in invoices"
+msgstr "Lege Provisionsabrechnungen an"
+
+#. module: sale_commission
 #: sql_constraint:account.invoice.line.agent:0
 #: sql_constraint:sale.commission.line.mixin:0
 #: sql_constraint:sale.order.line.agent:0
@@ -995,7 +982,7 @@ msgid "You can't delete invoiced settlements."
 msgstr "Sie dürfen abgerechnete Provisionen nicht löschen."
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/account_invoice.py:173
+#: code:addons/sale_commission/models/account_invoice.py:168
 #, python-format
 msgid "You can't modify a settled line"
 msgstr ""
@@ -1017,24 +1004,6 @@ msgid "or"
 msgstr "oder"
 
 #. module: sale_commission
-#: model:ir.model,name:sale_commission.model_sale_commission_make_invoice
-#, fuzzy
-msgid "sale.commission.make.invoice"
-msgstr "sale.commission.make.invoice"
-
-#. module: sale_commission
-#: model:ir.model,name:sale_commission.model_sale_commission_make_settle
-#, fuzzy
-msgid "sale.commission.make.settle"
-msgstr "sale.commission.make.settle"
-
-#. module: sale_commission
-#: model:ir.model,name:sale_commission.model_sale_commission_settlement_line
-#, fuzzy
-msgid "sale.commission.settlement.line"
-msgstr "sale.commission.settlement.line"
-
-#. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order_line_agent
 #, fuzzy
 msgid "sale.order.line.agent"
@@ -1044,6 +1013,22 @@ msgstr "sale.order.line.agent"
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_form
 msgid "sections"
 msgstr "Bereiche"
+
+#, fuzzy
+#~ msgid "Source Product"
+#~ msgstr "Produkt"
+
+#, fuzzy
+#~ msgid "Subtotal"
+#~ msgstr "Gesamt"
+
+#, fuzzy
+#~ msgid "sale.commission.make.invoice"
+#~ msgstr "sale.commission.make.invoice"
+
+#, fuzzy
+#~ msgid "sale.commission.make.settle"
+#~ msgstr "sale.commission.make.settle"
 
 #~ msgid "Sale Line"
 #~ msgstr "Verkaufsposition"
