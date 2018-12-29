@@ -95,11 +95,6 @@ msgid "Unit Price"
 msgstr "Birim Fiyatı"
 
 #. module: sale_commission_formula
-#: model:ir.model,name:sale_commission_formula.model_account_invoice_line_agent
-msgid "account.invoice.line.agent"
-msgstr ""
-
-#. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "discount"
 msgstr ""

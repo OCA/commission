@@ -105,11 +105,6 @@ msgid "Unit Price"
 msgstr "Einzelpreis"
 
 #. module: sale_commission_formula
-#: model:ir.model,name:sale_commission_formula.model_account_invoice_line_agent
-msgid "account.invoice.line.agent"
-msgstr "account.invoice.line.agent"
-
-#. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "discount"
 msgstr "discount"
@@ -133,6 +128,9 @@ msgstr "product_uom_qty"
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "quantity"
 msgstr "quantity"
+
+#~ msgid "account.invoice.line.agent"
+#~ msgstr "account.invoice.line.agent"
 
 #~ msgid "sale.order.line.agent"
 #~ msgstr "sale.order.line.agent"
