@@ -138,7 +138,7 @@ msgid "Canceled"
 msgstr "Annullata"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:45
+#: code:addons/sale_commission/models/settlement.py:46
 #, python-format
 msgid "Cannot cancel an invoiced settlement."
 msgstr "Impossibile annullare una liquidazione fatturata"
@@ -410,6 +410,12 @@ msgid "Journal"
 msgstr "Sezionale"
 
 #. module: sale_commission
+#: code:addons/sale_commission/models/settlement.py:129
+#, python-format
+msgid "Journal %s is not applicable for quantity %s"
+msgstr ""
+
+#. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_account_invoice_line_agent_invoice_date
 #: model:ir.model.fields,help:sale_commission.field_sale_commission_settlement_line_date
 msgid "Keep empty to use the current date"
@@ -454,7 +460,7 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:60
+#: code:addons/sale_commission/models/settlement.py:61
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_form
 #, python-format
 msgid "Make invoice"
@@ -528,7 +534,7 @@ msgid "Percent"
 msgstr "Percento"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:102
+#: code:addons/sale_commission/models/settlement.py:103
 #, python-format
 msgid "Period: from %s to %s"
 msgstr "Periodo: da %s a %s"
@@ -724,7 +730,7 @@ msgid "You can only add one time each agent."
 msgstr "E' possibile aggiungere una sola volta ogni agente."
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:53
+#: code:addons/sale_commission/models/settlement.py:54
 #, python-format
 msgid "You can't delete invoiced settlements."
 msgstr "Non è possibile eliminare liquidazioni fatturate."
