@@ -1,16 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* website_sale_commission_lead_geo_assign
+#	* website_sale_commission_lead_geo_assign
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0+e\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-07 12:52+0000\n"
-"PO-Revision-Date: 2018-12-07 12:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,99 +16,93 @@ msgstr ""
 #. module: website_sale_commission_lead_geo_assign
 #: model:ir.ui.view,arch_db:website_sale_commission_lead_geo_assign.wizard_geo_assign_lead_view
 msgid "Apply"
-msgstr "Salva"
+msgstr ""
 
 #. module: website_sale_commission_lead_geo_assign
 #: model:ir.ui.view,arch_db:website_sale_commission_lead_geo_assign.wizard_geo_assign_lead_view
 msgid "Cancel"
-msgstr "Annulla"
+msgstr ""
 
 #. module: website_sale_commission_lead_geo_assign
 #: model:ir.model.fields,field_description:website_sale_commission_lead_geo_assign.field_wizard_geo_assign_lead_check_existing_agents
 msgid "Check existing agents"
-msgstr "Controlla agenti esistenti"
+msgstr ""
 
 #. module: website_sale_commission_lead_geo_assign
 #: model:ir.model.fields,field_description:website_sale_commission_lead_geo_assign.field_wizard_geo_assign_lead_create_uid
 msgid "Created by"
-msgstr "Creato da"
+msgstr ""
 
 #. module: website_sale_commission_lead_geo_assign
 #: model:ir.model.fields,field_description:website_sale_commission_lead_geo_assign.field_wizard_geo_assign_lead_create_date
 msgid "Created on"
-msgstr "Creato il"
+msgstr ""
 
 #. module: website_sale_commission_lead_geo_assign
 #: model:ir.model.fields,field_description:website_sale_commission_lead_geo_assign.field_wizard_geo_assign_lead_display_name
 msgid "Display Name"
-msgstr "Nome Visualizzato"
+msgstr ""
 
 #. module: website_sale_commission_lead_geo_assign
 #: model:ir.actions.act_window,name:website_sale_commission_lead_geo_assign.wizard_geo_assign_lead_action
 msgid "Geo assign agents"
-msgstr "Assegna agenti con geo localizzazione"
+msgstr ""
 
 #. module: website_sale_commission_lead_geo_assign
 #: model:ir.ui.view,arch_db:website_sale_commission_lead_geo_assign.wizard_geo_assign_lead_view
 msgid "Geo assign leads"
-msgstr "Assegna leads con geo localizzazione"
+msgstr ""
 
 #. module: website_sale_commission_lead_geo_assign
 #: model:ir.model.fields,field_description:website_sale_commission_lead_geo_assign.field_wizard_geo_assign_lead_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: website_sale_commission_lead_geo_assign
 #: model:ir.model.fields,help:website_sale_commission_lead_geo_assign.field_wizard_geo_assign_lead_check_existing_agents
-msgid ""
-"If checked, leads with already assigned agents will be blocked. Otherwise, "
-"found agents will be added"
+msgid "If checked, leads with already assigned agents will be blocked. Otherwise, found agents will be added"
 msgstr ""
-"Se vero, i lead aventi già un partner assegnato verranno bloccati. "
-"Altrimenti, il primo agente trovato verrà aggiunto"
 
 #. module: website_sale_commission_lead_geo_assign
 #: model:ir.model.fields,field_description:website_sale_commission_lead_geo_assign.field_wizard_geo_assign_lead___last_update
 msgid "Last Modified on"
-msgstr "Ultima modifica il"
+msgstr ""
 
 #. module: website_sale_commission_lead_geo_assign
 #: model:ir.model.fields,field_description:website_sale_commission_lead_geo_assign.field_wizard_geo_assign_lead_write_uid
 msgid "Last Updated by"
-msgstr "Ultima modifica di"
+msgstr ""
 
 #. module: website_sale_commission_lead_geo_assign
 #: model:ir.model.fields,field_description:website_sale_commission_lead_geo_assign.field_wizard_geo_assign_lead_write_date
 msgid "Last Updated on"
-msgstr "Ultima modifica il"
+msgstr ""
 
 #. module: website_sale_commission_lead_geo_assign
 #: code:addons/website_sale_commission_lead_geo_assign/wizards/wizard_geo_assign_lead.py:50
 #, python-format
-msgid ""
-"Lead %s already has a partner assigned.\n"
+msgid "Lead %s already has a partner assigned.\n"
 "You should remove it or deselect 'Check existing agents'"
 msgstr ""
-"Il lead %s ha già un partner assegnato.\n"
-"Rimuoverlo o deselezionare 'Controlla agenti esistenti'"
 
 #. module: website_sale_commission_lead_geo_assign
 #: model:ir.model,name:website_sale_commission_lead_geo_assign.model_crm_lead
 msgid "Lead/Opportunity"
-msgstr "Lead/Opportunità"
+msgstr ""
 
 #. module: website_sale_commission_lead_geo_assign
 #: model:crm.lead.tag,name:website_sale_commission_lead_geo_assign.tag_portal_lead_agent_not_found
 msgid "No agent found"
-msgstr "Nessun agente trovato"
+msgstr ""
 
 #. module: website_sale_commission_lead_geo_assign
 #: code:addons/website_sale_commission_lead_geo_assign/wizards/wizard_geo_assign_lead.py:42
 #, python-format
 msgid "No agents found in the system"
-msgstr "Nessun agente presente nel sistema"
+msgstr ""
 
 #. module: website_sale_commission_lead_geo_assign
 #: model:ir.model,name:website_sale_commission_lead_geo_assign.model_wizard_geo_assign_lead
 msgid "wizard.geo.assign.lead"
-msgstr "wizard.geo.assign.lead"
+msgstr ""
+
