@@ -25,6 +25,11 @@ class SaleCommission(models.Model):
         string='Base', required=True, default='gross_amount')
     settlements = fields.Many2many(
         comodel_name='sale.commission.settlement')
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        default=lambda self: self.env.user.company_id,
+        required=True
+    )
 
     @api.multi
     def calculate_section(self, base):

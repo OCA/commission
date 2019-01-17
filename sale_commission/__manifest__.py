@@ -18,6 +18,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/commission_security.xml',
         'views/sale_commission_view.xml',
         'views/sale_commission_mixin_views.xml',
         'views/product_template_view.xml',
