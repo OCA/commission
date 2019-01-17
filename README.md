@@ -17,6 +17,7 @@ addon | version | summary
 [sale_commission_formula](sale_commission_formula/) | 10.0.1.0.0 | Sale commissions computed by formulas
 [sale_commission_geo_assign](sale_commission_geo_assign/) | 10.0.1.0.0 | Assign agents to partners according to their location
 [sale_commission_pricelist](sale_commission_pricelist/) | 10.0.1.0.0 | Sales commissions by pricelist
+[website_sale_commission_lead_geo_assign](website_sale_commission_lead_geo_assign/) | 10.0.1.0.0 | Assign agents to leads according to their location
 
 
 Unported addons
