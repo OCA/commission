@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo10-addon-sale_commission_formula',
         'odoo10-addon-sale_commission_geo_assign',
         'odoo10-addon-sale_commission_pricelist',
+        'odoo10-addon-website_sale_commission_lead_geo_assign',
     ],
     classifiers=[
         'Programming Language :: Python',
