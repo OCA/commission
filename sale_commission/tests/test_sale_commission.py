@@ -611,3 +611,34 @@ class TestSaleCommission(SavepointCase):
         settlements = self.settle_model.search([('state', 'in', ['settled',
                                                                  'invoiced'])])
         self.assertEqual(len(settlements), 2)
+
+    def test_res_partner_agent_propagation(self):
+        partner = self.env['res.partner'].create({
+            'name': 'Test partner',
+            'agents': [
+                (4, self.agent_monthly.id), (4, self.agent_quaterly.id),
+            ],
+        })
+        # Onchange
+        child = self.env['res.partner'].new({
+            'name': 'Test child',
+            'parent_id': partner.id,
+        })
+        child.onchange_parent_id()
+        self.assertEqual(child.agents, partner.agents)
+        # Create
+        child = self.env['res.partner'].create({
+            'name': 'Test child',
+            'parent_id': partner.id,
+        })
+        self.assertEqual(child.agents, partner.agents)
+        # Write
+        partner.agents = [(4, self.agent_monthly.id)]
+        self.assertEqual(child.agents, partner.agents)
+        # Default
+        child = self.env['res.partner'].with_context(
+            default_parent_id=partner.id,
+        ).create({
+            'name': 'Test child',
+        })
+        self.assertEqual(child.agents, partner.agents)
