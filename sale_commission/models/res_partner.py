@@ -1,3 +1,6 @@
+# Copyright 2016-2019 Tecnativa - Pedro M. Baeza
+# Copyright 2018 Tecnativa - Ernesto Tejeda
+# License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import api, fields, models
 
@@ -36,3 +39,45 @@ class ResPartner(models.Model):
     def onchange_agent_type(self):
         if self.agent_type == 'agent' and self.agent:
             self.supplier = True
+
+    @api.onchange('parent_id')
+    def onchange_parent_id(self):
+        """Change agents if the parent company changes."""
+        res = super(ResPartner, self).onchange_parent_id()
+        if not self.is_company:
+            self.agents = self.parent_id.agents
+        return res
+
+    @api.model
+    def create(self, vals):
+        """Propagate agents from parent to child"""
+        if (vals.get('parent_id') and not vals.get('agents') and
+                not vals.get('is_company')):
+            vals['agents'] = [
+                (4, x) for x in self.browse(vals['parent_id']).agents.ids
+            ]
+        return super(ResPartner, self).create(vals)
+
+    @api.multi
+    def write(self, vals):
+        """Propagate agents change in the parent partner to the child
+        contacts.
+        """
+        if vals.get('agents'):
+            for record in self:
+                childs = record.mapped('child_ids').filtered(lambda r: (
+                    (not r.agents or r.agents == record.agents) and
+                    not r.is_company
+                ))
+                if childs:
+                    childs.write({'agents': vals['agents']})
+        return super(ResPartner, self).write(vals)
+
+    @api.model
+    def default_get(self, fields_list):
+        defaults = super(ResPartner, self).default_get(fields_list)
+        if 'parent_id' in defaults:
+            defaults['agents'] = [
+                (4, x) for x in self.browse(defaults['parent_id']).agents.ids
+            ]
+        return defaults
