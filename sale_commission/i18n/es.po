@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-03 13:20+0000\n"
-"PO-Revision-Date: 2018-04-03 13:20+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"PO-Revision-Date: 2019-02-01 13:03+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/sale_commission_mixin.py:56
@@ -118,7 +119,7 @@ msgstr "Anual"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_amount_base_type
 msgid "Base"
-msgstr "Base"
+msgstr "Importe Base"
 
 #. module: sale_commission
 #: selection:sale.commission,commission_type:0
@@ -412,7 +413,7 @@ msgstr "Diario"
 #: code:addons/sale_commission/models/settlement.py:129
 #, python-format
 msgid "Journal %s is not applicable for quantity %s"
-msgstr ""
+msgstr "El diario %s no es aplicable para la cantidad %s"
 
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_account_invoice_line_agent_invoice_date
@@ -653,7 +654,7 @@ msgstr "Periodo de liquidación"
 #: code:addons/sale_commission/wizard/wizard_settle.py:46
 #, python-format
 msgid "Settlement period not valid."
-msgstr "Periodo de liquidación no válido"
+msgstr "Periodo de liquidación no válido."
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_search
