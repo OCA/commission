@@ -1,30 +1,30 @@
+# Copyright 2016-2019 Tecnativa - Pedro M. Baeza
+# License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 from odoo.addons.sale_commission.models.settlement import Settlement
 from odoo import fields
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import SavepointCase
 from odoo.exceptions import UserError, ValidationError
 import dateutil.relativedelta
 from unittest.mock import patch
 
 
-class TestSaleCommission(TransactionCase):
-    at_install = False
-    post_install = True
-
-    def setUp(self):
-        super(TestSaleCommission, self).setUp()
-        self.commission_model = self.env['sale.commission']
-        self.commission_net_paid = self.commission_model.create({
+class TestSaleCommission(SavepointCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.commission_model = cls.env['sale.commission']
+        cls.commission_net_paid = cls.commission_model.create({
             'name': '20% fixed commission (Net amount) - Payment Based',
             'fix_qty': 20.0,
             'invoice_state': 'paid',
             'amount_base_type': 'net_amount',
         })
-        self.commission_net_invoice = self.commission_model.create({
+        cls.commission_net_invoice = cls.commission_model.create({
             'name': '10% fixed commission (Net amount) - Invoice Based',
             'fix_qty': 10.0,
             'amount_base_type': 'net_amount',
         })
-        self.commission_section_paid = self.commission_model.create({
+        cls.commission_section_paid = cls.commission_model.create({
             'name': 'Section commission - Payment Based',
             'commission_type': 'section',
             'invoice_state': 'paid',
@@ -35,7 +35,7 @@ class TestSaleCommission(TransactionCase):
             })],
             'amount_base_type': 'net_amount',
         })
-        self.commission_section_invoice = self.commission_model.create({
+        cls.commission_section_invoice = cls.commission_model.create({
             'name': 'Section commission - Invoice Based',
             'commission_type': 'section',
             'sections': [(0, 0, {
@@ -44,40 +44,40 @@ class TestSaleCommission(TransactionCase):
                 'percent': 20.0,
             })]
         })
-        self.res_partner_model = self.env['res.partner']
-        self.partner = self.browse_ref('base.res_partner_2')
-        self.partner.write({'supplier': False, 'agent': False})
-        self.sale_order_model = self.env['sale.order']
-        self.advance_inv_model = self.env['sale.advance.payment.inv']
-        self.settle_model = self.env['sale.commission.settlement']
-        self.make_settle_model = self.env['sale.commission.make.settle']
-        self.make_inv_model = self.env['sale.commission.make.invoice']
-        self.product = self.browse_ref('product.product_product_5')
-        self.product.write({
+        cls.res_partner_model = cls.env['res.partner']
+        cls.partner = cls.env.ref('base.res_partner_2')
+        cls.partner.write({'supplier': False, 'agent': False})
+        cls.sale_order_model = cls.env['sale.order']
+        cls.advance_inv_model = cls.env['sale.advance.payment.inv']
+        cls.settle_model = cls.env['sale.commission.settlement']
+        cls.make_settle_model = cls.env['sale.commission.make.settle']
+        cls.make_inv_model = cls.env['sale.commission.make.invoice']
+        cls.product = cls.env.ref('product.product_product_5')
+        cls.product.write({
             'invoice_policy': 'order',
         })
-        self.journal = self.env['account.journal'].search(
+        cls.journal = cls.env['account.journal'].search(
             [('type', '=', 'purchase')], limit=1
         )
-        self.agent_monthly = self.res_partner_model.create({
+        cls.agent_monthly = cls.res_partner_model.create({
             'name': 'Test Agent - Monthly',
             'agent': True,
             'settlement': 'monthly',
             'lang': 'en_US',
         })
-        self.agent_quaterly = self.res_partner_model.create({
+        cls.agent_quaterly = cls.res_partner_model.create({
             'name': 'Test Agent - Quaterly',
             'agent': True,
             'settlement': 'quaterly',
             'lang': 'en_US',
         })
-        self.agent_semi = self.res_partner_model.create({
+        cls.agent_semi = cls.res_partner_model.create({
             'name': 'Test Agent - Semi-annual',
             'agent': True,
             'settlement': 'semi',
             'lang': 'en_US',
         })
-        self.agent_annual = self.res_partner_model.create({
+        cls.agent_annual = cls.res_partner_model.create({
             'name': 'Test Agent - Annual',
             'agent': True,
             'settlement': 'annual',
@@ -102,7 +102,7 @@ class TestSaleCommission(TransactionCase):
 
     def test_sale_commission_gross_amount_payment(self):
         self.check_full(
-            self.browse_ref('sale_commission.res_partner_pritesh_sale_agent'),
+            self.env.ref('sale_commission.res_partner_pritesh_sale_agent'),
             self.commission_section_paid,
             1
         )
@@ -180,7 +180,7 @@ class TestSaleCommission(TransactionCase):
     def test_sale_commission_gross_amount_invoice(self):
         sale_order = self._create_sale_order(
             self.agent_quaterly,
-            self.browse_ref('sale_commission.demo_commission')
+            self.env.ref('sale_commission.demo_commission')
         )
         sale_order.action_confirm()
         self.assertEqual(
@@ -259,7 +259,7 @@ class TestSaleCommission(TransactionCase):
 
     def test_sale_commission_section_payment(self):
         sale_order = self._create_sale_order(
-            self.browse_ref('sale_commission.res_partner_pritesh_sale_agent'),
+            self.env.ref('sale_commission.res_partner_pritesh_sale_agent'),
             self.commission_section_paid
         )
         sale_order.action_confirm()
@@ -299,7 +299,7 @@ class TestSaleCommission(TransactionCase):
 
     def test_sale_commission_section_invoice(self):
         sale_order = self._create_sale_order(
-            self.browse_ref('sale_commission.res_partner_pritesh_sale_agent'),
+            self.env.ref('sale_commission.res_partner_pritesh_sale_agent'),
             self.commission_section_invoice
         )
         sale_order.action_confirm()
@@ -341,7 +341,7 @@ class TestSaleCommission(TransactionCase):
         self.assertTrue(self.partner.supplier)
 
     def test_sale_default_agent(self):
-        sale_agent = self.browse_ref(
+        sale_agent = self.env.ref(
             'sale_commission.res_partner_pritesh_sale_agent')
         self.partner.agents = [(6, 0, [sale_agent.id])]
         saleorder = self.sale_order_model.with_context(
@@ -378,7 +378,7 @@ class TestSaleCommission(TransactionCase):
         # Make sure user is in English
         self.env.user.lang = 'en_US'
         sale_order = self._create_sale_order(
-            self.browse_ref('sale_commission.res_partner_pritesh_sale_agent'),
+            self.env.ref('sale_commission.res_partner_pritesh_sale_agent'),
             self.commission_section_invoice,
         )
         self.assertIn("1", sale_order.order_line[0].commission_status)
@@ -411,7 +411,7 @@ class TestSaleCommission(TransactionCase):
     def test_invoice(self):
         self.partner.agent = False
         self.partner.agents = self.agent_semi
-        partner = self.browse_ref('base.res_partner_12')
+        partner = self.env.ref('base.res_partner_12')
         partner.agent = False
         self.agent_annual.commission = self.commission_net_invoice
         partner.agents = self.agent_annual
