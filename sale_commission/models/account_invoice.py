@@ -80,8 +80,10 @@ class AccountInvoiceLine(models.Model):
         """Add agents for records created from automations instead of UI."""
         # We use this form as this is the way it's returned when no real vals
         agents_vals = vals.get('agents', [(6, 0, [])])
-        if agents_vals and agents_vals[0][0] == 6 and not agents_vals[0][2]:
-            inv = self.env['account.invoice'].browse(vals['invoice_id'])
+        invoice_id = vals.get('invoice_id', False)
+        if (agents_vals and agents_vals[0][0] == 6 and not
+                agents_vals[0][2] and invoice_id):
+            inv = self.env['account.invoice'].browse(invoice_id)
             vals['agents'] = self._prepare_agents_vals_partner(inv.partner_id)
         return super().create(vals)
 
