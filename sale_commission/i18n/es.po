@@ -968,7 +968,7 @@ msgid "You can't delete invoiced settlements."
 msgstr "No puede eliminar liquidaciones facturadas."
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/account_invoice.py:168
+#: code:addons/sale_commission/models/account_invoice.py:170
 #, python-format
 msgid "You can't modify a settled line"
 msgstr "No puede modificar una línea liquidada"
