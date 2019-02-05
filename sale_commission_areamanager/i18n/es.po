@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-31 02:47+0000\n"
-"PO-Revision-Date: 2018-05-31 02:47+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"PO-Revision-Date: 2019-02-05 10:50+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: sale_commission_areamanager
 #: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_partner_area_manager_sub_agent_ids
@@ -28,25 +29,25 @@ msgstr "Agentes"
 #: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_partner_area_manager_id
 #: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_users_area_manager_id
 msgid "Area Manager"
-msgstr ""
+msgstr "Gestor de área"
 
 #. module: sale_commission_areamanager
 #: model:ir.model.fields,help:sale_commission_areamanager.field_res_partner_area_manager_id
 #: model:ir.model.fields,help:sale_commission_areamanager.field_res_users_area_manager_id
 msgid "Area manager for the current agent"
-msgstr ""
+msgstr "Gestor de área para el agente actual"
 
 #. module: sale_commission_areamanager
 #: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_partner_commission_for_areamanager
 #: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_users_commission_for_areamanager
 msgid "Commission For Area Manager"
-msgstr ""
+msgstr "Comisión para el Gestor de Área"
 
 #. module: sale_commission_areamanager
 #: model:ir.model.fields,help:sale_commission_areamanager.field_res_partner_commission_for_areamanager
 #: model:ir.model.fields,help:sale_commission_areamanager.field_res_users_commission_for_areamanager
 msgid "Commission for area manager applied to the current agent"
-msgstr ""
+msgstr "Comisión para el gestor de área aplicada al agente actual"
 
 #. module: sale_commission_areamanager
 #: model:ir.model,name:sale_commission_areamanager.model_account_invoice
@@ -57,7 +58,7 @@ msgstr "Factura"
 #: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_partner_area_manager
 #: model:ir.model.fields,field_description:sale_commission_areamanager.field_res_users_area_manager
 msgid "Is Area Manager"
-msgstr ""
+msgstr "Es gestor de área"
 
 #. module: sale_commission_areamanager
 #: model:ir.model,name:sale_commission_areamanager.model_res_partner
@@ -67,7 +68,7 @@ msgstr "Empresa"
 #. module: sale_commission_areamanager
 #: model:ir.ui.view,arch_db:sale_commission_areamanager.view_partner_form_area_manager
 msgid "Related Agents"
-msgstr ""
+msgstr "Agentes relacionados"
 
 #. module: sale_commission_areamanager
 #: model:ir.model,name:sale_commission_areamanager.model_sale_order
@@ -78,7 +79,7 @@ msgstr "Pedido de venta"
 #: model:ir.model.fields,help:sale_commission_areamanager.field_res_partner_area_manager
 #: model:ir.model.fields,help:sale_commission_areamanager.field_res_users_area_manager
 msgid "This agent is an area manager"
-msgstr ""
+msgstr "Este agente es gestor de área"
 
 #~ msgid "Agent information"
 #~ msgstr "Información del agente"
