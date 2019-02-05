@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_agent" model="ir.ui.view">
+        <field name="name">res.partner.form.agent</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="priority" eval="18"/>
+        <field name="groups_id" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales_purchases']//field[@name='supplier']" position="after">
+                <field name="agent" string="Agent" />
+            </xpath>
+            <field name="user_id" position="after">
+                <field name="agents"
+                       attrs="{'invisible': [('customer', '=', False)]}"
+                       widget="many2many_tags"
+                       context="{'default_agent': True}"/>
+            </field>
+            <page name="sales_purchases" position="after">
+                <page name="agent_information"
+                      string="Agent information"
+                      groups="sales_team.group_sale_manager"
+                      attrs="{'invisible': [('agent', '=', False)]}">
+                    <group>
+                        <group>
+                            <field name="agent_type"/>
+                            <field name="commission"
+                                   attrs="{'required': [('agent', '=', True)]}"/>
+                        </group>
+                        <group>
+                            <field name="settlement"/>
+                        </group>
+                        <group colspan="4"
+                               string="Settlements">
+                            <field name="settlements" nolabel="1">
+                                <tree string="Settlements"
+                                      colors="red: state == 'cancel'; gray: state == 'invoiced'">
+                                    <field name="date_from"/>
+                                    <field name="date_to"/>
+                                    <field name="total"
+                                           sum="Settled total" />
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+   <record id="view_res_partner_filter" model="ir.ui.view">
+       <field name="name">res.partner.select</field>
+       <field name="model">res.partner</field>
+       <field name="inherit_id" ref="base.view_res_partner_filter"/>
+       <field name="arch" type="xml">
+           <filter name="supplier" position="after">
+               <filter string="Agents" name="agent" domain="[('agent', '=', 1)]" help="Agent Partners"/>
+           </filter>
+        </field>
+   </record>
+
+   <record id="action_agent_form" model="ir.actions.act_window">
+       <field name="name">Agents</field>
+       <field name="type">ir.actions.act_window</field>
+       <field name="res_model">res.partner</field>
+       <field name="view_type">form</field>
+       <field name="view_mode">kanban,tree,form</field>
+       <field name="context">{"search_default_agent": 1, 'default_agent': 1, 'default_customer': 0, 'default_supplier': 1}</field>
+       <field name="search_view_id" ref="view_res_partner_filter"/>
+   </record>
+
+   <menuitem id="menu_agent_form"
+             parent="menu_sale_commissions_management"
+             action="action_agent_form"
+             sequence="3"/>
+
+</odoo>
