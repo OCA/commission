@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-03 13:20+0000\n"
-"PO-Revision-Date: 2018-04-03 13:20+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"PO-Revision-Date: 2019-02-05 10:50+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
@@ -31,6 +32,15 @@ msgid ""
 "  Use 'result' to return the commission amount.\n"
 "                        </span>"
 msgstr ""
+"<span class=\"instructions\">\n"
+"Utiliza 'line' para acceder a todos los campos de línea.\n"
+"Como los nombres de campo pueden variar, se deben diferenciar\n"
+"las fórmulas para sale.order.line y account.invoice.line. \n"
+"Puede,  por ejemplo, utilizar line._name == 'sale.order.line' \n"
+"o line._name == 'account.invoice.line'.\n"
+"\n"
+"Utiliza 'result' para devolver el importe de comisión.\n"
+"</span>"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
@@ -80,7 +90,7 @@ msgstr "Campos comunes de las líneas de ordenes de venta"
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Subtotal"
-msgstr "Subtotal"
+msgstr "Importe Subtotal"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
@@ -90,34 +100,34 @@ msgstr "Precio Unitario"
 #. module: sale_commission_formula
 #: model:ir.model,name:sale_commission_formula.model_account_invoice_line_agent
 msgid "account.invoice.line.agent"
-msgstr ""
+msgstr "'account.invoice.line.agent'"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "discount"
-msgstr "discount"
+msgstr "Descuento"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "price_subtotal"
-msgstr "price_subtotal"
+msgstr "Importe subtotal"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "price_unit"
-msgstr "price_unit"
+msgstr "Precio unitario"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "product_uom_qty"
-msgstr "product_uom_qty"
+msgstr "Cantidad"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "quantity"
-msgstr "quantity"
+msgstr "Cantidad"
 
 #. module: sale_commission_formula
 #: model:ir.model,name:sale_commission_formula.model_sale_order_line_agent
 msgid "sale.order.line.agent"
-msgstr ""
+msgstr "'sale.order.line.agent'"
