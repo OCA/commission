@@ -16,4 +16,4 @@ class HrEmployee(models.Model):
                         _("You can't remove the user, as it's linked to "
                           "a commission agent.")
                     )
-        return super().write(vals)
+        return super(HrEmployee, self).write(vals)
