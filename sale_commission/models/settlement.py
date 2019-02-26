@@ -133,9 +133,6 @@ class Settlement(models.Model):
             # select the proper journal according to settlement's amount
             # considering _add_extra_invoice_lines sum of values
             extra_invoice_lines = self._add_extra_invoice_lines(settlement)
-            extra_total = sum(x['price_unit'] for x in extra_invoice_lines)
-            if (settlement.total + extra_total) < 0:
-                raise UserError(_('Value cannot be negative'))
             invoice = settlement.create_invoice_header(journal, date)
             invoice_line_vals = self._prepare_invoice_line(
                 settlement, invoice, product)
@@ -143,8 +140,14 @@ class Settlement(models.Model):
             invoice.compute_taxes()
             for invoice_line_vals in extra_invoice_lines:
                 invoice_line_obj.create(invoice_line_vals)
-            settlement.state = 'invoiced'
-            settlement.invoice = invoice.id
+            settlement.write({
+                'state': 'invoiced',
+                'invoice': invoice.id,
+            })
+        if not self.env.context.get(
+            'no_check_negative', False
+        ) and self.mapped('invoice').filtered(lambda r: r.amount_total < 0):
+            raise UserError(_('Value cannot be negative'))
 
 
 class SettlementLine(models.Model):
