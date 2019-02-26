@@ -144,10 +144,11 @@ class Settlement(models.Model):
                 'state': 'invoiced',
                 'invoice': invoice.id,
             })
-        if not self.env.context.get(
-            'no_check_negative', False
-        ) and self.mapped('invoice').filtered(lambda r: r.amount_total < 0):
-            raise UserError(_('Value cannot be negative'))
+        if not self.env.context.get('no_check_negative', False):
+            return
+        for settlement in self:
+            if settlement.invoice.r.amount_total < 0:
+                raise UserError(_('Value cannot be negative'))
 
 
 class SettlementLine(models.Model):
