@@ -1,9 +1,9 @@
-
+from odoo.addons.sale_commission.models.settlement import Settlement
 from odoo import fields
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import UserError, ValidationError
 import dateutil.relativedelta
-
+from unittest.mock import patch
 
 class TestSaleCommission(TransactionCase):
     at_install = False
@@ -91,7 +91,7 @@ class TestSaleCommission(TransactionCase):
                 'product_id': self.product.id,
                 'product_uom_qty': 1.0,
                 'product_uom': self.ref('product.product_uom_unit'),
-                'price_unit': self.product.lst_price,
+                'price_unit': self.product.list_price,
                 'agents': [(0, 0, {
                     'agent': agent.id,
                     'commission': commission.id
@@ -445,6 +445,111 @@ class TestSaleCommission(TransactionCase):
             self.commission_section_invoice,
             1
         )
+
+    def test_join_settlements(self):
+        self.product.write({'list_price': 1000})
+        agent = self.agent_monthly
+        commission = self.commission_net_invoice
+        period = 1
+        sale_order = self._create_sale_order(
+            agent,
+            commission
+        )
+        sale_order.action_confirm()
+        self.assertEqual(len(sale_order.invoice_ids), 0)
+        payment = self.advance_inv_model.create({
+            'advance_payment_method': 'all',
+        })
+        context = {"active_model": 'sale.order',
+                   "active_ids": [sale_order.id],
+                   "active_id": sale_order.id}
+        payment.with_context(context).create_invoices()
+        self.assertEqual(len(sale_order.invoice_ids), 1)
+        for invoice in sale_order.invoice_ids:
+            invoice.action_invoice_open()
+            self.assertEqual(invoice.state, 'open')
+        wizard = self.make_settle_model.create(
+            {'date_to': (fields.Datetime.from_string(fields.Datetime.now()) +
+                         dateutil.relativedelta.relativedelta(months=period))})
+        wizard.action_settle()
+        settlements = self.settle_model.search([('agent', '=', agent.id)])
+        self.assertEqual(1, len(settlements))
+        wizard2 = self.make_inv_model.create({
+            'product': 1,
+            'journal': self.journal.id
+        })
+        wizard2.button_create()
+        agent_invoice = settlements.invoice
+        for invoice in sale_order.invoice_ids:
+            refund = invoice.refund()
+            refund.action_invoice_open()
+        wizard = self.make_settle_model.create(
+            {'date_to': (fields.Datetime.from_string(fields.Datetime.now()) +
+                         dateutil.relativedelta.relativedelta(months=period))})
+        wizard.action_settle()
+        settlements = self.settle_model.search([('agent', '=', agent.id)])
+        self.assertEqual(2, len(settlements))
+        self.assertTrue(settlements.filtered(lambda r: r.total < 0))
+        with patch.object(
+            Settlement,
+            'create_invoice_header', return_value=agent_invoice
+        ):
+            wizard2 = self.make_inv_model.create({
+                'product': 1,
+                'journal': self.journal.id
+            })
+            wizard2.button_create()
+
+    def test_negative_settlements(self):
+        self.product.write({'list_price': 1000})
+        agent = self.agent_monthly
+        commission = self.commission_net_invoice
+        period = 1
+        sale_order = self._create_sale_order(
+            agent,
+            commission
+        )
+        sale_order.action_confirm()
+        self.assertEqual(len(sale_order.invoice_ids), 0)
+        payment = self.advance_inv_model.create({
+            'advance_payment_method': 'all',
+        })
+        context = {"active_model": 'sale.order',
+                   "active_ids": [sale_order.id],
+                   "active_id": sale_order.id}
+        payment.with_context(context).create_invoices()
+        self.assertEqual(len(sale_order.invoice_ids), 1)
+        for invoice in sale_order.invoice_ids:
+            invoice.action_invoice_open()
+            self.assertEqual(invoice.state, 'open')
+        wizard = self.make_settle_model.create(
+            {'date_to': (fields.Datetime.from_string(fields.Datetime.now()) +
+                         dateutil.relativedelta.relativedelta(months=period))})
+        wizard.action_settle()
+        settlements = self.settle_model.search([('agent', '=', agent.id)])
+        self.assertEqual(1, len(settlements))
+        wizard2 = self.make_inv_model.create({
+            'product': 1,
+            'journal': self.journal.id
+        })
+        wizard2.button_create()
+        for invoice in sale_order.invoice_ids:
+            refund = invoice.refund()
+            refund.action_invoice_open()    
+        wizard = self.make_settle_model.create(
+            {'date_to': (fields.Datetime.from_string(fields.Datetime.now()) +
+                         dateutil.relativedelta.relativedelta(months=period))})
+        wizard.action_settle()
+        settlements = self.settle_model.search([('agent', '=', agent.id)])
+        self.assertEqual(2, len(settlements))
+
+        self.assertTrue(settlements.filtered(lambda r: r.total < 0))
+        with self.assertRaises(UserError):
+            wizard2 = self.make_inv_model.create({
+                'product': 1,
+                'journal': self.journal.id
+            })
+            wizard2.button_create()
 
     def check_new_invoice_with_settle_invoiced(self, agent, commission,
                                                period):
