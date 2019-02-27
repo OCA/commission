@@ -5,6 +5,7 @@ from odoo.exceptions import UserError, ValidationError
 import dateutil.relativedelta
 from unittest.mock import patch
 
+
 class TestSaleCommission(TransactionCase):
     at_install = False
     post_install = True
@@ -535,7 +536,7 @@ class TestSaleCommission(TransactionCase):
         wizard2.button_create()
         for invoice in sale_order.invoice_ids:
             refund = invoice.refund()
-            refund.action_invoice_open()    
+            refund.action_invoice_open()
         wizard = self.make_settle_model.create(
             {'date_to': (fields.Datetime.from_string(fields.Datetime.now()) +
                          dateutil.relativedelta.relativedelta(months=period))})
