@@ -268,7 +268,7 @@ msgid "Company"
 msgstr "公司"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:189
+#: code:addons/sale_commission/models/settlement.py:193
 #, python-format
 msgid "Company must be the same"
 msgstr "公司必须相同"
@@ -932,7 +932,7 @@ msgid "Up to"
 msgstr "取决于"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:138
+#: code:addons/sale_commission/models/settlement.py:151
 #, python-format
 msgid "Value cannot be negative"
 msgstr "值不能为负"
