@@ -88,3 +88,36 @@ class TestSaleCommissionPricelist(SavepointCase):
             self.so_line1.agents[:1].commission, self.commission_1)
         self.assertEqual(
             self.so_line2.agents[:1].commission, self.commission_2)
+
+    def test_prepare_agents_vals(self):
+        commission_3 = self.env['sale.commission'].create({
+            'name': '3% commission',
+            'fix_qty': 3.0,
+        })
+        pricelist_3 = self.env['product.pricelist'].create({
+            'name': 'Test commission pricelist 3',
+            'item_ids': [
+                (0, 0, {
+                    'name': '30% discount and commission on Test product 2',
+                    'applied_on': '1_product',
+                    'product_id': self.product2.id,
+                    'compute_price': 'formula',
+                    'base': 'list_price',
+                    'price_discount': 30,
+                    'commission_id': commission_3.id,
+                }),
+            ]
+        })
+        # Nothing changes
+        self.sale_order.pricelist_id = pricelist_3
+        self.assertEqual(
+            self.so_line1.agents[:1].commission, self.commission_1)
+        self.assertEqual(
+            self.so_line2.agents[:1].commission, self.commission_2)
+        # After click on 'Recompute lines agents' button
+        # self.so_line1 and self.so_line1 change
+        self.sale_order.recompute_lines_agents()
+        self.assertEqual(
+            self.so_line1.agents[:1].commission, self.commission_agent)
+        self.assertEqual(
+            self.so_line2.agents[:1].commission, commission_3)
