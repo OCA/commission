@@ -1,7 +1,7 @@
 # Copyright 2014-2018 Tecnativa - Pedro M. Baeza
 {
     'name': 'Sales commissions',
-    'version': '11.0.2.1.1',
+    'version': '11.0.2.1.2',
     'author': 'Tecnativa,'
               'Odoo Community Association (OCA)',
     'category': 'Sales Management',
