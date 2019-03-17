@@ -19,13 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_commission_pricelist
-#: model:ir.model.fields,field_description:sale_commission_pricelist.field_product_pricelist_item_commission_id
+#: model:ir.model.fields,field_description:sale_commission_pricelist.field_product_pricelist_item__commission_id
 msgid "Commission"
 msgstr "Commissione"
 
 #. module: sale_commission_pricelist
 #: model:ir.model,name:sale_commission_pricelist.model_product_pricelist_item
-msgid "Pricelist item"
+msgid "Pricelist Item"
 msgstr ""
 
 #. module: sale_commission_pricelist
