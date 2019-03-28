@@ -152,6 +152,6 @@ class SaleCommissionLineMixin(models.AbstractModel):
 
             if commission.commission_type == 'fixed':
                 amount = amount_base * (commission.fix_qty / 100.0)
-            else:
+            elif commission.commission_type == 'section':
                 amount = commission.calculate_section(amount_base)
         return amount
