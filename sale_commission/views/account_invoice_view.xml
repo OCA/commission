@@ -57,4 +57,16 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="view_account_invoice_filter">
+        <field name="name">Commission filter on account invoices</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="arch" type="xml">
+            <search position="inside">
+                <field string="Line agents" name="invoice_line_ids"
+                       filter_domain="[('invoice_line_ids.agents.agent', 'like', self)]"/>
+            </search>
+        </field>
+    </record>
+
 </odoo>
