@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2018-12-27 23:55+0000\n"
-"Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
+"PO-Revision-Date: 2019-04-01 19:14+0000\n"
+"Last-Translator: alvarorib <alvaro.ribeiro@exo.pt>\n"
 "Language-Team: none\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.5.1\n"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/sale_commission_mixin.py:56
@@ -116,7 +116,7 @@ msgstr "Anual"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_amount_base_type
 msgid "Base"
-msgstr ""
+msgstr "Base"
 
 #. module: sale_commission
 #: selection:sale.commission,commission_type:0
@@ -356,7 +356,7 @@ msgstr "Agrupar Por"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_invoice
@@ -410,7 +410,7 @@ msgstr "Diário"
 #: code:addons/sale_commission/models/settlement.py:129
 #, python-format
 msgid "Journal %s is not applicable for quantity %s"
-msgstr ""
+msgstr "O Diário %s1 não é aplicável para quantidade %s2"
 
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_account_invoice_line_agent_invoice_date
@@ -742,7 +742,7 @@ msgstr "_Cancelar"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_invoice_line_agent
 msgid "account.invoice.line.agent"
-msgstr ""
+msgstr "account.invoice.line.agent"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
@@ -753,22 +753,22 @@ msgstr "ou"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_make_invoice
 msgid "sale.commission.make.invoice"
-msgstr ""
+msgstr "sale.commission.make.invoice"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_make_settle
 msgid "sale.commission.make.settle"
-msgstr ""
+msgstr "sale.commission.make.settle"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_settlement_line
 msgid "sale.commission.settlement.line"
-msgstr ""
+msgstr "sale.commission.settlement.line"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order_line_agent
 msgid "sale.order.line.agent"
-msgstr ""
+msgstr "sale.order.line.agent"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_form
