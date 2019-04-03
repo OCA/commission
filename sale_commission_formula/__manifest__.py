@@ -5,12 +5,13 @@
 
 {
     'name': 'Sale Commission Formula',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': 'Sale',
     'license': 'AGPL-3',
     'summary': 'Sale commissions computed by formulas',
     'author': "Abstract,Odoo Community Association (OCA)",
-    'website': 'http://www.abstract.it',
+    'website': 'https://github.com/OCA/commission/tree/'
+               '10.0/sale_commission_formula',
     'depends': [
         'sale_commission'],
     'data': [
