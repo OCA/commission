@@ -68,6 +68,13 @@ msgid "Label"
 msgstr ""
 
 #. module: sale_commission_formula
+#: model:ir.model,name:sale_commission_formula.model_sale_commission_line_mixin
+msgid ""
+"Mixin model for having commission agent lines in any object inheriting from "
+"this one"
+msgstr ""
+
+#. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Quantity"
 msgstr "Quantité"
@@ -86,11 +93,6 @@ msgstr "Sous-total"
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "Unit Price"
 msgstr "Prix Unitaire"
-
-#. module: sale_commission_formula
-#: model:ir.model,name:sale_commission_formula.model_account_invoice_line_agent
-msgid "account.invoice.line.agent"
-msgstr ""
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
@@ -115,9 +117,4 @@ msgstr ""
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
 msgid "quantity"
-msgstr ""
-
-#. module: sale_commission_formula
-#: model:ir.model,name:sale_commission_formula.model_sale_order_line_agent
-msgid "sale.order.line.agent"
 msgstr ""
