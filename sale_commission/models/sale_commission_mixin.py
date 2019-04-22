@@ -55,7 +55,8 @@ class SaleCommissionMixin(models.AbstractModel):
             else:
                 line.commission_status = _(
                     "%s commission agents"
-                ) % len(line.agents)
+                    % len(line.agents)
+                )
 
     @api.model
     def _filter_agent_vals(self, vals):
