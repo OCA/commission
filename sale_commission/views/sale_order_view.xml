@@ -42,4 +42,16 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="view_sales_order_filter">
+        <field name="name">Commission filter on sale orders</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <search position="inside">
+                <field string="Line agents" name="order_line"
+                       filter_domain="[('order_line.agents.agent', 'like', self)]"/>
+            </search>
+        </field>
+    </record>
+
 </odoo>
