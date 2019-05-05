@@ -419,6 +419,11 @@ msgid "Fixed percentage"
 msgstr "Percentuale Fissa"
 
 #. module: sale_commission
+#: selection:sale.commission,commission_type:0
+msgid "Formula"
+msgstr "Formula"
+
+#. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_product_product__commission_free
 #: model:ir.model.fields,field_description:sale_commission.field_product_template__commission_free
 msgid "Free of commission"
@@ -1008,9 +1013,6 @@ msgstr "sale.order.line.agent"
 #: model_terms:ir.ui.view,arch_db:sale_commission.sale_commission_form
 msgid "sections"
 msgstr "sections"
-
-#~ msgid "Formula"
-#~ msgstr "Formula"
 
 #, fuzzy
 #~ msgid "Source Product"
