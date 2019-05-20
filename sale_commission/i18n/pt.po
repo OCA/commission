@@ -457,6 +457,14 @@ msgid "Last Updated on"
 msgstr "Última Atualiz. em"
 
 #. module: sale_commission
+#: model:ir.ui.view,arch_db:sale_commission.view_account_invoice_filter
+#: model:ir.ui.view,arch_db:sale_commission.view_sales_order_filter
+#, fuzzy
+#| msgid "Recompute lines agents"
+msgid "Line agents"
+msgstr "Recalcular agentes das linhas"
+
+#. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:61
 #: model:ir.ui.view,arch_db:sale_commission.view_settlement_form
 #, python-format
