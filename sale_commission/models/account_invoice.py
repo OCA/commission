@@ -117,6 +117,15 @@ class AccountInvoiceLineAgent(models.Model):
     settled = fields.Boolean(
         compute="_compute_settled",
         store=True, copy=False)
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        compute="_compute_company",
+        store=True,
+    )
+    currency_id = fields.Many2one(
+        related="object_id.currency_id",
+        readonly=True,
+    )
 
     @api.depends('object_id.price_subtotal')
     def _compute_amount(self):
@@ -140,3 +149,8 @@ class AccountInvoiceLineAgent(models.Model):
             line.settled = (line.invoice.state not in ('open', 'paid') or
                             any(x.settlement.state != 'cancel'
                                 for x in line.agent_line))
+
+    @api.depends('object_id', 'object_id.company_id')
+    def _compute_company(self):
+        for line in self:
+            line.company_id = line.object_id.company_id
