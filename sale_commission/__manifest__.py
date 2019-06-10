@@ -2,7 +2,7 @@
 
 {
     'name': 'Sales commissions',
-    'version': '10.0.2.3.0',
+    'version': '10.0.2.4.0',
     'author': 'Odoo Community Association (OCA),'
               'Tecnativa,'
               'AvanzOSC,'
@@ -16,6 +16,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/security.xml',
         'views/sale_commission_view.xml',
         'views/product_template_view.xml',
         'views/res_partner_view.xml',
