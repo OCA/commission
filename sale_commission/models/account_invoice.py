@@ -117,6 +117,15 @@ class AccountInvoiceLineAgent(models.Model):
     settled = fields.Boolean(
         compute="_compute_settled",
         store=True, copy=False)
+    company_id = fields.Many2one(
+        related="object_id.company_id",
+        store=True,
+        readonly=True,
+    )
+    currency_id = fields.Many2one(
+        related="object_id.currency_id",
+        readonly=True,
+    )
 
     @api.depends('object_id.price_subtotal')
     def _compute_amount(self):
