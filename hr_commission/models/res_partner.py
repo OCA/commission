@@ -11,6 +11,7 @@ class ResPartner(models.Model):
         selection_add=[("salesman", "Salesman (employee)")],
     )
     employee_id = fields.Many2one(
+        string="Employee.",
         comodel_name="hr.employee",
         compute="_compute_employee_id",
         compute_sudo=True,
