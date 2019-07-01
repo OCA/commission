@@ -23,13 +23,29 @@ msgstr "Contacto"
 
 #. module: hr_commission
 #: model:ir.model,name:hr_commission.model_hr_employee
-#: model:ir.model.fields,field_description:hr_commission.field_res_partner_employee_id
-#: model:ir.model.fields,field_description:hr_commission.field_res_users_employee_id
 msgid "Employee"
 msgstr "Empleado"
 
 #. module: hr_commission
-#: code:addons/hr_commission/models/res_partner.py:30
+#: model:ir.model.fields,field_description:hr_commission.field_res_partner__employee_id
+#: model:ir.model.fields,field_description:hr_commission.field_res_users__employee_id
+#, fuzzy
+#| msgid "Employee"
+msgid "Employee."
+msgstr "Empleado"
+
+#. module: hr_commission
+#: selection:res.partner,agent_type:0
+msgid "External agent"
+msgstr ""
+
+#. module: hr_commission
+#: selection:res.partner,agent_type:0
+msgid "Salesman (employee)"
+msgstr ""
+
+#. module: hr_commission
+#: code:addons/hr_commission/models/res_partner.py:31
 #, python-format
 msgid ""
 "There must one (and only one) employee linked to this partner. To do this, "
@@ -37,6 +53,12 @@ msgid ""
 msgstr ""
 "Debe haber un (y sólo un) empleado enlazado a esta empresa. Para hacer esto, "
 "vaya a 'Recursos humanos' y compruebe la sección 'Empleados'"
+
+#. module: hr_commission
+#: model:ir.model.fields,field_description:hr_commission.field_res_partner__agent_type
+#: model:ir.model.fields,field_description:hr_commission.field_res_users__agent_type
+msgid "Type"
+msgstr ""
 
 #. module: hr_commission
 #: code:addons/hr_commission/models/hr_employee.py:16
