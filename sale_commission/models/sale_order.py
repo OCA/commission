@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2014-2018 Tecnativa - Pedro M. Baeza
+# Copyright 2014-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from lxml import etree
 
 
 class SaleOrder(models.Model):
@@ -21,6 +22,29 @@ class SaleOrder(models.Model):
 
     def recompute_lines_agents(self):
         self.mapped('order_line').recompute_agents()
+
+    @api.model
+    def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
+                        submenu=False):
+        """Add to the existing context of the field `order_line` "partner_id"
+        key for avoiding to be replaced by other view inheritance.
+
+        We have to do this processing in text mode without evaling context, as
+        it can contain JS stuff.
+        """
+        res = super(SaleOrder, self).fields_view_get(
+            view_id=view_id, view_type=view_type, toolbar=toolbar,
+            submenu=submenu,
+        )
+        if view_type == 'form':
+            doc = etree.XML(res['arch'])
+            for node in doc.xpath("//field[@name='order_line']"):
+                node_val = node.get('context', '{}').strip()[1:-1]
+                elems = node_val.split(',') if node_val else []
+                to_add = ["'partner_id': partner_id"]
+                node.set('context', '{' + ', '.join(elems + to_add) + '}')
+            res['arch'] = etree.tostring(doc)
+        return res
 
 
 class SaleOrderLine(models.Model):
