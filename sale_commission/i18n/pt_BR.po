@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-22 08:15+0000\n"
-"PO-Revision-Date: 2019-08-02 09:44+0000\n"
-"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"PO-Revision-Date: 2019-08-26 14:01+0000\n"
+"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
 "23907/pt_BR/)\n"
 "Language: pt_BR\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__quantity
@@ -518,9 +518,8 @@ msgstr "Exceção da faturamento"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__invoice_line_id
 #: model_terms:ir.ui.view,arch_db:sale_commission.report_settlement
-#, fuzzy
 msgid "Invoice line"
-msgstr "Linha da Fatura"
+msgstr "Linha de Fatura"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.invoice_line_agent_tree
@@ -609,6 +608,7 @@ msgstr "Fazer abatimentos"
 #: model:ir.model,name:sale_commission.model_sale_commission_mixin
 msgid "Mixin model for applying to any object that wants to handle commissions"
 msgstr ""
+"Modelo Mixin para aplicar a qualquer objeto que queira lidar com comissões"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_line_mixin
@@ -616,6 +616,8 @@ msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
 msgstr ""
+"Modelo Mixin para ter comissionamento de linhas de agente em qualquer objeto "
+"herdado deste"
 
 #. module: sale_commission
 #: selection:res.partner,settlement:0
@@ -862,9 +864,8 @@ msgstr "Situação"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
-#, fuzzy
 msgid "Status"
-msgstr "Situação"
+msgstr "Estado"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/sale_commission.py:53
@@ -895,6 +896,11 @@ msgid ""
 "product category, aget, etc. Use this report to perform analysis on invoice "
 "lines agents not beeing settled yet."
 msgstr ""
+"Este relatório realiza a análise de suas comissões adicionadas nas linhas de "
+"fatura. Você pode verificar a quantidade e as linhas que serão liquidadas "
+"por data, produto, categoria de produto, aget etc. Use esse relatório para "
+"executar a análise em agentes de linhas de faturas que ainda não foram "
+"liquidados."
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_line_search
@@ -939,17 +945,13 @@ msgstr "O valor não pode ser negativo"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_make_invoice
-#, fuzzy
-#| msgid "Cannot cancel an invoiced settlement."
 msgid "Wizard for making an invoice from a settlement"
-msgstr "Não é possível cancelar uma fatura liquidada."
+msgstr "Assistente para fazer uma fatura de um acordo"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_make_settle
-#, fuzzy
-#| msgid "Create commission invoices"
 msgid "Wizard for settling commissions in invoices"
-msgstr "Criar faturas de comissão"
+msgstr "Assistente para liquidação de comissões em faturas"
 
 #. module: sale_commission
 #: sql_constraint:account.invoice.line.agent:0
@@ -968,7 +970,7 @@ msgstr "Você não pode deletar faturas liquidadas."
 #: code:addons/sale_commission/models/account_invoice.py:170
 #, python-format
 msgid "You can't modify a settled line"
-msgstr ""
+msgstr "Você não pode modificar uma linha estabelecida"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
