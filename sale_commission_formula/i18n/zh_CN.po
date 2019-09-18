@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-14 15:14+0000\n"
-"PO-Revision-Date: 2017-12-14 15:14+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2019-09-18 17:02+0000\n"
+"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
 "zh_CN/)\n"
 "Language: zh_CN\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
@@ -32,21 +33,30 @@ msgid ""
 "  Use 'result' to return the commission amount.\n"
 "                        </span>"
 msgstr ""
+"<span class=\"instructions\">\n"
+"  使用“line”访问所有行字段。\n"
+"  由于字段名称可能会有所不同，您应区分\n"
+"  sale.order.line and account.invoice.line。\n"
+"  例如，您可以使用 line._name == 'sale.order.line'\n"
+"  or line._name == 'account.invoice.line'。\n"
+"\n"
+"  使用'result'返回佣金金额。\n"
+"                        </span>"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 msgid "Account Invoice Line common fields"
-msgstr ""
+msgstr "帐户发票行常用字段"
 
 #. module: sale_commission_formula
 #: selection:sale.commission,commission_type:0
 msgid "By sections"
-msgstr ""
+msgstr "按阶梯"
 
 #. module: sale_commission_formula
 #: model:ir.model,name:sale_commission_formula.model_sale_commission
 msgid "Commission in sales"
-msgstr ""
+msgstr "销售佣金"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
@@ -56,82 +66,82 @@ msgstr "折扣（%）"
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 msgid "Field"
-msgstr ""
+msgstr "字段"
 
 #. module: sale_commission_formula
 #: selection:sale.commission,commission_type:0
 msgid "Fixed percentage"
-msgstr ""
+msgstr "固定百分比"
 
 #. module: sale_commission_formula
 #: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission__formula
 #: selection:sale.commission,commission_type:0
 msgid "Formula"
-msgstr ""
+msgstr "公式"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 msgid "Instructions"
-msgstr ""
+msgstr "说明"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 msgid "Label"
-msgstr ""
+msgstr "标签"
 
 #. module: sale_commission_formula
 #: model:ir.model,name:sale_commission_formula.model_sale_commission_line_mixin
 msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
-msgstr ""
+msgstr "Mixin模型，用于在从此继承的任何对象中具有佣金代理行"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 msgid "Quantity"
-msgstr ""
+msgstr "数量"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 msgid "Sale Oder Line common fields"
-msgstr ""
+msgstr "销售订单行公用字段"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 msgid "Subtotal"
-msgstr ""
+msgstr "小计"
 
 #. module: sale_commission_formula
 #: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission__commission_type
 msgid "Type"
-msgstr ""
+msgstr "类型"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 msgid "Unit Price"
-msgstr ""
+msgstr "单价"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 msgid "discount"
-msgstr ""
+msgstr "discount"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 msgid "price_subtotal"
-msgstr ""
+msgstr "price_subtotal"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 msgid "price_unit"
-msgstr ""
+msgstr "price_unit"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 msgid "product_uom_qty"
-msgstr ""
+msgstr "product_uom_qty"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 msgid "quantity"
-msgstr ""
+msgstr "quantity"
