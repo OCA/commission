@@ -6,5 +6,3 @@ Odoo Commission Management
 ==========================
 
 All management related with commisions and incentive in Odoo.
-
-
