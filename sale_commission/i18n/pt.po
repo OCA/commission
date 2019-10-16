@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-08-14 13:44+0000\n"
+"PO-Revision-Date: 2019-10-16 13:32+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: none\n"
 "Language: pt\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__quantity
@@ -830,7 +830,7 @@ msgstr "Período de comissionamento inválido."
 #. module: sale_commission
 #: model:ir.actions.report,name:sale_commission.action_report_settlement
 msgid "Settlement report"
-msgstr ""
+msgstr "Relatório de comissionamentos"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_search
@@ -858,7 +858,7 @@ msgstr "Estado"
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 msgid "Status"
-msgstr ""
+msgstr "Situação"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/sale_commission.py:53
@@ -869,7 +869,7 @@ msgstr "O limite inferior não pode ser maior do que o superior."
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 msgid "This Year"
-msgstr ""
+msgstr "Esta Ano"
 
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_res_partner__commission
@@ -883,6 +883,10 @@ msgstr ""
 #: model_terms:ir.actions.act_window,help:sale_commission.action_sale_commission_analysis_report
 msgid "This report performs analysis on your commissions added in invoice lines. You can check the amount and lines that will be settled by date, product, product category, aget, etc. Use this report to perform analysis on invoice lines agents not beeing settled yet."
 msgstr ""
+"Este relatório efetua análises às suas comissões adicionadas nas linhas de "
+"fatura. Pode verificar o montante e as linhas que serão comissionadas por "
+"data, categoria de produto, agent, etc. Use este relatório para analisar "
+"agentes das linhas de fatura que ainda não estejam comissionadas."
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_line_search
@@ -912,7 +916,7 @@ msgstr "Tipo"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__uom_id
 msgid "Unit of Measure"
-msgstr ""
+msgstr "Unidade de Medida"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_settle__date_to
@@ -923,17 +927,17 @@ msgstr "Até"
 #: code:addons/sale_commission/models/settlement.py:138
 #, python-format
 msgid "Value cannot be negative"
-msgstr ""
+msgstr "O valor não pode ser negativo"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_make_invoice
 msgid "Wizard for making an invoice from a settlement"
-msgstr ""
+msgstr "Assistente para fazer uma fatura a partir de um comissionamento"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_make_settle
 msgid "Wizard for settling commissions in invoices"
-msgstr ""
+msgstr "Assistente para acionar comissionamentos nas faturas"
 
 #. module: sale_commission
 #: sql_constraint:account.invoice.line.agent:0
@@ -952,7 +956,7 @@ msgstr "Não pode apagar comissionamentos faturados."
 #: code:addons/sale_commission/models/account_invoice.py:170
 #, python-format
 msgid "You can't modify a settled line"
-msgstr ""
+msgstr "Não pode modificar uma linha comissionada"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
