@@ -2,7 +2,7 @@
 
 {
     'name': 'Sales commissions',
-    'version': '10.0.2.5.0',
+    'version': '10.0.2.6.0',
     'author': 'Odoo Community Association (OCA),'
               'Tecnativa,'
               'AvanzOSC,'
