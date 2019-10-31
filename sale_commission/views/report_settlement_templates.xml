@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_settlement">
-        <t t-call="web.html_container">
+        <t t-call="report.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-call="web.internal_layout">
+                <t t-call="report.internal_layout">
                     <div class="page">
                         <div class="row mt32 mb32">
                             <div class="col-xs-3" t-if="o.agent">
