@@ -193,6 +193,7 @@ Contributors
 * Oihane Crucelaegui <oihanecruce@gmail.com>
 * Nicola Malcontenti <nicola.malcontenti@agilebg.com>
 * Aitor Bouzas <aitor.bouzas@adaptivecity.com>
+* Rodrigo Bonilla <rodrigo.bonilla@factorlibre.com>
 
 Maintainers
 ~~~~~~~~~~~
