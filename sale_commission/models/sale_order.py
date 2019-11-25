@@ -40,10 +40,9 @@ class SaleOrder(models.Model):
         if view_type == 'form':
             doc = etree.XML(res['arch'])
             for node in doc.xpath("//field[@name='order_line']"):
-                node_val = node.get('context', '{}').strip()[1:-1]
-                elems = node_val.split(',') if node_val else []
-                to_add = ["'partner_id': partner_id"]
-                node.set('context', '{' + ', '.join(elems + to_add) + '}')
+                node_val = node.get('context', '{}')
+                node_val.replace("{", "{'partner_id': partner_id, ", 1,)
+                node.set('context', node_val)
             res['arch'] = etree.tostring(doc)
         return res
 
