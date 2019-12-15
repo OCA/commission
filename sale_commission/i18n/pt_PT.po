@@ -749,6 +749,11 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_commission
+#: selection:res.partner,agent_type:0
+msgid "Salesman (employee)"
+msgstr ""
+
+#. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_mixin_agent_only
 msgid "Save"
 msgstr "Gravar"
