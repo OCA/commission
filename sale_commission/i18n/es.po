@@ -760,6 +760,11 @@ msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
 
 #. module: sale_commission
+#: selection:res.partner,agent_type:0
+msgid "Salesman (employee)"
+msgstr "Comercial (empleado)"
+
+#. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_mixin_agent_only
 msgid "Save"
 msgstr "Guardar"
@@ -1009,9 +1014,6 @@ msgstr "secciones"
 
 #~ msgid "Quotation"
 #~ msgstr "Presupuesto"
-
-#~ msgid "Salesman (employee)"
-#~ msgstr "Comercial (empleado)"
 
 #~ msgid "Source Product"
 #~ msgstr "Producto fuente"
