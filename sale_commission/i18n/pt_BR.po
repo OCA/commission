@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2018-03-22 08:15+0000\n"
 "PO-Revision-Date: 2019-08-26 14:01+0000\n"
 "Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
-"23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -754,6 +754,11 @@ msgstr "Análise de Comissão de Venda"
 #: model:ir.model,name:sale_commission.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Linha da Ordem de Venda"
+
+#. module: sale_commission
+#: selection:res.partner,agent_type:0
+msgid "Salesman (employee)"
+msgstr ""
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_mixin_agent_only
