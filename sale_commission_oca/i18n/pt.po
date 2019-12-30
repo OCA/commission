@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_commission
+# 	* sale_commission
 #
 msgid ""
 msgstr ""
@@ -607,7 +607,9 @@ msgstr "Modelo mixin para aplicar a qualquer objeto que lide com comiss??es"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_line_mixin
-msgid "Mixin model for having commission agent lines in any object inheriting from this one"
+msgid ""
+"Mixin model for having commission agent lines in any object inheriting from "
+"this one"
 msgstr ""
 "Modelo mixin para ter linhas de agentes de comiss??es em qualquer objeto que "
 "dele herde"
@@ -749,6 +751,11 @@ msgid "Sales Order Line"
 msgstr "Linha de Encomenda de Venda"
 
 #. module: sale_commission
+#: selection:res.partner,agent_type:0
+msgid "Salesman (employee)"
+msgstr ""
+
+#. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_mixin_agent_only
 msgid "Save"
 msgstr "Guardar"
@@ -874,14 +881,20 @@ msgstr "Esta Ano"
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_res_partner__commission
 #: model:ir.model.fields,help:sale_commission.field_res_users__commission
-msgid "This is the default commission used in the sales where this agent is assigned. It can be changed on each operation if needed."
+msgid ""
+"This is the default commission used in the sales where this agent is "
+"assigned. It can be changed on each operation if needed."
 msgstr ""
 "Esta ?? a comiss??o predefinida usada nas vendas quando um agente ?? atribu??do. "
 "Pode ser alterado em cada opera????o, se necess??rio."
 
 #. module: sale_commission
 #: model_terms:ir.actions.act_window,help:sale_commission.action_sale_commission_analysis_report
-msgid "This report performs analysis on your commissions added in invoice lines. You can check the amount and lines that will be settled by date, product, product category, aget, etc. Use this report to perform analysis on invoice lines agents not beeing settled yet."
+msgid ""
+"This report performs analysis on your commissions added in invoice lines. "
+"You can check the amount and lines that will be settled by date, product, "
+"product category, aget, etc. Use this report to perform analysis on invoice "
+"lines agents not beeing settled yet."
 msgstr ""
 "Este relat??rio efetua an??lises ??s suas comiss??es adicionadas nas linhas de "
 "fatura. Pode verificar o montante e as linhas que ser??o comissionadas por "
