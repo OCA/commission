@@ -29,6 +29,10 @@ class SaleCommissionAnalysisReport(models.Model):
     quantity = fields.Float('# of Qty', readonly=True)
     price_unit = fields.Float('Price unit', readonly=True)
     price_subtotal = fields.Float('Price subtotal', readonly=True)
+    price_subtotal_signed = fields.Float(
+        string='Price subtotal signed',
+        readonly=True,
+    )
     percentage = fields.Integer('Percentage of commission', readonly=True)
     amount = fields.Float('Amount', readonly=True)
     invoice_line_id = fields.Many2one(
@@ -55,6 +59,7 @@ class SaleCommissionAnalysisReport(models.Model):
             SUM(ail.quantity) AS quantity,
             AVG(ail.price_unit) AS price_unit,
             SUM(ail.price_subtotal) AS price_subtotal,
+            SUM(ail.price_subtotal_signed) AS price_subtotal_signed,
             AVG(sc.fix_qty) AS percentage,
             SUM(aila.amount) AS amount,
             ail.id AS invoice_line_id,
