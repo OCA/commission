@@ -688,6 +688,13 @@ msgid "Price subtotal"
 msgstr "Subtotal"
 
 #. module: sale_commission
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__price_subtotal_signed
+#, fuzzy
+#| msgid "Price subtotal"
+msgid "Price subtotal signed"
+msgstr "Subtotal"
+
+#. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__price_unit
 msgid "Price unit"
 msgstr "Precio unitario"
