@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-22 08:15+0000\n"
-"PO-Revision-Date: 2020-02-20 16:53+0000\n"
+"PO-Revision-Date: 2020-02-25 09:13+0000\n"
 "Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
 "23907/pt_BR/)\n"
@@ -743,7 +743,7 @@ msgstr "Relatório de Análise de Comissão de Venda"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order
 msgid "Sale Order"
-msgstr "Ordem de Venda"
+msgstr "Pedido de Venda"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__commission_id
@@ -758,7 +758,7 @@ msgstr "Análise de Comissão de Venda"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Linha de Ordens de Venda"
+msgstr "Linha de Pedidos de Venda"
 
 #. module: sale_commission
 #: selection:res.partner,agent_type:0
