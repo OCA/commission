@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-03 13:20+0000\n"
-"PO-Revision-Date: 2020-03-17 11:13+0000\n"
+"PO-Revision-Date: 2020-03-17 14:13+0000\n"
 "Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
@@ -924,7 +924,7 @@ msgstr "Fins a"
 #: sql_constraint:sale.commission.line.mixin:0
 #: sql_constraint:sale.order.line.agent:0
 msgid "You can only add one time each agent."
-msgstr ""
+msgstr "Només és pot afegir un agent cada cop."
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:60
@@ -935,28 +935,28 @@ msgstr "No podeu esborrar factures de liquidacions."
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
 msgid "_Cancel"
-msgstr ""
+msgstr "_Cancel·lar"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_invoice_line_agent
 msgid "account.invoice.line.agent"
-msgstr ""
+msgstr "account.invoice.line.agent"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
 #: model:ir.ui.view,arch_db:sale_commission.view_settled_wizard
 msgid "or"
-msgstr ""
+msgstr "o"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_make_invoice
 msgid "sale.commission.make.invoice"
-msgstr ""
+msgstr "sale.commission.make.invoice"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_make_settle
 msgid "sale.commission.make.settle"
-msgstr ""
+msgstr "sale.commission.make.settle"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_settlement_line
@@ -966,9 +966,9 @@ msgstr "sale.commission.settlement.line"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order_line_agent
 msgid "sale.order.line.agent"
-msgstr ""
+msgstr "sale.order.line.agent"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.sale_commission_form
 msgid "sections"
-msgstr ""
+msgstr "seccions"
