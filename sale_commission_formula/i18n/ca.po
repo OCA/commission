@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-03 13:20+0000\n"
-"PO-Revision-Date: 2020-03-15 20:13+0000\n"
+"PO-Revision-Date: 2020-03-17 11:13+0000\n"
 "Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
@@ -32,6 +32,15 @@ msgid ""
 "  Use 'result' to return the commission amount.\n"
 "                        </span>"
 msgstr ""
+"<span class=\"instructions\">\n"
+"Utilitzar 'line' per accedir a tots els camps de la línia.\n"
+"Com que els noms del camp poden variar, s'han de diferenciar\n"
+"les fórmules per sale.order.line i account.invoice.line. \n"
+"Podeu,  per exemple, utilitzar line._name == 'sale.order.line' \n"
+"o line._name == 'account.invoice.line'.\n"
+"\n"
+"Utilitzeu 'result' per retornar l'import de la comissió.\n"
+"</span>"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
@@ -74,6 +83,8 @@ msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
 msgstr ""
+"El model Mixin per tenir línies de comissió d'agent en qualsevol objecte "
+"heretat d'aquest"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
