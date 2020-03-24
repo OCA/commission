@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2018-03-22 08:15+0000\n"
 "PO-Revision-Date: 2020-02-25 09:13+0000\n"
 "Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
-"23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -977,7 +977,7 @@ msgid "You can't delete invoiced settlements."
 msgstr "Voc?? n??o pode deletar faturas liquidadas."
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/account_invoice.py:170
+#: code:addons/sale_commission/models/account_invoice.py:180
 #, python-format
 msgid "You can't modify a settled line"
 msgstr "Voc?? n??o pode modificar uma linha estabelecida"

@@ -975,7 +975,7 @@ msgid "You can't delete invoiced settlements."
 msgstr "U kunt gefactureerde afrekeningen niet verwijderen."
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/account_invoice.py:170
+#: code:addons/sale_commission/models/account_invoice.py:180
 #, python-format
 msgid "You can't modify a settled line"
 msgstr "U kunt een afgerekende regel niet wijzigen"
