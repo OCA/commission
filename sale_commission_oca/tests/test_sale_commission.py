@@ -441,6 +441,25 @@ class TestSaleCommission(SavepointCase):
             agent.onchange_agent()
             self.assertEqual(self.agent_semi.commission, agent.commission)
 
+    def test_supplier_invoice(self):
+        """No agents should be populated on supplier invoices."""
+        self.partner.agents = self.agent_semi
+        invoice = self.env['account.invoice'].create({
+            'partner_id': self.partner.id,
+            'type': 'in_invoice',
+        })
+        line = self.env['account.invoice.line'].new({
+            'invoice_id': invoice.id,
+            'product_id': self.product.id,
+            'product_uom_qty': 1.0,
+            'product_uom': self.product.uom_id.id,
+        })
+        line._onchange_product_id()
+        line = self.env['account.invoice.line'].with_context({
+            'partner_id': self.partner.id
+        }).create(line._convert_to_write(line._cache))
+        self.assertFalse(line.agents)
+
     def test_check_new_invoice_with_settle_invoiced(self):
         self.check_new_invoice_with_settle_invoiced(
             self.agent_monthly,
