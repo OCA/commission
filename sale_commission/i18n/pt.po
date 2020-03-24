@@ -973,7 +973,7 @@ msgid "You can't delete invoiced settlements."
 msgstr "Não pode apagar comissionamentos faturados."
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/account_invoice.py:170
+#: code:addons/sale_commission/models/account_invoice.py:180
 #, python-format
 msgid "You can't modify a settled line"
 msgstr "Não pode modificar uma linha comissionada"
