@@ -70,6 +70,13 @@ class AccountInvoiceLine(models.Model):
         compute="_compute_any_settled",
     )
 
+    @api.model
+    def _default_agents(self):
+        """Don't populate agents for supplier invoices."""
+        if self.env.context.get('type', '')[:2] == 'in':
+            return []
+        return super()._default_agents()
+
     @api.depends('agents', 'agents.settled')
     def _compute_any_settled(self):
         for record in self:
@@ -81,19 +88,25 @@ class AccountInvoiceLine(models.Model):
         # We use this form as this is the way it's returned when no real vals
         agents_vals = vals.get('agents', [(6, 0, [])])
         invoice_id = vals.get('invoice_id', False)
+        invoice = self.env['account.invoice'].browse(invoice_id)
         if (agents_vals and agents_vals[0][0] == 6 and not
-                agents_vals[0][2] and invoice_id):
-            vals['agents'] = self._prepare_agents_vals(vals=vals)
+                agents_vals[0][2] and invoice):
+            vals['agents'] = (
+                self._prepare_agents_vals_partner(invoice.partner_id)
+                if invoice.type[:3] == 'out' else [(6, 0, [])])
         return super().create(vals)
 
     def _prepare_agents_vals(self, vals=None):
         res = super()._prepare_agents_vals(vals=vals)
         if self:
             partner = self.invoice_id.partner_id
+            invoice = self.invoice_id
         else:
             invoice = self.env['account.invoice'].browse(vals['invoice_id'])
             partner = invoice.partner_id
-        return res + self._prepare_agents_vals_partner(partner)
+        if invoice.type[:3] == 'out':
+            res += self._prepare_agents_vals_partner(partner)
+        return res
 
 
 class AccountInvoiceLineAgent(models.Model):
