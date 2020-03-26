@@ -968,7 +968,7 @@ msgid "You can't delete invoiced settlements."
 msgstr "您无法删除已开具发票的结算。"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/account_invoice.py:170
+#: code:addons/sale_commission/models/account_invoice.py:180
 #, python-format
 msgid "You can't modify a settled line"
 msgstr "您无法修改已结算的行"
