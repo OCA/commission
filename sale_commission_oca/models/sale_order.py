@@ -73,8 +73,8 @@ class SaleOrderLine(models.Model):
         res = super()._prepare_agents_vals()
         return res + self._prepare_agents_vals_partner(self.order_id.partner_id,)
 
-    def _prepare_invoice_line(self, qty):
-        vals = super(SaleOrderLine, self)._prepare_invoice_line(qty)
+    def _prepare_invoice_line(self):
+        vals = super(SaleOrderLine, self)._prepare_invoice_line()
         vals["agents"] = [
             (0, 0, {"agent": x.agent.id, "commission": x.commission.id})
             for x in self.agents

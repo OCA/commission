@@ -4,7 +4,11 @@
 * Sandy Carter <sandy.carter@savoirfairelinux.com>
 * Giorgio Borelli <giorgio.borelli@abstract.it>
 * Daniel Campos <danielcampos@avanzosc.es>
-* Pedro M. Baeza
 * Oihane Crucelaegui <oihanecruce@gmail.com>
 * Nicola Malcontenti <nicola.malcontenti@agilebg.com>
 * Aitor Bouzas <aitor.bouzas@adaptivecity.com>
+
+* `Tecnativa <https://www.tecnativa.com>`__:
+
+  * Pedro M. Baeza
+  * Manuel Calero

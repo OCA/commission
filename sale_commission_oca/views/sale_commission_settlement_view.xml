@@ -6,7 +6,8 @@
         <field name="arch" type="xml">
             <tree
                 string="Settlements"
-                colors="red: state == 'cancel'; gray: state == 'invoiced'"
+                decoration-muted="state == 'invoiced'"
+                decoration-danger="state == 'cancel'"
                 create="false"
             >
                 <field name="agent" />
@@ -165,8 +166,7 @@
         <field name="name">Settlements</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.commission.settlement</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
+        <field name="binding_view_types">form,tree</field>
     </record>
     <menuitem
         name="Settlements"

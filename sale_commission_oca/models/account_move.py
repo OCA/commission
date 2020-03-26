@@ -1,47 +1,47 @@
 # Copyright 2014-2018 Tecnativa - Pedro M. Baeza
+# Copyright 2020 Tecnativa - Manuel Calero
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, exceptions, fields, models
 
 
-class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+class AccountMove(models.Model):
+    _inherit = "account.move"
 
-    @api.depends("invoice_line_ids.agents.amount")
+    @api.depends("line_ids.agents.amount")
     def _compute_commission_total(self):
         for record in self:
             record.commission_total = 0.0
-            for line in record.invoice_line_ids:
+            for line in record.line_ids:
                 record.commission_total += sum(x.amount for x in line.agents)
 
     commission_total = fields.Float(
         string="Commissions", compute="_compute_commission_total", store=True,
     )
 
-    def action_cancel(self):
+    def button_cancel(self):
         """Put settlements associated to the invoices in exception."""
-        settlements = self.env["sale.commission.settlement"].search(
+        self.env["sale.commission.settlement"].search(
             [("invoice", "in", self.ids)]
-        )
-        settlements.write({"state": "except_invoice"})
-        return super(AccountInvoice, self).action_cancel()
+        ).write({"state": "except_invoice"})
+        return super(AccountMove, self).button_cancel()
 
-    def invoice_validate(self):
+    def post(self):
         """Put settlements associated to the invoices in invoiced state."""
         self.env["sale.commission.settlement"].search(
             [("invoice", "in", self.ids)]
         ).write({"state": "invoiced"})
-        return super(AccountInvoice, self).invoice_validate()
+        return super(AccountMove, self).post()
 
     def _refund_cleanup_lines(self, lines):
         """ugly function to map all fields of account.invoice.line
         when creates refund invoice"""
-        res = super(AccountInvoice, self)._refund_cleanup_lines(lines)
-        if lines and lines[0]._name != "account.invoice.line":
+        res = super(AccountMove, self)._refund_cleanup_lines(lines)
+        if lines and lines[0]._name != "account.move.line":
             return res
         for i, line in enumerate(lines):
             vals = res[i][2]
-            agents = super(AccountInvoice, self)._refund_cleanup_lines(line["agents"])
+            agents = super(AccountMove, self)._refund_cleanup_lines(line["agents"])
             # Remove old reference to source invoice
             for agent in agents:
                 agent_vals = agent[2]
@@ -54,12 +54,12 @@ class AccountInvoice(models.Model):
         self.mapped("invoice_line_ids").recompute_agents()
 
 
-class AccountInvoiceLine(models.Model):
+class AccountMoveLine(models.Model):
     _inherit = [
-        "account.invoice.line",
+        "account.move.line",
         "sale.commission.mixin",
     ]
-    _name = "account.invoice.line"
+    _name = "account.move.line"
 
     agents = fields.One2many(comodel_name="account.invoice.line.agent",)
     any_settled = fields.Boolean(compute="_compute_any_settled",)
@@ -76,30 +76,32 @@ class AccountInvoiceLine(models.Model):
         for record in self:
             record.any_settled = any(record.mapped("agents.settled"))
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         """Add agents for records created from automations instead of UI."""
         # We use this form as this is the way it's returned when no real vals
-        agents_vals = vals.get("agents", [(6, 0, [])])
-        invoice_id = vals.get("invoice_id", False)
-        if (
-            agents_vals
-            and agents_vals[0][0] == 6
-            and not agents_vals[0][2]
-            and invoice_id
-        ):
-            inv = self.env["account.invoice"].browse(invoice_id)
-            vals["agents"] = (
-                self._prepare_agents_vals_partner(inv.partner_id)
-                if inv.type[:3] == "out"
-                else [(6, 0, [])]
-            )
-        return super().create(vals)
+        for vals in vals_list:
+            agents_vals = vals.get("agents", [(6, 0, [])])
+            move_id = vals.get("move_id", False)
+
+            if (
+                agents_vals
+                and agents_vals[0][0] == 6
+                and not agents_vals[0][2]
+                and move_id
+            ):
+                inv = self.env["account.move"].browse(move_id)
+                vals["agents"] = (
+                    self._prepare_agents_vals_partner(inv.partner_id)
+                    if inv.type[:3] == "out"
+                    else [(6, 0, [])]
+                )
+        return super().create(vals_list)
 
     def _prepare_agents_vals(self):
         self.ensure_one()
         res = super()._prepare_agents_vals()
-        inv = self.invoice_id
+        inv = self.move_id
         if inv.type[:3] == "out":
             res += self._prepare_agents_vals_partner(inv.partner_id)
         return res
@@ -110,19 +112,16 @@ class AccountInvoiceLineAgent(models.Model):
     _name = "account.invoice.line.agent"
 
     object_id = fields.Many2one(
-        comodel_name="account.invoice.line", oldname="invoice_line",
+        comodel_name="account.move.line", oldname="invoice_line",
     )
     invoice = fields.Many2one(
         string="Invoice",
-        comodel_name="account.invoice",
-        related="object_id.invoice_id",
+        comodel_name="account.move",
+        related="object_id.move_id",
         store=True,
     )
     invoice_date = fields.Date(
-        string="Invoice date",
-        related="invoice.date_invoice",
-        store=True,
-        readonly=True,
+        string="Invoice date", related="invoice.date", store=True, readonly=True,
     )
     agent_line = fields.Many2many(
         comodel_name="sale.commission.settlement.line",
@@ -148,7 +147,7 @@ class AccountInvoiceLineAgent(models.Model):
                 inv_line.quantity,
             )
             # Refunds commissions are negative
-            if "refund" in line.invoice.type:
+            if line.invoice.type and "refund" in line.invoice.type:
                 line.amount = -line.amount
 
     @api.depends(
@@ -178,5 +177,15 @@ class AccountInvoiceLineAgent(models.Model):
         """
         self.ensure_one()
         return (
-            self.commission.invoice_state == "paid" and self.invoice.state != "paid"
-        ) or (self.invoice.state not in ("open", "paid"))
+            self.commission.invoice_state == "paid"
+            and self.invoice.invoice_payment_state != "paid"
+        ) or (
+            self.invoice.state != "posted"
+            or self.invoice.invoice_payment_state != "paid"
+        )
+
+
+#        return (
+#            self.commission.invoice_state == 'paid' and
+#            self.invoice.state != 'paid'
+#        ) or (self.invoice.state not in ('open', 'paid'))

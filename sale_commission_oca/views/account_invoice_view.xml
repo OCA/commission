@@ -17,8 +17,8 @@
     </record>
     <record id="invoice_line_form_agent" model="ir.ui.view">
         <field name="name">account.invoice.line.form.agent</field>
-        <field name="model">account.invoice.line</field>
-        <field name="inherit_id" ref="account.view_invoice_line_form" />
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_form" />
         <field name="arch" type="xml">
             <field name="company_id" position="after">
                 <field name="commission_free" />
@@ -31,8 +31,8 @@
     </record>
     <record id="invoice_form_agent" model="ir.ui.view">
         <field name="name">account.invoice.form.agent</field>
-        <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account.invoice_form" />
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
             <field name="invoice_line_ids" position="attributes">
                 <attribute name="context">{'partner_id': partner_id}</attribute>
