@@ -15,7 +15,7 @@ class SaleCommissionMixin(models.AbstractModel):
         """Utility method for getting agents of a partner."""
         rec = []
         for agent in partner.agents:
-            rec.append((0, 0, {"agent": agent.id, "commission": agent.commission.id,}))
+            rec.append((0, 0, {"agent": agent.id, "commission": agent.commission.id}))
         return rec
 
     @api.model
@@ -35,7 +35,7 @@ class SaleCommissionMixin(models.AbstractModel):
         default=lambda self: self._default_agents(),
         copy=True,
     )
-    product_id = fields.Many2one(comodel_name="product.product", string="Product",)
+    product_id = fields.Many2one(comodel_name="product.product", string="Product")
     commission_free = fields.Boolean(
         string="Comm. free",
         related="product_id.commission_free",
@@ -142,7 +142,7 @@ class SaleCommissionLineMixin(models.AbstractModel):
             # If subtotal (sale_price * quantity) is less than
             # standard_price * quantity, it means that we are selling at
             # lower price than we bought, so set amount_base to 0
-            subtotal = max([0, subtotal - product.standard_price * quantity,])
+            subtotal = max([0, subtotal - product.standard_price * quantity])
         if commission.commission_type == "fixed":
             return subtotal * (commission.fix_qty / 100.0)
         elif commission.commission_type == "section":
