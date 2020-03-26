@@ -1,4 +1,4 @@
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 
 
 class SaleCommissionMakeInvoice(models.TransientModel):
@@ -41,9 +41,8 @@ class SaleCommissionMakeInvoice(models.TransientModel):
         default=_default_settlements,
     )
     from_settlement = fields.Boolean(default=_default_from_settlement)
-    date = fields.Date()
+    date = fields.Date(default=fields.Date.context_today)
 
-    @api.multi
     def button_create(self):
         self.ensure_one()
         if not self.settlements:
@@ -61,8 +60,8 @@ class SaleCommissionMakeInvoice(models.TransientModel):
                 "name": _("Created Invoices"),
                 "type": "ir.actions.act_window",
                 "views": [[False, "list"], [False, "form"]],
-                "res_model": "account.invoice",
-                "domain": [["id", "in", [x.invoice.id for x in self.settlements]],],
+                "res_model": "account.move",
+                "domain": [["id", "in", [x.invoice.id for x in self.settlements]]],
             }
         else:
             return {"type": "ir.actions.act_window_close"}
