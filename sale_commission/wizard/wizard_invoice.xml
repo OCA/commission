@@ -22,15 +22,15 @@
                     </group>
                 </group>
                 <footer>
-                        <button
+                    <button
                         name="button_create"
                         string="Create invoices"
                         type="object"
                         class="oe_highlight"
                     />
-                        or
-                        <button special="cancel" string="_Cancel" class="oe_link" />
-                    </footer>
+                    or
+                    <button special="cancel" string="_Cancel" class="oe_link" />
+                </footer>
             </form>
         </field>
     </record>
@@ -39,7 +39,6 @@
         name="Create commission invoices"
         res_model="sale.commission.make.invoice"
         view_mode="form"
-        view_type="form"
         target="new"
     />
     <menuitem
