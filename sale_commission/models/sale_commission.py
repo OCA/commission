@@ -1,3 +1,5 @@
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from odoo import _, api, exceptions, fields, models
 
 
@@ -31,7 +33,6 @@ class SaleCommission(models.Model):
     )
     settlements = fields.Many2many(comodel_name="sale.commission.settlement")
 
-    @api.multi
     def calculate_section(self, base):
         self.ensure_one()
         for section in self.sections:
@@ -49,7 +50,6 @@ class SaleCommissionSection(models.Model):
     amount_to = fields.Float(string="To")
     percent = fields.Float(string="Percent", required=True)
 
-    @api.multi
     @api.constrains("amount_from", "amount_to")
     def _check_amounts(self):
         for section in self:

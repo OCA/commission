@@ -74,7 +74,6 @@ class ResPartner(models.Model):
             vals["agents"] = [(4, x) for x in self.browse(vals["parent_id"]).agents.ids]
         return super(ResPartner, self).create(vals)
 
-    @api.multi
     def write(self, vals):
         """Propagate agents change in the parent partner to the child
         contacts.

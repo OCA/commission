@@ -1,4 +1,5 @@
 # Copyright 2016-2019 Tecnativa - Pedro M. Baeza
+# Copyright 2020 Tecnativa - Manuel Calero
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 from unittest.mock import patch
@@ -38,7 +39,7 @@ class TestSaleCommission(SavepointCase):
                 "commission_type": "section",
                 "invoice_state": "paid",
                 "sections": [
-                    (0, 0, {"amount_from": 1.0, "amount_to": 100.0, "percent": 10.0,})
+                    (0, 0, {"amount_from": 1.0, "amount_to": 100.0, "percent": 10.0})
                 ],
                 "amount_base_type": "net_amount",
             }
@@ -60,18 +61,17 @@ class TestSaleCommission(SavepointCase):
                 ],
             }
         )
+        cls.company = cls.env.ref("base.main_company")
         cls.res_partner_model = cls.env["res.partner"]
         cls.partner = cls.env.ref("base.res_partner_2")
-        cls.partner.write({"supplier": False, "agent": False})
+        cls.partner.write({"agent": False})
         cls.sale_order_model = cls.env["sale.order"]
         cls.advance_inv_model = cls.env["sale.advance.payment.inv"]
         cls.settle_model = cls.env["sale.commission.settlement"]
         cls.make_settle_model = cls.env["sale.commission.make.settle"]
         cls.make_inv_model = cls.env["sale.commission.make.invoice"]
         cls.product = cls.env.ref("product.product_product_5")
-        cls.product.write(
-            {"invoice_policy": "order",}
-        )
+        cls.product.write({"invoice_policy": "order"})
         cls.journal = cls.env["account.journal"].search(
             [("type", "=", "purchase")], limit=1
         )
@@ -107,6 +107,13 @@ class TestSaleCommission(SavepointCase):
                 "lang": "en_US",
             }
         )
+        cls.income_account = cls.env["account.account"].search(
+            [
+                ("company_id", "=", cls.company.id),
+                ("user_type_id.name", "=", "Income"),
+            ],
+            limit=1,
+        )
 
     def _create_sale_order(self, agent, commission):
         return self.sale_order_model.create(
@@ -131,24 +138,11 @@ class TestSaleCommission(SavepointCase):
             }
         )
 
-    def test_sale_commission_gross_amount_payment(self):
-        self.check_full(
-            self.env.ref("sale_commission.res_partner_pritesh_sale_agent"),
-            self.commission_section_paid,
-            1,
-        )
-
-    def test_sale_commission_gross_amount_payment_annual(self):
-        self.check_full(self.agent_annual, self.commission_section_paid, 12)
-
-    def test_sale_commission_gross_amount_payment_semi(self):
-        self.check_full(self.agent_semi, self.commission_section_paid, 6)
-
     def check_full(self, agent, commission, period):
         sale_order = self._create_sale_order(agent, commission)
         sale_order.action_confirm()
         self.assertEqual(len(sale_order.invoice_ids), 0)
-        payment = self.advance_inv_model.create({"advance_payment_method": "all",})
+        payment = self.advance_inv_model.create({"advance_payment_method": "delivered"})
         context = {
             "active_model": "sale.order",
             "active_ids": [sale_order.id],
@@ -157,8 +151,13 @@ class TestSaleCommission(SavepointCase):
         payment.with_context(context).create_invoices()
         self.assertNotEqual(len(sale_order.invoice_ids), 0)
         for invoice in sale_order.invoice_ids:
-            invoice.action_invoice_open()
-            self.assertEqual(invoice.state, "open")
+            invoice.post()  # action_invoice_open()
+            self.assertEqual(invoice.state, "posted")  # "open")
+
+            import pdb
+
+            pdb.set_trace()
+
         wizard = self.make_settle_model.create(
             {
                 "date_to": (
@@ -170,14 +169,21 @@ class TestSaleCommission(SavepointCase):
         wizard.action_settle()
         settlements = self.settle_model.search([("state", "=", "settled")])
         self.assertEqual(len(settlements), 0)
+
         journals = self.env["account.journal"].search(
             [("type", "=", "cash"), ("company_id", "=", sale_order.company_id.id)],
             limit=1,
         )
         for invoice in sale_order.invoice_ids:
-            invoice.pay_and_reconcile(journals[:1], invoice.amount_total)
+            # invoice.pay_and_reconcile(journals[:1], invoice.amount_total)
+            register_payments = (
+                self.env["account.payment.register"]
+                .with_context(active_ids=invoice.id)
+                .create({"journal_id": journals.id})
+            )
+            register_payments.create_payments()
         self.assertTrue(sale_order.invoice_ids)
-        self.assertEqual(sale_order.invoice_ids[:1].state, "paid")
+        self.assertEqual(sale_order.invoice_ids[:1].invoice_payment_state, "paid")
         wizard = self.make_settle_model.create(
             {
                 "date_to": (
@@ -187,7 +193,13 @@ class TestSaleCommission(SavepointCase):
             }
         )
         wizard.action_settle()
+
+        import pdb
+
+        pdb.set_trace()
+
         settlements = self.settle_model.search([("state", "=", "settled")])
+
         self.assertTrue(settlements)
         inv_line = sale_order.mapped("invoice_ids.invoice_line_ids")[0]
         self.assertTrue(inv_line.any_settled)
@@ -209,6 +221,19 @@ class TestSaleCommission(SavepointCase):
         with self.assertRaises(UserError):
             settlements.unlink()
 
+    def test_sale_commission_gross_amount_payment(self):
+        self.check_full(
+            self.env.ref("sale_commission.res_partner_pritesh_sale_agent"),
+            self.commission_section_paid,
+            1,
+        )
+
+    def test_sale_commission_gross_amount_payment_annual(self):
+        self.check_full(self.agent_annual, self.commission_section_paid, 12)
+
+    def test_sale_commission_gross_amount_payment_semi(self):
+        self.check_full(self.agent_semi, self.commission_section_paid, 6)
+
     def test_sale_commission_gross_amount_invoice(self):
         sale_order = self._create_sale_order(
             self.agent_quaterly, self.env.ref("sale_commission.demo_commission")
@@ -220,7 +245,7 @@ class TestSaleCommission(SavepointCase):
             "Invoice should be created after make advance invoice where type"
             " is 'Invoice all the Sale Order'.",
         )
-        payment = self.advance_inv_model.create({"advance_payment_method": "all",})
+        payment = self.advance_inv_model.create({"advance_payment_method": "delivered"})
         context = {
             "active_model": "sale.order",
             "active_ids": [sale_order.id],
@@ -228,8 +253,8 @@ class TestSaleCommission(SavepointCase):
         }
         payment.with_context(context).create_invoices()
         for invoice in sale_order.invoice_ids:
-            invoice.action_invoice_open()
-            self.assertEqual(invoice.state, "open")
+            invoice.post()  # invoice.action_invoice_open()
+            self.assertEqual(invoice.state, "posted")
         wizard = self.make_settle_model.create(
             {
                 "date_to": (
@@ -239,9 +264,7 @@ class TestSaleCommission(SavepointCase):
             }
         )
         wizard.action_settle()
-        wizard2 = self.make_inv_model.create(
-            {"product": 1, "journal": self.journal.id,}
-        )
+        wizard2 = self.make_inv_model.create({"product": 1, "journal": self.journal.id})
         wizard2.button_create()
         settlements = self.settle_model.search([("state", "=", "invoiced")])
         for settlement in settlements:
@@ -258,7 +281,7 @@ class TestSaleCommission(SavepointCase):
             "Invoice should be created after make advance invoice where type"
             " is 'Invoice all the Sale Order'.",
         )
-        payment = self.advance_inv_model.create({"advance_payment_method": "all",})
+        payment = self.advance_inv_model.create({"advance_payment_method": "delivered"})
         context = {
             "active_model": "sale.order",
             "active_ids": [sale_order.id],
@@ -266,8 +289,8 @@ class TestSaleCommission(SavepointCase):
         }
         payment.with_context(context).create_invoices()
         for invoice in sale_order.invoice_ids:
-            invoice.action_invoice_open()
-            self.assertEqual(invoice.state, "open")
+            invoice.post()  # action_invoice_open()
+            self.assertEqual(invoice.state, "posted")
         wizard = self.make_settle_model.create(
             {
                 "date_to": (
@@ -290,9 +313,9 @@ class TestSaleCommission(SavepointCase):
         self.assertEqual(sale_order.invoice_ids[:1].state, "paid")
         for invoice in sale_order.invoice_ids:
             refund_wiz = (
-                self.env["account.invoice.refund"]
+                self.env["account.move.refund"]
                 .with_context(active_ids=invoice.ids, active_id=invoice.id)
-                .create({"description": "Refund test", "filter_refund": "refund",})
+                .create({"description": "Refund test", "filter_refund": "refund"})
             )
             refund_wiz.invoice_refund()
 
@@ -302,7 +325,7 @@ class TestSaleCommission(SavepointCase):
             self.commission_section_paid,
         )
         sale_order.action_confirm()
-        payment = self.advance_inv_model.create({"advance_payment_method": "all",})
+        payment = self.advance_inv_model.create({"advance_payment_method": "delivered"})
         payment.with_context(
             active_model="sale.order",
             active_ids=[sale_order.id],
@@ -315,8 +338,8 @@ class TestSaleCommission(SavepointCase):
             " is 'Invoice all the Sale Order'.",
         )
         for invoice in sale_order.invoice_ids:
-            invoice.action_invoice_open()
-            self.assertEqual(invoice.state, "open")
+            invoice.post()  # action_invoice_open()
+            self.assertEqual(invoice.state, "posted")
         wizard = self.make_settle_model.create(
             {
                 "date_to": (
@@ -357,7 +380,7 @@ class TestSaleCommission(SavepointCase):
             "Invoice should be created after make advance invoice where type"
             " is 'Invoice all the Sale Order'.",
         )
-        payment = self.advance_inv_model.create({"advance_payment_method": "all",})
+        payment = self.advance_inv_model.create({"advance_payment_method": "delivered"})
         context = {
             "active_model": "sale.order",
             "active_ids": [sale_order.id],
@@ -385,7 +408,6 @@ class TestSaleCommission(SavepointCase):
             )
 
     def test_res_partner_onchange(self):
-        self.assertFalse(self.partner.supplier)
         self.assertFalse(self.partner.agent)
         self.partner.agent = True
         self.partner.onchange_agent_type()
@@ -430,7 +452,7 @@ class TestSaleCommission(SavepointCase):
                     "name": "Section commission - Invoice Based",
                     "commission_type": "section",
                     "sections": [
-                        (0, 0, {"amount_from": 5, "amount_to": 1, "percent": 20.0,})
+                        (0, 0, {"amount_from": 5, "amount_to": 1, "percent": 20.0})
                     ],
                 }
             )
@@ -482,21 +504,24 @@ class TestSaleCommission(SavepointCase):
         partner.agents = self.agent_annual
         self.agent_semi.commission = self.commission_net_paid
         self.partner.agents = self.agent_semi
-        invoice = self.env["account.invoice"].create({"partner_id": self.partner.id})
-        line = self.env["account.invoice.line"].new(
+
+        invoice = self.env["account.move"].create({"partner_id": self.partner.id})
+        line = self.env["account.move.line"].new(
             {
-                "invoice_id": invoice.id,
+                "move_id": invoice.id,
                 "product_id": self.product.id,
-                "product_uom_qty": 1.0,
-                "product_uom": self.ref("uom.product_uom_unit"),
+                "quantity": 1.0,
+                "product_uom_id": self.ref("uom.product_uom_unit"),
+                "account_id": self.income_account,
             }
         )
-        line._onchange_product_id()
+        # line._onchange_product_id()
         line = (
-            self.env["account.invoice.line"]
+            self.env["account.move.line"]
             .with_context({"partner_id": self.partner.id})
             .create(line._cache)
         )
+
         self.assertGreater(len(line.agents), 0)
         invoice.partner = partner
         invoice._onchange_partner_id()
@@ -509,20 +534,20 @@ class TestSaleCommission(SavepointCase):
     def test_supplier_invoice(self):
         """No agents should be populated on supplier invoices."""
         self.partner.agents = self.agent_semi
-        invoice = self.env["account.invoice"].create(
-            {"partner_id": self.partner.id, "type": "in_invoice",}
+        invoice = self.env["account.move"].create(
+            {"partner_id": self.partner.id, "type": "in_invoice"}
         )
-        line = self.env["account.invoice.line"].new(
+        line = self.env["account.move.line"].new(
             {
-                "invoice_id": invoice.id,
+                "move_id": invoice.id,
                 "product_id": self.product.id,
-                "product_uom_qty": 1.0,
-                "product_uom": self.product.uom_id.id,
+                "quantity": 1.0,
+                "product_uom_id": self.ref("uom.product_uom_unit"),
             }
         )
         line._onchange_product_id()
         line = (
-            self.env["account.invoice.line"]
+            self.env["account.move.line"]
             .with_context({"partner_id": self.partner.id})
             .create(line._convert_to_write(line._cache))
         )
@@ -541,7 +566,7 @@ class TestSaleCommission(SavepointCase):
         sale_order = self._create_sale_order(agent, commission)
         sale_order.action_confirm()
         self.assertEqual(len(sale_order.invoice_ids), 0)
-        payment = self.advance_inv_model.create({"advance_payment_method": "all",})
+        payment = self.advance_inv_model.create({"advance_payment_method": "delivered"})
         context = {
             "active_model": "sale.order",
             "active_ids": [sale_order.id],
@@ -550,8 +575,8 @@ class TestSaleCommission(SavepointCase):
         payment.with_context(context).create_invoices()
         self.assertEqual(len(sale_order.invoice_ids), 1)
         for invoice in sale_order.invoice_ids:
-            invoice.action_invoice_open()
-            self.assertEqual(invoice.state, "open")
+            invoice.post()  # action_invoice_open()
+            self.assertEqual(invoice.state, "posted")
         wizard = self.make_settle_model.create(
             {
                 "date_to": (
@@ -568,7 +593,7 @@ class TestSaleCommission(SavepointCase):
         agent_invoice = settlements.invoice
         for invoice in sale_order.invoice_ids:
             refund = invoice.refund()
-            refund.action_invoice_open()
+            refund.post()  # action_invoice_open()
         wizard = self.make_settle_model.create(
             {
                 "date_to": (
@@ -597,7 +622,9 @@ class TestSaleCommission(SavepointCase):
         sale_order = self._create_sale_order(agent, commission)
         sale_order.action_confirm()
         self.assertEqual(len(sale_order.invoice_ids), 0)
-        payment = self.advance_inv_model.create({"advance_payment_method": "all",})
+        payment = self.advance_inv_model.create(
+            {"advance_payment_method": "delivered"}
+        )  # "all"
         context = {
             "active_model": "sale.order",
             "active_ids": [sale_order.id],
@@ -606,8 +633,8 @@ class TestSaleCommission(SavepointCase):
         payment.with_context(context).create_invoices()
         self.assertEqual(len(sale_order.invoice_ids), 1)
         for invoice in sale_order.invoice_ids:
-            invoice.action_invoice_open()
-            self.assertEqual(invoice.state, "open")
+            invoice.post()  # action_invoice_open()
+            self.assertEqual(invoice.state, "posted")
         wizard = self.make_settle_model.create(
             {
                 "date_to": (
@@ -647,7 +674,9 @@ class TestSaleCommission(SavepointCase):
         sale_order = self._create_sale_order(agent, commission)
         sale_order.action_confirm()
         self.assertEqual(len(sale_order.invoice_ids), 0)
-        payment = self.advance_inv_model.create({"advance_payment_method": "all",})
+        payment = self.advance_inv_model.create(
+            {"advance_payment_method": "delivered"}
+        )  # "all"
         context = {
             "active_model": "sale.order",
             "active_ids": [sale_order.id],
@@ -656,8 +685,8 @@ class TestSaleCommission(SavepointCase):
         payment.with_context(context).create_invoices()
         self.assertEqual(len(sale_order.invoice_ids), 1)
         for invoice in sale_order.invoice_ids:
-            invoice.action_invoice_open()
-            self.assertEqual(invoice.state, "open")
+            invoice.post()  # action_invoice_open()
+            self.assertEqual(invoice.state, "posted")  # "open")
         wizard = self.make_settle_model.create(
             {
                 "date_to": (
@@ -684,7 +713,9 @@ class TestSaleCommission(SavepointCase):
         sale_order2 = self._create_sale_order(agent, commission)
         sale_order2.action_confirm()
         self.assertEqual(len(sale_order2.invoice_ids), 0)
-        payment2 = self.advance_inv_model.create({"advance_payment_method": "all",})
+        payment2 = self.advance_inv_model.create(
+            {"advance_payment_method": "delivered"}
+        )  # "all"
         context2 = {
             "active_model": "sale.order",
             "active_ids": [sale_order2.id],
@@ -693,8 +724,8 @@ class TestSaleCommission(SavepointCase):
         payment2.with_context(context2).create_invoices()
         self.assertEqual(len(sale_order2.invoice_ids), 1)
         for invoice in sale_order2.invoice_ids:
-            invoice.action_invoice_open()
-            self.assertEqual(invoice.state, "open")
+            invoice.post()
+            self.assertEqual(invoice.state, "posted")
         wizard = self.make_settle_model.create(
             {
                 "date_to": (
@@ -713,18 +744,18 @@ class TestSaleCommission(SavepointCase):
         partner = self.env["res.partner"].create(
             {
                 "name": "Test partner",
-                "agents": [(4, self.agent_monthly.id), (4, self.agent_quaterly.id),],
+                "agents": [(4, self.agent_monthly.id), (4, self.agent_quaterly.id)],
             }
         )
         # Onchange
         child = self.env["res.partner"].new(
-            {"name": "Test child", "parent_id": partner.id,}
+            {"name": "Test child", "parent_id": partner.id}
         )
         child.onchange_parent_id()
         self.assertEqual(child.agents, partner.agents)
         # Create
         child = self.env["res.partner"].create(
-            {"name": "Test child", "parent_id": partner.id,}
+            {"name": "Test child", "parent_id": partner.id}
         )
         self.assertEqual(child.agents, partner.agents)
         # Write
@@ -734,6 +765,6 @@ class TestSaleCommission(SavepointCase):
         child = (
             self.env["res.partner"]
             .with_context(default_parent_id=partner.id,)
-            .create({"name": "Test child",})
+            .create({"name": "Test child"})
         )
         self.assertEqual(child.agents, partner.agents)

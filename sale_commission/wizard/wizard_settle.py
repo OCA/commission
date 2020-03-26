@@ -2,7 +2,7 @@ from datetime import date, timedelta
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, exceptions, fields, models
+from odoo import _, exceptions, fields, models
 
 
 class SaleCommissionMakeSettle(models.TransientModel):
@@ -67,13 +67,13 @@ class SaleCommissionMakeSettle(models.TransientModel):
             "company_id": company.id,
         }
 
-    @api.multi
     def action_settle(self):
         self.ensure_one()
         agent_line_obj = self.env["account.invoice.line.agent"]
         settlement_obj = self.env["sale.commission.settlement"]
         settlement_line_obj = self.env["sale.commission.settlement.line"]
         settlement_ids = []
+
         if not self.agents:
             self.agents = self.env["res.partner"].search([("agent", "=", True)])
         date_to = self.date_to

@@ -20,20 +20,20 @@
                     <field name="agents" nolabel="1" widget="many2many_list" />
                 </group>
                 <footer>
-                        <button
+                    <button
                         name="action_settle"
                         string="Make settlements"
                         type="object"
                         class="oe_highlight"
                     />
-                        or
-                        <button
+                    or
+                    <button
                         name="action_cancel"
                         string="Cancel"
                         class="oe_link"
                         special="cancel"
                     />
-                    </footer>
+                </footer>
             </form>
         </field>
     </record>
@@ -42,7 +42,6 @@
         name="Settle commissions"
         res_model="sale.commission.make.settle"
         view_mode="form"
-        view_type="form"
         target="new"
     />
     <menuitem
