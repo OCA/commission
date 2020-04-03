@@ -18,7 +18,7 @@
                 position="after"
             >
                 <field
-                    name="agents"
+                    name="agent_ids"
                     widget="many2many_tags"
                     context="{'default_agent': True}"
                 />
@@ -34,15 +34,20 @@
                         <group>
                             <field name="agent_type" />
                             <field
-                                name="commission"
+                                name="commission_id"
                                 attrs="{'required': [('agent', '=', True)]}"
                             />
                         </group>
                         <group>
                             <field name="settlement" />
                         </group>
-                        <group colspan="4" string="Settlements">
-                            <field name="settlements" nolabel="1">
+                        <!-- TODO: Change it to smart-button -->
+                        <group
+                            colspan="4"
+                            string="Settlements"
+                            attrs="{'invisible': [('settlement_ids', '=', [])]}"
+                        >
+                            <field name="settlement_ids" nolabel="1">
                                 <tree
                                     string="Settlements"
                                     colors="red: state == 'cancel'; gray: state == 'invoiced'"

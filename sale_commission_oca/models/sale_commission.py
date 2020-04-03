@@ -15,8 +15,10 @@ class SaleCommission(models.Model):
         default="fixed",
     )
     fix_qty = fields.Float(string="Fixed percentage")
-    sections = fields.One2many(
-        comodel_name="sale.commission.section", inverse_name="commission"
+    section_ids = fields.One2many(
+        string="Sections",
+        comodel_name="sale.commission.section",
+        inverse_name="commission_id",
     )
     active = fields.Boolean(default=True)
     invoice_state = fields.Selection(
@@ -31,11 +33,10 @@ class SaleCommission(models.Model):
         required=True,
         default="gross_amount",
     )
-    settlements = fields.Many2many(comodel_name="sale.commission.settlement")
 
     def calculate_section(self, base):
         self.ensure_one()
-        for section in self.sections:
+        for section in self.section_ids:
             if section.amount_from <= base <= section.amount_to:
                 return base * section.percent / 100.0
         return 0.0
@@ -45,7 +46,7 @@ class SaleCommissionSection(models.Model):
     _name = "sale.commission.section"
     _description = "Commission section"
 
-    commission = fields.Many2one("sale.commission", string="Commission")
+    commission_id = fields.Many2one("sale.commission", string="Commission")
     amount_from = fields.Float(string="From")
     amount_to = fields.Float(string="To")
     percent = fields.Float(string="Percent", required=True)

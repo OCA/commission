@@ -59,7 +59,7 @@ class SaleCommissionAnalysisReport(models.Model):
             SUM(aila.amount) AS amount,
             ail.id AS invoice_line_id,
             aila.settled AS settled,
-            aila.commission AS commission_id
+            aila.commission_id AS commission_id
         """
         return select_str
 
@@ -68,10 +68,10 @@ class SaleCommissionAnalysisReport(models.Model):
             account_invoice_line_agent aila
             LEFT JOIN account_move_line ail ON ail.id = aila.object_id
             INNER JOIN account_move ai ON ai.id = ail.move_id
-            LEFT JOIN sale_commission sc ON sc.id = aila.commission
+            LEFT JOIN sale_commission sc ON sc.id = aila.commission_id
             LEFT JOIN product_product pp ON pp.id = ail.product_id
             INNER JOIN product_template pt ON pp.product_tmpl_id = pt.id
-            LEFT JOIN res_partner rp ON aila.agent = rp.id
+            LEFT JOIN res_partner rp ON aila.agent_id = rp.id
         """
         return from_str
 
@@ -87,7 +87,7 @@ class SaleCommissionAnalysisReport(models.Model):
             pt.uom_id,
             ail.id,
             aila.settled,
-            aila.commission
+            aila.commission_id
         """
         return group_by_str
 

@@ -1,4 +1,4 @@
-# Copyright 2018 Tecnativa - Pedro M. Baeza
+# Copyright 2018-2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -7,32 +7,17 @@ from odoo import _, api, fields, models
 class SaleCommissionMixin(models.AbstractModel):
     _name = "sale.commission.mixin"
     _description = (
-        "Mixin model for applying to any object that wants to " "handle commissions"
+        "Mixin model for applying to any object that wants to handle commissions"
     )
 
-    @api.model
-    def _prepare_agents_vals_partner(self, partner):
-        """Utility method for getting agents of a partner."""
-        rec = []
-        for agent in partner.agents:
-            rec.append((0, 0, {"agent": agent.id, "commission": agent.commission.id}))
-        return rec
-
-    @api.model
-    def _default_agents(self):
-        agents = []
-        context = self.env.context
-        if context.get("partner_id"):
-            partner = self.env["res.partner"].browse(context["partner_id"])
-            agents = self._prepare_agents_vals_partner(partner)
-        return agents
-
-    agents = fields.One2many(
+    agent_ids = fields.One2many(
         comodel_name="sale.commission.line.mixin",
         inverse_name="object_id",
         string="Agents & commissions",
         help="Agents/Commissions related to the invoice line.",
-        default=lambda self: self._default_agents(),
+        compute="_compute_agent_ids",
+        readonly=False,
+        store=True,
         copy=True,
     )
     product_id = fields.Many2one(comodel_name="product.product", string="Product")
@@ -46,31 +31,34 @@ class SaleCommissionMixin(models.AbstractModel):
         compute="_compute_commission_status", string="Commission",
     )
 
-    @api.depends("commission_free", "agents")
+    def _prepare_agent_vals(self, agent):
+        return {"agent_id": agent.id, "commission_id": agent.commission_id.id}
+
+    def _prepare_agents_vals_partner(self, partner):
+        """Utility method for getting agents creation dictionary of a partner."""
+        return [(0, 0, self._prepare_agent_vals(agent)) for agent in partner.agent_ids]
+
+    @api.depends("commission_free")
+    def _compute_agent_ids(self):
+        """Empty method that needs to be implemented in children models."""
+        raise NotImplementedError()
+
+    @api.depends("commission_free", "agent_ids")
     def _compute_commission_status(self):
         for line in self:
             if line.commission_free:
                 line.commission_status = _("Comm. free")
-            elif len(line.agents) == 0:
+            elif len(line.agent_ids) == 0:
                 line.commission_status = _("No commission agents")
-            elif len(line.agents) == 1:
+            elif len(line.agent_ids) == 1:
                 line.commission_status = _("1 commission agent")
             else:
-                line.commission_status = _("%s commission agents") % len(line.agents)
-
-    def _prepare_agents_vals(self):
-        """Hook method for preparing the values of agents.
-
-        :param: self: Record of the object that is being handled.
-        """
-        return []
+                line.commission_status = _("%s commission agents") % (
+                    len(line.agent_ids),
+                )
 
     def recompute_agents(self):
-        """Force a recomputation of the agents according prepare method."""
-        for record in self:
-            record.agents = [
-                (3, x.id) for x in record.agents
-            ] + record._prepare_agents_vals()
+        self._compute_agent_ids()
 
     def button_edit_agents(self):
         self.ensure_one()
@@ -95,12 +83,12 @@ class SaleCommissionLineMixin(models.AbstractModel):
         "Mixin model for having commission agent lines in "
         "any object inheriting from this one"
     )
-    _rec_name = "agent"
+    _rec_name = "agent_id"
 
     _sql_constraints = [
         (
             "unique_agent",
-            "UNIQUE(object_id, agent)",
+            "UNIQUE(object_id, agent_id)",
             "You can only add one time each agent.",
         )
     ]
@@ -112,14 +100,20 @@ class SaleCommissionLineMixin(models.AbstractModel):
         copy=False,
         string="Parent",
     )
-    agent = fields.Many2one(
+    agent_id = fields.Many2one(
         comodel_name="res.partner",
         domain="[('agent', '=', True)]",
         ondelete="restrict",
         required=True,
     )
-    commission = fields.Many2one(
-        comodel_name="sale.commission", ondelete="restrict", required=True,
+    commission_id = fields.Many2one(
+        comodel_name="sale.commission",
+        ondelete="restrict",
+        required=True,
+        compute="_compute_commission_id",
+        store=True,
+        readonly=False,
+        copy=True,
     )
     amount = fields.Monetary(
         string="Commission Amount", compute="_compute_amount", store=True,
@@ -132,8 +126,10 @@ class SaleCommissionLineMixin(models.AbstractModel):
         raise NotImplementedError()
 
     def _get_commission_amount(self, commission, subtotal, product, quantity):
-        """Get the commission amount for the data given. To be called by
+        """Get the commission amount for the data given. It's called by
         compute methods of children models.
+
+        This means the inheritable method for modifying the amount of the commission.
         """
         self.ensure_one()
         if product.commission_free or not commission:
@@ -148,6 +144,7 @@ class SaleCommissionLineMixin(models.AbstractModel):
         elif commission.commission_type == "section":
             return commission.calculate_section(subtotal)
 
-    @api.onchange("agent")
-    def onchange_agent(self):
-        self.commission = self.agent.commission
+    @api.depends("agent_id")
+    def _compute_commission_id(self):
+        for record in self:
+            record.commission_id = record.agent_id.commission_id
