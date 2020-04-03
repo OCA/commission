@@ -18,7 +18,7 @@
         <field name="country_id" model="res.country" search="[('name','=','India')]" />
         <field name="street">56 Beijing street</field>
         <field name="agent" eval="1" />
-        <field name="commission" ref="demo_commission_paid" />
+        <field name="commission_id" ref="demo_commission_paid" />
     </record>
     <record id="res_partner_eiffel_sale_agent" model="res.partner">
         <field name="name">Eiffel pvt ltd</field>
@@ -27,7 +27,7 @@
         <field name="country_id" model="res.country" search="[('name','=','India')]" />
         <field name="street">Wall Street 2</field>
         <field name="agent" eval="1" />
-        <field name="commission" ref="demo_commission" />
+        <field name="commission_id" ref="demo_commission" />
     </record>
     <record id="res_partner_tiny_sale_agent" model="res.partner">
         <field name="name">Tiny Belgium</field>
@@ -36,6 +36,6 @@
         <field name="country_id" model="res.country" search="[('name','=','India')]" />
         <field name="street">Belgium Gao</field>
         <field name="agent" eval="1" />
-        <field name="commission" ref="demo_commission" />
+        <field name="commission_id" ref="demo_commission" />
     </record>
 </odoo>

@@ -10,7 +10,7 @@
                 decoration-danger="state == 'cancel'"
                 create="false"
             >
-                <field name="agent" />
+                <field name="agent_id" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="date_from" />
                 <field name="date_to" />
@@ -24,7 +24,7 @@
         <field name="model">sale.commission.settlement</field>
         <field name="arch" type="xml">
             <search string="Settlement search">
-                <field name="agent" />
+                <field name="agent_id" />
                 <field name="date_from" />
                 <field name="date_to" />
                 <field name="company_id" />
@@ -38,7 +38,7 @@
                     <filter
                         string="Agent"
                         name="group_agent"
-                        context="{'group_by': 'agent'}"
+                        context="{'group_by': 'agent_id'}"
                     />
                     <filter
                         string="Date from month"
@@ -72,10 +72,10 @@
                 </header>
                 <group>
                     <group>
-                        <field name="agent" />
+                        <field name="agent_id" />
                         <field name="date_from" />
                         <field
-                            name="invoice"
+                            name="invoice_id"
                             attrs="{'invisible': [('state', '!=', 'invoiced')]}"
                         />
                     </group>
@@ -87,12 +87,11 @@
                     </group>
                 </group>
                 <group string="Commission lines" colspan="4">
-                    <field name="lines" nolabel="1">
+                    <field name="line_ids" nolabel="1">
                         <tree string="Settlement lines">
                             <field name="date" />
-                            <field name="invoice" />
-                            <field name="invoice_line" />
-                            <field name="commission" />
+                            <field name="invoice_line_id" />
+                            <field name="commission_id" />
                             <field name="settled_amount" />
                         </tree>
                     </field>
@@ -114,10 +113,9 @@
         <field name="arch" type="xml">
             <tree string="Settlement lines" create="false">
                 <field name="date" />
-                <field name="agent" />
-                <field name="invoice" />
-                <field name="invoice_line" />
-                <field name="commission" />
+                <field name="agent_id" />
+                <field name="invoice_line_id" />
+                <field name="commission_id" />
                 <field name="settled_amount" sum="Settled total" />
             </tree>
         </field>
@@ -127,9 +125,9 @@
         <field name="model">sale.commission.settlement.line</field>
         <field name="arch" type="xml">
             <search string="Settlement lines search">
-                <field name="agent" />
+                <field name="agent_id" />
                 <field name="date" />
-                <field name="commission" />
+                <field name="commission_id" />
                 <filter
                     string="This year"
                     name="thisyear"
@@ -140,7 +138,7 @@
                     <filter
                         string="Agent"
                         name="group_agent"
-                        context="{'group_by': 'agent'}"
+                        context="{'group_by': 'agent_id'}"
                     />
                     <filter
                         string="Date month"
@@ -156,7 +154,7 @@
         <field name="model">sale.commission.settlement.line</field>
         <field name="arch" type="xml">
             <graph string="Settlement analysis" type="pivot">
-                <field name="agent" type="row" />
+                <field name="agent_id" type="row" />
                 <field name="date" interval="month" type="col" />
                 <field name="settled_amount" type="measure" />
             </graph>
