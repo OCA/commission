@@ -35,13 +35,13 @@
                         />
                     </group>
                     <field
-                        name="sections"
+                        name="section_ids"
                         widget="one2many_list"
                         colspan="4"
                         nolabel="1"
                         attrs="{'invisible': [('commission_type', '!=', 'section')]}"
                     >
-                        <tree string="sections" editable="bottom">
+                        <tree string="Sections" editable="bottom">
                             <field name="amount_from" />
                             <field name="amount_to" />
                             <field name="percent" />
