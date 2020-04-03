@@ -5,7 +5,7 @@
             <form>
                 <field name="commission_free" invisible="1" />
                 <field
-                    name="agents"
+                    name="agent_ids"
                     attrs="{'readonly': [('commission_free', '=', True)]}"
                 />
                 <footer class="oe_edit_only">

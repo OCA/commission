@@ -11,7 +11,6 @@
             >
                 <field name="commission_free" invisible="1" />
                 <field name="invoice_lines" invisible="1" />
-                <field name="agents" invisible="1" />
                 <button
                     name="button_edit_agents"
                     icon="fa-users"
@@ -19,16 +18,6 @@
                     type="object"
                 />
                 <field name="commission_status" />
-            </xpath>
-            <xpath
-                expr="//field[@name='order_line']/form//field[@name='customer_lead']/.."
-                position="after"
-            >
-                <field name="commission_free" />
-                <field
-                    name="agents"
-                    attrs="{'readonly': [('commission_free', '=', True)]}"
-                />
             </xpath>
             <field name="amount_total" position="after">
                 <field
@@ -42,7 +31,7 @@
                     <button
                         name="recompute_lines_agents"
                         type="object"
-                        string="Recompute lines agents"
+                        string="Regenerate agents"
                         states="draft,sent"
                     />
                 </group>
@@ -56,10 +45,10 @@
         <field name="arch" type="xml">
             <tree string="Agents" editable="bottom">
                 <field
-                    name="agent"
+                    name="agent_id"
                     context="{'default_agent': True, 'default_customer': False, 'default_supplier': True}"
                 />
-                <field name="commission" />
+                <field name="commission_id" />
                 <field name="amount" />
             </tree>
         </field>

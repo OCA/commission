@@ -10,12 +10,14 @@ class ResPartner(models.Model):
 
     _inherit = "res.partner"
 
-    agents = fields.Many2many(
+    agent_ids = fields.Many2many(
         comodel_name="res.partner",
         relation="partner_agent_rel",
         column1="partner_id",
         column2="agent_id",
         domain=[("agent", "=", True)],
+        readonly=False,
+        string="Agents",
     )
     # Fields for the partner when it acts as an agent
     agent = fields.Boolean(
@@ -28,7 +30,7 @@ class ResPartner(models.Model):
         required=True,
         default="agent",
     )
-    commission = fields.Many2one(
+    commission_id = fields.Many2one(
         string="Commission",
         comodel_name="sale.commission",
         help="This is the default commission used in the sales where this "
@@ -46,54 +48,15 @@ class ResPartner(models.Model):
         default="monthly",
         required=True,
     )
-    settlements = fields.One2many(
-        comodel_name="sale.commission.settlement", inverse_name="agent", readonly=True
+    settlement_ids = fields.One2many(
+        comodel_name="sale.commission.settlement",
+        inverse_name="agent_id",
+        readonly=True,
     )
 
-    @api.onchange("agent_type")
-    def onchange_agent_type(self):
-        if self.agent_type == "agent" and self.agent:
-            self.supplier = True
-
-    @api.onchange("parent_id")
-    def onchange_parent_id(self):
-        """Change agents if the parent company changes."""
-        res = super(ResPartner, self).onchange_parent_id()
-        if not self.is_company:
-            self.agents = self.parent_id.agents
+    @api.model
+    def _commercial_fields(self):
+        """Add agents to commercial fields that are synced from parent to childs."""
+        res = super()._commercial_fields()
+        res.append("agent_ids")
         return res
-
-    @api.model
-    def create(self, vals):
-        """Propagate agents from parent to child"""
-        if (
-            vals.get("parent_id")
-            and not vals.get("agents")
-            and not vals.get("is_company")
-        ):
-            vals["agents"] = [(4, x) for x in self.browse(vals["parent_id"]).agents.ids]
-        return super(ResPartner, self).create(vals)
-
-    def write(self, vals):
-        """Propagate agents change in the parent partner to the child
-        contacts.
-        """
-        if vals.get("agents"):
-            for record in self:
-                childs = record.mapped("child_ids").filtered(
-                    lambda r: (
-                        (not r.agents or r.agents == record.agents) and not r.is_company
-                    )
-                )
-                if childs:
-                    childs.write({"agents": vals["agents"]})
-        return super(ResPartner, self).write(vals)
-
-    @api.model
-    def default_get(self, fields_list):
-        defaults = super(ResPartner, self).default_get(fields_list)
-        if "parent_id" in defaults:
-            defaults["agents"] = [
-                (4, x) for x in self.browse(defaults["parent_id"]).agents.ids
-            ]
-        return defaults
