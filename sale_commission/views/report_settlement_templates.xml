@@ -6,9 +6,9 @@
                 <t t-call="web.internal_layout">
                     <div class="page">
                         <div class="row mt32 mb32">
-                            <div class="col-xs-3" t-if="o.agent">
+                            <div class="col-xs-3" t-if="o.agent_id">
                                 <strong>Agent:</strong>
-                                <p t-field="o.agent" />
+                                <p t-field="o.agent_id" />
                             </div>
                             <div class="col-xs-2" t-if="o.date_from">
                                 <strong>From:</strong>
@@ -30,18 +30,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr t-foreach="o.lines" t-as="l">
+                                <tr t-foreach="o.line_ids" t-as="l">
                                     <td>
                                         <span t-field="l.date" />
                                     </td>
                                     <td>
-                                        <span t-field="l.invoice" />
+                                        <span t-field="l.settlement_id.invoice_id" />
                                     </td>
                                     <td>
-                                        <span t-field="l.invoice_line" />
+                                        <span t-field="l.invoice_line_id" />
                                     </td>
                                     <td>
-                                        <span t-field="l.commission" />
+                                        <span t-field="l.commission_id" />
                                     </td>
                                     <td class="text-right">
                                         <span
