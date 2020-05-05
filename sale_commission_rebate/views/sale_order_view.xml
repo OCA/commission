@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_settlement_form">
+        <field name="name">Settlements</field>
+        <field name="model">sale.commission.settlement</field>
+        <field name="inherit_id" ref="sale_commission.view_settlement_form"/>
+        <field name="arch" type="xml">
+            <field name="invoice" position="attributes">
+                <attribute name="attrs"></attribute>
+            </field>
+            <button name="action_invoice" position="attributes">
+                <attribute name="attrs"></attribute>
+            </button>
+        </field>
+    </record>
+
+</odoo>
