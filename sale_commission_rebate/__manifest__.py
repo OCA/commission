@@ -12,8 +12,8 @@
     'author': "Abstract,Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/commission/tree/',
     'data': [
-        'views/sale_order_view.xml'],               
+        'views/sale_order_view.xml'],
     'depends': [
-        'sale_commission'],
+        'sale_commission', 'product_supplierinfo_rebate'],
     'installable': True,
 }
