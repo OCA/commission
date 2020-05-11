@@ -7,7 +7,7 @@ from odoo import _, api, exceptions, fields, models
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
-    @api.depends('invoice_line_ids.agents.amount')
+    @api.depends("invoice_line_ids.agents.amount")
     def _compute_commission_total(self):
         for record in self:
             record.commission_total = 0.0
@@ -15,45 +15,43 @@ class AccountInvoice(models.Model):
                 record.commission_total += sum(x.amount for x in line.agents)
 
     commission_total = fields.Float(
-        string="Commissions",
-        compute="_compute_commission_total",
-        store=True,
+        string="Commissions", compute="_compute_commission_total", store=True,
     )
 
     def action_cancel(self):
         """Put settlements associated to the invoices in exception."""
-        settlements = self.env['sale.commission.settlement'].search(
-            [('invoice', 'in', self.ids)])
-        settlements.write({'state': 'except_invoice'})
+        settlements = self.env["sale.commission.settlement"].search(
+            [("invoice", "in", self.ids)]
+        )
+        settlements.write({"state": "except_invoice"})
         return super(AccountInvoice, self).action_cancel()
 
     def invoice_validate(self):
         """Put settlements associated to the invoices in invoiced state."""
-        self.env['sale.commission.settlement'].search(
-            [('invoice', 'in', self.ids)]
-        ).write({'state': 'invoiced'})
+        self.env["sale.commission.settlement"].search(
+            [("invoice", "in", self.ids)]
+        ).write({"state": "invoiced"})
         return super(AccountInvoice, self).invoice_validate()
 
     def _refund_cleanup_lines(self, lines):
         """ugly function to map all fields of account.invoice.line
         when creates refund invoice"""
         res = super(AccountInvoice, self)._refund_cleanup_lines(lines)
-        if lines and lines[0]._name != 'account.invoice.line':
+        if lines and lines[0]._name != "account.invoice.line":
             return res
         for i, line in enumerate(lines):
             vals = res[i][2]
-            agents = super(AccountInvoice, self)._refund_cleanup_lines(
-                line['agents'])
+            agents = super(AccountInvoice, self)._refund_cleanup_lines(line["agents"])
             # Remove old reference to source invoice
             for agent in agents:
                 agent_vals = agent[2]
-                del agent_vals['invoice']
-                del agent_vals['object_id']
-            vals['agents'] = agents
+                del agent_vals["invoice"]
+                del agent_vals["object_id"]
+            vals["agents"] = agents
         return res
 
     def recompute_lines_agents(self):
-        self.mapped('invoice_line_ids').recompute_agents()
+        self.mapped("invoice_line_ids").recompute_agents()
 
 
 class AccountInvoiceLine(models.Model):
@@ -63,44 +61,46 @@ class AccountInvoiceLine(models.Model):
     ]
     _name = "account.invoice.line"
 
-    agents = fields.One2many(
-        comodel_name="account.invoice.line.agent",
-    )
-    any_settled = fields.Boolean(
-        compute="_compute_any_settled",
-    )
+    agents = fields.One2many(comodel_name="account.invoice.line.agent",)
+    any_settled = fields.Boolean(compute="_compute_any_settled",)
 
     @api.model
     def _default_agents(self):
         """Don't populate agents for supplier invoices."""
-        if self.env.context.get('type', '')[:2] == 'in':
+        if self.env.context.get("type", "")[:2] == "in":
             return []
         return super()._default_agents()
 
-    @api.depends('agents', 'agents.settled')
+    @api.depends("agents", "agents.settled")
     def _compute_any_settled(self):
         for record in self:
-            record.any_settled = any(record.mapped('agents.settled'))
+            record.any_settled = any(record.mapped("agents.settled"))
 
     @api.model
     def create(self, vals):
         """Add agents for records created from automations instead of UI."""
         # We use this form as this is the way it's returned when no real vals
-        agents_vals = vals.get('agents', [(6, 0, [])])
-        invoice_id = vals.get('invoice_id', False)
-        if (agents_vals and agents_vals[0][0] == 6 and not
-                agents_vals[0][2] and invoice_id):
-            inv = self.env['account.invoice'].browse(invoice_id)
-            vals['agents'] = (
+        agents_vals = vals.get("agents", [(6, 0, [])])
+        invoice_id = vals.get("invoice_id", False)
+        if (
+            agents_vals
+            and agents_vals[0][0] == 6
+            and not agents_vals[0][2]
+            and invoice_id
+        ):
+            inv = self.env["account.invoice"].browse(invoice_id)
+            vals["agents"] = (
                 self._prepare_agents_vals_partner(inv.partner_id)
-                if inv.type[:3] == 'out' else [(6, 0, [])])
+                if inv.type[:3] == "out"
+                else [(6, 0, [])]
+            )
         return super().create(vals)
 
     def _prepare_agents_vals(self):
         self.ensure_one()
         res = super()._prepare_agents_vals()
         inv = self.invoice_id
-        if inv.type[:3] == 'out':
+        if inv.type[:3] == "out":
             res += self._prepare_agents_vals_partner(inv.partner_id)
         return res
 
@@ -110,8 +110,7 @@ class AccountInvoiceLineAgent(models.Model):
     _name = "account.invoice.line.agent"
 
     object_id = fields.Many2one(
-        comodel_name="account.invoice.line",
-        oldname='invoice_line',
+        comodel_name="account.invoice.line", oldname="invoice_line",
     )
     invoice = fields.Many2one(
         string="Invoice",
@@ -126,59 +125,51 @@ class AccountInvoiceLineAgent(models.Model):
         readonly=True,
     )
     agent_line = fields.Many2many(
-        comodel_name='sale.commission.settlement.line',
-        relation='settlement_agent_line_rel',
-        column1='agent_line_id',
-        column2='settlement_id',
+        comodel_name="sale.commission.settlement.line",
+        relation="settlement_agent_line_rel",
+        column1="agent_line_id",
+        column2="settlement_id",
         copy=False,
     )
-    settled = fields.Boolean(
-        compute="_compute_settled",
-        store=True,
-    )
+    settled = fields.Boolean(compute="_compute_settled", store=True,)
     company_id = fields.Many2one(
-        comodel_name='res.company',
-        compute="_compute_company",
-        store=True,
+        comodel_name="res.company", compute="_compute_company", store=True,
     )
-    currency_id = fields.Many2one(
-        related="object_id.currency_id",
-        readonly=True,
-    )
+    currency_id = fields.Many2one(related="object_id.currency_id", readonly=True,)
 
-    @api.depends('object_id.price_subtotal')
+    @api.depends("object_id.price_subtotal")
     def _compute_amount(self):
         for line in self:
             inv_line = line.object_id
             line.amount = line._get_commission_amount(
-                line.commission, inv_line.price_subtotal,
-                inv_line.product_id, inv_line.quantity,
+                line.commission,
+                inv_line.price_subtotal,
+                inv_line.product_id,
+                inv_line.quantity,
             )
             # Refunds commissions are negative
-            if 'refund' in line.invoice.type:
+            if "refund" in line.invoice.type:
                 line.amount = -line.amount
 
-    @api.depends('agent_line', 'agent_line.settlement.state', 'invoice',
-                 'invoice.state')
+    @api.depends(
+        "agent_line", "agent_line.settlement.state", "invoice", "invoice.state"
+    )
     def _compute_settled(self):
         # Count lines of not open or paid invoices as settled for not
         # being included in settlements
         for line in self:
-            line.settled = (any(x.settlement.state != 'cancel'
-                                for x in line.agent_line))
+            line.settled = any(x.settlement.state != "cancel" for x in line.agent_line)
 
-    @api.depends('object_id', 'object_id.company_id')
+    @api.depends("object_id", "object_id.company_id")
     def _compute_company(self):
         for line in self:
             line.company_id = line.object_id.company_id
 
-    @api.constrains('agent', 'amount')
+    @api.constrains("agent", "amount")
     def _check_settle_integrity(self):
         for record in self:
-            if any(record.mapped('settled')):
-                raise exceptions.ValidationError(
-                    _("You can't modify a settled line"),
-                )
+            if any(record.mapped("settled")):
+                raise exceptions.ValidationError(_("You can't modify a settled line"),)
 
     def _skip_settlement(self):
         """This function should return if the commission can be payed.
@@ -187,6 +178,5 @@ class AccountInvoiceLineAgent(models.Model):
         """
         self.ensure_one()
         return (
-            self.commission.invoice_state == 'paid' and
-            self.invoice.state != 'paid'
-        ) or (self.invoice.state not in ('open', 'paid'))
+            self.commission.invoice_state == "paid" and self.invoice.state != "paid"
+        ) or (self.invoice.state not in ("open", "paid"))
