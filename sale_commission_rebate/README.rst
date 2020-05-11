@@ -11,9 +11,12 @@ This module extends sale_commission to introduce rebates
 Usage
 =====
 
-To use this module, you need to:
-
-* WIP
+* Fill rebate prices (Please see product_supplierinfo_rebate module)
+* Mark a vendor as Rebate Agent
+* Mark a product as be suitable to be used for rebates
+* Sell that product that includes rebates.
+* The commissions will be created to be invoiced to the vendor in the next
+period selected.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -21,8 +24,8 @@ To use this module, you need to:
 
 Known issues / Roadmap
 ======================
-* Demo data
 * Tests
+* No use agent_type field as the same partner could be also a commissioner
 
 Bug Tracker
 ===========
@@ -46,8 +49,7 @@ Credits
 
 Contributors
 ------------
-* Davide Corio <davide.corio@abstract.it>
-* Nicola Malcontenti <nicola.malcontenti@agilebg.com>
+* Aaron Henriquez <ahenriquez@forgeflow.com>
 
 
 Maintainer
