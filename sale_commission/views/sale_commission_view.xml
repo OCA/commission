@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record model="ir.ui.view" id="sale_commission_tree">
         <field name="name">Sales commissions tree</field>
@@ -11,7 +11,6 @@
             </tree>
         </field>
     </record>
-
     <record model="ir.ui.view" id="sale_commission_form">
         <field name="name">Sales commissions form</field>
         <field name="model">sale.commission</field>
@@ -25,19 +24,23 @@
                     <group>
                         <field name="commission_type" />
                         <field name="amount_base_type" />
-                        <field name="invoice_state"/>
+                        <field name="invoice_state" />
                     </group>
                 </group>
                 <group string="Rates definition" colspan="4">
                     <group colspan="2">
-                        <field name="fix_qty"
-                           attrs="{'invisible': [('commission_type', '!=', 'fixed')], 'required': [('commission_type', '=', 'fixed')]}" />
+                        <field
+                            name="fix_qty"
+                            attrs="{'invisible': [('commission_type', '!=', 'fixed')], 'required': [('commission_type', '=', 'fixed')]}"
+                        />
                     </group>
-                    
-                    <field name="sections" widget="one2many_list"
-                           colspan="4"
-                           nolabel="1"
-                           attrs="{'invisible': [('commission_type', '!=', 'section')]}">
+                    <field
+                        name="sections"
+                        widget="one2many_list"
+                        colspan="4"
+                        nolabel="1"
+                        attrs="{'invisible': [('commission_type', '!=', 'section')]}"
+                    >
                         <tree string="sections" editable="bottom">
                             <field name="amount_from" />
                             <field name="amount_to" />
@@ -48,7 +51,6 @@
             </form>
         </field>
     </record>
-
     <record model="ir.actions.act_window" id="action_commission">
         <field name="name">Commission types</field>
         <field name="type">ir.actions.act_window</field>
@@ -56,17 +58,17 @@
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-
-    <menuitem name="Commissions Management"
-              id="menu_sale_commissions_management"
-              parent="sale.sale_menu_root"
-              groups="sales_team.group_sale_manager"
-              sequence="4"
+    <menuitem
+        name="Commissions Management"
+        id="menu_sale_commissions_management"
+        parent="sale.sale_menu_root"
+        groups="sales_team.group_sale_manager"
+        sequence="4"
     />
-
-    <menuitem name="Commission types"
-              id="menu_sale_commissions_types"
-              parent="menu_sale_commissions_management"
-              action="action_commission" />
-
+    <menuitem
+        name="Commission types"
+        id="menu_sale_commissions_types"
+        parent="menu_sale_commissions_management"
+        action="action_commission"
+    />
 </odoo>
