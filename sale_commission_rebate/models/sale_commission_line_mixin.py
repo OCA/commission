@@ -8,7 +8,7 @@ class SaleCommissionLineMixin(models.AbstractModel):
     _inherit = 'sale.commission.line.mixin'
 
     @api.multi
-    def get_rebate(self, commission, subtotal, commission_free, product, quantity):
+    def _get_valid_rebate(self, commission, subtotal, commission_free, product, quantity):
         rebate = self.env['product.supplierinfo'].search(
             [('name', '=', self.agent.id),
              ('product_id', '=', product.id),
