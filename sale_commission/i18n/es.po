@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-16 12:29+0000\n"
-"PO-Revision-Date: 2018-12-12 09:58+0000\n"
+"PO-Revision-Date: 2020-05-13 15:44+0000\n"
 "Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__quantity
@@ -584,10 +584,8 @@ msgstr "Última actualización en"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_settlement_line
-#, fuzzy
-#| msgid "sale.commission.settlement.line"
 msgid "Line of a commission settlement"
-msgstr "sale.commission.settlement.line"
+msgstr "Línea de liquidación de comisión"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:67
@@ -689,10 +687,8 @@ msgstr "Subtotal"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__price_subtotal_signed
-#, fuzzy
-#| msgid "Price subtotal"
 msgid "Price subtotal signed"
-msgstr "Subtotal"
+msgstr "Subtotal con signo"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__price_unit
@@ -746,10 +742,8 @@ msgstr "Informe de análisis de comisiones"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order
-#, fuzzy
-#| msgid "Sales Order Line"
 msgid "Sale Order"
-msgstr "Línea de pedido de venta"
+msgstr "Pedido de venta"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__commission_id
@@ -959,17 +953,13 @@ msgstr "El valor no puede ser negativo"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_make_invoice
-#, fuzzy
-#| msgid "Cannot cancel an invoiced settlement."
 msgid "Wizard for making an invoice from a settlement"
-msgstr "No se puede cancelar una liquidación facturada."
+msgstr "Asistente para realizar una factura desde una liquidación"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_make_settle
-#, fuzzy
-#| msgid "Create commission invoices"
 msgid "Wizard for settling commissions in invoices"
-msgstr "Crear facturas de comisiones"
+msgstr "Asistente para liquidar comisiones de las facturas"
 
 #. module: sale_commission
 #: sql_constraint:account.invoice.line.agent:0
