@@ -16,7 +16,7 @@ Usage
 * Mark a product as be suitable to be used for rebates
 * Sell that product that includes rebates.
 * The commissions will be created to be invoiced to the vendor in the next
-period selected.
+  period selected.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot

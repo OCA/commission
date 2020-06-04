@@ -15,4 +15,31 @@
         </field>
     </record>
 
+
+    <record id="view_order_agent_form_inherit" model="ir.ui.view">
+        <field name="name">sale.agent.order.inherit.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/form//field[@name='customer_lead']/.." position="after">
+                <field name="rebate_price"/>
+                <field name="supplierinfo_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sale_markup_sale_order_line_tree">
+        <field name="name">sale.order.line.rebate.view.tree</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="price_subtotal" position="after">
+            <field name="rebate_price"
+                 groups="sales_team.group_sale_salesman"/>
+            <field name="supplierinfo_id"
+                 groups="sales_team.group_sale_salesman"/>
+        </field>
+        </field>
+    </record>
+
 </odoo>

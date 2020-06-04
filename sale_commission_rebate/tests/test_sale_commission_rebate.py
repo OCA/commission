@@ -26,7 +26,7 @@ class TestSaleCommissionRebate(SavepointCase):
             'agent': True,
             'commission': cls.commission_1.id,
         })
-        env['product.supplierinfo'].create({
+        cls.env['product.supplierinfo'].create({
             'name': cls.agent.id,
             'product_id': cls.product.id,
             'product_code': '00001',
@@ -42,7 +42,6 @@ class TestSaleCommissionRebate(SavepointCase):
         SaleOrder = cls.env['sale.order']
         cls.sale_order = SaleOrder.create({
             'partner_id': cls.partner.id,
-            'pricelist_id': cls.pricelist.id,
         })
         SOLine = cls.env['sale.order.line']
         cls.so_line1 = SOLine.with_context(partner_id=cls.partner.id).create({

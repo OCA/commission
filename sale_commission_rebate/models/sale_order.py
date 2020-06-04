@@ -2,31 +2,85 @@
 # Copyright 2019 ForgeFlow
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import api, fields, models
+import odoo.addons.decimal_precision as dp
 
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    def find_applicable_pricelist(agent):
-        domain = [('name', '=', self.product_id.agent_id.id),
-             ('product_id', '=', product.id),
-             ('product_qty', '<=', quantity),
-             ('date_start', '<=', self.product_id.agent_id.object_id.date),
-             ('date_end', '>=', self.product_id.agent_id.date)]
-        agent_info = self.env['product.supplierinfo'].search(domain)
+    rebate_price = fields.Float(
+        string="Rebate Price",
+        compute="_compute_supplierinfo_id",
+        store=True,
+        digits=dp.get_precision('Product Price'),
+    )
+    supplierinfo_id = fields.Many2one(
+        'product.supplierinfo',
+        compute="_compute_supplierinfo_id",
+        store=True)
 
+    @api.multi
+    @api.depends('product_id', 'order_id.date_order')
+    def _compute_supplierinfo_id(self):
+        for rec in self:
+            supplierinfos = rec._get_supplierinfos()
+            if supplierinfos:
+                rec.supplierinfo_id = supplierinfos[0]
+                rec.rebate_price = supplierinfos[0].rebate_price
 
+    @api.multi
+    def _get_supplierinfos(self):
+        self.ensure_one()
+        supplierinfos = self.env['product.supplierinfo'].search(
+            [
+                '&',
+                '&',
+                ('is_agent',
+                    '=',
+                    True),
+                '&',
+                ('date_start',
+                    '<=',
+                    self.order_id.date_order),
+                ('date_end',
+                    '>=',
+                    self.order_id.date_order),
+                '|',
+                ('product_id',
+                    '=',
+                    self.product_id.id),
+                ('product_tmpl_id',
+                    '=',
+                    self.product_id.product_tmpl_id.id),
+            ])
+        if supplierinfos:
+            return supplierinfos
+        return False
+
+    @api.depends('supplierinfo_id')
+    def get_rebate_price(self):
+        if self.supplierinfo_id:
+            self.rebate_price = self.supplierinfo_id.rebate_price
+
+    @api.multi
+    def rebate_is_applicable(self):
+        self.ensure_one()
+        if self.rebate_price and self._get_supplierinfos():
+            return True
+        else:
+            return False
+
+    @api.model
     def _prepare_agents_vals(self):
-        # agents taken from the products (rebates)
+        """Agents taken from the products (rebates)
+           TODO: Allow to change agent in case there are more than one
+        """
         self.ensure_one()
         res = super(SaleOrderLine, self)._prepare_agents_vals()
-
-        agent = self.product_id.agent_id
+        agent = self._get_supplierinfos()
         if agent:
-            agent_info = self.find_applicable_pricelist()
-            if agent_info:
-                res.append({
-                    'agent': agent.id,
-                    'commission': agent.commission.id,
-                })
+            res.append({
+                'agent': agent[0].name.id,
+                'commission': agent[0].name.commission.id
+            })
         return res
