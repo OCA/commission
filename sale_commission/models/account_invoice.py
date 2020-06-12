@@ -83,16 +83,17 @@ class AccountInvoiceLine(models.Model):
         invoice_id = vals.get('invoice_id', False)
         if (agents_vals and agents_vals[0][0] == 6 and not
                 agents_vals[0][2] and invoice_id):
-            inv = self.env['account.invoice'].browse(invoice_id)
-            vals['agents'] = self._prepare_agents_vals_partner(inv.partner_id)
+            vals['agents'] = self._prepare_agents_vals(vals=vals)
         return super().create(vals)
 
-    def _prepare_agents_vals(self):
-        self.ensure_one()
-        res = super()._prepare_agents_vals()
-        return res + self._prepare_agents_vals_partner(
-            self.invoice_id.partner_id,
-        )
+    def _prepare_agents_vals(self, vals=None):
+        res = super()._prepare_agents_vals(vals=vals)
+        if self:
+            partner = self.invoice_id.partner_id
+        else:
+            invoice = self.env['account.invoice'].browse(vals['invoice_id'])
+            partner = invoice.partner_id
+        return res + self._prepare_agents_vals_partner(partner)
 
 
 class AccountInvoiceLineAgent(models.Model):

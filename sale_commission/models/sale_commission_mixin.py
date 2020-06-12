@@ -66,11 +66,12 @@ class SaleCommissionMixin(models.AbstractModel):
                     "%s commission agents"
                 ) % len(line.agents)
 
-    def _prepare_agents_vals(self):
+    def _prepare_agents_vals(self, vals=None):
         """Hook method for preparing the values of agents.
 
         :param: self: Record of the object that is being handled.
         """
+        assert self or vals
         return []
 
     def recompute_agents(self):
