@@ -16,17 +16,23 @@ class SaleOrderLine(models.Model):
     )
     supplierinfo_id = fields.Many2one(
         'product.supplierinfo',
+        string="Rebate Issuer",
         compute="_compute_supplierinfo_id",
         store=True)
 
     @api.multi
-    @api.depends('product_id', 'order_id.date_order')
+    @api.depends('product_id')
     def _compute_supplierinfo_id(self):
         for rec in self:
+            if not rec.product_id:
+                return
             supplierinfos = rec._get_supplierinfos()
             if supplierinfos:
                 rec.supplierinfo_id = supplierinfos[0]
                 rec.rebate_price = supplierinfos[0].rebate_price
+                rec.agents = [
+                    (0, 0, vals) for vals in rec._prepare_agents_vals()
+                ]
 
     @api.multi
     def _get_supplierinfos(self):
@@ -62,14 +68,6 @@ class SaleOrderLine(models.Model):
         if self.supplierinfo_id:
             self.rebate_price = self.supplierinfo_id.rebate_price
 
-    @api.multi
-    def rebate_is_applicable(self):
-        self.ensure_one()
-        if self.rebate_price and self._get_supplierinfos():
-            return True
-        else:
-            return False
-
     @api.model
     def _prepare_agents_vals(self):
         """Agents taken from the products (rebates)
@@ -77,7 +75,7 @@ class SaleOrderLine(models.Model):
         """
         self.ensure_one()
         res = super(SaleOrderLine, self)._prepare_agents_vals()
-        agent = self._get_supplierinfos()
+        agent = self.supplierinfo_id
         if agent:
             res.append({
                 'agent': agent[0].name.id,
