@@ -35,8 +35,18 @@ msgid "External agent"
 msgstr ""
 
 #. module: hr_commission
+#: model_terms:ir.ui.view,arch_db:hr_commission.view_settlement_form
+msgid "Mark as invoiced"
+msgstr ""
+
+#. module: hr_commission
 #: selection:res.partner,agent_type:0
 msgid "Salesman (employee)"
+msgstr ""
+
+#. module: hr_commission
+#: model:ir.model,name:hr_commission.model_sale_commission_settlement
+msgid "Settlement"
 msgstr ""
 
 #. module: hr_commission
