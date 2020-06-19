@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_settlement_form">
+        <field name="name">Settlements - Add "Mark as invoiced" button</field>
+        <field name="model">sale.commission.settlement</field>
+        <field name="inherit_id" ref="sale_commission.view_settlement_form" />
+        <field name="arch" type="xml">
+            <button name="action_invoice" position="before">
+                <button string="Mark as invoiced"
+                    attrs="{'invisible': ['|', ('state', '!=', 'settled'), ('agent_type', '!=', 'salesman')]}"
+                    class="oe_highlight"
+                    type="object"
+                    name="mark_as_invoiced" />
+            </button>
+        </field>
+    </record>
+
+</odoo>

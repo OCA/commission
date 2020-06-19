@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_commission
+# 	* hr_commission
 #
 msgid ""
 msgstr ""
@@ -38,14 +38,26 @@ msgid "External agent"
 msgstr "Agente externo"
 
 #. module: hr_commission
+#: model_terms:ir.ui.view,arch_db:hr_commission.view_settlement_form
+msgid "Mark as invoiced"
+msgstr ""
+
+#. module: hr_commission
 #: selection:res.partner,agent_type:0
 msgid "Salesman (employee)"
 msgstr "Vendedor (funcionário)"
 
 #. module: hr_commission
+#: model:ir.model,name:hr_commission.model_sale_commission_settlement
+msgid "Settlement"
+msgstr ""
+
+#. module: hr_commission
 #: code:addons/hr_commission/models/res_partner.py:31
 #, python-format
-msgid "There must one (and only one) employee linked to this partner. To do this, go to 'Human Resources' and check 'Employees'"
+msgid ""
+"There must one (and only one) employee linked to this partner. To do this, "
+"go to 'Human Resources' and check 'Employees'"
 msgstr ""
 "Deve haver um (e apenas um) funcionário ligado a este parceiro. Para fazer "
 "isso, vá para 'Recursos Humanos' e verifique 'Funcionários'"
