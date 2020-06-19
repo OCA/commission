@@ -103,7 +103,7 @@ msgid "Agent information"
 msgstr "Informações do Representante"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/sale_commission_mixin.py:90
+#: code:addons/sale_commission/models/sale_commission_mixin.py:91
 #: model:ir.actions.act_window,name:sale_commission.action_agent_form
 #: model:ir.model.fields,field_description:sale_commission.field_res_partner_agents
 #: model:ir.model.fields,field_description:sale_commission.field_res_users_agents
@@ -981,7 +981,7 @@ msgid "You can't delete invoiced settlements."
 msgstr "Você não pode deletar faturas liquidadas."
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/account_invoice.py:170
+#: code:addons/sale_commission/models/account_invoice.py:171
 #, python-format
 msgid "You can't modify a settled line"
 msgstr ""

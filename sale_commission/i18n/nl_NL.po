@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_commission
+# 	* sale_commission
 #
 msgid ""
 msgstr ""
@@ -100,7 +100,7 @@ msgid "Agent information"
 msgstr "Vertegenwoordiger informatie"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/sale_commission_mixin.py:90
+#: code:addons/sale_commission/models/sale_commission_mixin.py:91
 #: model:ir.actions.act_window,name:sale_commission.action_agent_form
 #: model:ir.model.fields,field_description:sale_commission.field_res_partner_agents
 #: model:ir.model.fields,field_description:sale_commission.field_res_users_agents
@@ -608,7 +608,9 @@ msgstr "Mixin model voor het toepassen van provisies op een object"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_line_mixin
-msgid "Mixin model for having commission agent lines in any object inheriting from this one"
+msgid ""
+"Mixin model for having commission agent lines in any object inheriting from "
+"this one"
 msgstr ""
 "Mixim model om vertegenwoordiger regel op elke object te overerven van deze"
 
@@ -877,7 +879,9 @@ msgstr "Dit jaar"
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_res_partner_commission
 #: model:ir.model.fields,help:sale_commission.field_res_users_commission
-msgid "This is the default commission used in the sales where this agent is assigned. It can be changed on each operation if needed."
+msgid ""
+"This is the default commission used in the sales where this agent is "
+"assigned. It can be changed on each operation if needed."
 msgstr ""
 "Dit is de standaardprovisie die wordt gebruikt in de verkoop waar deze "
 "vertegenwoordiger is toegewezen. Het kan worden gewijzigd voor elke "
@@ -885,7 +889,11 @@ msgstr ""
 
 #. module: sale_commission
 #: model:ir.actions.act_window,help:sale_commission.action_sale_commission_analysis_report
-msgid "This report performs analysis on your commissions added in invoice lines. You can check the amount and lines that will be settled by date, product, product category, aget, etc. Use this report to perform analysis on invoice lines agents not beeing settled yet."
+msgid ""
+"This report performs analysis on your commissions added in invoice lines. "
+"You can check the amount and lines that will be settled by date, product, "
+"product category, aget, etc. Use this report to perform analysis on invoice "
+"lines agents not beeing settled yet."
 msgstr ""
 "Dit rapport voert een analyse uit van uw provisies die zijn toegevoegd in "
 "factuurregels. U kunt het bedrag en de regels controleren die worden "
@@ -958,7 +966,7 @@ msgid "You can't delete invoiced settlements."
 msgstr "U kunt geen factureerde verrekeningen niet verwijderen."
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/account_invoice.py:170
+#: code:addons/sale_commission/models/account_invoice.py:171
 #, python-format
 msgid "You can't modify a settled line"
 msgstr "U kunt een verrekende regel niet aanpassen"
