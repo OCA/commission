@@ -23,7 +23,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']/form//field[@name='customer_lead']/.." position="after">
                 <field name="rebate_price"/>
-                <field name="supplierinfo_id"/>
+                <field name="supplierinfo_id" context="{'show_dates': true}"/>
             </xpath>
         </field>
     </record>

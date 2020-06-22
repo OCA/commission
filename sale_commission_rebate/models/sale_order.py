@@ -10,15 +10,33 @@ class SaleOrderLine(models.Model):
 
     rebate_price = fields.Float(
         string="Rebate Price",
-        compute="_compute_supplierinfo_id",
-        store=True,
+        related="supplierinfo_id.rebate_price",
         digits=dp.get_precision('Product Price'),
     )
     supplierinfo_id = fields.Many2one(
         'product.supplierinfo',
         string="Rebate Issuer",
         compute="_compute_supplierinfo_id",
-        store=True)
+        store=True, readonly=False)
+
+    @api.onchange('product_id')
+    def product_id_change(self):
+        """Domain for invoice_line_id is computed here to make it dynamic."""
+        res = super(SaleOrderLine, self).product_id_change()
+        if not res.get('domain'):
+            res['domain'] = {}
+        if self.product_id:
+            product_id = self.product_id
+            domain = [
+                '|',
+                ('product_id',
+                 '=',
+                 product_id.id),
+                ('product_id.product_tmpl_id',
+                 '=',
+                 product_id.product_tmpl_id.id)]
+            res['domain']['supplierinfo_id'] = domain
+        return res
 
     @api.multi
     @api.depends('product_id')
@@ -29,7 +47,6 @@ class SaleOrderLine(models.Model):
             supplierinfos = rec._get_supplierinfos()
             if supplierinfos:
                 rec.supplierinfo_id = supplierinfos[0]
-                rec.rebate_price = supplierinfos[0].rebate_price
                 rec.agents = [
                     (0, 0, vals) for vals in rec._prepare_agents_vals()
                 ]
