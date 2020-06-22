@@ -10,7 +10,7 @@ class ProductSupplierinfo(models.Model):
 
     @api.multi
     def name_get(self):
-        if not self._context.get('show_dates', False):
+        if not self._context.get('show_rebate_dates', False):
             return super(ProductSupplierinfo, self).name_get()
         result = []
         for sinfo in self:

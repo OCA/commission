@@ -15,6 +15,9 @@
         </field>
     </record>
 
+    <record id="sale.action_orders" model="ir.actions.act_window">
+        <field name="context">{'show_rebate_dates': True}</field>
+    </record>
 
     <record id="view_order_agent_form_inherit" model="ir.ui.view">
         <field name="name">sale.agent.order.inherit.form</field>
@@ -23,7 +26,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']/form//field[@name='customer_lead']/.." position="after">
                 <field name="rebate_price"/>
-                <field name="supplierinfo_id" context="{'show_dates': true}"/>
+                <field name="supplierinfo_id"/>
             </xpath>
         </field>
     </record>
