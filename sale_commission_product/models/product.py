@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
 # © 2015 Alejandro Sánchez Ramírez (<http://www.asr-oss.com>)
+# Copyright 2020 Andrea Cometa - Apulia Software s.r.l.
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class ProductProduct(models.Model):
@@ -37,7 +37,7 @@ class ProductProductAgent(models.Model):
         string="")
     agent = fields.Many2one(
         comodel_name="res.partner", required=False, ondelete="restrict",
-        domain="[('agent', '=', True')]")
+        domain="[('agent', '=', True)]")
     commission = fields.Many2one(
         comodel_name="sale.commission", required=True, ondelete="restrict")
 
