@@ -26,6 +26,7 @@ Contributors
 ------------
 
 * Alejandro Sánchez <alejandro@asr-oss.com>
+* Andrea Cometa <a.cometa@apuliasoftware.it>
 
 Icon
 ----

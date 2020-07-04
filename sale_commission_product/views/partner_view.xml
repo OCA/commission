@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_agent_product_category" model="ir.ui.view">
+        <field name="name">res.partner.form.agent.product.category</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="sale_commission.view_partner_form_agent" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='agent_information']/group/group" position="before">
+                <separator string="Default commission" colspan="4"/>
+            </xpath>
+            <xpath expr="//page[@name='agent_information']/group/group[2]" position="after">
+                <group colspan="4">
+                    <group string="Products commissions">       
+                    <field name='product_agent_ids' nolabel="1">
+                        <tree editable="bottom">
+                            <field name='product_id' />
+                            <field name='commission_id' />
+                        </tree>
+                    </field>
+                </group>
+                <group string="Categories commissions">
+                    <field name='category_agent_ids' nolabel="1">
+                        <tree editable="bottom">
+                            <field name='category_id' />
+                            <field name='commission_id' />
+                        </tree>
+                    </field>
+                </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
