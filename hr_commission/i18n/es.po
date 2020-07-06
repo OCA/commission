@@ -29,6 +29,16 @@ msgid "Employee"
 msgstr "Empleado"
 
 #. module: hr_commission
+#: model:ir.ui.view,arch_db:hr_commission.view_settlement_form
+msgid "Mark as invoiced"
+msgstr ""
+
+#. module: hr_commission
+#: model:ir.model,name:hr_commission.model_sale_commission_settlement
+msgid "Settlement"
+msgstr ""
+
+#. module: hr_commission
 #: code:addons/hr_commission/models/res_partner.py:30
 #, python-format
 msgid ""
