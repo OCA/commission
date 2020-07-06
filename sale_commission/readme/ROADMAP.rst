@@ -7,3 +7,7 @@
 * When contacts are created as part of the insertion data for the creation of
   the parent company; the parent company's agents don't be passed to the
   contacts because it is a multi-valued field.
+* Add scheduled action (cron) for automatic settling. See
+  https://github.com/OCA/commission/issues/226 for more details.
+* Add a new commission type called "Flat Rate". See
+  https://github.com/OCA/commission/issues/226 for more details.
