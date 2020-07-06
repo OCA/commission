@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <report
+        id="action_report_settlement"
+        model="sale.commission.settlement"
+        string="Settlement report"
+        report_type="qweb-pdf"
+        name="sale_commission.report_settlement"
+        file="sale_commission.report_settlement"
+    />
+</odoo>
