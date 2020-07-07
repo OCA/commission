@@ -10,8 +10,8 @@ class ProductProduct(models.Model):
 
     agents = fields.One2many(
         string="Agents & commissions",
-        comodel_name='product.product.agent', inverse_name='product_id',
-        copy=True, readonly=True)
+        comodel_name='product.product.agent',
+        inverse_name='product_id', copy=True)
 
 
 class ProductProductAgent(models.Model):
@@ -51,5 +51,58 @@ class ProductProductAgent(models.Model):
 
     _sql_constraints = [
         ('unique_agent', 'UNIQUE(product_id, agent)',
+         'You can only add one time each agent.')
+    ]
+
+
+class ProductCategory(models.Model):
+    _inherit = 'product.category'
+
+    agents = fields.One2many(
+        string="Agents & commissions",
+        comodel_name='product.category.agent',
+        inverse_name='category_id', copy=True)
+
+
+class ProductCategoryAgent(models.Model):
+    _name = 'product.category.agent'
+
+    @api.multi
+    def get_commission_id_category(self, category, agent):
+        commission_id = False
+        # commission_id for all agent
+        for commission_all_agent in self.search(
+                [('category_id', '=', category.id), ('agent', '=', False)]):
+                    commission_id = commission_all_agent.commission.id
+        # commission_id for agent
+        for category_agent_id in self.search(
+                [('category_id', '=', category.id), ('agent', '=', agent.id)]):
+                    commission_id = category_agent_id.commission.id
+
+        if not commission_id and category.parent_id:
+            return self.get_commission_id_category(category.parent_id, agent)
+        return commission_id
+
+    category_id = fields.Many2one(
+        comodel_name="product.category",
+        required=True,
+        ondelete="cascade",
+        string="")
+    agent = fields.Many2one(
+        comodel_name="res.partner", required=False, ondelete="restrict",
+        domain="[('agent', '=', True)]")
+    commission = fields.Many2one(
+        comodel_name="sale.commission", required=True, ondelete="restrict")
+
+    @api.multi
+    def name_get(self):
+        res = []
+        for record in self:
+            name = "%s: %s" % (record.agent.name, record.commission.name)
+            res.append((record.id, name))
+        return res
+
+    _sql_constraints = [
+        ('unique_agent', 'UNIQUE(category_id, agent)',
          'You can only add one time each agent.')
     ]

@@ -18,4 +18,22 @@
             </xpath>
         </field>
     </record>
+
+    <record id="product_category_form_view_commission" model="ir.ui.view">
+	<field name="name">product.category.form.commission</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='first']" position="after">
+                <separator colspan="2" string="Agents &amp; commissions"/>
+		<field name="agents">
+                    <tree string="Agents" editable="bottom">
+                        <field name="agent"/>
+                        <field name="commission"/>
+                    </tree>
+                </field>
+            </xpath>
+        </field>
+
+    </record>
 </odoo>
