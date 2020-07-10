@@ -21,13 +21,14 @@ msgstr ""
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+#, fuzzy
 msgid ""
 "<span class=\"instructions\">\n"
 "  Use 'line' to access all the line fields.\n"
 "  As field names may vary, you should differentiate the\n"
-"  formulas for sale.order.line and account.invoice.line.\n"
+"  formulas for sale.order.line and account.move.line.\n"
 "  You can, for instance, use line._name == 'sale.order.line'\n"
-"  or line._name == 'account.invoice.line'.\n"
+"  or line._name == 'account.move.line'.\n"
 "\n"
 "  Use 'result' to return the commission amount.\n"
 "                        </span>"
@@ -44,15 +45,9 @@ msgstr ""
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "Account Invoice Line common fields"
-msgstr "Allgemeine Felder der Kontenabrechnungsposition"
-
-#. module: sale_commission_formula
-#: selection:sale.commission,commission_type:0
 #, fuzzy
-#| msgid "Instructions"
-msgid "By sections"
-msgstr "Anleitungen"
+msgid "Account Move Line common fields"
+msgstr "Allgemeine Felder der Kontenabrechnungsposition"
 
 #. module: sale_commission_formula
 #: model:ir.model,name:sale_commission_formula.model_sale_commission
@@ -70,13 +65,8 @@ msgid "Field"
 msgstr "Feld"
 
 #. module: sale_commission_formula
-#: selection:sale.commission,commission_type:0
-msgid "Fixed percentage"
-msgstr ""
-
-#. module: sale_commission_formula
 #: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission__formula
-#: selection:sale.commission,commission_type:0
+#: model:ir.model.fields.selection,name:sale_commission_formula.selection__sale_commission__commission_type__formula
 msgid "Formula"
 msgstr "Formel"
 
@@ -146,6 +136,11 @@ msgstr "product_uom_qty"
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 msgid "quantity"
 msgstr "quantity"
+
+#, fuzzy
+#~| msgid "Instructions"
+#~ msgid "By sections"
+#~ msgstr "Anleitungen"
 
 #~ msgid "account.invoice.line.agent"
 #~ msgstr "account.invoice.line.agent"

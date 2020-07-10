@@ -13,6 +13,6 @@ class SaleCommission(models.Model):
         "Formula",
         default="if line._name == 'sale.order.line':\n"
         "    result = 0\n"
-        "if line._name == 'account.invoice.line':\n"
+        "if line._name == 'account.move.line':\n"
         "    result = 0\n",
     )
