@@ -8,13 +8,13 @@ from odoo.tools.safe_eval import safe_eval
 
 
 class SaleCommissionLineMixin(models.AbstractModel):
-    _inherit = 'sale.commission.line.mixin'
+    _inherit = "sale.commission.line.mixin"
 
     @api.model
     def _get_formula_input_dict(self):
         return {
-            'line': self.object_id,
-            'self': self,
+            "line": self.object_id,
+            "self": self,
         }
 
     def _get_commission_amount(self, commission, subtotal, product, quantity):
@@ -22,12 +22,13 @@ class SaleCommissionLineMixin(models.AbstractModel):
         compute methods of children models.
         """
         self.ensure_one()
-        if (not product.commission_free and commission and
-                commission.commission_type == 'formula'):
+        if (
+            not product.commission_free
+            and commission
+            and commission.commission_type == "formula"
+        ):
             formula = commission.formula
             results = self._get_formula_input_dict()
             safe_eval(formula, results, mode="exec", nocopy=True)
-            return float(results['result'])
-        return super()._get_commission_amount(
-            commission, subtotal, product, quantity,
-        )
+            return float(results["result"])
+        return super()._get_commission_amount(commission, subtotal, product, quantity,)
