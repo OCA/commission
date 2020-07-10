@@ -17,7 +17,7 @@
         <field name="model">sale.commission</field>
         <field name="inherit_id" ref="sale_commission.sale_commission_form" />
         <field name="arch" type="xml">
-            <field name="sections" position="after">
+            <field name="section_ids" position="after">
                 <group>
                     <field
                         name="formula"
@@ -31,9 +31,9 @@
                         <span class='instructions'>
   Use 'line' to access all the line fields.
   As field names may vary, you should differentiate the
-  formulas for sale.order.line and account.invoice.line.
+  formulas for sale.order.line and account.move.line.
   You can, for instance, use line._name == 'sale.order.line'
-  or line._name == 'account.invoice.line'.
+  or line._name == 'account.move.line'.
 
   Use 'result' to return the commission amount.
                         </span>
@@ -62,7 +62,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <h3>Account Invoice Line common fields</h3>
+                        <h3>Account Move Line common fields</h3>
                         <table class='fields-table'>
                             <thead>
                                 <th>Field</th>
