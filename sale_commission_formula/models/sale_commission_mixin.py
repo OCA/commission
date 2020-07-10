@@ -31,4 +31,4 @@ class SaleCommissionLineMixin(models.AbstractModel):
             results = self._get_formula_input_dict()
             safe_eval(formula, results, mode="exec", nocopy=True)
             return float(results["result"])
-        return super()._get_commission_amount(commission, subtotal, product, quantity,)
+        return super()._get_commission_amount(commission, subtotal, product, quantity)
