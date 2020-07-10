@@ -6,12 +6,13 @@ from odoo import fields, models
 
 
 class SaleCommission(models.Model):
-    _inherit = 'sale.commission'
+    _inherit = "sale.commission"
 
     commission_type = fields.Selection(selection_add=[("formula", "Formula")])
     formula = fields.Text(
-        'Formula',
+        "Formula",
         default="if line._name == 'sale.order.line':\n"
-                "    result = 0\n"
-                "if line._name == 'account.invoice.line':\n"
-                "    result = 0\n")
+        "    result = 0\n"
+        "if line._name == 'account.invoice.line':\n"
+        "    result = 0\n",
+    )
