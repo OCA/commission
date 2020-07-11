@@ -32,8 +32,8 @@ class TestSaleCommissionPricelist(SavepointCase):
                         0,
                         0,
                         {
-                            "name": "10% discount and commission on Test product 2",
-                            "applied_on": "1_product",
+                            "name": "20% discount and commission on Test " "product 2",
+                            "applied_on": "0_product_variant",
                             "product_id": cls.product2.id,
                             "compute_price": "formula",
                             "base": "list_price",
@@ -45,7 +45,7 @@ class TestSaleCommissionPricelist(SavepointCase):
                         0,
                         0,
                         {
-                            "name": "20%  Discount and commission",
+                            "name": "10%  Discount and commission",
                             "compute_price": "percentage",
                             "base": "list_price",
                             "percent_price": 10,
@@ -58,14 +58,18 @@ class TestSaleCommissionPricelist(SavepointCase):
         )
         Partner = cls.env["res.partner"]
         cls.agent = Partner.create(
-            {"name": "Test Agent", "agent": True, "commission": cls.commission_agent.id}
+            {
+                "name": "Test Agent",
+                "agent": True,
+                "commission_id": cls.commission_agent.id,
+            }
         )
         cls.partner = Partner.create(
             {
                 "name": "Partner test",
-                "customer": True,
-                "supplier": False,
-                "agents": [(6, 0, cls.agent.ids)],
+                "customer_rank": 1,
+                "supplier_rank": 0,
+                "agent_ids": [(6, 0, cls.agent.ids)],
             }
         )
         SaleOrder = cls.env["sale.order"]
@@ -76,17 +80,13 @@ class TestSaleCommissionPricelist(SavepointCase):
         cls.so_line1 = SOLine.with_context(partner_id=cls.partner.id).create(
             {"order_id": cls.sale_order.id, "product_id": cls.product.id}
         )
-        for onchange_method in cls.so_line1._onchange_methods["product_id"]:
-            onchange_method(cls.so_line1)
         cls.so_line2 = SOLine.with_context(partner_id=cls.partner.id).create(
             {"order_id": cls.sale_order.id, "product_id": cls.product2.id}
         )
-        for onchange_method in cls.so_line2._onchange_methods["product_id"]:
-            onchange_method(cls.so_line2)
 
     def test_sale_commission_pricelist(self):
-        self.assertEqual(self.so_line1.agents[:1].commission, self.commission_1)
-        self.assertEqual(self.so_line2.agents[:1].commission, self.commission_2)
+        self.assertEqual(self.so_line1.agent_ids[:1].commission_id, self.commission_1)
+        self.assertEqual(self.so_line2.agent_ids[:1].commission_id, self.commission_2)
 
     def test_prepare_agents_vals(self):
         commission_3 = self.env["sale.commission"].create(
@@ -100,8 +100,8 @@ class TestSaleCommissionPricelist(SavepointCase):
                         0,
                         0,
                         {
-                            "name": "30% discount and commission on Test product 2",
-                            "applied_on": "1_product",
+                            "name": "30% discount and commission on Test " "product 2",
+                            "applied_on": "0_product_variant",
                             "product_id": self.product2.id,
                             "compute_price": "formula",
                             "base": "list_price",
@@ -114,10 +114,7 @@ class TestSaleCommissionPricelist(SavepointCase):
         )
         # Nothing changes
         self.sale_order.pricelist_id = pricelist_3
-        self.assertEqual(self.so_line1.agents[:1].commission, self.commission_1)
-        self.assertEqual(self.so_line2.agents[:1].commission, self.commission_2)
-        # After click on 'Recompute lines agents' button
-        # self.so_line1 and self.so_line1 change
-        self.sale_order.recompute_lines_agents()
-        self.assertEqual(self.so_line1.agents[:1].commission, self.commission_agent)
-        self.assertEqual(self.so_line2.agents[:1].commission, commission_3)
+        self.assertEqual(
+            self.so_line1.agent_ids[:1].commission_id, self.commission_agent
+        )
+        self.assertEqual(self.so_line2.agent_ids[:1].commission_id, commission_3)
