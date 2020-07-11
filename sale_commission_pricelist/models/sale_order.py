@@ -22,17 +22,18 @@ class SaleOrderLine(models.Model):
         rule = self.env["product.pricelist.item"].browse(rule_id)
         return rule.commission_id
 
-    @api.onchange("product_id", "product_uom_qty")
-    def _onchange_product_id_sale_commission_pricelist(self):
-        commission = self._get_commission_from_pricelist()
-        if commission:
-            self.agents.update({"commission": commission.id})
+    @api.depends("order_id.pricelist_id")
+    def _compute_agent_ids(self):
+        super(SaleOrderLine, self)._compute_agent_ids()
+        for record in self:
+            commission = record._get_commission_from_pricelist()
+            if record.agent_ids and commission:
+                record.agent_ids.update({"commission_id": commission.id})
 
-    def _prepare_agents_vals(self):
+    def _prepare_agent_vals(self, agent):
         self.ensure_one()
-        res = super(SaleOrderLine, self)._prepare_agents_vals()
+        res = super(SaleOrderLine, self)._prepare_agent_vals(agent)
         commission = self._get_commission_from_pricelist()
         if commission:
-            for vals in res:
-                vals[2]["commission"] = commission.id
+            res["commission_id"] = commission.id
         return res
