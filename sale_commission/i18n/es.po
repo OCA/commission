@@ -729,7 +729,8 @@ msgstr "Definición de porcentajes"
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_move_form
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_order_agent_form_inherit
-msgid "Recompute lines agents"
+#, fuzzy
+msgid "Regenerate agents"
 msgstr "Recalcular líneas de agente"
 
 #. module: sale_commission
