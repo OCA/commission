@@ -23,10 +23,15 @@ class AccountInvoiceLine(models.Model):
                     .get_commission_id_product(self.product_id.id, agent)
                 if commission_id_product:
                     commission_id = commission_id_product
-                if commission_id:
-                    agent_list.append({'agent': agent.id,
-                                       'commission': commission_id
-                                       })
+                else:
+                    commission_id_category = self.env[
+                        'product.category.agent'].get_commission_id_category(
+                            self.product_id.categ_id, agent)
+                    if commission_id_category:
+                        commission_id = commission_id_category
+                agent_list.append({'agent': agent.id,
+                                   'commission': commission_id
+                                   })
             if agent_list:
                 self.agents = False
                 self.agents = agent_list

@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-18 13:38+0000\n"
+"PO-Revision-Date: 2020-07-18 13:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,43 +16,57 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_commission_product
-#: field:product.product.agent,agent:0
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_category_agent__agent
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_product_agent__agent
 msgid "Agent"
 msgstr ""
 
 #. module: sale_commission_product
-#: view:product.product.agent:sale_commission_product.view_product_product_agent_tree
+#: model_terms:ir.ui.view,arch_db:sale_commission_product.product_category_form_view_commission
+#: model_terms:ir.ui.view,arch_db:sale_commission_product.product_product_form_view_commission_product
 msgid "Agents"
 msgstr ""
 
 #. module: sale_commission_product
-#: view:product.product:sale_commission_product.product_product_form_view_commission_product
-#: field:product.product,agents:0
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_category__agents
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_product__agents
+#: model_terms:ir.ui.view,arch_db:sale_commission_product.product_category_form_view_commission
+#: model_terms:ir.ui.view,arch_db:sale_commission_product.product_product_form_view_commission_product
 msgid "Agents & commissions"
 msgstr ""
 
 #. module: sale_commission_product
-#: field:product.product.agent,commission:0
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_category_agent__category_id
+msgid "Category"
+msgstr ""
+
+#. module: sale_commission_product
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_category_agent__commission
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_product_agent__commission
 msgid "Commission"
 msgstr ""
 
 #. module: sale_commission_product
-#: field:product.product.agent,create_uid:0
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_category_agent__create_uid
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_product_agent__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: sale_commission_product
-#: field:product.product.agent,create_date:0
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_category_agent__create_date
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_product_agent__create_date
 msgid "Created on"
 msgstr ""
 
 #. module: sale_commission_product
-#: field:product.product.agent,display_name:0
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_category_agent__display_name
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_product_agent__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: sale_commission_product
-#: field:product.product.agent,id:0
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_category_agent__id
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_product_agent__id
 msgid "ID"
 msgstr ""
 
@@ -60,28 +76,32 @@ msgid "Invoice Line"
 msgstr ""
 
 #. module: sale_commission_product
-#: field:product.product.agent,__last_update:0
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_category_agent____last_update
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_product_agent____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_commission_product
-#: field:product.product.agent,write_uid:0
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_category_agent__write_uid
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_product_agent__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: sale_commission_product
-#: field:product.product.agent,write_date:0
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_category_agent__write_date
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_product_agent__write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: sale_commission_product
 #: model:ir.model,name:sale_commission_product.model_product_product
+#: model:ir.model.fields,field_description:sale_commission_product.field_product_product_agent__product_id
 msgid "Product"
 msgstr ""
 
 #. module: sale_commission_product
-#: field:product.product.agent,product_id:0
-msgid "Product id"
+#: model:ir.model,name:sale_commission_product.model_product_category
+msgid "Product Category"
 msgstr ""
 
 #. module: sale_commission_product
@@ -90,7 +110,18 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_commission_product
+#: sql_constraint:product.category.agent:0
 #: sql_constraint:product.product.agent:0
 msgid "You can only add one time each agent."
+msgstr ""
+
+#. module: sale_commission_product
+#: model:ir.model,name:sale_commission_product.model_product_category_agent
+msgid "product.category.agent"
+msgstr ""
+
+#. module: sale_commission_product
+#: model:ir.model,name:sale_commission_product.model_product_product_agent
+msgid "product.product.agent"
 msgstr ""
 
