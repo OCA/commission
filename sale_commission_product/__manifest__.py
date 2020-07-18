@@ -5,7 +5,7 @@
 {
     'name': 'Sale commissions product',
     'version': '12.0.1.0.1',
-    'author': 'Andrea Cometa - Apulia Software s.r.l., ' 
+    'author': 'Andrea Cometa - Apulia Software s.r.l., '
               'Asr Oss - Alejandro Sánchez, '
               'Odoo Community Association (OCA)',
     "category": "Generic Modules/Sales & Purchases",

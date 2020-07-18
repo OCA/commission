@@ -16,18 +16,19 @@ class ProductProduct(models.Model):
 
 class ProductProductAgent(models.Model):
     _name = 'product.product.agent'
+    _description = 'Product Product Agent'
 
-    @api.multi
-    def get_commission_id_product(self, product, agent):
+    @api.model
+    def get_commission_id_product(self, product_id, agent_id):
         commission_id = False
-        # commission_id for all agent
-        for commission_all_agent in self.search(
-                [('product_id', '=', product), ('agent', '=', False)]):
-                    commission_id = commission_all_agent.commission.id
-        # commission_id for agent
-        for product_agent_id in self.search(
-                [('product_id', '=', product), ('agent', '=', agent.id)]):
-                    commission_id = product_agent_id.commission.id
+        commission_ids = self.search_read(
+            [('product_id', '=', product_id), ('agent', '=', agent_id)],
+            ['commission'])
+        if not commission_ids:
+            commission_ids = self.search_read(
+                [('product_id', '=', product_id)], ['commission'])
+        if commission_ids:
+            commission_id = commission_ids[0]['commission'][0]
         return commission_id
 
     product_id = fields.Many2one(
@@ -66,21 +67,21 @@ class ProductCategory(models.Model):
 
 class ProductCategoryAgent(models.Model):
     _name = 'product.category.agent'
+    _description = 'Product Category Agent'
 
-    @api.multi
-    def get_commission_id_category(self, category, agent):
+    @api.model
+    def get_commission_id_category(self, category, agent_id):
         commission_id = False
-        # commission_id for all agent
-        for commission_all_agent in self.search(
-                [('category_id', '=', category.id), ('agent', '=', False)]):
-                    commission_id = commission_all_agent.commission.id
-        # commission_id for agent
-        for category_agent_id in self.search(
-                [('category_id', '=', category.id), ('agent', '=', agent.id)]):
-                    commission_id = category_agent_id.commission.id
-
+        commission_ids = self.search_read(
+            [('category_id', '=', category.id), ('agent', '=', agent_id)],
+            ['commission'])
+        if not commission_ids:
+            commission_ids = self.search_read(
+                [('category_id', '=', category.id)], ['commission'])
+        if commission_ids:
+            commission_id = commission_ids[0]['commission'][0]
         if not commission_id and category.parent_id:
-            return self.get_commission_id_category(category.parent_id, agent)
+            return self.get_commission_id_category(category.parent_id, agent_id)
         return commission_id
 
     category_id = fields.Many2one(
