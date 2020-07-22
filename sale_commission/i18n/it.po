@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-22 08:15+0000\n"
-"PO-Revision-Date: 2020-05-06 16:19+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2020-07-22 15:19+0000\n"
+"Last-Translator: Andrea Cometa <a.cometa@apuliasoftware.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -181,7 +181,7 @@ msgstr "Non si può cancellare una provvigione fatturata."
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__categ_id
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 msgid "Category of Product"
-msgstr ""
+msgstr "Categoria del prodotto"
 
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_res_partner__agent
@@ -219,16 +219,14 @@ msgstr "Commissione"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_line_mixin__amount
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__settled_amount
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__amount
-#, fuzzy
 msgid "Commission Amount"
-msgstr "Sezione di Commissione"
+msgstr "Importo commissione"
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_sale_commission_analysis_report
 #: model:ir.ui.menu,name:sale_commission.menu_sale_commissions_analysis
-#, fuzzy
 msgid "Commission Analysis"
-msgstr "Righe di Commissione"
+msgstr "Analisi commissioni"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission
@@ -287,7 +285,7 @@ msgstr "Azienda collegata a questo registro"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_commission_make_invoices
@@ -349,12 +347,12 @@ msgstr "Creditore/Agente"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__currency_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 msgid "Customer"
-msgstr ""
+msgstr "Cliente"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice__date
@@ -399,12 +397,12 @@ msgstr "Nome Visualizzato"
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 msgid "Draft"
-msgstr ""
+msgstr "Bozza"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 msgid "Extended Filters"
-msgstr ""
+msgstr "Filtri estesi"
 
 #. module: sale_commission
 #: selection:res.partner,agent_type:0
@@ -657,9 +655,8 @@ msgstr ""
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__partner_id
-#, fuzzy
 msgid "Partner"
-msgstr "Agenti"
+msgstr "Partner"
 
 #. module: sale_commission
 #: selection:sale.commission,invoice_state:0
@@ -673,9 +670,8 @@ msgstr "Percentuale"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__percentage
-#, fuzzy
 msgid "Percentage of commission"
-msgstr "Libero da commissioni"
+msgstr "Percentuale della commissione"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:110
@@ -696,7 +692,7 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__price_unit
 msgid "Price unit"
-msgstr ""
+msgstr "Prezzo unitario"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line__product_id
@@ -777,7 +773,7 @@ msgstr ""
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_mixin_agent_only
 msgid "Save"
-msgstr ""
+msgstr "Salva"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission__sections
@@ -951,7 +947,7 @@ msgstr "Tipo"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__uom_id
 msgid "Unit of Measure"
-msgstr ""
+msgstr "Unità di misura"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_settle__date_to
@@ -962,7 +958,7 @@ msgstr "Fino a"
 #: code:addons/sale_commission/models/settlement.py:151
 #, python-format
 msgid "Value cannot be negative"
-msgstr ""
+msgstr "Il valore non può essere negativo"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_make_invoice
