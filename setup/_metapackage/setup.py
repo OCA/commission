@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo13-addon-sale_commission',
+        'odoo13-addon-sale_commission_formula',
     ],
     classifiers=[
         'Programming Language :: Python',
