@@ -23,7 +23,7 @@ Sales commissions by pricelist
     :target: https://runbot.odoo-community.org/runbot/165/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module extends the functionality of sale_commission to allow you set a commission to pricelist item.
 
@@ -89,6 +89,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/12.0/sale_commission_pricelist>`_ project on GitHub.
+This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/13.0/sale_commission_pricelist>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
