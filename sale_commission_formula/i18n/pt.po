@@ -25,9 +25,9 @@ msgid ""
 "<span class=\"instructions\">\n"
 "  Use 'line' to access all the line fields.\n"
 "  As field names may vary, you should differentiate the\n"
-"  formulas for sale.order.line and account.invoice.line.\n"
+"  formulas for sale.order.line and account.move.line.\n"
 "  You can, for instance, use line._name == 'sale.order.line'\n"
-"  or line._name == 'account.invoice.line'.\n"
+"  or line._name == 'account.move.line'.\n"
 "\n"
 "  Use 'result' to return the commission amount.\n"
 "                        </span>"
@@ -35,13 +35,10 @@ msgstr ""
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "Account Invoice Line common fields"
+#, fuzzy
+#| msgid "Account Invoice Line common fields"
+msgid "Account Move Line common fields"
 msgstr "Campos comuns da Linha de Fatura"
-
-#. module: sale_commission_formula
-#: selection:sale.commission,commission_type:0
-msgid "By sections"
-msgstr "Por secções"
 
 #. module: sale_commission_formula
 #: model:ir.model,name:sale_commission_formula.model_sale_commission
@@ -59,13 +56,8 @@ msgid "Field"
 msgstr "Campo"
 
 #. module: sale_commission_formula
-#: selection:sale.commission,commission_type:0
-msgid "Fixed percentage"
-msgstr "Percentagem fixa"
-
-#. module: sale_commission_formula
 #: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission__formula
-#: selection:sale.commission,commission_type:0
+#: model:ir.model.fields.selection,name:sale_commission_formula.selection__sale_commission__commission_type__formula
 msgid "Formula"
 msgstr "Fórmula"
 
@@ -135,3 +127,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 msgid "quantity"
 msgstr ""
+
+#~ msgid "By sections"
+#~ msgstr "Por secções"
+
+#~ msgid "Fixed percentage"
+#~ msgstr "Percentagem fixa"
