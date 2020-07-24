@@ -81,11 +81,11 @@ repos:
         name: pylint with optional checks
         args: ["--rcfile=.pylintrc", "--exit-zero"]
         verbose: true
-        additional_dependencies: ["pylint-odoo==3.1.0"]
+        additional_dependencies: ["pylint-odoo==3.3.2"]
       - id: pylint
         name: pylint with mandatory checks
         args: ["--rcfile=.pylintrc-mandatory"]
-        additional_dependencies: ["pylint-odoo==3.1.0"]
+        additional_dependencies: ["pylint-odoo==3.3.2"]
   - repo: https://github.com/asottile/pyupgrade
     rev: v1.26.2
     hooks:

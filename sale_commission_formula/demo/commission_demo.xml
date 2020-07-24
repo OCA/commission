@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="commission_5perc10extra" model="sale.commission">
+        <field name="name">5% + 10% extra</field>
+        <field name="commission_type">formula</field>
+        <field name="active">True</field>
+        <field name="formula">if line._name == 'sale.order.line':
+    partial = (line.price_subtotal / 100)*5
+    result = partial + (partial / 100)*10
+if line._name == 'account.move.line':
+    partial = (line.price_subtotal / 100)*5
+    result = partial + (partial / 100)*10
+        </field>
+    </record>
+    <record id="agent1" model="res.partner">
+        <field name="name">Agent 1</field>
+        <field name="is_company">True</field>
+        <field name="agent">True</field>
+        <field name="supplier_rank">1</field>
+        <field name="customer_rank">0</field>
+        <field name="commission_id" ref="commission_5perc10extra" />
+    </record>
+    <record id="sale_order_1" model="sale.order">
+        <field name="partner_id" ref="base.res_partner_2" />
+        <field name="partner_invoice_id" ref="base.res_partner_2" />
+        <field name="partner_shipping_id" ref="base.res_partner_2" />
+        <field name="user_id" ref="base.user_demo" />
+        <field name="pricelist_id" ref="product.list0" />
+        <field
+            name="date_order"
+            eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"
+        />
+    </record>
+    <record id="sale_order_line_1" model="sale.order.line">
+        <field name="order_id" ref="sale_order_1" />
+        <field name="name">iPad Retina Display</field>
+        <field name="product_id" ref="product.product_product_4" />
+        <field name="product_uom_qty">1</field>
+        <field name="product_uom" ref="uom.product_uom_unit" />
+        <field name="price_unit">750.00</field>
+    </record>
+</odoo>
