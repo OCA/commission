@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -19,14 +19,14 @@ msgid "Contact"
 msgstr ""
 
 #. module: sale_commission_salesman
-#: model:ir.model.fields,field_description:sale_commission_salesman.field_res_partner_salesman_as_agent
-#: model:ir.model.fields,field_description:sale_commission_salesman.field_res_users_salesman_as_agent
+#: model:ir.model.fields,field_description:sale_commission_salesman.field_res_partner__salesman_as_agent
+#: model:ir.model.fields,field_description:sale_commission_salesman.field_res_users__salesman_as_agent
 msgid "Convert salesman into agent"
 msgstr ""
 
 #. module: sale_commission_salesman
-#: model:ir.model.fields,help:sale_commission_salesman.field_res_partner_salesman_as_agent
-#: model:ir.model.fields,help:sale_commission_salesman.field_res_users_salesman_as_agent
+#: model:ir.model.fields,help:sale_commission_salesman.field_res_partner__salesman_as_agent
+#: model:ir.model.fields,help:sale_commission_salesman.field_res_users__salesman_as_agent
 msgid "If the user linked to this partner is put as salesman and no other commission rule is triggered, this agent will be added as the commission agent"
 msgstr ""
 
