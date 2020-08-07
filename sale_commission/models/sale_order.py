@@ -66,18 +66,17 @@ class SaleOrderLine(models.Model):
         # We use this form as this is the way it's returned when no real vals
         agents_vals = vals.get('agents', [(6, 0, [])])
         if agents_vals and agents_vals[0][0] == 6 and not agents_vals[0][2]:
-            order = self.env['sale.order'].browse(vals['order_id'])
-            vals['agents'] = self._prepare_agents_vals_partner(
-                order.partner_id,
-            )
+            vals['agents'] = self._prepare_agents_vals(vals=vals)
         return super().create(vals)
 
-    def _prepare_agents_vals(self):
-        self.ensure_one()
-        res = super()._prepare_agents_vals()
-        return res + self._prepare_agents_vals_partner(
-            self.order_id.partner_id,
-        )
+    def _prepare_agents_vals(self, vals=None):
+        res = super()._prepare_agents_vals(vals=vals)
+        if self:
+            partner = self.order_id.partner_id
+        else:
+            order = self.env['sale.order'].browse(vals['order_id'])
+            partner = order.partner_id
+        return res + self._prepare_agents_vals_partner(partner)
 
     def _prepare_invoice_line(self, qty):
         vals = super(SaleOrderLine, self)._prepare_invoice_line(qty)
