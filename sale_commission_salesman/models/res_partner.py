@@ -14,10 +14,10 @@ class ResPartner(models.Model):
         "added as the commission agent",
     )
 
-    @api.constrains("salesman_as_agent", "commission")
+    @api.constrains("salesman_as_agent", "commission_id")
     def _check_salesman_as_agent(self):
         for record in self:
-            if record.salesman_as_agent and not record.commission:
+            if record.salesman_as_agent and not record.commission_id:
                 raise exceptions.ValidationError(
                     _("You can't have a salesman auto-agent without commission.")
                 )
