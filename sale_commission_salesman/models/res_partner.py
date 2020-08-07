@@ -10,14 +10,14 @@ class ResPartner(models.Model):
     salesman_as_agent = fields.Boolean(
         string="Convert salesman into agent",
         help="If the user linked to this partner is put as salesman and no "
-             "other commission rule is triggered, this agent will be "
-             "added as the commission agent",
+        "other commission rule is triggered, this agent will be "
+        "added as the commission agent",
     )
 
     @api.constrains("salesman_as_agent", "commission")
     def _check_salesman_as_agent(self):
         for record in self:
             if record.salesman_as_agent and not record.commission:
-                raise exceptions.ValidationError(_(
-                    "You can't have a salesman auto-agent without commission."
-                ))
+                raise exceptions.ValidationError(
+                    _("You can't have a salesman auto-agent without commission.")
+                )
