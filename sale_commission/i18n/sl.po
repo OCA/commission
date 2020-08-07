@@ -102,7 +102,7 @@ msgid "Agent information"
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/sale_commission_mixin.py:90
+#: code:addons/sale_commission/models/sale_commission_mixin.py:91
 #: model:ir.actions.act_window,name:sale_commission.action_agent_form
 #: model:ir.model.fields,field_description:sale_commission.field_res_partner__agents
 #: model:ir.model.fields,field_description:sale_commission.field_res_users__agents
@@ -972,7 +972,7 @@ msgid "You can't delete invoiced settlements."
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/account_invoice.py:180
+#: code:addons/sale_commission/models/account_invoice.py:179
 #, python-format
 msgid "You can't modify a settled line"
 msgstr ""
