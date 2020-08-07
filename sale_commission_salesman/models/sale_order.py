@@ -5,7 +5,7 @@ from odoo import models
 
 
 class SaleOrdeLine(models.Model):
-    _inherit = 'sale.order.line'
+    _inherit = "sale.order.line"
 
     def _prepare_agents_vals(self, vals=None):
         """Add salesman agent if configured so and no other commission
@@ -19,9 +19,6 @@ class SaleOrdeLine(models.Model):
                 partner = order.user_id.partner_id
             if partner.agent and partner.salesman_as_agent:
                 res = [
-                    (0, 0, {
-                        'agent': partner.id,
-                        'commission': partner.commission.id,
-                    }),
+                    (0, 0, {"agent": partner.id, "commission": partner.commission.id,}),
                 ]
         return res
