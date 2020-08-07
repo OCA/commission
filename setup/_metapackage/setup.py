@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo12-addon-sale_commission',
         'odoo12-addon-sale_commission_formula',
         'odoo12-addon-sale_commission_pricelist',
+        'odoo12-addon-sale_commission_salesman',
     ],
     classifiers=[
         'Programming Language :: Python',
