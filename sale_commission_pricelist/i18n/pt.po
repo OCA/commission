@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_commission_pricelist
+# 	* sale_commission_pricelist
 #
 msgid ""
 msgstr ""
@@ -23,7 +23,9 @@ msgstr "Comissão"
 
 #. module: sale_commission_pricelist
 #: model:ir.model,name:sale_commission_pricelist.model_product_pricelist_item
-msgid "Pricelist Item"
+#, fuzzy
+#| msgid "Pricelist Item"
+msgid "Pricelist Rule"
 msgstr "Item da Lista de Preços"
 
 #. module: sale_commission_pricelist
