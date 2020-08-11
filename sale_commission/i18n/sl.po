@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-14 15:14+0000\n"
-"PO-Revision-Date: 2017-12-14 15:14+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2020-08-11 14:59+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@matmoz.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__quantity
@@ -26,9 +27,9 @@ msgstr ""
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/sale_commission_mixin.py:65
-#, fuzzy, python-format
+#, python-format
 msgid "%s commission agents"
-msgstr "Provizije pri prodaji"
+msgstr "%s agenti s provizijo"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
@@ -42,9 +43,9 @@ msgstr ""
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/sale_commission_mixin.py:63
-#, fuzzy, python-format
+#, python-format
 msgid "1 commission agent"
-msgstr "Provizije pri prodaji"
+msgstr "1 agent s provizijo"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.report_settlement
@@ -157,7 +158,7 @@ msgstr ""
 #. module: sale_commission
 #: selection:sale.commission,commission_type:0
 msgid "By sections"
-msgstr ""
+msgstr "Po sekcijah"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settled_wizard
@@ -218,16 +219,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_line_mixin__amount
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__settled_amount
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__amount
-#, fuzzy
 msgid "Commission Amount"
-msgstr "Provizije pri prodaji"
+msgstr "Znesek provizije"
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_sale_commission_analysis_report
 #: model:ir.ui.menu,name:sale_commission.menu_sale_commissions_analysis
-#, fuzzy
 msgid "Commission Analysis"
-msgstr "Provizije pri prodaji"
+msgstr "Analiza provizij"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission
@@ -414,7 +413,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission__fix_qty
 #: selection:sale.commission,commission_type:0
 msgid "Fixed percentage"
-msgstr ""
+msgstr "Fiksni odstotek"
 
 #. module: sale_commission
 #: selection:sale.commission,commission_type:0
@@ -585,9 +584,8 @@ msgstr ""
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_settlement_line
-#, fuzzy
 msgid "Line of a commission settlement"
-msgstr "Provizije pri prodaji"
+msgstr "Postavka uskladitve provizije"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:67
@@ -636,9 +634,9 @@ msgstr ""
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/sale_commission_mixin.py:61
-#, fuzzy, python-format
+#, python-format
 msgid "No commission agents"
-msgstr "Provizije pri prodaji"
+msgstr "Brez agentov s provizijo"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
@@ -731,15 +729,13 @@ msgstr ""
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_graph
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_pivot
-#, fuzzy
 msgid "Sale Commission Analysis"
-msgstr "Provizije pri prodaji"
+msgstr "Analiza prodajnih provizij"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_analysis_report
-#, fuzzy
 msgid "Sale Commission Analysis Report"
-msgstr "Provizije pri prodaji"
+msgstr "Poročilo o analizi prodajnih provizij"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order
@@ -753,9 +749,8 @@ msgstr ""
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
-#, fuzzy
 msgid "Sales Commission Analysis"
-msgstr "Provizije pri prodaji"
+msgstr "Analiza prodajnih provizij"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order_line
@@ -930,12 +925,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission__commission_type
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement__agent_type
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__uom_id
 msgid "Unit of Measure"
-msgstr ""
+msgstr "Enota mere"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_settle__date_to
