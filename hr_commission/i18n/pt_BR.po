@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-02-20 16:53+0000\n"
-"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"PO-Revision-Date: 2020-08-12 18:59+0000\n"
+"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr "Agente externo"
 #. module: hr_commission
 #: model_terms:ir.ui.view,arch_db:hr_commission.view_settlement_form
 msgid "Mark as invoiced"
-msgstr ""
+msgstr "Marcar como faturado"
 
 #. module: hr_commission
 #: selection:res.partner,agent_type:0
@@ -50,7 +50,7 @@ msgstr "Vendedor (funcionário)"
 #. module: hr_commission
 #: model:ir.model,name:hr_commission.model_sale_commission_settlement
 msgid "Settlement"
-msgstr ""
+msgstr "Assentamento"
 
 #. module: hr_commission
 #: code:addons/hr_commission/models/res_partner.py:31
