@@ -100,7 +100,6 @@ msgstr "Agenti"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_invoice_line_agent
 #, fuzzy
-#| msgid "Agents/Commissions related to the invoice line."
 msgid "Agent detail of commission line in invoice lines"
 msgstr "Agenti/Commissioni collegate alla riga fattura."
 
@@ -165,7 +164,6 @@ msgstr "Approvvigionamento"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__balance
 #, fuzzy
-#| msgid "Cancel"
 msgid "Balance"
 msgstr "Annulla"
 
@@ -551,14 +549,12 @@ msgstr "Registro"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_move
 #, fuzzy
-#| msgid "Journal"
 msgid "Journal Entries"
 msgstr "Registro"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_move_line
 #, fuzzy
-#| msgid "Journal"
 msgid "Journal Item"
 msgstr "Registro"
 
@@ -604,7 +600,6 @@ msgstr "Ultima modifica il"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_settlement_line
 #, fuzzy
-#| msgid "sale.commission.settlement.line"
 msgid "Line of a commission settlement"
 msgstr "sale.commission.settlement.line"
 
@@ -771,7 +766,6 @@ msgstr "Righe di Commissione"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order
 #, fuzzy
-#| msgid "Sales Order Line"
 msgid "Sales Order"
 msgstr "Riga d'Ordine di Vendita"
 
@@ -884,7 +878,6 @@ msgstr "Provvigioni"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__invoice_line_id
 #, fuzzy
-#| msgid "Invoice line"
 msgid "Source invoice line"
 msgstr "Riga fattura"
 
@@ -983,7 +976,6 @@ msgstr "Procedura per generare una fattura da una provvigione"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_make_settle
 #, fuzzy
-#| msgid "Create commission invoices"
 msgid "Wizard for settling commissions in invoices"
 msgstr "Crea fatture commissioni"
 

@@ -101,7 +101,6 @@ msgstr "Parceiros Representantes"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_invoice_line_agent
 #, fuzzy
-#| msgid "Agents/Commissions related to the invoice line."
 msgid "Agent detail of commission line in invoice lines"
 msgstr "Representantes/Comissões relacionados à linha da fatura."
 
@@ -165,7 +164,6 @@ msgstr "Qualquer Liquidado"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__balance
 #, fuzzy
-#| msgid "Cancel"
 msgid "Balance"
 msgstr "Cancelar"
 
@@ -549,14 +547,12 @@ msgstr "Diário"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_move
 #, fuzzy
-#| msgid "Journal"
 msgid "Journal Entries"
 msgstr "Diário"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_move_line
 #, fuzzy
-#| msgid "Journal"
 msgid "Journal Item"
 msgstr "Diário"
 
@@ -738,7 +734,6 @@ msgstr "Definição das Taxas"
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_move_form
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_order_agent_form_inherit
 #, fuzzy
-#| msgid "Recompute lines agents"
 msgid "Regenerate agents"
 msgstr "Recalcular representantes nas linhas"
 
@@ -766,7 +761,6 @@ msgstr "Análise de Comissão de Venda"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order
 #, fuzzy
-#| msgid "Sale Order"
 msgid "Sales Order"
 msgstr "Pedido de Venda"
 
@@ -879,7 +873,6 @@ msgstr "Abatimentos"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__invoice_line_id
 #, fuzzy
-#| msgid "Invoice line"
 msgid "Source invoice line"
 msgstr "Linha de Fatura"
 
