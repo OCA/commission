@@ -97,7 +97,6 @@ msgstr "Parceiros do Revendedor"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_invoice_line_agent
 #, fuzzy
-#| msgid "Agents/Commissions related to the invoice line."
 msgid "Agent detail of commission line in invoice lines"
 msgstr "Revendedores/Comissões relacionados com a linha da factura."
 
@@ -161,7 +160,6 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__balance
 #, fuzzy
-#| msgid "Cancel"
 msgid "Balance"
 msgstr "Cancelar"
 
@@ -545,14 +543,12 @@ msgstr "Diário"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_move
 #, fuzzy
-#| msgid "Journal"
 msgid "Journal Entries"
 msgstr "Diário"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_move_line
 #, fuzzy
-#| msgid "Journal"
 msgid "Journal Item"
 msgstr "Diário"
 
@@ -757,7 +753,6 @@ msgstr "Análise das Comissões de Vendas"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order
 #, fuzzy
-#| msgid "Sale Order"
 msgid "Sales Order"
 msgstr "Encomenda"
 
