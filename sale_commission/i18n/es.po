@@ -730,7 +730,6 @@ msgstr "Definición de porcentajes"
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_move_form
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_order_agent_form_inherit
 #, fuzzy
-#| msgid "Recompute lines agents"
 msgid "Regenerate agents"
 msgstr "Recalcular líneas de agente"
 

@@ -100,7 +100,6 @@ msgstr "Vertreterpartner"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_invoice_line_agent
 #, fuzzy
-#| msgid "Agents/Commissions related to the invoice line."
 msgid "Agent detail of commission line in invoice lines"
 msgstr "Vertreter/Provisionen mit Bezug zur Rechnungsposition."
 
@@ -165,7 +164,6 @@ msgstr "Ermittelt"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__balance
 #, fuzzy
-#| msgid "Cancel"
 msgid "Balance"
 msgstr "Abbrechen"
 
@@ -556,14 +554,12 @@ msgstr "Journal"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_move
 #, fuzzy
-#| msgid "Journal"
 msgid "Journal Entries"
 msgstr "Journal"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_move_line
 #, fuzzy
-#| msgid "Journal"
 msgid "Journal Item"
 msgstr "Journal"
 
@@ -746,7 +742,6 @@ msgstr "Staffelfestlegung"
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_move_form
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_order_agent_form_inherit
 #, fuzzy
-#| msgid "Recompute lines agents"
 msgid "Regenerate agents"
 msgstr "Vertreter der Position neu ermitteln"
 
@@ -778,7 +773,6 @@ msgstr "Provisionspositionen"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order
 #, fuzzy
-#| msgid "Sales Order Line"
 msgid "Sales Order"
 msgstr "Verkaufsauftragsposition"
 
@@ -980,14 +974,12 @@ msgstr "Bis zu"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_make_invoice
 #, fuzzy
-#| msgid "Cannot cancel an invoiced settlement."
 msgid "Wizard for making an invoice from a settlement"
 msgstr "Kann eine abgerechnete Provision nicht stornieren."
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_make_settle
 #, fuzzy
-#| msgid "Create commission invoices"
 msgid "Wizard for settling commissions in invoices"
 msgstr "Lege Provisionsabrechnungen an"
 
