@@ -212,7 +212,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:sale_commission.action_sale_commission_analysis_report
 #: model:ir.ui.menu,name:sale_commission.menu_sale_commissions_analysis
 #, fuzzy
-#| msgid "Commission in sales"
 msgid "Commission Analysis"
 msgstr "Provision im Verkauf"
 
@@ -710,14 +709,12 @@ msgstr ""
 #: model:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_graph
 #: model:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_pivot
 #, fuzzy
-#| msgid "Commission in sales"
 msgid "Sale Commission Analysis"
 msgstr "Provision im Verkauf"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_analysis_report
 #, fuzzy
-#| msgid "Commission in sales"
 msgid "Sale Commission Analysis Report"
 msgstr "Provision im Verkauf"
 
@@ -730,7 +727,6 @@ msgstr "Provision im Verkauf"
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 #, fuzzy
-#| msgid "Commission in sales"
 msgid "Sales Commission Analysis"
 msgstr "Provision im Verkauf"
 

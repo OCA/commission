@@ -213,7 +213,6 @@ msgstr "Comisión"
 #: model:ir.actions.act_window,name:sale_commission.action_sale_commission_analysis_report
 #: model:ir.ui.menu,name:sale_commission.menu_sale_commissions_analysis
 #, fuzzy
-#| msgid "Commission lines"
 msgid "Commission Analysis"
 msgstr "Líneas de comisión"
 
@@ -326,7 +325,6 @@ msgstr "Agente"
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_currency_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line_currency_id
 #, fuzzy
-#| msgid "Currency id"
 msgid "Currency"
 msgstr "Moneda"
 
@@ -348,7 +346,6 @@ msgstr "Fecha"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report_date_invoice
 #, fuzzy
-#| msgid "Created Invoices"
 msgid "Date Invoice"
 msgstr "Facturas creadas"
 
@@ -478,7 +475,6 @@ msgstr "Linea de factura"
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 #, fuzzy
-#| msgid "Invoice Line"
 msgid "Invoice Month"
 msgstr "Linea de factura"
 
@@ -504,7 +500,6 @@ msgstr "Excepción de factura"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report_invoice_line_id
 #: model:ir.ui.view,arch_db:sale_commission.report_settlement
 #, fuzzy
-#| msgid "Invoice Line"
 msgid "Invoice line"
 msgstr "Linea de factura"
 
@@ -579,7 +574,6 @@ msgstr "Última actualización el"
 #: model:ir.ui.view,arch_db:sale_commission.view_account_invoice_filter
 #: model:ir.ui.view,arch_db:sale_commission.view_sales_order_filter
 #, fuzzy
-#| msgid "Recompute lines agents"
 msgid "Line agents"
 msgstr "Recalcular agentes de lineas"
 
@@ -640,7 +634,6 @@ msgstr "Sin comisionistas"
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 #, fuzzy
-#| msgid "Settled"
 msgid "Not Settled"
 msgstr "Liquidada"
 
@@ -671,7 +664,6 @@ msgstr "Porcentaje"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report_percentage
 #, fuzzy
-#| msgid "Free of commission"
 msgid "Percentage of commission"
 msgstr "Sin comisión"
 
@@ -728,28 +720,24 @@ msgstr "Recalcular agentes de lineas"
 #: model:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_graph
 #: model:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_pivot
 #, fuzzy
-#| msgid "Commission lines"
 msgid "Sale Commission Analysis"
 msgstr "Líneas de comisión"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_analysis_report
 #, fuzzy
-#| msgid "Commission in sales"
 msgid "Sale Commission Analysis Report"
 msgstr "Comisión en ventas"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report_commission_id
 #, fuzzy
-#| msgid "Settle commissions"
 msgid "Sale commission"
 msgstr "Comisiones de liquidaciones"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 #, fuzzy
-#| msgid "Commission lines"
 msgid "Sales Commission Analysis"
 msgstr "Líneas de comisión"
 
@@ -843,7 +831,6 @@ msgstr "Periodo de liquidación no válido."
 #. module: sale_commission
 #: model:ir.actions.report.xml,name:sale_commission.action_report_settlement
 #, fuzzy
-#| msgid "Settlement period"
 msgid "Settlement report"
 msgstr "Periodo de liquidación"
 
@@ -873,7 +860,6 @@ msgstr "Estado"
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 #, fuzzy
-#| msgid "State"
 msgid "Status"
 msgstr "Estado"
 
@@ -886,7 +872,6 @@ msgstr "El límite inferior no puede ser mayor que el superior."
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 #, fuzzy
-#| msgid "This year"
 msgid "This Year"
 msgstr "Este año"
 

@@ -212,7 +212,6 @@ msgstr "Komisyon"
 #: model:ir.actions.act_window,name:sale_commission.action_sale_commission_analysis_report
 #: model:ir.ui.menu,name:sale_commission.menu_sale_commissions_analysis
 #, fuzzy
-#| msgid "Commission lines"
 msgid "Commission Analysis"
 msgstr "Komisyon Satırları"
 
@@ -325,7 +324,6 @@ msgstr "Alacaklı/Acenta"
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_currency_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line_currency_id
 #, fuzzy
-#| msgid "Currency id"
 msgid "Currency"
 msgstr "Para Birimi"
 
@@ -347,7 +345,6 @@ msgstr "Tarih"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report_date_invoice
 #, fuzzy
-#| msgid "Created Invoices"
 msgid "Date Invoice"
 msgstr "Oluşturulan Faturalar"
 
@@ -477,7 +474,6 @@ msgstr "Fatura Satırı"
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 #, fuzzy
-#| msgid "Invoice Line"
 msgid "Invoice Month"
 msgstr "Fatura Satırı"
 
@@ -576,7 +572,6 @@ msgstr "Son Güncelleme"
 #: model:ir.ui.view,arch_db:sale_commission.view_account_invoice_filter
 #: model:ir.ui.view,arch_db:sale_commission.view_sales_order_filter
 #, fuzzy
-#| msgid "Recompute lines agents"
 msgid "Line agents"
 msgstr "Acenta Satırlarını Yeniden Hesapla"
 
@@ -634,7 +629,6 @@ msgstr "Komisyon Yönetimi"
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 #, fuzzy
-#| msgid "Settled"
 msgid "Not Settled"
 msgstr "Hesaplaşılan"
 
@@ -665,7 +659,6 @@ msgstr "Yüzde"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report_percentage
 #, fuzzy
-#| msgid "Free of commission"
 msgid "Percentage of commission"
 msgstr "Komisyonsuz"
 
@@ -722,28 +715,24 @@ msgstr "Acenta Satırlarını Yeniden Hesapla"
 #: model:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_graph
 #: model:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_pivot
 #, fuzzy
-#| msgid "Commission lines"
 msgid "Sale Commission Analysis"
 msgstr "Komisyon Satırları"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_analysis_report
 #, fuzzy
-#| msgid "Commission in sales"
 msgid "Sale Commission Analysis Report"
 msgstr "Satış komisyonu"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report_commission_id
 #, fuzzy
-#| msgid "Settle commissions"
 msgid "Sale commission"
 msgstr "Hesaplaşma Komisyonları"
 
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 #, fuzzy
-#| msgid "Commission lines"
 msgid "Sales Commission Analysis"
 msgstr "Komisyon Satırları"
 
@@ -837,7 +826,6 @@ msgstr "Heaplaşma dönemi geçerli değil."
 #. module: sale_commission
 #: model:ir.actions.report.xml,name:sale_commission.action_report_settlement
 #, fuzzy
-#| msgid "Settlement period"
 msgid "Settlement report"
 msgstr "Hesaplaşma Periyodu"
 
@@ -867,7 +855,6 @@ msgstr "Durumu"
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 #, fuzzy
-#| msgid "State"
 msgid "Status"
 msgstr "Durumu"
 
@@ -880,7 +867,6 @@ msgstr "Alt limit üsttekiden fazla olamaz."
 #. module: sale_commission
 #: model:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 #, fuzzy
-#| msgid "This year"
 msgid "This Year"
 msgstr "Bu yıl"
 

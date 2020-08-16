@@ -213,7 +213,6 @@ msgstr "Commission"
 #: model:ir.actions.act_window,name:sale_commission.action_sale_commission_analysis_report
 #: model:ir.ui.menu,name:sale_commission.menu_sale_commissions_analysis
 #, fuzzy
-#| msgid "Commission"
 msgid "Commission Analysis"
 msgstr "Commission"
 
@@ -656,7 +655,6 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report_percentage
 #, fuzzy
-#| msgid "Agents & commissions"
 msgid "Percentage of commission"
 msgstr "Commerciaux et commissions"
 
@@ -723,7 +721,6 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report_commission_id
 #, fuzzy
-#| msgid "Commission"
 msgid "Sale commission"
 msgstr "Commission"
 
