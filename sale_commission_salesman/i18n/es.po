@@ -23,14 +23,14 @@ msgid "Contact"
 msgstr "Contacto"
 
 #. module: sale_commission_salesman
-#: model:ir.model.fields,field_description:sale_commission_salesman.field_res_partner_salesman_as_agent
-#: model:ir.model.fields,field_description:sale_commission_salesman.field_res_users_salesman_as_agent
+#: model:ir.model.fields,field_description:sale_commission_salesman.field_res_partner__salesman_as_agent
+#: model:ir.model.fields,field_description:sale_commission_salesman.field_res_users__salesman_as_agent
 msgid "Convert salesman into agent"
 msgstr "Convertir comercial a agente"
 
 #. module: sale_commission_salesman
-#: model:ir.model.fields,help:sale_commission_salesman.field_res_partner_salesman_as_agent
-#: model:ir.model.fields,help:sale_commission_salesman.field_res_users_salesman_as_agent
+#: model:ir.model.fields,help:sale_commission_salesman.field_res_partner__salesman_as_agent
+#: model:ir.model.fields,help:sale_commission_salesman.field_res_users__salesman_as_agent
 msgid ""
 "If the user linked to this partner is put as salesman and no other "
 "commission rule is triggered, this agent will be added as the commission "
