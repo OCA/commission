@@ -23,16 +23,6 @@ msgstr ""
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 #, fuzzy
-#| msgid ""
-#| "<span class=\"instructions\">\n"
-#| "  Use 'line' to access all the line fields.\n"
-#| "  As field names may vary, you should differentiate the\n"
-#| "  formulas for sale.order.line and account.invoice.line.\n"
-#| "  You can, for instance, use line._name == 'sale.order.line'\n"
-#| "  or line._name == 'account.invoice.line'.\n"
-#| "\n"
-#| "  Use 'result' to return the commission amount.\n"
-#| "                        </span>"
 msgid ""
 "<span class=\"instructions\">\n"
 "  Use 'line' to access all the line fields.\n"
@@ -57,7 +47,6 @@ msgstr ""
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 #, fuzzy
-#| msgid "Account Invoice Line common fields"
 msgid "Account Move Line common fields"
 msgstr "帐户发票行常用字段"
 

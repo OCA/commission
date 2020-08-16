@@ -36,7 +36,6 @@ msgstr ""
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 #, fuzzy
-#| msgid "Account Invoice Line common fields"
 msgid "Account Move Line common fields"
 msgstr "Campos comuns da Linha de Fatura"
 
