@@ -50,7 +50,6 @@ msgstr "Allgemeine Felder der Kontenabrechnungsposition"
 #. module: sale_commission_formula
 #: selection:sale.commission,commission_type:0
 #, fuzzy
-#| msgid "Instructions"
 msgid "By sections"
 msgstr "Anleitungen"
 

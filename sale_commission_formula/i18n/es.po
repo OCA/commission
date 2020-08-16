@@ -51,7 +51,6 @@ msgstr "Campos comunes de las líneas de factura"
 #. module: sale_commission_formula
 #: selection:sale.commission,commission_type:0
 #, fuzzy
-#| msgid "Instructions"
 msgid "By sections"
 msgstr "Instrucciones"
 
