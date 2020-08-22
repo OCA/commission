@@ -50,13 +50,13 @@ class TestCommissionProduct(SavepointCase):
         ProductAgent = cls.env['product.product.agent']
         cls.productagent = ProductAgent.create({
             'product_id': cls.product.id,
-            'commission': cls.commission_1.id,
-            'agent': cls.agent.id,
+            'commission_id': cls.commission_1.id,
+            'agent_id': cls.agent.id,
         })
         cls.productagent2 = ProductAgent.create({
             'product_id': cls.product2.id,
-            'commission': cls.commission_2.id,
-            'agent': False,
+            'commission_id': cls.commission_2.id,
+            'agent_id': False,
         })
 
         ProductCategory = cls.env['product.category']
@@ -72,8 +72,8 @@ class TestCommissionProduct(SavepointCase):
         ProductCategoryAgent = cls.env['product.category.agent']
         cls.product_cat_agent = ProductCategoryAgent.create({
             'category_id': cls.category.id,
-            'commission': cls.commission_2.id,
-            'agent': cls.agent.id,
+            'commission_id': cls.commission_2.id,
+            'agent_id': cls.agent.id,
         })
 
         SaleOrder = cls.env['sale.order']

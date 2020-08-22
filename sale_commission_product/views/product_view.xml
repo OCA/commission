@@ -8,11 +8,11 @@
             <xpath expr="//form/sheet/notebook/page[@name='sales']/group[1]" position="after">
                 <separator colspan="2" string="Agents &amp; commissions"
                     attrs="{'invisible': [('commission_free', '=', True)]}" />
-                <field name="agents"
+                <field name="agent_ids"
                     attrs="{'invisible': [('commission_free', '=', True)]}" >
                     <tree string="Agents" editable="bottom">
-                        <field name="agent"/>
-                        <field name="commission"/>
+                        <field name="agent_id"/>
+                        <field name="commission_id"/>
                     </tree>
                 </field>
             </xpath>
@@ -26,10 +26,10 @@
         <field name="arch" type="xml">
             <xpath expr="//group[@name='first']" position="after">
                 <separator colspan="2" string="Agents &amp; commissions"/>
-                    <field name="agents">
+                    <field name="agent_ids">
                     <tree string="Agents" editable="bottom">
-                        <field name="agent"/>
-                        <field name="commission"/>
+                        <field name="agent_id"/>
+                        <field name="commission_id"/>
                     </tree>
                 </field>
             </xpath>
