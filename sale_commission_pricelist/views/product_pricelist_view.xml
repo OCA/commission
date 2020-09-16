@@ -24,7 +24,7 @@
         <field name="model">product.pricelist</field>
         <field name="inherit_id" ref="product.product_pricelist_view" />
         <field name="arch" type="xml">
-            <xpath expr="//tree/field[@name='fixed_price']" position="after">
+            <xpath expr="//tree/field[@name='base']" position="after">
                 <field name="commission_id" />
             </xpath>
         </field>
