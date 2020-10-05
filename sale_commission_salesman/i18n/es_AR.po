@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-09-13 00:00+0000\n"
+"PO-Revision-Date: 2020-10-05 20:16+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es_AR\n"
@@ -47,7 +47,7 @@ msgstr "Apunte contable"
 #. module: sale_commission_salesman
 #: model:ir.model,name:sale_commission_salesman.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Línea de Orden de Venta"
+msgstr "Línea de Orden de Ventas"
 
 #. module: sale_commission_salesman
 #: code:addons/sale_commission_salesman/models/res_partner.py:0
