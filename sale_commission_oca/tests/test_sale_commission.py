@@ -208,13 +208,18 @@ class TestSaleCommission(SavepointCase):
             settlements.action_cancel()
         with self.assertRaises(UserError):
             settlements.unlink()
+        return settlements
 
     def test_sale_commission_gross_amount_payment(self):
-        self._check_full(
+        settlements = self._check_full(
             self.env.ref("sale_commission.res_partner_pritesh_sale_agent"),
             self.commission_section_paid,
             1,
             0,
+        )
+        # Check report print - It shouldn't fail
+        self.env.ref("sale_commission.action_report_settlement").render_qweb_html(
+            settlements[0].ids
         )
 
     def test_sale_commission_gross_amount_payment_annual(self):
