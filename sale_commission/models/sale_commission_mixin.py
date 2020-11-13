@@ -116,7 +116,7 @@ class SaleCommissionLineMixin(models.AbstractModel):
         copy=True,
     )
     amount = fields.Monetary(
-        string="Commission Amount", compute="_compute_commission_amount", store=True,
+        string="Commission Amount", compute="_compute_amount", store=True,
     )
     # Fields to be overriden with proper source (via related or computed field)
     currency_id = fields.Many2one(comodel_name="res.currency")
