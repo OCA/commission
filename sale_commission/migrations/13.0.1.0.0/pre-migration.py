@@ -39,5 +39,7 @@ def migrate(env, version):
     renamed_fields = []
     for model in renamings:
         for old_field, new_field in renamings[model]:
-            renamed_fields.append(model, model.replace(".", "_"), old_field, new_field)
+            renamed_fields.append(
+                (model, model.replace(".", "_"), old_field, new_field)
+            )
     openupgrade.rename_fields(env, renamed_fields)
