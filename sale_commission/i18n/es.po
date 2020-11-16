@@ -94,7 +94,7 @@ msgid "Agent Line"
 msgstr "Línea de agente"
 
 #. module: sale_commission
-#: model_terms:ir.ui.view,arch_db:sale_commission.view_res_partner_filter
+#: model_terms:ir.ui.view,arch_db:sale_commission.res_partner_view_search
 msgid "Agent Partners"
 msgstr "Agentes"
 
@@ -119,7 +119,7 @@ msgstr "Información del agente"
 #: model:ir.model.fields,field_description:sale_commission.field_res_partner__agent_ids
 #: model:ir.model.fields,field_description:sale_commission.field_res_users__agent_ids
 #: model:ir.ui.menu,name:sale_commission.menu_agent_form
-#: model_terms:ir.ui.view,arch_db:sale_commission.view_res_partner_filter
+#: model_terms:ir.ui.view,arch_db:sale_commission.res_partner_view_search
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_line_tree
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settled_wizard
 #, python-format
