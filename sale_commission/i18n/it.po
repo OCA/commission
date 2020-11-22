@@ -585,7 +585,6 @@ msgstr "Ultima modifica il"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_settlement_line
 #, fuzzy
-#| msgid "sale.commission.settlement.line"
 msgid "Line of a commission settlement"
 msgstr "sale.commission.settlement.line"
 
@@ -744,7 +743,6 @@ msgstr "Commissione in vendite"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order
 #, fuzzy
-#| msgid "Sales Order Line"
 msgid "Sale Order"
 msgstr "Riga d'Ordine di Vendita"
 
@@ -968,7 +966,6 @@ msgstr "Procedura per generare una fattura da una provvigione"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_make_settle
 #, fuzzy
-#| msgid "Create commission invoices"
 msgid "Wizard for settling commissions in invoices"
 msgstr "Crea fatture commissioni"
 

@@ -753,7 +753,6 @@ msgstr "Provision im Verkauf"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order
 #, fuzzy
-#| msgid "Sales Order Line"
 msgid "Sale Order"
 msgstr "Verkaufsauftragsposition"
 
@@ -968,14 +967,12 @@ msgstr "Wert darf nicht negativ sein"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_make_invoice
 #, fuzzy
-#| msgid "Cannot cancel an invoiced settlement."
 msgid "Wizard for making an invoice from a settlement"
 msgstr "Kann eine abgerechnete Provision nicht stornieren."
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_make_settle
 #, fuzzy
-#| msgid "Create commission invoices"
 msgid "Wizard for settling commissions in invoices"
 msgstr "Lege Provisionsabrechnungen an"
 
