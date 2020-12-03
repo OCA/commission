@@ -23,12 +23,12 @@
                       attrs="{'invisible': [('agent', '=', False)]}">
                     <group>
                         <group>
-                            <field name="agent_type"/>
+                            <field name="agent_type" required="1"/>
                             <field name="commission"
                                    attrs="{'required': [('agent', '=', True)]}"/>
                         </group>
                         <group>
-                            <field name="settlement"/>
+                            <field name="settlement" required="1"/>
                         </group>
                         <group colspan="4"
                                string="Settlements">
