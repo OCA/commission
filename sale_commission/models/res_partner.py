@@ -18,7 +18,7 @@ class ResPartner(models.Model):
         string="Creditor/Agent",
         help="Check this field if the partner is a creditor or an agent.")
     agent_type = fields.Selection(
-        selection=[("agent", "External agent")], string="Type", required=True,
+        selection=[("agent", "External agent")], string="Type",
         default="agent")
     commission = fields.Many2one(
         string="Commission", comodel_name="sale.commission",
@@ -30,7 +30,7 @@ class ResPartner(models.Model):
                    ("quaterly", "Quarterly"),
                    ("semi", "Semi-annual"),
                    ("annual", "Annual")],
-        string="Settlement period", default="monthly", required=True)
+        string="Settlement period", default="monthly")
     settlements = fields.One2many(
         comodel_name="sale.commission.settlement", inverse_name="agent",
         readonly=True)
