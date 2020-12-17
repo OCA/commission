@@ -2,7 +2,7 @@
 # Copyright 2020 Tecnativa - Manuel Calero
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tests.common import Form
 
@@ -72,13 +72,13 @@ class Settlement(models.Model):
 
     def action_cancel(self):
         if any(x.state != "settled" for x in self):
-            raise exceptions.Warning(_("Cannot cancel an invoiced settlement."))
+            raise UserError(_("Cannot cancel an invoiced settlement."))
         self.write({"state": "cancel"})
 
     def unlink(self):
         """Allow to delete only cancelled settlements"""
         if any(x.state == "invoiced" for x in self):
-            raise exceptions.Warning(_("You can't delete invoiced settlements."))
+            raise UserError(_("You can't delete invoiced settlements."))
         return super().unlink()
 
     def action_invoice(self):
@@ -95,7 +95,9 @@ class Settlement(models.Model):
     def _prepare_invoice(self, journal, product, date=False):
         self.ensure_one()
         move_type = "in_invoice" if self.total >= 0 else "in_refund"
-        move_form = Form(self.env["account.move"].with_context(default_type=move_type))
+        move_form = Form(
+            self.env["account.move"].with_context(default_move_type=move_type)
+        )
         if date:
             move_form.invoice_date = date
         move_form.partner_id = self.agent_id
@@ -115,6 +117,9 @@ class Settlement(models.Model):
                 date_from.strftime(lang.date_format),
                 date_to.strftime(lang.date_format),
             )
+            line_form.currency_id = (
+                self.currency_id
+            )  # todo or compute agent currency_id?
         vals = move_form._values_to_save(all_fields=True)
         vals["settlement_id"] = self.id
         return vals
