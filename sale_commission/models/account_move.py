@@ -33,10 +33,10 @@ class AccountMove(models.Model):
         self.settlement_id.state = "except_invoice"
         return super().button_cancel()
 
-    def post(self):
+    def action_post(self):
         """Put settlements associated to the invoices in invoiced state."""
         self.settlement_id.state = "invoiced"
-        return super().post()
+        return super().action_post()
 
     def recompute_lines_agents(self):
         self.mapped("invoice_line_ids").recompute_agents()
@@ -88,7 +88,7 @@ class AccountMoveLine(models.Model):
     def _compute_agent_ids(self):
         self.agent_ids = False  # for resetting previous agents
         for record in self.filtered(
-            lambda x: x.move_id.partner_id and x.move_id.type[:3] == "out"
+            lambda x: x.move_id.partner_id and x.move_id.move_type[:3] == "out"
         ):
             if not record.commission_free and record.product_id:
                 record.agent_ids = record._prepare_agents_vals_partner(
@@ -143,7 +143,7 @@ class AccountInvoiceLineAgent(models.Model):
                 inv_line.quantity,
             )
             # Refunds commissions are negative
-            if line.invoice_id.type and "refund" in line.invoice_id.type:
+            if line.invoice_id.move_type and "refund" in line.invoice_id.move_type:
                 line.amount = -line.amount
 
     @api.depends(
@@ -178,5 +178,5 @@ class AccountInvoiceLineAgent(models.Model):
         self.ensure_one()
         return (
             self.commission_id.invoice_state == "paid"
-            and self.invoice_id.invoice_payment_state != "paid"
+            and self.invoice_id.payment_state != "paid"
         ) or self.invoice_id.state != "posted"
