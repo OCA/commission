@@ -173,7 +173,7 @@ class TestSaleCommission(SavepointCase):
         sale_order = self._create_sale_order(agent, commission)
         sale_order.action_confirm()
         self._invoice_sale_order(sale_order)
-        sale_order.invoice_ids.post()
+        sale_order.invoice_ids.action_post()
         self._settle_agent(agent, period)
         return sale_order
 
@@ -189,11 +189,11 @@ class TestSaleCommission(SavepointCase):
         )
         register_payments = (
             self.env["account.payment.register"]
-            .with_context(active_ids=sale_order.invoice_ids.id)
+            .with_context(active_ids=sale_order.invoice_ids.id, active_model='account.move')
             .create({"journal_id": journal.id})
         )
-        register_payments.create_payments()
-        self.assertEqual(sale_order.invoice_ids.invoice_payment_state, "paid")
+        register_payments.action_create_payments()
+        self.assertEqual(sale_order.invoice_ids.payment_state, "paid")
         self._settle_agent(agent, period)
         settlements = self.settle_model.search([("state", "=", "settled")])
         self.assertTrue(settlements)
@@ -218,7 +218,7 @@ class TestSaleCommission(SavepointCase):
             0,
         )
         # Check report print - It shouldn't fail
-        self.env.ref("sale_commission.action_report_settlement").render_qweb_html(
+        self.env.ref("sale_commission.action_report_settlement")._render_qweb_html(
             settlements[0].ids
         )
 
@@ -231,7 +231,9 @@ class TestSaleCommission(SavepointCase):
 
     def test_sale_commission_gross_amount_invoice(self):
         self._create_order_and_invoice_and_settle(
-            self.agent_quaterly, self.env.ref("sale_commission.demo_commission"), 1,
+            self.agent_quaterly,
+            self.env.ref("sale_commission.demo_commission"),
+            1,
         )
         settlements = self.settle_model.search([("state", "=", "invoiced")])
         settlements.make_invoices(self.journal, self.commission_product)
@@ -316,12 +318,13 @@ class TestSaleCommission(SavepointCase):
         """No agents should be populated on supplier invoices."""
         self.partner.agent_ids = self.agent_semi
         move_form = Form(
-            self.env["account.move"].with_context(default_type="in_invoice")
+            self.env["account.move"].with_context(default_move_type="in_invoice")
         )
         move_form.partner_id = self.partner
         with move_form.invoice_line_ids.new() as line_form:
             line_form.product_id = self.product
             line_form.quantity = 1
+            line_form.currency_id = self.company.currency_id
         invoice = move_form.save()
         self.assertFalse(invoice.invoice_line_ids.agent_ids)
 
@@ -363,10 +366,11 @@ class TestSaleCommission(SavepointCase):
         agent = sale_order.invoice_ids.invoice_line_ids.agent_ids
         self._check_propagation(agent)
         move_form = Form(
-            self.env["account.move"].with_context(default_type="out_invoice")
+            self.env["account.move"].with_context(default_move_type="out_invoice")
         )
         move_form.partner_id = self.partner
         with move_form.invoice_line_ids.new() as line_form:
+            line_form.currency_id = self.company.currency_id
             line_form.product_id = self.product
             line_form.quantity = 1
         invoice = move_form.save()
@@ -392,7 +396,7 @@ class TestSaleCommission(SavepointCase):
             product=self.commission_product, journal=self.journal
         )
         self.assertEqual(settlement.state, "invoiced")
-        self.assertEqual(commission_invoice.type, "in_invoice")
+        self.assertEqual(commission_invoice.move_type, "in_invoice")
         invoice = sale_order.invoice_ids
         refund = invoice._reverse_moves(
             default_values_list=[{"invoice_date": invoice.invoice_date}],
@@ -401,7 +405,7 @@ class TestSaleCommission(SavepointCase):
             invoice.invoice_line_ids.agent_ids.agent_id,
             refund.invoice_line_ids.agent_ids.agent_id,
         )
-        refund.post()
+        refund.action_post()
         self._settle_agent(agent, 1)
         settlements = self.settle_model.search([("agent_id", "=", agent.id)])
         self.assertEqual(2, len(settlements))
@@ -414,7 +418,7 @@ class TestSaleCommission(SavepointCase):
         action = wizard.button_create()
         commission_refund = self.env["account.move"].browse(action["domain"][0][2])
         self.assertEqual(second_settlement.state, "invoiced")
-        self.assertEqual(commission_refund.type, "in_refund")
+        self.assertEqual(commission_refund.move_type, "in_refund")
         # Undo invoices + make invoice again to get a unified invoice
         commission_invoices = commission_invoice + commission_refund
         commission_invoices.button_cancel()
@@ -437,7 +441,7 @@ class TestSaleCommission(SavepointCase):
         )
         action = wizard.button_create()
         invoice = self.env["account.move"].browse(action["domain"][0][2])
-        self.assertEqual(invoice.type, "in_invoice")
+        self.assertEqual(invoice.move_type, "in_invoice")
         self.assertAlmostEqual(invoice.amount_total, 0)
 
     def test_res_partner_agent_propagation(self):

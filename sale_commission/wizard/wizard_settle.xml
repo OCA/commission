@@ -8,16 +8,18 @@
                 <group>
                     <p
                         colspan="4"
-                    >Select the date up to which you want to make the settlements:</p>
+                    >Select the date up to which you want to make the settlements:
+                    </p>
                 </group>
                 <group colspan="2">
-                    <field name="date_to" />
+                    <field name="date_to"/>
                 </group>
                 <group string="Agents" colspan="4">
                     <p
                         colspan="4"
-                    >(keep empty for making the settlement of all agents)</p>
-                    <field name="agent_ids" nolabel="1" widget="many2many_list" />
+                    >(keep empty for making the settlement of all agents)
+                    </p>
+                    <field name="agent_ids" nolabel="1" widget="many2many_list"/>
                 </group>
                 <footer>
                     <button
@@ -37,13 +39,13 @@
             </form>
         </field>
     </record>
-    <act_window
-        id="action_agents_settlement"
-        name="Settle commissions"
-        res_model="sale.commission.make.settle"
-        view_mode="form"
-        target="new"
-    />
+    <record id="action_agents_settlement" model="ir.actions.act_window">
+        <field name="name">Settle commissions</field>
+        <field name="res_model">sale.commission.make.settle</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_sale_commission_make_settle"/>
+    </record>
     <menuitem
         id="menu_agents_settlement"
         parent="menu_sale_commissions_management"
