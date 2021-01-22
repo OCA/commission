@@ -254,7 +254,7 @@ msgstr "Tipos de comissão"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order__commission_total
 #: model_terms:ir.ui.view,arch_db:sale_commission.sale_commission_tree
 msgid "Commissions"
-msgstr "Commissões"
+msgstr "Comissões"
 
 #. module: sale_commission
 #: model:ir.ui.menu,name:sale_commission.menu_sale_commissions_management
