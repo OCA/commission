@@ -19,6 +19,17 @@ class ProductProductAgent(models.Model):
     _name = 'product.product.agent'
     _description = 'Product Product Agent'
 
+    product_id = fields.Many2one(
+        comodel_name="product.product",
+        required=True,
+        ondelete="cascade")
+    agent_id = fields.Many2one(
+        comodel_name="res.partner", required=False, ondelete="restrict",
+        oldname='agent', domain="[('agent', '=', True)]")
+    commission_id = fields.Many2one(
+        comodel_name="sale.commission", required=True, ondelete="restrict",
+        oldname='commission')
+
     @api.model
     def get_commission_id_product(self, product_id, agent_id):
         commission_id = False
@@ -31,18 +42,6 @@ class ProductProductAgent(models.Model):
         if commission_ids:
             commission_id = commission_ids[0]['commission_id'][0]
         return commission_id
-
-    product_id = fields.Many2one(
-        comodel_name="product.product",
-        required=True,
-        ondelete="cascade",
-        string="")
-    agent_id = fields.Many2one(
-        comodel_name="res.partner", required=False, ondelete="restrict",
-        oldname='agent', domain="[('agent', '=', True)]")
-    commission_id = fields.Many2one(
-        comodel_name="sale.commission", required=True, ondelete="restrict",
-        oldname='commission')
 
     @api.multi
     def name_get(self):
@@ -72,6 +71,18 @@ class ProductCategoryAgent(models.Model):
     _name = 'product.category.agent'
     _description = 'Product Category Agent'
 
+    category_id = fields.Many2one(
+        comodel_name="product.category",
+        required=True,
+        ondelete="cascade",
+        string="")
+    agent_id = fields.Many2one(
+        comodel_name="res.partner", required=False, ondelete="restrict",
+        oldname='agent', domain="[('agent', '=', True)]")
+    commission_id = fields.Many2one(
+        comodel_name="sale.commission", required=True, ondelete="restrict",
+        oldname='commission')
+
     @api.model
     def get_commission_id_category(self, category, agent_id):
         commission_id = False
@@ -86,18 +97,6 @@ class ProductCategoryAgent(models.Model):
         if not commission_id and category.parent_id:
             return self.get_commission_id_category(category.parent_id, agent_id)
         return commission_id
-
-    category_id = fields.Many2one(
-        comodel_name="product.category",
-        required=True,
-        ondelete="cascade",
-        string="")
-    agent_id = fields.Many2one(
-        comodel_name="res.partner", required=False, ondelete="restrict",
-        oldname='agent', domain="[('agent', '=', True)]")
-    commission_id = fields.Many2one(
-        comodel_name="sale.commission", required=True, ondelete="restrict",
-        oldname='commission')
 
     @api.multi
     def name_get(self):
