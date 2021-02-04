@@ -109,27 +109,17 @@ msgstr "Tipo"
 msgid "Unit Price"
 msgstr "Precio Unitario"
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "discount"
-msgstr "discount"
+#~ msgid "discount"
+#~ msgstr "discount"
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "price_subtotal"
-msgstr "price_subtotal"
+#~ msgid "price_subtotal"
+#~ msgstr "price_subtotal"
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "price_unit"
-msgstr "price_unit"
+#~ msgid "price_unit"
+#~ msgstr "price_unit"
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "product_uom_qty"
-msgstr "product_uom_qty"
+#~ msgid "product_uom_qty"
+#~ msgstr "product_uom_qty"
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "quantity"
-msgstr "quantity"
+#~ msgid "quantity"
+#~ msgstr "quantity"
