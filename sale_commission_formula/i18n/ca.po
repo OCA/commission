@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-14 15:14+0000\n"
+"POT-Creation-Date: 2021-02-04 17:16+0000\n"
 "PO-Revision-Date: 2017-12-14 15:14+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
@@ -111,27 +111,17 @@ msgstr ""
 msgid "Unit Price"
 msgstr "Preu unitari"
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "discount"
-msgstr "Descompte"
+#~ msgid "discount"
+#~ msgstr "Descompte"
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "price_subtotal"
-msgstr "price_subtotal"
+#~ msgid "price_subtotal"
+#~ msgstr "price_subtotal"
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "price_unit"
-msgstr "price_unit"
+#~ msgid "price_unit"
+#~ msgstr "price_unit"
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "product_uom_qty"
-msgstr "product_uom_qty"
+#~ msgid "product_uom_qty"
+#~ msgstr "product_uom_qty"
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "quantity"
-msgstr "quantitat"
+#~ msgid "quantity"
+#~ msgstr "quantitat"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-14 15:14+0000\n"
+"POT-Creation-Date: 2021-02-04 17:16+0000\n"
 "PO-Revision-Date: 2018-10-05 18:25+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
@@ -121,30 +121,20 @@ msgstr ""
 msgid "Unit Price"
 msgstr "Einzelpreis"
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "discount"
-msgstr "discount"
+#~ msgid "discount"
+#~ msgstr "discount"
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "price_subtotal"
-msgstr "price_subtotal"
+#~ msgid "price_subtotal"
+#~ msgstr "price_subtotal"
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "price_unit"
-msgstr "price_unit"
+#~ msgid "price_unit"
+#~ msgstr "price_unit"
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "product_uom_qty"
-msgstr "product_uom_qty"
+#~ msgid "product_uom_qty"
+#~ msgstr "product_uom_qty"
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "quantity"
-msgstr "quantity"
+#~ msgid "quantity"
+#~ msgstr "quantity"
 
 #~ msgid "account.invoice.line.agent"
 #~ msgstr "account.invoice.line.agent"
