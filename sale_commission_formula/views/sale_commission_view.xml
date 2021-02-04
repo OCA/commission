@@ -20,7 +20,7 @@
                     <group>
                       <div
                         attrs="{'invisible':[('commission_type','!=','formula')]}">
-                        <h2>Instructions</h2>
+                        <h2 name="hr_instructions">Instructions</h2>
                         <span class='instructions'>
   Use 'line' to access all the line fields.
   As field names may vary, you should differentiate the
@@ -30,52 +30,52 @@
 
   Use 'result' to return the commission amount.
                         </span>
-                        <h3>Sale Oder Line common fields</h3>
-                        <table class='fields-table'>
+                        <h3 name="h3_so_line">Sale Oder Line common fields</h3>
+                        <table class='fields-table' name="table_so_line">
                           <thead>
-                            <th>Field</th>
-                            <th>Label</th>
+                            <th name="th_so_line_field">Field</th>
+                            <th name="th_so_line_label">Label</th>
                           </thead>
                           <tbody>
-                            <tr>
-                              <td>discount</td>
+                            <tr name="tr_so_line_discount">
+                              <td t-translation="off">discount</td>
                               <td>Discount (%)</td>
                             </tr>
-                            <tr>
-                              <td>price_subtotal</td>
+                            <tr name="tr_so_line_price_subtotal">
+                              <td t-translation="off">price_subtotal</td>
                               <td>Subtotal</td>
                             </tr>
-                            <tr>
-                              <td>price_unit</td>
+                            <tr name="tr_so_line_price_unit">
+                              <td t-translation="off">price_unit</td>
                               <td>Unit Price</td>
                             </tr>
-                            <tr>
-                              <td>product_uom_qty</td>
+                            <tr name="tr_so_line_product_uom_qty">
+                              <td t-translation="off">product_uom_qty</td>
                               <td>Quantity</td>
                             </tr>
                           </tbody>
                         </table>
-                        <h3>Account Invoice Line common fields</h3>
-                        <table class='fields-table'>
+                        <h3 name="h3_inv_line">Account Invoice Line common fields</h3>
+                        <table class='fields-table' name="table_inv_line">
                           <thead>
-                            <th>Field</th>
-                            <th>Label</th>
+                            <th name="th_inv_line_field">Field</th>
+                            <th name="th_inv_line_label">Label</th>
                           </thead>
                           <tbody>
-                            <tr>
-                              <td>discount</td>
+                            <tr name="tr_inv_line_discount">
+                              <td t-translation="off">discount</td>
                               <td>Discount (%)</td>
                             </tr>
-                            <tr>
-                              <td>price_subtotal</td>
+                            <tr name="tr_inv_line_price_subtotal">
+                              <td t-translation="off">price_subtotal</td>
                               <td>Subtotal</td>
                             </tr>
-                            <tr>
-                              <td>price_unit</td>
+                            <tr name="tr_inv_line_price_unit">
+                              <td t-translation="off">price_unit</td>
                               <td>Unit Price</td>
                             </tr>
-                            <tr>
-                              <td>quantity</td>
+                            <tr name="tr_inv_line_quantity">
+                              <td t-translation="off">quantity</td>
                               <td>Quantity</td>
                             </tr>
                           </tbody>
