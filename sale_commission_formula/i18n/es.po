@@ -9,16 +9,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-14 15:14+0000\n"
-"PO-Revision-Date: 2020-06-11 19:19+0000\n"
+"POT-Creation-Date: 2021-02-04 17:16+0000\n"
+"PO-Revision-Date: 2021-02-04 18:19+0100\n"
 "Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Poedit 2.3\n"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
@@ -46,7 +46,6 @@ msgstr ""
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-#, fuzzy
 msgid "Account Move Line common fields"
 msgstr "Campos comunes de las líneas de factura"
 
@@ -108,45 +107,9 @@ msgstr "Subtotal"
 #. module: sale_commission_formula
 #: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission__commission_type
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 msgid "Unit Price"
 msgstr "Precio Unitario"
-
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "discount"
-msgstr "descuento"
-
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "price_subtotal"
-msgstr "Subtotal del precio"
-
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "price_unit"
-msgstr "Precio unitario"
-
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "product_uom_qty"
-msgstr "cant. en UdM"
-
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-msgid "quantity"
-msgstr "cantidad"
-
-#, fuzzy
-#~| msgid "Instructions"
-#~ msgid "By sections"
-#~ msgstr "Instrucciones"
-
-#~ msgid "account.invoice.line.agent"
-#~ msgstr "account.invoice.line.agent"
-
-#~ msgid "sale.order.line.agent"
-#~ msgstr "sale.order.line.agent"
