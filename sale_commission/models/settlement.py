@@ -72,9 +72,13 @@ class Settlement(models.Model):
             'context': {'settlement_ids': self.ids}
         }
 
+
+    def _get_settlement_invoice_partner(self):
+        return self.agent
+
     def _prepare_invoice_header(self, settlement, journal, date=False):
         invoice = self.env['account.invoice'].new({
-            'partner_id': settlement.agent.id,
+            'partner_id': settlement._get_settlement_invoice_partner().id,
             'type': ('in_invoice' if journal.type == 'purchase' else
                      'in_refund'),
             'date_invoice': date,
