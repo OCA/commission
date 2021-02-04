@@ -47,7 +47,9 @@ class Settlement(models.Model):
     )
     # TODO: To be removed
     invoice_id = fields.Many2one(
-        store=True, comodel_name="account.move", compute="_compute_invoice_id",
+        store=True,
+        comodel_name="account.move",
+        compute="_compute_invoice_id",
     )
     currency_id = fields.Many2one(
         comodel_name="res.currency", readonly=True, default=_default_currency
@@ -158,13 +160,16 @@ class SettlementLine(models.Model):
         related="agent_line.amount", readonly=True, store=True
     )
     currency_id = fields.Many2one(
-        related="agent_line.currency_id", store=True, readonly=True,
+        related="agent_line.currency_id",
+        store=True,
+        readonly=True,
     )
     commission_id = fields.Many2one(
         comodel_name="sale.commission", related="agent_line.commission_id"
     )
     company_id = fields.Many2one(
-        comodel_name="res.company", related="settlement_id.company_id",
+        comodel_name="res.company",
+        related="settlement_id.company_id",
     )
 
     @api.constrains("settlement_id", "agent_line")

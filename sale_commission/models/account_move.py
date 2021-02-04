@@ -9,7 +9,9 @@ class AccountMove(models.Model):
     _inherit = "account.move"
 
     commission_total = fields.Float(
-        string="Commissions", compute="_compute_commission_total", store=True,
+        string="Commissions",
+        compute="_compute_commission_total",
+        store=True,
     )
     settlement_id = fields.Many2one(
         comodel_name="sale.commission.settlement",
@@ -78,7 +80,10 @@ class AccountInvoiceLineAgent(models.Model):
         store=True,
     )
     invoice_date = fields.Date(
-        string="Invoice date", related="invoice_id.date", store=True, readonly=True,
+        string="Invoice date",
+        related="invoice_id.date",
+        store=True,
+        readonly=True,
     )
     agent_line = fields.Many2many(
         comodel_name="sale.commission.settlement.line",
@@ -89,9 +94,14 @@ class AccountInvoiceLineAgent(models.Model):
     )
     settled = fields.Boolean(compute="_compute_settled", store=True)
     company_id = fields.Many2one(
-        comodel_name="res.company", compute="_compute_company", store=True,
+        comodel_name="res.company",
+        compute="_compute_company",
+        store=True,
     )
-    currency_id = fields.Many2one(related="object_id.currency_id", readonly=True,)
+    currency_id = fields.Many2one(
+        related="object_id.currency_id",
+        readonly=True,
+    )
 
     @api.depends("object_id.price_subtotal", "object_id.product_id.commission_free")
     def _compute_amount(self):
@@ -127,7 +137,9 @@ class AccountInvoiceLineAgent(models.Model):
     def _check_settle_integrity(self):
         for record in self:
             if any(record.mapped("settled")):
-                raise exceptions.ValidationError(_("You can't modify a settled line"),)
+                raise exceptions.ValidationError(
+                    _("You can't modify a settled line"),
+                )
 
     def _skip_settlement(self):
         """This function should return if the commission can be payed.
