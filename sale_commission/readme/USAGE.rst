@@ -58,3 +58,14 @@ For invoicing the settlements (only for external agents):
 #. If you want to invoice a specific settlement, you can navigate to it in
    *Sales > Commissions Management > Settlements*, and click on "Make invoice"
    button.
+
+For commission analysis based on invoices:
+
+* Go to *Accounting > Reporting > Commission Analysis*
+
+For commission analysis (forecast) based on sale orders:
+
+* Go to *Sales > Reporting > Commission Analysis*
+
+Please note that this analysis can produce distorted forecast, because final settlements
+depend on invoices, not on sales orders.
