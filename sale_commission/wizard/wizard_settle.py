@@ -118,6 +118,7 @@ class SaleCommissionMakeSettle(models.TransientModel):
                         {
                             "settlement_id": settlement.id,
                             "agent_line": [(6, 0, [line.id])],
+                            "settled_amount": line.amount,
                         }
                     )
         # go to results

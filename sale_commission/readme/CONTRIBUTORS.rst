@@ -1,3 +1,4 @@
+* Cécile Jallais <cjallais@archeti.com>
 * Pexego.
 * Davide Corio <davide.corio@domsense.com>
 * Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>

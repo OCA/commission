@@ -37,15 +37,17 @@
             </form>
         </field>
     </record>
-    <act_window
-        id="action_agents_settlement"
-        name="Settle commissions"
-        res_model="sale.commission.make.settle"
-        view_mode="form"
-        target="new"
-    />
+    <record model="ir.actions.act_window" id="action_agents_settlement">
+        <field name="name">Settle commissions</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.commission.make.settle</field>
+        <field name="view_id" ref="view_settled_wizard" />
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
     <menuitem
         id="menu_agents_settlement"
+        name="Settle Commissions"
         parent="menu_sale_commissions_management"
         action="action_agents_settlement"
     />

@@ -23,7 +23,7 @@ Sales commissions
     :target: https://runbot.odoo-community.org/runbot/165/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module allows to define sales agents with their commissions and assign
 them in customers and sales orders.
@@ -181,6 +181,7 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
+* Cécile Jallais <cjallais@archeti.com>
 * Pexego.
 * Davide Corio <davide.corio@domsense.com>
 * Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>
@@ -215,7 +216,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-pedrobaeza| 
+|maintainer-pedrobaeza|
 
 This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/13.0/sale_commission>`_ project on GitHub.
 

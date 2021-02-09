@@ -34,13 +34,13 @@
             </form>
         </field>
     </record>
-    <act_window
-        id="action_commission_make_invoices"
-        name="Create commission invoices"
-        res_model="sale.commission.make.invoice"
-        view_mode="form"
-        target="new"
-    />
+    <record model="ir.actions.act_window" id="action_commission_make_invoices">
+        <field name="name">Create commission invoices</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.commission.make.invoice</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
     <menuitem
         id="menu_commission_make_invoices"
         parent="menu_sale_commissions_management"
