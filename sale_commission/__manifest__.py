@@ -29,6 +29,7 @@
         'views/sale_commission_settlement_report.xml',
         'views/report_settlement_templates.xml',
         'report/sale_commission_analysis_report_view.xml',
+        'report/sale_order_commission_analysis_report_view.xml',
         'wizard/wizard_settle.xml',
         'wizard/wizard_invoice.xml',
     ],

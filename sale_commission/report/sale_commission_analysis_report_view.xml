@@ -63,7 +63,7 @@
         <field name="view_mode">pivot,graph</field>
         <field name="search_view_id" ref="view_sale_commission_analysis_search"/>
         <field name="view_id" ref="view_sale_commission_analysis_graph"/>
-        <field name="help">This report performs analysis on your commissions added in invoice lines. You can check the amount and lines that will be settled by date, product, product category, aget, etc. Use this report to perform analysis on invoice lines agents not beeing settled yet.</field>
+        <field name="help">This report performs analysis on your commissions added in invoice lines. You can check the amount and lines that will be settled by date, product, product category, agent, etc. Use this report to perform analysis on invoice lines agents not beeing settled yet.</field>
     </record>
 
     <menuitem action="action_sale_commission_analysis_report" id="menu_sale_commissions_analysis" parent="account.account_reports_management_menu" sequence="15"/>
