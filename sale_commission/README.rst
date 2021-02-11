@@ -150,6 +150,17 @@ For invoicing the settlements (only for external agents):
    *Sales > Commissions Management > Settlements*, and click on "Make invoice"
    button.
 
+For commission analysis based on invoices:
+
+* Go to *Accounting > Reporting > Commission Analysis*
+
+For commission analysis (forecast) based on sale orders:
+
+* Go to *Sales > Reporting > Commission Analysis*
+
+Please note that this analysis can produce distorted forecast, because final settlements
+depend on invoices, not on sales orders.
+
 Known issues / Roadmap
 ======================
 
@@ -198,6 +209,9 @@ Contributors
 * Oihane Crucelaegui <oihanecruce@gmail.com>
 * Nicola Malcontenti <nicola.malcontenti@agilebg.com>
 * Aitor Bouzas <aitor.bouzas@adaptivecity.com>
+* `TAKOBI <https://takobi.online>`__:
+
+  * Lorenzo Battistini
 
 Maintainers
 ~~~~~~~~~~~
