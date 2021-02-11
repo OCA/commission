@@ -1,0 +1,13 @@
+# Do NOT update manually; changes here will be overwritten by Copier
+_commit: v1.1.3
+_src_path: https://github.com/OCA/oca-addons-repo-template.git
+dependency_installation_mode: OCA
+generate_requirements_txt: true
+include_wkhtmltopdf: false
+odoo_version: 13.0
+rebel_module_groups: []
+repo_description: All management related with commisions and incentive in Odoo.
+repo_name: Odoo Commission Management
+repo_slug: commission
+travis_apt_packages: []
+travis_apt_sources: []
