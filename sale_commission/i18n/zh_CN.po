@@ -18,6 +18,7 @@ msgstr ""
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__quantity
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__quantity
 msgid "# of Qty"
 msgstr "# 数量"
 
@@ -74,9 +75,11 @@ msgstr "有效"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_line_mixin__agent
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement__agent
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__agent
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__agent_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__agent
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_partner_form_agent
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_line_search
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_search
 msgid "Agent"
@@ -128,6 +131,7 @@ msgstr "与发票行相关的代理商/佣金。"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__amount
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__amount
 msgid "Amount"
 msgstr "金额"
 
@@ -175,7 +179,9 @@ msgstr "无法取消已开票结算。"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__categ_id
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__categ_id
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 msgid "Category of Product"
 msgstr "产品类别"
 
@@ -220,7 +226,9 @@ msgstr "佣金金额"
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_sale_commission_analysis_report
+#: model:ir.actions.act_window,name:sale_commission.action_sale_order_commission_analysis_report
 #: model:ir.ui.menu,name:sale_commission.menu_sale_commissions_analysis
+#: model:ir.ui.menu,name:sale_commission.menu_sale_order_commissions_analysis
 msgid "Commission Analysis"
 msgstr "佣金分析"
 
@@ -263,7 +271,9 @@ msgstr "佣金管理"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice__company_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement__company_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__company_id
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__company_id
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 msgid "Company"
 msgstr "公司"
 
@@ -347,6 +357,7 @@ msgstr "货币"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 msgid "Customer"
 msgstr "客户"
 
@@ -386,17 +397,20 @@ msgstr "丢弃"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_section__display_name
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement__display_name
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__display_name
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__display_name
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__display_name
 msgid "Display Name"
 msgstr "显示名称"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 msgid "Draft"
 msgstr "草稿"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 msgid "Extended Filters"
 msgstr "扩展筛选"
 
@@ -450,6 +464,7 @@ msgstr "总金额"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_line_search
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_search
 msgid "Group By"
@@ -466,6 +481,7 @@ msgstr "分组"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_section__id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement__id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__id
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__id
 msgid "ID"
 msgstr "ID"
@@ -524,6 +540,7 @@ msgstr "发票行代理商和佣金"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 #: selection:sale.commission.settlement,state:0
 msgid "Invoiced"
 msgstr "已开票"
@@ -550,6 +567,7 @@ msgstr "保留空以使用当前日期"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_section____last_update
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement____last_update
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line____last_update
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report____last_update
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent____last_update
 msgid "Last Modified on"
 msgstr "最后修改时间"
@@ -640,6 +658,26 @@ msgid "Not Settled"
 msgstr "未结算"
 
 #. module: sale_commission
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__date_order
+msgid "Order Date"
+msgstr ""
+
+#. module: sale_commission
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
+msgid "Order Month"
+msgstr ""
+
+#. module: sale_commission
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__order_state
+msgid "Order Status"
+msgstr ""
+
+#. module: sale_commission
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__order_line_id
+msgid "Order line"
+msgstr ""
+
+#. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent__object_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_line_mixin__object_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__invoice_line
@@ -649,6 +687,7 @@ msgstr "上级"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__partner_id
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__partner_id
 msgid "Partner"
 msgstr "业务伙伴"
 
@@ -664,6 +703,7 @@ msgstr "百分比"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__percentage
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__percentage
 msgid "Percentage of commission"
 msgstr "佣金百分比"
 
@@ -675,6 +715,7 @@ msgstr "期间：从 %s 到 %s"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__price_subtotal
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__price_subtotal
 msgid "Price subtotal"
 msgstr "价格小计"
 
@@ -686,6 +727,7 @@ msgstr "价格小计"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__price_unit
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__price_unit
 msgid "Price unit"
 msgstr "单价"
 
@@ -693,6 +735,7 @@ msgstr "单价"
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line__product_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__product_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_mixin__product_id
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__product_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line__product_id
 msgid "Product"
 msgstr "产品"
@@ -740,7 +783,19 @@ msgid "Sale Order"
 msgstr "销售订单"
 
 #. module: sale_commission
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_graph
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_pivot
+msgid "Sale Order Commission Analysis"
+msgstr ""
+
+#. module: sale_commission
+#: model:ir.model,name:sale_commission.model_sale_order_commission_analysis_report
+msgid "Sale Order Commission Analysis Report"
+msgstr ""
+
+#. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__commission_id
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__commission_id
 msgid "Sale commission"
 msgstr "销售佣金"
 
@@ -750,6 +805,11 @@ msgid "Sales Commission Analysis"
 msgstr "销售佣金分析"
 
 #. module: sale_commission
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
+msgid "Sales Order Commission Analysis"
+msgstr ""
+
+#. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "销售订单行"
@@ -757,6 +817,11 @@ msgstr "销售订单行"
 #. module: sale_commission
 #: selection:res.partner,agent_type:0
 msgid "Salesman (employee)"
+msgstr ""
+
+#. module: sale_commission
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__salesman_id
+msgid "Salesperson"
 msgstr ""
 
 #. module: sale_commission
@@ -868,6 +933,7 @@ msgstr "状态"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 msgid "Status"
 msgstr "状态"
 
@@ -879,6 +945,7 @@ msgstr "下限不能大于上限。"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 msgid "This Year"
 msgstr "今年"
 
@@ -896,11 +963,18 @@ msgstr ""
 msgid ""
 "This report performs analysis on your commissions added in invoice lines. "
 "You can check the amount and lines that will be settled by date, product, "
-"product category, aget, etc. Use this report to perform analysis on invoice "
+"product category, agent, etc. Use this report to perform analysis on invoice "
 "lines agents not beeing settled yet."
 msgstr ""
-"此报告会对发票行中添加的佣金进行分析。您可以检查将按日期，产品，产品类别，年"
-"龄等结算的金额和行数。使用此报表对尚未结算的发票行代理商进行分析。"
+
+#. module: sale_commission
+#: model_terms:ir.actions.act_window,help:sale_commission.action_sale_order_commission_analysis_report
+msgid ""
+"This report performs analysis on your commissions added in order lines. You "
+"can check the amount and lines that will be settled by date, product, "
+"product category, agent, etc. Use this report to perform analysis on order "
+"lines agents not being settled yet."
+msgstr ""
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_line_search
@@ -929,6 +1003,7 @@ msgstr "类型"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__uom_id
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__uom_id
 msgid "Unit of Measure"
 msgstr "计量单位"
 
@@ -997,3 +1072,12 @@ msgstr "sale.order.line.agent"
 #: model_terms:ir.ui.view,arch_db:sale_commission.sale_commission_form
 msgid "sections"
 msgstr "项"
+
+#~ msgid ""
+#~ "This report performs analysis on your commissions added in invoice lines. "
+#~ "You can check the amount and lines that will be settled by date, product, "
+#~ "product category, aget, etc. Use this report to perform analysis on "
+#~ "invoice lines agents not beeing settled yet."
+#~ msgstr ""
+#~ "此报告会对发票行中添加的佣金进行分析。您可以检查将按日期，产品，产品类别，"
+#~ "年龄等结算的金额和行数。使用此报表对尚未结算的发票行代理商进行分析。"

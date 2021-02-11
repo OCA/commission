@@ -21,6 +21,7 @@ msgstr ""
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__quantity
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__quantity
 msgid "# of Qty"
 msgstr "# di Qty"
 
@@ -77,9 +78,11 @@ msgstr "Attivo"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_line_mixin__agent
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement__agent
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__agent
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__agent_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__agent
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_partner_form_agent
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_line_search
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_search
 msgid "Agent"
@@ -131,6 +134,7 @@ msgstr "Agenti/Commissioni collegate alla riga fattura."
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__amount
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__amount
 msgid "Amount"
 msgstr "Importo"
 
@@ -179,7 +183,9 @@ msgstr "Non si può cancellare una provvigione fatturata."
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__categ_id
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__categ_id
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 msgid "Category of Product"
 msgstr "Categoria del prodotto"
 
@@ -224,7 +230,9 @@ msgstr "Importo commissione"
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_sale_commission_analysis_report
+#: model:ir.actions.act_window,name:sale_commission.action_sale_order_commission_analysis_report
 #: model:ir.ui.menu,name:sale_commission.menu_sale_commissions_analysis
+#: model:ir.ui.menu,name:sale_commission.menu_sale_order_commissions_analysis
 msgid "Commission Analysis"
 msgstr "Analisi commissioni"
 
@@ -267,7 +275,9 @@ msgstr "Gestione Agenti/Commissioni"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice__company_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement__company_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__company_id
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__company_id
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 msgid "Company"
 msgstr "Azienda"
 
@@ -351,6 +361,7 @@ msgstr "Valuta"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 msgid "Customer"
 msgstr "Cliente"
 
@@ -390,17 +401,20 @@ msgstr "Abbandona"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_section__display_name
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement__display_name
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__display_name
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__display_name
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__display_name
 msgid "Display Name"
 msgstr "Nome Visualizzato"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 msgid "Draft"
 msgstr "Bozza"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 msgid "Extended Filters"
 msgstr "Filtri estesi"
 
@@ -454,6 +468,7 @@ msgstr "Importo Lordo"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_line_search
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_search
 msgid "Group By"
@@ -470,6 +485,7 @@ msgstr "Raggruppa per"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_section__id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement__id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__id
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__id
 msgid "ID"
 msgstr "ID"
@@ -528,6 +544,7 @@ msgstr "Riga fattura agenti e commissioni"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 #: selection:sale.commission.settlement,state:0
 msgid "Invoiced"
 msgstr "Fatturato"
@@ -554,6 +571,7 @@ msgstr "Lasciare vuoto per utilizzare la data corrente"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_section____last_update
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement____last_update
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line____last_update
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report____last_update
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
@@ -644,6 +662,26 @@ msgid "Not Settled"
 msgstr "Non approvvigionato"
 
 #. module: sale_commission
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__date_order
+msgid "Order Date"
+msgstr ""
+
+#. module: sale_commission
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
+msgid "Order Month"
+msgstr ""
+
+#. module: sale_commission
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__order_state
+msgid "Order Status"
+msgstr ""
+
+#. module: sale_commission
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__order_line_id
+msgid "Order line"
+msgstr ""
+
+#. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent__object_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_line_mixin__object_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__invoice_line
@@ -653,6 +691,7 @@ msgstr "Padre"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__partner_id
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__partner_id
 msgid "Partner"
 msgstr "Partner"
 
@@ -668,6 +707,7 @@ msgstr "Percentuale"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__percentage
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__percentage
 msgid "Percentage of commission"
 msgstr "Percentuale della commissione"
 
@@ -679,6 +719,7 @@ msgstr "Periodo: da %s a %s"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__price_subtotal
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__price_subtotal
 msgid "Price subtotal"
 msgstr "Subtotale"
 
@@ -689,6 +730,7 @@ msgstr "Subtotale con segno"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__price_unit
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__price_unit
 msgid "Price unit"
 msgstr "Prezzo unitario"
 
@@ -696,6 +738,7 @@ msgstr "Prezzo unitario"
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line__product_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__product_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_mixin__product_id
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__product_id
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line__product_id
 msgid "Product"
 msgstr "Prodotto"
@@ -744,7 +787,19 @@ msgid "Sale Order"
 msgstr "Riga d'Ordine di Vendita"
 
 #. module: sale_commission
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_graph
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_pivot
+msgid "Sale Order Commission Analysis"
+msgstr ""
+
+#. module: sale_commission
+#: model:ir.model,name:sale_commission.model_sale_order_commission_analysis_report
+msgid "Sale Order Commission Analysis Report"
+msgstr ""
+
+#. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__commission_id
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__commission_id
 msgid "Sale commission"
 msgstr "Provvigione"
 
@@ -752,6 +807,11 @@ msgstr "Provvigione"
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 msgid "Sales Commission Analysis"
 msgstr "Analisi provvigione"
+
+#. module: sale_commission
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
+msgid "Sales Order Commission Analysis"
+msgstr ""
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order_line
@@ -762,6 +822,11 @@ msgstr "Riga d'Ordine di Vendita"
 #: selection:res.partner,agent_type:0
 msgid "Salesman (employee)"
 msgstr "Commerciale"
+
+#. module: sale_commission
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__salesman_id
+msgid "Salesperson"
+msgstr ""
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_mixin_agent_only
@@ -872,6 +937,7 @@ msgstr "Stato"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 #, fuzzy
 msgid "Status"
 msgstr "Stato"
@@ -884,6 +950,7 @@ msgstr "Il limite inferiore non può essere più grande del maggiore."
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 #, fuzzy
 msgid "This Year"
 msgstr "Quest'anno"
@@ -903,14 +970,18 @@ msgstr ""
 msgid ""
 "This report performs analysis on your commissions added in invoice lines. "
 "You can check the amount and lines that will be settled by date, product, "
-"product category, aget, etc. Use this report to perform analysis on invoice "
+"product category, agent, etc. Use this report to perform analysis on invoice "
 "lines agents not beeing settled yet."
 msgstr ""
-"Questo report esegue un'analisi sulle commissioni aggiunte alle righe "
-"fattura. È possibile controllare gli importi e le righe che verranno "
-"approvvigionati per data, prodotto, categoria prodotto, agente, etc. Usare "
-"questo report per eseguire analisi sulle righe fattura non ancora "
-"approvvigionate."
+
+#. module: sale_commission
+#: model_terms:ir.actions.act_window,help:sale_commission.action_sale_order_commission_analysis_report
+msgid ""
+"This report performs analysis on your commissions added in order lines. You "
+"can check the amount and lines that will be settled by date, product, "
+"product category, agent, etc. Use this report to perform analysis on order "
+"lines agents not being settled yet."
+msgstr ""
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_line_search
@@ -939,6 +1010,7 @@ msgstr "Tipo"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__uom_id
+#: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__uom_id
 msgid "Unit of Measure"
 msgstr "Unità di misura"
 
@@ -1007,6 +1079,18 @@ msgstr "sale.order.line.agent"
 #: model_terms:ir.ui.view,arch_db:sale_commission.sale_commission_form
 msgid "sections"
 msgstr "sections"
+
+#~ msgid ""
+#~ "This report performs analysis on your commissions added in invoice lines. "
+#~ "You can check the amount and lines that will be settled by date, product, "
+#~ "product category, aget, etc. Use this report to perform analysis on "
+#~ "invoice lines agents not beeing settled yet."
+#~ msgstr ""
+#~ "Questo report esegue un'analisi sulle commissioni aggiunte alle righe "
+#~ "fattura. È possibile controllare gli importi e le righe che verranno "
+#~ "approvvigionati per data, prodotto, categoria prodotto, agente, etc. "
+#~ "Usare questo report per eseguire analisi sulle righe fattura non ancora "
+#~ "approvvigionate."
 
 #, fuzzy
 #~ msgid "Source Product"
