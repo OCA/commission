@@ -319,6 +319,7 @@ class TestSaleCommission(SavepointCase):
             self.env["account.move"].with_context(default_type="in_invoice")
         )
         move_form.partner_id = self.partner
+        move_form.ref = "sale_comission_TEST"
         with move_form.invoice_line_ids.new() as line_form:
             line_form.product_id = self.product
             line_form.quantity = 1
