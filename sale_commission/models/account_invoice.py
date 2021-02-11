@@ -19,6 +19,20 @@ class AccountInvoice(models.Model):
         compute="_compute_commission_total",
         store=True,
     )
+    agent_ids = fields.Many2many(
+        "res.partner", string="Agents", compute="_compute_agents",
+        search="_search_agents")
+
+    @api.multi
+    def _compute_agents(self):
+        for so in self:
+            so.agent_ids = [(6, 0, so.mapped("invoice_line_ids.agents.agent").ids)]
+
+    @api.model
+    def _search_agents(self, operator, value):
+        ail_agents = self.env["account.invoice.line.agent"].search(
+            [("agent", operator, value)])
+        return [('id', 'in', ail_agents.mapped("object_id.invoice_id").ids)]
 
     def action_cancel(self):
         """Put settlements associated to the invoices in exception."""

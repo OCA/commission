@@ -128,6 +128,11 @@ class TestSaleCommission(SavepointCase):
             commission
         )
         sale_order.action_confirm()
+        self.assertEqual(sale_order.agent_ids.ids, agent.ids)
+        self.assertEqual(
+            self.sale_order_model.search(
+                [('agent_ids', '=', agent.name)]).ids,
+            sale_order.ids)
         self.assertEqual(len(sale_order.invoice_ids), 0)
         payment = self.advance_inv_model.create({
             'advance_payment_method': 'all',
@@ -140,6 +145,11 @@ class TestSaleCommission(SavepointCase):
         for invoice in sale_order.invoice_ids:
             invoice.action_invoice_open()
             self.assertEqual(invoice.state, 'open')
+            self.assertEqual(invoice.agent_ids.ids, agent.ids)
+            self.assertEqual(
+                self.env["account.invoice"].search(
+                    [('agent_ids', '=', agent.name)]).ids,
+                invoice.ids)
         wizard = self.make_settle_model.create(
             {'date_to': (fields.Datetime.from_string(fields.Datetime.now()) +
                          dateutil.relativedelta.relativedelta(months=period))})

@@ -35,6 +35,17 @@
         </field>
     </record>
 
+    <record id="view_sales_order_filter_agent" model="ir.ui.view">
+        <field name="name">view_sales_order_filter_agent</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="agent_ids"/>
+            </field>
+        </field>
+    </record>
+
     <!-- This view is needed for proper visualization of the popup / embedded one2many -->
     <record model="ir.ui.view" id="view_sale_order_line_tree">
         <field name="name">sale.order.line.agent.tree</field>
