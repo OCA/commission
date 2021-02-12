@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="view_partner_form_agent">
@@ -6,8 +6,9 @@
         <field name="inherit_id" ref="sale_commission.view_partner_form_agent" />
         <field name="arch" type="xml">
             <field name="commission" position="after">
-                <field name="employee"
-                       attrs="{'invisible': [('agent_type', '!=', 'salesman')]}"
+                <field
+                    name="employee"
+                    attrs="{'invisible': [('agent_type', '!=', 'salesman')]}"
                 />
             </field>
         </field>
