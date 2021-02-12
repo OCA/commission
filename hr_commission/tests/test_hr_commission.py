@@ -8,9 +8,9 @@ from odoo.tests import common
 class TestHrCommission(common.TransactionCase):
     def setUp(self):
         super().setUp()
-        self.employee = self.env["hr.employee"].create({"name": "Test employee",})
+        self.employee = self.env["hr.employee"].create({"name": "Test employee"})
         self.user = self.env["res.users"].create(
-            {"name": "Test user", "login": "test_hr_commission@example.org",}
+            {"name": "Test user", "login": "test_hr_commission@example.org"}
         )
         self.partner = self.user.partner_id
 
