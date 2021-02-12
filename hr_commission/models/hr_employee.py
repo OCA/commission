@@ -9,11 +9,13 @@ class HrEmployee(models.Model):
 
     def write(self, vals):
         """Check if there's an agent linked to that employee."""
-        if 'user_id' in vals and not vals['user_id']:
+        if "user_id" in vals and not vals["user_id"]:
             for emp in self:
-                if emp.user_id.partner_id.agent_type == 'salesman':
+                if emp.user_id.partner_id.agent_type == "salesman":
                     raise exceptions.ValidationError(
-                        _("You can't remove the user, as it's linked to "
-                          "a commission agent.")
+                        _(
+                            "You can't remove the user, as it's linked to "
+                            "a commission agent."
+                        )
                     )
         return super().write(vals)
