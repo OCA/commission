@@ -17,7 +17,7 @@
                     attrs="{'invisible': ['|', ('commission_free', '=', True), ('invoice_lines', '!=', [])]}"
                     type="object"
                 />
-                <field name="commission_status" />
+                <field name="commission_status" optional="show" />
             </xpath>
             <field name="amount_total" position="after">
                 <field
