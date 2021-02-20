@@ -4,6 +4,17 @@
 from odoo import models, api
 
 
+class AccountInvoice(models.Model):
+    _inherit = "account.invoice"
+
+    def recompute_lines_agents(self):
+        for line in self.invoice_line_ids:
+            line.agents = [(6, 0, [])]
+            line.agents = line.with_context(
+                {'product_id': line.product_id.id}
+            )._prepare_agents_vals_partner(self.partner_id)
+
+
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 

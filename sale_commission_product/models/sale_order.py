@@ -4,6 +4,17 @@
 from odoo import api, models
 
 
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    def recompute_lines_agents(self):
+        for line in self.order_line:
+            line.agents = [(6, 0, [])]
+            line.agents = line.with_context(
+                {'product_id': line.product_id.id}
+            )._prepare_agents_vals_partner(self.partner_id)
+
+
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
@@ -47,6 +58,5 @@ class SaleOrderLine(models.Model):
         res.agents = [(6, 0, [])]
         res.agents = (self.with_context(
             {'product_id': res.product_id.id})._prepare_agents_vals_partner(
-                res.order_id.partner_id)
-            if res.invoice_id.type[:3] == 'out' else [(6, 0, [])])
+                res.order_id.partner_id))
         return res
