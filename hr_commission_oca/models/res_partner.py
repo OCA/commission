@@ -15,6 +15,7 @@ class ResPartner(models.Model):
         compute="_compute_employee_id",
         compute_sudo=True,
     )
+    employee = fields.Boolean(compute="_compute_employee", store=True, readonly=False)
 
     @api.depends("user_ids")
     def _compute_employee_id(self):
@@ -23,6 +24,19 @@ class ResPartner(models.Model):
                 partner.employee_id = partner.user_ids[0].employee_ids[0]
             else:
                 partner.employee_id = False
+
+    @api.depends("agent_type", "employee_id")
+    def _compute_employee(self):
+        """Set the Boolean field according to the ResPartner-HrEmployee
+        relation created here
+        """
+        if hasattr(super(), "_compute_employee"):
+            super()._compute_employee()
+        for record in self:
+            if record.employee_id and record.agent_type == "salesman":
+                record.employee = True
+            else:
+                record.employee = False
 
     @api.constrains("agent_type")
     def _check_employee(self):

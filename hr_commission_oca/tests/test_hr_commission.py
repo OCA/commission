@@ -22,6 +22,7 @@ class TestHrCommission(common.TransactionCase):
         self.assertEqual(self.partner.employee_id, self.employee)
         # This shouldn't trigger exception now
         self.partner.agent_type = "salesman"
+        self.assertTrue(self.partner.employee)
         self.partner.supplier = True
         self.partner.onchange_agent_type_hr_commission()
         self.assertFalse(self.partner.supplier)
