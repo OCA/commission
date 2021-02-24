@@ -4,10 +4,7 @@
 <odoo>
     <record id="product_pricelist_item_tree_view" model="ir.ui.view">
         <field name="model">product.pricelist.item</field>
-        <field
-      name="inherit_id"
-      ref="product.product_pricelist_item_tree_view"
-    />
+        <field name="inherit_id" ref="product.product_pricelist_item_tree_view" />
         <field name="arch" type="xml">
             <field name="min_quantity" position="after">
                 <field name="commission_id" />
@@ -16,10 +13,7 @@
     </record>
     <record id="product_pricelist_item_form_view" model="ir.ui.view">
         <field name="model">product.pricelist.item</field>
-        <field
-      name="inherit_id"
-      ref="product.product_pricelist_item_form_view"
-    />
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
         <field name="arch" type="xml">
             <field name="min_quantity" position="after">
                 <field name="commission_id" />
