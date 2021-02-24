@@ -75,6 +75,8 @@ Contributors
 * `NextERP Romania <https://www.nexterp.ro>`_:
 
   * Fekete Mihai <feketemihai@nexterp.ro>
+* `ArcheTI <https://www.archeti.com>`_:
+  * Cécile Jallais <cjallais@archeti.com>
 
 Maintainers
 ~~~~~~~~~~~
