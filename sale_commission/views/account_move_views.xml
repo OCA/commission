@@ -38,7 +38,7 @@
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
             <field name="invoice_line_ids" position="attributes">
-                <attribute name="context">{'partner_id': partner_id}</attribute>
+                <attribute name="context">{'partner_id': partner_id, 'default_type': context.get('default_type'), 'journal_id': journal_id, 'default_partner_id': commercial_partner_id, 'default_currency_id': currency_id != company_currency_id and currency_id or False}</attribute>
             </field>
             <xpath
                 expr="//field[@name='invoice_line_ids']/tree//field[@name='price_subtotal']"
