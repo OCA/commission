@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-10-16 13:32+0000\n"
+"PO-Revision-Date: 2021-03-03 13:45+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: none\n"
 "Language: pt\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__quantity
@@ -155,7 +155,7 @@ msgstr "Qualquer Liquidada"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission__amount_base_type
 msgid "Base"
-msgstr ""
+msgstr "Base"
 
 #. module: sale_commission
 #: selection:sale.commission,commission_type:0
@@ -664,22 +664,22 @@ msgstr "Não Liquidada"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__date_order
 msgid "Order Date"
-msgstr ""
+msgstr "Data da Encomenda"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 msgid "Order Month"
-msgstr ""
+msgstr "Mês da Encomenda"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__order_state
 msgid "Order Status"
-msgstr ""
+msgstr "Estado da Encomenda"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__order_line_id
 msgid "Order line"
-msgstr ""
+msgstr "Linha da Encomenda"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent__object_id
@@ -725,9 +725,8 @@ msgstr "Subtotal do preço"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__price_subtotal_signed
-#, fuzzy
 msgid "Price subtotal signed"
-msgstr "Subtotal do preço"
+msgstr "Subtotal do preço com sinal"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__price_unit
@@ -790,12 +789,12 @@ msgstr "Encomenda de Venda"
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_graph
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_pivot
 msgid "Sale Order Commission Analysis"
-msgstr ""
+msgstr "Análise de Comissões de Encomendas de Venda"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order_commission_analysis_report
 msgid "Sale Order Commission Analysis Report"
-msgstr ""
+msgstr "Relatório de Análise de Comissões de Encomendas de Venda"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__commission_id
@@ -811,7 +810,7 @@ msgstr "Análise de Comissões de Vendas"
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_commission_analysis_search
 msgid "Sales Order Commission Analysis"
-msgstr ""
+msgstr "Análise de Comissões de Encomendas de Venda"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order_line
@@ -821,12 +820,12 @@ msgstr "Linha de Encomenda de Venda"
 #. module: sale_commission
 #: selection:res.partner,agent_type:0
 msgid "Salesman (employee)"
-msgstr ""
+msgstr "Vendedor (funcionário)"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__salesman_id
 msgid "Salesperson"
-msgstr ""
+msgstr "Vendedor"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_mixin_agent_only
@@ -971,6 +970,10 @@ msgid ""
 "product category, agent, etc. Use this report to perform analysis on invoice "
 "lines agents not beeing settled yet."
 msgstr ""
+"Este relatório executa uma análise às suas comissões adicionadas em linhas "
+"de faturas. Pode verificar o montante e linhas que será comissionadas por "
+"data, produto, categoria de produto, agente, etc. Use este relatório para "
+"analisar agentes em linhas de faturas que ainda não foram comissionadas."
 
 #. module: sale_commission
 #: model_terms:ir.actions.act_window,help:sale_commission.action_sale_order_commission_analysis_report
@@ -980,6 +983,10 @@ msgid ""
 "product category, agent, etc. Use this report to perform analysis on order "
 "lines agents not being settled yet."
 msgstr ""
+"Este relatório executa uma análise às suas comissões adicionadas em linhas "
+"de encomendas. Pode verificar o montante e linhas que será comissionadas por "
+"data, produto, categoria de produto, agente, etc. Use este relatório para "
+"analisar agentes em linhas de encomendas que ainda não foram comissionadas."
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_line_search
