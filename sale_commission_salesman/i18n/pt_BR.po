@@ -6,43 +6,48 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-03-15 08:45+0000\n"
+"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_commission_salesman
 #: model:ir.model,name:sale_commission_salesman.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contato"
 
 #. module: sale_commission_salesman
 #: model:ir.model.fields,field_description:sale_commission_salesman.field_res_partner__salesman_as_agent
 #: model:ir.model.fields,field_description:sale_commission_salesman.field_res_users__salesman_as_agent
 msgid "Convert salesman into agent"
-msgstr ""
+msgstr "Converter vendedor em agente"
 
 #. module: sale_commission_salesman
 #: model:ir.model.fields,help:sale_commission_salesman.field_res_partner__salesman_as_agent
 #: model:ir.model.fields,help:sale_commission_salesman.field_res_users__salesman_as_agent
 msgid "If the user linked to this partner is put as salesman and no other commission rule is triggered, this agent will be added as the commission agent"
 msgstr ""
+"Se o usuário vinculado a este parceiro for colocado como vendedor e nenhuma "
+"outra regra da comissão for acionada, este agente será adicionado como o "
+"agente da comissão"
 
 #. module: sale_commission_salesman
 #: model:ir.model,name:sale_commission_salesman.model_account_invoice_line
 msgid "Invoice Line"
-msgstr ""
+msgstr "Linha da Fatura"
 
 #. module: sale_commission_salesman
 #: model:ir.model,name:sale_commission_salesman.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Linha do Pedido de Venda"
 
 #. module: sale_commission_salesman
 #: code:addons/sale_commission_salesman/models/res_partner.py:21
 #, python-format
 msgid "You can't have a salesman auto-agent without commission."
-msgstr ""
+msgstr "Você não pode ter um vendedor auto-agente sem comissão."
