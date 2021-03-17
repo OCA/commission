@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-07 11:26+0000\n"
-"PO-Revision-Date: 2020-03-06 20:13+0000\n"
-"Last-Translator: Dept. Técnico <tecnico@extrememicro.es>\n"
+"PO-Revision-Date: 2021-03-17 15:45+0000\n"
+"Last-Translator: Ana Suárez <ana.suarez@qubiq.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: hr_commission
 #: model:ir.model,name:hr_commission.model_res_partner
@@ -36,22 +36,22 @@ msgstr "Empleado."
 #. module: hr_commission
 #: selection:res.partner,agent_type:0
 msgid "External agent"
-msgstr ""
+msgstr "Agente externo"
 
 #. module: hr_commission
 #: model_terms:ir.ui.view,arch_db:hr_commission.view_settlement_form
 msgid "Mark as invoiced"
-msgstr ""
+msgstr "Marcar como facturado"
 
 #. module: hr_commission
 #: selection:res.partner,agent_type:0
 msgid "Salesman (employee)"
-msgstr ""
+msgstr "Comercial (empleado)"
 
 #. module: hr_commission
 #: model:ir.model,name:hr_commission.model_sale_commission_settlement
 msgid "Settlement"
-msgstr ""
+msgstr "Liquidación"
 
 #. module: hr_commission
 #: code:addons/hr_commission/models/res_partner.py:31
@@ -67,7 +67,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_commission.field_res_partner__agent_type
 #: model:ir.model.fields,field_description:hr_commission.field_res_users__agent_type
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: hr_commission
 #: code:addons/hr_commission/models/hr_employee.py:16
