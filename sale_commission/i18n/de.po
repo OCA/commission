@@ -288,7 +288,7 @@ msgid "Company"
 msgstr "Unternehmen"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:193
+#: code:addons/sale_commission/models/settlement.py:194
 #, python-format
 msgid "Company must be the same"
 msgstr "Das Unternehmen muss das Gleiche sein"
