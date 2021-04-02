@@ -23,7 +23,7 @@ addon | version | summary
 [sale_commission](sale_commission/) | 13.0.1.4.1 | Sales commissions
 [sale_commission_formula](sale_commission_formula/) | 13.0.1.1.0 | Sale commissions computed by formulas
 [sale_commission_pricelist](sale_commission_pricelist/) | 13.0.1.1.0 | Sales commissions by pricelist
-[sale_commission_salesman](sale_commission_salesman/) | 13.0.1.0.0 | Sales commissions from salesman
+[sale_commission_salesman](sale_commission_salesman/) | 13.0.1.0.1 | Sales commissions from salesman
 
 [//]: # (end addons)
 
