@@ -3,7 +3,7 @@
 
 {
     "name": "Sales commissions from salesman",
-    "version": "13.0.1.0.0",
+    "version": "13.0.1.0.1",
     "author": "Tecnativa, " "Odoo Community Association (OCA)",
     "category": "Sales",
     "website": "https://github.com/OCA/commission",

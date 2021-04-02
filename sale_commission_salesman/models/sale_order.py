@@ -13,6 +13,6 @@ class SaleOrdeLine(models.Model):
         """
         super()._compute_agent_ids()
         for record in self.filtered(lambda x: x.order_id.partner_id):
-            partner = self.order_id.user_id.partner_id
+            partner = record.order_id.user_id.partner_id
             if not record.agent_ids and partner.agent and partner.salesman_as_agent:
                 record.agent_ids = [(0, 0, record._prepare_agent_vals(partner))]
