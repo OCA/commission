@@ -78,6 +78,5 @@ class TestCommissionFormula(TransactionCase):
         )
         # we test the '5% + 10% extra' commissions on the invoice too
         self.assertEqual(41.25, invoice.commission_total)
-        invoice.post()
         reverse = invoice._reverse_moves(cancel=True)
         self.assertEqual(-41.25, reverse.commission_total)
