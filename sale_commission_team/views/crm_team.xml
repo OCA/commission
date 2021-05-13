@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2021 KMEE
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="crm_team_form_view">
+        <field name="name">crm.team.form (in sale_commission_team)</field>
+        <field name="model">crm.team</field>
+        <field name="inherit_id" ref="sales_team.crm_team_view_form"/>
+        <field name="arch" type="xml">
+            <page name="dashboard" position="before">
+                <page name="team_agents" string="Agents">
+                    <field name="agent_ids">
+                        <tree editable="top">
+                            <field name="sequence" widget="handle"/>
+                            <field name="team_id" invisible="1"/>
+                            <field name="agent_id"/>
+                            <field name="commission" />
+                        </tree>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+
+</odoo>

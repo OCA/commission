@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2021 KMEE
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="res_partner_form_view">
+        <field name="name">res.partner.form (in sale_commission_team)</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="sale_commission.view_partner_form_agent"/>
+        <field name="arch" type="xml">
+            <field name="agents" posistion="replace"/>
+            <page name="sales_purchases" position="after">
+                <page name="team_agents" string="Agents" attrs="{'invisible': [('customer', '=', False)]}">
+                    <group>
+                       <field name="agents" widget="many2many_tags" context="{'default_agent': True}"/>
+                    </group>
+                    <field name="agent_team_ids">
+                        <tree editable="top">
+                            <field name="sequence" widget="handle"/>
+                            <field name="partner_id" invisible="1"/>
+                            <field name="team_id"/>
+                            <field name="agent_id"/>
+                            <field name="commission"/>
+                        </tree>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+
+</odoo>
