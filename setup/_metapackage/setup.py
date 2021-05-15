@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-commission Odoo addons",
     version=version,
     install_requires=[
+        'odoo12-addon-contract_commission',
         'odoo12-addon-hr_commission',
         'odoo12-addon-sale_commission',
         'odoo12-addon-sale_commission_delegated_partner',
