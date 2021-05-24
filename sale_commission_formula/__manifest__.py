@@ -4,7 +4,7 @@
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 {
     "name": "Sale Commission Formula",
-    "version": "13.0.1.1.1",
+    "version": "14.0.1.0.0",
     "category": "Sale",
     "license": "AGPL-3",
     "summary": "Sale commissions computed by formulas",
