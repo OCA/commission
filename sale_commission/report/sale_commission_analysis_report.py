@@ -31,7 +31,10 @@ class SaleCommissionAnalysisReport(models.Model):
     quantity = fields.Float("# of Qty", readonly=True)
     price_unit = fields.Float("Price unit", readonly=True)
     price_subtotal = fields.Float("Price subtotal", readonly=True)
-    balance = fields.Float(string="Balance", readonly=True,)
+    balance = fields.Float(
+        string="Balance",
+        readonly=True,
+    )
     percentage = fields.Integer("Percentage of commission", readonly=True)
     amount = fields.Float("Amount", readonly=True)
     invoice_line_id = fields.Many2one(

@@ -231,7 +231,9 @@ class TestSaleCommission(SavepointCase):
 
     def test_sale_commission_gross_amount_invoice(self):
         self._create_order_and_invoice_and_settle(
-            self.agent_quaterly, self.env.ref("sale_commission.demo_commission"), 1,
+            self.agent_quaterly,
+            self.env.ref("sale_commission.demo_commission"),
+            1,
         )
         settlements = self.settle_model.search([("state", "=", "invoiced")])
         settlements.make_invoices(self.journal, self.commission_product)
