@@ -8,7 +8,9 @@ from odoo import fields, models
 class SaleCommission(models.Model):
     _inherit = "sale.commission"
 
-    commission_type = fields.Selection(selection_add=[("formula", "Formula")])
+    commission_type = fields.Selection(
+        selection_add=[("formula", "Formula")], ondelete={"formula": "set default"}
+    )
     formula = fields.Text(
         "Formula",
         default="if line._name == 'sale.order.line':\n"

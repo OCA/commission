@@ -29,7 +29,7 @@ class TestCommissionFormula(TransactionCase):
     def test_sale_order_commission(self):
         # we test the '5% + 10% extra' we should return 41.25 since
         # the order total amount is 750.00.
-        self.so_line.agents = False  # Erase current agents
+        self.so_line.agent_ids = False  # Erase current agents
         self.env["sale.order.line.agent"].create(
             {
                 "object_id": self.so_line.id,
@@ -44,11 +44,11 @@ class TestCommissionFormula(TransactionCase):
         self.sale_order.action_confirm()
         self.so_line.qty_delivered = self.so_line.product_uom_qty
         self._invoice_sale_order(self.sale_order)
-        self.sale_order.invoice_ids.post()
+        self.sale_order.invoice_ids.action_post()
         invoice = self.sale_order.invoice_ids[0]
         # we add the commissions on the first invoice line
         invoice_line = invoice.invoice_line_ids[0]
-        invoice_line.agents = False  # Erase current agents
+        invoice_line.agent_ids = False  # Erase current agents
         self.env["account.invoice.line.agent"].create(
             {
                 "object_id": invoice_line.id,
@@ -64,11 +64,11 @@ class TestCommissionFormula(TransactionCase):
         self.sale_order.action_confirm()
         self.so_line.qty_delivered = self.so_line.product_uom_qty
         self._invoice_sale_order(self.sale_order)
-        self.sale_order.invoice_ids.post()
+        self.sale_order.invoice_ids.action_post()
         invoice = self.sale_order.invoice_ids[0]
         # we add the commissions on the first invoice line
         invoice_line = invoice.invoice_line_ids[0]
-        invoice_line.agents = False  # Erase current agents
+        invoice_line.agent_ids = False  # Erase current agents
         self.env["account.invoice.line.agent"].create(
             {
                 "object_id": invoice_line.id,
