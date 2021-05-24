@@ -28,7 +28,8 @@ class SaleCommissionMixin(models.AbstractModel):
         readonly=True,
     )
     commission_status = fields.Char(
-        compute="_compute_commission_status", string="Commission",
+        compute="_compute_commission_status",
+        string="Commission",
     )
 
     def _prepare_agent_vals(self, agent):
@@ -116,7 +117,9 @@ class SaleCommissionLineMixin(models.AbstractModel):
         copy=True,
     )
     amount = fields.Monetary(
-        string="Commission Amount", compute="_compute_amount", store=True,
+        string="Commission Amount",
+        compute="_compute_amount",
+        store=True,
     )
     # Fields to be overriden with proper source (via related or computed field)
     currency_id = fields.Many2one(comodel_name="res.currency")
