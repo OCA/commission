@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2021 KMEE
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="view_partner_form_agent">
+        <field name="name">res.partner.form (in sale_commission_zone)</field>
+        <field name="model">res.partner</field>
+        <field name="priority" eval="28"/>
+        <field name="inherit_id" ref="sale_commission.view_partner_form_agent"/>
+        <field name="arch" type="xml">
+            <field name="settlement" position="after">
+                <field name="zone_agent_ids" widget="many2many_tags"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
