@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- This view is needed for proper visualization of the popup / embedded one2many -->
+    <record id="invoice_line_agent_tree" model="ir.ui.view">
+        <field name="model">account.invoice.line.agent</field>
+        <field name="arch" type="xml">
+            <tree string="Invoice line agents and commissions" editable="bottom">
+                <field name="agent_id" context="{'default_agent': True}" />
+                <field name="commission_id" />
+                <field name="amount" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_move_line_form" model="ir.ui.view">
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='blocked']/.." position="after">
+                <group
+                    string="Commissions"
+                    name="group_commission"
+                    attrs="{'invisible': [('agent_ids', '=', [])], 'readonly': [('any_settled', '=', True)]}"
+                >
+                    <field name="any_settled" invisible="1" />
+                    <field name="commission_free" force_save="1" />
+                    <field
+                        name="agent_ids"
+                        attrs="{'readonly': [('commission_free', '=', True)]}"
+                        force_save="1"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="name">account.invoice.form.agent</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='invoice_line_ids']/tree//field[@name='price_subtotal']"
+                position="after"
+            >
+                <field name="commission_free" invisible="1" />
+                <field name="any_settled" invisible="1" />
+                <button
+                    name="button_edit_agents"
+                    icon="fa-users"
+                    attrs="{'invisible': ['|', ('commission_free', '=', True), ('any_settled', '=', True)]}"
+                    type="object"
+                />
+                <field name="commission_status" />
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']" position="after">
+                <button
+                    name="recompute_lines_agents"
+                    type="object"
+                    string="Regenerate agents"
+                    states="draft"
+                />
+            </xpath>
+            <!-- Needed for fields in invoice lines to be saved -->
+            <xpath
+                expr="//field[@name='line_ids']/tree/field[@name='discount']"
+                position="before"
+            >
+                <field name="commission_free" invisible="1" />
+                <field name="any_settled" invisible="1" />
+                <field name="commission_status" invisible="1" />
+            </xpath>
+            <field name="amount_total" position="after">
+                <field
+                    name="commission_total"
+                    widget="monetary"
+                    options="{'currency_field': 'currency_id'}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
