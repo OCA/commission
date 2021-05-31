@@ -6,51 +6,53 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-05-31 18:48+0000\n"
+"Last-Translator: jabelchi <jabelchi@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: hr_commission
 #: model:ir.model.fields,help:hr_commission.field_res_partner__employee
 #: model:ir.model.fields,help:hr_commission.field_res_users__employee
 msgid "Check this box if this contact is an Employee."
-msgstr ""
+msgstr "Marqueu aquesta casella si aquest contacte és un empleat."
 
 #. module: hr_commission
 #: model:ir.model,name:hr_commission.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacte"
 
 #. module: hr_commission
 #: model:ir.model,name:hr_commission.model_hr_employee
 #: model:ir.model.fields,field_description:hr_commission.field_res_partner__employee
 #: model:ir.model.fields,field_description:hr_commission.field_res_users__employee
 msgid "Employee"
-msgstr ""
+msgstr "Empleat"
 
 #. module: hr_commission
 #: model_terms:ir.ui.view,arch_db:hr_commission.view_settlement_form
 msgid "Mark as invoiced"
-msgstr ""
+msgstr "Marcar com a facturat"
 
 #. module: hr_commission
 #: model:ir.model.fields,field_description:hr_commission.field_res_partner__employee_id
 msgid "Related Employee"
-msgstr ""
+msgstr "Empleat relacionat"
 
 #. module: hr_commission
 #: model:ir.model.fields.selection,name:hr_commission.selection__res_partner__agent_type__salesman
 msgid "Salesman (employee)"
-msgstr ""
+msgstr "Venedor (empleat)"
 
 #. module: hr_commission
 #: model:ir.model,name:hr_commission.model_sale_commission_settlement
 msgid "Settlement"
-msgstr ""
+msgstr "Liquidació"
 
 #. module: hr_commission
 #: code:addons/hr_commission/models/res_partner.py:0
@@ -60,15 +62,19 @@ msgid ""
 "go to 'Employees' and create an Employee with a 'Related User' under 'HR "
 "Settings'."
 msgstr ""
+"Cal que hi hagi un (i sólament un) empleat enllaçat a aquest partner. Per a "
+"fer-ho, anar a 'Empleats' i crear un empleat amb un 'usuari relacionat' a la "
+"pestanya 'configuració RH'."
 
 #. module: hr_commission
 #: model:ir.model.fields,field_description:hr_commission.field_res_partner__agent_type
 #: model:ir.model.fields,field_description:hr_commission.field_res_users__agent_type
 msgid "Type"
-msgstr ""
+msgstr "Tipus"
 
 #. module: hr_commission
 #: code:addons/hr_commission/models/hr_employee.py:0
 #, python-format
 msgid "You can't remove the user, as it's linked to a commission agent."
 msgstr ""
+"No podeu eliminar l'usuari, ja que està vinculat a un agent de comissions."
