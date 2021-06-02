@@ -46,10 +46,22 @@
                 <button
                     name="button_edit_agents"
                     icon="fa-users"
-                    attrs="{'invisible': ['|', ('commission_free', '=', True), ('any_settled', '=', True)]}"
+                    attrs="{'invisible': [
+                        '|',
+                        ('commission_free', '=', True),
+                        ('any_settled', '=', True),
+                    ],
+                    'column_invisible': [
+                        ('parent.move_type', 'not in', ['out_invoice', 'out_refund'])
+                    ]}"
                     type="object"
                 />
-                <field name="commission_status" />
+                <field
+                    name="commission_status"
+                    attrs="{'column_invisible': [
+                        ('parent.move_type', 'not in', ['out_invoice', 'out_refund'])
+                    ]}"
+                />
             </xpath>
             <xpath expr="//field[@name='invoice_line_ids']" position="after">
                 <button
@@ -57,6 +69,9 @@
                     type="object"
                     string="Regenerate agents"
                     states="draft"
+                    attrs="{'invisible': [
+                        ('move_type', 'not in', ['out_invoice', 'out_refund'])
+                    ]}"
                 />
             </xpath>
             <!-- Needed for fields in invoice lines to be saved -->
@@ -73,6 +88,9 @@
                     name="commission_total"
                     widget="monetary"
                     options="{'currency_field': 'currency_id'}"
+                    attrs="{'invisible': [
+                        ('move_type', 'not in', ['out_invoice', 'out_refund'])
+                    ]}"
                 />
             </field>
         </field>
