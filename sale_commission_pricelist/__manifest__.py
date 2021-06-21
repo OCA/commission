@@ -3,8 +3,8 @@
 
 {
     "name": "Sales commissions by pricelist",
-    "version": "13.0.1.1.0",
-    "author": "Tecnativa, " "Odoo Community Association (OCA)",
+    "version": "14.0.1.0.0",
+    "author": "Tecnativa, Odoo Community Association (OCA), Openforce Srls",
     "category": "Sales Management",
     "website": "https://github.com/OCA/commission",
     "license": "AGPL-3",
