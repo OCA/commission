@@ -1063,13 +1063,19 @@ msgid "You can only add one time each agent."
 msgstr "Sie dürfen jeden Vertreter nur ein Mal eintragen."
 
 #. module: sale_commission
+#: code:addons/sale_commission/models/account_invoice.py:42
+#, python-format
+msgid "You can't cancel an invoice with settled lines"
+msgstr ""
+
+#. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:60
 #, python-format
 msgid "You can't delete invoiced settlements."
 msgstr "Sie dürfen abgerechnete Provisionen nicht löschen."
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/account_invoice.py:193
+#: code:addons/sale_commission/models/account_invoice.py:198
 #, python-format
 msgid "You can't modify a settled line"
 msgstr ""

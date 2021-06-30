@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_commission
+# 	* sale_commission
 #
 msgid ""
 msgstr ""
@@ -627,7 +627,9 @@ msgstr ""
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_line_mixin
-msgid "Mixin model for having commission agent lines in any object inheriting from this one"
+msgid ""
+"Mixin model for having commission agent lines in any object inheriting from "
+"this one"
 msgstr ""
 
 #. module: sale_commission
@@ -951,17 +953,27 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_res_partner__commission
 #: model:ir.model.fields,help:sale_commission.field_res_users__commission
-msgid "This is the default commission used in the sales where this agent is assigned. It can be changed on each operation if needed."
+msgid ""
+"This is the default commission used in the sales where this agent is "
+"assigned. It can be changed on each operation if needed."
 msgstr ""
 
 #. module: sale_commission
 #: model_terms:ir.actions.act_window,help:sale_commission.action_sale_commission_analysis_report
-msgid "This report performs analysis on your commissions added in invoice lines. You can check the amount and lines that will be settled by date, product, product category, agent, etc. Use this report to perform analysis on invoice lines agents not beeing settled yet."
+msgid ""
+"This report performs analysis on your commissions added in invoice lines. "
+"You can check the amount and lines that will be settled by date, product, "
+"product category, agent, etc. Use this report to perform analysis on invoice "
+"lines agents not beeing settled yet."
 msgstr ""
 
 #. module: sale_commission
 #: model_terms:ir.actions.act_window,help:sale_commission.action_sale_order_commission_analysis_report
-msgid "This report performs analysis on your commissions added in order lines. You can check the amount and lines that will be settled by date, product, product category, agent, etc. Use this report to perform analysis on order lines agents not being settled yet."
+msgid ""
+"This report performs analysis on your commissions added in order lines. You "
+"can check the amount and lines that will be settled by date, product, "
+"product category, agent, etc. Use this report to perform analysis on order "
+"lines agents not being settled yet."
 msgstr ""
 
 #. module: sale_commission
@@ -1024,13 +1036,19 @@ msgid "You can only add one time each agent."
 msgstr ""
 
 #. module: sale_commission
+#: code:addons/sale_commission/models/account_invoice.py:42
+#, python-format
+msgid "You can't cancel an invoice with settled lines"
+msgstr ""
+
+#. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:60
 #, python-format
 msgid "You can't delete invoiced settlements."
 msgstr ""
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/account_invoice.py:193
+#: code:addons/sale_commission/models/account_invoice.py:198
 #, python-format
 msgid "You can't modify a settled line"
 msgstr ""
