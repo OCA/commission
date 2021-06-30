@@ -35,7 +35,12 @@ class AccountInvoice(models.Model):
         return [('id', 'in', ail_agents.mapped("object_id.invoice_id").ids)]
 
     def action_cancel(self):
-        """Put settlements associated to the invoices in exception."""
+        """Put settlements associated to the invoices in exception
+        and check settled lines"""
+        if any(self.mapped("invoice_line_ids.any_settled")):
+            raise exceptions.ValidationError(
+                _("You can't cancel an invoice with settled lines"),
+            )
         settlements = self.env['sale.commission.settlement'].search(
             [('invoice', 'in', self.ids)])
         settlements.write({'state': 'except_invoice'})
