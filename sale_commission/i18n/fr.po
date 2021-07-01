@@ -632,8 +632,7 @@ msgstr "Effectuer les commissionnements"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_mixin
-msgid ""
-"Mixin model for applying to any object that wants to handle commissions"
+msgid "Mixin model for applying to any object that wants to handle commissions"
 msgstr "Modèle général à appliquer à tout objet qui veut gérer les commissions"
 
 #. module: sale_commission
@@ -995,6 +994,12 @@ msgstr "Assistant pour calculer les commissions dans les factures"
 #: model:ir.model.constraint,message:sale_commission.constraint_sale_order_line_agent_unique_agent
 msgid "You can only add one time each agent."
 msgstr "Vous ne pouvez ajouter un commissionnaire qu'une seule fois."
+
+#. module: sale_commission
+#: code:addons/sale_commission/models/account_move.py:0
+#, python-format
+msgid "You can't cancel an invoice with settled lines"
+msgstr ""
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:0
