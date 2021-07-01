@@ -29,7 +29,12 @@ class AccountMove(models.Model):
                 record.commission_total += sum(x.amount for x in line.agent_ids)
 
     def button_cancel(self):
-        """Put settlements associated to the invoices in exception."""
+        """Put settlements associated to the invoices in exception
+        and check settled lines"""
+        if any(self.mapped("invoice_line_ids.any_settled")):
+            raise exceptions.ValidationError(
+                _("You can't cancel an invoice with settled lines"),
+            )
         self.settlement_id.state = "except_invoice"
         return super().button_cancel()
 
