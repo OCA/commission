@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-22 08:15+0000\n"
-"PO-Revision-Date: 2021-01-29 17:44+0000\n"
-"Last-Translator: Andrea Cometa <a.cometa@apuliasoftware.it>\n"
+"PO-Revision-Date: 2021-07-06 16:48+0000\n"
+"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "# di Qty"
 #: code:addons/sale_commission/models/sale_commission_mixin.py:65
 #, python-format
 msgid "%s commission agents"
-msgstr "%s agenti con commissioni"
+msgstr "%s agenti con provvigioni"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
@@ -45,7 +45,7 @@ msgstr "Mantieni vuoto per creare le provvigioni per tutti gli agenti"
 #: code:addons/sale_commission/models/sale_commission_mixin.py:63
 #, python-format
 msgid "1 commission agent"
-msgstr "1 agente con commissioni"
+msgstr "1 agente con provvigioni"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.report_settlement
@@ -125,14 +125,14 @@ msgstr "Agenti"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_mixin__agents
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line__agents
 msgid "Agents & commissions"
-msgstr "Agenti & Commissioni"
+msgstr "Agenti & Provvigioni"
 
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_account_invoice_line__agents
 #: model:ir.model.fields,help:sale_commission.field_sale_commission_mixin__agents
 #: model:ir.model.fields,help:sale_commission.field_sale_order_line__agents
 msgid "Agents/Commissions related to the invoice line."
-msgstr "Agenti/Commissioni collegate alla riga fattura."
+msgstr "Agenti/Provvigioni collegate alla riga fattura."
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__amount
@@ -204,7 +204,7 @@ msgstr "Spunta questo campo se il partner è un creditore o un agente."
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line__commission_free
 #, python-format
 msgid "Comm. free"
-msgstr "Senza Commissione"
+msgstr "Senza Provvigione"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line__commission_status
@@ -220,7 +220,7 @@ msgstr "Senza Commissione"
 #: model_terms:ir.ui.view,arch_db:sale_commission.report_settlement
 #: model_terms:ir.ui.view,arch_db:sale_commission.sale_commission_form
 msgid "Commission"
-msgstr "Commissione"
+msgstr "Provvigione"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent__amount
@@ -228,7 +228,7 @@ msgstr "Commissione"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__settled_amount
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__amount
 msgid "Commission Amount"
-msgstr "Importo commissione"
+msgstr "Importo provvigione"
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_sale_commission_analysis_report
@@ -236,40 +236,40 @@ msgstr "Importo commissione"
 #: model:ir.ui.menu,name:sale_commission.menu_sale_commissions_analysis
 #: model:ir.ui.menu,name:sale_commission.menu_sale_order_commissions_analysis
 msgid "Commission Analysis"
-msgstr "Analisi commissioni"
+msgstr "Analisi provvigioni"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission
 msgid "Commission in sales"
-msgstr "Commissione in vendite"
+msgstr "Provvigione in vendite"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_form
 msgid "Commission lines"
-msgstr "Righe di Commissione"
+msgstr "Righe di Provvigione"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_section
 msgid "Commission section"
-msgstr "Sezione di Commissione"
+msgstr "Sezione di Provvigione"
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_commission
 #: model:ir.ui.menu,name:sale_commission.menu_sale_commissions_types
 msgid "Commission types"
-msgstr "Tipi di Commissione"
+msgstr "Tipi di Provvigione"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice__commission_total
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order__commission_total
 #: model_terms:ir.ui.view,arch_db:sale_commission.sale_commission_tree
 msgid "Commissions"
-msgstr "Commissioni"
+msgstr "Provvigioni"
 
 #. module: sale_commission
 #: model:ir.ui.menu,name:sale_commission.menu_sale_commissions_management
 msgid "Commissions Management"
-msgstr "Gestione Agenti/Commissioni"
+msgstr "Gestione Agenti/Provvigioni"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent__company_id
@@ -303,7 +303,7 @@ msgstr "Contatto"
 #: model:ir.actions.act_window,name:sale_commission.action_commission_make_invoices
 #: model:ir.ui.menu,name:sale_commission.menu_commission_make_invoices
 msgid "Create commission invoices"
-msgstr "Crea fatture commissioni"
+msgstr "Crea fatture provvigioni"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
@@ -440,7 +440,7 @@ msgstr "Formula"
 #: model:ir.model.fields,field_description:sale_commission.field_product_product__commission_free
 #: model:ir.model.fields,field_description:sale_commission.field_product_template__commission_free
 msgid "Free of commission"
-msgstr "Libero da commissioni"
+msgstr "Libero da provvigioni"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_section__amount_from
@@ -542,7 +542,7 @@ msgstr "Riga fattura"
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.invoice_line_agent_tree
 msgid "Invoice line agents and commissions"
-msgstr "Riga fattura agenti e commissioni"
+msgstr "Riga fattura agenti e provvigioni"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
@@ -605,7 +605,7 @@ msgstr "Ultima modifica il"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_settlement_line
 msgid "Line of a commission settlement"
-msgstr "Riga di una commissione liquidata"
+msgstr "Riga di una provvigione liquidata"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:67
@@ -656,7 +656,7 @@ msgstr "Importo Netto"
 #: code:addons/sale_commission/models/sale_commission_mixin.py:61
 #, python-format
 msgid "No commission agents"
-msgstr "Nessun agente con commissioni"
+msgstr "Nessun agente con provvigioni"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
@@ -711,7 +711,7 @@ msgstr "Percentuale"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__percentage
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__percentage
 msgid "Percentage of commission"
-msgstr "Percentuale della commissione"
+msgstr "Percentuale della provvigione"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:110
@@ -855,7 +855,7 @@ msgstr "Semi-annuale"
 #: model:ir.ui.menu,name:sale_commission.menu_agents_settlement
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settled_wizard
 msgid "Settle commissions"
-msgstr "Liquidazione commissioni"
+msgstr "Liquidazione provvigioni"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent__settled
@@ -964,7 +964,7 @@ msgid ""
 "This is the default commission used in the sales where this agent is "
 "assigned. It can be changed on each operation if needed."
 msgstr ""
-"Questa è la commissione di default usata nelle vendita assegnata a questo "
+"Questa è la provvigione di default usata nelle vendita assegnata a questo "
 "agente. Può essere cambiato a ogni operazione se necessario."
 
 #. module: sale_commission
