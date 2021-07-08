@@ -970,6 +970,12 @@ msgid "You can only add one time each agent."
 msgstr "Sólo puede añadir una vez cada agente."
 
 #. module: sale_commission
+#: code:addons/sale_commission/models/account_move.py:0
+#, python-format
+msgid "You can't cancel an invoice with settled lines"
+msgstr ""
+
+#. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:0
 #, python-format
 msgid "You can't delete invoiced settlements."
