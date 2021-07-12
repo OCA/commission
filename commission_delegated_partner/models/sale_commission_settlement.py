@@ -7,20 +7,13 @@ from odoo import _, models
 class SaleCommissionSettlement(models.Model):
     _inherit = "sale.commission.settlement"
 
-    def _prepare_invoice_header(self, settlement, journal, date=False):
-        vals = super()._prepare_invoice_header(settlement, journal, date=date)
-        if not settlement.agent.delegated_agent_id:
-            return vals
-        invoice = self.env["account.invoice"].new(vals)
-        invoice.partner_id = settlement.agent.delegated_agent_id
-        invoice._onchange_partner_id()
-        invoice._onchange_journal_id()
-        return invoice._convert_to_write(invoice._cache)
+    def _get_invoice_partner(self):
+        agent = self[0].agent_id
+        if agent.delegated_agent_id:
+            return agent.delegated_agent_id
+        return super(SaleCommissionSettlement, self)._get_invoice_partner()
 
-    def _prepare_invoice_line(self, settlement, invoice, product):
-        invoice_line_vals = super()._prepare_invoice_line(settlement, invoice, product)
-        if settlement.agent.delegated_agent_id:
-            invoice_line_vals["name"] += (
-                "\n" + _("Agent: %s") % settlement.agent.display_name
-            )
-        return invoice_line_vals
+    def _post_process_line(self, line_form):
+        if self.agent_id.delegated_agent_id:
+            line_form.name += "\n" + _("Agent: %s") % self.agent_id.display_name
+        super()._post_process_line(line_form)

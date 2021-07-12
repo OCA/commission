@@ -21,16 +21,14 @@ class TestSaleCommissionDelegatePartner(SavepointCase):
         )
         cls.res_partner_model = cls.env["res.partner"]
         cls.partner = cls.env.ref("base.res_partner_2")
-        cls.partner.write({"supplier": False, "agent": False})
+        cls.partner.write({"agent": False})
         cls.sale_order_model = cls.env["sale.order"]
         cls.advance_inv_model = cls.env["sale.advance.payment.inv"]
         cls.settle_model = cls.env["sale.commission.settlement"]
         cls.make_settle_model = cls.env["sale.commission.make.settle"]
         cls.make_inv_model = cls.env["sale.commission.make.invoice"]
         cls.product = cls.env.ref("product.product_product_5")
-        cls.product.write(
-            {"invoice_policy": "order",}
-        )
+        cls.product.write({"invoice_policy": "order"})
         cls.journal = cls.env["account.journal"].search(
             [("type", "=", "purchase")], limit=1
         )
@@ -67,8 +65,15 @@ class TestSaleCommissionDelegatePartner(SavepointCase):
                             "product_uom_qty": 1.0,
                             "product_uom": self.ref("uom.product_uom_unit"),
                             "price_unit": self.product.lst_price,
-                            "agents": [
-                                (0, 0, {"agent": agent.id, "commission": commission.id})
+                            "agent_ids": [
+                                (
+                                    0,
+                                    0,
+                                    {
+                                        "agent_id": agent.id,
+                                        "commission_id": commission.id,
+                                    },
+                                )
                             ],
                         },
                     )
@@ -77,7 +82,7 @@ class TestSaleCommissionDelegatePartner(SavepointCase):
         )
         sale_order.action_confirm()
         self.assertEqual(len(sale_order.invoice_ids), 0)
-        payment = self.advance_inv_model.create({"advance_payment_method": "all",})
+        payment = self.advance_inv_model.create({"advance_payment_method": "delivered"})
         context = {
             "active_model": "sale.order",
             "active_ids": [sale_order.id],
@@ -86,12 +91,16 @@ class TestSaleCommissionDelegatePartner(SavepointCase):
         payment.with_context(context).create_invoices()
         self.assertEqual(len(sale_order.invoice_ids), 1)
         for invoice in sale_order.invoice_ids:
-            invoice.action_invoice_open()
-            self.assertEqual(invoice.state, "open")
+            invoice.post()
+            self.assertEqual(invoice.state, "posted")
 
     def test_settlement(self):
-        self._create_sale_order(self.agent_monthly, self.commission_net_invoice)
-        self._create_sale_order(self.agent_monthly_02, self.commission_net_invoice)
+        self._create_sale_order(
+            self.agent_monthly, self.commission_net_invoice,
+        )
+        self._create_sale_order(
+            self.agent_monthly_02, self.commission_net_invoice,
+        )
         wizard = self.make_settle_model.create(
             {
                 "date_to": (
@@ -107,19 +116,19 @@ class TestSaleCommissionDelegatePartner(SavepointCase):
             settlement_ids=settlements.ids
         ).create(
             {
-                "journal": self.journal.id,
-                "product": self.product.id,
+                "journal_id": self.journal.id,
+                "product_id": self.product.id,
                 "date": fields.Datetime.now(),
             }
         ).button_create()
         for settlement in settlements:
             self.assertEqual(settlement.state, "invoiced")
-        settlement = settlements.filtered(lambda r: r.agent == self.agent_monthly)
+        settlement = settlements.filtered(lambda r: r.agent_id == self.agent_monthly)
         self.assertTrue(settlement)
         self.assertEqual(1, len(settlement))
-        self.assertNotEqual(self.agent_monthly, settlement.invoice.partner_id)
-        self.assertEqual(self.delegate_agent, settlement.invoice.partner_id)
-        settlement = settlements.filtered(lambda r: r.agent == self.agent_monthly_02)
+        self.assertNotEqual(self.agent_monthly, settlement.invoice_ids.partner_id)
+        self.assertEqual(self.delegate_agent, settlement.invoice_ids.partner_id)
+        settlement = settlements.filtered(lambda r: r.agent_id == self.agent_monthly_02)
         self.assertTrue(settlement)
         self.assertEqual(1, len(settlement))
-        self.assertEqual(self.agent_monthly_02, settlement.invoice.partner_id)
+        self.assertEqual(self.agent_monthly_02, settlement.invoice_ids.partner_id)
