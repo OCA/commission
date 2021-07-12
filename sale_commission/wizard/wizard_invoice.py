@@ -37,6 +37,7 @@ class SaleCommissionMakeInvoice(models.TransientModel):
     )
     from_settlement = fields.Boolean(default=_default_from_settlement)
     date = fields.Date(default=fields.Date.context_today)
+    grouped = fields.Boolean(string="Group invoices")
 
     def button_create(self):
         self.ensure_one()
@@ -51,7 +52,10 @@ class SaleCommissionMakeInvoice(models.TransientModel):
                 ]
             )
         invoices = settlements.make_invoices(
-            self.journal_id, self.product_id, date=self.date
+            self.journal_id,
+            self.product_id,
+            date=self.date,
+            grouped=self.grouped,
         )
         # go to results
         if len(settlements):

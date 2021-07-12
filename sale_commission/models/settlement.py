@@ -2,6 +2,8 @@
 # Copyright 2020 Tecnativa - Manuel Calero
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from itertools import groupby
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tests.common import Form
@@ -39,8 +41,8 @@ class Settlement(models.Model):
         readonly=True,
         default="settled",
     )
-    invoice_ids = fields.One2many(
-        comodel_name="account.move",
+    invoice_line_ids = fields.One2many(
+        comodel_name="account.move.line",
         inverse_name="settlement_id",
         string="Generated invoice",
         readonly=True,
@@ -65,10 +67,10 @@ class Settlement(models.Model):
         for record in self:
             record.total = sum(record.mapped("line_ids.settled_amount"))
 
-    @api.depends("invoice_ids")
+    @api.depends("invoice_line_ids")
     def _compute_invoice_id(self):
         for record in self:
-            record.invoice_id = record.invoice_ids[:1]
+            record.invoice_id = record.invoice_line_ids[:1].move_id
 
     def action_cancel(self):
         if any(x.state != "settled" for x in self):
@@ -92,44 +94,86 @@ class Settlement(models.Model):
             "context": {"settlement_ids": self.ids},
         }
 
+    def _get_invoice_partner(self):
+        return self[0].agent_id
+
     def _prepare_invoice(self, journal, product, date=False):
-        self.ensure_one()
-        move_type = "in_invoice" if self.total >= 0 else "in_refund"
+
         move_form = Form(
-            self.env["account.move"].with_context(default_move_type=move_type)
+            self.env["account.move"].with_context(default_move_type="in_invoice")
         )
+
         if date:
             move_form.invoice_date = date
-        move_form.partner_id = self.agent_id
+        partner = self._get_invoice_partner()
+        move_form.partner_id = partner
         move_form.journal_id = journal
-        with move_form.invoice_line_ids.new() as line_form:
-            line_form.product_id = product
-            line_form.quantity = 1
-            line_form.price_unit = abs(self.total)
-            # Put period string
-            partner = self.agent_id
-            lang = self.env["res.lang"].search(
-                [("code", "=", partner.lang or self.env.context.get("lang", "en_US"))]
-            )
-            date_from = fields.Date.from_string(self.date_from)
-            date_to = fields.Date.from_string(self.date_to)
-            line_form.name += "\n" + _("Period: from %s to %s") % (
-                date_from.strftime(lang.date_format),
-                date_to.strftime(lang.date_format),
-            )
-            line_form.currency_id = (
-                self.currency_id
-            )  # todo or compute agent currency_id?
+        for settlement in self:
+            with move_form.invoice_line_ids.new() as line_form:
+                line_form.product_id = product
+                line_form.quantity = -1 if settlement.total < 0 else 1
+                line_form.price_unit = abs(settlement.total)
+                # Put period string
+                partner = self.agent_id
+                lang = self.env["res.lang"].search(
+                    [
+                        (
+                            "code",
+                            "=",
+                            partner.lang or self.env.context.get("lang", "en_US"),
+                        )
+                    ]
+                )
+                date_from = fields.Date.from_string(settlement.date_from)
+                date_to = fields.Date.from_string(settlement.date_to)
+                line_form.name += "\n" + _("Period: from %s to %s") % (
+                    date_from.strftime(lang.date_format),
+                    date_to.strftime(lang.date_format),
+                )
+                line_form.currency_id = (
+                    settlement.currency_id
+                )  # todo or compute agent currency_id?
+                line_form.settlement_id = settlement
+                settlement._post_process_line(line_form)
         vals = move_form._values_to_save(all_fields=True)
-        vals["settlement_id"] = self.id
         return vals
 
-    def make_invoices(self, journal, product, date=False):
+    def _post_process_line(self, line_form):
+        pass
+
+    def _get_invoice_grouping_keys(self):
+        return ["company_id", "agent_id"]
+
+    def make_invoices(self, journal, product, date=False, grouped=False):
         invoice_vals_list = []
-        for settlement in self:
+        settlement_obj = self.env[self._name]
+        if grouped:
+            invoice_grouping_keys = self._get_invoice_grouping_keys()
+            settlements = groupby(
+                self.sorted(
+                    key=lambda x: [
+                        x._fields[grouping_key].convert_to_write(x[grouping_key], x)
+                        for grouping_key in invoice_grouping_keys
+                    ],
+                ),
+                key=lambda x: [
+                    x._fields[grouping_key].convert_to_write(x[grouping_key], x)
+                    for grouping_key in invoice_grouping_keys
+                ],
+            )
+            grouped_settlements = [
+                settlement_obj.union(*list(sett))
+                for _grouping_keys, sett in settlements
+            ]
+        else:
+            grouped_settlements = self
+        for settlement in grouped_settlements:
             invoice_vals = settlement._prepare_invoice(journal, product, date)
             invoice_vals_list.append(invoice_vals)
         invoices = self.env["account.move"].create(invoice_vals_list)
+        invoices.sudo().filtered(lambda m: m.amount_total < 0).with_context(
+            include_settlement=True
+        ).action_switch_invoice_into_refund_credit_note()
         self.write({"state": "invoiced"})
         return invoices
 
