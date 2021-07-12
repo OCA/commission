@@ -28,6 +28,7 @@
                         attrs="{'readonly': [('commission_free', '=', True)]}"
                         force_save="1"
                     />
+                    <field name="settlement_id" invisible="1" />
                 </group>
             </xpath>
         </field>
@@ -50,6 +51,7 @@
                     type="object"
                 />
                 <field name="commission_status" />
+                <field name="settlement_id" invisible="1" />
             </xpath>
             <xpath expr="//field[@name='invoice_line_ids']" position="after">
                 <button
@@ -67,6 +69,7 @@
                 <field name="commission_free" invisible="1" />
                 <field name="any_settled" invisible="1" />
                 <field name="commission_status" invisible="1" />
+                <field name="settlement_id" invisible="1" />
             </xpath>
             <field name="amount_total" position="after">
                 <field
