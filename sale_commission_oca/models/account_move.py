@@ -37,12 +37,6 @@ class AccountMove(models.Model):
         )
         return [("id", "in", ail_agents.mapped("object_id.move_id").ids)]
 
-    settlement_id = fields.Many2one(
-        comodel_name="sale.commission.settlement",
-        help="Settlement that generates this invoice",
-        copy=False,
-    )
-
     @api.depends("line_ids.agent_ids.amount")
     def _compute_commission_total(self):
         for record in self:
@@ -57,12 +51,12 @@ class AccountMove(models.Model):
             raise exceptions.ValidationError(
                 _("You can't cancel an invoice with settled lines"),
             )
-        self.settlement_id.state = "except_invoice"
+        self.mapped("line_ids.settlement_id").write({"state": "except_invoice"})
         return super().button_cancel()
 
     def action_post(self):
         """Put settlements associated to the invoices in invoiced state."""
-        self.settlement_id.state = "invoiced"
+        self.mapped("line_ids.settlement_id").write({"state": "invoiced"})
         return super().action_post()
 
     def recompute_lines_agents(self):
@@ -105,6 +99,11 @@ class AccountMoveLine(models.Model):
 
     agent_ids = fields.One2many(comodel_name="account.invoice.line.agent")
     any_settled = fields.Boolean(compute="_compute_any_settled")
+    settlement_id = fields.Many2one(
+        comodel_name="sale.commission.settlement",
+        help="Settlement that generates this invoice line",
+        copy=False,
+    )
 
     @api.depends("agent_ids", "agent_ids.settled")
     def _compute_any_settled(self):
@@ -121,6 +120,17 @@ class AccountMoveLine(models.Model):
                 record.agent_ids = record._prepare_agents_vals_partner(
                     record.move_id.partner_id
                 )
+
+    def _copy_data_extend_business_fields(self, values):
+        """
+        We don't want to loose the settlement from the line when reversing the line if
+        it was a refund.
+        We need to include it, but as we don't want change it everytime, we will add
+        the data when a context key is passed
+        """
+        super()._copy_data_extend_business_fields(values)
+        if self.settlement_id and self.env.context.get("include_settlement", False):
+            values["settlement_id"] = self.settlement_id.id
 
 
 class AccountInvoiceLineAgent(models.Model):
