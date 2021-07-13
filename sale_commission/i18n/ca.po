@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-14 15:14+0000\n"
-"PO-Revision-Date: 2021-06-04 10:48+0000\n"
+"PO-Revision-Date: 2021-07-13 16:49+0000\n"
 "Last-Translator: jabelchi <jabelchi@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
@@ -973,7 +973,7 @@ msgstr "Un agent només pot afegir-se un cop."
 #: code:addons/sale_commission/models/account_move.py:0
 #, python-format
 msgid "You can't cancel an invoice with settled lines"
-msgstr ""
+msgstr "No es pot cancel·lar una factura amb línies liquidades"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:0
