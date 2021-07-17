@@ -452,7 +452,7 @@ msgid "General information"
 msgstr "Informação Geral"
 
 #. module: sale_commission
-#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement__invoice_ids
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement__invoice_line_ids
 msgid "Generated invoice"
 msgstr "Factura Emitida"
 
@@ -467,6 +467,11 @@ msgstr "Valor Bruto"
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_search
 msgid "Group By"
 msgstr "Agrupar por"
+
+#. module: sale_commission
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice__grouped
+msgid "Group invoices"
+msgstr ""
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent__id
@@ -806,7 +811,7 @@ msgstr ""
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_settlement
-#: model:ir.model.fields,field_description:sale_commission.field_account_move__settlement_id
+#: model:ir.model.fields,field_description:sale_commission.field_account_move_line__settlement_id
 #: model:ir.model.fields,field_description:sale_commission.field_res_partner__settlement_ids
 #: model:ir.model.fields,field_description:sale_commission.field_res_users__settlement_ids
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice__settlement_ids
@@ -849,8 +854,8 @@ msgid "Settlement search"
 msgstr "Pesquisar Comissões"
 
 #. module: sale_commission
-#: model:ir.model.fields,help:sale_commission.field_account_move__settlement_id
-msgid "Settlement that generates this invoice"
+#: model:ir.model.fields,help:sale_commission.field_account_move_line__settlement_id
+msgid "Settlement that generates this invoice line"
 msgstr ""
 
 #. module: sale_commission
