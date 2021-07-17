@@ -13,11 +13,6 @@ class AccountMove(models.Model):
     commission_total = fields.Float(
         string="Commissions", compute="_compute_commission_total", store=True,
     )
-    settlement_id = fields.Many2one(
-        comodel_name="sale.commission.settlement",
-        help="Settlement that generates this invoice",
-        copy=False,
-    )
 
     @api.depends("line_ids.agent_ids.amount")
     def _compute_commission_total(self):
@@ -33,12 +28,12 @@ class AccountMove(models.Model):
             raise exceptions.ValidationError(
                 _("You can't cancel an invoice with settled lines"),
             )
-        self.settlement_id.state = "except_invoice"
+        self.mapped("line_ids.settlement_id").write({"state": "except_invoice"})
         return super().button_cancel()
 
     def post(self):
         """Put settlements associated to the invoices in invoiced state."""
-        self.settlement_id.state = "invoiced"
+        self.mapped("line_ids.settlement_id").write({"state": "invoiced"})
         return super().post()
 
     def recompute_lines_agents(self):
@@ -76,6 +71,11 @@ class AccountMoveLine(models.Model):
 
     agent_ids = fields.One2many(comodel_name="account.invoice.line.agent")
     any_settled = fields.Boolean(compute="_compute_any_settled")
+    settlement_id = fields.Many2one(
+        comodel_name="sale.commission.settlement",
+        help="Settlement that generates this invoice line",
+        copy=False,
+    )
 
     @api.depends("agent_ids", "agent_ids.settled")
     def _compute_any_settled(self):

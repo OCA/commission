@@ -3,6 +3,7 @@
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 import dateutil.relativedelta
+from dateutil.relativedelta import relativedelta
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
@@ -418,6 +419,7 @@ class TestSaleCommission(SavepointCase):
         self.assertEqual(commission_refund.type, "in_refund")
         # Undo invoices + make invoice again to get a unified invoice
         commission_invoices = commission_invoice + commission_refund
+        commission_invoices.flush()
         commission_invoices.button_cancel()
         self.assertEqual(settlement.state, "except_invoice")
         self.assertEqual(second_settlement.state, "except_invoice")
@@ -456,3 +458,65 @@ class TestSaleCommission(SavepointCase):
         # Write
         partner.agent_ids = [(4, self.agent_monthly.id)]
         self.assertEqual(set(child.agent_ids.ids), set(partner.agent_ids.ids))
+
+    def test_commission_single_invoice(self):
+        sale_order = self._create_sale_order(
+            self.agent_monthly, self.commission_section_invoice
+        )
+        sale_order.action_confirm()
+        self._invoice_sale_order(sale_order)
+        date = fields.Date.today()
+        sale_order.invoice_ids.write(
+            {
+                "invoice_date": date + relativedelta(months=-1),
+                "date": date + relativedelta(months=-1),
+            }
+        )
+        sale_order.invoice_ids.post()
+        sale_order = self._create_sale_order(
+            self.agent_monthly, self.commission_section_invoice
+        )
+        sale_order.action_confirm()
+        self._invoice_sale_order(sale_order)
+        date = fields.Date.today()
+        sale_order.invoice_ids.date = date
+        sale_order.invoice_ids.post()
+        self._settle_agent(self.agent_monthly, 1)
+        settlements = self.env["sale.commission.settlement"].search(
+            [("agent_id", "=", self.agent_monthly.id,), ("state", "=", "settled")]
+        )
+        self.assertEqual(2, len(settlements))
+        settlements.make_invoices(self.journal, self.commission_product, grouped=True)
+        invoices = settlements.mapped("invoice_id")
+        self.assertEqual(1, len(invoices))
+
+    def test_commission_multiple_invoice(self):
+        sale_order = self._create_sale_order(
+            self.agent_monthly, self.commission_section_invoice
+        )
+        sale_order.action_confirm()
+        self._invoice_sale_order(sale_order)
+        date = fields.Date.today()
+        sale_order.invoice_ids.write(
+            {
+                "invoice_date": date + relativedelta(months=-1),
+                "date": date + relativedelta(months=-1),
+            }
+        )
+        sale_order.invoice_ids.post()
+        sale_order = self._create_sale_order(
+            self.agent_monthly, self.commission_section_invoice
+        )
+        sale_order.action_confirm()
+        self._invoice_sale_order(sale_order)
+        date = fields.Date.today()
+        sale_order.invoice_ids.date = date
+        sale_order.invoice_ids.post()
+        self._settle_agent(self.agent_monthly, 1)
+        settlements = self.env["sale.commission.settlement"].search(
+            [("agent_id", "=", self.agent_monthly.id,), ("state", "=", "settled")]
+        )
+        self.assertEqual(2, len(settlements))
+        settlements.make_invoices(self.journal, self.commission_product)
+        invoices = settlements.mapped("invoice_id")
+        self.assertEqual(2, len(invoices))
