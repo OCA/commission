@@ -38,7 +38,8 @@ class ProductProductAgent(models.Model):
             ['commission_id'])
         if not commission_ids:
             commission_ids = self.search_read(
-                [('product_id', '=', product_id)], ['commission_id'])
+                [('product_id', '=', product_id), ('agent_id', '=', False)],
+                ['commission_id'])
         if commission_ids:
             commission_id = commission_ids[0]['commission_id'][0]
         return commission_id
