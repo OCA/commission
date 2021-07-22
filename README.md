@@ -19,7 +19,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[sale_commission](sale_commission/) | 14.0.1.1.1 | Sales commissions
+[sale_commission](sale_commission/) | 14.0.1.1.2 | Sales commissions
 
 [//]: # (end addons)
 
