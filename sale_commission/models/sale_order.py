@@ -28,9 +28,8 @@ class SaleOrderLine(models.Model):
     @api.model
     def _default_agents(self):
         agents = []
-        if self.env.context.get('partner_id'):
-            partner = self.env['res.partner'].browse(
-                self.env.context['partner_id'])
+        if self.env.context.get('partner_id') and not self.commission_free:
+            partner = self.env['res.partner'].browse(self.env.context['partner_id'])
             for agent in partner.agents:
                 vals = {
                     'agent': agent.id,
