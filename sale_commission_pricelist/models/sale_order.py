@@ -6,14 +6,20 @@
 
 from openerp import api, models
 
+import logging
+_log = logging.getLogger(__name__)
+
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     @api.multi
     def recompute_lines_agents(self):
-        ctx = {'partner_id': self.partner_id.id}
+        _log.info("Recomputing: agent commissions...")
         for record in self:
+            old_value = record.commission_total
+
+            ctx = {'partner_id': record.partner_id.id}
             for line in record.order_line.with_context(ctx):
                 # delete all existing commissions
                 line.agents.unlink()
@@ -24,3 +30,7 @@ class SaleOrder(models.Model):
 
                 # set commission from pricelist
                 line.onchange_product_id_sale_commission_pricelist()
+
+            new_value = record.commission_total
+
+            _log.info("Processed %s: %f => %f" % (record.name, old_value, new_value))
