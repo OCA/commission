@@ -15,7 +15,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def recompute_lines_agents(self):
-        _log.info("Recomputing: agent commissions...")
+        _log.info("Recomputing sales agent commissions...")
         for record in self:
             old_value = record.commission_total
 
