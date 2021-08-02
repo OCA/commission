@@ -32,4 +32,4 @@ class AccountInvoice(models.Model):
 
             new_value = record.commission_total
 
-            _log.info("Processed %s: %f => %f" % (record.name, old_value, new_value))
+            _log.info("Processed %s: %f => %f" % (record.number or '', old_value, new_value))
