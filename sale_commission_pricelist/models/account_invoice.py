@@ -25,11 +25,19 @@ class AccountInvoice(models.Model):
 
                 # set default values for agent commission
                 default_agents = line._default_agents()
+
+                # get commission from pricelist and update defaults values
+                # directly instead calling onchange method that cause multiple write
+                # line.onchange_product_id_sale_commission_pricelist()
+                commission = line.get_commission_from_pricelist()
+                if commission:
+                    for agent in default_agents:
+                        agent[2].update({
+                            'commission': commission.id,
+                            'display_name': commission.name,
+                        })
                 line.write({'agents': default_agents})
 
-                # set commission from pricelist
-                line.onchange_product_id_sale_commission_pricelist()
-
             new_value = record.commission_total
-
-            _log.info("Processed %s: %f => %f" % (record.number or '', old_value, new_value))
+            _log.info("Processed %s: %f => %f"
+                      % (record.number or '', old_value, new_value))
