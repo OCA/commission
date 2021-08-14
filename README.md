@@ -17,13 +17,13 @@ All management related with commisions and incentive in Odoo.
 
 Available addons
 ----------------
-addon | version | summary
---- | --- | ---
-[hr_commission](hr_commission/) | 13.0.1.0.0 | HR commissions
-[sale_commission](sale_commission/) | 13.0.1.7.0 | Sales commissions
-[sale_commission_formula](sale_commission_formula/) | 13.0.1.1.1 | Sale commissions computed by formulas
-[sale_commission_pricelist](sale_commission_pricelist/) | 13.0.1.1.0 | Sales commissions by pricelist
-[sale_commission_salesman](sale_commission_salesman/) | 13.0.1.0.1 | Sales commissions from salesman
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[hr_commission](hr_commission/) | 13.0.1.0.0 |  | HR commissions
+[sale_commission](sale_commission/) | 13.0.1.7.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Sales commissions
+[sale_commission_formula](sale_commission_formula/) | 13.0.1.1.1 |  | Sale commissions computed by formulas
+[sale_commission_pricelist](sale_commission_pricelist/) | 13.0.1.1.0 |  | Sales commissions by pricelist
+[sale_commission_salesman](sale_commission_salesman/) | 13.0.1.0.1 |  | Sales commissions from salesman
 
 [//]: # (end addons)
 
