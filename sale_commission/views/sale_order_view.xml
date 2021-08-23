@@ -19,8 +19,6 @@
             </xpath>
             <xpath expr="//field[@name='order_line']/form//field[@name='customer_lead']/.." position="after">
                 <field name="commission_free"/>
-                <field name="agents"
-                       attrs="{'readonly': [('commission_free', '=', True)]}"/>
             </xpath>
             <field name="amount_total" position="after">
                 <field name="commission_total"
