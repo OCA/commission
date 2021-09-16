@@ -33,6 +33,11 @@ renamings = {
     ],
 }
 
+_column_renames = {
+    "account_invoice_line_agent": [("object_id", None), ("invoice_id", None)],
+    "sale_commission_settlement_line": [("invoice_line_id", None)],
+}
+
 
 @openupgrade.migrate()
 def migrate(env, version):
@@ -43,3 +48,4 @@ def migrate(env, version):
                 (model, model.replace(".", "_"), old_field, new_field)
             )
     openupgrade.rename_fields(env, renamed_fields)
+    openupgrade.rename_columns(env.cr, _column_renames)
