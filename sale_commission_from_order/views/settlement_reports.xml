@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_settlement_orders" inherit_id="sale_commission.report_settlement">
+        <xpath expr="//div[hasclass('page')]/table[1]/thead/tr/th[1]" position="replace">
+            <th>Date</th>
+        </xpath>
+        <xpath expr="//div[hasclass('page')]/table[1]/thead/tr/th[2]" position="replace">
+            <th>Document</th>
+        </xpath>
+        <xpath expr="//div[hasclass('page')]/table[1]/thead/tr/th[3]" position="replace">
+            <th>Document line</th>
+        </xpath>
+        <xpath expr="//span[@t-field='l.invoice']" position="replace">
+            <span t-field="l.invoice" t-if="l.invoice"/>
+            <span t-field="l.order_id" t-if="l.order_id"/>
+        </xpath>
+        <xpath expr="//span[@t-field='l.invoice_line']" position="replace">
+            <span t-field="l.invoice_line" t-if="l.invoice_line"/>
+            <span t-field="l.sale_line_id" t-if="l.sale_line_id"/>
+        </xpath>
+    </template>
+</odoo>

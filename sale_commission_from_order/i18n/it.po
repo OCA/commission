@@ -1,0 +1,145 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_commission_from_order
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-23 09:29+0000\n"
+"PO-Revision-Date: 2021-09-23 09:29+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_commission_from_order
+#: model:ir.model.fields,field_description:sale_commission_from_order.field_sale_commission_settlement_line__agent
+msgid "Agent"
+msgstr "Agente"
+
+#. module: sale_commission_from_order
+#: model:ir.model.fields,field_description:sale_commission_from_order.field_sale_order_line_agent__agent_line
+msgid "Agent Line"
+msgstr "Riga Agente"
+
+#. module: sale_commission_from_order
+#: model:ir.model.fields,field_description:sale_commission_from_order.field_sale_commission_settlement_line__agent_sale_line
+msgid "Agent Sale Line"
+msgstr "Riga di vendita agente"
+
+#. module: sale_commission_from_order
+#: model:ir.model.fields,field_description:sale_commission_from_order.field_sale_commission_settlement_line__commission
+msgid "Commission"
+msgstr "Provvigione"
+
+#. module: sale_commission_from_order
+#: model:ir.model,name:sale_commission_from_order.model_sale_commission
+msgid "Commission in sales"
+msgstr "Commissioni nelle Vendite"
+
+#. module: sale_commission_from_order
+#: model:ir.model.fields,field_description:sale_commission_from_order.field_sale_order_line_agent__company_id
+msgid "Company"
+msgstr "Azienda"
+
+#. module: sale_commission_from_order
+#: selection:sale.commission,invoice_state:0
+msgid "Confirmed orders based"
+msgstr "Basato su ordini confermati"
+
+#. module: sale_commission_from_order
+#: code:addons/sale_commission_from_order/wizard/wizard_settle.py:59
+#, python-format
+msgid "Created Settlements"
+msgstr "Provvigioni create"
+
+#. module: sale_commission_from_order
+#: model:ir.model.fields,field_description:sale_commission_from_order.field_sale_commission_settlement_line__currency_id
+msgid "Currency"
+msgstr "Valuta"
+
+#. module: sale_commission_from_order
+#: model:ir.model.fields,field_description:sale_commission_from_order.field_sale_commission_settlement_line__date
+#: model_terms:ir.ui.view,arch_db:sale_commission_from_order.report_settlement_orders
+msgid "Date"
+msgstr "Data"
+
+#. module: sale_commission_from_order
+#: model_terms:ir.ui.view,arch_db:sale_commission_from_order.report_settlement_orders
+msgid "Document"
+msgstr "Documento"
+
+#. module: sale_commission_from_order
+#: model_terms:ir.ui.view,arch_db:sale_commission_from_order.report_settlement_orders
+msgid "Document line"
+msgstr "Riga documento"
+
+#. module: sale_commission_from_order
+#: selection:sale.commission,invoice_state:0
+msgid "Invoice Based"
+msgstr "Basato su fattura"
+
+#. module: sale_commission_from_order
+#: model:ir.model.fields,field_description:sale_commission_from_order.field_sale_commission__invoice_state
+msgid "Invoice Status"
+msgstr "Stato fattura"
+
+#. module: sale_commission_from_order
+#: model:ir.model,name:sale_commission_from_order.model_sale_commission_settlement_line
+msgid "Line of a commission settlement"
+msgstr "Riga di una provvigione liquidata"
+
+#. module: sale_commission_from_order
+#: model:ir.model.fields,field_description:sale_commission_from_order.field_sale_commission_settlement_line__order_id
+#: model:ir.model.fields,field_description:sale_commission_from_order.field_sale_order_line_agent__sale_order_id
+msgid "Order"
+msgstr "Ordine"
+
+#. module: sale_commission_from_order
+#: model:ir.model.fields,field_description:sale_commission_from_order.field_sale_order_line_agent__order_date
+msgid "Order date"
+msgstr "Data ordine"
+
+#. module: sale_commission_from_order
+#: model:ir.model.fields,field_description:sale_commission_from_order.field_sale_order_line_agent__order_state
+msgid "Order status"
+msgstr "Stato ordine"
+
+#. module: sale_commission_from_order
+#: model:ir.model.fields,field_description:sale_commission_from_order.field_sale_commission_settlement_line__sale_line_id
+msgid "Parent"
+msgstr "Padre"
+
+#. module: sale_commission_from_order
+#: selection:sale.commission,invoice_state:0
+msgid "Payment Based"
+msgstr "Basato su pagamento"
+
+#. module: sale_commission_from_order
+#: model:ir.model.fields,field_description:sale_commission_from_order.field_sale_order_line_agent__settled
+msgid "Settled"
+msgstr "Approvvigionato"
+
+#. module: sale_commission_from_order
+#: model:ir.model.fields,field_description:sale_commission_from_order.field_sale_commission_settlement_line__settled_amount
+msgid "Settled Amount"
+msgstr "Importo provvigione"
+
+#. module: sale_commission_from_order
+#: model:ir.model,name:sale_commission_from_order.model_sale_commission_make_settle
+msgid "Wizard for settling commissions in invoices"
+msgstr "Crea fatture provvigioni"
+
+#. module: sale_commission_from_order
+#: model:ir.model,name:sale_commission_from_order.model_account_invoice_line_agent
+msgid "account.invoice.line.agent"
+msgstr ""
+
+#. module: sale_commission_from_order
+#: model:ir.model,name:sale_commission_from_order.model_sale_order_line_agent
+msgid "sale.order.line.agent"
+msgstr ""
+

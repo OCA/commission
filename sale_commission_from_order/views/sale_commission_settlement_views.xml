@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_settlement_form_order">
+        <field name="name">view_settlement_form_order</field>
+        <field name="model">sale.commission.settlement</field>
+        <field name="inherit_id" ref="sale_commission.view_settlement_form"/>
+        <field name="arch" type="xml">
+            <field name="invoice_line" position="replace">
+                <field name="order_id"/>
+            </field>
+        </field>
+    </record>
+</odoo>
