@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_settlement_form_invoices">
+        <field name="name">view_settlement_form_invoices</field>
+        <field name="model">sale.commission.settlement</field>
+        <field name="inherit_id" ref="sale_commission.view_settlement_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="after">
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_view_invoice"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-pencil-square-o"
+                        attrs="{'invisible': [('invoice_count', '=', 0)]}">
+                        <field name="invoice_count" widget="statinfo" string="Invoices"/>
+                    </button>
+                </div>
+            </xpath>
+            <xpath expr="//form/group[1]/group[1]/field[@name='invoice']" position="attributes">
+                <attribute name="attrs"/>
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <field name="total" position="after">
+                <field name="invoiced_amount"
+                   class="oe_subtotal_footer_separator"
+                   widget="monetary"
+                   options="{'currency_field': 'currency_id'}"/>
+            </field>
+        </field>
+    </record>
+</odoo>

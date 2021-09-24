@@ -1,0 +1,3 @@
+- Generate an invoice from a settlement
+- Open the invoice and change the amount
+- Go back back to settlement and invoice again
