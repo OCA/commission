@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-22 08:15+0000\n"
-"PO-Revision-Date: 2021-07-06 16:48+0000\n"
+"PO-Revision-Date: 2021-09-24 15:34+0000\n"
 "Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -175,7 +175,7 @@ msgstr "Annulla"
 #. module: sale_commission
 #: selection:sale.commission.settlement,state:0
 msgid "Canceled"
-msgstr "Cancellato"
+msgstr "Annullato"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:52
