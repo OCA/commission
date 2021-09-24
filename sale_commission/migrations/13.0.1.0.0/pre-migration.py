@@ -38,6 +38,17 @@ _column_renames = {
     "sale_commission_settlement_line": [("invoice_line_id", None)],
 }
 
+_field_adds = [
+    (
+        "invoice_line_id",
+        "sale.commission.settlement.line",
+        "sale_commission_settlement_line",
+        "many2one",
+        False,
+        "sale_commission",
+    ),
+]
+
 
 @openupgrade.migrate()
 def migrate(env, version):
@@ -49,3 +60,4 @@ def migrate(env, version):
             )
     openupgrade.rename_fields(env, renamed_fields)
     openupgrade.rename_columns(env.cr, _column_renames)
+    openupgrade.add_fields(env, _field_adds)
