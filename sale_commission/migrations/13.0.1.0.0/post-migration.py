@@ -33,6 +33,15 @@ def migrate(env, version):
     )
     openupgrade.logged_query(
         env.cr,
+        """
+        UPDATE sale_commission_settlement scs
+        SET invoice_id = am.id
+        FROM account_move am
+        WHERE am.old_invoice_id = scs.invoice
+        """,
+    )
+    openupgrade.logged_query(
+        env.cr,
         sql.SQL(
             """
         UPDATE sale_commission_settlement_line scsl
@@ -41,4 +50,24 @@ def migrate(env, version):
         WHERE aml.old_invoice_line_id = scsl.{}
     """
         ).format(sql.Identifier(openupgrade.get_legacy_name("invoice_line_id"))),
+    )
+    openupgrade.logged_query(
+        env.cr,
+        """
+            UPDATE account_move am
+            SET commission_total = ai.commission_total
+            FROM account_invoice ai
+            WHERE ai.id = am.old_invoice_id
+                AND ai.commission_total IS NOT NULL
+                AND ai.commission_total != 0.0
+        """,
+    )
+    openupgrade.logged_query(
+        env.cr,
+        """
+            UPDATE account_move_line aml
+            SET commission_free = ail.commission_free
+            FROM account_invoice_line ail
+            WHERE aml.old_invoice_line_id = ail.id AND ail.commission_free
+        """,
     )

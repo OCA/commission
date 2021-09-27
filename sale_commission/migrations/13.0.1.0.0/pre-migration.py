@@ -47,6 +47,30 @@ _field_adds = [
         False,
         "sale_commission",
     ),
+    (
+        "invoice_id",
+        "sale.commission.settlement",
+        "sale_commission_settlement",
+        "many2one",
+        False,
+        "sale_commission",
+    ),
+    (
+        "commission_total",
+        "account.move",
+        "account_move",
+        "float",
+        False,
+        "sale_commission",
+    ),
+    (
+        "commission_free",
+        "account.move.line",
+        "account_move_line",
+        "boolean",
+        False,
+        "sale_commission",
+    ),
 ]
 
 
