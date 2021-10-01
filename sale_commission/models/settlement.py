@@ -47,12 +47,7 @@ class Settlement(models.Model):
         string="Generated invoice",
         readonly=True,
     )
-    # TODO: To be removed
-    invoice_id = fields.Many2one(
-        store=True,
-        comodel_name="account.move",
-        compute="_compute_invoice_id",
-    )
+    invoice_id = fields.Many2one(comodel_name="account.move")
     currency_id = fields.Many2one(
         comodel_name="res.currency", readonly=True, default=_default_currency
     )
@@ -66,11 +61,6 @@ class Settlement(models.Model):
     def _compute_total(self):
         for record in self:
             record.total = sum(record.mapped("line_ids.settled_amount"))
-
-    @api.depends("invoice_line_ids")
-    def _compute_invoice_id(self):
-        for record in self:
-            record.invoice_id = record.invoice_line_ids[:1].move_id
 
     def action_cancel(self):
         if any(x.state != "settled" for x in self):
@@ -174,7 +164,15 @@ class Settlement(models.Model):
         invoices.sudo().filtered(lambda m: m.amount_total < 0).with_context(
             include_settlement=True
         ).action_switch_invoice_into_refund_credit_note()
-        self.write({"state": "invoiced"})
+        for settlement in self:
+            settlement.write(
+                {
+                    "state": "invoiced",
+                    "invoice_id": invoices.filtered(
+                        lambda i: i.settlement_id == settlement
+                    ),
+                }
+            )
         return invoices
 
 
