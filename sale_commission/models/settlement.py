@@ -125,8 +125,12 @@ class Settlement(models.Model):
                     date_to.strftime(lang.date_format),
                 )
                 line_form.settlement_id = settlement
+                settlement._post_process_line(line_form)
         vals = move_form._values_to_save(all_fields=True)
         return vals
+
+    def _post_process_line(self, line_form):
+        pass
 
     def _get_invoice_grouping_keys(self):
         return ["company_id", "agent_id"]
