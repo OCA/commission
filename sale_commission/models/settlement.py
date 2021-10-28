@@ -151,11 +151,13 @@ class Settlement(models.Model):
             settlements = groupby(
                 self.sorted(
                     key=lambda x: [
-                        x[grouping_key] for grouping_key in invoice_grouping_keys
+                        x._fields[grouping_key].convert_to_write(x[grouping_key], x)
+                        for grouping_key in invoice_grouping_keys
                     ],
                 ),
                 key=lambda x: [
-                    x[grouping_key] for grouping_key in invoice_grouping_keys
+                    x._fields[grouping_key].convert_to_write(x[grouping_key], x)
+                    for grouping_key in invoice_grouping_keys
                 ],
             )
             grouped_settlements = [
