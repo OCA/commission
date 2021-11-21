@@ -98,10 +98,11 @@ class Settlement(models.Model):
         return self[0].agent_id
 
     def _prepare_invoice(self, journal, product, date=False):
-        move_type = "in_invoice" if sum(self.mapped("total")) >= 0 else "in_refund"
+
         move_form = Form(
-            self.env["account.move"].with_context(default_move_type=move_type)
+            self.env["account.move"].with_context(default_move_type="in_invoice")
         )
+
         if date:
             move_form.invoice_date = date
         partner = self._get_invoice_partner()
@@ -110,7 +111,7 @@ class Settlement(models.Model):
         for settlement in self:
             with move_form.invoice_line_ids.new() as line_form:
                 line_form.product_id = product
-                line_form.quantity = 1
+                line_form.quantity = -1 if settlement.total < 0 else 1
                 line_form.price_unit = abs(settlement.total)
                 # Put period string
                 partner = self.agent_id
@@ -170,6 +171,9 @@ class Settlement(models.Model):
             invoice_vals = settlement._prepare_invoice(journal, product, date)
             invoice_vals_list.append(invoice_vals)
         invoices = self.env["account.move"].create(invoice_vals_list)
+        invoices.sudo().filtered(lambda m: m.amount_total < 0).with_context(
+            include_settlement=True
+        ).action_switch_invoice_into_refund_credit_note()
         self.write({"state": "invoiced"})
         return invoices
 
