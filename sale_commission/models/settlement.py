@@ -14,7 +14,18 @@ class Settlement(models.Model):
     def _default_currency(self):
         return self.env.user.company_id.currency_id.id
 
-    name = fields.Char("Name")
+    @api.depends('agent_id', 'date_from', 'date_to')
+    def _compute_name(self):
+        for settlement in self:
+            lang = self.env["res.lang"].search(
+                [("code", "=", settlement.agent_id.lang or self.env.context.get("lang", "en_US"))]
+            )
+            settlement.name = "%s: %s" % (settlement.agent_id.display_name, _("Period: from %s to %s") % (
+                settlement.date_from.strftime(lang.date_format),
+                settlement.date_to.strftime(lang.date_format),
+            ))
+
+    name = fields.Char("Name", compute='_compute_name', store=True)
     total = fields.Float(compute="_compute_total", readonly=True, store=True)
     date_from = fields.Date(string="From")
     date_to = fields.Date(string="To")
@@ -92,7 +103,70 @@ class Settlement(models.Model):
             "context": {"settlement_ids": self.ids},
         }
 
-    def _prepare_invoice(self, journal, product, date=False):
+    def _prepare_invoice_lines(self, move_form, product, detailed_invoice):
+        self.ensure_one()
+        partner = self.agent_id
+        lang = self.env["res.lang"].search(
+            [("code", "=", partner.lang or self.env.context.get("lang", "en_US"))]
+        )
+        date_from = fields.Date.from_string(self.date_from)
+        date_to = fields.Date.from_string(self.date_to)
+        if detailed_invoice == 'no_details':
+            with move_form.invoice_line_ids.new() as line_form:
+                line_form.product_id = product
+                line_form.quantity = 1
+                line_form.price_unit = abs(self.total)
+                line_form.name += "\n" + _("Period: from %s to %s") % (
+                    date_from.strftime(lang.date_format),
+                    date_to.strftime(lang.date_format),
+                )
+                line_form.currency_id = (
+                    self.currency_id
+                )  # todo or compute agent currency_id?
+        elif detailed_invoice == 'line_details':
+            for line in self.line_ids:
+                with move_form.invoice_line_ids.new() as line_form:
+                    line_form.product_id = product
+                    line_form.quantity = 1
+                    line_form.price_unit = line.settled_amount
+                    line_form.name = "%s: %s\n%s" % (
+                        line.invoice_line_id.move_id.name,
+                        line.invoice_line_id.name,
+                        _("Period: from %s to %s") % (
+                            date_from.strftime(lang.date_format),
+                            date_to.strftime(lang.date_format),
+                        )
+                    )
+                    line_form.currency_id = (
+                        self.currency_id
+                    )  # todo or compute agent currency_id?
+        elif detailed_invoice == 'invoice_details':
+            invoices = {}
+            for line in self.line_ids:
+                if line.invoice_line_id.move_id.id not in invoices:
+                    invoices[line.invoice_line_id.move_id.id] = {
+                        'invoice': line.invoice_line_id.move_id,
+                        'amount': 0.0,
+                    }
+                invoices[line.invoice_line_id.move_id.id]['amount'] += line.settled_amount
+            for invoice_id in invoices:
+                invoice = invoices[invoice_id]
+                with move_form.invoice_line_ids.new() as line_form:
+                    line_form.product_id = product
+                    line_form.quantity = 1
+                    line_form.price_unit = invoice['amount']
+                    line_form.name = "%s: %s" % (
+                        invoice['invoice'].name,
+                        _("Period: from %s to %s") % (
+                            date_from.strftime(lang.date_format),
+                            date_to.strftime(lang.date_format),
+                        )
+                    )
+                    line_form.currency_id = (
+                        self.currency_id
+                    )  # todo or compute agent currency_id?
+
+    def _prepare_invoice(self, journal, product, date=False, detailed_invoice=False):
         self.ensure_one()
         move_type = "in_invoice" if self.total >= 0 else "in_refund"
         move_form = Form(
@@ -102,32 +176,15 @@ class Settlement(models.Model):
             move_form.invoice_date = date
         move_form.partner_id = self.agent_id
         move_form.journal_id = journal
-        with move_form.invoice_line_ids.new() as line_form:
-            line_form.product_id = product
-            line_form.quantity = 1
-            line_form.price_unit = abs(self.total)
-            # Put period string
-            partner = self.agent_id
-            lang = self.env["res.lang"].search(
-                [("code", "=", partner.lang or self.env.context.get("lang", "en_US"))]
-            )
-            date_from = fields.Date.from_string(self.date_from)
-            date_to = fields.Date.from_string(self.date_to)
-            line_form.name += "\n" + _("Period: from %s to %s") % (
-                date_from.strftime(lang.date_format),
-                date_to.strftime(lang.date_format),
-            )
-            line_form.currency_id = (
-                self.currency_id
-            )  # todo or compute agent currency_id?
+        self._prepare_invoice_lines(move_form, product, detailed_invoice)
         vals = move_form._values_to_save(all_fields=True)
         vals["settlement_id"] = self.id
         return vals
 
-    def make_invoices(self, journal, product, date=False):
+    def make_invoices(self, journal, product, date=False, detailed_invoice='no_details'):
         invoice_vals_list = []
         for settlement in self:
-            invoice_vals = settlement._prepare_invoice(journal, product, date)
+            invoice_vals = settlement._prepare_invoice(journal, product, date, detailed_invoice)
             invoice_vals_list.append(invoice_vals)
         invoices = self.env["account.move"].create(invoice_vals_list)
         self.write({"state": "invoiced"})

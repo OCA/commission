@@ -26,6 +26,14 @@ class SaleCommissionMakeInvoice(models.TransientModel):
     product_id = fields.Many2one(
         string="Product for invoicing", comodel_name="product.product", required=True
     )
+    detailed_invoice = fields.Selection([
+        ('no_details', _('No Details')),
+        ('line_details', _('All lines')),
+        ('invoice_details', _('Group by invoices')),
+    ],
+        string='Detailed Invoice',
+        default='no_details',
+    )
     settlement_ids = fields.Many2many(
         comodel_name="sale.commission.settlement",
         relation="sale_commission_make_invoice_settlement_rel",
@@ -51,7 +59,7 @@ class SaleCommissionMakeInvoice(models.TransientModel):
                 ]
             )
         invoices = settlements.make_invoices(
-            self.journal_id, self.product_id, date=self.date
+            self.journal_id, self.product_id, date=self.date, detailed_invoice=self.detailed_invoice
         )
         # go to results
         if len(settlements):
