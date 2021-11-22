@@ -103,6 +103,31 @@ class Settlement(models.Model):
             "context": {"settlement_ids": self.ids},
         }
 
+    def _line_name_no_details(self, date_from, date_to, lang):
+        return "\n" + _("Period: from %s to %s") % (
+            date_from.strftime(lang.date_format),
+            date_to.strftime(lang.date_format),
+        )
+
+    def _line_name_line_details(self, line, date_from, date_to, lang):
+        return "%s: %s\n%s" % (
+            line.invoice_line_id.move_id.name,
+            line.invoice_line_id.name,
+            _("Period: from %s to %s") % (
+                date_from.strftime(lang.date_format),
+                date_to.strftime(lang.date_format),
+            )
+        )
+
+    def _line_name_detailed_invoice(self, invoice, date_from, date_to, lang):
+        return "%s: %s" % (
+            invoice.name,
+            _("Period: from %s to %s") % (
+                date_from.strftime(lang.date_format),
+                date_to.strftime(lang.date_format),
+            )
+        )
+
     def _prepare_invoice_lines(self, move_form, product, detailed_invoice):
         self.ensure_one()
         partner = self.agent_id
@@ -116,10 +141,7 @@ class Settlement(models.Model):
                 line_form.product_id = product
                 line_form.quantity = 1
                 line_form.price_unit = abs(self.total)
-                line_form.name += "\n" + _("Period: from %s to %s") % (
-                    date_from.strftime(lang.date_format),
-                    date_to.strftime(lang.date_format),
-                )
+                line_form.name += self._line_name_no_details(date_from, date_to, lang)
                 line_form.currency_id = (
                     self.currency_id
                 )  # todo or compute agent currency_id?
@@ -129,14 +151,7 @@ class Settlement(models.Model):
                     line_form.product_id = product
                     line_form.quantity = 1
                     line_form.price_unit = line.settled_amount
-                    line_form.name = "%s: %s\n%s" % (
-                        line.invoice_line_id.move_id.name,
-                        line.invoice_line_id.name,
-                        _("Period: from %s to %s") % (
-                            date_from.strftime(lang.date_format),
-                            date_to.strftime(lang.date_format),
-                        )
-                    )
+                    line_form.name = self._line_name_line_details(line, date_from, date_to, lang)
                     line_form.currency_id = (
                         self.currency_id
                     )  # todo or compute agent currency_id?
@@ -155,13 +170,7 @@ class Settlement(models.Model):
                     line_form.product_id = product
                     line_form.quantity = 1
                     line_form.price_unit = invoice['amount']
-                    line_form.name = "%s: %s" % (
-                        invoice['invoice'].name,
-                        _("Period: from %s to %s") % (
-                            date_from.strftime(lang.date_format),
-                            date_to.strftime(lang.date_format),
-                        )
-                    )
+                    line_form.name = self._line_name_detailed_invoice(invoice['invoice'], date_from, date_to, lang)
                     line_form.currency_id = (
                         self.currency_id
                     )  # todo or compute agent currency_id?

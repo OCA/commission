@@ -33,6 +33,7 @@ class SaleCommissionMakeInvoice(models.TransientModel):
     ],
         string='Detailed Invoice',
         default='no_details',
+        required=True,
     )
     settlement_ids = fields.Many2many(
         comodel_name="sale.commission.settlement",
