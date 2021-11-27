@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo13-addon-hr_commission',
         'odoo13-addon-sale_commission',
+        'odoo13-addon-sale_commission_delegated_partner',
         'odoo13-addon-sale_commission_formula',
         'odoo13-addon-sale_commission_pricelist',
         'odoo13-addon-sale_commission_salesman',
