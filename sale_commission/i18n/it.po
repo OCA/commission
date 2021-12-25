@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-22 08:15+0000\n"
-"PO-Revision-Date: 2021-12-25 01:39+0000\n"
+"PO-Revision-Date: 2021-12-25 17:39+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -384,13 +384,12 @@ msgstr "Data fattura"
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_search
 msgid "Date from month"
-msgstr "Data dal mese"
+msgstr "Mese dalla data"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_line_search
-#, fuzzy
 msgid "Date month"
-msgstr "Mese"
+msgstr "Mese data"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_mixin_agent_only
@@ -762,7 +761,7 @@ msgstr "Analisi provvigioni di vendita"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_analysis_report
 msgid "Sale Commission Analysis Report"
-msgstr "Resoconto analisi provvigioni d vendita"
+msgstr "Resoconto analisi provvigioni vendite"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__commission_id
@@ -933,18 +932,17 @@ msgstr ""
 
 #. module: sale_commission
 #: model_terms:ir.actions.act_window,help:sale_commission.action_sale_commission_analysis_report
-#, fuzzy
 msgid ""
 "This report performs analysis on your commissions added in invoice lines. "
 "You can check the amount and lines that will be settled by date, product, "
 "product category, aget, etc. Use this report to perform analysis on invoice "
 "lines agents not beeing settled yet."
 msgstr ""
-"Questo report esegue un'analisi sulle commissioni aggiunte alle righe "
+"Il resoconto esegue un'analisi sulle provvigioni aggiunte alle righe "
 "fattura. È possibile controllare gli importi e le righe che verranno "
-"approvvigionati per data, prodotto, categoria prodotto, agente, etc. Usare "
-"questo report per eseguire analisi sulle righe fattura non ancora "
-"approvvigionate."
+"regolate per data, prodotto, categoria prodotto, agente ecc... Usare il "
+"resoconto per effettuare analisi su agenti con righe fattura non ancora "
+"regolate."
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_line_search
