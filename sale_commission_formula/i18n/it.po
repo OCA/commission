@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-14 15:14+0000\n"
-"PO-Revision-Date: 2019-07-19 08:43+0000\n"
-"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
+"PO-Revision-Date: 2021-12-25 17:39+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
@@ -46,14 +46,13 @@ msgstr ""
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-#, fuzzy
 msgid "Account Move Line common fields"
-msgstr "Campi comuni righe fattura"
+msgstr "Campi comuni righe movimenti contabili"
 
 #. module: sale_commission_formula
 #: model:ir.model,name:sale_commission_formula.model_sale_commission
 msgid "Commission in sales"
-msgstr "Commissioni nelle Vendite"
+msgstr "Provvigione nelle vendite"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
@@ -87,6 +86,8 @@ msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
 msgstr ""
+"Modello mixin per avere righe di provvigione agente in qualsiasi oggetto che "
+"erediti dall'attuale"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
@@ -96,10 +97,11 @@ msgstr "Quantità"
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 msgid "Sale Oder Line common fields"
-msgstr "Campi Usuali Delle Righe di Ordine di Vendita"
+msgstr "Campi comuni righe ordini di vendita"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+#, fuzzy
 msgid "Subtotal"
 msgstr "Subtotale"
 
