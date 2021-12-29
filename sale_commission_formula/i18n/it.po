@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-14 15:14+0000\n"
-"PO-Revision-Date: 2021-12-25 17:39+0000\n"
+"PO-Revision-Date: 2021-12-30 00:39+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -21,7 +21,6 @@ msgstr ""
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-#, fuzzy
 msgid ""
 "<span class=\"instructions\">\n"
 "  Use 'line' to access all the line fields.\n"
@@ -34,14 +33,13 @@ msgid ""
 "                        </span>"
 msgstr ""
 "<span class=\"instructions\">\n"
-"  Utilizza 'line' per accedere a tutti i campi della riga.\n"
-"  Visto che i nomi dei campi potrebbero variare, potrebbe essere necessario "
-"differenziare\n"
-"  le formule per sale.order.line e account.invoice.line.\n"
-"  È possibile, per esempio, usare line._name == 'sale.order.line'\n"
-"  or line._name == 'account.invoice.line'.\n"
+"  Utilizzare 'line' per accedere a tutti i campi della riga.\n"
+"  Dato che i nomi dei campi possono variare, è necessario differenziare\n"
+"  le formule per sale.order.line e account.move.line.\n"
+"  È possibile, ad esempio, usare line._name == 'sale.order.line'\n"
+"  oppure line._name == 'account.move.line'.\n"
 "\n"
-"  Utilizzare 'result' per ritornare l'importo della commissione.\n"
+"  Utilizzare 'result' per restituire l'importo della provvigione.\n"
 "                        </span>"
 
 #. module: sale_commission_formula
@@ -101,7 +99,6 @@ msgstr "Campi comuni righe ordini di vendita"
 
 #. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
-#, fuzzy
 msgid "Subtotal"
 msgstr "Subtotale"
 
