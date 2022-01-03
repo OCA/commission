@@ -91,15 +91,18 @@ class TestSaleCommissionDelegatePartner(SavepointCase):
         payment.with_context(context).create_invoices()
         self.assertEqual(len(sale_order.invoice_ids), 1)
         for invoice in sale_order.invoice_ids:
-            invoice.post()
+            invoice.flush()
+            invoice.action_post()
             self.assertEqual(invoice.state, "posted")
 
     def test_settlement(self):
         self._create_sale_order(
-            self.agent_monthly, self.commission_net_invoice,
+            self.agent_monthly,
+            self.commission_net_invoice,
         )
         self._create_sale_order(
-            self.agent_monthly_02, self.commission_net_invoice,
+            self.agent_monthly_02,
+            self.commission_net_invoice,
         )
         wizard = self.make_settle_model.create(
             {
