@@ -43,7 +43,7 @@ class TestSaleCommissionSalesman(SavepointCase):
             {
                 "partner_id": cls.partner.id,
                 "invoice_user_id": cls.salesman.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
             }
         )
 
