@@ -14,7 +14,7 @@ class AccountMoveLine(models.Model):
         super()._compute_agent_ids()
         for record in self.filtered(
             lambda x: x.move_id.partner_id
-            and x.move_id.type[:3] == "out"
+            and x.move_id.move_type[:3] == "out"
             and x.product_id
             and not x.agent_ids
         ):
