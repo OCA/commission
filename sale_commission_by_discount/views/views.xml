@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Modified sale_commission views -->
+    <record model="ir.ui.view" id="sale_commission_form_ooops_mod">
+        <field name="name">Sales commissions form ooops</field>
+        <field name="model">sale.commission</field>
+        <field name="inherit_id" ref="sale_commission.sale_commission_form" />
+        <field name="arch" type="xml">
+            <field name="commission_type" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <xpath expr="//field[@name='section_ids']/.." position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <form position="inside">
+                <field name="item_ids" nolabel="1">
+                    <tree string="Items">
+                        <field name="name" string="Applied On" />
+                        <field name="commission_value" />
+                        <field name="discount_from" />
+                        <field name="discount_to" />
+                    </tree>
+                </field>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_sale_order_line_tree_ooops_mod">
+        <field name="name">sale.order.line.agent.tree_ooops_mod</field>
+        <field name="model">sale.order.line.agent</field>
+        <field name="inherit_id" ref="sale_commission.view_sale_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="amount" position="before">
+                <field name="applied_on_name" string="Applied On" />
+                <field name="discount_from" string="Disc. From" />
+                <field name="discount_to" string="Disc. To" />
+                <field name="commission_type" string="Price Type" />
+                <field name="fixed_amount" string="Amount (fixed)" />
+                <field name="percent_amount" string="Amount (%)" />
+                <field name="discount" string="Applied Disc. (%)" />
+            </field>
+            <field name="amount" position="replace">
+                <field name="amount" string="Final Amount" />
+            </field>
+        </field>
+    </record>
+    <!-- New views -->
+    <record id="commission_item_form_view" model="ir.ui.view">
+        <field name="name">commission.item.form</field>
+        <field name="model">commission.item</field>
+        <field name="arch" type="xml">
+            <form string="Commission Items">
+                <sheet>
+                    <h1>
+                        <field name="name" />
+                    </h1>
+                    <group>
+                        <group name="pricelist_rule_target">
+                            <field name="company_id" invisible="1" />
+                            <field name="applied_on" widget="radio" />
+                            <field
+                                name="categ_id"
+                                attrs="{
+                                      'invisible':[('applied_on', '!=', '2_product_category')],
+                                      'required':[('applied_on', '=', '2_product_category')]}"
+                                options="{'no_create':1}"
+                            />
+                            <field
+                                name="product_tmpl_id"
+                                attrs="{
+                                        'invisible':[('applied_on', '!=', '1_product')],
+                                        'required':[('applied_on', '=', '1_product')]}"
+                                options="{'no_create':1}"
+                            />
+                            <field
+                                name="product_id"
+                                attrs="{
+                                        'invisible':[('applied_on', '!=', '0_product_variant')],
+                                        'required':[('applied_on', '=', '0_product_variant')]}"
+                                options="{'no_create':1}"
+                            />
+                        </group>
+                        <group string="Commission by discount">
+                            <field
+                                name="discount_from"
+                                attrs="{'required': [('discount_to', '>', 0)]}"
+                            />
+                            <field
+                                name="discount_to"
+                                attrs="{'required': [('discount_from', '>',0)]}"
+                            />
+                        </group>
+                    </group>
+                    <group
+                        string="Commission Computation"
+                        name="commission_computation"
+                        groups="sales_team.group_sale_manager"
+                    >
+                        <group name="commission_rule_method">
+                            <field
+                                name="commission_type"
+                                string="Compute Price"
+                                widget="radio"
+                            />
+                        </group>
+                        <group name="commission_rule_base">
+                            <field
+                                name="fixed_amount"
+                                attrs="{'invisible':[('commission_type', '!=', 'fixed')]}"
+                            />
+                            <label
+                                for="percent_amount"
+                                attrs="{'invisible':[('commission_type', '!=', 'percentage')]}"
+                            />
+                            <div
+                                attrs="{'invisible':[('commission_type', '!=', 'percentage')]}"
+                            >
+                                <field
+                                    name="percent_amount"
+                                    class="oe_inline"
+                                    attrs="{'invisible':[('commission_type', '!=', 'percentage')]}"
+                                />
+                                %%
+                            </div>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="commission_item_action" model="ir.actions.act_window">
+        <field name="name">Commission Items</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">commission.item</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,347 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_commission_by_discount
+#
+# Francesco @ Ooops <francesco.foresti@ooops404.com>, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-22 13:21+0000\n"
+"PO-Revision-Date: 2021-12-30 13:35+0000\n"
+"Last-Translator: Francesco @ Ooops <francesco.foresti@ooops404.com>\n"
+"Language-Team: Italian <http://weblate.ops404.it/projects/"
+"ooops-onboarding-14-0/sale_commission_by_discount/it/>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.4-dev\n"
+
+#. module: sale_commission_by_discount
+#: model:ir.model,name:sale_commission_by_discount.model_sale_order_line_agent
+msgid "Agent detail of commission line in order lines"
+msgstr "Dettaglio commissione agente sulle righe ordine"
+
+#. module: sale_commission_by_discount
+#: code:addons/sale_commission_by_discount/models/commission.py:0
+#: model:ir.model.fields.selection,name:sale_commission_by_discount.selection__commission_item__applied_on__3_global
+#, python-format
+msgid "All Products"
+msgstr "Tutti i prodotti"
+
+#. module: sale_commission_by_discount
+#: model_terms:ir.ui.view,arch_db:sale_commission_by_discount.view_sale_order_line_tree_ooops_mod
+msgid "Amount (%)"
+msgstr "Valore (%)"
+
+#. module: sale_commission_by_discount
+#: model_terms:ir.ui.view,arch_db:sale_commission_by_discount.view_sale_order_line_tree_ooops_mod
+msgid "Amount (fixed)"
+msgstr "Valore (fisso)"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_sale_order_line_agent__applied_commission_item_id
+msgid "Applied Commission Item"
+msgstr "Applicato a"
+
+#. module: sale_commission_by_discount
+#: model_terms:ir.ui.view,arch_db:sale_commission_by_discount.view_sale_order_line_tree_ooops_mod
+msgid "Applied Disc. (%)"
+msgstr "Sc. Applicato (%)"
+
+#. module: sale_commission_by_discount
+#: model_terms:ir.ui.view,arch_db:sale_commission_by_discount.sale_commission_form_ooops_mod
+#: model_terms:ir.ui.view,arch_db:sale_commission_by_discount.view_sale_order_line_tree_ooops_mod
+msgid "Applied On"
+msgstr "Applicato a"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item__applied_on
+msgid "Apply On"
+msgstr "Applica a"
+
+#. module: sale_commission_by_discount
+#: code:addons/sale_commission_by_discount/models/commission.py:0
+#, python-format
+msgid "Category: %s"
+msgstr "Categoria: %s"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item__commission_id
+msgid "Commission"
+msgstr "Commissione"
+
+#. module: sale_commission_by_discount
+#: model_terms:ir.ui.view,arch_db:sale_commission_by_discount.commission_item_form_view
+msgid "Commission Computation"
+msgstr "Calcolo commissione"
+
+#. module: sale_commission_by_discount
+#: model:ir.model,name:sale_commission_by_discount.model_commission_item
+msgid "Commission Item"
+msgstr "Riga commissione"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,help:sale_commission_by_discount.field_commission_item__applied_on
+msgid "Commission Item applicable on selected option"
+msgstr "Riga commissione applicabile all'opzione selezionata"
+
+#. module: sale_commission_by_discount
+#: model:ir.actions.act_window,name:sale_commission_by_discount.commission_item_action
+#: model_terms:ir.ui.view,arch_db:sale_commission_by_discount.commission_item_form_view
+msgid "Commission Items"
+msgstr "Righe commissione"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item__commission_type
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_sale_order_line_agent__commission_type
+msgid "Commission Type"
+msgstr "Tipo Commissione"
+
+#. module: sale_commission_by_discount
+#: model_terms:ir.ui.view,arch_db:sale_commission_by_discount.commission_item_form_view
+msgid "Commission by discount"
+msgstr "Commissione per sconto"
+
+#. module: sale_commission_by_discount
+#: model:ir.model,name:sale_commission_by_discount.model_sale_commission
+msgid "Commission in sales"
+msgstr "Commissione in vendite"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item__company_id
+msgid "Company"
+msgstr "Azienda"
+
+#. module: sale_commission_by_discount
+#: model_terms:ir.ui.view,arch_db:sale_commission_by_discount.commission_item_form_view
+msgid "Compute Price"
+msgstr "Calcola prezzo"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item__currency_id
+msgid "Currency"
+msgstr "Valuta"
+
+#. module: sale_commission_by_discount
+#: model_terms:ir.ui.view,arch_db:sale_commission_by_discount.view_sale_order_line_tree_ooops_mod
+msgid "Disc. From"
+msgstr "Sc. da"
+
+#. module: sale_commission_by_discount
+#: model_terms:ir.ui.view,arch_db:sale_commission_by_discount.view_sale_order_line_tree_ooops_mod
+msgid "Disc. To"
+msgstr "Sc. a"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_sale_order_line_agent__discount
+msgid "Discount (%)"
+msgstr "Sc. (%)"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item__discount_from
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_sale_order_line_agent__discount_from
+msgid "Discount From"
+msgstr "Sconto da"
+
+#. module: sale_commission_by_discount
+#: code:addons/sale_commission_by_discount/models/commission.py:0
+#, python-format
+msgid "Discount From should be lower than the Discount To."
+msgstr "\"Sconto da\" deve essere inferiore di \"Sconto a\""
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item__discount_to
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_sale_order_line_agent__discount_to
+msgid "Discount To"
+msgstr "Sconto a"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item__display_name
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_sale_commission__display_name
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_sale_commission_line_mixin__display_name
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_sale_order_line_agent__display_name
+msgid "Display Name"
+msgstr "Nome Visualizzato"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,help:sale_commission_by_discount.field_commission_item__name
+#: model:ir.model.fields,help:sale_commission_by_discount.field_sale_order_line_agent__applied_on_name
+msgid "Explicit rule name for this commission line."
+msgstr "Nome esplicito per la regola di questa riga commissione."
+
+#. module: sale_commission_by_discount
+#: model_terms:ir.ui.view,arch_db:sale_commission_by_discount.view_sale_order_line_tree_ooops_mod
+msgid "Final Amount"
+msgstr "Importo"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields.selection,name:sale_commission_by_discount.selection__commission_item__commission_type__fixed
+msgid "Fixed"
+msgstr "Fisso"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item__fixed_amount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_sale_order_line_agent__fixed_amount
+msgid "Fixed Amount"
+msgstr "Importo fisso"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item__id
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_sale_commission__id
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_sale_commission_line_mixin__id
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_sale_order_line_agent__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_sale_commission__item_ids
+msgid "Item"
+msgstr "Riga"
+
+#. module: sale_commission_by_discount
+#: model_terms:ir.ui.view,arch_db:sale_commission_by_discount.sale_commission_form_ooops_mod
+msgid "Items"
+msgstr "Righe"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item____last_update
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_sale_commission____last_update
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_sale_commission_line_mixin____last_update
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_sale_order_line_agent____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: sale_commission_by_discount
+#: model:ir.model,name:sale_commission_by_discount.model_sale_commission_line_mixin
+msgid ""
+"Mixin model for having commission agent lines in any object inheriting from "
+"this one"
+msgstr ""
+"Modello mixin per avere le righe commissione agente in qualsiasi oggetto che "
+"le erediti da questo"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item__name
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_sale_order_line_agent__applied_on_name
+msgid "Name"
+msgstr "Nome"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields.selection,name:sale_commission_by_discount.selection__commission_item__commission_type__percentage
+msgid "Percentage"
+msgstr "Percentuale"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item__percent_amount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_sale_order_line_agent__percent_amount
+msgid "Percentage Amount"
+msgstr "Importo percentuale"
+
+#. module: sale_commission_by_discount
+#: code:addons/sale_commission_by_discount/models/commission.py:0
+#, python-format
+msgid "Please specify the category for which this rule should be applied"
+msgstr "Specificare la categoria a cui applicare questa regola."
+
+#. module: sale_commission_by_discount
+#: code:addons/sale_commission_by_discount/models/commission.py:0
+#, python-format
+msgid "Please specify the product for which this rule should be applied"
+msgstr "Specificare il prodotto a cui applicare questa regola."
+
+#. module: sale_commission_by_discount
+#: code:addons/sale_commission_by_discount/models/commission.py:0
+#, python-format
+msgid ""
+"Please specify the product variant for which this rule should be applied"
+msgstr "Specificare la variante prodotto a cui applicare questa regola."
+
+#. module: sale_commission_by_discount
+#: model_terms:ir.ui.view,arch_db:sale_commission_by_discount.view_sale_order_line_tree_ooops_mod
+msgid "Price Type"
+msgstr "Tipo"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item__product_tmpl_id
+#: model:ir.model.fields.selection,name:sale_commission_by_discount.selection__commission_item__applied_on__1_product
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item__categ_id
+#: model:ir.model.fields.selection,name:sale_commission_by_discount.selection__commission_item__applied_on__2_product_category
+msgid "Product Category"
+msgstr "Categoria prodotto"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item__product_id
+#: model:ir.model.fields.selection,name:sale_commission_by_discount.selection__commission_item__applied_on__0_product_variant
+msgid "Product Variant"
+msgstr "Variante prodotto"
+
+#. module: sale_commission_by_discount
+#: code:addons/sale_commission_by_discount/models/commission.py:0
+#, python-format
+msgid "Product: %s"
+msgstr "Prodotto: %s"
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,help:sale_commission_by_discount.field_commission_item__categ_id
+msgid ""
+"Specify a product category if this rule only applies to products belonging "
+"to this category or its children categories. Keep empty otherwise."
+msgstr ""
+"Specificare una categoria prodotto se questa regola si applica a questa "
+"categoria o alle categorie figlie, altrimenti lasciare vuoto."
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,help:sale_commission_by_discount.field_commission_item__product_id
+msgid ""
+"Specify a product if this rule only applies to one product. Keep empty "
+"otherwise."
+msgstr ""
+"Specificare un prodotto se questa regola si applica solo ad un prodotto, "
+"altrimenti lasciare vuoto."
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,help:sale_commission_by_discount.field_commission_item__product_tmpl_id
+msgid ""
+"Specify a template if this rule only applies to one product template. Keep "
+"empty otherwise."
+msgstr ""
+"Specificare un modello prodotto se questa regola si applica solo ad un "
+"modello prodotto, altrimenti lasciare vuoto."
+
+#. module: sale_commission_by_discount
+#: model:ir.model.fields,field_description:sale_commission_by_discount.field_commission_item__commission_value
+msgid "Value"
+msgstr "Valore"
+
+#. module: sale_commission_by_discount
+#: code:addons/sale_commission_by_discount/models/commission.py:0
+#, python-format
+msgid "Variant: %s"
+msgstr "Variante: %s"
