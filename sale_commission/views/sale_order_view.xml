@@ -49,7 +49,32 @@
                     context="{'default_agent': True, 'default_customer': False, 'default_supplier': True}"
                 />
                 <field name="commission_id" />
-                <field name="amount" />
+                <field
+                    name="applied_on_name"
+                    string="Applied On"
+                    groups="sale_commission.group_agent_details"
+                />
+                <field
+                    name="commission_type"
+                    string="Price Type"
+                    groups="sale_commission.group_agent_details"
+                />
+                <field
+                    name="fixed_amount"
+                    string="Amount (fixed)"
+                    groups="sale_commission.group_agent_details"
+                />
+                <field
+                    name="percent_amount"
+                    string="Amount (%)"
+                    groups="sale_commission.group_agent_details"
+                />
+                <field
+                    name="discount"
+                    string="Applied Disc. (%)"
+                    groups="sale_commission.group_agent_details"
+                />
+                <field name="amount" string="Final Amount" />
             </tree>
         </field>
     </record>

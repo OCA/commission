@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="sale_commission_form_discount">
+        <field name="name">sales.commissions.form.discount</field>
+        <field name="model">sale.commission</field>
+        <field name="inherit_id" ref="sale_commission.sale_commission_form" />
+        <field name="arch" type="xml">
+            <field name="commission_value" position="after">
+                <field name="discount_from" />
+                <field name="discount_to" />
+            </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_sale_order_line_tree_discount">
+        <field name="name">sale.order.line.agent.tree.discount</field>
+        <field name="model">sale.order.line.agent</field>
+        <field name="inherit_id" ref="sale_commission.view_sale_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="applied_on_name" position="after">
+                <field
+                    name="discount_from"
+                    string="Disc. From"
+                    groups="sale_commission.group_agent_details"
+                />
+                <field
+                    name="discount_to"
+                    string="Disc. To"
+                    groups="sale_commission.group_agent_details"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="commission_item_form_view_discount" model="ir.ui.view">
+        <field name="name">commission.item.form.discount</field>
+        <field name="model">commission.item</field>
+        <field name="inherit_id" ref="sale_commission.commission_item_form_view"/>
+        <field name="arch" type="xml">
+            <group name="pricelist_rule_target" position="after">
+                <group string="Commission by discount">
+                    <field
+                        name="discount_from"
+                        attrs="{'required': [('discount_to', '>', 0)]}"
+                    />
+                    <field
+                        name="discount_to"
+                        attrs="{'required': [('discount_from', '>',0)]}"
+                    />
+            </group>
+            </group>
+        </field>
+    </record>
+</odoo>
