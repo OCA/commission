@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="group_agent_details" model="res.groups">
+        <field name="name">Display full agent details on sale order line</field>
+        <field name="category_id" ref="base.module_category_sales_sales" />
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+        <field name="comment">Display full agent details on sale order line</field>
+    </record>
+
+</odoo>
