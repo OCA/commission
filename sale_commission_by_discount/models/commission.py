@@ -10,7 +10,7 @@ class SaleCommissionLineMixin(models.AbstractModel):
         self, commission, subtotal, product, quantity, discount=0
     ):
         # Method replaced
-        if commission.commission_type != "prod_cat_var":
+        if commission.commission_type != "cat_prod_var":
             return super(SaleCommissionLineMixin, self)._get_commission_amount(
                 commission, subtotal, product, quantity
             )
