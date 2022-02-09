@@ -10,9 +10,9 @@
     "license": "LGPL-3",
     "depends": ["sale_commission"],  # OCA
     "data": [
-        "views/views.xml",
         "security/ir.model.access.csv",
         "security/groups.xml",
+        "views/views.xml",
     ],
     "application": False,
     "installable": True,
