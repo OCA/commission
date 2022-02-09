@@ -5,7 +5,7 @@ class SaleOrderLineAgent(models.Model):
     _inherit = "sale.order.line.agent"
 
     discount = fields.Float(related="object_id.discount")
-    applied_commission_item_id = fields.Many2one('commission.item')
+    applied_commission_item_id = fields.Many2one("commission.item")
     applied_on_name = fields.Char(related="applied_commission_item_id.name")
     discount_from = fields.Float(related="applied_commission_item_id.discount_from")
     discount_to = fields.Float(related="applied_commission_item_id.discount_to")
@@ -23,10 +23,21 @@ class SaleOrderLineAgent(models.Model):
     def _compute_amount(self):
         for line in self:
             order_line = line.object_id
-            line.amount, line.applied_commission_item_id = line._get_commission_amount(
-                line.commission_id,
-                order_line.price_subtotal,
-                order_line.product_id,
-                order_line.product_uom_qty,
-                order_line.discount
-            )
+            if line.commission_id.commission_type != "prod_cat_var":
+                line.amount = line._get_commission_amount(
+                    line.commission_id,
+                    order_line.price_subtotal,
+                    order_line.product_id,
+                    order_line.product_uom_qty,
+                )
+            else:
+                (
+                    line.amount,
+                    line.applied_commission_item_id,
+                ) = line._get_commission_amount(
+                    line.commission_id,
+                    order_line.price_subtotal,
+                    order_line.product_id,
+                    order_line.product_uom_qty,
+                    order_line.discount,
+                )
