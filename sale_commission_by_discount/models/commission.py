@@ -6,9 +6,7 @@ from odoo.tools import float_repr
 class SaleCommissionLineMixin(models.AbstractModel):
     _inherit = "sale.commission.line.mixin"  # OCA sale_commission
 
-    def _get_commission_amount(
-        self, commission, subtotal, product, quantity
-    ):
+    def _get_commission_amount(self, commission, subtotal, product, quantity):
         # Method replaced
         if commission.commission_type != "cat_prod_var":
             return super(SaleCommissionLineMixin, self)._get_commission_amount(
