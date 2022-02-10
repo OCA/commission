@@ -39,5 +39,4 @@ class SaleOrderLineAgent(models.Model):
                     order_line.price_subtotal,
                     order_line.product_id,
                     order_line.product_uom_qty,
-                    order_line.discount,
                 )

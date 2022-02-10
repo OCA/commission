@@ -7,7 +7,7 @@ class SaleCommissionLineMixin(models.AbstractModel):
     _inherit = "sale.commission.line.mixin"  # OCA sale_commission
 
     def _get_commission_amount(
-        self, commission, subtotal, product, quantity, discount=0
+        self, commission, subtotal, product, quantity
     ):
         # Method replaced
         if commission.commission_type != "cat_prod_var":
@@ -15,6 +15,7 @@ class SaleCommissionLineMixin(models.AbstractModel):
                 commission, subtotal, product, quantity
             )
         self.ensure_one()
+        discount = self.object_id.discount
         if product.commission_free or not commission:
             return 0.0, False
         item_ids = self._get_commission_items(commission, product)
