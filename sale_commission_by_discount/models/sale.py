@@ -23,20 +23,9 @@ class SaleOrderLineAgent(models.Model):
     def _compute_amount(self):
         for line in self:
             order_line = line.object_id
-            if line.commission_id.commission_type != "cat_prod_var":
-                line.amount = line._get_commission_amount(
-                    line.commission_id,
-                    order_line.price_subtotal,
-                    order_line.product_id,
-                    order_line.product_uom_qty,
-                )
-            else:
-                (
-                    line.amount,
-                    line.applied_commission_item_id,
-                ) = line._get_commission_amount(
-                    line.commission_id,
-                    order_line.price_subtotal,
-                    order_line.product_id,
-                    order_line.product_uom_qty,
-                )
+            line.amount = line._get_commission_amount(
+                line.commission_id,
+                order_line.price_subtotal,
+                order_line.product_id,
+                order_line.product_uom_qty,
+            )

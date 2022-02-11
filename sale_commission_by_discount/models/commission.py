@@ -15,10 +15,10 @@ class SaleCommissionLineMixin(models.AbstractModel):
         self.ensure_one()
         discount = self.object_id.discount
         if product.commission_free or not commission:
-            return 0.0, False
+            return 0.0
         item_ids = self._get_commission_items(commission, product)
         if not item_ids:
-            return 0.0, False
+            return 0.0
         # Check discount condition
         commission_item = False
         for item_id in item_ids:
@@ -35,19 +35,18 @@ class SaleCommissionLineMixin(models.AbstractModel):
                 break
             commission_item = False
         if not commission_item:
-            return (
-                0.0,
-                False,
-            )  # all commissionitems was rejected because of dicount condition
+            # all commission items was rejected because of discount condition
+            return 0.0
         if commission.amount_base_type == "net_amount":
             # If subtotal (sale_price * quantity) is less than
             # standard_price * quantity, it means that we are selling at
             # lower price than we bought, so set amount_base to 0
             subtotal = max([0, subtotal - product.standard_price * quantity])
+        self.applied_commission_item_id = commission_item
         if commission_item.commission_type == "fixed":
-            return commission_item.fixed_amount, commission_item
+            return commission_item.fixed_amount
         elif commission_item.commission_type == "percentage":
-            return subtotal * (commission_item.percent_amount / 100.0), commission_item
+            return subtotal * (commission_item.percent_amount / 100.0)
 
     def _get_commission_items(self, commission, product):
         categ_ids = {}
