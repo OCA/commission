@@ -95,4 +95,14 @@
             </field>
         </field>
     </record>
+    <record id="view_account_invoice_filter_agent" model="ir.ui.view">
+        <field name="name">view_account_invoice_filter_agent</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="partner_agent_ids" operator="child_of" />
+            </field>
+        </field>
+    </record>
 </odoo>
