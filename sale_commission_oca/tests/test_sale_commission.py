@@ -197,6 +197,13 @@ class TestSaleCommission(SavepointCase):
             .create({"journal_id": journal.id})
         )
         register_payments.action_create_payments()
+        self.assertEqual(sale_order.partner_agent_ids.ids, agent.ids)
+        self.assertEqual(
+            self.env["account.move"]
+            .search([("partner_agent_ids", "=", agent.name)])
+            .ids,
+            sale_order.invoice_ids.ids,
+        )
         self.assertIn(sale_order.invoice_ids.payment_state, ["in_payment", "paid"])
         self._settle_agent(agent, period)
         settlements = self.settle_model.search([("state", "=", "settled")])
