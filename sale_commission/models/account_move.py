@@ -15,6 +15,28 @@ class AccountMove(models.Model):
         compute="_compute_commission_total",
         store=True,
     )
+
+    partner_agent_ids = fields.Many2many(
+        string="Agents",
+        comodel_name="res.partner",
+        compute="_compute_agents",
+        search="_search_agents",
+    )
+
+    @api.depends("partner_agent_ids", "invoice_line_ids.agent_ids.agent_id")
+    def _compute_agents(self):
+        for move in self:
+            move.partner_agent_ids = [
+                (6, 0, move.mapped("invoice_line_ids.agent_ids.agent_id").ids)
+            ]
+
+    @api.model
+    def _search_agents(self, operator, value):
+        ail_agents = self.env["account.invoice.line.agent"].search(
+            [("agent_id", operator, value)]
+        )
+        return [("id", "in", ail_agents.mapped("object_id.move_id").ids)]
+
     settlement_id = fields.Many2one(
         comodel_name="sale.commission.settlement",
         help="Settlement that generates this invoice",
