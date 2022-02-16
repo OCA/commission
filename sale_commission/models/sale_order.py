@@ -18,6 +18,27 @@ class SaleOrder(models.Model):
         store=True,
     )
 
+    partner_agent_ids = fields.Many2many(
+        string="Agents",
+        comodel_name="res.partner",
+        compute="_compute_agents",
+        search="_search_agents",
+    )
+
+    @api.depends("partner_agent_ids", "order_line.agent_ids.agent_id")
+    def _compute_agents(self):
+        for so in self:
+            so.partner_agent_ids = [
+                (6, 0, so.mapped("order_line.agent_ids.agent_id").ids)
+            ]
+
+    @api.model
+    def _search_agents(self, operator, value):
+        sol_agents = self.env["sale.order.line.agent"].search(
+            [("agent_id", operator, value)]
+        )
+        return [("id", "in", sol_agents.mapped("object_id.order_id").ids)]
+
     def recompute_lines_agents(self):
         self.mapped("order_line").recompute_agents()
 
