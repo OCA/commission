@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_sale_order_line_tree_mult_type">
+        <field name="name">sale.order.line.agent.tree.mult.type</field>
+        <field name="model">sale.order.line.agent</field>
+        <field name="inherit_id" ref="sale_commission.view_sale_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="commission_id" position="attributes">
+                <attribute name="attrs">{'invisible': [('commission_ids', '!=', False)]}</attribute>
+            </field>
+            <field name="amount" position="before">
+                <field
+                    name="commission_ids"
+                    string="Commissions"
+                    widget="many2many_tags"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

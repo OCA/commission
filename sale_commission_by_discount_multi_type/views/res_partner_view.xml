@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_partner_form_agent_multi_com" model="ir.ui.view">
+        <field name="name">res.partner.form.agent.multi.com</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="sale_commission.view_partner_form_agent" />
+        <field name="priority" eval="19" />
+        <field name="arch" type="xml">
+            <field name="commission_id" position="replace">
+                <field
+                    name="commission_id"
+                />
+                <field name="commission_ids" widget="many2many_tags"/>
+            </field>
+        </field>
+    </record>
+</odoo>
