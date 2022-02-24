@@ -1,6 +1,12 @@
 from odoo import fields, models
 
 
+class SaleCommission(models.AbstractModel):
+    _inherit = "sale.commission"
+
+    sequence = fields.Integer('Sequence', default=1, help="The first in the sequence is the default one.")
+
+
 class SaleCommissionMixin(models.AbstractModel):
     _inherit = "sale.commission.mixin"
 
@@ -91,9 +97,8 @@ class SaleCommissionLineMixin(models.AbstractModel):
             return subtotal * (commission_item.percent_amount / 100.0)
 
     def _get_multi_commission_amount(self, commissions, subtotal, product, quantity):
-        res = []
         for com in commissions:
-            res.append(self._get_single_commission_amount(com, subtotal, product, quantity))
-        if 0.0 in res:
-            res.remove(0.0)
-        return min(res)
+            amount = self._get_single_commission_amount(com, subtotal, product, quantity)
+            if amount > 0:
+                return amount
+        return 0
