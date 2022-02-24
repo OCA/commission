@@ -17,7 +17,17 @@ class SaleCommissionMixin(models.AbstractModel):
 class SaleCommissionLineMixin(models.AbstractModel):
     _inherit = "sale.commission.line.mixin"
 
-    commission_ids = fields.Many2many("sale.commission")
+    commission_ids = fields.Many2many("sale.commission", domain=[('commission_type', '=', 'cat_prod_var')])
+    applied_commission_id = fields.Many2one("sale.commission", readonly=True)
+    commission_id = fields.Many2one(
+        comodel_name="sale.commission",
+        ondelete="restrict",
+        required=False,
+        compute="_compute_commission_id",
+        store=True,
+        readonly=False,
+        copy=True,
+    )
 
     def _get_commission_amount(self, commission, commissions, subtotal, product, quantity):
         # Method replaced
@@ -91,6 +101,8 @@ class SaleCommissionLineMixin(models.AbstractModel):
             # lower price than we bought, so set amount_base to 0
             subtotal = max([0, subtotal - product.standard_price * quantity])
         self.applied_commission_item_id = commission_item
+        if self.use_multi_type_commissions:
+            self.applied_commission_id = commission_item.commission_id
         if commission_item.commission_type == "fixed":
             return commission_item.fixed_amount
         elif commission_item.commission_type == "percentage":
@@ -100,5 +112,6 @@ class SaleCommissionLineMixin(models.AbstractModel):
         for com in commissions:
             amount = self._get_single_commission_amount(com, subtotal, product, quantity)
             if amount > 0:
+                # self.commission_ids = [(5, 0, 0)]
                 return amount
         return 0
