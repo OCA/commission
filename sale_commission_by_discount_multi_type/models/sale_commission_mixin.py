@@ -4,20 +4,28 @@ from odoo import fields, models
 class SaleCommission(models.AbstractModel):
     _inherit = "sale.commission"
 
-    sequence = fields.Integer('Sequence', default=1, help="The first in the sequence is the default one.")
+    sequence = fields.Integer(
+        "Sequence", default=1, help="The first in the sequence is the default one."
+    )
 
 
 class SaleCommissionMixin(models.AbstractModel):
     _inherit = "sale.commission.mixin"
 
     def _prepare_agent_vals(self, agent):
-        return {"agent_id": agent.id, "commission_id": agent.commission_id.id, "commission_ids": agent.commission_ids.ids}
+        return {
+            "agent_id": agent.id,
+            "commission_id": agent.commission_id.id,
+            "commission_ids": agent.commission_ids.ids,
+        }
 
 
 class SaleCommissionLineMixin(models.AbstractModel):
     _inherit = "sale.commission.line.mixin"
 
-    commission_ids = fields.Many2many("sale.commission", domain=[('commission_type', '=', 'cat_prod_var')])
+    commission_ids = fields.Many2many(
+        "sale.commission", domain=[("commission_type", "=", "cat_prod_var")]
+    )
     applied_commission_id = fields.Many2one("sale.commission", readonly=True)
     commission_id = fields.Many2one(
         comodel_name="sale.commission",
@@ -29,12 +37,18 @@ class SaleCommissionLineMixin(models.AbstractModel):
         copy=True,
     )
 
-    def _get_commission_amount(self, commission, commissions, subtotal, product, quantity):
+    def _get_commission_amount(
+        self, commission, commissions, subtotal, product, quantity
+    ):
         # Method replaced
         if commissions:
-            return self._get_multi_commission_amount(commissions, subtotal, product, quantity)
+            return self._get_multi_commission_amount(
+                commissions, subtotal, product, quantity
+            )
         elif commission:
-            return self._get_single_commission_amount(commission, subtotal, product, quantity)
+            return self._get_single_commission_amount(
+                commission, subtotal, product, quantity
+            )
 
     def _get_commission_items(self, commission, product):
         categ_ids = {}
@@ -60,7 +74,12 @@ class SaleCommissionLineMixin(models.AbstractModel):
             ORDER BY
                 item.applied_on, categ.complete_name desc, item.id desc
             """,
-            (product.product_tmpl_id.ids, product.ids, categ_ids, commission._origin.id),
+            (
+                product.product_tmpl_id.ids,
+                product.ids,
+                categ_ids,
+                commission._origin.id,
+            ),
         )
         item_ids = [x[0] for x in self.env.cr.fetchall()]
         return item_ids
@@ -110,7 +129,9 @@ class SaleCommissionLineMixin(models.AbstractModel):
 
     def _get_multi_commission_amount(self, commissions, subtotal, product, quantity):
         for com in commissions:
-            amount = self._get_single_commission_amount(com, subtotal, product, quantity)
+            amount = self._get_single_commission_amount(
+                com, subtotal, product, quantity
+            )
             if amount > 0:
                 # self.commission_ids = [(5, 0, 0)]
                 return amount

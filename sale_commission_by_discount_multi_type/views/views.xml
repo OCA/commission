@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="sale_commission.view_sale_order_line_tree" />
         <field name="arch" type="xml">
             <field name="amount" position="before">
-                <field name="applied_commission_id"/>
+                <field name="applied_commission_id" />
                 <field
                     name="commission_ids"
                     string="Commissions"

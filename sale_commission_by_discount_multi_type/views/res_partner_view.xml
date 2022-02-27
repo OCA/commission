@@ -7,15 +7,20 @@
         <field name="priority" eval="19" />
         <field name="arch" type="xml">
             <field name="commission_id" position="replace">
-                <field name="use_multi_type_commissions"/>
-                <field name="commission_id" attrs="{'invisible': [('use_multi_type_commissions', '=', True)]}" />
+                <field name="use_multi_type_commissions" />
+                <field
+                    name="commission_id"
+                    attrs="{'invisible': [('use_multi_type_commissions', '=', True)]}"
+                />
             </field>
             <xpath expr="//field[@name='settlement']/.." position="after">
-                <group attrs="{'invisible': [('use_multi_type_commissions', '=', False)]}">
+                <group
+                    attrs="{'invisible': [('use_multi_type_commissions', '=', False)]}"
+                >
                     <field name="commission_ids" options="{'no_create': True}">
                         <tree>
-                            <field name="sequence" widget="handle"/>
-                            <field name="name"/>
+                            <field name="sequence" widget="handle" />
+                            <field name="name" />
                         </tree>
                     </field>
                 </group>
