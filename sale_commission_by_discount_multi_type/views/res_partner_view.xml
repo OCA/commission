@@ -12,7 +12,7 @@
             </field>
             <xpath expr="//field[@name='settlement']/.." position="after">
                 <group attrs="{'invisible': [('use_multi_type_commissions', '=', False)]}">
-                    <field name="commission_ids">
+                    <field name="commission_ids" options="{'no_create': True}">
                         <tree>
                             <field name="sequence" widget="handle"/>
                             <field name="name"/>
