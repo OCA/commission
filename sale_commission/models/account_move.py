@@ -158,6 +158,7 @@ class AccountInvoiceLineAgent(models.Model):
         related="object_id.currency_id",
         readonly=True,
     )
+    applied_commission_item_id = fields.Many2one("commission.item")
 
     @api.depends(
         "object_id.price_subtotal",

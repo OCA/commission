@@ -9,11 +9,16 @@ class SaleCommission(models.Model):
 
     name = fields.Char("Name", required=True)
     commission_type = fields.Selection(
-        selection=[("fixed", "Fixed percentage"), ("section", "By sections")],
+        selection=[
+            ("fixed", "Fixed percentage"),
+            ("section", "By sections"),
+            ("cat_prod_var", "By category / product / variant"),
+        ],
         string="Type",
         required=True,
         default="fixed",
     )
+    item_ids = fields.One2many("commission.item", "commission_id")
     fix_qty = fields.Float(string="Fixed percentage")
     section_ids = fields.One2many(
         string="Sections",
