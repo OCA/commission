@@ -55,6 +55,7 @@
                 >
                     <tree string="Items">
                         <field name="name" string="Applied On" />
+                        <field name="commission_type" string="Compute Price" />
                         <field name="commission_value" />
                     </tree>
                 </field>
