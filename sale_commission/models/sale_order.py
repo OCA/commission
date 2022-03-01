@@ -77,7 +77,6 @@ class SaleOrderLineAgent(models.Model):
 
     object_id = fields.Many2one(comodel_name="sale.order.line")
     currency_id = fields.Many2one(related="object_id.currency_id")
-    discount = fields.Float(related="object_id.discount")
     applied_commission_item_id = fields.Many2one("commission.item")
     applied_on_name = fields.Char(related="applied_commission_item_id.name")
     commission_type = fields.Selection(

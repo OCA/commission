@@ -79,11 +79,6 @@
                     string="Amount (%)"
                     groups="sale_commission.group_agent_details"
                 />
-                <field
-                    name="discount"
-                    string="Applied Disc. (%)"
-                    groups="sale_commission.group_agent_details"
-                />
                 <field name="amount" string="Final Amount" />
             </tree>
         </field>

@@ -75,16 +75,6 @@ class CommissionItem(models.Model):
         "Value",
         compute="_compute_commission_item_name_value",
     )
-    discount_from = fields.Float("Discount From")
-    discount_to = fields.Float("Discount To")
-
-    @api.constrains("discount_from", "discount_to")
-    def _check_discounts(self):
-        if any(item.discount_from > item.discount_to for item in self):
-            raise ValidationError(
-                _("Discount From should be lower than the Discount To.")
-            )
-        return True
 
     @api.depends(
         "applied_on",
