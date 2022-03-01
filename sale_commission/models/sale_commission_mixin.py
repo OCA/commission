@@ -155,7 +155,7 @@ class SaleCommissionLineMixin(models.AbstractModel):
         item_ids = self._get_commission_items(commission, product)
         if not item_ids:
             return 0.0
-        commission_item = self.select_suitable_commission_item(item_ids)
+        commission_item = self.select_suitable_commission_item(item_ids, product)
         if not commission_item:
             return 0.0
         if commission.amount_base_type == "net_amount":
@@ -169,7 +169,7 @@ class SaleCommissionLineMixin(models.AbstractModel):
         elif commission_item.commission_type == "percentage":
             return subtotal * (commission_item.percent_amount / 100.0)
 
-    def select_suitable_commission_item(self, item_ids):
+    def select_suitable_commission_item(self, item_ids, product):
         # inherit it
         if len(item_ids) > 0:
             commission_item = self.env["commission.item"].browse(item_ids[0])

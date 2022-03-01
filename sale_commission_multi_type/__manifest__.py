@@ -1,5 +1,5 @@
 {
-    "name": "Sale Commission by Discount Multi Type",
+    "name": "Sale Commission Multi Type",
     "summary": "Multiple commission types for agent",
     "version": "14.0.1.0.1",
     "author": "Ooops," "Odoo Community Association (OCA)",
@@ -8,7 +8,7 @@
     "maintainers": ["ilyasProgrammer"],
     "category": "Sales Management",
     "license": "LGPL-3",
-    "depends": ["sale_commission_by_discount"],
+    "depends": ["sale_commission"],
     "data": [
         "views/views.xml",
         "views/res_partner_view.xml",
