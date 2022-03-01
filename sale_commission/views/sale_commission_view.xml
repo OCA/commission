@@ -48,6 +48,16 @@
                         </tree>
                     </field>
                 </group>
+                <field
+                    name="item_ids"
+                    nolabel="1"
+                    attrs="{'invisible':[('commission_type', '!=', 'cat_prod_var')]}"
+                >
+                    <tree string="Items">
+                        <field name="name" string="Applied On" />
+                        <field name="commission_value" />
+                    </tree>
+                </field>
             </form>
         </field>
     </record>
