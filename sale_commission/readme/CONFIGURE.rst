@@ -9,6 +9,9 @@ For adding commissions:
      percentage. You can fill the percentage in the field "Fixed percentage".
    * **By sections**: percentage varies depending amount intervals. You can
      fill intervals and percentages in the section "Rate definition".
+   * **By category / product / variant**: you can define multiple rules based on
+     product category, product template, product variant or global rule. These rules will be
+     applied one by one according to priority until one suitable rule is not found.
 
 #. Select the base amount for computing the percentage:
 
