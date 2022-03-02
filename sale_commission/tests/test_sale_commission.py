@@ -630,7 +630,6 @@ class TestSaleCommission(SavepointCase):
         self.com_it_glob_precent._onchange_compute_price()
         self.assertEqual(self.com_it_glob_precent.fixed_amount, 0.0)
         # _onchange_product_id()
-        self.com_it_pp_fixed.applied_on = "1_product"
         self.com_it_pp_fixed.with_context(
             {"default_applied_on": "1_product"}
         )._onchange_product_id()
