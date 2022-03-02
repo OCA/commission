@@ -173,11 +173,8 @@ class SaleCommissionLineMixin(models.AbstractModel):
 
     def select_suitable_commission_item(self, item_ids, product):
         # inherit it
-        if len(item_ids) > 0:
-            commission_item = self.env["commission.item"].browse(item_ids[0])
-            return commission_item
-        else:
-            return False
+        commission_item = self.env["commission.item"].browse(item_ids[0])
+        return commission_item
 
     def _get_commission_items(self, commission, product):
         categ_ids = {}
