@@ -581,7 +581,7 @@ class TestSaleCommission(SavepointCase):
         self.com_it_glob_fixed.percent_amount = 50
         self.com_it_glob_fixed._onchange_compute_price()
         self.assertEqual(self.com_it_glob_fixed.percent_amount, 0.0)
-        self.com_it_glob_precent.fixed_amount = 500
+        self.com_it_glob_precent.fixed_amount = 5000
         self.com_it_glob_precent._onchange_compute_price()
         self.assertEqual(self.com_it_glob_precent.fixed_amount, 0.0)
         # _onchange_product_id()
