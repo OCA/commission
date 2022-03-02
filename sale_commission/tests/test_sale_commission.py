@@ -204,15 +204,35 @@ class TestSaleCommission(SavepointCase):
             {
                 "name": "Multiline commission fixed",
                 "commission_type": "cat_prod_var",
-                "amount_base_type": 'net_amount',
-                "item_ids": [(6, 0, [cls.com_it_cat_fixed.id, cls.com_it_pp_fixed.id, cls.com_it_pt_fixed.id])],
+                "amount_base_type": "net_amount",
+                "item_ids": [
+                    (
+                        6,
+                        0,
+                        [
+                            cls.com_it_cat_fixed.id,
+                            cls.com_it_pp_fixed.id,
+                            cls.com_it_pt_fixed.id,
+                        ],
+                    )
+                ],
             }
         )
         cls.commission_prod_cat_var_percent = cls.commission_model.create(
             {
                 "name": "Multiline commission percent",
                 "commission_type": "cat_prod_var",
-                "item_ids": [(6, 0, [cls.com_it_cat_precent.id, cls.com_it_pp_precent.id, cls.com_it_pt_precent.id])],
+                "item_ids": [
+                    (
+                        6,
+                        0,
+                        [
+                            cls.com_it_cat_precent.id,
+                            cls.com_it_pp_precent.id,
+                            cls.com_it_pt_precent.id,
+                        ],
+                    )
+                ],
             }
         )
         cls.agent_cpv_fixed = cls.res_partner_model.create(
@@ -664,35 +684,47 @@ class TestSaleCommission(SavepointCase):
         )._onchange_product_id()
         self.assertEqual(self.com_it_pp_fixed.applied_on, "0_product_variant")
         # _onchange_product_tmpl_id
-        self.com_it_pt_fixed.product_id = self.env.ref('product.product_product_4')
+        self.com_it_pt_fixed.product_id = self.env.ref("product.product_product_4")
         self.com_it_pt_fixed._onchange_product_tmpl_id()
         self.assertFalse(self.com_it_pt_fixed.product_id)
         # write
         cat_id = self.env.ref("product.product_category_6").id
         product_id = self.env.ref("product.product_product_3").id
         product_tmpl_id = self.env.ref("product.product_product_3").product_tmpl_id.id
-        vals = {'applied_on': '3_global',
-                'categ_id': cat_id,
-                'product_tmpl_id': product_id,
-                'product_id': product_tmpl_id,
-                }
+        vals = {
+            "applied_on": "3_global",
+            "categ_id": cat_id,
+            "product_tmpl_id": product_id,
+            "product_id": product_tmpl_id,
+        }
         self.com_it_glob_fixed.write(vals.copy())
-        self.assertFalse(self.com_it_glob_fixed.categ_id.id or self.com_it_glob_fixed.product_tmpl_id.id or self.com_it_glob_fixed.product_id.id)
+        self.assertFalse(
+            self.com_it_glob_fixed.categ_id.id
+            or self.com_it_glob_fixed.product_tmpl_id.id
+            or self.com_it_glob_fixed.product_id.id
+        )
 
-        vals['applied_on'] = '2_product_category'
+        vals["applied_on"] = "2_product_category"
         self.com_it_cat_fixed.write(vals.copy())
-        self.assertFalse(self.com_it_cat_fixed.product_tmpl_id.id or self.com_it_cat_fixed.product_id.id)
+        self.assertFalse(
+            self.com_it_cat_fixed.product_tmpl_id.id
+            or self.com_it_cat_fixed.product_id.id
+        )
 
-        vals['applied_on'] = '1_product'
+        vals["applied_on"] = "1_product"
         self.com_it_pt_fixed.write(vals.copy())
-        self.assertFalse(self.com_it_pt_fixed.categ_id.id or self.com_it_pt_fixed.product_id.id)
+        self.assertFalse(
+            self.com_it_pt_fixed.categ_id.id or self.com_it_pt_fixed.product_id.id
+        )
 
-        vals['applied_on'] = '0_product_variant'
+        vals["applied_on"] = "0_product_variant"
         self.com_it_pt_fixed.write(vals.copy())
         self.assertFalse(self.com_it_pt_fixed.categ_id.id)
 
     def test_multiline_commission(self):
-        sale_order_fixed = self._create_sale_order(self.agent_cpv_fixed, self.commission_prod_cat_var_fixed)
+        sale_order_fixed = self._create_sale_order(
+            self.agent_cpv_fixed, self.commission_prod_cat_var_fixed
+        )
         sale_order_form = Form(self.env["sale.order"])
         sale_order_form.partner_id = self.partner
         with sale_order_form.order_line.new() as line_form:
@@ -700,11 +732,15 @@ class TestSaleCommission(SavepointCase):
             line_form.product_uom_qty = 1
         sale_order_fixed.action_confirm()
 
-        sale_order_percent = self._create_sale_order(self.agent_cpv_percent, self.commission_prod_cat_var_percent)
-        sale_order_percent.order_line[0].product_id = self.env.ref('product.product_product_2').id
+        sale_order_percent = self._create_sale_order(
+            self.agent_cpv_percent, self.commission_prod_cat_var_percent
+        )
+        sale_order_percent.order_line[0].product_id = self.env.ref(
+            "product.product_product_2"
+        ).id
         sale_order_form = Form(self.env["sale.order"])
         sale_order_form.partner_id = self.partner
         with sale_order_form.order_line.new() as line_form:
-            line_form.product_id = self.env.ref('product.product_product_2')
+            line_form.product_id = self.env.ref("product.product_product_2")
             line_form.product_uom_qty = 1
         sale_order_percent.action_confirm()
