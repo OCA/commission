@@ -736,8 +736,24 @@ class TestSaleCommission(SavepointCase):
             self.agent_cpv_percent, self.commission_prod_cat_var_percent
         )
         sale_order_percent.order_line[0].product_id = self.env.ref(
-            "product.product_product_2"
+            "product.product_product_6"
         ).id
+        sale_order_form = Form(self.env["sale.order"])
+        sale_order_form.partner_id = self.partner
+        with sale_order_form.order_line.new() as line_form:
+            line_form.product_id = self.env.ref("product.product_product_2")
+            line_form.product_uom_qty = 1
+        sale_order_percent.action_confirm()
+
+
+        sale_order_percent = self._create_sale_order(
+            self.agent_cpv_percent, self.commission_prod_cat_var_percent
+        )
+        prod = self.env.ref(
+            "product.product_product_2"
+        )
+        prod.commission_free = True
+        sale_order_percent.order_line[0].product_id = prod.id
         sale_order_form = Form(self.env["sale.order"])
         sale_order_form.partner_id = self.partner
         with sale_order_form.order_line.new() as line_form:
