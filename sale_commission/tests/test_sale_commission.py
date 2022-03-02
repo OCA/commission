@@ -118,66 +118,90 @@ class TestSaleCommission(SavepointCase):
             ],
             limit=1,
         )
-        cls.company_usd_id = cls.env['res.company'].create({'name': 'USD company', 'currency_id': cls.env.ref('base.USD').id})
-        cls.company_eur_id = cls.env['res.company'].create({'name': 'EUR company', 'currency_id': cls.env.ref('base.EUR').id})
-        cls.com_it_pt_fixed = cls.commission_item_model.create({
-            "name": "Product template fixed",
-            "product_tmpl_id": cls.env.ref("product.product_product_6").product_tmpl_id.id,
-            "applied_on": "1_product",
-            "commission_type": "fixed",
-            "fixed_amount": 100,
-        })
-        cls.com_it_pt_precent = cls.commission_item_model.create({
-            "name": "Product template percent",
-            "product_tmpl_id": cls.env.ref("product.product_product_6").product_tmpl_id.id,
-            "applied_on": "1_product",
-            "commission_type": "percentage",
-            "percent_amount": 10,
-        })
-        cls.com_it_pp_fixed = cls.commission_item_model.create({
-            "name": "Product product fixed",
-            "product_id": cls.env.ref("product.product_product_6").id,
-            "applied_on": "0_product_variant",
-            "commission_type": "fixed",
-            "fixed_amount": 100,
-        })
-        cls.com_it_pp_precent = cls.commission_item_model.create({
-            "name": "Product product percent",
-            "product_id": cls.env.ref("product.product_product_6").id,
-            "applied_on": "0_product_variant",
-            "commission_type": "percentage",
-            "percent_amount": 10,
-        })
-        cls.com_it_cat_fixed = cls.commission_item_model.create({
-            "name": "Category fixed",
-            "company_id": cls.company_eur_id.id,
-            "categ_id": cls.env.ref("product.product_category_6").id,
-            "applied_on": "2_product_category",
-            "commission_type": "fixed",
-            "fixed_amount": 100,
-        })
-        cls.com_it_cat_precent = cls.commission_item_model.create({
-            "name": "Category percent",
-            "categ_id": cls.env.ref("product.product_category_6").id,
-            "applied_on": "2_product_category",
-            "commission_type": "percentage",
-            "percent_amount": 10,
-        })
-        cls.com_it_glob_fixed = cls.commission_item_model.create({
-            "name": "Global fixed",
-            "company_id": cls.company_usd_id.id,
-            "categ_id": cls.env.ref("product.product_category_6").id,
-            "applied_on": "3_global",
-            "commission_type": "fixed",
-            "fixed_amount": 100,
-        })
-        cls.com_it_glob_precent = cls.commission_item_model.create({
-            "name": "Global percent",
-            "categ_id": cls.env.ref("product.product_category_6").id,
-            "applied_on": "3_global",
-            "commission_type": "percentage",
-            "percent_amount": 10,
-        })
+        cls.company_usd_id = cls.env["res.company"].create(
+            {"name": "USD company", "currency_id": cls.env.ref("base.USD").id}
+        )
+        cls.company_eur_id = cls.env["res.company"].create(
+            {"name": "EUR company", "currency_id": cls.env.ref("base.EUR").id}
+        )
+        cls.com_it_pt_fixed = cls.commission_item_model.create(
+            {
+                "name": "Product template fixed",
+                "product_tmpl_id": cls.env.ref(
+                    "product.product_product_6"
+                ).product_tmpl_id.id,
+                "applied_on": "1_product",
+                "commission_type": "fixed",
+                "fixed_amount": 100,
+            }
+        )
+        cls.com_it_pt_precent = cls.commission_item_model.create(
+            {
+                "name": "Product template percent",
+                "product_tmpl_id": cls.env.ref(
+                    "product.product_product_6"
+                ).product_tmpl_id.id,
+                "applied_on": "1_product",
+                "commission_type": "percentage",
+                "percent_amount": 10,
+            }
+        )
+        cls.com_it_pp_fixed = cls.commission_item_model.create(
+            {
+                "name": "Product product fixed",
+                "product_id": cls.env.ref("product.product_product_6").id,
+                "applied_on": "0_product_variant",
+                "commission_type": "fixed",
+                "fixed_amount": 100,
+            }
+        )
+        cls.com_it_pp_precent = cls.commission_item_model.create(
+            {
+                "name": "Product product percent",
+                "product_id": cls.env.ref("product.product_product_6").id,
+                "applied_on": "0_product_variant",
+                "commission_type": "percentage",
+                "percent_amount": 10,
+            }
+        )
+        cls.com_it_cat_fixed = cls.commission_item_model.create(
+            {
+                "name": "Category fixed",
+                "company_id": cls.company_eur_id.id,
+                "categ_id": cls.env.ref("product.product_category_6").id,
+                "applied_on": "2_product_category",
+                "commission_type": "fixed",
+                "fixed_amount": 100,
+            }
+        )
+        cls.com_it_cat_precent = cls.commission_item_model.create(
+            {
+                "name": "Category percent",
+                "categ_id": cls.env.ref("product.product_category_6").id,
+                "applied_on": "2_product_category",
+                "commission_type": "percentage",
+                "percent_amount": 10,
+            }
+        )
+        cls.com_it_glob_fixed = cls.commission_item_model.create(
+            {
+                "name": "Global fixed",
+                "company_id": cls.company_usd_id.id,
+                "categ_id": cls.env.ref("product.product_category_6").id,
+                "applied_on": "3_global",
+                "commission_type": "fixed",
+                "fixed_amount": 100,
+            }
+        )
+        cls.com_it_glob_precent = cls.commission_item_model.create(
+            {
+                "name": "Global percent",
+                "categ_id": cls.env.ref("product.product_category_6").id,
+                "applied_on": "3_global",
+                "commission_type": "percentage",
+                "percent_amount": 10,
+            }
+        )
 
     def _create_sale_order(self, agent, commission):
         return self.sale_order_model.create(
@@ -537,46 +561,67 @@ class TestSaleCommission(SavepointCase):
 
     def test_commission_items_created(self):
         # Check if computed name is correct
-        self.assertEqual(self.com_it_pt_fixed.name, "Product: " + self.com_it_pt_fixed.product_tmpl_id.display_name)
-        self.assertEqual(self.com_it_pp_fixed.name, "Variant: " + self.com_it_pp_fixed.product_id.name)
-        self.assertEqual(self.com_it_cat_fixed.name, "Category: " + self.com_it_cat_fixed.categ_id.display_name)
+        self.assertEqual(
+            self.com_it_pt_fixed.name,
+            "Product: " + self.com_it_pt_fixed.product_tmpl_id.display_name,
+        )
+        self.assertEqual(
+            self.com_it_pp_fixed.name,
+            "Variant: " + self.com_it_pp_fixed.product_id.name,
+        )
+        self.assertEqual(
+            self.com_it_cat_fixed.name,
+            "Category: " + self.com_it_cat_fixed.categ_id.display_name,
+        )
         self.assertEqual(self.com_it_glob_fixed.name, "All Products")
         # Check if computed commission_value is correct
         # ... USD
-        amount = float_repr(self.com_it_glob_fixed.fixed_amount, self.env["decimal.precision"].precision_get("Product Price"))
+        amount = float_repr(
+            self.com_it_glob_fixed.fixed_amount,
+            self.env["decimal.precision"].precision_get("Product Price"),
+        )
         usd_like = self.com_it_glob_fixed.currency_id.symbol + " " + str(amount)
         self.assertEqual(self.com_it_glob_fixed.commission_value, usd_like)
         # ... EUR
-        amount = float_repr(self.com_it_cat_fixed.fixed_amount, self.env["decimal.precision"].precision_get("Product Price"))
+        amount = float_repr(
+            self.com_it_cat_fixed.fixed_amount,
+            self.env["decimal.precision"].precision_get("Product Price"),
+        )
         eur_like = str(amount) + " " + self.com_it_cat_fixed.currency_id.symbol
         self.assertEqual(self.com_it_cat_fixed.commission_value, eur_like)
         # ... Percent
         self.assertEqual(self.com_it_glob_precent.commission_value, "10.0 %")
         # Check _check_product_consistency()
         with self.assertRaises(ValidationError):
-            self.commission_item_model.create({
-                "name": "Wrong Commission Item",
-                "categ_id": False,
-                "applied_on": "2_product_category",
-                "commission_type": "percentage",
-                "percent_amount": 10,
-            })
+            self.commission_item_model.create(
+                {
+                    "name": "Wrong Commission Item",
+                    "categ_id": False,
+                    "applied_on": "2_product_category",
+                    "commission_type": "percentage",
+                    "percent_amount": 10,
+                }
+            )
         with self.assertRaises(ValidationError):
-            self.commission_item_model.create({
-                "name": "Wrong Commission Item",
-                "product_tmpl_id": False,
-                "applied_on": "1_product",
-                "commission_type": "percentage",
-                "percent_amount": 10,
-            })
+            self.commission_item_model.create(
+                {
+                    "name": "Wrong Commission Item",
+                    "product_tmpl_id": False,
+                    "applied_on": "1_product",
+                    "commission_type": "percentage",
+                    "percent_amount": 10,
+                }
+            )
         with self.assertRaises(ValidationError):
-            self.commission_item_model.create({
-                "name": "Wrong Commission Item",
-                "product_id": False,
-                "applied_on": "0_product_variant",
-                "commission_type": "percentage",
-                "percent_amount": 10,
-            })
+            self.commission_item_model.create(
+                {
+                    "name": "Wrong Commission Item",
+                    "product_id": False,
+                    "applied_on": "0_product_variant",
+                    "commission_type": "percentage",
+                    "percent_amount": 10,
+                }
+            )
         # _onchange_compute_price()
         self.com_it_glob_fixed.percent_amount = 50
         self.com_it_glob_fixed._onchange_compute_price()
@@ -585,6 +630,8 @@ class TestSaleCommission(SavepointCase):
         self.com_it_glob_precent._onchange_compute_price()
         self.assertEqual(self.com_it_glob_precent.fixed_amount, 0.0)
         # _onchange_product_id()
-        self.com_it_pp_fixed.applied_on = '1_product'
-        self.com_it_pp_fixed.with_context({'default_applied_on': '1_product'})._onchange_product_id()
-        self.assertEqual(self.com_it_pp_fixed.applied_on, '0_product_variant')
+        self.com_it_pp_fixed.applied_on = "1_product"
+        self.com_it_pp_fixed.with_context(
+            {"default_applied_on": "1_product"}
+        )._onchange_product_id()
+        self.assertEqual(self.com_it_pp_fixed.applied_on, "0_product_variant")
