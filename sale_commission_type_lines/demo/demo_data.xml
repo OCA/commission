@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<odoo>
+    <!-- Create the Commission Items -->
+    <record id="demo_commission_item_product" model="commission.item">
+        <field name="name">20% Acoustic Bloc Screens</field>
+        <field name="applied_on">1_product</field>
+        <field name="percent_amount">20</field>
+        <field name="commission_type">percentage</field>
+        <field
+            name="product_tmpl_id"
+            ref="product.product_product_4_product_template"
+        />
+    </record>
+    <record id="demo_commission_item_category" model="commission.item">
+        <field name="name">10% Saleable</field>
+        <field name="applied_on">2_product_category</field>
+        <field name="percent_amount">10</field>
+        <field name="commission_type">percentage</field>
+        <field name="categ_id" ref="product.product_category_1" />
+    </record>
+    <record id="demo_commission_cat_prod_var" model="sale.commission">
+        <field name="name">Category and product based commission</field>
+        <field name="commission_type">cat_prod_var</field>
+        <field
+            name="item_ids"
+            eval="[(4, ref('demo_commission_item_product')), (4, ref('demo_commission_item_category'))]"
+        />
+    </record>
+</odoo>

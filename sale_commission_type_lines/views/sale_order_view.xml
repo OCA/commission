@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sale_order_line_tree_inherit" model="ir.ui.view">
+        <field name="name">sale.order.line.agent.tree.inherit</field>
+        <field name="model">sale.order.line.agent</field>
+        <field name="inherit_id" ref="sale_commission.view_sale_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="commission_id" position="after">
+                <field
+                    name="applied_on_name"
+                    string="Applied On"
+                    groups="sale_commission_type_lines.group_agent_details"
+                />
+                <field
+                    name="commission_type"
+                    string="Price Type"
+                    groups="sale_commission_type_lines.group_agent_details"
+                />
+                <field
+                    name="fixed_amount"
+                    string="Amount (fixed)"
+                    groups="sale_commission_type_lines.group_agent_details"
+                />
+                <field
+                    name="percent_amount"
+                    string="Amount (%)"
+                    groups="sale_commission_type_lines.group_agent_details"
+                />
+            </field>
+            <field name='amount' position="replace">
+                <field name="amount" string="Final Amount" />
+            </field>
+        </field>
+    </record>
+</odoo>
