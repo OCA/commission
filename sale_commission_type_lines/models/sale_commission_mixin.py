@@ -4,31 +4,11 @@ from odoo import models
 class SaleCommissionLineMixin(models.AbstractModel):
     _inherit = "sale.commission.line.mixin"
 
-    def _get_single_commission_amount(self, commission, subtotal, product, quantity):
-        """Get the commission amount for the data given. It's called by
-        compute methods of children models.
-
-        This means the inheritable method for modifying the amount of the commission.
-        """
-        if product.commission_free or not commission:
-            return 0.0
-        if commission.amount_base_type == "net_amount":
-            # If subtotal (sale_price * quantity) is less than
-            # standard_price * quantity, it means that we are selling at
-            # lower price than we bought, so set amount_base to 0
-            subtotal = max([0, subtotal - product.standard_price * quantity])
-        if commission.commission_type == "fixed":
-            return subtotal * (commission.fix_qty / 100.0)
-        elif commission.commission_type == "section":
-            return commission.calculate_section(subtotal)
-
     def _get_commission_amount(self, commission, subtotal, product, quantity):
         # method replaced
         self.ensure_one()
         if commission.commission_type != "cat_prod_var":
-            return self._get_single_commission_amount(
-                commission, subtotal, product, quantity
-            )
+            return super(SaleCommissionLineMixin, self)._get_commission_amount(commission, subtotal, product, quantity)
         if product.commission_free or not commission:
             return 0.0
         item_ids = self._get_commission_items(commission, product)
