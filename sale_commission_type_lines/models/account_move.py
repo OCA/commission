@@ -7,7 +7,7 @@ class AccountInvoiceLineAgent(models.Model):
     applied_commission_item_id = fields.Many2one("commission.item")
 
     def _get_commission_amount(self, commission, subtotal, product, quantity):
-        so = self.env['sale.order'].search([('invoice_ids', 'in', self.invoice_id.ids)])
+        so = self.env["sale.order"].search([("invoice_ids", "in", self.invoice_id.ids)])
         if so:
             # required when using down payment invoice (fixed or percent).
             commission_part = self.invoice_id.amount_total / so.amount_total

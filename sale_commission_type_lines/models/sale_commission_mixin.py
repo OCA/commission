@@ -7,7 +7,10 @@ class SaleCommissionLineMixin(models.AbstractModel):
     def _get_commission_amount(self, commission, subtotal, product, quantity):
         # method replaced
         self.ensure_one()
-        if commission.commission_type != "cat_prod_var" or self._name == 'account.invoice.line.agent':
+        if (
+            commission.commission_type != "cat_prod_var"
+            or self._name == "account.invoice.line.agent"
+        ):
             return super(SaleCommissionLineMixin, self)._get_commission_amount(
                 commission, subtotal, product, quantity
             )
