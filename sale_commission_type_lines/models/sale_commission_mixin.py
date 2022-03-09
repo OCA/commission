@@ -8,7 +8,9 @@ class SaleCommissionLineMixin(models.AbstractModel):
         # method replaced
         self.ensure_one()
         if commission.commission_type != "cat_prod_var":
-            return super(SaleCommissionLineMixin, self)._get_commission_amount(commission, subtotal, product, quantity)
+            return super(SaleCommissionLineMixin, self)._get_commission_amount(
+                commission, subtotal, product, quantity
+            )
         if product.commission_free or not commission:
             return 0.0
         item_ids = self._get_commission_items(commission, product)
