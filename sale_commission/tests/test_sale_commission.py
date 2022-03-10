@@ -48,11 +48,7 @@ class TestSaleCommission(SavepointCase):
                     (
                         0,
                         0,
-                        {
-                            "amount_from": 15000.0,
-                            "amount_to": 16000.0,
-                            "percent": 20.0,
-                        },
+                        {"amount_from": 15000.0, "amount_to": 16000.0, "percent": 20.0},
                     )
                 ],
             }
@@ -110,10 +106,7 @@ class TestSaleCommission(SavepointCase):
             }
         )
         cls.income_account = cls.env["account.account"].search(
-            [
-                ("company_id", "=", cls.company.id),
-                ("user_type_id.name", "=", "Income"),
-            ],
+            [("company_id", "=", cls.company.id), ("user_type_id.name", "=", "Income")],
             limit=1,
         )
 
@@ -162,7 +155,7 @@ class TestSaleCommission(SavepointCase):
             "date_to": (
                 fields.Datetime.from_string(fields.Datetime.now())
                 + dateutil.relativedelta.relativedelta(months=period)
-            ),
+            )
         }
         if agent:
             vals["agent_ids"] = [(4, agent.id)]
@@ -242,9 +235,7 @@ class TestSaleCommission(SavepointCase):
 
     def test_sale_commission_gross_amount_invoice(self):
         self._create_order_and_invoice_and_settle(
-            self.agent_quaterly,
-            self.env.ref("sale_commission.demo_commission"),
-            1,
+            self.agent_quaterly, self.env.ref("sale_commission.demo_commission"), 1
         )
         settlements = self.settle_model.search([("state", "=", "invoiced")])
         settlements.make_invoices(self.journal, self.commission_product)
@@ -411,7 +402,7 @@ class TestSaleCommission(SavepointCase):
         self.assertEqual(commission_invoice.move_type, "in_invoice")
         invoice = sale_order.invoice_ids
         refund = invoice._reverse_moves(
-            default_values_list=[{"invoice_date": invoice.invoice_date}],
+            default_values_list=[{"invoice_date": invoice.invoice_date}]
         )
         self.assertEqual(
             invoice.invoice_line_ids.agent_ids.agent_id,

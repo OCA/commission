@@ -7,7 +7,7 @@ from odoo import _, api, fields, models
 class SaleCommissionMixin(models.AbstractModel):
     _name = "sale.commission.mixin"
     _description = (
-        "Mixin model for applying to any object that wants to handle commissions"
+        "Mixin model for applying to any object that wants to " "handle commissions"
     )
 
     agent_ids = fields.One2many(
@@ -28,15 +28,15 @@ class SaleCommissionMixin(models.AbstractModel):
         readonly=True,
     )
     commission_status = fields.Char(
-        compute="_compute_commission_status",
-        string="Commission",
+        compute="_compute_commission_status", string="Commission"
     )
 
     def _prepare_agent_vals(self, agent):
         return {"agent_id": agent.id, "commission_id": agent.commission_id.id}
 
     def _prepare_agents_vals_partner(self, partner):
-        """Utility method for getting agents creation dictionary of a partner."""
+        """Utility method for getting agents creation dictionary
+        of a partner."""
         return [(0, 0, self._prepare_agent_vals(agent)) for agent in partner.agent_ids]
 
     @api.depends("commission_free")
@@ -117,9 +117,7 @@ class SaleCommissionLineMixin(models.AbstractModel):
         copy=True,
     )
     amount = fields.Monetary(
-        string="Commission Amount",
-        compute="_compute_amount",
-        store=True,
+        string="Commission Amount", compute="_compute_amount", store=True
     )
     # Fields to be overriden with proper source (via related or computed field)
     currency_id = fields.Many2one(comodel_name="res.currency")
@@ -132,7 +130,8 @@ class SaleCommissionLineMixin(models.AbstractModel):
         """Get the commission amount for the data given. It's called by
         compute methods of children models.
 
-        This means the inheritable method for modifying the amount of the commission.
+        This means the inheritable method for modifying
+        the amount of the commission.
         """
         self.ensure_one()
         if product.commission_free or not commission:

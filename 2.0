@@ -1,0 +1,12 @@
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: pre-commit in /home/sulivan/.local/lib/python3.8/site-packages (2.17.0)
+Requirement already satisfied: virtualenv>=20.0.8 in /usr/local/lib/python3.8/dist-packages (from pre-commit) (20.13.1)
+Requirement already satisfied: identify>=1.0.0 in /home/sulivan/.local/lib/python3.8/site-packages (from pre-commit) (2.4.11)
+Requirement already satisfied: nodeenv>=0.11.1 in /home/sulivan/.local/lib/python3.8/site-packages (from pre-commit) (1.6.0)
+Requirement already satisfied: toml in /usr/lib/python3/dist-packages (from pre-commit) (0.10.0)
+Requirement already satisfied: cfgv>=2.0.0 in /home/sulivan/.local/lib/python3.8/site-packages (from pre-commit) (3.3.1)
+Requirement already satisfied: pyyaml>=5.1 in /usr/lib/python3/dist-packages (from pre-commit) (5.3.1)
+Requirement already satisfied: platformdirs<3,>=2 in /usr/local/lib/python3.8/dist-packages (from virtualenv>=20.0.8->pre-commit) (2.5.0)
+Requirement already satisfied: filelock<4,>=3.2 in /usr/local/lib/python3.8/dist-packages (from virtualenv>=20.0.8->pre-commit) (3.4.2)
+Requirement already satisfied: distlib<1,>=0.3.1 in /usr/local/lib/python3.8/dist-packages (from virtualenv>=20.0.8->pre-commit) (0.3.4)
+Requirement already satisfied: six<2,>=1.9.0 in /usr/lib/python3/dist-packages (from virtualenv>=20.0.8->pre-commit) (1.14.0)

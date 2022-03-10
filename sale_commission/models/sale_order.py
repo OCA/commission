@@ -13,9 +13,7 @@ class SaleOrder(models.Model):
             record.commission_total = sum(record.mapped("order_line.agent_ids.amount"))
 
     commission_total = fields.Float(
-        string="Commissions",
-        compute="_compute_commission_total",
-        store=True,
+        string="Commissions", compute="_compute_commission_total", store=True
     )
 
     partner_agent_ids = fields.Many2many(
@@ -44,10 +42,7 @@ class SaleOrder(models.Model):
 
 
 class SaleOrderLine(models.Model):
-    _inherit = [
-        "sale.order.line",
-        "sale.commission.mixin",
-    ]
+    _inherit = ["sale.order.line", "sale.commission.mixin"]
     _name = "sale.order.line"
 
     agent_ids = fields.One2many(comodel_name="sale.order.line.agent")

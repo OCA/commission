@@ -25,9 +25,7 @@ class ResPartner(models.Model):
         help="Check this field if the partner is a creditor or an agent.",
     )
     agent_type = fields.Selection(
-        selection=[("agent", "External agent")],
-        string="Type",
-        default="agent",
+        selection=[("agent", "External agent")], string="Type", default="agent"
     )
     commission_id = fields.Many2one(
         string="Commission",
@@ -54,7 +52,8 @@ class ResPartner(models.Model):
 
     @api.model
     def _commercial_fields(self):
-        """Add agents to commercial fields that are synced from parent to childs."""
+        """Add agents to commercial fields that
+        are synced from parent to childs."""
         res = super()._commercial_fields()
         res.append("agent_ids")
         return res

@@ -11,9 +11,7 @@ class AccountMove(models.Model):
     _inherit = "account.move"
 
     commission_total = fields.Float(
-        string="Commissions",
-        compute="_compute_commission_total",
-        store=True,
+        string="Commissions", compute="_compute_commission_total", store=True
     )
 
     partner_agent_ids = fields.Many2many(
@@ -55,7 +53,7 @@ class AccountMove(models.Model):
         and check settled lines"""
         if any(self.mapped("invoice_line_ids.any_settled")):
             raise exceptions.ValidationError(
-                _("You can't cancel an invoice with settled lines"),
+                _("You can't cancel an invoice with settled lines")
             )
         self.settlement_id.state = "except_invoice"
         return super().button_cancel()
@@ -76,10 +74,7 @@ class AccountMove(models.Model):
         possible context values.
         """
         res = super(AccountMove, self).fields_view_get(
-            view_id=view_id,
-            view_type=view_type,
-            toolbar=toolbar,
-            submenu=submenu,
+            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
         )
         if view_type == "form":
             invoice_xml = etree.XML(res["arch"])
@@ -87,9 +82,7 @@ class AccountMove(models.Model):
             if invoice_line_fields:
                 invoice_line_field = invoice_line_fields[0]
                 context = invoice_line_field.attrib.get("context", "{}").replace(
-                    "{",
-                    "{'partner_id': partner_id, ",
-                    1,
+                    "{", "{'partner_id': partner_id, ", 1
                 )
                 invoice_line_field.attrib["context"] = context
                 res["arch"] = etree.tostring(invoice_xml)
@@ -97,10 +90,7 @@ class AccountMove(models.Model):
 
 
 class AccountMoveLine(models.Model):
-    _inherit = [
-        "account.move.line",
-        "sale.commission.mixin",
-    ]
+    _inherit = ["account.move.line", "sale.commission.mixin"]
     _name = "account.move.line"
 
     agent_ids = fields.One2many(comodel_name="account.invoice.line.agent")
@@ -150,14 +140,9 @@ class AccountInvoiceLineAgent(models.Model):
     )
     settled = fields.Boolean(compute="_compute_settled", store=True)
     company_id = fields.Many2one(
-        comodel_name="res.company",
-        compute="_compute_company",
-        store=True,
+        comodel_name="res.company", compute="_compute_company", store=True
     )
-    currency_id = fields.Many2one(
-        related="object_id.currency_id",
-        readonly=True,
-    )
+    currency_id = fields.Many2one(related="object_id.currency_id", readonly=True)
 
     @api.depends(
         "object_id.price_subtotal",
@@ -197,9 +182,7 @@ class AccountInvoiceLineAgent(models.Model):
     def _check_settle_integrity(self):
         for record in self:
             if any(record.mapped("settled")):
-                raise exceptions.ValidationError(
-                    _("You can't modify a settled line"),
-                )
+                raise exceptions.ValidationError(_("You can't modify a settled line"))
 
     def _skip_settlement(self):
         """This function should return False if the commission can be paid.
