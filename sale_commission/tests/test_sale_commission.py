@@ -6,10 +6,10 @@ import dateutil.relativedelta
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests.common import Form, TransactionCase
 
 
-class TestSaleCommission(SavepointCase):
+class TestSaleCommission(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -48,7 +48,11 @@ class TestSaleCommission(SavepointCase):
                     (
                         0,
                         0,
-                        {"amount_from": 15000.0, "amount_to": 16000.0, "percent": 20.0},
+                        {
+                            "amount_from": 15000.0,
+                            "amount_to": 16000.0,
+                            "percent": 20.0,
+                        },
                     )
                 ],
             }
@@ -106,7 +110,10 @@ class TestSaleCommission(SavepointCase):
             }
         )
         cls.income_account = cls.env["account.account"].search(
-            [("company_id", "=", cls.company.id), ("user_type_id.name", "=", "Income")],
+            [
+                ("company_id", "=", cls.company.id),
+                ("user_type_id.name", "=", "Income"),
+            ],
             limit=1,
         )
 
@@ -143,7 +150,7 @@ class TestSaleCommission(SavepointCase):
     def _invoice_sale_order(self, sale_order):
         wizard = self.advance_inv_model.create({"advance_payment_method": "delivered"})
         wizard.with_context(
-            {
+            **{
                 "active_model": "sale.order",
                 "active_ids": [sale_order.id],
                 "active_id": sale_order.id,
@@ -155,7 +162,7 @@ class TestSaleCommission(SavepointCase):
             "date_to": (
                 fields.Datetime.from_string(fields.Datetime.now())
                 + dateutil.relativedelta.relativedelta(months=period)
-            )
+            ),
         }
         if agent:
             vals["agent_ids"] = [(4, agent.id)]
@@ -230,7 +237,8 @@ class TestSaleCommission(SavepointCase):
         self._check_full(self.agent_annual, self.commission_section_paid, 12, 0)
 
     def test_sale_commission_gross_amount_payment_semi(self):
-        self.product.list_price = 15100  # for testing specific commission section
+        self.product.list_price = 15100
+        # for testing specific commission section
         self._check_full(self.agent_semi, self.commission_section_invoice, 6, 1)
 
     def test_sale_commission_gross_amount_invoice(self):
@@ -296,7 +304,7 @@ class TestSaleCommission(SavepointCase):
         sale_order.action_confirm()
         wizard = self.advance_inv_model.create({"advance_payment_method": "delivered"})
         wizard.with_context(
-            {
+            **{
                 "active_model": "sale.order",
                 "active_ids": [sale_order.id],
                 "active_id": sale_order.id,
@@ -337,7 +345,8 @@ class TestSaleCommission(SavepointCase):
         self.assertTrue(agent.agent_id, self.agent_monthly)
 
     def test_commission_propagation(self):
-        """Test propagation of agents from partner to SO/invoice and SO>invoice."""
+        """Test propagation of agents from partner to
+        SO/invoice and SO>invoice."""
         self.partner.agent_ids = [(4, self.agent_monthly.id)]
         sale_order_form = Form(self.env["sale.order"])
         sale_order_form.partner_id = self.partner
@@ -350,7 +359,8 @@ class TestSaleCommission(SavepointCase):
         # Check agent change
         agent.agent_id = self.agent_quaterly
         self.assertTrue(agent.commission_id, self.commission_section_invoice)
-        # HACK: Remove constraints as in test mode it raises, but not on regular UI
+        # HACK: Remove constraints as in test mode it raises,
+        # but not on regular UI
         # TODO: Check why this is happening only in tests
         self.env.cr.execute(
             "ALTER TABLE sale_order_line_agent DROP CONSTRAINT "
@@ -402,7 +412,7 @@ class TestSaleCommission(SavepointCase):
         self.assertEqual(commission_invoice.move_type, "in_invoice")
         invoice = sale_order.invoice_ids
         refund = invoice._reverse_moves(
-            default_values_list=[{"invoice_date": invoice.invoice_date}]
+            default_values_list=[{"invoice_date": invoice.invoice_date}],
         )
         self.assertEqual(
             invoice.invoice_line_ids.agent_ids.agent_id,

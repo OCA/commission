@@ -153,18 +153,18 @@
         <field name="name">sale.commission.settlement.line.graph</field>
         <field name="model">sale.commission.settlement.line</field>
         <field name="arch" type="xml">
-            <graph string="Settlement analysis" type="pivot">
+            <pivot string="Settlement analysis">
                 <field name="agent_id" type="row" />
                 <field name="date" interval="month" type="col" />
                 <field name="settled_amount" type="measure" />
-            </graph>
+            </pivot>
         </field>
     </record>
     <record model="ir.actions.act_window" id="action_settle_commission">
         <field name="name">Settlements</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.commission.settlement</field>
-        <field name="binding_view_types">form,tree</field>
+        <field name="binding_view_types">form,tree,pivot</field>
     </record>
     <menuitem
         name="Settlements"
