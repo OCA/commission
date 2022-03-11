@@ -108,7 +108,7 @@ class TestSaleCommissionPricelist(SavepointCase):
                             "price_discount": 30,
                             "commission_id": commission_3.id,
                         },
-                    ),
+                    )
                 ],
             }
         )
