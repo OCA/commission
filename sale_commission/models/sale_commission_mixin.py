@@ -147,7 +147,7 @@ class SaleCommissionLineMixin(models.AbstractModel):
         compute methods of children models.
         """
         self.ensure_one()
-        if product.commission_free or not commission:
+        if self.object_id.commission_free or not commission:
             return 0.0
         if commission.amount_base_type == 'net_amount':
             # If subtotal (sale_price * quantity) is less than
