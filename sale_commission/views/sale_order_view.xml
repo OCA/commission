@@ -19,7 +19,7 @@
                 />
                 <field name="commission_status" optional="show" />
             </xpath>
-            <field name="amount_total" position="after">
+            <field name="tax_totals_json" position="after">
                 <field
                     name="commission_total"
                     widget="monetary"

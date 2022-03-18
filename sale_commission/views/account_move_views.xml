@@ -83,7 +83,7 @@
                 <field name="any_settled" invisible="1" />
                 <field name="commission_status" invisible="1" />
             </xpath>
-            <field name="amount_total" position="after">
+            <field name="invoice_payments_widget" position="after">
                 <field
                     name="commission_total"
                     widget="monetary"
