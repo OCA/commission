@@ -1,0 +1,2 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_wizard_geo_assign_partner","access.wizard.geo.assign.partner","model_wizard_geo_assign_partner","base.group_partner_manager",1,1,1,0

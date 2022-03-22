@@ -4,7 +4,7 @@
 {
     "name": "Sales commissions - Geo assignation",
     "summary": "Assign agents to partners according to their location",
-    "version": "10.0.1.0.0",
+    "version": "14.0.1.0.0",
     "development_status": "Production/Stable",
     "category": "Sales Management",
     "website": "https://github.com/OCA/commission",
@@ -17,6 +17,7 @@
         "sale_commission",
     ],
     "data": [
+        "security/ir.model.access.csv",
         "views/res_partner_view.xml",
         "wizard/wizard_geo_assign_partner_view.xml",
     ],

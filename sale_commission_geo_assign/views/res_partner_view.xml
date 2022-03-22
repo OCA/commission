@@ -28,14 +28,14 @@
     <record id="view_res_partner_filter_geo_assign" model="ir.ui.view">
         <field name="name">view_res_partner_filter_geo_assign</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="sale_commission.view_res_partner_filter" />
+        <field name="inherit_id" ref="sale_commission.res_partner_view_search" />
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='agent']" position="after">
                 <separator />
                 <filter
                     string="No Agents Assigned"
                     name="no_agent_assigned"
-                    domain="[('agents', '=', False)]"
+                    domain="[('agent', '=', False)]"
                 />
             </xpath>
         </field>

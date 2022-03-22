@@ -23,7 +23,6 @@ class Partner(models.Model):
             domain = []
         return {"domain": {"agent_state_ids": domain}}
 
-    @api.multi
     def is_assignable(self, partner):
         # Check if agent (self) is assignable to 'partner'
         self.ensure_one()

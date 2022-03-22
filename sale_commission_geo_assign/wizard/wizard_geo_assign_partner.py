@@ -1,6 +1,6 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 from odoo.exceptions import UserError
 
 
@@ -14,7 +14,6 @@ class WizardGeoAssign(models.TransientModel):
         default=True,
     )
 
-    @api.multi
     def geo_assign_partner(self):
         self.ensure_one()
         partner_model = self.env["res.partner"]
@@ -23,7 +22,7 @@ class WizardGeoAssign(models.TransientModel):
             raise UserError(_("No agents found in the system"))
         partners = partner_model.browse(self.env.context.get("active_ids"))
         for partner in partners:
-            if partner.agents and self.check_existing_agents:
+            if len(partner.agent_ids) > 0 and self.check_existing_agents:
                 raise UserError(
                     _(
                         "Partner %s already has agents. You should remove them"
@@ -33,4 +32,4 @@ class WizardGeoAssign(models.TransientModel):
                 )
             for agent in agents:
                 if agent.is_assignable(partner):
-                    partner.agents = [(4, agent.id)]
+                    partner.agent_ids = [(4, agent.id)]
