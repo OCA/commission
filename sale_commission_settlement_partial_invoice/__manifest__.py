@@ -1,9 +1,10 @@
 # Copyright 2021 Lorenzo Battistini @ TAKOBI
+# Copyright 2022 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Sales commissions: settlement partial invoicing",
     "summary": "Allow to generate partial agent invoice from settlement",
-    "version": "12.0.1.0.0",
+    "version": "12.0.2.0.0",
     "development_status": "Beta",
     "category": "Sales Management",
     "website": "https://github.com/OCA/commission",
