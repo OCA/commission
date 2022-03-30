@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <!-- wizard action on res.partner -->
+  <record id="action_geo_assign_partner" model="ir.actions.act_window">
+    <field name="name">Geo assign agents</field>
+    <field name="res_model">wizard.geo.assign.partner</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+    <field name="binding_model_id" ref="base.model_res_partner" />
+  </record>
+
+  <!-- wizard view -->
+  <record id="wizard_geo_assign_partner_view" model="ir.ui.view">
+      <field name="name">Geo assign agents</field>
+      <field name="model">wizard.geo.assign.partner</field>
+      <field name="arch" type="xml">
+          <form string="Geo assign agents">
+              <group>
+                  <field name="check_existing_agents" />
+              </group>
+              <footer>
+                  <button
+                        string="Apply"
+                        name="geo_assign_partner"
+                        type="object"
+                        class="btn-primary"
+                    />
+                  <button string="Cancel" class="btn-default" special="cancel" />
+              </footer>
+          </form>
+      </field>
+  </record>
+</odoo>

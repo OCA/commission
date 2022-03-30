@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_partner_form_agent_geo_assign" model="ir.ui.view">
+        <field name="name">view_partner_form_agent_geo_assign</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="sale_commission.view_partner_form_agent" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='agent_information']/group[1]/group[2]"
+                position="after"
+            >
+                <newline />
+                <group>
+                    <field name="agent_country_ids" widget="many2many_tags" />
+                    <field name="agent_state_ids" widget="many2many_tags" />
+                </group>
+                <newline />
+                <group>
+                    <field name="agent_zip_from" />
+                </group>
+                <group>
+                    <field name="agent_zip_to" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_res_partner_filter_geo_assign" model="ir.ui.view">
+        <field name="name">view_res_partner_filter_geo_assign</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="sale_commission.res_partner_view_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='agent']" position="after">
+                <separator />
+                <filter
+                    string="No Agents Assigned"
+                    name="no_agent_assigned"
+                    domain="[('agent', '=', False)]"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
