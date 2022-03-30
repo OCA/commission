@@ -44,12 +44,6 @@ class TestSaleCommissionGeoAssign(common.TransactionCase):
         self.assertTrue(agent1.id == c2.agent_ids[0].id)
         self.assertFalse(c1.agent)
 
-        wizard = self.wizard_model.with_context(active_ids=[c1.id, c2.id]).create({})
-        wizard.check_existing_agents = True
-        c1.agent_ids = [(6, 0, agent1.ids)]
-        with self.assertRaises(UserError):
-            wizard.geo_assign_partner()
-
         agent2 = self.partner_model.create(
             {
                 "name": "agent2",
@@ -62,6 +56,13 @@ class TestSaleCommissionGeoAssign(common.TransactionCase):
         self.assertTrue(len(c2.agent_ids) == 1)
         self.assertTrue(len(c1.agent_ids) == 1)
         self.assertTrue(agent2.id == c1.agent_ids[0].id)
+
+        wizard = self.wizard_model.with_context(active_ids=[c1.id, c2.id]).create({})
+        wizard.check_existing_agents = True
+        c1.agent_ids = [(6, 0, agent1.ids)]
+        with self.assertRaises(UserError):
+            wizard.geo_assign_partner()
+
         country_ids = self.env['res.country'].search([], limit=1)
         agent1.agent_country_ids = [(5, 0, 0)]
         agent1.is_assignable(c1)
