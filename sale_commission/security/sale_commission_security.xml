@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2020 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<data noupdate="1">
+    <record id="rule_invoice_line_agent_multi_company" model="ir.rule">
+        <field name="name">Invoice commission line multi-company</field>
+        <field name="model_id" ref="model_account_invoice_line_agent" />
+        <field name="global" eval="True" />
+        <field
+            name="domain_force"
+        >['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+    <record model="ir.rule" id="rule_settlement_multi_company">
+        <field name="name">Commission settlement multi company rule</field>
+        <field name="model_id" ref="model_sale_commission_settlement" />
+        <field
+            name="domain_force"
+        >['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+</data>
