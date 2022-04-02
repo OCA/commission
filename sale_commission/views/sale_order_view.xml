@@ -19,13 +19,13 @@
                 />
                 <field name="commission_status" optional="show" />
             </xpath>
-<!--            <field name="amount_total" position="after">-->
-<!--                <field-->
-<!--                    name="commission_total"-->
-<!--                    widget="monetary"-->
-<!--                    options="{'currency_field': 'currency_id'}"-->
-<!--                />-->
-<!--            </field>-->
+            <field name="tax_totals_json" position="after">
+                <field
+                    name="commission_total"
+                    widget="monetary"
+                    options="{'currency_field': 'currency_id'}"
+                />
+            </field>
             <xpath expr="//field[@name='note']" position="after">
                 <group name="group_recompute_commission">
                     <button

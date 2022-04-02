@@ -41,10 +41,10 @@
         <field name="target">new</field>
         <field name="binding_model_id" ref="model_sale_commission_make_invoice" />
     </record>
-<!--    <menuitem-->
-<!--        id="menu_commission_make_invoices"-->
-<!--        parent="menu_sale_commissions_management"-->
-<!--        sequence="30"-->
-<!--        action="action_commission_make_invoices"-->
-<!--    />-->
+    <menuitem
+        id="menu_commission_make_invoices"
+        parent="commission.menu_commissions_management"
+        sequence="30"
+        action="action_commission_make_invoices"
+    />
 </odoo>

@@ -44,9 +44,9 @@
         <field name="target">new</field>
         <field name="binding_model_id" ref="model_sale_commission_make_settle" />
     </record>
-<!--    <menuitem-->
-<!--        id="menu_agents_settlement"-->
-<!--        parent="menu_sale_commissions_management"-->
-<!--        action="action_agents_settlement"-->
-<!--    />-->
+    <menuitem
+        id="menu_agents_settlement"
+        parent="commission.menu_commissions_management"
+        action="action_agents_settlement"
+    />
 </odoo>

@@ -97,13 +97,8 @@ class SaleCommissionMakeSettle(models.TransientModel):
                         continue
                     if line.invoice_date > sett_to:
                         sett_from = self._get_period_start(agent, line.invoice_date)
-                        sett_to = (
-                            self._get_next_period_date(
-                                agent,
-                                sett_from,
-                            )
-                            - timedelta(days=1)
-                        )
+                        sett_to = self._get_next_period_date(agent, sett_from)
+                        sett_to -= timedelta(days=1)
                         settlement = self._get_settlement(
                             agent, company, sett_from, sett_to
                         )

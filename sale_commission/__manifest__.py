@@ -6,7 +6,12 @@
     "author": "Tecnativa," "Odoo Community Association (OCA)",
     "category": "Sales Management",
     "license": "AGPL-3",
-    "depends": ["account", "product", "sale_management", "commission"],
+    "depends": [
+        "account",
+        "product",
+        "sale_management",
+        "commission",
+    ],
     "website": "https://github.com/OCA/commission",
     "development_status": "Mature",
     "maintainers": ["pedrobaeza"],

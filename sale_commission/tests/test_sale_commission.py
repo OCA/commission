@@ -6,14 +6,14 @@ import dateutil.relativedelta
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests.common import Form, TransactionCase
 
 
-class TestSaleCommission(SavepointCase):
+class TestSaleCommission(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.commission_model = cls.env["sale.commission"]
+        cls.commission_model = cls.env["commission"]
         cls.commission_net_paid = cls.commission_model.create(
             {
                 "name": "20% fixed commission (Net amount) - Payment Based",
@@ -147,15 +147,13 @@ class TestSaleCommission(SavepointCase):
             }
         )
 
-    # def _invoice_sale_order(self, sale_order):
-    #     wizard = self.advance_inv_model.create({"advance_payment_method": "delivered"})
-    #     wizard.with_context(
-    #         {
-    #             "active_model": "sale.order",
-    #             "active_ids": [sale_order.id],
-    #             "active_id": sale_order.id,
-    #         }
-    #     ).create_invoices()
+    def _invoice_sale_order(self, sale_order):
+        wizard = self.advance_inv_model.create({"advance_payment_method": "delivered"})
+        wizard.with_context(
+            active_model="sale.order",
+            active_ids=[sale_order.id],
+            active_id=sale_order.id,
+        ).create_invoices()
 
     def _settle_agent(self, agent, period):
         vals = {
@@ -223,7 +221,7 @@ class TestSaleCommission(SavepointCase):
 
     def test_sale_commission_gross_amount_payment(self):
         settlements = self._check_full(
-            self.env.ref("sale_commission.res_partner_pritesh_sale_agent"),
+            self.env.ref("commission.res_partner_pritesh_sale_agent"),
             self.commission_section_paid,
             1,
             0,
@@ -243,7 +241,7 @@ class TestSaleCommission(SavepointCase):
     def test_sale_commission_gross_amount_invoice(self):
         self._create_order_and_invoice_and_settle(
             self.agent_quaterly,
-            self.env.ref("sale_commission.demo_commission"),
+            self.env.ref("commission.demo_commission"),
             1,
         )
         settlements = self.settle_model.search([("state", "=", "invoiced")])
@@ -271,7 +269,7 @@ class TestSaleCommission(SavepointCase):
         # Make sure user is in English
         self.env.user.lang = "en_US"
         sale_order = self._create_sale_order(
-            self.env.ref("sale_commission.res_partner_pritesh_sale_agent"),
+            self.env.ref("commission.res_partner_pritesh_sale_agent"),
             self.commission_section_invoice,
         )
         self.assertIn("1", sale_order.order_line[0].commission_status)
@@ -284,9 +282,9 @@ class TestSaleCommission(SavepointCase):
                 0,
                 {
                     "agent_id": self.env.ref(
-                        "sale_commission.res_partner_pritesh_sale_agent"
+                        "commission.res_partner_pritesh_sale_agent"
                     ).id,
-                    "commission_id": self.env.ref("sale_commission.demo_commission").id,
+                    "commission_id": self.env.ref("commission.demo_commission").id,
                 },
             ),
             (
@@ -294,9 +292,9 @@ class TestSaleCommission(SavepointCase):
                 0,
                 {
                     "agent_id": self.env.ref(
-                        "sale_commission.res_partner_eiffel_sale_agent"
+                        "commission.res_partner_eiffel_sale_agent"
                     ).id,
-                    "commission_id": self.env.ref("sale_commission.demo_commission").id,
+                    "commission_id": self.env.ref("commission.demo_commission").id,
                 },
             ),
         ]
@@ -308,7 +306,7 @@ class TestSaleCommission(SavepointCase):
             **{
                 "active_model": "sale.order",
                 "active_ids": sale_order.id,
-                "active_id": sale_order.id
+                "active_id": sale_order.id,
             }
         ).create_invoices()
         invoice = sale_order.invoice_ids

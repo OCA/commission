@@ -112,7 +112,7 @@ class Settlement(models.Model):
             )
             date_from = fields.Date.from_string(self.date_from)
             date_to = fields.Date.from_string(self.date_to)
-            line_form.name += "\n" + _("Period: from %(date_form) to %(date_to)") % {
+            line_form.name += "\n" + _("Period: from %(date_form)s to %(date_to)s") % {
                 "date_form": date_from.strftime(lang.date_format),
                 "date_to": date_to.strftime(lang.date_format),
             }
@@ -169,7 +169,7 @@ class SettlementLine(models.Model):
         readonly=True,
     )
     commission_id = fields.Many2one(
-        comodel_name="sale.commission", related="agent_line.commission_id"
+        comodel_name="commission", related="agent_line.commission_id"
     )
     company_id = fields.Many2one(
         comodel_name="res.company",

@@ -165,10 +165,10 @@
         <field name="res_model">sale.commission.settlement</field>
         <field name="binding_view_types">form,tree</field>
     </record>
-<!--    <menuitem-->
-<!--        name="Settlements"-->
-<!--        id="menu_settle_commissions"-->
-<!--        parent="menu_sale_commissions_management"-->
-<!--        action="action_settle_commission"-->
-<!--    />-->
+    <menuitem
+        name="Settlements"
+        id="menu_settle_commissions"
+        parent="commission.menu_commissions_management"
+        action="action_settle_commission"
+    />
 </odoo>
