@@ -85,6 +85,15 @@ class TestSaleCommission(SavepointCase):
                 "commission_id": cls.commission_net_invoice.id,
             }
         )
+        cls.agent_biweekly = cls.res_partner_model.create(
+            {
+                "name": "Test Agent - Bi-weekly",
+                "agent": True,
+                "settlement": "biweekly",
+                "lang": "en_US",
+                "commission_id": cls.commission_net_invoice.id,
+            }
+        )
         cls.agent_quaterly = cls.res_partner_model.create(
             {
                 "name": "Test Agent - Quaterly",
@@ -148,7 +157,8 @@ class TestSaleCommission(SavepointCase):
             }
         )
 
-    def _invoice_sale_order(self, sale_order):
+    def _invoice_sale_order(self, sale_order, date=None):
+        old_invoices = sale_order.invoice_ids
         wizard = self.advance_inv_model.create({"advance_payment_method": "delivered"})
         wizard.with_context(
             {
@@ -157,13 +167,20 @@ class TestSaleCommission(SavepointCase):
                 "active_id": sale_order.id,
             }
         ).create_invoices()
+        invoice = sale_order.invoice_ids - old_invoices
+        if date:
+            invoice.invoice_date = date
+            invoice.date = date
+        return invoice
 
-    def _settle_agent(self, agent, period):
+    def _settle_agent(self, agent=None, period=None, date=None):
         vals = {
             "date_to": (
                 fields.Datetime.from_string(fields.Datetime.now())
                 + dateutil.relativedelta.relativedelta(months=period)
-            ),
+            )
+            if period
+            else date,
         }
         if agent:
             vals["agent_ids"] = [(4, agent.id)]
@@ -173,8 +190,8 @@ class TestSaleCommission(SavepointCase):
     def _create_order_and_invoice_and_settle(self, agent, commission, period):
         sale_order = self._create_sale_order(agent, commission)
         sale_order.action_confirm()
-        self._invoice_sale_order(sale_order)
-        sale_order.invoice_ids.post()
+        invoice = self._invoice_sale_order(sale_order)
+        invoice.post()
         self._settle_agent(agent, period)
         return sale_order
 
@@ -557,3 +574,24 @@ class TestSaleCommission(SavepointCase):
         settlements.make_invoices(self.journal, self.commission_product)
         invoices = settlements.mapped("invoice_id")
         self.assertEqual(2, len(invoices))
+
+    def test_biweekly(self):
+        agent = self.agent_biweekly
+        commission = self.commission_net_invoice
+        sale_order = self._create_sale_order(agent, commission)
+        sale_order.action_confirm()
+        invoice = self._invoice_sale_order(sale_order, date="2022-01-01")
+        invoice.post()
+        sale_order2 = self._create_sale_order(agent, commission)
+        sale_order2.action_confirm()
+        invoice2 = self._invoice_sale_order(sale_order2, date="2022-01-16")
+        invoice2.post()
+        sale_order3 = self._create_sale_order(agent, commission)
+        sale_order3.action_confirm()
+        invoice3 = self._invoice_sale_order(sale_order3, date="2022-01-31")
+        invoice3.post()
+        self._settle_agent(agent=self.agent_biweekly, date="2022-02-01")
+        settlements = self.settle_model.search(
+            [("agent_id", "=", self.agent_biweekly.id)]
+        )
+        self.assertEqual(len(settlements), 2)
