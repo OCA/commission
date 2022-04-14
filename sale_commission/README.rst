@@ -80,8 +80,15 @@ For adding new agents:
      existing configuration. It can be extended with `hr_commission` module
      for setting an "Employee" agent type.
    * The associated commission type.
-   * The settlement period, where you can select "Monthly", "Quaterly",
-     "Semi-annual" or "Annual".
+   * The settlement period, where you can select:
+   *
+     * Monthly: the settlement will be done for the whole past month.
+     * Bi-weekly: there will be 2 settlement per month, one covering the first
+       15 days, and the other for the rest of the month.
+     * Quaterly: the settlement will cover a quarter of the year (3 months).
+     * Semi-annual: there will be 2 settlements for each year, each one
+       covering 6 months.
+     * Annual: only one settlement per year.
 
    You will also be able to see the settlements that have been made to this
    agent from this page.
