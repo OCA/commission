@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+a1,a1,sale_commission.model_sale_order_line_agent,sale_commission_agent_restrict.group_agent_own_commissions,1,0,0,0

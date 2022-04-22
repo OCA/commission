@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_partner_form_agent_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.agent.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="sale_commission.view_partner_form_agent" />
+        <field name="arch" type="xml">
+            <field name="agent_ids" position="attributes">
+                <attribute name="groups">sales_team.group_sale_manager</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>
