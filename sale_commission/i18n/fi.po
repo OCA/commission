@@ -165,6 +165,11 @@ msgid "Base"
 msgstr ""
 
 #. module: sale_commission
+#: model:ir.model.fields.selection,name:sale_commission.selection__res_partner__settlement__biweekly
+msgid "Bi-weekly"
+msgstr ""
+
+#. module: sale_commission
 #: model:ir.model.fields.selection,name:sale_commission.selection__sale_commission__commission_type__section
 msgid "By sections"
 msgstr ""
