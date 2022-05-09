@@ -22,7 +22,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [hr_commission](hr_commission/) | 13.0.1.0.0 |  | HR commissions
-[sale_commission](sale_commission/) | 13.0.1.7.1 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Sales commissions
+[sale_commission](sale_commission/) | 13.0.1.8.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Sales commissions
 [sale_commission_delegated_partner](sale_commission_delegated_partner/) | 13.0.1.0.0 |  | Allow to delegate the invoices of agent to a delegate partner
 [sale_commission_formula](sale_commission_formula/) | 13.0.1.1.1 |  | Sale commissions computed by formulas
 [sale_commission_pricelist](sale_commission_pricelist/) | 13.0.1.1.0 |  | Sales commissions by pricelist
