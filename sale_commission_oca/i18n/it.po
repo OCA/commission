@@ -174,6 +174,11 @@ msgid "Base"
 msgstr "Base"
 
 #. module: sale_commission
+#: model:ir.model.fields.selection,name:sale_commission.selection__res_partner__settlement__biweekly
+msgid "Bi-weekly"
+msgstr ""
+
+#. module: sale_commission
 #: model:ir.model.fields.selection,name:sale_commission.selection__sale_commission__commission_type__section
 msgid "By sections"
 msgstr "Per sezioni"
@@ -465,7 +470,7 @@ msgid "General information"
 msgstr "informazioni generali"
 
 #. module: sale_commission
-#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement__invoice_ids
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement__invoice_line_ids
 msgid "Generated invoice"
 msgstr "Fattura generata"
 
@@ -480,6 +485,11 @@ msgstr "Importo lordo"
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_search
 msgid "Group By"
 msgstr "Raggruppa per"
+
+#. module: sale_commission
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice__grouped
+msgid "Group invoices"
+msgstr ""
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent__id
@@ -832,9 +842,7 @@ msgstr "Totale regolato"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_settlement
-#: model:ir.model.fields,field_description:sale_commission.field_account_bank_statement_line__settlement_id
-#: model:ir.model.fields,field_description:sale_commission.field_account_move__settlement_id
-#: model:ir.model.fields,field_description:sale_commission.field_account_payment__settlement_id
+#: model:ir.model.fields,field_description:sale_commission.field_account_move_line__settlement_id
 #: model:ir.model.fields,field_description:sale_commission.field_res_partner__settlement_ids
 #: model:ir.model.fields,field_description:sale_commission.field_res_users__settlement_ids
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice__settlement_ids
@@ -877,11 +885,9 @@ msgid "Settlement search"
 msgstr "Ricerca regolazioni"
 
 #. module: sale_commission
-#: model:ir.model.fields,help:sale_commission.field_account_bank_statement_line__settlement_id
-#: model:ir.model.fields,help:sale_commission.field_account_move__settlement_id
-#: model:ir.model.fields,help:sale_commission.field_account_payment__settlement_id
-msgid "Settlement that generates this invoice"
-msgstr "Regolazione che genera la fattura"
+#: model:ir.model.fields,help:sale_commission.field_account_move_line__settlement_id
+msgid "Settlement that generates this invoice line"
+msgstr ""
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_settle_commission
@@ -1028,6 +1034,9 @@ msgstr "_Annulla"
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settled_wizard
 msgid "or"
 msgstr "oppure"
+
+#~ msgid "Settlement that generates this invoice"
+#~ msgstr "Regolazione che genera la fattura"
 
 #, fuzzy
 #~ msgid "Journal Entries"

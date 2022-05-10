@@ -171,6 +171,8 @@ class TestSaleCommission(SavepointCase):
         if date:
             invoice.invoice_date = date
             invoice.date = date
+        # We need to use flush() in order to execute commission_amount
+        invoice.flush()
         return invoice
 
     def _settle_agent(self, agent=None, period=None, date=None):
@@ -194,6 +196,7 @@ class TestSaleCommission(SavepointCase):
         invoices = sale_order.invoice_ids
         invoices.invoice_line_ids.agent_ids._compute_amount()
         invoices.action_post()
+        invoices.invoice_line_ids.agent_ids.flush()
         self._settle_agent(agent, period)
         return sale_order
 
@@ -493,11 +496,12 @@ class TestSaleCommission(SavepointCase):
                 }
             ],
         )
+        refund.flush()
         self.assertEqual(
             invoice.invoice_line_ids.agent_ids.agent_id,
             refund.invoice_line_ids.agent_ids.agent_id,
         )
-        refund.post()
+        refund.action_post()
         self._settle_agent(agent, 1)
         settlements = self.settle_model.search([("agent_id", "=", agent.id)])
         self.assertEqual(2, len(settlements))
@@ -510,7 +514,7 @@ class TestSaleCommission(SavepointCase):
         action = wizard.button_create()
         commission_invoice = self.env["account.move"].browse(action["domain"][0][2])
         self.assertEqual(1, len(commission_invoice))
-        self.assertEqual(commission_invoice.type, "in_invoice")
+        self.assertEqual(commission_invoice.move_type, "in_invoice")
         self.assertAlmostEqual(commission_invoice.amount_total, 0, places=2)
 
     def test_res_partner_agent_propagation(self):
@@ -542,7 +546,7 @@ class TestSaleCommission(SavepointCase):
                 "date": date + relativedelta(months=-1),
             }
         )
-        sale_order.invoice_ids.post()
+        sale_order.invoice_ids.action_post()
         sale_order = self._create_sale_order(
             self.agent_monthly, self.commission_section_invoice
         )
@@ -550,7 +554,7 @@ class TestSaleCommission(SavepointCase):
         self._invoice_sale_order(sale_order)
         date = fields.Date.today()
         sale_order.invoice_ids.date = date
-        sale_order.invoice_ids.post()
+        sale_order.invoice_ids.action_post()
         self._settle_agent(self.agent_monthly, 1)
         settlements = self.env["sale.commission.settlement"].search(
             [
@@ -580,7 +584,7 @@ class TestSaleCommission(SavepointCase):
                 "date": date + relativedelta(months=-1),
             }
         )
-        sale_order.invoice_ids.post()
+        sale_order.invoice_ids.action_post()
         sale_order = self._create_sale_order(
             self.agent_monthly, self.commission_section_invoice
         )
@@ -588,7 +592,7 @@ class TestSaleCommission(SavepointCase):
         self._invoice_sale_order(sale_order)
         date = fields.Date.today()
         sale_order.invoice_ids.date = date
-        sale_order.invoice_ids.post()
+        sale_order.invoice_ids.action_post()
         self._settle_agent(self.agent_monthly, 1)
         settlements = self.env["sale.commission.settlement"].search(
             [
@@ -611,15 +615,15 @@ class TestSaleCommission(SavepointCase):
         sale_order = self._create_sale_order(agent, commission)
         sale_order.action_confirm()
         invoice = self._invoice_sale_order(sale_order, date="2022-01-01")
-        invoice.post()
+        invoice.action_post()
         sale_order2 = self._create_sale_order(agent, commission)
         sale_order2.action_confirm()
         invoice2 = self._invoice_sale_order(sale_order2, date="2022-01-16")
-        invoice2.post()
+        invoice2.action_post()
         sale_order3 = self._create_sale_order(agent, commission)
         sale_order3.action_confirm()
         invoice3 = self._invoice_sale_order(sale_order3, date="2022-01-31")
-        invoice3.post()
+        invoice3.action_post()
         self._settle_agent(agent=self.agent_biweekly, date="2022-02-01")
         settlements = self.settle_model.search(
             [("agent_id", "=", self.agent_biweekly.id)]
