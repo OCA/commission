@@ -3,6 +3,7 @@
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 import dateutil.relativedelta
+from dateutil.relativedelta import relativedelta
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
@@ -84,6 +85,15 @@ class TestSaleCommission(SavepointCase):
                 "commission_id": cls.commission_net_invoice.id,
             }
         )
+        cls.agent_biweekly = cls.res_partner_model.create(
+            {
+                "name": "Test Agent - Bi-weekly",
+                "agent": True,
+                "settlement": "biweekly",
+                "lang": "en_US",
+                "commission_id": cls.commission_net_invoice.id,
+            }
+        )
         cls.agent_quaterly = cls.res_partner_model.create(
             {
                 "name": "Test Agent - Quaterly",
@@ -147,7 +157,8 @@ class TestSaleCommission(SavepointCase):
             }
         )
 
-    def _invoice_sale_order(self, sale_order):
+    def _invoice_sale_order(self, sale_order, date=None):
+        old_invoices = sale_order.invoice_ids
         wizard = self.advance_inv_model.create({"advance_payment_method": "delivered"})
         wizard.with_context(
             {
@@ -156,13 +167,22 @@ class TestSaleCommission(SavepointCase):
                 "active_id": sale_order.id,
             }
         ).create_invoices()
+        invoice = sale_order.invoice_ids - old_invoices
+        if date:
+            invoice.invoice_date = date
+            invoice.date = date
+        # We need to use flush() in order to execute commission_amount
+        invoice.flush()
+        return invoice
 
-    def _settle_agent(self, agent, period):
+    def _settle_agent(self, agent=None, period=None, date=None):
         vals = {
             "date_to": (
                 fields.Datetime.from_string(fields.Datetime.now())
                 + dateutil.relativedelta.relativedelta(months=period)
-            ),
+            )
+            if period
+            else date,
         }
         if agent:
             vals["agent_ids"] = [(4, agent.id)]
@@ -176,6 +196,7 @@ class TestSaleCommission(SavepointCase):
         invoices = sale_order.invoice_ids
         invoices.invoice_line_ids.agent_ids._compute_amount()
         invoices.action_post()
+        invoices.invoice_line_ids.agent_ids.flush()
         self._settle_agent(agent, period)
         return sale_order
 
@@ -434,6 +455,7 @@ class TestSaleCommission(SavepointCase):
         self.assertEqual(commission_refund.move_type, "in_refund")
         # Undo invoices + make invoice again to get a unified invoice
         commission_invoices = commission_invoice + commission_refund
+        commission_invoices.flush()
         commission_invoices.button_cancel()
         self.assertEqual(settlement.state, "except_invoice")
         self.assertEqual(second_settlement.state, "except_invoice")
@@ -457,6 +479,44 @@ class TestSaleCommission(SavepointCase):
         self.assertEqual(invoice.move_type, "in_invoice")
         self.assertAlmostEqual(invoice.amount_total, 0)
 
+    def test_negative_settlements_join_invoice(self):
+        self.product.write({"list_price": 1000})
+        agent = self.agent_monthly
+        commission = self.commission_net_invoice
+        sale_order = self._create_order_and_invoice_and_settle(agent, commission, 1)
+        settlement = self.settle_model.search([("agent_id", "=", agent.id)])
+        self.assertEqual(1, len(settlement))
+        self.assertEqual(settlement.state, "settled")
+        invoice = sale_order.invoice_ids
+        refund = invoice._reverse_moves(
+            default_values_list=[
+                {
+                    "invoice_date": invoice.invoice_date + relativedelta(months=-1),
+                    "date": invoice.date + relativedelta(months=-1),
+                }
+            ],
+        )
+        refund.flush()
+        self.assertEqual(
+            invoice.invoice_line_ids.agent_ids.agent_id,
+            refund.invoice_line_ids.agent_ids.agent_id,
+        )
+        refund.action_post()
+        self._settle_agent(agent, 1)
+        settlements = self.settle_model.search([("agent_id", "=", agent.id)])
+        self.assertEqual(2, len(settlements))
+        second_settlement = settlements.filtered(lambda r: r.total < 0)
+        self.assertEqual(second_settlement.state, "settled")
+        # Use invoice wizard for testing also this part
+        wizard = self.env["sale.commission.make.invoice"].create(
+            {"product_id": self.commission_product.id, "grouped": True}
+        )
+        action = wizard.button_create()
+        commission_invoice = self.env["account.move"].browse(action["domain"][0][2])
+        self.assertEqual(1, len(commission_invoice))
+        self.assertEqual(commission_invoice.move_type, "in_invoice")
+        self.assertAlmostEqual(commission_invoice.amount_total, 0, places=2)
+
     def test_res_partner_agent_propagation(self):
         partner = self.env["res.partner"].create(
             {
@@ -472,3 +532,100 @@ class TestSaleCommission(SavepointCase):
         # Write
         partner.agent_ids = [(4, self.agent_monthly.id)]
         self.assertEqual(set(child.agent_ids.ids), set(partner.agent_ids.ids))
+
+    def test_commission_single_invoice(self):
+        sale_order = self._create_sale_order(
+            self.agent_monthly, self.commission_section_invoice
+        )
+        sale_order.action_confirm()
+        self._invoice_sale_order(sale_order)
+        date = fields.Date.today()
+        sale_order.invoice_ids.write(
+            {
+                "invoice_date": date + relativedelta(months=-1),
+                "date": date + relativedelta(months=-1),
+            }
+        )
+        sale_order.invoice_ids.action_post()
+        sale_order = self._create_sale_order(
+            self.agent_monthly, self.commission_section_invoice
+        )
+        sale_order.action_confirm()
+        self._invoice_sale_order(sale_order)
+        date = fields.Date.today()
+        sale_order.invoice_ids.date = date
+        sale_order.invoice_ids.action_post()
+        self._settle_agent(self.agent_monthly, 1)
+        settlements = self.env["sale.commission.settlement"].search(
+            [
+                (
+                    "agent_id",
+                    "=",
+                    self.agent_monthly.id,
+                ),
+                ("state", "=", "settled"),
+            ]
+        )
+        self.assertEqual(2, len(settlements))
+        settlements.make_invoices(self.journal, self.commission_product, grouped=True)
+        invoices = settlements.mapped("invoice_id")
+        self.assertEqual(1, len(invoices))
+
+    def test_commission_multiple_invoice(self):
+        sale_order = self._create_sale_order(
+            self.agent_monthly, self.commission_section_invoice
+        )
+        sale_order.action_confirm()
+        self._invoice_sale_order(sale_order)
+        date = fields.Date.today()
+        sale_order.invoice_ids.write(
+            {
+                "invoice_date": date + relativedelta(months=-1),
+                "date": date + relativedelta(months=-1),
+            }
+        )
+        sale_order.invoice_ids.action_post()
+        sale_order = self._create_sale_order(
+            self.agent_monthly, self.commission_section_invoice
+        )
+        sale_order.action_confirm()
+        self._invoice_sale_order(sale_order)
+        date = fields.Date.today()
+        sale_order.invoice_ids.date = date
+        sale_order.invoice_ids.action_post()
+        self._settle_agent(self.agent_monthly, 1)
+        settlements = self.env["sale.commission.settlement"].search(
+            [
+                (
+                    "agent_id",
+                    "=",
+                    self.agent_monthly.id,
+                ),
+                ("state", "=", "settled"),
+            ]
+        )
+        self.assertEqual(2, len(settlements))
+        settlements.make_invoices(self.journal, self.commission_product)
+        invoices = settlements.mapped("invoice_id")
+        self.assertEqual(2, len(invoices))
+
+    def test_biweekly(self):
+        agent = self.agent_biweekly
+        commission = self.commission_net_invoice
+        sale_order = self._create_sale_order(agent, commission)
+        sale_order.action_confirm()
+        invoice = self._invoice_sale_order(sale_order, date="2022-01-01")
+        invoice.action_post()
+        sale_order2 = self._create_sale_order(agent, commission)
+        sale_order2.action_confirm()
+        invoice2 = self._invoice_sale_order(sale_order2, date="2022-01-16")
+        invoice2.action_post()
+        sale_order3 = self._create_sale_order(agent, commission)
+        sale_order3.action_confirm()
+        invoice3 = self._invoice_sale_order(sale_order3, date="2022-01-31")
+        invoice3.action_post()
+        self._settle_agent(agent=self.agent_biweekly, date="2022-02-01")
+        settlements = self.settle_model.search(
+            [("agent_id", "=", self.agent_biweekly.id)]
+        )
+        self.assertEqual(len(settlements), 2)
