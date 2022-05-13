@@ -19,7 +19,7 @@ class TestCommissionFormula(TransactionCase):
     def _invoice_sale_order(self, sale_order):
         wizard = self.advance_inv_model.create({"advance_payment_method": "delivered"})
         wizard.with_context(
-            {
+            **{
                 "active_model": "sale.order",
                 "active_ids": [sale_order.id],
                 "active_id": sale_order.id,

@@ -12,7 +12,6 @@ class SaleCommission(models.Model):
         selection_add=[("formula", "Formula")], ondelete={"formula": "set default"}
     )
     formula = fields.Text(
-        "Formula",
         default="if line._name == 'sale.order.line':\n"
         "    result = 0\n"
         "if line._name == 'account.move.line':\n"
