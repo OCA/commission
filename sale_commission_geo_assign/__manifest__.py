@@ -10,7 +10,7 @@
     "website": "https://github.com/OCA/commission",
     "author": "Agile Business Group, Odoo Community Association (OCA)",
     "maintainers": ["eLBati"],
-    "license": "LGPL-3",
+    "license": "AGPL-3",
     "application": False,
     "installable": True,
     "depends": [
