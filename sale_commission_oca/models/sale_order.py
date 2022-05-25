@@ -79,7 +79,10 @@ class SaleOrderLineAgent(models.Model):
     currency_id = fields.Many2one(related="object_id.currency_id")
 
     @api.depends(
-        "object_id.price_subtotal", "object_id.product_id", "object_id.product_uom_qty"
+        "commission_id",
+        "object_id.price_subtotal",
+        "object_id.product_id",
+        "object_id.product_uom_qty",
     )
     def _compute_amount(self):
         for line in self:
