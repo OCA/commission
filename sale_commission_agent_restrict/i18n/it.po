@@ -1,0 +1,89 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_commission_agent_restrict
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2022-06-13 18:05+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: sale_commission_agent_restrict
+#: model:ir.module.category,name:sale_commission_agent_restrict.module_category_sale_commission
+msgid "Agent Access"
+msgstr "Accesso Agente"
+
+#. module: sale_commission_agent_restrict
+#: model:res.groups,name:sale_commission_agent_restrict.group_agent_own_commissions
+msgid "Agent Own Commission Lines"
+msgstr "Solo proprie righe provvigioni"
+
+#. module: sale_commission_agent_restrict
+#: model:res.groups,name:sale_commission_agent_restrict.group_agent_own_customers
+msgid "Agent Own Customers and Orders"
+msgstr "Solo propri clienti ed ordini"
+
+#. module: sale_commission_agent_restrict
+#: model_terms:ir.ui.view,arch_db:sale_commission_agent_restrict.view_sale_order_line_tree_mod
+msgid "Agents"
+msgstr "Agenti"
+
+#. module: sale_commission_agent_restrict
+#: model:ir.model,name:sale_commission_agent_restrict.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: sale_commission_agent_restrict
+#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_partner__display_name
+#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_users__display_name
+#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_commission_agent_restrict
+#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_partner__id
+#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_users__id
+#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_commission_agent_restrict
+#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_partner____last_update
+#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_users____last_update
+#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: sale_commission_agent_restrict
+#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__current_agent_total
+msgid "My Commission"
+msgstr "Le mie provvigioni"
+
+#. module: sale_commission_agent_restrict
+#: model:ir.model,name:sale_commission_agent_restrict.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: sale_commission_agent_restrict
+#: code:addons/sale_commission_agent_restrict/models/res_users.py:0
+#, python-format
+msgid ""
+"This user is not associated to any agent. Please mark corresponding to this "
+"user partner as agent to be able to assign agent related group to him."
+msgstr ""
+"Questo utente non è associato ad alcun agente. Devi impostare il contatto "
+"collegato a quest'utente come \"agente\" per poter assegnare i gruppi "
+"selezionati."
+
+#. module: sale_commission_agent_restrict
+#: model:ir.model,name:sale_commission_agent_restrict.model_res_users
+msgid "Users"
+msgstr "Utenti"
