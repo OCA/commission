@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2022 Simone Rubino - TAKOBI
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+
+<odoo>
+    <record id="sale_commission_form" model="ir.ui.view">
+        <field name="name">Add product commission to form view of Commission in sales</field>
+        <field name="model">sale.commission</field>
+        <field name="inherit_id" ref="sale_commission.sale_commission_form"/>
+        <field name="arch" type="xml">
+            <field name="sections" position="after">
+                <group attrs="{'invisible': [('commission_type', '!=', 'product_fallback')]}">
+                    <field name="product_fallback_amount" string="Fallback Percentage"/>
+                    <field name="product_rule_ids"
+                           colspan="4"
+                           nolabel="True">
+                        <tree editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="product_category_id" />
+                            <field name="product_id" />
+                            <field name="amount" />
+                        </tree>
+                    </field>
+                </group>
+            </field>
+        </field>
+    </record>
+</odoo>
