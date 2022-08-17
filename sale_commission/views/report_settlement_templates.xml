@@ -23,6 +23,7 @@
                         <table class="table table-condensed">
                             <thead>
                                 <tr>
+                                    <th>Customer</th>
                                     <th>Invoice date</th>
                                     <th>Invoice</th>
                                     <th>Invoice line</th>
@@ -31,7 +32,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr t-foreach="o.lines" t-as="l">
+                                <t t-set="lines" t-value="o.lines.sorted(lambda l: (l.date, l.invoice.id))"/>
+                                <tr t-foreach="lines" t-as="l">
+                                    <td><span t-field="l.invoice.partner_id"/></td>
                                     <td><span t-field="l.date"/></td>
                                     <td><span t-field="l.invoice"/></td>
                                     <td><span t-field="l.invoice_line"/></td>
