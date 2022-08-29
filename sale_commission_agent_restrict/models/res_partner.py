@@ -35,3 +35,18 @@ class ResPartner(models.Model):
             vals["agent_ids"] = [(4, self.env.user.partner_id.id, 0)]
         res = super(ResPartner, self).create(vals)
         return res
+
+    @api.model
+    def _commercial_fields(self):
+        res = super()._commercial_fields()
+        for agent in self.agent_ids:
+            user_id = self.env["res.users"].search([("partner_id", "=", agent.id)])
+            if (
+                "agent_ids" in res
+                and user_id
+                and user_id.has_group(
+                    "sale_commission_agent_restrict.group_agent_own_customers"
+                )
+            ):
+                res.remove("agent_ids")
+        return res

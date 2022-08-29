@@ -25,11 +25,10 @@
         <field name="model_id" ref="base.model_res_partner" />
         <field name="groups" eval="[(4,ref('group_agent_own_customers'))]" />
         <field name="domain_force">[
-            '|','|','|','|',
-            ('id', 'child_of', user.partner_id.child_ids.ids),
-            ('user_ids', 'in', user.company_id.user_ids.ids),
+            '|','|','|',
+            ('id', '=', user.partner_id.id),
+            ('user_ids', '=', user.id),
             ('agent_ids', 'in', user.partner_id.ids),
-            ('active', '=', False),
             ('create_uid', '=', user.id)]</field>
         <field name="perm_create" eval="False" />
         <field name="perm_write" eval="False" />
