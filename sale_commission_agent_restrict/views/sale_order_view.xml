@@ -20,7 +20,7 @@
                     editable="bottom"
                 >
                     <field
-                        name="agent_id"
+                        name="agent"
                         context="{'default_agent': True, 'default_customer': False, 'default_supplier': True}"
                         readonly="1"
                     />

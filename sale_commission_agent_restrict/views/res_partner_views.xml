@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2022 Simone Rubino - TAKOBI
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+
 <odoo>
 
     <record id="view_partner_form_agent_inherit" model="ir.ui.view">
@@ -6,7 +11,7 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="sale_commission.view_partner_form_agent" />
         <field name="arch" type="xml">
-            <field name="agent_ids" position="attributes">
+            <field name="agents" position="attributes">
                 <attribute name="groups">sales_team.group_sale_manager</attribute>
             </field>
         </field>

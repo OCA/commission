@@ -1,3 +1,6 @@
+#  Copyright 2022 Simone Rubino - TAKOBI
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from odoo import SUPERUSER_ID, api
 
 # -- List of predefined rules that must be managed
@@ -12,8 +15,7 @@ def restore_access_rules(cr, registry):
     env = api.Environment(cr, SUPERUSER_ID, {})
     rules = (
         env["ir.rule"]
-        .sudo()
         .search([("active", "=", False), ("name", "in", PREDEFINED_RULES)])
     )
     if rules:
-        rules.sudo().write({"active": True})
+        rules.write({"active": True})
