@@ -9,15 +9,17 @@ class SaleOrder(models.Model):
 
     current_agent_total = fields.Float(
         string="My Commission",
-        compute="_compute_commission_total",
-        store=True,
+        compute="_compute_current_agent_total",
     )
 
-    @api.depends("order_line.agents.amount")
-    def _compute_commission_total(self):
-        for record in self:
-            record.commission_total = sum(record.mapped("order_line.agents.amount"))
-            my_com = record.mapped("order_line.agents").filtered(
-                lambda x: x.agent == self.env.user.partner_id
+    @api.depends(
+        "commission_total",
+        "order_line.agents.agent",
+    )
+    def _compute_current_agent_total(self):
+        current_partner = self.env.user.partner_id
+        for order in self:
+            my_com = order.mapped("order_line.agents").filtered(
+                lambda x: x.agent == current_partner
             )
-            record.current_agent_total = sum(my_com.mapped("amount"))
+            order.current_agent_total = sum(my_com.mapped("amount"))
