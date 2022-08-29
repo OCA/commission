@@ -1,20 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* sale_commission_agent_restrict
+#	* sale_commission_agent_restrict
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-06-13 18:05+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
-"Language-Team: none\n"
-"Language: it\n"
+"POT-Creation-Date: 2022-08-29 10:42+0000\n"
+"PO-Revision-Date: 2022-08-29 10:42+0000\n"
+"Last-Translator: Simone Rubino <sir@atakobi.online>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"Plural-Forms: \n"
 
 #. module: sale_commission_agent_restrict
 #: model:ir.module.category,name:sale_commission_agent_restrict.module_category_sale_commission
@@ -42,46 +41,22 @@ msgid "Contact"
 msgstr "Contatto"
 
 #. module: sale_commission_agent_restrict
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_partner__display_name
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_users__display_name
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: sale_commission_agent_restrict
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_partner__id
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_users__id
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_commission_agent_restrict
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_partner____last_update
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_users____last_update
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: sale_commission_agent_restrict
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__current_agent_total
 msgid "My Commission"
 msgstr "Le mie provvigioni"
 
 #. module: sale_commission_agent_restrict
 #: model:ir.model,name:sale_commission_agent_restrict.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr "Ordine di vendita"
 
 #. module: sale_commission_agent_restrict
-#: code:addons/sale_commission_agent_restrict/models/res_users.py:0
+#: code:addons/sale_commission_agent_restrict/models/res_users.py:38
 #, python-format
-msgid ""
-"This user is not associated to any agent. Please mark corresponding to this "
-"user partner as agent to be able to assign agent related group to him."
-msgstr ""
-"Questo utente non è associato ad alcun agente. Devi impostare il contatto "
-"collegato a quest'utente come \"agente\" per poter assegnare i gruppi "
-"selezionati."
+msgid "User {user} is not associated to any agent.\n"
+"Please mark partner corresponding to this user as agent to be able to assign agent related group to him."
+msgstr "L'utente {user} non è associato ad alcun agente.\n"
+"Devi impostare il contatto collegato a quest'utente come \"agente\" per poter assegnare i gruppi selezionati."
 
 #. module: sale_commission_agent_restrict
 #: model:ir.model,name:sale_commission_agent_restrict.model_res_users
