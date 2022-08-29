@@ -1,3 +1,6 @@
+#  Copyright 2022 Simone Rubino - TAKOBI
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from odoo import _, api, models
 from odoo.exceptions import ValidationError
 
@@ -29,13 +32,18 @@ class ResUsers(models.Model):
         group1_name = "in_group_" + str(group1_id)
         group2_name = "in_group_" + str(group2_id)
         if group1_name in values or group2_name in values:
-            if not self.partner_id.agent:
-                raise ValidationError(
-                    _(
-                        "This user is not associated to any agent. "
-                        "Please mark corresponding to this user partner as agent to be "
-                        "able to assign agent related group to him."
+            for user in self:
+                if not user.partner_id.agent:
+                    raise ValidationError(
+                        _(
+                            "User {user} is not associated to any agent.\n"
+                            "Please mark "
+                            "partner corresponding to this user as agent "
+                            "to be able to assign agent related group to him."
+                        )
+                        .format(
+                            user=user.display_name,
+                        )
                     )
-                )
         res = super(ResUsers, self).write(values)
         return res
