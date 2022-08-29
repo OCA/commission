@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sale_commission_make_invoice_form_inherit" model="ir.ui.view">
+        <field name="name">sale.commission.make.invoice.inherit</field>
+        <field name="model">sale.commission.make.invoice</field>
+        <field
+            name="inherit_id"
+            ref="sale_commission.sale_commission_make_invoice_form"
+        />
+        <field name="arch" type="xml">
+            <button name="button_create" position="after">
+                <button
+                    name="button_create_queued"
+                    string="Enqueue Invoices Creation"
+                    type="object"
+                    class="oe_highlight"
+                />
+            </button>
+        </field>
+    </record>
+</odoo>
