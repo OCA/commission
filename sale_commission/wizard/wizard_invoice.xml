@@ -17,7 +17,9 @@
                 >
                     <p colspan="4">(keep empty for invoicing all the settlements)</p>
                     <field name="from_settlement" invisible="1" />
-                    <field name="grouped" />
+                    <group>
+                        <field name="grouped" />
+                    </group>
                     <group colspan="4">
                         <field name="settlement_ids" />
                     </group>
