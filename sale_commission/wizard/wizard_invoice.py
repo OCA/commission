@@ -41,6 +41,18 @@ class SaleCommissionMakeInvoice(models.TransientModel):
 
     def button_create(self):
         self.ensure_one()
+        settlements, invoices = self.create_settlements_and_invoices()
+        # go to results
+        if len(invoices):
+            return {
+                "name": _("Created Invoices"),
+                "type": "ir.actions.act_window",
+                "views": [[False, "list"], [False, "form"]],
+                "res_model": "account.move",
+                "domain": [["id", "in", invoices.ids]],
+            }
+
+    def create_settlements_and_invoices(self):
         if self.settlement_ids:
             settlements = self.settlement_ids
         else:
@@ -57,12 +69,4 @@ class SaleCommissionMakeInvoice(models.TransientModel):
             date=self.date,
             grouped=self.grouped,
         )
-        # go to results
-        if len(settlements):
-            return {
-                "name": _("Created Invoices"),
-                "type": "ir.actions.act_window",
-                "views": [[False, "list"], [False, "form"]],
-                "res_model": "account.move",
-                "domain": [["id", "in", invoices.ids]],
-            }
+        return settlements, invoices
