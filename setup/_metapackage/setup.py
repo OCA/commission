@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo14-addon-sale_commission_formula',
         'odoo14-addon-sale_commission_geo_assign',
         'odoo14-addon-sale_commission_pricelist',
+        'odoo14-addon-sale_commission_queued',
         'odoo14-addon-sale_commission_salesman',
     ],
     classifiers=[
