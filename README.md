@@ -26,6 +26,7 @@ addon | version | maintainers | summary
 [sale_commission_formula](sale_commission_formula/) | 14.0.1.0.0 |  | Sale commissions computed by formulas
 [sale_commission_geo_assign](sale_commission_geo_assign/) | 14.0.1.0.1 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Assign agents to partners according to their location
 [sale_commission_pricelist](sale_commission_pricelist/) | 14.0.1.0.0 |  | Sales commissions by pricelist
+[sale_commission_queued](sale_commission_queued/) | 14.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Sales commissions queued
 [sale_commission_salesman](sale_commission_salesman/) | 14.0.1.0.0 |  | Sales commissions from salesman
 
 [//]: # (end addons)
