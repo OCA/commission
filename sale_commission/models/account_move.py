@@ -1,7 +1,3 @@
-# Copyright 2014-2018 Tecnativa - Pedro M. Baeza
-# Copyright 2020 Tecnativa - Manuel Calero
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-
 from lxml import etree
 
 from odoo import _, api, exceptions, fields, models
@@ -93,7 +89,7 @@ class AccountMove(models.Model):
 class AccountMoveLine(models.Model):
     _inherit = [
         "account.move.line",
-        "sale.commission.mixin",
+        "commission.mixin",
     ]
     _name = "account.move.line"
 
@@ -131,10 +127,11 @@ class AccountMoveLine(models.Model):
         super()._copy_data_extend_business_fields(values)
         if self.settlement_id and self.env.context.get("include_settlement", False):
             values["settlement_id"] = self.settlement_id.id
+        return
 
 
 class AccountInvoiceLineAgent(models.Model):
-    _inherit = "sale.commission.line.mixin"
+    _inherit = "commission.line.mixin"
     _name = "account.invoice.line.agent"
     _description = "Agent detail of commission line in invoice lines"
 

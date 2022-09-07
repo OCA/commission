@@ -2,9 +2,9 @@
 <odoo>
     <record model="ir.ui.view" id="sale_commission_tree">
         <field name="name">Sales commissions tree</field>
-        <field name="model">sale.commission</field>
+        <field name="model">commission</field>
         <field name="arch" type="xml">
-            <tree string="Commissions">
+            <tree>
                 <field name="name" />
                 <field name="commission_type" />
                 <field name="amount_base_type" />
@@ -13,7 +13,7 @@
     </record>
     <record model="ir.ui.view" id="sale_commission_form">
         <field name="name">Sales commissions form</field>
-        <field name="model">sale.commission</field>
+        <field name="model">commission</field>
         <field name="arch" type="xml">
             <form string="Commission">
                 <group string="General information">
@@ -41,7 +41,7 @@
                         nolabel="1"
                         attrs="{'invisible': [('commission_type', '!=', 'section')]}"
                     >
-                        <tree string="Sections" editable="bottom">
+                        <tree editable="bottom">
                             <field name="amount_from" />
                             <field name="amount_to" />
                             <field name="percent" />
@@ -54,20 +54,20 @@
     <record model="ir.actions.act_window" id="action_commission">
         <field name="name">Commission types</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">sale.commission</field>
+        <field name="res_model">commission</field>
         <field name="binding_view_types">form,tree</field>
     </record>
     <menuitem
         name="Commissions Management"
-        id="menu_sale_commissions_management"
+        id="menu_commissions_management"
         parent="sale.sale_menu_root"
         groups="sales_team.group_sale_manager"
         sequence="4"
     />
     <menuitem
         name="Commission types"
-        id="menu_sale_commissions_types"
-        parent="menu_sale_commissions_management"
+        id="menu_commissions_types"
+        parent="menu_commissions_management"
         action="action_commission"
     />
 </odoo>

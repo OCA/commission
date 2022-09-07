@@ -1,17 +1,14 @@
-# Copyright 2018-2020 Tecnativa - Pedro M. Baeza
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-
 from odoo import _, api, fields, models
 
 
-class SaleCommissionMixin(models.AbstractModel):
-    _name = "sale.commission.mixin"
+class CommissionMixin(models.AbstractModel):
+    _name = "commission.mixin"
     _description = (
         "Mixin model for applying to any object that wants to handle commissions"
     )
 
     agent_ids = fields.One2many(
-        comodel_name="sale.commission.line.mixin",
+        comodel_name="commission.line.mixin",
         inverse_name="object_id",
         string="Agents & commissions",
         help="Agents/Commissions related to the invoice line.",
@@ -63,7 +60,7 @@ class SaleCommissionMixin(models.AbstractModel):
 
     def button_edit_agents(self):
         self.ensure_one()
-        view = self.env.ref("sale_commission.view_sale_commission_mixin_agent_only")
+        view = self.env.ref("commission.view_sale_commission_mixin_agent_only")
         return {
             "name": _("Agents"),
             "type": "ir.actions.act_window",
@@ -78,8 +75,8 @@ class SaleCommissionMixin(models.AbstractModel):
         }
 
 
-class SaleCommissionLineMixin(models.AbstractModel):
-    _name = "sale.commission.line.mixin"
+class CommissionLineMixin(models.AbstractModel):
+    _name = "commission.line.mixin"
     _description = (
         "Mixin model for having commission agent lines in "
         "any object inheriting from this one"
@@ -95,7 +92,7 @@ class SaleCommissionLineMixin(models.AbstractModel):
     ]
 
     object_id = fields.Many2one(
-        comodel_name="sale.commission.mixin",
+        comodel_name="commission.mixin",
         ondelete="cascade",
         required=True,
         copy=False,
@@ -108,7 +105,7 @@ class SaleCommissionLineMixin(models.AbstractModel):
         required=True,
     )
     commission_id = fields.Many2one(
-        comodel_name="sale.commission",
+        comodel_name="commission",
         ondelete="restrict",
         required=True,
         compute="_compute_commission_id",

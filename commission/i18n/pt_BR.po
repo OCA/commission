@@ -1,0 +1,368 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* commission
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-06 03:24+0000\n"
+"PO-Revision-Date: 2022-09-06 03:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: commission
+#: code:addons/commission/models/commission_mixin.py:0
+#, python-format
+msgid "%s commission agents"
+msgstr ""
+
+#. module: commission
+#: code:addons/commission/models/commission_mixin.py:0
+#, python-format
+msgid "1 commission agent"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__active
+msgid "Active"
+msgstr "Ativo"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_line_mixin__agent_id
+#: model_terms:ir.ui.view,arch_db:commission.view_partner_form_agent
+msgid "Agent"
+msgstr "Representante"
+
+#. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.res_partner_view_search
+msgid "Agent Partners"
+msgstr "Parceiros Representantes"
+
+#. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.view_partner_form_agent
+msgid "Agent information"
+msgstr ""
+
+#. module: commission
+#: code:addons/commission/models/commission_mixin.py:0
+#: model:ir.actions.act_window,name:commission.action_agent_form
+#: model:ir.model.fields,field_description:commission.field_res_partner__agent_ids
+#: model:ir.model.fields,field_description:commission.field_res_users__agent_ids
+#: model:ir.ui.menu,name:commission.menu_agent_form
+#: model_terms:ir.ui.view,arch_db:commission.res_partner_view_search
+#, python-format
+msgid "Agents"
+msgstr "Representantes"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_mixin__agent_ids
+msgid "Agents & commissions"
+msgstr "Representantes & Comissões"
+
+#. module: commission
+#: model:ir.model.fields,help:commission.field_commission_mixin__agent_ids
+msgid "Agents/Commissions related to the invoice line."
+msgstr "Representantes/Comissões relacionados à linha da fatura."
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__annual
+msgid "Annual"
+msgstr "Anual"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__amount_base_type
+msgid "Base"
+msgstr "base"
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__biweekly
+msgid "Bi-weekly"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__commission__commission_type__section
+msgid "By sections"
+msgstr "Por Seções"
+
+#. module: commission
+#: model:ir.model.fields,help:commission.field_res_partner__agent
+#: model:ir.model.fields,help:commission.field_res_users__agent
+msgid "Check this field if the partner is a creditor or an agent."
+msgstr "Verifique nesse campo se o parceiro é um credor ou um representante."
+
+#. module: commission
+#: code:addons/commission/models/commission_mixin.py:0
+#: model:ir.model.fields,field_description:commission.field_commission_mixin__commission_free
+#, python-format
+msgid "Comm. free"
+msgstr "Livre de comissão"
+
+#. module: commission
+#: model:ir.model,name:commission.model_commission
+#: model:ir.model.fields,field_description:commission.field_commission_line_mixin__commission_id
+#: model:ir.model.fields,field_description:commission.field_commission_mixin__commission_status
+#: model:ir.model.fields,field_description:commission.field_commission_section__commission_id
+#: model:ir.model.fields,field_description:commission.field_res_partner__commission_id
+#: model:ir.model.fields,field_description:commission.field_res_users__commission_id
+#: model_terms:ir.ui.view,arch_db:commission.sale_commission_form
+msgid "Commission"
+msgstr "Comissão"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_line_mixin__amount
+msgid "Commission Amount"
+msgstr "Total de Comissão"
+
+#. module: commission
+#: model:ir.model,name:commission.model_commission_section
+msgid "Commission section"
+msgstr "Seção de comissão"
+
+#. module: commission
+#: model:ir.actions.act_window,name:commission.action_commission
+#: model:ir.ui.menu,name:commission.menu_commissions_types
+msgid "Commission types"
+msgstr "Tipos de comissão"
+
+#. module: commission
+#: model:ir.ui.menu,name:commission.menu_commissions_management
+msgid "Commissions Management"
+msgstr "Gerenciamento de comissões"
+
+#. module: commission
+#: model:ir.model,name:commission.model_res_partner
+msgid "Contact"
+msgstr "Contato"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__create_uid
+#: model:ir.model.fields,field_description:commission.field_commission_section__create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__create_date
+#: model:ir.model.fields,field_description:commission.field_commission_section__create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_res_partner__agent
+#: model:ir.model.fields,field_description:commission.field_res_users__agent
+msgid "Creditor/Agent"
+msgstr "Credor/Representante"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_line_mixin__currency_id
+msgid "Currency"
+msgstr "Moeda"
+
+#. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.view_sale_commission_mixin_agent_only
+msgid "Discard"
+msgstr "Descartar"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__display_name
+#: model:ir.model.fields,field_description:commission.field_commission_section__display_name
+msgid "Display Name"
+msgstr "Nome para Exibição"
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__res_partner__agent_type__agent
+msgid "External agent"
+msgstr "Agente externo"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__fix_qty
+#: model:ir.model.fields.selection,name:commission.selection__commission__commission_type__fixed
+msgid "Fixed percentage"
+msgstr "Porcentagem fixa"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_product_product__commission_free
+#: model:ir.model.fields,field_description:commission.field_product_template__commission_free
+msgid "Free of commission"
+msgstr "Livre de comissão"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_section__amount_from
+msgid "From"
+msgstr "De"
+
+#. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.sale_commission_form
+msgid "General information"
+msgstr "Informações gerais"
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__gross_amount
+msgid "Gross Amount"
+msgstr "Montante bruto"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__id
+#: model:ir.model.fields,field_description:commission.field_commission_section__id
+msgid "ID"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__commission__invoice_state__open
+msgid "Invoice Based"
+msgstr "Fatura baseada em"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__invoice_state
+msgid "Invoice Status"
+msgstr "Situação da Fatura"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission____last_update
+#: model:ir.model.fields,field_description:commission.field_commission_section____last_update
+msgid "Last Modified on"
+msgstr "Última Modificação em"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__write_uid
+#: model:ir.model.fields,field_description:commission.field_commission_section__write_uid
+msgid "Last Updated by"
+msgstr "Última atualização por"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__write_date
+#: model:ir.model.fields,field_description:commission.field_commission_section__write_date
+msgid "Last Updated on"
+msgstr "Última atualização em"
+
+#. module: commission
+#: model:ir.model,name:commission.model_commission_mixin
+msgid ""
+"Mixin model for applying to any object that wants to handle commissions"
+msgstr ""
+"Modelo Mixin para aplicar a qualquer objeto que queira lidar com comissões"
+
+#. module: commission
+#: model:ir.model,name:commission.model_commission_line_mixin
+msgid ""
+"Mixin model for having commission agent lines in any object inheriting from "
+"this one"
+msgstr ""
+"Modelo de mixim para ter linhas de agente de comissão em qualquer objeto "
+"herdando deste"
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__monthly
+msgid "Monthly"
+msgstr "Mensalmente"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__net_amount
+msgid "Net Amount"
+msgstr "Montante líquido"
+
+#. module: commission
+#: code:addons/commission/models/commission_mixin.py:0
+#, python-format
+msgid "No commission agents"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_line_mixin__object_id
+msgid "Parent"
+msgstr "Pai"
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__commission__invoice_state__paid
+msgid "Payment Based"
+msgstr "Baseado no pagamento"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_section__percent
+msgid "Percent"
+msgstr "Percentual"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_mixin__product_id
+msgid "Product"
+msgstr "Produto"
+
+#. module: commission
+#: model:ir.model,name:commission.model_product_template
+msgid "Product Template"
+msgstr "Modelo de Produto"
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__quaterly
+msgid "Quarterly"
+msgstr "Trimestralmente"
+
+#. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.sale_commission_form
+msgid "Rates definition"
+msgstr "Definição das Taxas"
+
+#. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.view_sale_commission_mixin_agent_only
+msgid "Save"
+msgstr "Salvar"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__section_ids
+msgid "Sections"
+msgstr "Seções"
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__semi
+msgid "Semi-annual"
+msgstr "Semestral"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_res_partner__settlement
+#: model:ir.model.fields,field_description:commission.field_res_users__settlement
+msgid "Settlement period"
+msgstr "Período de abatimento"
+
+#. module: commission
+#: code:addons/commission/models/commission.py:0
+#, python-format
+msgid "The lower limit cannot be greater than upper one."
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,help:commission.field_res_partner__commission_id
+#: model:ir.model.fields,help:commission.field_res_users__commission_id
+msgid ""
+"This is the default commission used in the sales where this agent is "
+"assigned. It can be changed on each operation if needed."
+msgstr ""
+"Esta é a comissão padrão usada nas vendas onde este representante está "
+"atribuído. Pode ser alterada em cada operação, se necessário."
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_section__amount_to
+msgid "To"
+msgstr "Para"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__commission_type
+#: model:ir.model.fields,field_description:commission.field_res_partner__agent_type
+#: model:ir.model.fields,field_description:commission.field_res_users__agent_type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: commission
+#: model:ir.model.constraint,message:commission.constraint_account_invoice_line_agent_unique_agent
+#: model:ir.model.constraint,message:commission.constraint_commission_line_mixin_unique_agent
+#: model:ir.model.constraint,message:commission.constraint_sale_order_line_agent_unique_agent
+msgid "You can only add one time each agent."
+msgstr "Você só pode adicionar um representante de cada vez."

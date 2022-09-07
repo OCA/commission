@@ -1,13 +1,11 @@
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-
 from odoo import _, api, exceptions, fields, models
 
 
-class SaleCommission(models.Model):
-    _name = "sale.commission"
-    _description = "Commission in sales"
+class Commission(models.Model):
+    _name = "commission"
+    _description = "Commission"
 
-    name = fields.Char("Name", required=True)
+    name = fields.Char(required=True)
     commission_type = fields.Selection(
         selection=[("fixed", "Fixed percentage"), ("section", "By sections")],
         string="Type",
@@ -17,7 +15,7 @@ class SaleCommission(models.Model):
     fix_qty = fields.Float(string="Fixed percentage")
     section_ids = fields.One2many(
         string="Sections",
-        comodel_name="sale.commission.section",
+        comodel_name="commission.section",
         inverse_name="commission_id",
     )
     active = fields.Boolean(default=True)
@@ -42,14 +40,14 @@ class SaleCommission(models.Model):
         return 0.0
 
 
-class SaleCommissionSection(models.Model):
-    _name = "sale.commission.section"
+class CommissionSection(models.Model):
+    _name = "commission.section"
     _description = "Commission section"
 
-    commission_id = fields.Many2one("sale.commission", string="Commission")
+    commission_id = fields.Many2one("commission", string="Commission")
     amount_from = fields.Float(string="From")
     amount_to = fields.Float(string="To")
-    percent = fields.Float(string="Percent", required=True)
+    percent = fields.Float(required=True)
 
     @api.constrains("amount_from", "amount_to")
     def _check_amounts(self):

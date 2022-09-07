@@ -5,7 +5,6 @@
         <field name="model">sale.commission.settlement</field>
         <field name="arch" type="xml">
             <tree
-                string="Settlements"
                 decoration-muted="state == 'invoiced'"
                 decoration-danger="state == 'cancel'"
                 create="false"
@@ -88,7 +87,7 @@
                 </group>
                 <group string="Commission lines" colspan="4">
                     <field name="line_ids" nolabel="1">
-                        <tree string="Settlement lines">
+                        <tree>
                             <field name="date" />
                             <field name="invoice_line_id" />
                             <field name="commission_id" />
@@ -111,7 +110,7 @@
         <field name="name">Settlement lines</field>
         <field name="model">sale.commission.settlement.line</field>
         <field name="arch" type="xml">
-            <tree string="Settlement lines" create="false">
+            <tree create="false">
                 <field name="date" />
                 <field name="agent_id" />
                 <field name="invoice_line_id" />
@@ -149,17 +148,17 @@
             </search>
         </field>
     </record>
-    <record id="view_settlement_line_graph" model="ir.ui.view">
-        <field name="name">sale.commission.settlement.line.graph</field>
-        <field name="model">sale.commission.settlement.line</field>
-        <field name="arch" type="xml">
-            <graph string="Settlement analysis" type="pivot">
-                <field name="agent_id" type="row" />
-                <field name="date" interval="month" type="col" />
-                <field name="settled_amount" type="measure" />
-            </graph>
-        </field>
-    </record>
+<!--    <record id="view_settlement_line_graph" model="ir.ui.view">-->
+<!--        <field name="name">sale.commission.settlement.line.graph</field>-->
+<!--        <field name="model">sale.commission.settlement.line</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <graph string="Settlement analysis" type="pivot">-->
+<!--                <field name="agent_id" type="row" />-->
+<!--                <field name="date" interval="month" type="col" />-->
+<!--                <field name="settled_amount" type="measure" />-->
+<!--            </graph>-->
+<!--        </field>-->
+<!--    </record>-->
     <record model="ir.actions.act_window" id="action_settle_commission">
         <field name="name">Settlements</field>
         <field name="type">ir.actions.act_window</field>
@@ -169,7 +168,7 @@
     <menuitem
         name="Settlements"
         id="menu_settle_commissions"
-        parent="menu_sale_commissions_management"
+        parent="commission.menu_commissions_management"
         action="action_settle_commission"
     />
 </odoo>

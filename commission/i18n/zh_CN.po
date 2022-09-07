@@ -1,0 +1,363 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* commission
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-06 03:22+0000\n"
+"PO-Revision-Date: 2022-09-06 03:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: commission
+#: code:addons/commission/models/commission_mixin.py:0
+#, python-format
+msgid "%s commission agents"
+msgstr ""
+
+#. module: commission
+#: code:addons/commission/models/commission_mixin.py:0
+#, python-format
+msgid "1 commission agent"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__active
+msgid "Active"
+msgstr "有效"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_line_mixin__agent_id
+#: model_terms:ir.ui.view,arch_db:commission.view_partner_form_agent
+msgid "Agent"
+msgstr "代理商"
+
+#. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.res_partner_view_search
+msgid "Agent Partners"
+msgstr "代理合作伙伴"
+
+#. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.view_partner_form_agent
+msgid "Agent information"
+msgstr ""
+
+#. module: commission
+#: code:addons/commission/models/commission_mixin.py:0
+#: model:ir.actions.act_window,name:commission.action_agent_form
+#: model:ir.model.fields,field_description:commission.field_res_partner__agent_ids
+#: model:ir.model.fields,field_description:commission.field_res_users__agent_ids
+#: model:ir.ui.menu,name:commission.menu_agent_form
+#: model_terms:ir.ui.view,arch_db:commission.res_partner_view_search
+#, python-format
+msgid "Agents"
+msgstr "代理商"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_mixin__agent_ids
+msgid "Agents & commissions"
+msgstr "代理商和佣金"
+
+#. module: commission
+#: model:ir.model.fields,help:commission.field_commission_mixin__agent_ids
+msgid "Agents/Commissions related to the invoice line."
+msgstr "与发票行相关的代理商/佣金。"
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__annual
+msgid "Annual"
+msgstr "每年"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__amount_base_type
+msgid "Base"
+msgstr "基础"
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__biweekly
+msgid "Bi-weekly"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__commission__commission_type__section
+msgid "By sections"
+msgstr "按阶梯"
+
+#. module: commission
+#: model:ir.model.fields,help:commission.field_res_partner__agent
+#: model:ir.model.fields,help:commission.field_res_users__agent
+msgid "Check this field if the partner is a creditor or an agent."
+msgstr "如果合作伙伴是贷方或代理商，请选中此字段。"
+
+#. module: commission
+#: code:addons/commission/models/commission_mixin.py:0
+#: model:ir.model.fields,field_description:commission.field_commission_mixin__commission_free
+#, python-format
+msgid "Comm. free"
+msgstr "免佣金"
+
+#. module: commission
+#: model:ir.model,name:commission.model_commission
+#: model:ir.model.fields,field_description:commission.field_commission_line_mixin__commission_id
+#: model:ir.model.fields,field_description:commission.field_commission_mixin__commission_status
+#: model:ir.model.fields,field_description:commission.field_commission_section__commission_id
+#: model:ir.model.fields,field_description:commission.field_res_partner__commission_id
+#: model:ir.model.fields,field_description:commission.field_res_users__commission_id
+#: model_terms:ir.ui.view,arch_db:commission.sale_commission_form
+msgid "Commission"
+msgstr "佣金"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_line_mixin__amount
+msgid "Commission Amount"
+msgstr "佣金金额"
+
+#. module: commission
+#: model:ir.model,name:commission.model_commission_section
+msgid "Commission section"
+msgstr "佣金项"
+
+#. module: commission
+#: model:ir.actions.act_window,name:commission.action_commission
+#: model:ir.ui.menu,name:commission.menu_commissions_types
+msgid "Commission types"
+msgstr "佣金类型"
+
+#. module: commission
+#: model:ir.ui.menu,name:commission.menu_commissions_management
+msgid "Commissions Management"
+msgstr "佣金管理"
+
+#. module: commission
+#: model:ir.model,name:commission.model_res_partner
+msgid "Contact"
+msgstr "联系人"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__create_uid
+#: model:ir.model.fields,field_description:commission.field_commission_section__create_uid
+msgid "Created by"
+msgstr "创建者"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__create_date
+#: model:ir.model.fields,field_description:commission.field_commission_section__create_date
+msgid "Created on"
+msgstr "创建时间"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_res_partner__agent
+#: model:ir.model.fields,field_description:commission.field_res_users__agent
+msgid "Creditor/Agent"
+msgstr "贷方/代理商"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_line_mixin__currency_id
+msgid "Currency"
+msgstr "货币"
+
+#. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.view_sale_commission_mixin_agent_only
+msgid "Discard"
+msgstr "丢弃"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__display_name
+#: model:ir.model.fields,field_description:commission.field_commission_section__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__res_partner__agent_type__agent
+msgid "External agent"
+msgstr "外部代理商"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__fix_qty
+#: model:ir.model.fields.selection,name:commission.selection__commission__commission_type__fixed
+msgid "Fixed percentage"
+msgstr "固定百分比"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_product_product__commission_free
+#: model:ir.model.fields,field_description:commission.field_product_template__commission_free
+msgid "Free of commission"
+msgstr "免佣金"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_section__amount_from
+msgid "From"
+msgstr "从"
+
+#. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.sale_commission_form
+msgid "General information"
+msgstr "一般信息"
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__gross_amount
+msgid "Gross Amount"
+msgstr "总金额"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__id
+#: model:ir.model.fields,field_description:commission.field_commission_section__id
+msgid "ID"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__commission__invoice_state__open
+msgid "Invoice Based"
+msgstr "基于发票"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__invoice_state
+msgid "Invoice Status"
+msgstr "发票状态"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission____last_update
+#: model:ir.model.fields,field_description:commission.field_commission_section____last_update
+msgid "Last Modified on"
+msgstr "最后修改时间"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__write_uid
+#: model:ir.model.fields,field_description:commission.field_commission_section__write_uid
+msgid "Last Updated by"
+msgstr "最后更新者"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__write_date
+#: model:ir.model.fields,field_description:commission.field_commission_section__write_date
+msgid "Last Updated on"
+msgstr "最后更新时间"
+
+#. module: commission
+#: model:ir.model,name:commission.model_commission_mixin
+msgid ""
+"Mixin model for applying to any object that wants to handle commissions"
+msgstr "Mixin模型适用于任何想要处理佣金的对象"
+
+#. module: commission
+#: model:ir.model,name:commission.model_commission_line_mixin
+msgid ""
+"Mixin model for having commission agent lines in any object inheriting from "
+"this one"
+msgstr "Mixin模型，用于在从此继承的任何对象中具有佣金代理行"
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__monthly
+msgid "Monthly"
+msgstr "每月"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__name
+msgid "Name"
+msgstr "名称"
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__net_amount
+msgid "Net Amount"
+msgstr "净额"
+
+#. module: commission
+#: code:addons/commission/models/commission_mixin.py:0
+#, python-format
+msgid "No commission agents"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_line_mixin__object_id
+msgid "Parent"
+msgstr "上级"
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__commission__invoice_state__paid
+msgid "Payment Based"
+msgstr "基于付款"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_section__percent
+msgid "Percent"
+msgstr "百分比"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_mixin__product_id
+msgid "Product"
+msgstr "产品"
+
+#. module: commission
+#: model:ir.model,name:commission.model_product_template
+msgid "Product Template"
+msgstr "产品模板"
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__quaterly
+msgid "Quarterly"
+msgstr "每季"
+
+#. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.sale_commission_form
+msgid "Rates definition"
+msgstr "费率定义"
+
+#. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.view_sale_commission_mixin_agent_only
+msgid "Save"
+msgstr "保存"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__section_ids
+msgid "Sections"
+msgstr "项"
+
+#. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__semi
+msgid "Semi-annual"
+msgstr "每半年"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_res_partner__settlement
+#: model:ir.model.fields,field_description:commission.field_res_users__settlement
+msgid "Settlement period"
+msgstr "结算期"
+
+#. module: commission
+#: code:addons/commission/models/commission.py:0
+#, python-format
+msgid "The lower limit cannot be greater than upper one."
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,help:commission.field_res_partner__commission_id
+#: model:ir.model.fields,help:commission.field_res_users__commission_id
+msgid ""
+"This is the default commission used in the sales where this agent is "
+"assigned. It can be changed on each operation if needed."
+msgstr "这是分配此代理商在销售中使用的默认佣金。如果需要，可以在每次操作中更改。"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_section__amount_to
+msgid "To"
+msgstr "到"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission__commission_type
+#: model:ir.model.fields,field_description:commission.field_res_partner__agent_type
+#: model:ir.model.fields,field_description:commission.field_res_users__agent_type
+msgid "Type"
+msgstr "类型"
+
+#. module: commission
+#: model:ir.model.constraint,message:commission.constraint_account_invoice_line_agent_unique_agent
+#: model:ir.model.constraint,message:commission.constraint_commission_line_mixin_unique_agent
+#: model:ir.model.constraint,message:commission.constraint_sale_order_line_agent_unique_agent
+msgid "You can only add one time each agent."
+msgstr "每个代理商只能添加一次。"

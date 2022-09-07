@@ -1,6 +1,6 @@
 <odoo>
     <record model="ir.ui.view" id="view_sale_commission_mixin_agent_only">
-        <field name="model">sale.commission.mixin</field>
+        <field name="model">commission.mixin</field>
         <field name="arch" type="xml">
             <form>
                 <field name="commission_free" invisible="1" />

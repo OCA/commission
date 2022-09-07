@@ -1,20 +1,16 @@
-# Copyright 2016-2019 Tecnativa - Pedro M. Baeza
-# Copyright 2020 Tecnativa - Manuel Calero
-# License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
-
 import dateutil.relativedelta
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests.common import Form, TransactionCase
 
 
-class TestSaleCommission(SavepointCase):
+class TestSaleCommission(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.commission_model = cls.env["sale.commission"]
+        cls.commission_model = cls.env["commission"]
         cls.commission_net_paid = cls.commission_model.create(
             {
                 "name": "20% fixed commission (Net amount) - Payment Based",
@@ -161,17 +157,14 @@ class TestSaleCommission(SavepointCase):
         old_invoices = sale_order.invoice_ids
         wizard = self.advance_inv_model.create({"advance_payment_method": "delivered"})
         wizard.with_context(
-            {
-                "active_model": "sale.order",
-                "active_ids": [sale_order.id],
-                "active_id": sale_order.id,
-            }
+            active_model="sale.order",
+            active_ids=[sale_order.id],
+            active_id=sale_order.id,
         ).create_invoices()
         invoice = sale_order.invoice_ids - old_invoices
         if date:
             invoice.invoice_date = date
             invoice.date = date
-        # We need to use flush() in order to execute commission_amount
         invoice.flush()
         return invoice
 
@@ -196,7 +189,6 @@ class TestSaleCommission(SavepointCase):
         invoices = sale_order.invoice_ids
         invoices.invoice_line_ids.agent_ids._compute_amount()
         invoices.action_post()
-        invoices.invoice_line_ids.agent_ids.flush()
         self._settle_agent(agent, period)
         return sale_order
 
@@ -244,7 +236,7 @@ class TestSaleCommission(SavepointCase):
 
     def test_sale_commission_gross_amount_payment(self):
         settlements = self._check_full(
-            self.env.ref("sale_commission.res_partner_pritesh_sale_agent"),
+            self.env.ref("commission.res_partner_pritesh_sale_agent"),
             self.commission_section_paid,
             1,
             0,
@@ -264,7 +256,7 @@ class TestSaleCommission(SavepointCase):
     def test_sale_commission_gross_amount_invoice(self):
         self._create_order_and_invoice_and_settle(
             self.agent_quaterly,
-            self.env.ref("sale_commission.demo_commission"),
+            self.env.ref("commission.demo_commission"),
             1,
         )
         settlements = self.settle_model.search([("state", "=", "invoiced")])
@@ -292,7 +284,7 @@ class TestSaleCommission(SavepointCase):
         # Make sure user is in English
         self.env.user.lang = "en_US"
         sale_order = self._create_sale_order(
-            self.env.ref("sale_commission.res_partner_pritesh_sale_agent"),
+            self.env.ref("commission.res_partner_pritesh_sale_agent"),
             self.commission_section_invoice,
         )
         self.assertIn("1", sale_order.order_line[0].commission_status)
@@ -305,9 +297,9 @@ class TestSaleCommission(SavepointCase):
                 0,
                 {
                     "agent_id": self.env.ref(
-                        "sale_commission.res_partner_pritesh_sale_agent"
+                        "commission.res_partner_pritesh_sale_agent"
                     ).id,
-                    "commission_id": self.env.ref("sale_commission.demo_commission").id,
+                    "commission_id": self.env.ref("commission.demo_commission").id,
                 },
             ),
             (
@@ -315,9 +307,9 @@ class TestSaleCommission(SavepointCase):
                 0,
                 {
                     "agent_id": self.env.ref(
-                        "sale_commission.res_partner_eiffel_sale_agent"
+                        "commission.res_partner_eiffel_sale_agent"
                     ).id,
-                    "commission_id": self.env.ref("sale_commission.demo_commission").id,
+                    "commission_id": self.env.ref("commission.demo_commission").id,
                 },
             ),
         ]
@@ -326,9 +318,9 @@ class TestSaleCommission(SavepointCase):
         sale_order.action_confirm()
         wizard = self.advance_inv_model.create({"advance_payment_method": "delivered"})
         wizard.with_context(
-            {
+            **{
                 "active_model": "sale.order",
-                "active_ids": [sale_order.id],
+                "active_ids": sale_order.id,
                 "active_id": sale_order.id,
             }
         ).create_invoices()
@@ -455,7 +447,6 @@ class TestSaleCommission(SavepointCase):
         self.assertEqual(commission_refund.move_type, "in_refund")
         # Undo invoices + make invoice again to get a unified invoice
         commission_invoices = commission_invoice + commission_refund
-        commission_invoices.flush()
         commission_invoices.button_cancel()
         self.assertEqual(settlement.state, "except_invoice")
         self.assertEqual(second_settlement.state, "except_invoice")

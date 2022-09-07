@@ -1,7 +1,3 @@
-# Copyright 2014-2020 Tecnativa - Pedro M. Baeza
-# Copyright 2020 Tecnativa - Manuel Calero
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-
 from itertools import groupby
 
 from odoo import _, api, fields, models
@@ -16,7 +12,7 @@ class Settlement(models.Model):
     def _default_currency(self):
         return self.env.user.company_id.currency_id.id
 
-    name = fields.Char("Name")
+    name = fields.Char()
     total = fields.Float(compute="_compute_total", readonly=True, store=True)
     date_from = fields.Date(string="From")
     date_to = fields.Date(string="To")
@@ -37,7 +33,6 @@ class Settlement(models.Model):
             ("cancel", "Canceled"),
             ("except_invoice", "Invoice exception"),
         ],
-        string="State",
         readonly=True,
         default="settled",
     )
@@ -126,20 +121,17 @@ class Settlement(models.Model):
                 )
                 date_from = fields.Date.from_string(settlement.date_from)
                 date_to = fields.Date.from_string(settlement.date_to)
-                line_form.name += "\n" + _("Period: from %s to %s") % (
-                    date_from.strftime(lang.date_format),
-                    date_to.strftime(lang.date_format),
+                line_form.name += "\n" + _(
+                    "Period: from %(date_from)s to %(date_to)s",
+                    date_from=date_from.strftime(lang.date_format),
+                    date_to=date_to.strftime(lang.date_format),
                 )
                 line_form.currency_id = (
                     settlement.currency_id
-                )  # todo or compute agent currency_id?
+                )  # todo or compute agent currency_id?\
                 line_form.settlement_id = settlement
-                settlement._post_process_line(line_form)
         vals = move_form._values_to_save(all_fields=True)
         return vals
-
-    def _post_process_line(self, line_form):
-        pass
 
     def _get_invoice_grouping_keys(self):
         return ["company_id", "agent_id"]
@@ -214,7 +206,7 @@ class SettlementLine(models.Model):
         readonly=True,
     )
     commission_id = fields.Many2one(
-        comodel_name="sale.commission", related="agent_line.commission_id"
+        comodel_name="commission", related="agent_line.commission_id"
     )
     company_id = fields.Many2one(
         comodel_name="res.company",

@@ -1,11 +1,11 @@
 <?xml version="1.0" ?>
 <odoo>
     <!-- Create the Commission Types -->
-    <record id="demo_commission" model="sale.commission">
+    <record id="demo_commission" model="commission">
         <field name="name">10% fixed commission - Invoice Based</field>
         <field name="fix_qty">10.0</field>
     </record>
-    <record id="demo_commission_paid" model="sale.commission">
+    <record id="demo_commission_paid" model="commission">
         <field name="name">20% fixed commission - Payment Based</field>
         <field name="fix_qty">20.0</field>
         <field name="invoice_state">paid</field>

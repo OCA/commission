@@ -1,6 +1,3 @@
-# Copyright 2014-2020 Tecnativa - Pedro M. Baeza
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-
 from odoo import api, fields, models
 
 
@@ -46,7 +43,7 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = [
         "sale.order.line",
-        "sale.commission.mixin",
+        "commission.mixin",
     ]
     _name = "sale.order.line"
 
@@ -71,7 +68,7 @@ class SaleOrderLine(models.Model):
 
 
 class SaleOrderLineAgent(models.Model):
-    _inherit = "sale.commission.line.mixin"
+    _inherit = "commission.line.mixin"
     _name = "sale.order.line.agent"
     _description = "Agent detail of commission line in order lines"
 
