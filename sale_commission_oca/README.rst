@@ -7,102 +7,41 @@ Sales commissions
    !! changes will be overwritten.                   !!
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-.. |badge1| image:: https://img.shields.io/badge/maturity-Mature-brightgreen.png
+.. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Mature
+    :alt: Beta
 .. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fcommission-lightgray.png?logo=github
-    :target: https://github.com/OCA/commission/tree/14.0/sale_commission
+    :target: https://github.com/OCA/commission/tree/15.0/sale_commission
     :alt: OCA/commission
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/commission-14-0/commission-14-0-sale_commission
+    :target: https://translation.odoo-community.org/projects/commission-15-0/commission-15-0-sale_commission
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/165/14.0
+    :target: https://runbot.odoo-community.org/runbot/165/15.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module allows to define sales agents with their commissions and assign
-them in customers and sales orders.
+This module adds the function to calculate commissions in sales orders.
 
-You can then make the settlements of these commissions, and generate the
-corresponding supplier invoices to pay their commissions fees.
+Commission lines assigned to sales order lines will be passed to the corresponding
+invoice lines.
 
-You can define which base amount is going to be taken into account: net amount
-(based on margin) or gross amount (line subtotal amount)
+Creating settlements directly from the sales order lines is outside the scope of this
+module.
+
+This module depends on the account_commission module.
 
 **Table of contents**
 
 .. contents::
    :local:
 
-Configuration
-=============
-
-For adding commissions:
-
-#. Go to *Sales > Commission Management > Commission types*.
-#. Edit or create a new record.
-#. Select a name for distinguishing that type.
-#. Select the percentage type of the commission:
-
-   * **Fixed percentage**: all commissions are computed with a fixed
-     percentage. You can fill the percentage in the field "Fixed percentage".
-   * **By sections**: percentage varies depending amount intervals. You can
-     fill intervals and percentages in the section "Rate definition".
-
-#. Select the base amount for computing the percentage:
-
-   * **Gross Amount**: percentage is computed from the amount put on
-     sales order/invoice.
-   * **Net Amount**: percentage is computed from the profit only, taken the
-     cost from the product.
-
-#. Select the invoice status for settling the commissions:
-
-   * **Invoice Based**: Commissions are settled when the invoice is issued.
-   * **Payment Based**: Commissions are settled when the invoice is paid.
-
-For adding new agents:
-
-#. Go to *Sales > Commission Management > Agents*. You can also access from
-   *Contacts > Contacts* or *Sales > Orders > Customers*.
-#. Edit or create a new record.
-#. On "Sales & Purchases" page, mark "Agent" check. It should be checked if
-   you have accessed from first menu option.
-#. There's a new page called "Agent information". In it, you can set following
-   data:
-
-   * The agent type, being in this base module "External agent" the only
-     existing configuration. It can be extended with `hr_commission` module
-     for setting an "Employee" agent type.
-   * The associated commission type.
-   * The settlement period, where you can select:
-   *
-     * Monthly: the settlement will be done for the whole past month.
-     * Bi-weekly: there will be 2 settlement per month, one covering the first
-       15 days, and the other for the rest of the month.
-     * Quaterly: the settlement will cover a quarter of the year (3 months).
-     * Semi-annual: there will be 2 settlements for each year, each one
-       covering 6 months.
-     * Annual: only one settlement per year.
-
-   You will also be able to see the settlements that have been made to this
-   agent from this page.
-
 Usage
 =====
-
-For setting default agents in customers:
-
-#. Go to *Sales > Orders > Customers* or *Contacts > Contacts*.
-#. Edit or create a new record.
-#. On "Sales & Purchases" page, you will see a field called "Agents" where
-   they can be added. You can put the number of agents you want, but you can't
-   select specific commission for each partner in this base module.
 
 For adding commissions on sales orders:
 
@@ -115,57 +54,10 @@ For adding commissions on sales orders:
    list. This icon will be available only if the line hasn't been invoiced yet.
 #. If you have configured your system for editing lines in a popup window,
    agents will appear also in this window.
-#. You have a button "Recompute lines agents" on the bottom of the page
+#. You have a button "Regenerate agents" on the bottom of the page
    "Order Lines" for forcing a recompute of all agents from the partner setup.
    This is needed for example when you have changed the partner on the
    quotation having already inserted lines.
-
-For adding commissions on invoices:
-
-#. Go to *Invoicing > Sales > Customer Invoices*.
-#. Follow the same steps as in sales orders.
-#. The agents icon will be in this ocassion visible when the line hasn't been
-   settled.
-#. Take into account that invoices sales orders will transfer agents
-   information when being invoiced.
-
-For settling the commissions to agents:
-
-#. Go to *Sales > Commissions Management > Settle commissions*.
-#. On the window that appears, you should select the date up to which you
-   want to create commissions. It should be at least one day after the last
-   period date. For example, if you settlements are monthly, you have to put
-   at least the first day of the following month.
-#. You can settle only certain agents if you select them on the "Agents"
-   section. Leave it empty for settling all.
-#. Click on "Make settlements" button.
-#. If there are new settlements, they will be shown after this.
-
-For invoicing the settlements (only for external agents):
-
-#. Go to *Sales > Commissions Management > Create commission invoices*.
-#. On the window that appears, you can select following data:
-
-   * Product. It should be a service product for being coherent.
-   * Journal: To be selected between existing purchase journals.
-   * Date: If you want to choose a specific invoice date. You can leave it
-     blank if you prefer.
-   * Settlements: For selecting specific settlements to invoice. You can leave
-     it blank as well for invoicing all the pending settlements.
-
-#. If you want to invoice a specific settlement, you can navigate to it in
-   *Sales > Commissions Management > Settlements*, and click on "Make invoice"
-   button.
-
-Known issues / Roadmap
-======================
-
-* Make it totally multi-company aware.
-* Be multi-currency aware for settlements.
-* Allow to calculate and pay in other currency different from company one.
-* Allow to group by agent when generating invoices.
-* Set agent popup window with a kanban view with richer information and
-  mobile friendly.
 
 Bug Tracker
 ===========
@@ -173,7 +65,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/commission/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/commission/issues/new?body=module:%20sale_commission%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/commission/issues/new?body=module:%20sale_commission%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -203,6 +95,11 @@ Contributors
   * Pedro M. Baeza
   * Manuel Calero
 
+* `Quartile <https://www.quartile.co>`__:
+
+  * Aung Ko Ko Lin
+  * Yoshi Tashiro
+
 Maintainers
 ~~~~~~~~~~~
 
@@ -224,6 +121,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-pedrobaeza| 
 
-This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/14.0/sale_commission>`_ project on GitHub.
+This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/15.0/sale_commission>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

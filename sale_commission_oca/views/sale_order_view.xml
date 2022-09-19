@@ -19,7 +19,7 @@
                 />
                 <field name="commission_status" optional="show" />
             </xpath>
-            <field name="amount_total" position="after">
+            <field name="tax_totals_json" position="after">
                 <field
                     name="commission_total"
                     widget="monetary"
@@ -53,7 +53,7 @@
         <field name="name">sale.order.line.agent.tree</field>
         <field name="model">sale.order.line.agent</field>
         <field name="arch" type="xml">
-            <tree string="Agents" editable="bottom">
+            <tree editable="bottom">
                 <field
                     name="agent_id"
                     context="{'default_agent': True, 'default_customer': False, 'default_supplier': True}"
