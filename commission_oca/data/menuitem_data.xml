@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Commission node under Invoicing > Vendors -->
+    <menuitem
+        name="Commissions"
+        id="menu_agent_commissions"
+        parent="account.menu_finance_payables"
+        groups="account.group_account_invoice,account.group_account_readonly"
+        sequence="300"
+    />
+    <!-- Commission management node under Invoicing > Configuration -->
+    <menuitem
+        name="Commissions Management"
+        id="menu_commissions_management"
+        parent="account.menu_finance_configuration"
+        groups="account.group_account_invoice,account.group_account_readonly"
+        sequence="10"
+    />
+</odoo>
