@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_invoice_line_agent,access_account_invoice_line_agent,model_account_invoice_line_agent,account.group_account_invoice,1,1,1,1
+access_account_invoice_line_agent_user,access_account_invoice_line_agent_user,model_account_invoice_line_agent,base.group_user,1,0,0,0
+access_invoice_commission_analysis_report,access_invoice_commission_analysis_report,model_invoice_commission_analysis_report,base.group_user,1,0,0,0
