@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="res_partner_form_view">
+        <field
+            name="name"
+        >res.partner.form (in sale_commission_delegate_partner)</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="sale_commission.view_partner_form_agent" />
+        <field name="arch" type="xml">
+            <field name="commission_id" position="after">
+                <field name="delegated_agent_id" options="{'no_create': True}" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

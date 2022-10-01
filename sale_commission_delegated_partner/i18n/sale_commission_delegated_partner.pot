@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_commission_delegated_partner
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_commission_delegated_partner
+#: code:addons/sale_commission_delegated_partner/models/sale_commission_settlement.py:0
+#, python-format
+msgid "Agent: %s"
+msgstr ""
+
+#. module: sale_commission_delegated_partner
+#: model:ir.model,name:sale_commission_delegated_partner.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: sale_commission_delegated_partner
+#: model:ir.model.fields,field_description:sale_commission_delegated_partner.field_res_partner__delegated_agent_id
+#: model:ir.model.fields,field_description:sale_commission_delegated_partner.field_res_users__delegated_agent_id
+msgid "Delegated Agent"
+msgstr ""
+
+#. module: sale_commission_delegated_partner
+#: model:ir.model.fields,field_description:sale_commission_delegated_partner.field_sale_commission_settlement__invoice_partner_id
+msgid "Invoice Partner"
+msgstr ""
+
+#. module: sale_commission_delegated_partner
+#: model:ir.model,name:sale_commission_delegated_partner.model_sale_commission_settlement
+msgid "Settlement"
+msgstr ""
