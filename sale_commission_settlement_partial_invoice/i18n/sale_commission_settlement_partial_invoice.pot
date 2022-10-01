@@ -1,16 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* sale_commission_settlement_partial_invoice
+#	* sale_commission_settlement_partial_invoice
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-30 09:17+0000\n"
-"PO-Revision-Date: 2022-03-30 09:17+0000\n"
-"Last-Translator: Simone Rubino <sir@takobi.online>\n"
+"Last-Translator: <>\n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,58 +16,56 @@ msgstr ""
 #. module: sale_commission_settlement_partial_invoice
 #: selection:sale.commission.settlement,state:0
 msgid "Canceled"
-msgstr "Annullato"
+msgstr ""
 
 #. module: sale_commission_settlement_partial_invoice
 #: model:ir.model.fields,field_description:sale_commission_settlement_partial_invoice.field_sale_commission_settlement__invoice_line_ids
 msgid "Generated invoice lines"
-msgstr "Righe fattura generate"
+msgstr ""
 
 #. module: sale_commission_settlement_partial_invoice
 #: model:ir.model,name:sale_commission_settlement_partial_invoice.model_account_invoice
 #: model:ir.model.fields,field_description:sale_commission_settlement_partial_invoice.field_sale_commission_settlement__invoice_ids
 msgid "Invoice"
-msgstr "Fattura"
+msgstr ""
 
 #. module: sale_commission_settlement_partial_invoice
 #: model:ir.model.fields,field_description:sale_commission_settlement_partial_invoice.field_sale_commission_settlement__invoice_count
 msgid "Invoice Count"
-msgstr "Numero fatture"
+msgstr ""
 
 #. module: sale_commission_settlement_partial_invoice
 #: selection:sale.commission.settlement,state:0
 msgid "Invoice exception"
-msgstr "Eccezione fattura"
+msgstr ""
 
 #. module: sale_commission_settlement_partial_invoice
 #: selection:sale.commission.settlement,state:0
 msgid "Invoiced"
-msgstr "Fatturato"
+msgstr ""
 
 #. module: sale_commission_settlement_partial_invoice
 #: model:ir.model.fields,field_description:sale_commission_settlement_partial_invoice.field_sale_commission_settlement__invoiced_amount
 msgid "Invoiced Amount"
-msgstr "Importo fatturato"
+msgstr ""
 
 #. module: sale_commission_settlement_partial_invoice
 #: model_terms:ir.ui.view,arch_db:sale_commission_settlement_partial_invoice.view_settlement_form_invoices
 msgid "Invoices"
-msgstr "Fatture"
+msgstr ""
 
 #. module: sale_commission_settlement_partial_invoice
 #: selection:sale.commission.settlement,state:0
 msgid "Settled"
-msgstr "Approvvigionato"
+msgstr ""
 
 #. module: sale_commission_settlement_partial_invoice
 #: model:ir.model,name:sale_commission_settlement_partial_invoice.model_sale_commission_settlement
 msgid "Settlement"
-msgstr "Approvvigionamento"
+msgstr ""
 
 #. module: sale_commission_settlement_partial_invoice
 #: model:ir.model.fields,field_description:sale_commission_settlement_partial_invoice.field_sale_commission_settlement__state
 msgid "State"
-msgstr "Stato"
+msgstr ""
 
-#~ msgid "Generated invoices"
-#~ msgstr "Fatture generate"
