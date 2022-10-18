@@ -14,7 +14,7 @@
                 <button
                     name="button_edit_agents"
                     icon="fa-users"
-                    attrs="{'invisible': ['|', ('commission_free', '=', True), ('invoice_lines', '!=', [])]}"
+                    attrs="{'invisible': [ ('commission_free', '=', True)]}"
                     type="object"
                 />
                 <field name="commission_status" optional="show" />
