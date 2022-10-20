@@ -7,8 +7,8 @@ from odoo import api, models
 from odoo.tools.safe_eval import safe_eval
 
 
-class SaleCommissionLineMixin(models.AbstractModel):
-    _inherit = "sale.commission.line.mixin"
+class CommissionLineMixin(models.AbstractModel):
+    _inherit = "commission.line.mixin"
 
     @api.model
     def _get_formula_input_dict(self):
