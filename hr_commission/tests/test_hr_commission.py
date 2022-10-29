@@ -23,9 +23,9 @@ class TestHrCommission(common.TransactionCase):
         # This shouldn't trigger exception now
         self.partner.agent_type = "salesman"
         self.assertTrue(self.partner.employee)
-        self.partner.supplier = True
+        self.partner.supplier_rank = True
         self.partner.onchange_agent_type_hr_commission()
-        self.assertFalse(self.partner.supplier)
+        self.assertFalse(self.partner.supplier_rank)
         # Check that un-assigning user in employee, it raises the constraint
         with self.assertRaises(exceptions.ValidationError):
             self.employee.user_id = False
