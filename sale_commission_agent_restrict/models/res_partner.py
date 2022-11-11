@@ -36,17 +36,15 @@ class ResPartner(models.Model):
         res = super(ResPartner, self).create(vals)
         return res
 
-    @api.model
-    def _commercial_fields(self):
-        res = super()._commercial_fields()
-        for agent in self.agent_ids:
-            user_id = self.env["res.users"].search([("partner_id", "=", agent.id)])
-            if (
-                "agent_ids" in res
-                and user_id
-                and user_id.has_group(
-                    "sale_commission_agent_restrict.group_agent_own_customers"
-                )
-            ):
-                res.remove("agent_ids")
+    def _update_fields_values(self, fields):
+        res = super(ResPartner, self)._update_fields_values(fields)
+        if "agent_ids" in res.keys():
+            for agent in self.agent_ids:
+                for user_id in agent.user_ids:
+                    if user_id and user_id.has_group(
+                        "sale_commission_agent_restrict.group_agent_own_customers"
+                    ):
+                        # do not populate parents agent_ids to child partners
+                        res.pop("agent_ids")
+                        break
         return res

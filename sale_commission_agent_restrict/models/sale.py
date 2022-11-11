@@ -22,7 +22,7 @@ class SaleOrder(models.Model):
             )
             record.current_agent_total = sum(my_com.mapped("amount"))
 
-    @api.depends("company_id")
+    @api.depends_context("company", "uid")
     def _compute_partner_id_domain(self):
         for rec in self:
             rec.partner_id_domain = json.dumps(

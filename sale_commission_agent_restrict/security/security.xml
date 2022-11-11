@@ -27,7 +27,7 @@
         <field name="domain_force">[
             '|','|','|',
             ('id', '=', user.partner_id.id),
-            ('user_ids', '=', user.id),
+            ('user_ids', 'in', user.id),
             ('agent_ids', 'in', user.partner_id.ids),
             ('create_uid', '=', user.id)]</field>
         <field name="perm_create" eval="False" />
