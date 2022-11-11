@@ -68,6 +68,11 @@ msgid "My Commission"
 msgstr "Le mie provvigioni"
 
 #. module: sale_commission_agent_restrict
+#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__partner_id_domain
+msgid "Partner Id Domain"
+msgstr ""
+
+#. module: sale_commission_agent_restrict
 #: model:ir.model,name:sale_commission_agent_restrict.model_sale_order
 msgid "Sales Order"
 msgstr "Ordine di vendita"
