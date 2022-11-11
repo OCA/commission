@@ -35,3 +35,16 @@ class ResPartner(models.Model):
             vals["agent_ids"] = [(4, self.env.user.partner_id.id, 0)]
         res = super(ResPartner, self).create(vals)
         return res
+
+    def _update_fields_values(self, fields):
+        res = super(ResPartner, self)._update_fields_values(fields)
+        if "agent_ids" in res.keys():
+            for agent in self.agent_ids:
+                for user_id in agent.user_ids:
+                    if user_id and user_id.has_group(
+                        "sale_commission_agent_restrict.group_agent_own_customers"
+                    ):
+                        # do not populate parents agent_ids to child partners
+                        res.pop("agent_ids")
+                        break
+        return res
