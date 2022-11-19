@@ -1,9 +1,10 @@
-# Copyright 2014-2020 Tecnativa - Pedro M. Baeza
 # Copyright 2020 Tecnativa - Manuel Calero
+# Copyright 2022 Quartile
+# Copyright 2014-2022 Tecnativa - Pedro M. Baeza
 {
     "name": "Account commissions",
     "version": "15.0.1.0.0",
-    "author": "Tecnativa," "Odoo Community Association (OCA)",
+    "author": "Tecnativa, Odoo Community Association (OCA)",
     "category": "Sales Management",
     "license": "AGPL-3",
     "depends": [
@@ -13,14 +14,15 @@
     "website": "https://github.com/OCA/commission",
     "maintainers": ["pedrobaeza"],
     "data": [
-        "security/ir.model.access.csv",
         "security/account_commission_security.xml",
+        "security/ir.model.access.csv",
+        "data/menuitem_data.xml",
         "views/account_move_views.xml",
-        "views/account_commission_settlement_view.xml",
+        "views/commission_settlement_views.xml",
         "views/commission_views.xml",
         "views/report_settlement_templates.xml",
-        "views/res_partner.xml",
         "report/commission_analysis_view.xml",
+        "wizards/wizard_invoice.xml",
     ],
     "installable": True,
 }

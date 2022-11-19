@@ -1,22 +1,25 @@
-# Copyright 2016-2019 Tecnativa - Pedro M. Baeza
 # Copyright 2020 Tecnativa - Manuel Calero
+# Copyright 2022 Quartile
+# Copyright 2016-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields
-from odoo.exceptions import ValidationError
-from odoo.tests import tagged
-from odoo.tests.common import Form
+from odoo.exceptions import UserError, ValidationError
+from odoo.tests import Form, tagged
 
-from odoo.addons.commission.tests.test_commission import TestCommission
+from odoo.addons.commission.tests.test_commission import TestCommissionBase
 
 
 @tagged("post_install", "-at_install")
-class TestAccountCommission(TestCommission):
+class TestAccountCommission(TestCommissionBase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.journal = cls.env["account.journal"].search(
+            [("type", "=", "purchase"), ("company_id", "=", cls.company.id)], limit=1
+        )
         cls.commission_net_paid.write({"invoice_state": "paid"})
         cls.commission_net_invoice = cls.commission_model.create(
             {
@@ -26,8 +29,12 @@ class TestAccountCommission(TestCommission):
             }
         )
         cls.commission_section_paid.write({"invoice_state": "paid"})
-        cls.product = cls.env.ref("product.product_product_5")
-        cls.product.list_price = 5  # for testing specific commission section
+        cls.product = cls.env["product.product"].create(
+            {
+                "name": "Test product for commissions",
+                "list_price": 5,
+            }
+        )
         cls.default_line_account = cls.env.ref("account.data_account_type_receivable")
         cls.agent_biweekly = cls.res_partner_model.create(
             {
@@ -47,43 +54,24 @@ class TestAccountCommission(TestCommission):
         )
 
     def _create_invoice(self, agent, commission, date=None):
-        invoice = self.env["account.move"].create(
-            {
-                "partner_id": self.partner.id,
-                "move_type": "out_invoice",
-                "invoice_line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.product.name,
-                            "product_id": self.product.id,
-                            "quantity": 1.0,
-                            "account_id": self.default_line_account.id,
-                            "price_unit": self.product.lst_price,
-                            "agent_ids": [
-                                (
-                                    0,
-                                    0,
-                                    {
-                                        "agent_id": agent.id,
-                                        "commission_id": commission.id,
-                                    },
-                                )
-                            ],
-                        },
-                    )
-                ],
-            }
+        invoice_form = Form(
+            self.env["account.move"].with_context(default_move_type="out_invoice")
         )
+        invoice_form.partner_id = self.partner
+        with invoice_form.invoice_line_ids.new() as line_form:
+            line_form.product_id = self.product
         if date:
-            invoice.invoice_date = date
-            invoice.date = date
+            invoice_form.invoice_date = date
+            invoice_form.date = date
+        invoice = invoice_form.save()
+        invoice.invoice_line_ids.agent_ids = [
+            (0, 0, {"agent_id": agent.id, "commission_id": commission.id})
+        ]
         return invoice
 
     def _settle_agent_invoice(self, agent=None, period=None, date=None):
         vals = self._get_make_settle_vals(agent, period, date)
-        vals["settlement_type"] = "invoice"
+        vals["settlement_type"] = "sale_invoice"
         wizard = self.make_settle_model.create(vals)
         wizard.action_settle()
 
@@ -96,6 +84,18 @@ class TestAccountCommission(TestCommission):
         invoice.action_post()
         self._settle_agent_invoice(agent, period)
         return invoice
+
+    def _check_settlements(self, agent, commission, settlements=None):
+        if not settlements:
+            settlements = self._create_settlement(agent, commission)
+        settlements.make_invoices(self.journal, self.commission_product)
+        for settlement in settlements:
+            self.assertEqual(settlement.state, "invoiced")
+        with self.assertRaises(UserError):
+            settlements.action_cancel()
+        with self.assertRaises(UserError):
+            settlements.unlink()
+        return settlements
 
     def _check_invoice_thru_settle(
         self, agent, commission, period, initial_count, order=None
@@ -129,6 +129,16 @@ class TestAccountCommission(TestCommission):
         with self.assertRaises(ValidationError):
             inv_line.agent_ids.amount = 5
         return self._check_settlements(agent, commission, settlements)
+
+    def test_commission_gross_amount(self):
+        settlements = self._check_settlements(
+            self.env.ref("commission.res_partner_pritesh_sale_agent"),
+            self.commission_section_paid,
+        )
+        # Check report print - It shouldn't fail
+        self.env.ref("commission.action_report_settlement")._render_qweb_html(
+            settlements[0].ids
+        )
 
     def test_account_commission_gross_amount_payment(self):
         self._check_invoice_thru_settle(
