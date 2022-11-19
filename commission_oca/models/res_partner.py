@@ -1,5 +1,5 @@
-# Copyright 2016-2019 Tecnativa - Pedro M. Baeza
 # Copyright 2018 Tecnativa - Ernesto Tejeda
+# Copyright 2016-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import api, fields, models
@@ -46,6 +46,11 @@ class ResPartner(models.Model):
         ],
         string="Settlement period",
         default="monthly",
+    )
+    settlement_ids = fields.One2many(
+        comodel_name="commission.settlement",
+        inverse_name="agent_id",
+        readonly=True,
     )
 
     @api.model

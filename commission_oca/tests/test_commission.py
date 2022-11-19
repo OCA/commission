@@ -1,17 +1,16 @@
-# Copyright 2016-2019 Tecnativa - Pedro M. Baeza
 # Copyright 2020 Tecnativa - Manuel Calero
+# Copyright 2022 Quartile
+# Copyright 2016-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields
-from odoo.exceptions import UserError, ValidationError
-from odoo.tests import tagged
+from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 
 
-@tagged("post_install", "-at_install")
-class TestCommission(TransactionCase):
+class TestCommissionBase(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -58,9 +57,6 @@ class TestCommission(TransactionCase):
         cls.make_settle_model = cls.env["commission.make.settle"]
         cls.commission_product = cls.env["product.product"].create(
             {"name": "Commission test product", "type": "service"}
-        )
-        cls.journal = cls.env["account.journal"].search(
-            [("type", "=", "purchase")], limit=1
         )
         cls.agent_monthly = cls.res_partner_model.create(
             {
@@ -142,28 +138,8 @@ class TestCommission(TransactionCase):
             }
         )
 
-    def _check_settlements(self, agent, commission, settlements=None):
-        if not settlements:
-            settlements = self._create_settlement(agent, commission)
-        settlements.make_invoices(self.journal, self.commission_product)
-        for settlement in settlements:
-            self.assertEqual(settlement.state, "invoiced")
-        with self.assertRaises(UserError):
-            settlements.action_cancel()
-        with self.assertRaises(UserError):
-            settlements.unlink()
-        return settlements
 
-    def test_commission_gross_amount(self):
-        settlements = self._check_settlements(
-            self.env.ref("commission.res_partner_pritesh_sale_agent"),
-            self.commission_section_paid,
-        )
-        # Check report print - It shouldn't fail
-        self.env.ref("commission.action_report_settlement")._render_qweb_html(
-            settlements[0].ids
-        )
-
+class TestCommission(TestCommissionBase):
     def test_wrong_section(self):
         with self.assertRaises(ValidationError):
             self.commission_model.create(

@@ -1,6 +1,6 @@
 For adding commissions:
 
-#. Go to *Invoicing > Configuration > Commission Management > Commission types*.
+#. Go to *Commissions > Configuration > Commission types*.
 #. Edit or create a new record.
 #. Select a name for distinguishing that type.
 #. Select the percentage type of the commission:
@@ -19,7 +19,7 @@ For adding commissions:
 
 For adding new agents:
 
-#. Go to *Invoicing > Vendors > Agents*. You can also access from
+#. Go to *Commissions > Agents*. You can also access from
    *Contacts > Contacts* or *Sales > Orders > Customers*.
 #. Edit or create a new record.
 #. On "Sales & Purchases" page, mark "Agent" check. It should be checked if
