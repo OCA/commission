@@ -4,11 +4,7 @@
         <field name="name">Settlements tree</field>
         <field name="model">commission.settlement</field>
         <field name="arch" type="xml">
-            <tree
-                decoration-muted="state == 'invoiced'"
-                decoration-danger="state == 'cancel'"
-                create="false"
-            >
+            <tree decoration-danger="state == 'cancel'">
                 <field name="agent_id" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="date_from" />
@@ -56,13 +52,6 @@
             <form string="Settlement" create="false">
                 <header>
                     <button
-                        string="Make invoice"
-                        attrs="{'invisible': ['|', ('state', '!=', 'settled'), ('agent_type', '!=', 'agent')]}"
-                        class="oe_highlight"
-                        type="object"
-                        name="action_invoice"
-                    />
-                    <button
                         string="Cancel"
                         states="settled"
                         type="object"
@@ -70,40 +59,46 @@
                     />
                     <field name="state" widget="statusbar" />
                 </header>
-                <group>
-                    <group>
-                        <field name="agent_id" />
-                        <field name="date_from" />
-                        <field name="settlement_type" invisible="1" />
+                <sheet>
+                    <field name="can_edit" invisible="1" />
+                    <group attrs="{'readonly': [('can_edit', '=', False)]}">
+                        <group>
+                            <field name="agent_id" />
+                            <field name="date_from" />
+                            <field name="settlement_type" />
+                        </group>
+                        <group>
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                            <field name="date_to" />
+                            <field name="currency_id" invisible="1" />
+                            <field name="agent_type" invisible="1" />
+                        </group>
+                    </group>
+                    <group string="Commission lines" colspan="4">
                         <field
-                            name="invoice_id"
-                            attrs="{'invisible': [('state', '!=', 'invoiced')]}"
+                            name="line_ids"
+                            nolabel="1"
+                            attrs="{'readonly': [('can_edit', '=', False)]}"
+                        >
+                            <tree editable="top">
+                                <field name="date" />
+                                <field name="commission_id" />
+                                <field name="settled_amount" />
+                            </tree>
+                        </field>
+                    </group>
+                    <group class="oe_subtotal_footer oe_right">
+                        <field
+                            name="total"
+                            class="oe_subtotal_footer_separator"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
                         />
                     </group>
-                    <group>
-                        <field name="company_id" groups="base.group_multi_company" />
-                        <field name="date_to" />
-                        <field name="currency_id" invisible="1" />
-                        <field name="agent_type" invisible="1" />
-                    </group>
-                </group>
-                <group string="Commission lines" colspan="4">
-                    <field name="line_ids" nolabel="1">
-                        <tree>
-                            <field name="date" />
-                            <field name="commission_id" />
-                            <field name="settled_amount" />
-                        </tree>
-                    </field>
-                </group>
-                <group class="oe_subtotal_footer oe_right">
-                    <field
-                        name="total"
-                        class="oe_subtotal_footer_separator"
-                        widget="monetary"
-                        options="{'currency_field': 'currency_id'}"
-                    />
-                </group>
+                </sheet>
             </form>
         </field>
     </record>
@@ -159,16 +154,22 @@
             </graph>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="action_settle_commission">
+    <record model="ir.actions.act_window" id="action_commission_settlement">
         <field name="name">Settlements</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">commission.settlement</field>
-        <field name="binding_view_types">form,tree</field>
+        <field name="view_mode">tree,form</field>
     </record>
     <menuitem
         name="Settlements"
-        id="menu_settle_commissions"
-        parent="commission.menu_agent_commissions"
-        action="action_settle_commission"
+        id="menu_settlement_parent"
+        parent="menu_commission"
+        sequence="20"
+    />
+    <menuitem
+        id="menu_settlement"
+        parent="menu_settlement_parent"
+        action="action_commission_settlement"
+        sequence="10"
     />
 </odoo>
