@@ -76,7 +76,6 @@ class SaleOrderLineAgent(models.Model):
     _description = "Agent detail of commission line in order lines"
 
     object_id = fields.Many2one(comodel_name="sale.order.line")
-    currency_id = fields.Many2one(related="object_id.currency_id")
 
     @api.depends(
         "commission_id",

@@ -1,9 +1,9 @@
-# Copyright 2016-2019 Tecnativa - Pedro M. Baeza
 # Copyright 2020 Tecnativa - Manuel Calero
+# Copyright 2022 Quartile
+# Copyright 2016-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo.tests import tagged
-from odoo.tests.common import Form
+from odoo.tests import Form, tagged
 
 from odoo.addons.account_commission.tests.test_account_commission import (
     TestAccountCommission,
@@ -20,34 +20,15 @@ class TestSaleCommission(TestAccountCommission):
         cls.product.write({"invoice_policy": "order"})
 
     def _create_sale_order(self, agent, commission):
-        return self.sale_order_model.create(
-            {
-                "partner_id": self.partner.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.product.name,
-                            "product_id": self.product.id,
-                            "product_uom_qty": 1.0,
-                            "product_uom": self.ref("uom.product_uom_unit"),
-                            "price_unit": self.product.lst_price,
-                            "agent_ids": [
-                                (
-                                    0,
-                                    0,
-                                    {
-                                        "agent_id": agent.id,
-                                        "commission_id": commission.id,
-                                    },
-                                )
-                            ],
-                        },
-                    )
-                ],
-            }
-        )
+        order_form = Form(self.sale_order_model)
+        order_form.partner_id = self.partner
+        with order_form.order_line.new() as line_form:
+            line_form.product_id = self.product
+        order = order_form.save()
+        order.order_line.agent_ids = [
+            (0, 0, {"agent_id": agent.id, "commission_id": commission.id})
+        ]
+        return order
 
     def _invoice_sale_order(self, sale_order, date=None):
         old_invoices = sale_order.invoice_ids
