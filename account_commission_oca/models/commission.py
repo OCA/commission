@@ -9,6 +9,5 @@ class Commission(models.Model):
     invoice_state = fields.Selection(
         [("open", "Invoice Based"), ("paid", "Payment Based")],
         string="Invoice Status",
-        required=True,
         default="open",
     )

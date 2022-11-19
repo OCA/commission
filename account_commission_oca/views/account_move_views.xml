@@ -16,6 +16,7 @@
         <field name="inherit_id" ref="account.view_move_line_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='blocked']/.." position="after">
+                <field name="settlement_id" invisible="1" />
                 <group
                     string="Commissions"
                     name="group_commission"
@@ -41,6 +42,7 @@
                 expr="//field[@name='invoice_line_ids']/tree//field[@name='price_subtotal']"
                 position="after"
             >
+                <field name="settlement_id" invisible="1" />
                 <field name="commission_free" invisible="1" />
                 <field name="any_settled" invisible="1" />
                 <button
@@ -79,6 +81,7 @@
                 expr="//field[@name='line_ids']/tree/field[@name='discount']"
                 position="before"
             >
+                <field name="settlement_id" invisible="1" />
                 <field name="commission_free" invisible="1" />
                 <field name="any_settled" invisible="1" />
                 <field name="commission_status" invisible="1" />

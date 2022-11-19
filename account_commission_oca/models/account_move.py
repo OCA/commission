@@ -43,12 +43,20 @@ class AccountMove(models.Model):
             for line in record.line_ids:
                 record.commission_total += sum(x.amount for x in line.agent_ids)
 
+    def action_post(self):
+        """Put settlements associated to the invoices in invoiced state."""
+        self.mapped("line_ids.settlement_id").write({"state": "invoiced"})
+        return super().action_post()
+
     def button_cancel(self):
-        """Check settled lines."""
+        """Check settled lines and put settlements associated to the invoices in
+        exception.
+        """
         if any(self.mapped("invoice_line_ids.any_settled")):
             raise exceptions.ValidationError(
                 _("You can't cancel an invoice with settled lines"),
             )
+        self.mapped("line_ids.settlement_id").write({"state": "except_invoice"})
         return super().button_cancel()
 
     def recompute_lines_agents(self):
@@ -92,6 +100,12 @@ class AccountMoveLine(models.Model):
     agent_ids = fields.One2many(comodel_name="account.invoice.line.agent")
     any_settled = fields.Boolean(compute="_compute_any_settled")
 
+    settlement_id = fields.Many2one(
+        comodel_name="commission.settlement",
+        help="Settlement that generates this invoice line",
+        copy=False,
+    )
+
     @api.depends("agent_ids", "agent_ids.settled")
     def _compute_any_settled(self):
         for record in self:
@@ -118,6 +132,16 @@ class AccountMoveLine(models.Model):
                     record.move_id.partner_id
                 )
 
+    def _copy_data_extend_business_fields(self, values):
+        """We don't want to loose the settlement from the line when reversing the line
+        if it was a refund. We need to include it, but as we don't want change it
+        everytime, we will add the data when a context key is passed.
+        """
+        res = super()._copy_data_extend_business_fields(values)
+        if self.settlement_id and self.env.context.get("include_settlement", False):
+            values["settlement_id"] = self.settlement_id.id
+        return res
+
 
 class AccountInvoiceLineAgent(models.Model):
     _inherit = "commission.line.mixin"
@@ -137,12 +161,9 @@ class AccountInvoiceLineAgent(models.Model):
         store=True,
         readonly=True,
     )
-    agent_line = fields.Many2many(
+    settlement_line_ids = fields.One2many(
         comodel_name="commission.settlement.line",
-        relation="settlement_agent_line_rel",
-        column1="agent_line_id",
-        column2="settlement_id",
-        copy=False,
+        inverse_name="invoice_agent_line_id",
     )
     settled = fields.Boolean(compute="_compute_settled", store=True)
     company_id = fields.Many2one(
@@ -174,14 +195,17 @@ class AccountInvoiceLineAgent(models.Model):
                 line.amount = -line.amount
 
     @api.depends(
-        "agent_line", "agent_line.settlement_id.state", "invoice_id", "invoice_id.state"
+        "settlement_line_ids",
+        "settlement_line_ids.settlement_id.state",
+        "invoice_id",
+        "invoice_id.state",
     )
     def _compute_settled(self):
         # Count lines of not open or paid invoices as settled for not
         # being included in settlements
         for line in self:
             line.settled = any(
-                x.settlement_id.state != "cancel" for x in line.agent_line
+                x.settlement_id.state != "cancel" for x in line.settlement_line_ids
             )
 
     @api.depends("object_id", "object_id.company_id")
