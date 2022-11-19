@@ -19,9 +19,9 @@ Commissions
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/commission-15-0/commission-15-0-commission
     :alt: Translate me on Weblate
-.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/165/15.0
-    :alt: Try me on Runbot
+.. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
+    :target: https://runboat.odoo-community.org/webui/builds.html?repo=OCA/commission&target_branch=15.0
+    :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
@@ -31,10 +31,9 @@ following:
 - Define agents with their commissions
 - Assign agents to partners
 - Create settlements to summarize commissions for certain periods
-- Create vendor bills from settlements
 
 You can define which base amount is going to be taken into account: net amount
-(based on margin) or gross amount (line subtotal amount)
+(based on margin) or gross amount (line subtotal amount).
 
 **Table of contents**
 
@@ -46,7 +45,7 @@ Configuration
 
 For adding commissions:
 
-#. Go to *Invoicing > Configuration > Commission Management > Commission types*.
+#. Go to *Commissions > Configuration > Commission types*.
 #. Edit or create a new record.
 #. Select a name for distinguishing that type.
 #. Select the percentage type of the commission:
@@ -65,7 +64,7 @@ For adding commissions:
 
 For adding new agents:
 
-#. Go to *Invoicing > Vendors > Agents*. You can also access from
+#. Go to *Commissions > Agents*. You can also access from
    *Contacts > Contacts* or *Sales > Orders > Customers*.
 #. Edit or create a new record.
 #. On "Sales & Purchases" page, mark "Agent" check. It should be checked if
@@ -96,7 +95,7 @@ For setting default agents in partners:
 
 For settling the commissions to agents:
 
-#. Go to *Invoicing > Vendors > Commissions > Settle commissions*.
+#. Go to *Commissions > Settlements > Settle Commissions*.
 #. On the window that appears, you should select the date up to which you
    want to create commissions. It should be at least one day after the last
    period date. For example, if you settlements are monthly, you have to put
@@ -105,22 +104,6 @@ For settling the commissions to agents:
    section. Leave it empty for settling all.
 #. Click on "Make settlements" button.
 #. If there are new settlements, they will be shown after this.
-
-For invoicing the settlements (only for external agents):
-
-#. Go to *Invoicing > Vendors > Create commission invoices*.
-#. On the window that appears, you can select following data:
-
-   * Product. It should be a service product for being coherent.
-   * Journal: To be selected between existing purchase journals.
-   * Date: If you want to choose a specific invoice date. You can leave it
-     blank if you prefer.
-   * Settlements: For selecting specific settlements to invoice. You can leave
-     it blank as well for invoicing all the pending settlements.
-
-#. If you want to invoice a specific settlement, you can navigate to it in
-   *Invoicing > Vendors > Settlements*, and click on "Make invoice"
-   button.
 
 Known issues / Roadmap
 ======================

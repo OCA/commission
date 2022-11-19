@@ -5,6 +5,17 @@
         <field name="model">commission.make.settle</field>
         <field name="arch" type="xml">
             <form string="Settle commissions">
+                <field name="can_settle" invisible="1" />
+                <div
+                    class="alert alert-warning text-center"
+                    attrs="{'invisible': [('can_settle', '=', True)]}"
+                    role="alert"
+                >
+                    <span>
+                        No automatic settlements can be made. Install any extra
+                        commission module for having this feature enabled.
+                    </span>
+                </div>
                 <group>
                     <p
                         colspan="4"
@@ -46,9 +57,10 @@
         <field name="binding_model_id" ref="model_commission_make_settle" />
     </record>
     <menuitem
-        id="menu_agents_settlement"
-        parent="commission.menu_agent_commissions"
+        id="menu_commission_make_settle"
+        parent="menu_settlement_parent"
         action="action_agents_settlement"
         sequence="20"
+        groups="group_commission_manager"
     />
 </odoo>
