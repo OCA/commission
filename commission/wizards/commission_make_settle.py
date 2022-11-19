@@ -1,21 +1,33 @@
-# Copyright 2014-2020 Tecnativa - Pedro M. Baeza
+# Copyright 2022 Quartile
+# Copyright 2014-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from datetime import date, timedelta
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 
 
 class CommissionMakeSettle(models.TransientModel):
     _name = "commission.make.settle"
     _description = "Wizard for settling commissions"
 
-    date_to = fields.Date("Up to", required=True, default=fields.Date.today())
+    date_to = fields.Date("Up to", required=True, default=fields.Date.today)
     agent_ids = fields.Many2many(
         comodel_name="res.partner", domain="[('agent', '=', True)]"
     )
     settlement_type = fields.Selection(selection=[], required=True)
+    can_settle = fields.Boolean(
+        compute="_compute_can_settle",
+        help="Technical field for improving UX when no extra *commission is installed.",
+    )
+
+    @api.depends("date_to")  # use this unrelated field to trigger the computation
+    def _compute_can_settle(self):
+        """Check if there's any settlement type for making the settlements."""
+        self.can_settle = bool(
+            self.env[self._name]._fields["settlement_type"].selection
+        )
 
     def _get_period_start(self, agent, date_to):
         if agent.settlement == "monthly":
@@ -55,6 +67,7 @@ class CommissionMakeSettle(models.TransientModel):
             return current_date + relativedelta(years=1)
 
     def _get_settlement(self, agent, company, sett_from, sett_to):
+        self.ensure_one()
         return self.env["commission.settlement"].search(
             [
                 ("agent_id", "=", agent.id),
@@ -62,6 +75,7 @@ class CommissionMakeSettle(models.TransientModel):
                 ("date_to", "=", sett_to),
                 ("company_id", "=", company.id),
                 ("state", "=", "settled"),
+                ("settlement_type", "=", self.settlement_type),
             ],
             limit=1,
         )
@@ -75,19 +89,10 @@ class CommissionMakeSettle(models.TransientModel):
             "settlement_type": self.settlement_type,
         }
 
-    def _get_settlement_line_date(self, line):
-        """Need to be extended according to settlement_type."""
-        raise NotImplementedError()
-
     def _prepare_settlement_line_vals(self, settlement, line):
+        """Hook for returning the settlement line dictionary vals."""
         return {
             "settlement_id": settlement.id,
-            "agent_line": [(6, 0, [line.id])],
-            "date": self._get_settlement_line_date(line),
-            "agent_id": line.agent_id.id,
-            "commission_id": line.commission_id.id,
-            "settled_amount": line.amount,
-            "currency_id": line.currency_id.id,
         }
 
     def _get_agent_lines(self, date_to_agent):
@@ -99,7 +104,6 @@ class CommissionMakeSettle(models.TransientModel):
         settlement_obj = self.env["commission.settlement"]
         settlement_line_obj = self.env["commission.settlement.line"]
         settlement_ids = []
-
         if self.agent_ids:
             agents = self.agent_ids
         else:
@@ -107,7 +111,7 @@ class CommissionMakeSettle(models.TransientModel):
         date_to = self.date_to
         for agent in agents:
             date_to_agent = self._get_period_start(agent, date_to)
-            # Get non settled invoices
+            # Get non settled elements
             agent_lines = self._get_agent_lines(agent, date_to_agent)
             for company in agent_lines.mapped("company_id"):
                 agent_lines_company = agent_lines.filtered(
@@ -134,6 +138,7 @@ class CommissionMakeSettle(models.TransientModel):
                                 )
                             )
                         settlement_ids.append(settlement.id)
+                    # TODO: Do creates in batch
                     settlement_line_obj.create(
                         self._prepare_settlement_line_vals(settlement, line)
                     )

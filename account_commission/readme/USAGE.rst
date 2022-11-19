@@ -15,3 +15,23 @@ For adding commissions on invoices:
    "Invoice Lines" for forcing a recompute of all agents from the partner setup.
    This is needed for example when you have changed the partner on the
    invoice having already inserted lines.
+
+For invoicing the settlements (only for external agents):
+
+#. Go to *Invoicing > Commissions > Create Commission Invoices*.
+#. On the window that appears, you can select following data:
+
+   * Product. It should be a service product for being coherent.
+   * Journal: To be selected between existing purchase journals.
+   * Date: If you want to choose a specific invoice date. You can leave it
+     blank if you prefer.
+   * Settlements: For selecting specific settlements to invoice. You can leave
+     it blank as well for invoicing all the pending settlements.
+
+If you want to invoice a/some specific settlement/s:
+
+#. Navigate to *Invoicing > Commissions > Invoices Settlements*.
+#. Select it/them on the list.
+#. Click on *Action > Create Commission Invoices*.
+#. You can as well enter in one settlement, and click on the "Make invoice"
+   button.

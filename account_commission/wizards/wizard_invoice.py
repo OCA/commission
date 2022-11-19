@@ -1,4 +1,4 @@
-from odoo import _, fields, models
+from odoo import _, exceptions, fields, models
 
 
 class CommissionMakeInvoice(models.TransientModel):
@@ -6,19 +6,37 @@ class CommissionMakeInvoice(models.TransientModel):
     _description = "Wizard for making an invoice from a settlement"
 
     def _default_journal_id(self):
-        return self.env["account.journal"].search([("type", "=", "purchase")])[:1]
+        return self.env["account.journal"].search(
+            [("type", "=", "purchase"), ("company_id", "=", self.env.company.id)],
+            limit=1,
+        )
 
     def _default_settlement_ids(self):
+        context = self.env.context
+        if context.get("active_model") == "commission.settlement":
+            settlements = self.env[context["active_model"]].browse(
+                context.get("active_ids")
+            )
+            settlements = settlements.filtered_domain(
+                [
+                    ("state", "=", "settled"),
+                    ("agent_type", "=", "agent"),
+                    ("company_id", "=", self.env.company.id),
+                ]
+            )
+            if not settlements:
+                raise exceptions.UserError(_("No valid settlements to invoice."))
+            return settlements.ids
         return self.env.context.get("settlement_ids", [])
 
     def _default_from_settlement(self):
-        return bool(self.env.context.get("settlement_ids"))
+        return bool(self._default_settlement_ids())
 
     journal_id = fields.Many2one(
         comodel_name="account.journal",
         required=True,
         domain="[('type', '=', 'purchase')]",
-        default=_default_journal_id,
+        default=lambda self: self._default_journal_id(),
     )
     company_id = fields.Many2one(
         comodel_name="res.company", related="journal_id.company_id", readonly=True
@@ -33,9 +51,11 @@ class CommissionMakeInvoice(models.TransientModel):
         column2="settlement_id",
         domain="[('state', '=', 'settled'),('agent_type', '=', 'agent'),"
         "('company_id', '=', company_id)]",
-        default=_default_settlement_ids,
+        default=lambda self: self._default_settlement_ids(),
     )
-    from_settlement = fields.Boolean(default=_default_from_settlement)
+    from_settlement = fields.Boolean(
+        default=lambda self: self._default_from_settlement()
+    )
     date = fields.Date(default=fields.Date.context_today)
     grouped = fields.Boolean(string="Group invoices")
 

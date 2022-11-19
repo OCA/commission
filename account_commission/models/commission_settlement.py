@@ -1,74 +1,45 @@
-# Copyright 2014-2020 Tecnativa - Pedro M. Baeza
 # Copyright 2020 Tecnativa - Manuel Calero
+# Copyright 2022 Quartile
+# Copyright 2014-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-
-from itertools import groupby
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tests.common import Form
+from odoo.tests import Form
+from odoo.tools import groupby
 
 
-class Settlement(models.Model):
-    _name = "commission.settlement"
-    _description = "Settlement"
+class CommissionSettlement(models.Model):
+    _inherit = "commission.settlement"
 
-    def _default_currency(self):
-        return self.env.user.company_id.currency_id.id
-
-    name = fields.Char()
-    total = fields.Float(compute="_compute_total", readonly=True, store=True)
-    date_from = fields.Date(string="From")
-    date_to = fields.Date(string="To")
-    agent_id = fields.Many2one(
-        comodel_name="res.partner", domain="[('agent', '=', True)]"
-    )
-    agent_type = fields.Selection(related="agent_id.agent_type")
-    settlement_type = fields.Char(
-        readonly=True,
-        help="e.g. 'invoice'. A technical field to control the view presentation.",
-    )
-    line_ids = fields.One2many(
-        comodel_name="commission.settlement.line",
-        inverse_name="settlement_id",
-        string="Settlement lines",
-        readonly=True,
+    settlement_type = fields.Selection(
+        selection_add=[("sale_invoice", "Sales Invoices")],
+        ondelete={"sale_invoice": "set default"},
     )
     state = fields.Selection(
-        selection=[
-            ("settled", "Settled"),
+        selection_add=[
             ("invoiced", "Invoiced"),
-            ("cancel", "Canceled"),
             ("except_invoice", "Invoice exception"),
         ],
-        readonly=True,
-        default="settled",
+        ondelete={"invoiced": "set default", "except_invoice": "set default"},
     )
     invoice_line_ids = fields.One2many(
         comodel_name="account.move.line",
         inverse_name="settlement_id",
-        string="Generated invoice",
+        string="Generated invoice lines",
         readonly=True,
     )
-    # TODO: To be removed
     invoice_id = fields.Many2one(
         store=True,
         comodel_name="account.move",
         compute="_compute_invoice_id",
     )
-    currency_id = fields.Many2one(
-        comodel_name="res.currency", readonly=True, default=_default_currency
-    )
-    company_id = fields.Many2one(
-        comodel_name="res.company",
-        default=lambda self: self.env.user.company_id,
-        required=True,
-    )
 
-    @api.depends("line_ids", "line_ids.settled_amount")
-    def _compute_total(self):
-        for record in self:
-            record.total = sum(record.mapped("line_ids.settled_amount"))
+    def _compute_can_edit(self):
+        """Make settlements coming from invoice lines to not be editable."""
+        sale_invoices = self.filtered(lambda x: x.settlement_type == "sale_invoice")
+        sale_invoices.update({"can_edit": False})
+        return super(CommissionSettlement, self - sale_invoices)._compute_can_edit()
 
     @api.depends("invoice_line_ids")
     def _compute_invoice_id(self):
@@ -76,12 +47,16 @@ class Settlement(models.Model):
             record.invoice_id = record.invoice_line_ids[:1].move_id
 
     def action_cancel(self):
+        """Check if any settlement has been invoiced."""
         if any(x.state != "settled" for x in self):
             raise UserError(_("Cannot cancel an invoiced settlement."))
-        self.write({"state": "cancel"})
+        return super().action_cancel()
+
+    def action_draft(self):
+        self.write({"state": "draft"})
 
     def unlink(self):
-        """Allow to delete only cancelled settlements"""
+        """Allow to delete only cancelled settlements."""
         if any(x.state == "invoiced" for x in self):
             raise UserError(_("You can't delete invoiced settlements."))
         return super().unlink()
@@ -101,11 +76,9 @@ class Settlement(models.Model):
         return self[0].agent_id
 
     def _prepare_invoice(self, journal, product, date=False):
-
         move_form = Form(
             self.env["account.move"].with_context(default_move_type="in_invoice")
         )
-
         if date:
             move_form.invoice_date = date
         partner = self._get_invoice_partner()
@@ -156,10 +129,10 @@ class Settlement(models.Model):
                         for grouping_key in invoice_grouping_keys
                     ],
                 ),
-                key=lambda x: [
+                key=lambda x: tuple(
                     x._fields[grouping_key].convert_to_write(x[grouping_key], x)
                     for grouping_key in invoice_grouping_keys
-                ],
+                ),
             )
             grouped_settlements = [
                 settlement_obj.union(*list(sett))
@@ -179,34 +152,27 @@ class Settlement(models.Model):
 
 
 class SettlementLine(models.Model):
-    _name = "commission.settlement.line"
-    _description = "Line of a commission settlement"
+    _inherit = "commission.settlement.line"
 
-    settlement_id = fields.Many2one(
-        "commission.settlement",
-        readonly=True,
-        ondelete="cascade",
-        required=True,
+    invoice_agent_line_id = fields.Many2one(comodel_name="account.invoice.line.agent")
+    invoice_line_id = fields.Many2one(
+        comodel_name="account.move.line",
+        store=True,
+        related="invoice_agent_line_id.object_id",
+        string="Source invoice line",
     )
 
-    date = fields.Date()
-    agent_id = fields.Many2one(
-        comodel_name="res.partner",
-        readonly=True,
-        store=True,
-    )
-    settled_amount = fields.Monetary(readonly=True, store=True)
-    currency_id = fields.Many2one(
-        comodel_name="res.currency",
-        store=True,
-        readonly=True,
-    )
-    commission_id = fields.Many2one(
-        comodel_name="commission",
-        readonly=True,
-        store=True,
-    )
-    company_id = fields.Many2one(
-        comodel_name="res.company",
-        related="settlement_id.company_id",
-    )
+    @api.depends("invoice_agent_line_id")
+    def _compute_date(self):
+        for record in self.filtered("invoice_agent_line_id"):
+            record.date = record.invoice_agent_line_id.invoice_date
+
+    @api.depends("invoice_agent_line_id")
+    def _compute_commission_id(self):
+        for record in self.filtered("invoice_agent_line_id"):
+            record.commission_id = record.invoice_agent_line_id.commission_id
+
+    @api.depends("invoice_agent_line_id")
+    def _compute_settled_amount(self):
+        for record in self.filtered("invoice_agent_line_id"):
+            record.settled_amount = record.invoice_agent_line_id.amount

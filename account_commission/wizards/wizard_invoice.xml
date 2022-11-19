@@ -15,7 +15,9 @@
                     string="Settlements"
                     attrs="{'invisible': [('from_settlement', '=', True)]}"
                 >
-                    <p colspan="4">(keep empty for invoicing all the settlements)</p>
+                    <p
+                        colspan="4"
+                    >(keep empty for invoicing all the pending settlements)</p>
                     <field name="from_settlement" invisible="1" />
                     <group>
                         <field name="grouped" />
@@ -31,7 +33,6 @@
                         type="object"
                         class="oe_highlight"
                     />
-                    or
                     <button special="cancel" string="_Cancel" class="oe_link" />
                 </footer>
             </form>
@@ -45,8 +46,9 @@
         <field name="binding_model_id" ref="model_commission_make_invoice" />
     </record>
     <menuitem
-        id="menu_commission_make_invoices"
-        parent="commission.menu_agent_commissions"
+        id="menu_invoicing_settlements_make_invoice"
+        parent="menu_invoicing_commission"
         action="action_commission_make_invoices"
+        sequence="20"
     />
 </odoo>

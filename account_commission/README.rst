@@ -19,13 +19,15 @@ Account commissions
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/commission-15-0/commission-15-0-account_commission
     :alt: Translate me on Weblate
-.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/165/15.0
-    :alt: Try me on Runbot
+.. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
+    :target: https://runboat.odoo-community.org/webui/builds.html?repo=OCA/commission&target_branch=15.0
+    :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module adds the function to calculate commissions in invoices (account moves).
+
+It also allows to create vendor bills from settlements for external agents.
 
 This module depends on the commission module.
 
@@ -64,6 +66,26 @@ For adding commissions on invoices:
    "Invoice Lines" for forcing a recompute of all agents from the partner setup.
    This is needed for example when you have changed the partner on the
    invoice having already inserted lines.
+
+For invoicing the settlements (only for external agents):
+
+#. Go to *Invoicing > Commissions > Create Commission Invoices*.
+#. On the window that appears, you can select following data:
+
+   * Product. It should be a service product for being coherent.
+   * Journal: To be selected between existing purchase journals.
+   * Date: If you want to choose a specific invoice date. You can leave it
+     blank if you prefer.
+   * Settlements: For selecting specific settlements to invoice. You can leave
+     it blank as well for invoicing all the pending settlements.
+
+If you want to invoice a/some specific settlement/s:
+
+#. Navigate to *Invoicing > Commissions > Invoices Settlements*.
+#. Select it/them on the list.
+#. Click on *Action > Create Commission Invoices*.
+#. You can as well enter in one settlement, and click on the "Make invoice"
+   button.
 
 Bug Tracker
 ===========
