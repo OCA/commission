@@ -1,7 +1,7 @@
 # Copyright 2016-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo.addons.sale_commission.models.settlement import Settlement
+from ..models.settlement import Settlement
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
 import dateutil.relativedelta

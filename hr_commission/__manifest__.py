@@ -7,6 +7,7 @@
     'author': 'Tecnativa,'
               'Odoo Community Association (OCA)',
     "category": "Commissions",
+    'website': 'https://github.com/OCA/commission',
     'depends': [
         'sale_commission',
         'hr'
