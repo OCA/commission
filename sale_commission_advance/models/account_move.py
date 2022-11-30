@@ -6,9 +6,13 @@ class AccountMove(models.Model):
 
     @api.model
     def create(self, vals):
+        """
+        _prepare_agents_vals_down_payment is called after _get_commission_amount on
+        account.invoice.line.agent. Need to call _get_commission_amount again to apply
+        custom amount calculation on down payment line. Otherwise, amount will be 0.
+        """
         rec = super().create(vals)
         if rec.has_related_sale_with_down_payment():
-            # to get correct commission amount
             rec.recompute_lines_agents()
         return rec
 
@@ -34,11 +38,7 @@ class AccountMoveLine(models.Model):
         for record in down_payment_items:
             agent_ids = record._prepare_agents_vals_down_payment()
             record.update({"agent_ids": agent_ids})
-        regular_items = self.filtered(
-            lambda x: x.move_id.partner_id
-            and x.move_id.move_type[:3] == "out"
-            and not x.sale_line_ids.is_downpayment
-        )
+        regular_items = self - down_payment_items
         if regular_items:
             super(AccountMoveLine, regular_items)._compute_agent_ids()
 
@@ -86,6 +86,7 @@ class AccountMoveLine(models.Model):
                         "agent_id": agent_id.id,
                         "amount": 0,
                         "downpayment_base_amount": total,
+                        "commission_id": agent_id.commission_id.id,
                     },
                 )
             )
@@ -95,27 +96,9 @@ class AccountMoveLine(models.Model):
 class AccountInvoiceLineAgent(models.Model):
     _inherit = "account.invoice.line.agent"
 
-    commission_id = fields.Many2one(
-        comodel_name="sale.commission",
-        ondelete="restrict",
-        required=False,
-        compute="_compute_commission_id",
-        store=True,
-        readonly=False,
-        copy=True,
-    )
     downpayment_base_amount = fields.Monetary(
         copy=False, help="Total agent commission based on Sale Order"
     )
-
-    @api.depends("agent_id")
-    def _compute_commission_id(self):
-        for record in self:
-            if not record.object_id.sale_line_ids or (
-                record.object_id.sale_line_ids
-                and not record.object_id.sale_line_ids.is_downpayment
-            ):
-                record.commission_id = record.agent_id.commission_id
 
     def _get_commission_amount(self, commission, subtotal, product, quantity):
         self.ensure_one()

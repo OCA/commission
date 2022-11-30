@@ -7,19 +7,17 @@ class SaleOrderLine(models.Model):
     @api.depends("order_id.partner_id")
     def _compute_agent_ids(self):
         self.agent_ids = False  # for resetting previous agents
-        for record in self.filtered(lambda x: x.order_id.partner_id):
-            if record.is_downpayment:
-                # Down payment SOL
-                agent_ids = record._prepare_agents_vals_partner_down_payment(
-                    record.order_id.partner_id
-                )
-                record.update({"agent_ids": agent_ids})
-            else:
-                # Regular SOL
-                if not record.commission_free and record.product_id:
-                    record.agent_ids = record._prepare_agents_vals_partner(
-                        record.order_id.partner_id
-                    )
+        down_payment_items = self.filtered(
+            lambda x: x.order_id.partner_id and x.is_downpayment
+        )
+        for record in down_payment_items:
+            agent_ids = record._prepare_agents_vals_partner_down_payment(
+                record.order_id.partner_id
+            )
+            record.update({"agent_ids": agent_ids})
+        regular_items = self - down_payment_items
+        if regular_items:
+            super(SaleOrderLine, regular_items)._compute_agent_ids()
 
     def _prepare_agents_vals_partner_down_payment(self, partner):
         res = []
