@@ -6,7 +6,10 @@
         <field name="arch" type="xml">
             <tree editable="bottom">
                 <field name="agent_id" context="{'default_agent': True}" />
-                <field name="commission_id" />
+                <field
+                    name="commission_id"
+                    domain="['|', ('settlement_type', '=', 'sale_invoice'), ('settlement_type', '=', False)]"
+                />
                 <field name="amount" />
             </tree>
         </field>
