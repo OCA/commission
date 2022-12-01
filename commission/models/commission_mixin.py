@@ -1,4 +1,4 @@
-# Copyright 2018-2020 Tecnativa - Pedro M. Baeza
+# Copyright 2018-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -35,9 +35,15 @@ class CommissionMixin(models.AbstractModel):
     def _prepare_agent_vals(self, agent):
         return {"agent_id": agent.id, "commission_id": agent.commission_id.id}
 
-    def _prepare_agents_vals_partner(self, partner):
+    def _prepare_agents_vals_partner(self, partner, settlement_type=None):
         """Utility method for getting agents creation dictionary of a partner."""
-        return [(0, 0, self._prepare_agent_vals(agent)) for agent in partner.agent_ids]
+        agents = partner.agent_ids
+        if settlement_type:
+            agents = agents.filtered(
+                lambda x: not x.commission_id.settlement_type
+                or x.commission_id.settlement_type == settlement_type
+            )
+        return [(0, 0, self._prepare_agent_vals(agent)) for agent in agents]
 
     @api.depends("commission_free")
     def _compute_agent_ids(self):

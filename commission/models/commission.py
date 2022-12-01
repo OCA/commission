@@ -1,3 +1,4 @@
+# Copyright 2016-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, exceptions, fields, models
@@ -27,6 +28,14 @@ class Commission(models.Model):
         required=True,
         default="gross_amount",
     )
+    settlement_type = fields.Selection(selection="_selection_settlement_type")
+
+    @api.model
+    def _selection_settlement_type(self):
+        """Return the same types as the settlements."""
+        return self.env["commission.settlement"].fields_get(
+            allfields=["settlement_type"]
+        )["settlement_type"]["selection"]
 
     def calculate_section(self, base):
         self.ensure_one()
