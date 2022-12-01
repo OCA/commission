@@ -1,4 +1,4 @@
-# Copyright 2014-2020 Tecnativa - Pedro M. Baeza
+# Copyright 2014-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -58,7 +58,7 @@ class SaleOrderLine(models.Model):
         for record in self.filtered(lambda x: x.order_id.partner_id):
             if not record.commission_free:
                 record.agent_ids = record._prepare_agents_vals_partner(
-                    record.order_id.partner_id
+                    record.order_id.partner_id, settlement_type="sale_invoice"
                 )
 
     def _prepare_invoice_line(self, **optional_values):
