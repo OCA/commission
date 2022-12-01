@@ -17,11 +17,8 @@ class AccountMove(models.Model):
         return rec
 
     def has_related_sale_with_down_payment(self):
-        return any(
-            self.invoice_line_ids.mapped(
-                lambda x: x.sale_line_ids and x.sale_line_ids.is_downpayment
-            )
-        )
+        dp_list = self.invoice_line_ids.sale_line_ids.is_downpayment
+        return dp_list and any(dp_list)
 
 
 class AccountMoveLine(models.Model):
