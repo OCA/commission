@@ -1,5 +1,5 @@
-# Copyright 2014-2018 Tecnativa - Pedro M. Baeza
 # Copyright 2020 Tecnativa - Manuel Calero
+# Copyright 2014-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from lxml import etree
@@ -129,7 +129,7 @@ class AccountMoveLine(models.Model):
         ):
             if not record.commission_free and record.product_id:
                 record.agent_ids = record._prepare_agents_vals_partner(
-                    record.move_id.partner_id
+                    record.move_id.partner_id, settlement_type="sale_invoice"
                 )
 
     def _copy_data_extend_business_fields(self, values):
