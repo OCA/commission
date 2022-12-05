@@ -7,3 +7,4 @@
   * Fekete Mihai <feketemihai@nexterp.ro>
 * `ArcheTI <https://www.archeti.com>`_:
   * Cécile Jallais <cjallais@archeti.com>
+  * Sulivan Lominchar <slominchar@archeti.com>
