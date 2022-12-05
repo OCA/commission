@@ -23,7 +23,7 @@ Sales commissions by pricelist
     :target: https://runbot.odoo-community.org/runbot/165/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module extends the functionality of sale_commission to allow you set a commission to pricelist item.
 
@@ -77,6 +77,7 @@ Contributors
   * Fekete Mihai <feketemihai@nexterp.ro>
 * `ArcheTI <https://www.archeti.com>`_:
   * Cécile Jallais <cjallais@archeti.com>
+  * Sulivan Lominchar <slominchar@archeti.com>
 
 Maintainers
 ~~~~~~~~~~~
