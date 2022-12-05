@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_settlement" inherit_id="commission.report_settlement">
+        <xpath expr="//th" position="before">
+            <th>Invoice date</th>
+            <th>Invoice</th>
+            <th>Invoice line</th>
+        </xpath>
+        <xpath expr="//table/tbody/tr/td" position="before">
+            <td>
+                <span t-field="l.date" />
+            </td>
+            <td>
+                <span t-field="l.settlement_id.invoice_id" />
+            </td>
+            <td>
+                <span t-field="l.invoice_line_id" />
+            </td>
+        </xpath>
+    </template>
+</odoo>
