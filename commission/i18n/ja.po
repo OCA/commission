@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-12-06 15:45+0000\n"
+"Last-Translator: Ryoko Tsuda <ryoko@quartile.co>\n"
 "Language-Team: none\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: commission
 #: code:addons/commission/models/commission_mixin.py:0
@@ -43,27 +45,27 @@ msgstr ""
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement
 msgid "<strong>Agent:</strong>"
-msgstr ""
+msgstr "<strong>エージェント:</strong>"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement
 msgid "<strong>From:</strong>"
-msgstr ""
+msgstr "<strong>開始:</strong>"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement
 msgid "<strong>To:</strong>"
-msgstr ""
+msgstr "<strong>終了:</strong>"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement
 msgid "<strong>Total</strong>"
-msgstr ""
+msgstr "<strong>合計</strong>"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__active
 msgid "Active"
-msgstr ""
+msgstr "有効"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_line_mixin__agent_id
@@ -74,17 +76,17 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_search
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_search
 msgid "Agent"
-msgstr ""
+msgstr "エージェント"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.res_partner_view_search
 msgid "Agent Partners"
-msgstr ""
+msgstr "エージェント取引先"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_partner_form_agent
 msgid "Agent information"
-msgstr ""
+msgstr "エージェント情報"
 
 #. module: commission
 #: code:addons/commission/models/commission_mixin.py:0
@@ -96,12 +98,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 #, python-format
 msgid "Agents"
-msgstr ""
+msgstr "エージェント"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_mixin__agent_ids
 msgid "Agents & commissions"
-msgstr ""
+msgstr "エージェント＆コミッション"
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_mixin__agent_ids
@@ -121,22 +123,22 @@ msgstr ""
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__annual
 msgid "Annual"
-msgstr ""
+msgstr "年次"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__amount_base_type
 msgid "Base"
-msgstr ""
+msgstr "基準"
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__biweekly
 msgid "Bi-weekly"
-msgstr ""
+msgstr "隔週"
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__commission__commission_type__section
 msgid "By sections"
-msgstr ""
+msgstr "セクションごと"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__can_edit
@@ -152,7 +154,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_form
 msgid "Cancel"
-msgstr ""
+msgstr "キャンセル"
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__commission_settlement__state__cancel
@@ -183,7 +185,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:commission.commission_form
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement
 msgid "Commission"
-msgstr ""
+msgstr "コミッション"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_line_mixin__amount
@@ -204,29 +206,29 @@ msgstr ""
 #: model:ir.actions.act_window,name:commission.action_commission
 #: model:ir.ui.menu,name:commission.menu_commission_type
 msgid "Commission types"
-msgstr ""
+msgstr "コミッションタイプ"
 
 #. module: commission
 #: model:ir.module.category,name:commission.module_category_commission
 #: model:ir.ui.menu,name:commission.menu_commission
 msgid "Commissions"
-msgstr ""
+msgstr "コミッション"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__company_id
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line__company_id
 msgid "Company"
-msgstr ""
+msgstr "会社"
 
 #. module: commission
 #: model:ir.ui.menu,name:commission.menu_commission_management
 msgid "Configuration"
-msgstr ""
+msgstr "設定"
 
 #. module: commission
 #: model:ir.model,name:commission.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "連絡先"
 
 #. module: commission
 #: code:addons/commission/wizards/commission_make_settle.py:0
@@ -241,7 +243,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__create_uid
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "作成者"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__create_date
@@ -250,7 +252,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__create_date
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line__create_date
 msgid "Created on"
-msgstr ""
+msgstr "作成日"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_res_partner__agent
@@ -263,12 +265,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__currency_id
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "通貨"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line__date
 msgid "Date"
-msgstr ""
+msgstr "日付"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_search
@@ -283,7 +285,7 @@ msgstr ""
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_commission_mixin_agent_only
 msgid "Discard"
-msgstr ""
+msgstr "破棄"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__display_name
@@ -292,18 +294,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__display_name
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "表示名"
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__res_partner__agent_type__agent
 msgid "External agent"
-msgstr ""
+msgstr "外部エージェント"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__fix_qty
 #: model:ir.model.fields.selection,name:commission.selection__commission__commission_type__fixed
 msgid "Fixed percentage"
-msgstr ""
+msgstr "固定率"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_product_product__commission_free
@@ -320,18 +322,18 @@ msgstr ""
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.commission_form
 msgid "General information"
-msgstr ""
+msgstr "一般情報"
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__gross_amount
 msgid "Gross Amount"
-msgstr ""
+msgstr "総額"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_search
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_search
 msgid "Group By"
-msgstr ""
+msgstr "グループ化"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__id
@@ -340,7 +342,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__id
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission____last_update
@@ -349,7 +351,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:commission.field_commission_settlement____last_update
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "最終更新日"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__write_uid
@@ -358,7 +360,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__write_uid
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "最終更新者"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__write_date
@@ -367,7 +369,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__write_date
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "最終更新日"
 
 #. module: commission
 #: model:ir.model,name:commission.model_commission_settlement_line
@@ -382,7 +384,7 @@ msgstr ""
 #. module: commission
 #: model:res.groups,name:commission.group_commission_manager
 msgid "Manager"
-msgstr ""
+msgstr "マネジャー"
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__commission_settlement__settlement_type__manual
@@ -393,30 +395,31 @@ msgstr ""
 #: model:ir.model,name:commission.model_commission_mixin
 msgid ""
 "Mixin model for applying to any object that wants to handle commissions"
-msgstr ""
+msgstr "コミッションを処理したいオブジェクトに適用するためのMixinモデル"
 
 #. module: commission
 #: model:ir.model,name:commission.model_commission_line_mixin
 msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
-msgstr ""
+msgstr "このオブジェクトを継承したオブジェクトにコミッションエージェント明細を持たせ"
+"るためのMixinモデル"
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__monthly
 msgid "Monthly"
-msgstr ""
+msgstr "月次"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__name
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__name
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__net_amount
 msgid "Net Amount"
-msgstr ""
+msgstr "純額"
 
 #. module: commission
 #: code:addons/commission/models/commission_mixin.py:0
@@ -427,7 +430,7 @@ msgstr ""
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_line_mixin__object_id
 msgid "Parent"
-msgstr ""
+msgstr "親"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_section__percent
@@ -437,32 +440,32 @@ msgstr ""
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_mixin__product_id
 msgid "Product"
-msgstr ""
+msgstr "プロダクト"
 
 #. module: commission
 #: model:ir.model,name:commission.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "プロダクトテンプレート"
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__quaterly
 msgid "Quarterly"
-msgstr ""
+msgstr "四半期"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.commission_form
 msgid "Rates definition"
-msgstr ""
+msgstr "率の定義"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_commission_mixin_agent_only
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__section_ids
 msgid "Sections"
-msgstr ""
+msgstr "セクション"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
@@ -472,7 +475,7 @@ msgstr ""
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__semi
 msgid "Semi-annual"
-msgstr ""
+msgstr "半期"
 
 #. module: commission
 #: model:ir.actions.act_window,name:commission.action_agents_settlement
@@ -592,24 +595,25 @@ msgstr ""
 msgid ""
 "This is the default commission used in the sales where this agent is "
 "assigned. It can be changed on each operation if needed."
-msgstr ""
+msgstr "このエージェントがアサインされている販売で使用されるデフォルトのコミッション"
+"です。必要に応じて、各オペレーションで変更することができます。"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_search
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_search
 msgid "This year"
-msgstr ""
+msgstr "今年"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_section__amount_to
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__date_to
 msgid "To"
-msgstr ""
+msgstr "終了"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__total
 msgid "Total"
-msgstr ""
+msgstr "合計"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__commission_type
@@ -617,7 +621,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:commission.field_res_partner__agent_type
 #: model:ir.model.fields,field_description:commission.field_res_users__agent_type
 msgid "Type"
-msgstr ""
+msgstr "タイプ"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_make_settle__date_to
@@ -627,7 +631,7 @@ msgstr ""
 #. module: commission
 #: model:res.groups,name:commission.group_commission_user
 msgid "User"
-msgstr ""
+msgstr "ユーザ"
 
 #. module: commission
 #: model:ir.model,name:commission.model_commission_make_settle
@@ -644,4 +648,4 @@ msgstr ""
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid "or"
-msgstr ""
+msgstr "または"
