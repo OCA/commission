@@ -5,7 +5,7 @@
     "category": "Sales",
     "website": "https://github.com/OCA/commission",
     "license": "AGPL-3",
-    "depends": ["sale_commission"],
+    "depends": ["sale_commission", "web_domain_field"],
     "data": [
         "security/security.xml",
         "security/ir.model.access.csv",
