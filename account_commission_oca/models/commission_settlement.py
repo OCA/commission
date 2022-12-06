@@ -53,7 +53,7 @@ class CommissionSettlement(models.Model):
         return super().action_cancel()
 
     def action_draft(self):
-        self.write({"state": "draft"})
+        self.write({"state": "settled"})
 
     def unlink(self):
         """Allow to delete only cancelled settlements."""
