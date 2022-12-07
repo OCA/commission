@@ -41,6 +41,21 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
+            <xpath expr="//button[@name='open_created_caba_entries']" position="after">
+                <button
+                    name="action_view_settlement"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-pencil-square-o"
+                    attrs="{'invisible': [('settlement_count', '=', 0)]}"
+                >
+                    <field
+                        name="settlement_count"
+                        widget="statinfo"
+                        string="Settlements"
+                    />
+                </button>
+            </xpath>
             <xpath
                 expr="//field[@name='invoice_line_ids']/tree//field[@name='price_subtotal']"
                 position="after"
@@ -98,6 +113,24 @@
                         ('move_type', 'not in', ['out_invoice', 'out_refund'])
                     ]}"
                 />
+            </field>
+        </field>
+    </record>
+    <record id="view_in_invoice_bill_tree_inherit" model="ir.ui.view">
+        <field name="name">account.out.invoice.tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_in_invoice_bill_tree" />
+        <field name="arch" type="xml">
+            <field name="invoice_partner_display_name" position="after">
+                <button
+                    name="action_view_settlement"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-pencil-square-o"
+                    string="Settlements"
+                    attrs="{'invisible': [('settlement_count', '=', 0)]}"
+                />
+                <field name="settlement_count" invisible="1" />
             </field>
         </field>
     </record>
