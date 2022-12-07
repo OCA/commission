@@ -403,3 +403,19 @@ class TestAccountCommission(TestCommissionBase):
             [("agent_id", "=", self.agent_biweekly.id)]
         )
         self.assertEqual(len(settlements), 2)
+
+    def test_account_commission_single_settlement_ids(self):
+        settlement = self._check_invoice_thru_settle(
+            self.env.ref("commission.res_partner_pritesh_sale_agent"),
+            self.commission_section_paid,
+            1,
+            0,
+        )
+        invoice_id = settlement.invoice_id
+        self.assertEqual(1, invoice_id.settlement_count)
+
+    def test_account_commission_multiple_settlement_ids(self):
+        settlements = self._create_multi_settlements()
+        settlements.make_invoices(self.journal, self.commission_product, grouped=True)
+        invoices = settlements.mapped("invoice_id")
+        self.assertEqual(2, invoices.settlement_count)
