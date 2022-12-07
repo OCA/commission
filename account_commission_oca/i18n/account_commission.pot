@@ -192,6 +192,11 @@ msgid "From Settlement"
 msgstr ""
 
 #. module: account_commission
+#: model:ir.model.fields,field_description:account_commission.field_commission_settlement__invoice_id
+msgid "Generated Invoice"
+msgstr ""
+
+#. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_commission_settlement__invoice_line_ids
 msgid "Generated invoice lines"
 msgstr ""
@@ -215,7 +220,6 @@ msgstr ""
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__invoice_id
-#: model:ir.model.fields,field_description:account_commission.field_commission_settlement__invoice_id
 #: model_terms:ir.ui.view,arch_db:account_commission.report_settlement
 msgid "Invoice"
 msgstr ""
@@ -419,6 +423,13 @@ msgid "Settlement"
 msgstr ""
 
 #. module: account_commission
+#: model:ir.model.fields,field_description:account_commission.field_account_bank_statement_line__settlement_count
+#: model:ir.model.fields,field_description:account_commission.field_account_move__settlement_count
+#: model:ir.model.fields,field_description:account_commission.field_account_payment__settlement_count
+msgid "Settlement Count"
+msgstr ""
+
+#. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__settlement_line_ids
 msgid "Settlement Line"
 msgstr ""
@@ -435,7 +446,12 @@ msgid "Settlement that generates this invoice line"
 msgstr ""
 
 #. module: account_commission
+#: model:ir.model.fields,field_description:account_commission.field_account_bank_statement_line__settlement_ids
+#: model:ir.model.fields,field_description:account_commission.field_account_move__settlement_ids
+#: model:ir.model.fields,field_description:account_commission.field_account_payment__settlement_ids
 #: model_terms:ir.ui.view,arch_db:account_commission.commission_make_invoice_form
+#: model_terms:ir.ui.view,arch_db:account_commission.view_in_invoice_bill_tree_inherit
+#: model_terms:ir.ui.view,arch_db:account_commission.view_move_form
 msgid "Settlements"
 msgstr ""
 
