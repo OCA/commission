@@ -8,5 +8,5 @@ class ProductPricelistItem(models.Model):
     _inherit = "product.pricelist.item"
 
     commission_id = fields.Many2one(
-        comodel_name="sale.commission", string="Commission", ondelete="restrict"
+        comodel_name="commission", string="Commission", ondelete="restrict"
     )

@@ -1,10 +1,10 @@
 # Copyright 2018 Carlos Dauden - Tecnativa <carlos.dauden@tecnativa.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import SavepointCase
+from odoo.tests import common
 
 
-class TestSaleCommissionPricelist(SavepointCase):
+class TestSaleCommissionPricelist(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestSaleCommissionPricelist, cls).setUpClass()
@@ -14,7 +14,7 @@ class TestSaleCommissionPricelist(SavepointCase):
         cls.product2 = cls.env["product.product"].create(
             {"name": "Test Product 2", "list_price": 200}
         )
-        SaleCommission = cls.env["sale.commission"]
+        SaleCommission = cls.env["commission"]
         cls.commission_agent = SaleCommission.create(
             {"name": "0.5% commission", "fix_qty": 0.5}
         )
@@ -89,7 +89,7 @@ class TestSaleCommissionPricelist(SavepointCase):
         self.assertEqual(self.so_line2.agent_ids[:1].commission_id, self.commission_2)
 
     def test_prepare_agents_vals(self):
-        commission_3 = self.env["sale.commission"].create(
+        commission_3 = self.env["commission"].create(
             {"name": "3% commission", "fix_qty": 3.0}
         )
         pricelist_3 = self.env["product.pricelist"].create(
