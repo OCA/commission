@@ -21,6 +21,31 @@ class AccountMove(models.Model):
         compute="_compute_agents",
         search="_search_agents",
     )
+    settlement_count = fields.Integer(compute="_compute_settlement")
+    settlement_ids = fields.One2many(
+        "commission.settlement",
+        string="Settlements",
+        compute="_compute_settlement",
+    )
+
+    def action_view_settlement(self):
+        xmlid = "commission.action_commission_settlement"
+        action = self.env["ir.actions.actions"]._for_xml_id(xmlid)
+        action["context"] = {}
+        settlements = self.mapped("settlement_ids")
+        if not settlements or len(settlements) > 1:
+            action["domain"] = [("id", "in", settlements.ids)]
+        elif len(settlements) == 1:
+            res = self.env.ref("commission.view_settlement_form", False)
+            action["views"] = [(res and res.id or False, "form")]
+            action["res_id"] = settlements.id
+        return action
+
+    def _compute_settlement(self):
+        for invoice in self:
+            settlements = invoice.invoice_line_ids.settlement_id
+            invoice.settlement_ids = settlements
+            invoice.settlement_count = len(settlements)
 
     @api.depends("partner_agent_ids", "invoice_line_ids.agent_ids.agent_id")
     def _compute_agents(self):
