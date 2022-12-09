@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-12-06 15:45+0000\n"
+"PO-Revision-Date: 2022-12-09 15:44+0000\n"
 "Last-Translator: Ryoko Tsuda <ryoko@quartile.co>\n"
 "Language-Team: none\n"
 "Language: ja\n"
@@ -165,7 +165,8 @@ msgstr ""
 #: model:ir.model.fields,help:commission.field_res_partner__agent
 #: model:ir.model.fields,help:commission.field_res_users__agent
 msgid "Check this field if the partner is a creditor or an agent."
-msgstr ""
+msgstr "パートナーが債権者またはエージェントである場合、このフィールドをチェックして"
+"ください。"
 
 #. module: commission
 #: code:addons/commission/models/commission_mixin.py:0
@@ -258,7 +259,7 @@ msgstr "作成日"
 #: model:ir.model.fields,field_description:commission.field_res_partner__agent
 #: model:ir.model.fields,field_description:commission.field_res_users__agent
 msgid "Creditor/Agent"
-msgstr ""
+msgstr "債権者/エージェント"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_line_mixin__currency_id
@@ -317,7 +318,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:commission.field_commission_section__amount_from
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__date_from
 msgid "From"
-msgstr ""
+msgstr "開始"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.commission_form
@@ -389,7 +390,7 @@ msgstr "マネジャー"
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__commission_settlement__settlement_type__manual
 msgid "Manual"
-msgstr ""
+msgstr "手動"
 
 #. module: commission
 #: model:ir.model,name:commission.model_commission_mixin
@@ -435,7 +436,7 @@ msgstr "親"
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_section__percent
 msgid "Percent"
-msgstr ""
+msgstr "率"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_mixin__product_id
@@ -563,7 +564,7 @@ msgstr ""
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__state
 msgid "State"
-msgstr ""
+msgstr "状況"
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__can_edit
@@ -580,7 +581,7 @@ msgstr ""
 #: code:addons/commission/models/commission.py:0
 #, python-format
 msgid "The lower limit cannot be greater than upper one."
-msgstr ""
+msgstr "下限値は上限値より大きくはできません。"
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__settlement_type
@@ -643,7 +644,7 @@ msgstr ""
 #: model:ir.model.constraint,message:commission.constraint_commission_line_mixin_unique_agent
 #: model:ir.model.constraint,message:commission.constraint_sale_order_line_agent_unique_agent
 msgid "You can only add one time each agent."
-msgstr ""
+msgstr "各エージェント1回のみ追加可能です。"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
