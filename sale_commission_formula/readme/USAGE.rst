@@ -1,3 +1,3 @@
 To use this module, you need to:
 
-* Go to Sales, Commission Types and create a commission with type formula
+* Go to Sales > Commission Management >  Commission Types and create a commission with new Type "Formula".

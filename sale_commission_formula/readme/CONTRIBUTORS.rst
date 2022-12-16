@@ -4,3 +4,4 @@
 * `NextERP Romania <https://www.nexterp.ro>`_:
 
   * Fekete Mihai <feketemihai@nexterp.ro>
+* Hieu, Vo Minh Bao <hieu.vmb@komit-consulting.com>
