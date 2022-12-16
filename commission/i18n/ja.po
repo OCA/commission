@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-12-09 15:44+0000\n"
+"PO-Revision-Date: 2022-12-16 14:45+0000\n"
 "Last-Translator: Ryoko Tsuda <ryoko@quartile.co>\n"
 "Language-Team: none\n"
 "Language: ja\n"
@@ -20,18 +20,18 @@ msgstr ""
 #: code:addons/commission/models/commission_mixin.py:0
 #, python-format
 msgid "%s commission agents"
-msgstr ""
+msgstr "%s コミッションエージェント"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid "(keep empty for making the settlement of all agents)"
-msgstr ""
+msgstr "(すべてのエージェントの精算を行うためには空欄にしてください)"
 
 #. module: commission
 #: code:addons/commission/models/commission_mixin.py:0
 #, python-format
 msgid "1 commission agent"
-msgstr ""
+msgstr "1 コミッションエージェント"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
@@ -41,6 +41,11 @@ msgid ""
 "                        commission module for having this feature enabled.\n"
 "                    </span>"
 msgstr ""
+"<span>\n"
+"                        自動精算はできません。この機能を有効にするには、\n"
+"                        "
+"追加のコミッションモジュールをインストールする必要があります。\n"
+"                    </span>"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement
@@ -108,17 +113,17 @@ msgstr "エージェント＆コミッション"
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_mixin__agent_ids
 msgid "Agents/Commissions related to the invoice line."
-msgstr ""
+msgstr "請求明細に関連するエージェント/コミッション。"
 
 #. module: commission
 #: model:ir.module.category,description:commission.module_category_commission
 msgid "Allows to handle commission related stuff."
-msgstr ""
+msgstr "コミッション関連の処理を許可。"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement
 msgid "Amount settled"
-msgstr ""
+msgstr "精算金額"
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__annual
@@ -143,12 +148,12 @@ msgstr "セクションごと"
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__can_edit
 msgid "Can Edit"
-msgstr ""
+msgstr "編集可"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_make_settle__can_settle
 msgid "Can Settle"
-msgstr ""
+msgstr "精算可"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
@@ -159,7 +164,7 @@ msgstr "キャンセル"
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__commission_settlement__state__cancel
 msgid "Canceled"
-msgstr ""
+msgstr "キャンセル"
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_res_partner__agent
@@ -173,7 +178,7 @@ msgstr "パートナーが債権者またはエージェントである場合、
 #: model:ir.model.fields,field_description:commission.field_commission_mixin__commission_free
 #, python-format
 msgid "Comm. free"
-msgstr ""
+msgstr "コミッション対象外"
 
 #. module: commission
 #: model:ir.model,name:commission.model_commission
@@ -191,17 +196,17 @@ msgstr "コミッション"
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_line_mixin__amount
 msgid "Commission Amount"
-msgstr ""
+msgstr "コミッション金額"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_form
 msgid "Commission lines"
-msgstr ""
+msgstr "コミッション明細"
 
 #. module: commission
 #: model:ir.model,name:commission.model_commission_section
 msgid "Commission section"
-msgstr ""
+msgstr "コミッションセクション"
 
 #. module: commission
 #: model:ir.actions.act_window,name:commission.action_commission
@@ -235,7 +240,7 @@ msgstr "連絡先"
 #: code:addons/commission/wizards/commission_make_settle.py:0
 #, python-format
 msgid "Created Settlements"
-msgstr ""
+msgstr "作成された精算"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__create_uid
@@ -276,12 +281,12 @@ msgstr "日付"
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_search
 msgid "Date from month"
-msgstr ""
+msgstr "日付"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_search
 msgid "Date month"
-msgstr ""
+msgstr "日付"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_commission_mixin_agent_only
@@ -312,7 +317,7 @@ msgstr "固定率"
 #: model:ir.model.fields,field_description:commission.field_product_product__commission_free
 #: model:ir.model.fields,field_description:commission.field_product_template__commission_free
 msgid "Free of commission"
-msgstr ""
+msgstr "コミッション対象外"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_section__amount_from
@@ -375,12 +380,12 @@ msgstr "最終更新日"
 #. module: commission
 #: model:ir.model,name:commission.model_commission_settlement_line
 msgid "Line of a commission settlement"
-msgstr ""
+msgstr "コミッション精算明細"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid "Make settlements"
-msgstr ""
+msgstr "精算実行"
 
 #. module: commission
 #: model:res.groups,name:commission.group_commission_manager
@@ -426,7 +431,7 @@ msgstr "純額"
 #: code:addons/commission/models/commission_mixin.py:0
 #, python-format
 msgid "No commission agents"
-msgstr ""
+msgstr "0 コミッションエージェント"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_line_mixin__object_id
@@ -471,7 +476,7 @@ msgstr "セクション"
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid "Select the date up to which you want to make the settlements:"
-msgstr ""
+msgstr "精算を行う日付までを選択します："
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__semi
@@ -482,29 +487,29 @@ msgstr "半期"
 #: model:ir.actions.act_window,name:commission.action_agents_settlement
 #: model:ir.ui.menu,name:commission.menu_commission_make_settle
 msgid "Settle Commissions"
-msgstr ""
+msgstr "コミッション精算"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid "Settle commissions"
-msgstr ""
+msgstr "コミッション精算"
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__commission_settlement__state__settled
 msgid "Settled"
-msgstr ""
+msgstr "精算"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line__settled_amount
 msgid "Settled Amount"
-msgstr ""
+msgstr "精算金額"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_partner_form_agent
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_tree
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_tree
 msgid "Settled total"
-msgstr ""
+msgstr "精算合計"
 
 #. module: commission
 #: model:ir.model,name:commission.model_commission_settlement
@@ -513,45 +518,45 @@ msgstr ""
 #: model:ir.model.fields,field_description:commission.field_res_users__settlement_ids
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_form
 msgid "Settlement"
-msgstr ""
+msgstr "精算"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__settlement_type
 #: model:ir.model.fields,field_description:commission.field_commission_make_settle__settlement_type
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__settlement_type
 msgid "Settlement Type"
-msgstr ""
+msgstr "精算タイプ"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_graph
 msgid "Settlement analysis"
-msgstr ""
+msgstr "精算分析"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__line_ids
 msgid "Settlement lines"
-msgstr ""
+msgstr "精算明細"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_search
 msgid "Settlement lines search"
-msgstr ""
+msgstr "精算明細検索"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_res_partner__settlement
 #: model:ir.model.fields,field_description:commission.field_res_users__settlement
 msgid "Settlement period"
-msgstr ""
+msgstr "精算期間"
 
 #. module: commission
 #: model:ir.actions.report,name:commission.action_report_settlement
 msgid "Settlement report"
-msgstr ""
+msgstr "精算レポート"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_search
 msgid "Settlement search"
-msgstr ""
+msgstr "精算検索"
 
 #. module: commission
 #: model:ir.actions.act_window,name:commission.action_commission_settlement
@@ -559,7 +564,7 @@ msgstr ""
 #: model:ir.ui.menu,name:commission.menu_settlement_parent
 #: model_terms:ir.ui.view,arch_db:commission.view_partner_form_agent
 msgid "Settlements"
-msgstr ""
+msgstr "精算"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__state
@@ -569,13 +574,14 @@ msgstr "状況"
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__can_edit
 msgid "Technical field for determining if user can edit settlements"
-msgstr ""
+msgstr "ユーザが精算を編集できるかどうかを判断するための技術的なフィールド"
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_make_settle__can_settle
 msgid ""
 "Technical field for improving UX when no extra *commission is installed."
-msgstr ""
+msgstr "追加の※コミッションをインストールしない場合のUXを改善するための技術的なフィー"
+"ルド。"
 
 #. module: commission
 #: code:addons/commission/models/commission.py:0
@@ -588,7 +594,7 @@ msgstr "下限値は上限値より大きくはできません。"
 msgid ""
 "The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase"
 " order'..."
-msgstr ""
+msgstr "精算元　例：「顧客請求書」、「販売オーダ」、「購買オーダ」..."
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_res_partner__commission_id
@@ -627,7 +633,7 @@ msgstr "タイプ"
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_make_settle__date_to
 msgid "Up to"
-msgstr ""
+msgstr "いつまで"
 
 #. module: commission
 #: model:res.groups,name:commission.group_commission_user
@@ -637,7 +643,7 @@ msgstr "ユーザ"
 #. module: commission
 #: model:ir.model,name:commission.model_commission_make_settle
 msgid "Wizard for settling commissions"
-msgstr ""
+msgstr "コミッション精算ウィザード"
 
 #. module: commission
 #: model:ir.model.constraint,message:commission.constraint_account_invoice_line_agent_unique_agent
