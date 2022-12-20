@@ -20,7 +20,16 @@ class TestsaleCommissionAgentRestrict(common.TransactionCase):
                 "sale_commission_agent_restrict.group_agent_own_customers"
             )
         )
+        user_agent.partner_id._get_followers()
+        self.assertFalse(user_agent.partner_id.message_partner_ids)
+        self.assertFalse(user_agent.partner_id.message_channel_ids)
         user_agent.partner_id.agent = False
+        user_agent.partner_id._get_followers()
+        self.assertTrue(user_agent.partner_id.message_partner_ids is not False)
+        self.assertTrue(user_agent.partner_id.message_channel_ids is not False)
+        agent_id = self.ref("sale_commission.res_partner_pritesh_sale_agent")
+        agent = self.env["res.partner"].browse(agent_id)
+        agent._get_followers()
         self.assertFalse(
             user_agent.has_group(
                 "sale_commission_agent_restrict.group_agent_own_customers"
