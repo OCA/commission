@@ -18,7 +18,7 @@
                 </div>
                 <group>
                     <p
-                        colspan="4"
+                        colspan="2"
                     >Select the date up to which you want to make the settlements:
                     </p>
                 </group>
@@ -26,10 +26,10 @@
                     <field name="date_to" />
                     <field name="settlement_type" />
                 </group>
-                <group string="Agents" colspan="4">
-                    <p colspan="4">(keep empty for making the settlement of all agents)
+                <group string="Agents">
+                    <p colspan="2">(keep empty for making the settlement of all agents)
                     </p>
-                    <field name="agent_ids" nolabel="1" widget="many2many_list" />
+                    <field name="agent_ids" nolabel="1" colspan="2" />
                 </group>
                 <footer>
                     <button
