@@ -55,8 +55,8 @@ class SaleOrderLine(models.Model):
     @api.depends("order_id.partner_id")
     def _compute_agent_ids(self):
         self.agent_ids = False  # for resetting previous agents
-        for record in self.filtered(lambda x: x.order_id.partner_id):
-            if not record.commission_free:
+        for record in self:
+            if record.order_id.partner_id and not record.commission_free:
                 record.agent_ids = record._prepare_agents_vals_partner(
                     record.order_id.partner_id, settlement_type="sale_invoice"
                 )
