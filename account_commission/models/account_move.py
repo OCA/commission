@@ -149,10 +149,13 @@ class AccountMoveLine(models.Model):
                 line.currency_id = False
                 line.commission_id = False
         self.agent_ids = False  # for resetting previous agents
-        for record in self.filtered(
-            lambda x: x.move_id.partner_id and x.move_id.move_type[:3] == "out"
-        ):
-            if not record.commission_free and record.product_id:
+        for record in self:
+            if (
+                record.move_id.partner_id
+                and record.move_id.move_type[:3] == "out"
+                and not record.commission_free
+                and record.product_id
+            ):
                 record.agent_ids = record._prepare_agents_vals_partner(
                     record.move_id.partner_id, settlement_type="sale_invoice"
                 )
