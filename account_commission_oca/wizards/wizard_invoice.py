@@ -61,16 +61,13 @@ class CommissionMakeInvoice(models.TransientModel):
 
     def button_create(self):
         self.ensure_one()
-        if self.settlement_ids:
-            settlements = self.settlement_ids
-        else:
-            settlements = self.env["commission.settlement"].search(
-                [
-                    ("state", "=", "settled"),
-                    ("agent_type", "=", "agent"),
-                    ("company_id", "=", self.journal_id.company_id.id),
-                ]
-            )
+        settlements = self.settlement_ids or self.env["commission.settlement"].search(
+            [
+                ("state", "=", "settled"),
+                ("agent_type", "=", "agent"),
+                ("company_id", "=", self.journal_id.company_id.id),
+            ]
+        )
         invoices = settlements.make_invoices(
             self.journal_id,
             self.product_id,

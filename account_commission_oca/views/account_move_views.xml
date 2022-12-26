@@ -65,6 +65,7 @@
                 <field name="any_settled" invisible="1" />
                 <button
                     name="button_edit_agents"
+                    title="Edit agents"
                     icon="fa-users"
                     attrs="{'invisible': [
                         '|',
@@ -95,16 +96,13 @@
                 />
             </xpath>
             <!-- Needed for fields in invoice lines to be saved -->
-            <xpath
-                expr="//field[@name='line_ids']/tree/field[@name='discount']"
-                position="before"
-            >
+            <xpath expr="//field[@name='line_ids']/tree" position="inside">
                 <field name="settlement_id" invisible="1" />
                 <field name="commission_free" invisible="1" />
                 <field name="any_settled" invisible="1" />
                 <field name="commission_status" invisible="1" />
             </xpath>
-            <field name="tax_totals_json" position="after">
+            <field name="tax_totals" position="after">
                 <field
                     name="commission_total"
                     widget="monetary"

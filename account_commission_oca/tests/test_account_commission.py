@@ -7,7 +7,7 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests import Form, tagged
+from odoo.tests import tagged
 
 from odoo.addons.commission.tests.test_commission import TestCommissionBase
 
@@ -35,7 +35,13 @@ class TestAccountCommission(TestCommissionBase):
                 "list_price": 5,
             }
         )
-        cls.default_line_account = cls.env.ref("account.data_account_type_receivable")
+        cls.default_line_account = cls.env["account.account"].search(
+            [
+                ("company_id", "=", cls.company.id),
+                ("account_type", "=", "asset_receivable"),
+            ],
+            limit=1,
+        )
         cls.agent_biweekly = cls.res_partner_model.create(
             {
                 "name": "Test Agent - Bi-weekly",
@@ -48,26 +54,35 @@ class TestAccountCommission(TestCommissionBase):
         cls.income_account = cls.env["account.account"].search(
             [
                 ("company_id", "=", cls.company.id),
-                ("user_type_id.name", "=", "Income"),
+                ("account_type", "=", "income"),
             ],
             limit=1,
         )
 
     def _create_invoice(self, agent, commission, date=None):
-        invoice_form = Form(
-            self.env["account.move"].with_context(default_move_type="out_invoice")
-        )
-        invoice_form.partner_id = self.partner
-        with invoice_form.invoice_line_ids.new() as line_form:
-            line_form.product_id = self.product
+        vals = {
+            "move_type": "out_invoice",
+            "partner_id": self.partner.id,
+            "invoice_line_ids": [
+                (
+                    0,
+                    0,
+                    {
+                        "product_id": self.product.id,
+                        "agent_ids": [
+                            (
+                                0,
+                                0,
+                                {"agent_id": agent.id, "commission_id": commission.id},
+                            )
+                        ],
+                    },
+                )
+            ],
+        }
         if date:
-            invoice_form.invoice_date = date
-            invoice_form.date = date
-        invoice = invoice_form.save()
-        invoice.invoice_line_ids.agent_ids = [
-            (0, 0, {"agent_id": agent.id, "commission_id": commission.id})
-        ]
-        return invoice
+            vals.update({"invoice_date": date, "date": date})
+        return self.env["account.move"].create([vals])
 
     def _settle_agent_invoice(self, agent=None, period=None, date=None):
         vals = self._get_make_settle_vals(agent, period, date)
@@ -136,8 +151,8 @@ class TestAccountCommission(TestCommissionBase):
             self.commission_section_paid,
         )
         # Check report print - It shouldn't fail
-        self.env.ref("commission.action_report_settlement")._render_qweb_html(
-            settlements[0].ids
+        self.env["ir.actions.report"]._render_qweb_html(
+            self.env.ref("commission.action_report_settlement").id, settlements[0].ids
         )
 
     def test_account_commission_gross_amount_payment(self):
@@ -221,30 +236,50 @@ class TestAccountCommission(TestCommissionBase):
     def test_supplier_invoice(self):
         """No agents should be populated on supplier invoices."""
         self.partner.agent_ids = self.agent_semi
-        move_form = Form(
-            self.env["account.move"].with_context(default_move_type="in_invoice")
+        invoice = self.env["account.move"].create(
+            [
+                {
+                    "move_type": "in_invoice",
+                    "partner_id": self.partner.id,
+                    "ref": "sale_comission_TEST",
+                    "invoice_line_ids": [
+                        (
+                            0,
+                            0,
+                            {
+                                "product_id": self.product.id,
+                                "quantity": 1,
+                                "currency_id": self.company.currency_id.id,
+                            },
+                        )
+                    ],
+                }
+            ]
         )
-        move_form.partner_id = self.partner
-        move_form.ref = "sale_comission_TEST"
-        with move_form.invoice_line_ids.new() as line_form:
-            line_form.product_id = self.product
-            line_form.quantity = 1
-            line_form.currency_id = self.company.currency_id
-        invoice = move_form.save()
         self.assertFalse(invoice.invoice_line_ids.agent_ids)
 
     def test_commission_propagation(self):
         """Test propagation of agents from partner to invoice."""
         self.partner.agent_ids = [(4, self.agent_monthly.id)]
-        move_form = Form(
-            self.env["account.move"].with_context(default_move_type="out_invoice")
+        invoice = self.env["account.move"].create(
+            [
+                {
+                    "move_type": "out_invoice",
+                    "partner_id": self.partner.id,
+                    "invoice_line_ids": [
+                        (
+                            0,
+                            0,
+                            {
+                                "product_id": self.product.id,
+                                "quantity": 1,
+                                "currency_id": self.company.currency_id.id,
+                            },
+                        )
+                    ],
+                }
+            ]
         )
-        move_form.partner_id = self.partner
-        with move_form.invoice_line_ids.new() as line_form:
-            line_form.currency_id = self.company.currency_id
-            line_form.product_id = self.product
-            line_form.quantity = 1
-        invoice = move_form.save()
         agent = invoice.invoice_line_ids.agent_ids
         self._check_propagation(agent, self.commission_net_invoice, self.agent_monthly)
         # Check agent change

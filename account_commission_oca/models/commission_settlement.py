@@ -5,7 +5,6 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tests import Form
 from odoo.tools import groupby
 
 
@@ -69,52 +68,59 @@ class CommissionSettlement(models.Model):
             "type": "ir.actions.act_window",
             "name": _("Make invoice"),
             "res_model": "commission.make.invoice",
-            "view_type": "form",
             "target": "new",
             "view_mode": "form",
             "context": {"settlement_ids": self.ids},
         }
 
     def _get_invoice_partner(self):
-        return self[0].agent_id
+        return fields.first(self).agent_id
 
     def _prepare_invoice(self, journal, product, date=False):
-        move_form = Form(
-            self.env["account.move"].with_context(default_move_type="in_invoice")
-        )
-        if date:
-            move_form.invoice_date = date
         partner = self._get_invoice_partner()
-        move_form.partner_id = partner
-        move_form.journal_id = journal
+        vals = {
+            "move_type": "in_invoice",
+            "partner_id": partner.id,
+            "journal_id": journal.id,
+            "invoice_line_ids": [],
+        }
+        if date:
+            vals.update({"invoice_date": date})
         for settlement in self:
-            with move_form.invoice_line_ids.new() as line_form:
-                line_form.product_id = product
-                line_form.quantity = -1 if settlement.total < 0 else 1
-                line_form.price_unit = abs(settlement.total)
-                # Put period string
-                partner = self.agent_id
-                lang = self.env["res.lang"].search(
-                    [
-                        (
-                            "code",
-                            "=",
-                            partner.lang or self.env.context.get("lang", "en_US"),
-                        )
-                    ]
+            # Put period string
+            lang = self.env["res.lang"].search(
+                [
+                    (
+                        "code",
+                        "=",
+                        self.agent_id.lang or self.env.context.get("lang", "en_US"),
+                    )
+                ]
+            )
+            date_from = fields.Date.from_string(settlement.date_from)
+            date_to = fields.Date.from_string(settlement.date_to)
+            vals["invoice_line_ids"].append(
+                (
+                    0,
+                    0,
+                    {
+                        "product_id": product.id,
+                        "quantity": -1 if settlement.total < 0 else 1,
+                        "price_unit": abs(settlement.total),
+                        "name": (
+                            "\n"
+                            + _(
+                                "Period: from %(date_from)s to %(date_to)s",
+                                date_from=date_from.strftime(lang.date_format),
+                                date_to=date_to.strftime(lang.date_format),
+                            ),
+                        ),
+                        # todo or compute agent currency_id?
+                        "currency_id": settlement.currency_id.id,
+                        "settlement_id": settlement.id,
+                    },
                 )
-                date_from = fields.Date.from_string(settlement.date_from)
-                date_to = fields.Date.from_string(settlement.date_to)
-                line_form.name += "\n" + _(
-                    "Period: from %(date_from)s to %(date_to)s",
-                    date_from=date_from.strftime(lang.date_format),
-                    date_to=date_to.strftime(lang.date_format),
-                )
-                line_form.currency_id = (
-                    settlement.currency_id
-                )  # todo or compute agent currency_id?\
-                line_form.settlement_id = settlement
-        vals = move_form._values_to_save(all_fields=True)
+            )
         return vals
 
     def _get_invoice_grouping_keys(self):
@@ -167,15 +173,21 @@ class SettlementLine(models.Model):
 
     @api.depends("invoice_agent_line_id")
     def _compute_date(self):
-        for record in self.filtered("invoice_agent_line_id"):
+        for record in self:
+            if not record.invoice_agent_line_id:
+                continue
             record.date = record.invoice_agent_line_id.invoice_date
 
     @api.depends("invoice_agent_line_id")
     def _compute_commission_id(self):
-        for record in self.filtered("invoice_agent_line_id"):
+        for record in self:
+            if not record.invoice_agent_line_id:
+                continue
             record.commission_id = record.invoice_agent_line_id.commission_id
 
     @api.depends("invoice_agent_line_id")
     def _compute_settled_amount(self):
-        for record in self.filtered("invoice_agent_line_id"):
+        for record in self:
+            if not record.invoice_agent_line_id:
+                continue
             record.settled_amount = record.invoice_agent_line_id.amount
