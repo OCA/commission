@@ -73,7 +73,6 @@ class CommissionMixin(models.AbstractModel):
         return {
             "name": _("Agents"),
             "type": "ir.actions.act_window",
-            "view_type": "form",
             "view_mode": "form",
             "res_model": self._name,
             "views": [(view.id, "form")],

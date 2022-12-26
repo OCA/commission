@@ -104,11 +104,11 @@ class CommissionMakeSettle(models.TransientModel):
         settlement_obj = self.env["commission.settlement"]
         settlement_line_obj = self.env["commission.settlement.line"]
         settlement_ids = []
-        if self.agent_ids:
-            agents = self.agent_ids
-        else:
-            agents = self.env["res.partner"].search([("agent", "=", True)])
+        agents = self.agent_ids or self.env["res.partner"].search(
+            [("agent", "=", True)]
+        )
         date_to = self.date_to
+        settlement_line_vals = []
         for agent in agents:
             date_to_agent = self._get_period_start(agent, date_to)
             # Get non settled elements
@@ -138,10 +138,10 @@ class CommissionMakeSettle(models.TransientModel):
                                 )
                             )
                         settlement_ids.append(settlement.id)
-                    # TODO: Do creates in batch
-                    settlement_line_obj.create(
+                    settlement_line_vals.append(
                         self._prepare_settlement_line_vals(settlement, line)
                     )
+        settlement_line_obj.create(settlement_line_vals)
         # go to results
         if len(settlement_ids):
             return {

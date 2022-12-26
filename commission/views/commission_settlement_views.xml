@@ -77,11 +77,12 @@
                             <field name="agent_type" invisible="1" />
                         </group>
                     </group>
-                    <group string="Commission lines" colspan="4">
+                    <group string="Commission lines">
                         <field
                             name="line_ids"
                             nolabel="1"
                             attrs="{'readonly': [('can_edit', '=', False)]}"
+                            colspan="2"
                         >
                             <tree editable="top">
                                 <field name="date" />
@@ -90,13 +91,15 @@
                             </tree>
                         </field>
                     </group>
-                    <group class="oe_subtotal_footer oe_right">
-                        <field
-                            name="total"
-                            class="oe_subtotal_footer_separator"
-                            widget="monetary"
-                            options="{'currency_field': 'currency_id'}"
-                        />
+                    <group>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field
+                                name="total"
+                                class="oe_subtotal_footer_separator"
+                                widget="monetary"
+                                options="{'currency_field': 'currency_id'}"
+                            />
+                        </group>
                     </group>
                 </sheet>
             </form>
