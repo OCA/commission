@@ -17,7 +17,6 @@
         <field name="name">Settlements - Add invoice stuff</field>
         <field name="model">commission.settlement</field>
         <field name="inherit_id" ref="commission.view_settlement_form" />
-        <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]" />
         <field name="arch" type="xml">
             <button name="action_cancel" position="before">
                 <button
@@ -50,6 +49,7 @@
                 <field
                     name="invoice_line_id"
                     attrs="{'column_invisible': [('parent.settlement_type', '!=', 'sale_invoice')]}"
+                    groups="account.group_account_invoice"
                 />
             </xpath>
         </field>
