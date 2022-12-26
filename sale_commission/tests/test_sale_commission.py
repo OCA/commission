@@ -32,12 +32,13 @@ class TestSaleCommission(TestAccountCommission):
 
     def _invoice_sale_order(self, sale_order, date=None):
         old_invoices = sale_order.invoice_ids
-        wizard = self.advance_inv_model.create({"advance_payment_method": "delivered"})
-        wizard.with_context(
-            active_model="sale.order",
-            active_ids=[sale_order.id],
-            active_id=sale_order.id,
-        ).create_invoices()
+        wizard = self.advance_inv_model.create(
+            {
+                "advance_payment_method": "delivered",
+                "sale_order_ids": [(4, sale_order.id)],
+            }
+        )
+        wizard.create_invoices()
         invoice = sale_order.invoice_ids - old_invoices
         if date:
             invoice.invoice_date = date
