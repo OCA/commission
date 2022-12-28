@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo-addon-account_commission>=15.0dev,<15.1dev',
         'odoo-addon-commission>=15.0dev,<15.1dev',
+        'odoo-addon-commission_formula>=15.0dev,<15.1dev',
         'odoo-addon-sale_commission>=15.0dev,<15.1dev',
     ],
     classifiers=[
