@@ -1,0 +1,141 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_commission_formula
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-14 15:14+0000\n"
+"PO-Revision-Date: 2022-02-01 19:33+0000\n"
+"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatica@protonmail.com>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: sale_commission_formula
+#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+msgid ""
+"<span class=\"instructions\">\n"
+"  Use 'line' to access all the line fields.\n"
+"  As field names may vary, you should differentiate the\n"
+"  formulas for sale.order.line and account.move.line.\n"
+"  You can, for instance, use line._name == 'sale.order.line'\n"
+"  or line._name == 'account.move.line'.\n"
+"\n"
+"  Use 'result' to return the commission amount.\n"
+"                        </span>"
+msgstr ""
+"<span class=“instructions”>\n"
+"  Use 'linha' para acessar todos os campos de linha.\n"
+"  Como os nomes de campo podem variar, você deve diferenciar o\n"
+"  fórmulas para sale.order.line e account.move.line.\n"
+"  Você pode, por exemplo, usar line._name == 'sale.order.line'\n"
+"  ou line._name == 'account.move.line'.\n"
+"\n"
+"  Use 'resultado' para devolver o valor da comissão.\n"
+"                        </span>"
+
+#. module: sale_commission_formula
+#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+msgid "Account Move Line common fields"
+msgstr "Campos comuns da linha de movimentação de conta"
+
+#. module: sale_commission_formula
+#: model:ir.model,name:sale_commission_formula.model_sale_commission
+msgid "Commission in sales"
+msgstr "Comissões em Vendas"
+
+#. module: sale_commission_formula
+#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+msgid "Discount (%)"
+msgstr "Desconto (%)"
+
+#. module: sale_commission_formula
+#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+msgid "Field"
+msgstr "Campo"
+
+#. module: sale_commission_formula
+#: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission__formula
+#: model:ir.model.fields.selection,name:sale_commission_formula.selection__sale_commission__commission_type__formula
+msgid "Formula"
+msgstr "Fórmula"
+
+#. module: sale_commission_formula
+#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+msgid "Instructions"
+msgstr "Instruções"
+
+#. module: sale_commission_formula
+#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+msgid "Label"
+msgstr "Rótulo"
+
+#. module: sale_commission_formula
+#: model:ir.model,name:sale_commission_formula.model_sale_commission_line_mixin
+msgid ""
+"Mixin model for having commission agent lines in any object inheriting from "
+"this one"
+msgstr ""
+"Modelo de mixim para ter linhas de agente de comissão em qualquer objeto "
+"herdando deste"
+
+#. module: sale_commission_formula
+#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+msgid "Quantity"
+msgstr "Quantidade"
+
+#. module: sale_commission_formula
+#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+msgid "Sale Oder Line common fields"
+msgstr "Campos comuns da Linha Order de Venda"
+
+#. module: sale_commission_formula
+#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#. module: sale_commission_formula
+#: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission__commission_type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: sale_commission_formula
+#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+msgid "Unit Price"
+msgstr "Preço Unitário"
+
+#~ msgid "discount"
+#~ msgstr "desconto"
+
+#~ msgid "price_subtotal"
+#~ msgstr "price_subtotal"
+
+#~ msgid "price_unit"
+#~ msgstr "price_unit"
+
+#~ msgid "product_uom_qty"
+#~ msgstr "product_uom_qty"
+
+#~ msgid "quantity"
+#~ msgstr "quantidade"
+
+#~ msgid "By sections"
+#~ msgstr "Por Seções"
+
+#~ msgid "Fixed percentage"
+#~ msgstr "Percentual fixo"
+
+#~ msgid "account.invoice.line.agent"
+#~ msgstr "account.invoice.line.agent"
+
+#~ msgid "sale.order.line.agent"
+#~ msgstr "sale.order.line.agent"

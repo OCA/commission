@@ -1,0 +1,135 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_commission_formula
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-14 15:14+0000\n"
+"PO-Revision-Date: 2019-09-18 17:02+0000\n"
+"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
+"Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
+"zh_CN/)\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: sale_commission_formula
+#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+#, fuzzy
+msgid ""
+"<span class=\"instructions\">\n"
+"  Use 'line' to access all the line fields.\n"
+"  As field names may vary, you should differentiate the\n"
+"  formulas for sale.order.line and account.move.line.\n"
+"  You can, for instance, use line._name == 'sale.order.line'\n"
+"  or line._name == 'account.move.line'.\n"
+"\n"
+"  Use 'result' to return the commission amount.\n"
+"                        </span>"
+msgstr ""
+"<span class=\"instructions\">\n"
+"  使用“line”访问所有行字段。\n"
+"  由于字段名称可能会有所不同，您应区分\n"
+"  sale.order.line and account.invoice.line。\n"
+"  例如，您可以使用 line._name == 'sale.order.line'\n"
+"  or line._name == 'account.invoice.line'。\n"
+"\n"
+"  使用'result'返回佣金金额。\n"
+"                        </span>"
+
+#. module: sale_commission_formula
+#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+#, fuzzy
+msgid "Account Move Line common fields"
+msgstr "帐户发票行常用字段"
+
+#. module: sale_commission_formula
+#: model:ir.model,name:sale_commission_formula.model_sale_commission
+msgid "Commission in sales"
+msgstr "销售佣金"
+
+#. module: sale_commission_formula
+#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+msgid "Discount (%)"
+msgstr "折扣（%）"
+
+#. module: sale_commission_formula
+#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+msgid "Field"
+msgstr "字段"
+
+#. module: sale_commission_formula
+#: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission__formula
+#: model:ir.model.fields.selection,name:sale_commission_formula.selection__sale_commission__commission_type__formula
+msgid "Formula"
+msgstr "公式"
+
+#. module: sale_commission_formula
+#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+msgid "Instructions"
+msgstr "说明"
+
+#. module: sale_commission_formula
+#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+msgid "Label"
+msgstr "标签"
+
+#. module: sale_commission_formula
+#: model:ir.model,name:sale_commission_formula.model_sale_commission_line_mixin
+msgid ""
+"Mixin model for having commission agent lines in any object inheriting from "
+"this one"
+msgstr "Mixin模型，用于在从此继承的任何对象中具有佣金代理行"
+
+#. module: sale_commission_formula
+#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+msgid "Quantity"
+msgstr "数量"
+
+#. module: sale_commission_formula
+#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+msgid "Sale Oder Line common fields"
+msgstr "销售订单行公用字段"
+
+#. module: sale_commission_formula
+#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+msgid "Subtotal"
+msgstr "小计"
+
+#. module: sale_commission_formula
+#: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission__commission_type
+msgid "Type"
+msgstr "类型"
+
+#. module: sale_commission_formula
+#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+msgid "Unit Price"
+msgstr "单价"
+
+#~ msgid "discount"
+#~ msgstr "discount"
+
+#~ msgid "price_subtotal"
+#~ msgstr "price_subtotal"
+
+#~ msgid "price_unit"
+#~ msgstr "price_unit"
+
+#~ msgid "product_uom_qty"
+#~ msgstr "product_uom_qty"
+
+#~ msgid "quantity"
+#~ msgstr "quantity"
+
+#~ msgid "By sections"
+#~ msgstr "按阶梯"
+
+#~ msgid "Fixed percentage"
+#~ msgstr "固定百分比"
