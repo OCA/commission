@@ -18,8 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+#. module: commission_formula
+#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
 msgid ""
 "<span class=\"instructions\">\n"
 "  Use 'line' to access all the line fields.\n"
@@ -32,70 +32,70 @@ msgid ""
 "                        </span>"
 msgstr ""
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+#. module: commission_formula
+#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
 msgid "Account Move Line common fields"
 msgstr ""
 
-#. module: sale_commission_formula
-#: model:ir.model,name:sale_commission_formula.model_sale_commission
-msgid "Commission in sales"
+#. module: commission_formula
+#: model:ir.model,name:commission_formula.model_commission
+msgid "Commission"
 msgstr ""
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+#. module: commission_formula
+#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
 msgid "Discount (%)"
 msgstr "Alennus-%"
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+#. module: commission_formula
+#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
 msgid "Field"
 msgstr ""
 
-#. module: sale_commission_formula
-#: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission__formula
-#: model:ir.model.fields.selection,name:sale_commission_formula.selection__sale_commission__commission_type__formula
+#. module: commission_formula
+#: model:ir.model.fields,field_description:commission_formula.field_commission__formula
+#: model:ir.model.fields.selection,name:commission_formula.selection__commission__commission_type__formula
 msgid "Formula"
 msgstr ""
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+#. module: commission_formula
+#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
 msgid "Instructions"
 msgstr ""
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+#. module: commission_formula
+#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
 msgid "Label"
 msgstr ""
 
-#. module: sale_commission_formula
-#: model:ir.model,name:sale_commission_formula.model_sale_commission_line_mixin
+#. module: commission_formula
+#: model:ir.model,name:commission_formula.model_commission_line_mixin
 msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
 msgstr ""
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+#. module: commission_formula
+#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
 msgid "Quantity"
 msgstr "Määrä"
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+#. module: commission_formula
+#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
 msgid "Sale Oder Line common fields"
 msgstr ""
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+#. module: commission_formula
+#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
 msgid "Subtotal"
 msgstr ""
 
-#. module: sale_commission_formula
-#: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission__commission_type
+#. module: commission_formula
+#: model:ir.model.fields,field_description:commission_formula.field_commission__commission_type
 msgid "Type"
 msgstr ""
 
-#. module: sale_commission_formula
-#: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
+#. module: commission_formula
+#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
 msgid "Unit Price"
 msgstr ""
