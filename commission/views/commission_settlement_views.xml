@@ -62,17 +62,19 @@
                 <sheet>
                     <field name="can_edit" invisible="1" />
                     <group attrs="{'readonly': [('can_edit', '=', False)]}">
-                        <group>
+                        <group colspan="2">
                             <field name="agent_id" />
+                        </group>
+                        <group>
                             <field name="date_from" />
                             <field name="settlement_type" />
                         </group>
                         <group>
+                            <field name="date_to" />
                             <field
                                 name="company_id"
                                 groups="base.group_multi_company"
                             />
-                            <field name="date_to" />
                             <field name="currency_id" invisible="1" />
                             <field name="agent_type" invisible="1" />
                         </group>
