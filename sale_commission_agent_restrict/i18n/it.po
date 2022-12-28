@@ -42,6 +42,7 @@ msgid "Contact"
 msgstr "Contatto"
 
 #. module: sale_commission_agent_restrict
+#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_mail_thread__display_name
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_users__display_name
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__display_name
@@ -49,6 +50,12 @@ msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: sale_commission_agent_restrict
+#: model:ir.model,name:sale_commission_agent_restrict.model_mail_thread
+msgid "Email Thread"
+msgstr ""
+
+#. module: sale_commission_agent_restrict
+#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_mail_thread__id
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_partner__id
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_users__id
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__id
@@ -56,6 +63,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_commission_agent_restrict
+#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_mail_thread____last_update
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_partner____last_update
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_users____last_update
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order____last_update
