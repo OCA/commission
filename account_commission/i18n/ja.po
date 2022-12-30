@@ -71,6 +71,7 @@ msgid "Balance"
 msgstr "残高"
 
 #. module: account_commission
+#. odoo-python
 #: code:addons/account_commission/models/commission_settlement.py:0
 #, python-format
 msgid "Cannot cancel an invoiced settlement."
@@ -140,6 +141,7 @@ msgid "Create invoices"
 msgstr "請求書作成"
 
 #. module: account_commission
+#. odoo-python
 #: code:addons/account_commission/wizards/wizard_invoice.py:0
 #, python-format
 msgid "Created Invoices"
@@ -183,6 +185,11 @@ msgstr "表示名"
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "Draft"
 msgstr "ドラフト"
+
+#. module: account_commission
+#: model_terms:ir.ui.view,arch_db:account_commission.view_move_form
+msgid "Edit agents"
+msgstr ""
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
@@ -331,6 +338,7 @@ msgid "Line of a commission settlement"
 msgstr "コミッション精算明細"
 
 #. module: account_commission
+#. odoo-python
 #: code:addons/account_commission/models/commission_settlement.py:0
 #: model_terms:ir.ui.view,arch_db:account_commission.view_settlement_form
 #, python-format
@@ -348,6 +356,7 @@ msgid "Manage invoices commissions"
 msgstr "コミッション請求の管理"
 
 #. module: account_commission
+#. odoo-python
 #: code:addons/account_commission/wizards/wizard_invoice.py:0
 #, python-format
 msgid "No valid settlements to invoice."
@@ -379,6 +388,7 @@ msgid "Percentage of commission"
 msgstr "コミッション比率"
 
 #. module: account_commission
+#. odoo-python
 #: code:addons/account_commission/models/commission_settlement.py:0
 #, python-format
 msgid "Period: from %(date_from)s to %(date_to)s"
@@ -479,15 +489,10 @@ msgid "Subtotal"
 msgstr "小計"
 
 #. module: account_commission
-#: model:ir.model.fields,help:account_commission.field_account_invoice_line_agent__invoice_id
-msgid "The move of this entry line."
-msgstr "この明細の仕訳"
-
-#. module: account_commission
 #: model:ir.model.fields,help:account_commission.field_commission_settlement__settlement_type
 msgid ""
-"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase"
-" order'..."
+"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase "
+"order'..."
 msgstr "精算元　例：「顧客請求書」、「販売オーダ」、「購買オーダ」..."
 
 #. module: account_commission
@@ -529,18 +534,21 @@ msgid "Wizard for settling commissions"
 msgstr "コミッション精算ウィザード"
 
 #. module: account_commission
+#. odoo-python
 #: code:addons/account_commission/models/account_move.py:0
 #, python-format
 msgid "You can't cancel an invoice with settled lines"
 msgstr "精算済明細がある請求書をキャンセルすることはできません"
 
 #. module: account_commission
+#. odoo-python
 #: code:addons/account_commission/models/commission_settlement.py:0
 #, python-format
 msgid "You can't delete invoiced settlements."
 msgstr "請求済の精算を削除することはできません。"
 
 #. module: account_commission
+#. odoo-python
 #: code:addons/account_commission/models/account_move.py:0
 #, python-format
 msgid "You can't modify a settled line"
@@ -561,3 +569,6 @@ msgstr "コミッション請求分析"
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "invoices Commission Analysis"
 msgstr "コミッション請求分析"
+
+#~ msgid "The move of this entry line."
+#~ msgstr "この明細の仕訳"
