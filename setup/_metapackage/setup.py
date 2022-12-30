@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-commission Odoo addons",
     version=version,
     install_requires=[
+        'odoo-addon-account_commission>=16.0dev,<16.1dev',
         'odoo-addon-commission>=16.0dev,<16.1dev',
     ],
     classifiers=[
