@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 02:37+0000\n"
-"PO-Revision-Date: 2023-01-02 11:55+0000\n"
+"PO-Revision-Date: 2023-01-03 12:49+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-commission-8-0/"
 "language/it/)\n"
@@ -128,7 +128,7 @@ msgstr "Annulla"
 #. module: sale_commission
 #: selection:sale.commission.settlement,state:0
 msgid "Canceled"
-msgstr "Cancellato"
+msgstr "Annullato"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:49
