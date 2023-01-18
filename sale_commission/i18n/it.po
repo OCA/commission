@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 02:37+0000\n"
-"PO-Revision-Date: 2023-01-03 12:49+0000\n"
+"PO-Revision-Date: 2023-01-18 12:04+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-commission-8-0/"
 "language/it/)\n"
@@ -526,7 +526,7 @@ msgstr "Riga di Vendita"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order
 msgid "Sales Order"
-msgstr "Ordine di Vendita"
+msgstr "Ordine di vendita"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order_line
