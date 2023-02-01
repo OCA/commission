@@ -46,5 +46,5 @@ class ResPartner(models.Model):
                     ):
                         # do not populate parents agent_ids to child partners
                         res.pop("agent_ids")
-                        break
+                        return res
         return res
