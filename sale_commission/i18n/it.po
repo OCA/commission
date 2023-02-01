@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 02:37+0000\n"
-"PO-Revision-Date: 2023-01-18 12:04+0000\n"
+"PO-Revision-Date: 2023-02-01 19:46+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-commission-8-0/"
 "language/it/)\n"
@@ -96,7 +96,7 @@ msgstr "Agenti/Provvigioni collegate alla riga di fattura"
 #. module: sale_commission
 #: field:sale.order.line.agent,amount:0
 msgid "Amount"
-msgstr "Totale"
+msgstr "Importo"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,amount:0
@@ -470,7 +470,7 @@ msgstr "Importo Netto"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_res_partner
 msgid "Partner"
-msgstr "Clienti"
+msgstr "Partner"
 
 #. module: sale_commission
 #: selection:sale.commission,invoice_state:0
