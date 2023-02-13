@@ -16,3 +16,4 @@ class SaleOrdeLine(models.Model):
             partner = record.order_id.user_id.partner_id
             if not record.agent_ids and partner.agent and partner.salesman_as_agent:
                 record.agent_ids = [(0, 0, record._prepare_agent_vals(partner))]
+        return True
