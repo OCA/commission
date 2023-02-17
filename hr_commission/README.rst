@@ -25,7 +25,7 @@ HR commissions
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module links sale_commission with hr module. For now, it only adds another
+This module links account_commission with hr module. For now, it only adds another
 type of agent whose commissions are not invoiced in the corresponding wizard.
 
 It also computes the Boolean field "employee" in ResPartner to be updated
@@ -67,6 +67,7 @@ Contributors
 
   * Pedro M. Baeza
   * João Marques
+  * Ernesto García
 * Rattapong C. <rattapongc@ecosoft.co.th>
 
 Maintainers
