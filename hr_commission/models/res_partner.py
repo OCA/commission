@@ -8,7 +8,9 @@ from odoo import _, api, exceptions, fields, models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    agent_type = fields.Selection(selection_add=[("salesman", "Salesman (employee)")],)
+    agent_type = fields.Selection(
+        selection_add=[("salesman", "Salesman (employee)")],
+    )
     employee_id = fields.Many2one(
         string="Related Employee",
         comodel_name="hr.employee",
@@ -31,7 +33,7 @@ class ResPartner(models.Model):
         relation created here
         """
         if hasattr(super(), "_compute_employee"):
-            super()._compute_employee()
+            return super()._compute_employee()
         for record in self:
             if record.employee_id and record.agent_type == "salesman":
                 record.employee = True
