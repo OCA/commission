@@ -3,8 +3,8 @@
 
     <record model="ir.ui.view" id="view_settlement_form">
         <field name="name">Settlements - Add "Mark as invoiced" button</field>
-        <field name="model">sale.commission.settlement</field>
-        <field name="inherit_id" ref="sale_commission.view_settlement_form" />
+        <field name="model">commission.settlement</field>
+        <field name="inherit_id" ref="account_commission.view_settlement_form" />
         <field name="arch" type="xml">
             <button name="action_invoice" position="before">
                 <button
