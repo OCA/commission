@@ -50,8 +50,3 @@ class ResPartner(models.Model):
                     "Employee with a 'Related User' under 'HR Settings'."
                 )
             )
-
-    @api.onchange("agent_type")
-    def onchange_agent_type_hr_commission(self):
-        if self.agent_type == "salesman":
-            self.supplier = False

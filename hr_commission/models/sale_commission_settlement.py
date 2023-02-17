@@ -4,8 +4,8 @@
 from odoo import models
 
 
-class SaleCommissionSettlement(models.Model):
-    _inherit = "sale.commission.settlement"
+class CommissionSettlement(models.Model):
+    _inherit = "commission.settlement"
 
     def mark_as_invoiced(self):
         self.write({"state": "invoiced"})
