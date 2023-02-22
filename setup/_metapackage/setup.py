@@ -11,7 +11,6 @@ setuptools.setup(
         'odoo-addon-account_commission>=15.0dev,<15.1dev',
         'odoo-addon-commission>=15.0dev,<15.1dev',
         'odoo-addon-commission_formula>=15.0dev,<15.1dev',
-        'odoo-addon-commission_salesman>=15.0dev,<15.1dev',
         'odoo-addon-hr_commission>=15.0dev,<15.1dev',
         'odoo-addon-sale_commission>=15.0dev,<15.1dev',
     ],
