@@ -2,17 +2,17 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import exceptions
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests import Form, TransactionCase
 
 
-class TestSaleCommissionSalesman(SavepointCase):
+class TestSaleCommissionSalesman(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.product = cls.env["product.product"].create(
             {"name": "Test Product 1", "list_price": 100}
         )
-        SaleCommission = cls.env["sale.commission"]
+        SaleCommission = cls.env["commission"]
         cls.commission_1 = SaleCommission.create(
             {"name": "1% commission", "fix_qty": 1.0}
         )
