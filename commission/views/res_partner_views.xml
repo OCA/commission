@@ -42,11 +42,11 @@
                             />
                         </group>
                         <group
-                            colspan="4"
+                            colspan="2"
                             string="Settlements"
                             attrs="{'invisible': [('settlement_ids', '=', [])]}"
                         >
-                            <field name="settlement_ids" nolabel="1">
+                            <field colspan="2" name="settlement_ids" nolabel="1">
                                 <tree
                                     decoration-danger="state == 'cancel'"
                                     decoration-success="state == 'invoiced'"
