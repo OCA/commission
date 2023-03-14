@@ -19,9 +19,9 @@ Commissions
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/commission-15-0/commission-15-0-commission
     :alt: Translate me on Weblate
-.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/165/15.0
-    :alt: Try me on Runbot
+.. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
+    :target: https://runboat.odoo-community.org/webui/builds.html?repo=OCA/commission&target_branch=15.0
+    :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
@@ -109,8 +109,6 @@ Known issues / Roadmap
 ======================
 
 * Make it totally multi-company aware.
-* Be multi-currency aware for settlements.
-* Allow to calculate and pay in other currency different from company one.
 * Set agent popup window with a kanban view with richer information and
   mobile friendly.
 
@@ -144,6 +142,7 @@ Contributors
 * Oihane Crucelaegui <oihanecruce@gmail.com>
 * Nicola Malcontenti <nicola.malcontenti@agilebg.com>
 * Aitor Bouzas <aitor.bouzas@adaptivecity.com>
+* Alexei Rivera <arivera@archeti.com>
 
 * `Tecnativa <https://www.tecnativa.com>`__:
 
