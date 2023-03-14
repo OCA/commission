@@ -59,7 +59,7 @@ class TestAccountCommission(TestCommissionBase):
             limit=1,
         )
 
-    def _create_invoice(self, agent, commission, date=None):
+    def _create_invoice(self, agent, commission, date=None, currency=None):
         vals = {
             "move_type": "out_invoice",
             "partner_id": self.partner.id,
@@ -82,6 +82,8 @@ class TestAccountCommission(TestCommissionBase):
         }
         if date:
             vals.update({"invoice_date": date, "date": date})
+        if currency:
+            vals.update({"currency_id": currency.id})
         return self.env["account.move"].create([vals])
 
     def _settle_agent_invoice(self, agent=None, period=None, date=None):
@@ -465,3 +467,68 @@ class TestAccountCommission(TestCommissionBase):
         self.assertTrue(
             all(state == "settled" for state in settlements.mapped("state"))
         )
+
+    def test_multi_currency(self):
+        commission = self.commission_net_invoice
+        agent = self.agent_monthly
+        today = fields.Date.today()
+        last_month = today + relativedelta(months=-1)
+
+        # creating invoices with different currencies, same date
+        invoice = self._create_invoice(agent, commission, today, currency=None)
+        invoice.action_post()
+        invoice1 = self._create_invoice(agent, commission, today, self.foreign_currency)
+        invoice1.action_post()
+
+        # check settlement creation
+        self._settle_agent_invoice(agent, 1)
+        settlements = self.settle_model.search(
+            [
+                ("agent_id", "=", agent.id),
+                ("state", "=", "settled"),
+            ]
+        )
+        self.assertEqual(2, len(settlements))
+        self.assertEqual(2, len(settlements.mapped("currency_id")))
+
+        # creating some additional invoices
+        invoice2 = self._create_invoice(agent, commission, today, self.foreign_currency)
+        invoice2.action_post()
+        invoice3 = self._create_invoice(
+            agent, commission, last_month, self.foreign_currency
+        )
+        invoice3.action_post()
+        invoice4 = self._create_invoice(
+            agent, commission, last_month, self.foreign_currency
+        )
+        invoice4.action_post()
+
+        # check settlement creation
+        self._settle_agent_invoice(agent, 1)
+        settlements = self.settle_model.search(
+            [
+                ("agent_id", "=", agent.id),
+                ("state", "=", "settled"),
+            ]
+        )
+        self.assertEqual(3, len(settlements))
+
+        # check commission invoices
+        settlements.make_invoices(self.journal, self.commission_product)
+        invoices = settlements.mapped("invoice_id")
+        self.assertEqual(3, len(invoices))
+
+        # check settlement creation after a commission invoicing process
+        # (previous settlements were already invoiced)
+        invoice5 = self._create_invoice(agent, commission, today)
+        invoice5.action_post()
+        invoice6 = self._create_invoice(agent, commission, today, self.foreign_currency)
+        invoice6.action_post()
+        self._settle_agent_invoice(agent, 1)
+        settlements = self.settle_model.search(
+            [
+                ("agent_id", "=", agent.id),
+                ("state", "=", "settled"),
+            ]
+        )
+        self.assertEqual(2, len(settlements))
