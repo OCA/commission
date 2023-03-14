@@ -50,6 +50,21 @@ class TestCommissionBase(TransactionCase):
             }
         )
         cls.company = cls.env.ref("base.main_company")
+        cls.foreign_currency = cls.env["res.currency"].create(
+            {
+                "name": "Coin X",
+                "rounding": 0.01,
+                "symbol": "CX",
+            }
+        )
+        cls.rate = cls.env["res.currency.rate"].create(
+            {
+                "company_id": cls.company.id,
+                "currency_id": cls.foreign_currency.id,
+                "name": "2023-01-01",
+                "rate": 25,
+            }
+        )
         cls.res_partner_model = cls.env["res.partner"]
         cls.partner = cls.env.ref("base.res_partner_2")
         cls.partner.write({"agent": False})
