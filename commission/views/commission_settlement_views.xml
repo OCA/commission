@@ -10,8 +10,14 @@
                 <field name="date_from" />
                 <field name="date_to" />
                 <field name="settlement_type" />
-                <field name="total" sum="Settled total" />
+                <field
+                    name="total"
+                    sum="Settled total"
+                    widget='monetary'
+                    options="{'currency_field': 'currency_id'}"
+                />
                 <field name="state" />
+                <field name="currency_id" invisible="1" />
             </tree>
         </field>
     </record>
@@ -75,7 +81,10 @@
                                 name="company_id"
                                 groups="base.group_multi_company"
                             />
-                            <field name="currency_id" invisible="1" />
+                            <field
+                                name="currency_id"
+                                groups="base.group_multi_currency"
+                            />
                             <field name="agent_type" invisible="1" />
                         </group>
                     </group>
