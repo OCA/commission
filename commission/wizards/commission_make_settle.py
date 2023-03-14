@@ -2,6 +2,7 @@
 # Copyright 2014-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from datetime import date, timedelta
+from itertools import groupby
 
 from dateutil.relativedelta import relativedelta
 
@@ -66,7 +67,7 @@ class CommissionMakeSettle(models.TransientModel):
         elif agent.settlement == "annual":
             return current_date + relativedelta(years=1)
 
-    def _get_settlement(self, agent, company, sett_from, sett_to):
+    def _get_settlement(self, agent, company, currency, sett_from, sett_to):
         self.ensure_one()
         return self.env["commission.settlement"].search(
             [
@@ -74,18 +75,20 @@ class CommissionMakeSettle(models.TransientModel):
                 ("date_from", "=", sett_from),
                 ("date_to", "=", sett_to),
                 ("company_id", "=", company.id),
+                ("currency_id", "=", currency.id),
                 ("state", "=", "settled"),
                 ("settlement_type", "=", self.settlement_type),
             ],
             limit=1,
         )
 
-    def _prepare_settlement_vals(self, agent, company, sett_from, sett_to):
+    def _prepare_settlement_vals(self, agent, company, currency, sett_from, sett_to):
         return {
             "agent_id": agent.id,
             "date_from": sett_from,
             "date_to": sett_to,
             "company_id": company.id,
+            "currency_id": currency.id,
             "settlement_type": self.settlement_type,
         }
 
@@ -98,6 +101,14 @@ class CommissionMakeSettle(models.TransientModel):
     def _get_agent_lines(self, date_to_agent):
         """Need to be extended according to settlement_type."""
         raise NotImplementedError()
+
+    @api.model
+    def _agent_lines_groupby(self, agent_line):
+        return agent_line.company_id, agent_line.currency_id
+
+    @api.model
+    def _agent_lines_sorted(self, agent_line):
+        return agent_line.company_id.id, agent_line.currency_id.id
 
     def action_settle(self):
         self.ensure_one()
@@ -112,15 +123,20 @@ class CommissionMakeSettle(models.TransientModel):
         for agent in agents:
             date_to_agent = self._get_period_start(agent, date_to)
             # Get non settled elements
-            agent_lines = self._get_agent_lines(agent, date_to_agent)
-            for company in agent_lines.mapped("company_id"):
-                agent_lines_company = agent_lines.filtered(
-                    lambda r: r.object_id.company_id == company
-                )
+            grouped_agent_lines = groupby(
+                sorted(
+                    self._get_agent_lines(agent, date_to_agent),
+                    key=self._agent_lines_sorted,
+                ),
+                key=self._agent_lines_groupby,
+            )
+            for _k, grouper_agent_lines in grouped_agent_lines:
+                agent_lines = list(grouper_agent_lines)
                 pos = 0
                 sett_to = date(year=1900, month=1, day=1)
-                while pos < len(agent_lines_company):
-                    line = agent_lines_company[pos]
+                settlement_line_vals = []
+                while pos < len(agent_lines):
+                    line = agent_lines[pos]
                     pos += 1
                     if line._skip_settlement():
                         continue
@@ -129,19 +145,23 @@ class CommissionMakeSettle(models.TransientModel):
                         sett_to = self._get_next_period_date(agent, sett_from)
                         sett_to -= timedelta(days=1)
                         settlement = self._get_settlement(
-                            agent, company, sett_from, sett_to
+                            agent, line.company_id, line.currency_id, sett_from, sett_to
                         )
                         if not settlement:
                             settlement = settlement_obj.create(
                                 self._prepare_settlement_vals(
-                                    agent, company, sett_from, sett_to
+                                    agent,
+                                    line.company_id,
+                                    line.currency_id,
+                                    sett_from,
+                                    sett_to,
                                 )
                             )
                         settlement_ids.append(settlement.id)
-                    # TODO: Do creates in batch
-                    settlement_line_obj.create(
+                    settlement_line_vals.append(
                         self._prepare_settlement_line_vals(settlement, line)
                     )
+                settlement_line_obj.create(settlement_line_vals)
         # go to results
         if len(settlement_ids):
             return {

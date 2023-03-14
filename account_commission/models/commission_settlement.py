@@ -78,6 +78,9 @@ class CommissionSettlement(models.Model):
     def _get_invoice_partner(self):
         return self[0].agent_id
 
+    def _get_invoice_currency(self):
+        return self[0].currency_id
+
     def _prepare_invoice(self, journal, product, date=False):
         move_form = Form(
             self.env["account.move"].with_context(default_move_type="in_invoice")
@@ -85,8 +88,10 @@ class CommissionSettlement(models.Model):
         if date:
             move_form.invoice_date = date
         partner = self._get_invoice_partner()
+        currency = self._get_invoice_currency()
         move_form.partner_id = partner
         move_form.journal_id = journal
+        move_form.currency_id = currency
         for settlement in self:
             with move_form.invoice_line_ids.new() as line_form:
                 line_form.product_id = product
@@ -118,7 +123,7 @@ class CommissionSettlement(models.Model):
         return vals
 
     def _get_invoice_grouping_keys(self):
-        return ["company_id", "agent_id"]
+        return ["company_id", "currency_id", "agent_id"]
 
     def make_invoices(self, journal, product, date=False, grouped=False):
         invoice_vals_list = []
