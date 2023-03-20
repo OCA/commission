@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-19 01:44+0000\n"
-"PO-Revision-Date: 2023-01-03 12:50+0000\n"
+"PO-Revision-Date: 2023-03-20 11:24+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -655,13 +655,12 @@ msgstr "Basata sul pagamento"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_section_percent
 msgid "Percent"
-msgstr "Percento"
+msgstr "Percentuale"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report_percentage
-#, fuzzy
 msgid "Percentage of commission"
-msgstr "Senza provvigioni"
+msgstr "Percentuale della provvigione"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/settlement.py:110
