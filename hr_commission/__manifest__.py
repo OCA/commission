@@ -11,6 +11,7 @@
         'sale_commission',
         'hr'
     ],
+    'website': 'https://github.com/OCA/commission',
     'license': 'AGPL-3',
     "data": [
         "views/res_partner_view.xml",
