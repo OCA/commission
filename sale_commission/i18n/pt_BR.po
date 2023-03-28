@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2018-03-22 08:15+0000\n"
 "PO-Revision-Date: 2022-02-01 19:34+0000\n"
 "Last-Translator: Rodrigo Macedo <rmsolucoeseminformatica@protonmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
-"23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -317,7 +317,7 @@ msgid "Created Invoices"
 msgstr "Faturas criadas"
 
 #. module: sale_commission
-#: code:addons/sale_commission/wizard/wizard_settle.py:117
+#: code:addons/sale_commission/wizard/wizard_settle.py:114
 #, python-format
 msgid "Created Settlements"
 msgstr "Abatimentos criados"
