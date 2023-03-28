@@ -3,7 +3,7 @@
 
 {
     'name': 'HR commissions',
-    'version': '12.0.1.1.0',
+    'version': '12.0.1.1.1',
     'author': 'Tecnativa,'
               'Odoo Community Association (OCA)',
     "category": "Commissions",
