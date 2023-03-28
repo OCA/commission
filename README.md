@@ -17,7 +17,18 @@ All management related with commisions and incentive in Odoo.
 
 [//]: # (addons)
 
-This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
+Available addons
+----------------
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[contract_commission](contract_commission/) | 12.0.1.0.0 |  | Commissions in contract invoices
+[hr_commission](hr_commission/) | 12.0.1.1.0 |  | HR commissions
+[sale_commission](sale_commission/) | 12.0.3.3.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Sales commissions
+[sale_commission_delegated_partner](sale_commission_delegated_partner/) | 12.0.1.0.0 |  | Allow to delegate the invoices of agent to a delegate partner
+[sale_commission_formula](sale_commission_formula/) | 12.0.1.1.0 |  | Sale commissions computed by formulas
+[sale_commission_pricelist](sale_commission_pricelist/) | 12.0.1.0.0 |  | Sales commissions by pricelist
+[sale_commission_salesman](sale_commission_salesman/) | 12.0.1.0.0 |  | Sales commissions from salesman
+[sale_commission_settlement_partial_invoice](sale_commission_settlement_partial_invoice/) | 12.0.2.0.0 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Allow to generate partial agent invoice from settlement
 
 [//]: # (end addons)
 
