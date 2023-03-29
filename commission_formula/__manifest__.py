@@ -10,7 +10,7 @@
     "summary": "Commissions computed by formulas",
     "author": "Abstract,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/commission",
-    "depends": ["commission"],
+    "depends": ["commission", "account"],
     "data": ["views/commission_view.xml"],
     "demo": ["demo/commission_demo.xml"],
     "assets": {

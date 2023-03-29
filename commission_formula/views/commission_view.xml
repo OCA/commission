@@ -5,16 +5,16 @@
         <field name="model">commission</field>
         <field name="inherit_id" ref="commission.commission_form" />
         <field name="arch" type="xml">
-            <field name="section_ids" position="after">
+
+            <xpath expr="//sheet/group[2]" position="after">
                 <group>
-                    <field
-                        name="formula"
-                        attrs="{'invisible':[('commission_type','!=','formula')]}"
-                    >
-                      </field>
-                </group>
-                <group>
-                    <div attrs="{'invisible':[('commission_type','!=','formula')]}">
+                    <group>
+                        <field
+                            name="formula"
+                            attrs="{'invisible':[('commission_type','!=','formula')]}"
+                        />
+                    </group>
+                    <group attrs="{'invisible':[('commission_type','!=','formula')]}">
                         <h2 name="hr_instructions">Instructions</h2>
                         <span class='instructions'>
   Use 'line' to access all the line fields.
@@ -75,9 +75,10 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
+                    </group>
                 </group>
-            </field>
+            </xpath>
+
         </field>
     </record>
 </odoo>

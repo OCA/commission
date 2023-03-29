@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+
     <record id="commission_5perc10extra" model="commission">
         <field name="name">5% + 10% extra</field>
         <field name="commission_type">formula</field>
@@ -12,6 +13,7 @@ if line._name == 'account.move.line':
     result = partial + (partial / 100)*10
         </field>
     </record>
+
     <record id="agent1" model="res.partner">
         <field name="name">Agent 1</field>
         <field name="is_company">True</field>
@@ -20,4 +22,5 @@ if line._name == 'account.move.line':
         <field name="customer_rank">0</field>
         <field name="commission_id" ref="commission_5perc10extra" />
     </record>
+
 </odoo>

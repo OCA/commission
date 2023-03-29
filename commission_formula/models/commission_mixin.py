@@ -1,5 +1,5 @@
-# © 2016 Nicola Malcontenti - Agile Business Group
-# © 2016 Davide Corio - Abstract
+# Copyright 2016 Nicola Malcontenti - Agile Business Group
+# Copyright 2016 Davide Corio - Abstract
 # Copyright 2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
