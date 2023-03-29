@@ -4,7 +4,7 @@
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 {
     "name": "Commission Formula",
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Commission",
     "license": "AGPL-3",
     "summary": "Commissions computed by formulas",
