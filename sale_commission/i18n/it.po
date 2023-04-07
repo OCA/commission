@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 02:37+0000\n"
-"PO-Revision-Date: 2023-02-01 19:46+0000\n"
+"PO-Revision-Date: 2023-04-07 16:34+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-commission-8-0/"
 "language/it/)\n"
@@ -203,7 +203,7 @@ msgstr "Crea Fatture di provvigioni"
 #. module: sale_commission
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
 msgid "Create invoices"
-msgstr "Crea Fatture"
+msgstr "Crea fatture"
 
 #. module: sale_commission
 #: code:addons/sale_commission/wizard/wizard_invoice.py:59
@@ -531,7 +531,7 @@ msgstr "Ordine di vendita"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Riga Ordine di Vendita"
+msgstr "Riga ordine di vendita"
 
 #. module: sale_commission
 #: selection:res.partner,agent_type:0
