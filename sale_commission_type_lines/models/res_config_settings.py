@@ -20,11 +20,10 @@ class ResConfigSettings(models.TransientModel):
         required=True,
     )
 
-    default_use_discount_in_ct_lines = fields.Boolean(
+    use_discount_in_ct_lines = fields.Boolean(
         "Use Discounts in Commission Lines",
-        config_parameter="sale_commission_type_lines.default_use_discount_in_ct_lines",
-        default_model="sale.commission",
-        default=True,
+        related="company_id.use_discount_in_ct_lines",
+        readonly=False,
     )
 
     default_use_pricelist = fields.Boolean(

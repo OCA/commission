@@ -71,13 +71,13 @@
 <!--                    </div>-->
                     <div
                         class="col-12 col-lg-6 o_setting_box"
-                        id="default_use_discount_in_ct_lines"
+                        id="div_use_discount_in_ct_lines"
                     >
                         <div class="o_setting_left_pane">
-                            <field name="default_use_discount_in_ct_lines" />
+                            <field name="use_discount_in_ct_lines" />
                         </div>
                         <div class="o_setting_right_pane">
-                            <label for="default_use_discount_in_ct_lines" />
+                            <label for="use_discount_in_ct_lines" />
                             <div class="text-muted">
                                 Use Discounts in Commission Lines
                             </div>

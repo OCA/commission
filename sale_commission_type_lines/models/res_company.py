@@ -8,3 +8,7 @@ class ResCompany(models.Model):
         string="Display agent icon in SO after invoicing",
         default=True,
     )
+    use_discount_in_ct_lines = fields.Boolean(
+        "Use Discounts in Commission Lines",
+        default=False,
+    )

@@ -39,11 +39,11 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem
-        id="agent_commission_item_action_menu"
-        name="Agents Commission Types"
-        parent="sale_commission.menu_sale_commissions_management"
-        action="agent_commission_item_action"
-        sequence="50"
-    />
+<!--    <menuitem-->
+<!--        id="agent_commission_item_action_menu"-->
+<!--        name="Agents Commission Types"-->
+<!--        parent="sale_commission.menu_sale_commissions_management"-->
+<!--        action="agent_commission_item_action"-->
+<!--        sequence="50"-->
+<!--    />-->
 </odoo>

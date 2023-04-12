@@ -157,7 +157,9 @@ class AccountInvoiceLineAgent(models.AbstractModel):
 class SaleCommission(models.Model):
     _inherit = "sale.commission"
 
-    use_discount_in_ct_lines = fields.Boolean("Use Discounts in Commission Rules")
+    use_discount_in_ct_lines = fields.Boolean(
+        "Use Discounts in Commission Rules", compute="_compute_use_discount_in_ct_lines"
+    )
     commission_type = fields.Selection(
         selection_add=[("rules", "Rules")], ondelete={"rules": "cascade"}
     )
@@ -165,6 +167,10 @@ class SaleCommission(models.Model):
     sequence = fields.Integer(
         "Sequence", default=1, help="The first in the sequence is the default one."
     )
+
+    def _compute_use_discount_in_ct_lines(self):
+        for rec in self:
+            rec.use_discount_in_ct_lines = self.env.company.use_discount_in_ct_lines
 
     def write(self, vals):
         res = super(SaleCommission, self).write(vals)

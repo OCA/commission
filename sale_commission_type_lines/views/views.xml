@@ -31,7 +31,7 @@
         <field name="inherit_id" ref="sale_commission.sale_commission_form" />
         <field name="arch" type="xml">
             <field name="active" position="after">
-                <field name="use_discount_in_ct_lines" />
+                <field name="use_discount_in_ct_lines" invisible="1" />
             </field>
             <xpath expr="//field[@name='section_ids']/.." position="attributes">
                 <attribute
@@ -124,12 +124,15 @@
                                 invisible="context.get('hide_commission_id')"
                             />
                             <field name="applied_on" widget="radio" />
-                            <field name="based_on" />
-                            <field name="use_pricelist" invisible="1" />
                             <field
-                                name="pricelist_id"
-                                attrs="{'invisible': [('use_pricelist', '=', False)]}"
+                                name="based_on"
+                                attrs="{'invisible': [('parent.use_discount_in_ct_lines','=',False)]}"
                             />
+                            <field name="use_pricelist" invisible="1" />
+<!--                            <field-->
+<!--                                name="pricelist_id"-->
+<!--                                attrs="{'invisible': [('use_pricelist', '=', False)]}"-->
+<!--                            />-->
                             <field
                                 name="categ_id"
                                 attrs="{
@@ -223,10 +226,10 @@
                 <field name="use_pricelist" invisible="1" />
                 <field name="commission_value" />
                 <field name="based_on" />
-                <field
-                    name="pricelist_id"
-                    invisible="not context.get('default_use_pricelist')"
-                />
+<!--                <field-->
+<!--                    name="pricelist_id"-->
+<!--                    invisible="not context.get('default_use_pricelist')"-->
+<!--                />-->
                 <field name="discount_from" />
                 <field name="discount_to" />
             </tree>
