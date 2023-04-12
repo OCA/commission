@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="agent_customer_relation_tree_view" model="ir.ui.view">
+        <field name="name">agent.customer.relation.tree</field>
+        <field name="model">agent.customer.relation</field>
+        <field name="arch" type="xml">
+            <tree string="Agent's Customers" create="0" delete="0" edit="0">
+                <field name="agent_id" />
+                <field name="customer_id" />
+                <field name="customer_country_id" />
+                <field name="customer_state_id" />
+                <field name="customer_city" />
+                <field name="customer_zip" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="agent_customer_relation_action" model="ir.actions.act_window">
+        <field name="name">Agent's Customers</field>
+        <field name="res_model">agent.customer.relation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="agent_customer_relation_action_menu"
+        name="Agent's Customers"
+        parent="sale_commission.menu_sale_commissions_management"
+        action="agent_customer_relation_action"
+        sequence="50"
+    />
+</odoo>
