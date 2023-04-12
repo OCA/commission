@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-12 11:32+0000\n"
+"PO-Revision-Date: 2023-04-12 17:32+0000\n"
 "Last-Translator: luis-ron <luis.ron@sygel.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -402,6 +402,7 @@ msgstr "Manual"
 msgid ""
 "Mixin model for applying to any object that wants to handle commissions"
 msgstr ""
+"Mixin model para aplicar a cualquier objeto que quiera manejar comisiones"
 
 #. module: commission
 #: model:ir.model,name:commission.model_commission_line_mixin
@@ -409,6 +410,8 @@ msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
 msgstr ""
+"Mixin model para tener líneas de comisionistas en cualquier objeto heredado "
+"de este"
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__monthly
