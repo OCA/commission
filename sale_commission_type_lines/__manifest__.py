@@ -1,7 +1,9 @@
+# © 2023 ooops404
+# License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 {
     "name": "Sale Commission Type Lines",
     "summary": "Advanced commissions rules",
-    "version": "14.0.1.0.17",
+    "version": "14.0.1.0.1",
     "author": "Ilyas," "Ooops404," "Odoo Community Association (OCA)",
     "contributors": ["Ilyas"],
     "maintainers": ["ilyasProgrammer"],

@@ -21,11 +21,11 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem
-        id="agent_customer_relation_action_menu"
-        name="Agent's Customers"
-        parent="sale_commission.menu_sale_commissions_management"
-        action="agent_customer_relation_action"
-        sequence="50"
-    />
+<!--    <menuitem-->
+<!--        id="agent_customer_relation_action_menu"-->
+<!--        name="Agent's Customers"-->
+<!--        parent="sale_commission.menu_sale_commissions_management"-->
+<!--        action="agent_customer_relation_action"-->
+<!--        sequence="50"-->
+<!--    />-->
 </odoo>
