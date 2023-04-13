@@ -9,7 +9,7 @@
     "maintainers": ["ilyasProgrammer"],
     "website": "https://github.com/OCA/commission",
     "category": "Sales Management",
-    "license": "LGPL-3",
+    "license": "AGPL-3",
     "depends": ["sale_commission", "web_domain_field"],
     "data": [
         "views/views.xml",
