@@ -1,6 +1,7 @@
 # © 2023 ooops404
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
-from odoo import fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class ResConfigSettings(models.TransientModel):
@@ -38,3 +39,15 @@ class ResConfigSettings(models.TransientModel):
     display_invoiced_agent_icon = fields.Boolean(
         related="company_id.display_invoiced_agent_icon", readonly=False
     )
+
+    @api.onchange("use_discount_in_ct_lines")
+    def onchange_(self):
+        if self.use_discount_in_ct_lines and not self.env.user.has_group(
+            "product.group_discount_per_so_line"
+        ):
+            raise ValidationError(
+                _(
+                    "You need to enable discount on sale order lines"
+                    " to use discount-based commissions."
+                )
+            )
