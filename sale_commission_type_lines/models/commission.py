@@ -283,6 +283,7 @@ class CommissionItem(models.Model):
         [("sol", "Any Sale Order Line"), ("discount", "Discount")],
         string="Based On",
         required=True,
+        default='sol',
     )
     applied_on = fields.Selection(
         [
