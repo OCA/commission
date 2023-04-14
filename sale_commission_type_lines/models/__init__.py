@@ -5,4 +5,3 @@ from . import res_partner
 from . import settlement
 from . import res_config_settings
 from . import res_company
-from . import agent_customer_relation

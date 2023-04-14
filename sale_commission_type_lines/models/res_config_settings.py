@@ -7,13 +7,6 @@ from odoo.exceptions import ValidationError
 class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
-    default_use_multi_type_commissions = fields.Boolean(
-        "Use Multi Commission in Agent",
-        config_parameter="sale_commission_type_lines.default_use_multi_type_commissions",
-        default_model="res.partner",
-        default=False,
-    )
-
     default_based_on = fields.Selection(
         [("sol", "Any Sale Order Line"), ("discount", "Discount")],
         "Default Based On",
@@ -27,17 +20,6 @@ class ResConfigSettings(models.TransientModel):
         "Use Discounts in Commission Lines",
         related="company_id.use_discount_in_ct_lines",
         readonly=False,
-    )
-
-    default_use_pricelist = fields.Boolean(
-        "Pricelist in Commission Item",
-        config_parameter="sale_commission_type_lines.default_use_commission_pricelist",
-        default_model="commission.item",
-        default=True,
-    )
-
-    display_invoiced_agent_icon = fields.Boolean(
-        related="company_id.display_invoiced_agent_icon", readonly=False
     )
 
     @api.onchange("use_discount_in_ct_lines")

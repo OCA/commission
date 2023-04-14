@@ -126,8 +126,6 @@ class SaleCommissionLineMixin(models.AbstractModel):
 
     def _get_discount_value(self, commission_item):
         # Will be overridden
-        # commission_item will be used only in ooops_sale_commission_absolute_discount
-        # sale_commission_triple_discount will always use line final discount
         return self.object_id.discount
 
 
@@ -201,51 +199,6 @@ class SaleCommission(models.Model):
 
             sol_lines_price_list.update({"sequence": seq + 100})
             sol_lines_no_price_list.update({"sequence": seq + 101})
-
-
-class AgentCommission(models.Model):
-    _name = "agent.commission"
-    _description = "Agent Commission"
-
-    sequence = fields.Integer(default=10)
-    agent_id = fields.Many2one(
-        "res.partner",
-        domain=[("agent", "=", True)],
-        required=True,
-    )
-    commission_id = fields.Many2one(
-        "sale.commission", string="Commission", required=True
-    )
-    name = fields.Char(compute="_compute_agent_name", store=True, index=True)
-
-    @api.depends("agent_id", "commission_id")
-    def _compute_agent_name(self):
-        for r in self:
-            if r.agent_id and r.commission_id:
-                r.name = r.agent_id.name + " " + r.commission_id.name
-            else:
-                r.name = "Draft"
-
-
-class SaleCommissionMixin(models.AbstractModel):
-    _inherit = "sale.commission.mixin"
-
-    def _prepare_agent_vals(self, agent):
-        return {
-            "agent_id": agent.id,
-            "commission_id": agent.commission_id.id,
-            "commission_ids": agent.commission_ids.mapped("commission_id").ids,
-        }
-
-    def _prepare_agents_vals_partner(self, partner):
-        # replaced OCA sale_commission sale_commission_mixin.py
-        """Utility method for getting agents creation dictionary of a partner."""
-        if not self.product_id:
-            return False
-        return [
-            (0, 0, self._prepare_agent_vals(agent))
-            for agent in partner.agent_line_ids.mapped("agent_id")
-        ]
 
 
 class CommissionItem(models.Model):

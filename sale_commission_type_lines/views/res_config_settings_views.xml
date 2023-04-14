@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="res_config_settings_view_form" model="ir.ui.view">
-        <field name="name">
-            res.config.settings.view.form.inherit.sale_commission_type_lines
-        </field>
+        <field name="name">res.config.settings.view.form.inherit</field>
         <field name="model">res.config.settings</field>
         <field name="priority" eval="10" />
         <field name="inherit_id" ref="sale.res_config_settings_view_form" />
@@ -14,65 +12,7 @@
                     class="row mt16 o_settings_container"
                     name="commissions_setting_container"
                 >
-<!--                    <div-->
-<!--                        class="col-12 col-lg-6 o_setting_box"-->
-<!--                        id="use_multi_type_commissions"-->
-<!--                    >-->
-<!--                        <div class="o_setting_left_pane">-->
-<!--                            <field name="default_use_multi_type_commissions" />-->
-<!--                        </div>-->
-<!--                        <div class="o_setting_right_pane">-->
-<!--                            <label for="default_use_multi_type_commissions" />-->
-<!--                            <div class="text-muted">-->
-<!--                                Use multiple commissions type by default in agent.-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-
-<!--                    <div-->
-<!--                        class="col-12 col-lg-6 o_setting_box"-->
-<!--                        id="default_use_pricelist"-->
-<!--                    >-->
-<!--                        <div class="o_setting_left_pane">-->
-<!--                            <field name="default_use_pricelist" />-->
-<!--                        </div>-->
-<!--                        <div class="o_setting_right_pane">-->
-<!--                            <label for="default_use_pricelist" />-->
-<!--                            <div class="text-muted">-->
-<!--                                Use pricelist in commission type lines.-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-
-<!--                    <div class="col-12 col-lg-6 o_setting_box" id="default_based_on">-->
-<!--                        <div class="o_setting_left_pane" />-->
-<!--                        <div class="o_setting_right_pane">-->
-<!--                            <label for="default_based_on" />-->
-<!--                            <div class="text-muted">-->
-<!--                                Default commission item based on value.-->
-<!--                            </div>-->
-<!--                            <field name="default_based_on" />-->
-<!--                        </div>-->
-<!--                    </div>-->
-
-<!--                    <div-->
-<!--                        class="col-12 col-lg-6 o_setting_box"-->
-<!--                        id="display_invoiced_agent_icon"-->
-<!--                    >-->
-<!--                        <div class="o_setting_left_pane">-->
-<!--                            <field name="display_invoiced_agent_icon" />-->
-<!--                        </div>-->
-<!--                        <div class="o_setting_right_pane">-->
-<!--                            <label for="display_invoiced_agent_icon" />-->
-<!--                            <div class="text-muted">-->
-<!--                                Display agent icon in SO after invoicing-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-                    <div
-                        class="col-12 col-lg-6 o_setting_box"
-                        id="div_use_discount_in_ct_lines"
-                    >
+                    <div class="col-12 col-lg-6 o_setting_box" id="div_disc_ct_lines">
                         <div class="o_setting_left_pane">
                             <field name="use_discount_in_ct_lines" />
                         </div>

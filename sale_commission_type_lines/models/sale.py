@@ -3,19 +3,6 @@
 from odoo import api, fields, models
 
 
-class SaleOrder(models.Model):
-    _inherit = "sale.order"
-
-    display_agent_icon = fields.Boolean(compute="_compute_display_agent_icon")
-
-    def _compute_display_agent_icon(self):
-        param = self.env.company.display_invoiced_agent_icon
-        for r in self:
-            r.display_agent_icon = param or not (
-                not param and r.invoice_status == "invoiced"
-            )
-
-
 class SaleOrderLineAgent(models.Model):
     _inherit = "sale.order.line.agent"
 
@@ -30,9 +17,6 @@ class SaleOrderLineAgent(models.Model):
     )
     fixed_amount = fields.Float(related="applied_commission_item_id.fixed_amount")
     percent_amount = fields.Float(related="applied_commission_item_id.percent_amount")
-    use_multi_type_commissions = fields.Boolean(
-        related="agent_id.use_multi_type_commissions"
-    )
 
     @api.depends(
         "object_id.price_subtotal", "object_id.product_id", "object_id.product_uom_qty"
