@@ -1,3 +1,10 @@
-This module extends functionality of OCA/sale_commission to enable advanced commission rules, similar to product price list.
-You can configure multiple commission variants based on product category or product template or others.
-System will chose best suitable rule to compute commission.
+This module adds a new "type" in Commission Type, named "Rules", allowing to set conditions on commission based on the product according to the same logic of sale pricelist items.
+
+
+System will apply different commissions based on variant/product/category or global, applied hierarchically.
+
+
+These commission type items can be accessed and created by a specific menu, to facilitate their management in environments with lots of records.
+
+
+The form for commission type item can be extended by future modules with further conditions to decide when to apply a specific item.

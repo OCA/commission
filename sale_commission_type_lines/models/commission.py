@@ -208,6 +208,9 @@ class CommissionItem(models.Model):
 
     sequence = fields.Integer(default=10)
     commission_id = fields.Many2one("sale.commission")
+    use_discount_in_ct_lines = fields.Boolean(
+        related="commission_id.use_discount_in_ct_lines"
+    )
     use_pricelist = fields.Boolean()
     pricelist_id = fields.Many2one("product.pricelist")
     product_tmpl_id = fields.Many2one(

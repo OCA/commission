@@ -48,16 +48,17 @@
                     >
                         <tree string="Items">
                             <field name="sequence" invisible="1" />
+                            <field name="use_discount_in_ct_lines" invisible="1" />
                             <field name="name" string="Applied On" />
                             <field name="commission_value" />
                             <field name="based_on" invisible="1" />
                             <field
                                 name="discount_from"
-                                attrs="{'column_invisible': [('parent.use_discount_in_ct_lines','=',False)]}"
+                                attrs="{'column_invisible': [('use_discount_in_ct_lines','=',False)]}"
                             />
                             <field
                                 name="discount_to"
-                                attrs="{'column_invisible': [('parent.use_discount_in_ct_lines','=',False)]}"
+                                attrs="{'column_invisible': [('use_discount_in_ct_lines','=',False)]}"
                             />
                         </tree>
                     </field>
@@ -109,6 +110,7 @@
                     </h1>
                     <group>
                         <group name="pricelist_rule_target">
+                            <field name="use_discount_in_ct_lines" invisible="1" />
                             <field name="company_id" invisible="1" />
                             <field
                                 name="commission_id"
@@ -117,7 +119,7 @@
                             <field name="applied_on" widget="radio" />
                             <field
                                 name="based_on"
-                                attrs="{'invisible': [('parent.use_discount_in_ct_lines','=',False)]}"
+                                attrs="{'invisible': [('use_discount_in_ct_lines','=',False)]}"
                             />
                             <field name="use_pricelist" invisible="1" />
                             <field
@@ -264,7 +266,7 @@
     </record>
 
     <menuitem
-        name="Commission Items"
+        name="Commission Type Items"
         id="menu_sale_commissions_items"
         action="commission_item_action_tree"
         parent="sale_commission.menu_sale_commissions_management"
