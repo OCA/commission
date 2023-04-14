@@ -50,7 +50,7 @@
                             <field name="sequence" invisible="1" />
                             <field name="name" string="Applied On" />
                             <field name="commission_value" />
-                            <field name="based_on" />
+                            <field name="based_on" invisible="1" />
                             <field
                                 name="discount_from"
                                 attrs="{'column_invisible': [('parent.use_discount_in_ct_lines','=',False)]}"
@@ -75,8 +75,8 @@
                 <attribute name="invisible">1</attribute>
             </field>
             <field name="amount" position="before">
-                <field name="applied_on_name" string="Applied On" />
-                <field name="based_on" string="Based On" />
+                <field name="applied_on_name" string="Applied On" invisible="1" />
+                <field name="based_on" string="Based On" invisible="1" />
                 <field name="discount_from" string="Disc. From" invisible="1" />
                 <field name="discount_to" string="Disc. To" invisible="1" />
                 <field name="commission_type" string="Price Type" invisible="1" />
@@ -85,7 +85,7 @@
                 <field name="discount" string="Applied Disc. (%)" invisible="1" />
             </field>
             <field name="amount" position="replace">
-                <field name="applied_commission_id" />
+                <field name="applied_commission_id" invisible="1" />
                 <field
                     name="commission_ids"
                     string="Commissions"
