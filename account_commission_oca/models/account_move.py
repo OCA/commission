@@ -114,6 +114,13 @@ class AccountMove(models.Model):
                 res["arch"] = etree.tostring(invoice_xml)
         return res
 
+    def unlink(self):
+        """Put 'invoiced' settlements associated to the invoices back in settled state."""
+        self.invoice_line_ids.settlement_id.filtered(
+            lambda s: s.state == "invoiced"
+        ).write({"state": "settled"})
+        return super().unlink()
+
 
 class AccountMoveLine(models.Model):
     _inherit = [
