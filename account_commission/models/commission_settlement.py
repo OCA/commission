@@ -107,13 +107,12 @@ class CommissionSettlement(models.Model):
                         "product_id": product.id,
                         "quantity": -1 if settlement.total < 0 else 1,
                         "price_unit": abs(settlement.total),
-                        "name": (
-                            "\n"
-                            + _(
-                                "Period: from %(date_from)s to %(date_to)s",
-                                date_from=date_from.strftime(lang.date_format),
-                                date_to=date_to.strftime(lang.date_format),
-                            ),
+                        "name": product.with_context(lang=lang.code).display_name
+                        + "\n"
+                        + _(
+                            "Period: from %(date_from)s to %(date_to)s",
+                            date_from=date_from.strftime(lang.date_format),
+                            date_to=date_to.strftime(lang.date_format),
                         ),
                         # todo or compute agent currency_id?
                         "currency_id": settlement.currency_id.id,
