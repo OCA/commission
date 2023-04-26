@@ -213,7 +213,7 @@ class AccountInvoiceLineAgent(models.Model):
 
     @api.depends(
         "object_id.price_subtotal",
-        "object_id.product_id.commission_free",
+        "object_id.commission_free",
         "commission_id",
     )
     def _compute_amount(self):
