@@ -23,7 +23,7 @@ class CommissionMixin(models.AbstractModel):
     product_id = fields.Many2one(comodel_name="product.product", string="Product")
     commission_free = fields.Boolean(
         string="Comm. free",
-        related="product_id.commission_free",
+        compute="_compute_commission_free",
         store=True,
         readonly=True,
     )
@@ -49,6 +49,12 @@ class CommissionMixin(models.AbstractModel):
     def _compute_agent_ids(self):
         """Empty method that needs to be implemented in children models."""
         raise NotImplementedError()
+
+    @api.depends("product_id")
+    def _compute_commission_free(self):
+        """Compute instead of a simple related to have a proper initialized value."""
+        for line in self:
+            line.commission_free = line.product_id.commission_free
 
     @api.depends("commission_free", "agent_ids")
     def _compute_commission_status(self):
