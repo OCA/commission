@@ -38,7 +38,7 @@
         <field name="model">commission.item</field>
         <field
             name="inherit_id"
-            ref="sale_commission_type_lines.commission_item_form_view"
+            ref="sale_commission_product_criteria.commission_item_form_view"
         />
         <field name="priority">99</field>
         <field name="arch" type="xml">
