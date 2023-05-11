@@ -9,7 +9,7 @@ class ResConfigSettings(models.TransientModel):
     default_based_on = fields.Selection(
         [("sol", "Any Sale Order Line"), ("discount", "Discount")],
         "Default Based On",
-        config_parameter="sale_commission_type_lines.default_commission_based_on",
+        config_parameter="sale_commission_product_criteria.default_commission_based_on",
         default_model="commission.item",
         default="sol",
         required=True,

@@ -5,7 +5,7 @@
         <field name="model">sale.commission</field>
         <field
             name="inherit_id"
-            ref="sale_commission_type_lines.sale_commission_form_lines_mod"
+            ref="sale_commission_product_criteria.sale_commission_form_lines_mod"
         />
         <field name="arch" type="xml">
             <xpath
@@ -23,7 +23,7 @@
         <field name="model">sale.order.line.agent</field>
         <field
             name="inherit_id"
-            ref="sale_commission_type_lines.view_sale_order_line_tree_mod"
+            ref="sale_commission_product_criteria.view_sale_order_line_tree_mod"
         />
         <field name="arch" type="xml">
             <field name="based_on" position="after">
@@ -77,7 +77,7 @@
         <field name="model">commission.item</field>
         <field
             name="inherit_id"
-            ref="sale_commission_type_lines.commission_item_tree_view"
+            ref="sale_commission_product_criteria.commission_item_tree_view"
         />
         <field name="arch" type="xml">
             <field name="based_on" position="after">
@@ -92,7 +92,7 @@
         <field name="model">sale.commission</field>
         <field
             name="inherit_id"
-            ref="sale_commission_type_lines.sale_commission_form_lines_mod"
+            ref="sale_commission_product_criteria.sale_commission_form_lines_mod"
         />
         <field name="arch" type="xml">
             <xpath

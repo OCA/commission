@@ -56,7 +56,3 @@ class SaleOrderLineAgent(models.Model):
             return commission_item.fixed_amount
         elif commission_item.commission_type == "percentage":
             return subtotal * (commission_item.percent_amount / 100.0)
-
-
-class SaleOrderLine(models.Model):
-    _inherit = "sale.order.line"
