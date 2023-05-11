@@ -14,7 +14,7 @@ class SaleOrderLineAgent(models.Model):
         self.ensure_one()
         if product.commission_free or not commission:
             return 0.0
-        if commission.commission_type != "rules":
+        if commission.commission_type != "product":
             return self._get_commission_amount(commission, subtotal, product, quantity)
         item_ids = self._get_commission_items(commission, product)
         if not item_ids:
