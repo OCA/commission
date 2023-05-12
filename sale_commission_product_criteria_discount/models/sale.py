@@ -42,7 +42,7 @@ class SaleOrderLineAgent(models.Model):
                     break  # suitable item found
             commission_item = False
         if not commission_item:
-            # all commission items was rejected
+            # all commission items rejected
             return 0.0
         if commission.amount_base_type == "net_amount":
             # If subtotal (sale_price * quantity) is less than
