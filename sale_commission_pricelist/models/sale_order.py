@@ -12,10 +12,9 @@ class SaleOrderLine(models.Model):
         self.ensure_one()
         if not self.product_id or not self.order_id.pricelist_id:
             return False  # pragma: no cover
-        rule_id = self.order_id.pricelist_id.get_product_price_rule(
+        rule_id = self.order_id.pricelist_id._get_product_price_rule(
             product=self.product_id,
             quantity=self.product_uom_qty or 1.0,
-            partner=self.order_id.partner_id,
             date=self.order_id.date_order,
             uom_id=self.product_uom.id,
         )[1]
