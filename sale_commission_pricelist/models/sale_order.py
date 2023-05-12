@@ -24,11 +24,12 @@ class SaleOrderLine(models.Model):
 
     @api.depends("order_id.pricelist_id")
     def _compute_agent_ids(self):
-        super(SaleOrderLine, self)._compute_agent_ids()
+        res = super(SaleOrderLine, self)._compute_agent_ids()
         for record in self:
             commission = record._get_commission_from_pricelist()
             if record.agent_ids and commission:
                 record.agent_ids.update({"commission_id": commission.id})
+        return res
 
     def _prepare_agent_vals(self, agent):
         self.ensure_one()

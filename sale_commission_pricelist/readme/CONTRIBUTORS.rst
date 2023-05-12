@@ -7,3 +7,6 @@
   * Fekete Mihai <feketemihai@nexterp.ro>
 * `ArcheTI <https://www.archeti.com>`_:
   * Cécile Jallais <cjallais@archeti.com>
+
+* `ExoSoftware <https://www.exosoftware.pt>`_:
+  * André Leite <andre.leite@exo.pt>
