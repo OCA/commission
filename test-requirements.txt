@@ -1,1 +1,0 @@
-odoo14-addon-sale_commission_product_criteria @ git+https://github.com/OCA/commission.git@refs/pull/414/head#subdirectory=setup/sale_commission_product_criteria
