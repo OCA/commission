@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="demo_commission_rules_item_disc_1" model="commission.item">
+        <field
+            name="commission_id"
+            ref="sale_commission_product_criteria.demo_commission_rules"
+        />
+        <field name="sequence" eval="1" />
+        <field name="based_on">discount</field>
+        <field name="applied_on">1_product</field>
+        <field name="commission_type">fixed</field>
+        <field name="fixed_amount">7.50</field>
+        <field name="discount_from">10.01</field>
+        <field name="discount_to">100</field>
+        <field
+            name="product_tmpl_id"
+            ref="product.product_product_11_product_template"
+        />
+    </record>
+
+    <record id="demo_commission_rules_item_disc_2" model="commission.item">
+        <field
+            name="commission_id"
+            ref="sale_commission_product_criteria.demo_commission_rules"
+        />
+        <field name="sequence" eval="2" />
+        <field name="based_on">discount</field>
+        <field name="applied_on">1_product</field>
+        <field name="commission_type">fixed</field>
+        <field name="fixed_amount">15</field>
+        <field name="discount_from">0</field>
+        <field name="discount_to">10</field>
+        <field
+            name="product_tmpl_id"
+            ref="product.product_product_1_product_template"
+        />
+    </record>
+
+</odoo>
