@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-17 07:09+0000\n"
-"PO-Revision-Date: 2023-01-02 11:55+0000\n"
+"PO-Revision-Date: 2023-05-24 12:08+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-commission-8-0/"
 "language/it/)\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
@@ -29,7 +29,7 @@ msgstr "Campi comuni righe fattura"
 #. module: sale_commission_formula
 #: model:ir.model,name:sale_commission_formula.model_sale_commission
 msgid "Commission in sales"
-msgstr "Commissioni nelle Vendite"
+msgstr "Provvigione nelle vendite"
 
 #. module: sale_commission_formula
 #: view:sale.commission:sale_commission_formula.sale_commission_form_formula
