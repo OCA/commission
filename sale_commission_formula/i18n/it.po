@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-05 02:07+0000\n"
-"PO-Revision-Date: 2023-01-02 12:47+0000\n"
+"PO-Revision-Date: 2023-05-24 12:09+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
@@ -51,7 +51,7 @@ msgstr "Campi comuni righe fattura"
 #. module: sale_commission_formula
 #: model:ir.model,name:sale_commission_formula.model_sale_commission
 msgid "Commission in sales"
-msgstr "Commissioni nelle Vendite"
+msgstr "Provvigione nelle vendite"
 
 #. module: sale_commission_formula
 #: model:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form_formula
