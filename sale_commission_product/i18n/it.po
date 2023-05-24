@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-17 07:09+0000\n"
-"PO-Revision-Date: 2023-04-07 16:34+0000\n"
+"PO-Revision-Date: 2023-05-24 09:09+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_commission_product
 #: field:product.product.agent,agent:0
@@ -39,7 +39,7 @@ msgstr "Agenti & Commissioni"
 #. module: sale_commission_product
 #: field:product.product.agent,commission:0
 msgid "Commission"
-msgstr "Commissione"
+msgstr "Provvigione"
 
 #. module: sale_commission_product
 #: field:product.product.agent,create_uid:0
