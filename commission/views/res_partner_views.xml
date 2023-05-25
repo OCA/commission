@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="view_partner_form_agent" model="ir.ui.view">
-        <field name="name">res.partner.form.agent</field>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form - Agents per partner</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="priority" eval="18" />
         <field name="arch" type="xml">
-            <field name="vat" position="after">
-                <field name="agent" string="Agent" />
-            </field>
             <xpath
                 expr="//page[@name='sales_purchases']//field[@name='user_id']"
                 position="after"
@@ -19,6 +16,18 @@
                     context="{'default_agent': True}"
                 />
             </xpath>
+        </field>
+    </record>
+    <record id="view_partner_form_agent" model="ir.ui.view">
+        <field name="name">res.partner.form.agent</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="groups_id" eval="[(4, ref('commission.group_commission_user'))]" />
+        <field name="priority" eval="18" />
+        <field name="arch" type="xml">
+            <field name="vat" position="after">
+                <field name="agent" string="Agent" />
+            </field>
             <page name="sales_purchases" position="after">
                 <page
                     name="agent_information"
