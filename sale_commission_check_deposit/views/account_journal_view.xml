@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="account_journal_check">
+        <field name="name">account.journal.check</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form" />
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+                <field name="is_check_journal" />
+                <field
+                    name="safety_days"
+                    attrs="{'invisible': [('is_check_journal', '=', False)], 'required': [('is_check_journal', '=', True)]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
