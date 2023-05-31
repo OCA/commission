@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo14-addon-sale_commission',
         'odoo14-addon-sale_commission_advance',
         'odoo14-addon-sale_commission_agent_restrict',
+        'odoo14-addon-sale_commission_check_deposit',
         'odoo14-addon-sale_commission_delegated_partner',
         'odoo14-addon-sale_commission_formula',
         'odoo14-addon-sale_commission_geo_assign',
