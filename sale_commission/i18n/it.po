@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-22 08:15+0000\n"
-"PO-Revision-Date: 2023-06-07 13:16+0000\n"
+"PO-Revision-Date: 2023-06-08 09:15+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -573,7 +573,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_write_uid
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent_write_uid
 msgid "Last Updated by"
-msgstr "Ultima modifica di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_write_date
@@ -585,7 +585,7 @@ msgstr "Ultima modifica di"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_write_date
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent_write_date
 msgid "Last Updated on"
-msgstr "Ultima modifica il"
+msgstr "Ultimo aggiornamento il"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_settlement_line
