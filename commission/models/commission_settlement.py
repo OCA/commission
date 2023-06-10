@@ -10,6 +10,7 @@ from odoo import api, fields, models
 class CommissionSettlement(models.Model):
     _name = "commission.settlement"
     _description = "Settlement"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
 
     name = fields.Char()
     total = fields.Float(compute="_compute_total", readonly=True, store=True)
@@ -78,6 +79,12 @@ class CommissionSettlement(models.Model):
 
     def action_cancel(self):
         self.write({"state": "cancel"})
+
+    def _message_auto_subscribe_followers(self, updated_values, subtype_ids):
+        res = super()._message_auto_subscribe_followers(updated_values, subtype_ids)
+        if updated_values.get("agent_id"):
+            res.append((updated_values["agent_id"], subtype_ids, False))
+        return res
 
 
 class SettlementLine(models.Model):
