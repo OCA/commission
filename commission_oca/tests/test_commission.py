@@ -167,3 +167,10 @@ class TestCommission(TestCommissionBase):
         # Write
         partner.agent_ids = [(4, self.agent_annual.id)]
         self.assertEqual(set(child.agent_ids.ids), set(partner.agent_ids.ids))
+
+    def test_auto_subscribe_agent(self):
+        settlement = self._create_settlement(
+            self.agent_monthly, self.commission_net_paid
+        )
+        # Agent must be in the followers
+        self.assertIn(self.agent_monthly, settlement.message_partner_ids)
