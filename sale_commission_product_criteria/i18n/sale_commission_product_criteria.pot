@@ -305,11 +305,6 @@ msgid "Price Type"
 msgstr ""
 
 #. module: sale_commission_product_criteria
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__pricelist_id
-msgid "Pricelist"
-msgstr ""
-
-#. module: sale_commission_product_criteria
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__product_tmpl_id
 #: model:ir.model.fields.selection,name:sale_commission_product_criteria.selection__commission_item__applied_on__1_product
 msgid "Product"
@@ -393,11 +388,6 @@ msgstr ""
 #. module: sale_commission_product_criteria
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission__commission_type
 msgid "Type"
-msgstr ""
-
-#. module: sale_commission_product_criteria
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__use_pricelist
-msgid "Use Pricelist"
 msgstr ""
 
 #. module: sale_commission_product_criteria
