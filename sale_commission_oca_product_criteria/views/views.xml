@@ -103,7 +103,6 @@
                             />
                             <field name="applied_on" widget="radio" />
                             <field name="based_on" invisible="1" />
-                            <field name="use_pricelist" invisible="1" />
                             <field
                                 name="categ_id"
                                 attrs="{
@@ -173,7 +172,6 @@
                 <field name="commission_id" />
                 <field name="name" />
                 <field name="applied_on" optional="hide" />
-                <field name="use_pricelist" invisible="1" />
                 <field name="commission_value" />
                 <field name="based_on" />
             </tree>
