@@ -289,7 +289,8 @@ msgstr "Importo percentuale"
 #: code:addons/sale_commission_product_criteria/models/commission.py:0
 #, python-format
 msgid "Please specify the category for which this rule should be applied"
-msgstr "Specifica la categoria per la quale questa regola deve essere applicata"
+msgstr ""
+"Specifica la categoria per la quale questa regola deve essere applicata"
 
 #. module: sale_commission_product_criteria
 #: code:addons/sale_commission_product_criteria/models/commission.py:0
@@ -310,11 +311,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.view_sale_order_line_tree_mod
 msgid "Price Type"
 msgstr "Tipo prezzo"
-
-#. module: sale_commission_product_criteria
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__pricelist_id
-msgid "Pricelist"
-msgstr "Listino prezzi"
 
 #. module: sale_commission_product_criteria
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__product_tmpl_id
@@ -414,11 +410,6 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: sale_commission_product_criteria
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__use_pricelist
-msgid "Use Pricelist"
-msgstr "Usa listino prezzi"
-
-#. module: sale_commission_product_criteria
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__commission_value
 msgid "Value"
 msgstr "Valore"
@@ -428,3 +419,9 @@ msgstr "Valore"
 #, python-format
 msgid "Variant: %s"
 msgstr "Variante: %s"
+
+#~ msgid "Pricelist"
+#~ msgstr "Listino prezzi"
+
+#~ msgid "Use Pricelist"
+#~ msgstr "Usa listino prezzi"
