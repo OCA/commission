@@ -19,11 +19,11 @@ class SaleOrderLineAgent(models.Model):
         item_ids = self._get_commission_items(commission, product)
         if not item_ids:
             return 0.0
-        so_id = self.object_id.order_id
         # Check discount condition
+        item_ids = self.env["commission.item"].browse(item_ids)
         commission_item = False
         for item_id in item_ids:
-            commission_item = self.env["commission.item"].browse(item_id)
+            commission_item = item_id
             discount = self._get_discount_value(commission_item)
             if commission_item.based_on != "sol":
                 if (
@@ -33,13 +33,7 @@ class SaleOrderLineAgent(models.Model):
                 ):
                     break  # suitable item found
             else:
-                if (
-                    commission_item.pricelist_id
-                    and so_id.pricelist_id.id != commission_item.pricelist_id.id
-                ):
-                    commission_item = False  # unsuitable item
-                else:
-                    break  # suitable item found
+                break  # suitable item found
             commission_item = False
         if not commission_item:
             # all commission items rejected
