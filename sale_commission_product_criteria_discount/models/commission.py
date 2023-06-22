@@ -15,6 +15,11 @@ class CommissionItem(models.Model):
     discount_from = fields.Float("Discount From")
     discount_to = fields.Float("Discount To")
 
+    @api.onchange("based_on")
+    def onchange_based_on(self):
+        if self.based_on != "discount":
+            self.update({"discount_from": 0, "discount_to": 0})
+
     @api.constrains("discount_from", "discount_to")
     def _check_discounts(self):
         if any(item.discount_from > item.discount_to for item in self):
