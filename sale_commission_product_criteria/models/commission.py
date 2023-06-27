@@ -73,8 +73,6 @@ class CommissionItem(models.Model):
         domain=[("commission_type", "=", "product")],
         required=True,
     )
-    use_pricelist = fields.Boolean()
-    pricelist_id = fields.Many2one("product.pricelist")
     product_tmpl_id = fields.Many2one(
         "product.template",
         "Product",

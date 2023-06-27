@@ -53,6 +53,9 @@ class TestSaleCommission(SavepointCase):
         cls.com_item_4 = cls.env.ref(
             "sale_commission_product_criteria.demo_commission_rules_item_4"
         )
+        cls.com_item_5 = cls.env.ref(
+            "sale_commission_product_criteria_discount.demo_commission_rules_item_disc_1"
+        )
         cls.no_rules_commission_id = cls.env["sale.commission"].create(
             {
                 "name": "No Rules Commission",
@@ -213,6 +216,13 @@ class TestSaleCommission(SavepointCase):
         so.recompute_lines_agents()
         so.order_line.agent_ids._compute_amount()
         self.assertEqual(so.order_line.agent_ids.amount, 0.0)
+        # onchange_based_on
+        self.com_item_4.onchange_based_on()
+        self.assertEqual(self.com_item_4.discount_to, 0)
+        self.assertEqual(self.com_item_4.discount_from, 0)
+        self.com_item_5.onchange_based_on()
+        self.assertEqual(self.com_item_5.discount_to, 100)
+        self.assertEqual(self.com_item_5.discount_from, 10.01)
 
     def _create_sale_order(self, product, partner):
         return self.sale_order_model.create(
