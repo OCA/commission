@@ -88,9 +88,10 @@
                     name="recompute_lines_agents"
                     type="object"
                     string="Regenerate agents"
-                    states="draft"
                     attrs="{'invisible': [
-                        ('move_type', 'not in', ['out_invoice', 'out_refund'])
+                        '|',
+                        ('move_type', 'not in', ['out_invoice', 'out_refund']),
+                        ('state', '!=', 'draft')
                     ]}"
                 />
             </xpath>
