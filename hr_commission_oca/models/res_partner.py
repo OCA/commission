@@ -42,11 +42,12 @@ class ResPartner(models.Model):
 
     @api.constrains("agent_type")
     def _check_employee(self):
-        if self.agent_type == "salesman" and not self.employee_id:
-            raise exceptions.ValidationError(
-                _(
-                    "There must one (and only one) employee linked to this "
-                    "partner. To do this, go to 'Employees' and create an "
-                    "Employee with a 'Related User' under 'HR Settings'."
+        for partner in self:
+            if partner.agent_type == "salesman" and not partner.employee_id:
+                raise exceptions.ValidationError(
+                    _(
+                        "There must one (and only one) employee linked to this "
+                        "partner. To do this, go to 'Employees' and create an "
+                        "Employee with a 'Related User' under 'HR Settings'."
+                    )
                 )
-            )
