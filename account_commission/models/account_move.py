@@ -136,6 +136,13 @@ class AccountMoveLine(models.Model):
         for record in self:
             record.any_settled = any(record.mapped("agent_ids.settled"))
 
+    def _filter_commission_applicable_lines(self):
+        return self.filtered(
+            lambda x: x.move_id.partner_id
+            and x.move_id.move_type[:3] == "out"
+            and not x.exclude_from_invoice_tab
+        )
+
     @api.depends("move_id.partner_id")
     def _compute_agent_ids(self):
         for res in self:
@@ -149,9 +156,7 @@ class AccountMoveLine(models.Model):
                 line.currency_id = False
                 line.commission_id = False
         self.agent_ids = False  # for resetting previous agents
-        for record in self.filtered(
-            lambda x: x.move_id.partner_id and x.move_id.move_type[:3] == "out"
-        ):
+        for record in self._filter_commission_applicable_lines():
             if not record.commission_free and record.product_id:
                 record.agent_ids = record._prepare_agents_vals_partner(
                     record.move_id.partner_id, settlement_type="sale_invoice"
