@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 02:37+0000\n"
-"PO-Revision-Date: 2023-07-17 17:15+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-07-18 13:11+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-commission-8-0/"
 "language/it/)\n"
 "Language: it\n"
@@ -259,7 +259,7 @@ msgstr "Data"
 #. module: sale_commission
 #: view:sale.commission.settlement:sale_commission.view_settlement_search
 msgid "Date from month"
-msgstr "Data per Mese"
+msgstr "Data dal mese"
 
 #. module: sale_commission
 #: view:sale.commission.settlement.line:sale_commission.view_settlement_line_search
