@@ -17,7 +17,7 @@ class SaleOrderLine(models.Model):
             record.update({"agent_ids": agent_ids})
         regular_items = self - down_payment_items
         if regular_items:
-            super(SaleOrderLine, regular_items)._compute_agent_ids()
+            return super(SaleOrderLine, regular_items)._compute_agent_ids()
 
     def _prepare_agents_vals_partner_down_payment(self, partner):
         res = []
