@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-19 01:44+0000\n"
-"PO-Revision-Date: 2023-07-18 13:09+0000\n"
+"PO-Revision-Date: 2023-08-10 10:09+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -528,7 +528,7 @@ msgstr ""
 #: model:ir.model.fields,help:sale_commission.field_account_invoice_line_agent_invoice_date
 #: model:ir.model.fields,help:sale_commission.field_sale_commission_settlement_line_date
 msgid "Keep empty to use the current date"
-msgstr "Lasciare vuoto per usare la data corrente"
+msgstr "Lasciare vuoto per utilizzare la data corrente"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent___last_update
