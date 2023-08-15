@@ -99,7 +99,6 @@
                                 name="commission_id"
                                 invisible="context.get('hide_commission_id')"
                                 options="{'no_create': True, 'no_open': 1}"
-                                domain="[('commission_type', '=', 'product')]"
                             />
                             <field name="applied_on" widget="radio" />
                             <field name="based_on" invisible="1" />
