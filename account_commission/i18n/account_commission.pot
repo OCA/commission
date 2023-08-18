@@ -24,6 +24,11 @@ msgid "(keep empty for invoicing all the pending settlements)"
 msgstr ""
 
 #. module: account_commission
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
+msgid "<strong>Settlement invoice:</strong>"
+msgstr ""
+
+#. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__agent_id
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__agent_id
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
@@ -227,7 +232,6 @@ msgstr ""
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__invoice_id
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement
 msgid "Invoice"
 msgstr ""
 
@@ -269,7 +273,6 @@ msgstr ""
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__invoice_date
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement
 msgid "Invoice date"
 msgstr ""
 
@@ -279,7 +282,7 @@ msgid "Invoice exception"
 msgstr ""
 
 #. module: account_commission
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "Invoice line"
 msgstr ""
 
@@ -400,6 +403,11 @@ msgstr ""
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_commission_make_invoice__product_id
 msgid "Product for invoicing"
+msgstr ""
+
+#. module: account_commission
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
+msgid "Quantity"
 msgstr ""
 
 #. module: account_commission
