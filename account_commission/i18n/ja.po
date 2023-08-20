@@ -564,8 +564,8 @@ msgstr "精算済明細を修正することはできません"
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.commission_make_invoice_form
-msgid "_Cancel"
-msgstr "_キャンセル"
+msgid "Cancel"
+msgstr "キャンセル"
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_graph

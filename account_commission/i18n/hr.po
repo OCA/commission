@@ -559,7 +559,7 @@ msgstr ""
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.commission_make_invoice_form
-msgid "_Cancel"
+msgid "Cancel"
 msgstr ""
 
 #. module: account_commission
