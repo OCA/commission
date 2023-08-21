@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-31 19:10+0000\n"
+"PO-Revision-Date: 2023-09-02 16:57+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -29,7 +29,7 @@ msgstr "(mantener vac??o para facturar todas las liquidaciones pendientes)"
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "<strong>Settlement invoice:</strong>"
-msgstr ""
+msgstr "<strong>Factura de liquidaci??n:</strong>"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__agent_id
@@ -74,6 +74,11 @@ msgstr "Liquidada"
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__balance
 msgid "Balance"
 msgstr "Balance"
+
+#. module: account_commission
+#: model_terms:ir.ui.view,arch_db:account_commission.commission_make_invoice_form
+msgid "Cancel"
+msgstr ""
 
 #. module: account_commission
 #. odoo-python
@@ -411,7 +416,7 @@ msgstr "Producto para facturar"
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "Quantity"
-msgstr ""
+msgstr "Cantidad"
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_move_form
@@ -565,11 +570,6 @@ msgid "You can't modify a settled line"
 msgstr "No puede modificar una l??nea liquidada"
 
 #. module: account_commission
-#: model_terms:ir.ui.view,arch_db:account_commission.commission_make_invoice_form
-msgid "_Cancel"
-msgstr "_Cancelar"
-
-#. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_graph
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_pivot
 msgid "invoice Commission Analysis"
@@ -579,3 +579,6 @@ msgstr "An??lisis de comisi??n facturada"
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "invoices Commission Analysis"
 msgstr "An??lisis de Comisiones facturadas"
+
+#~ msgid "_Cancel"
+#~ msgstr "_Cancelar"
