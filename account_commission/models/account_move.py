@@ -208,8 +208,6 @@ class AccountInvoiceLineAgent(models.Model):
     )
     currency_id = fields.Many2one(
         related="object_id.currency_id",
-        readonly=True,
-        store=True,
     )
 
     @api.depends(
