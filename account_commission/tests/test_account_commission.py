@@ -419,3 +419,14 @@ class TestAccountCommission(TestCommissionBase):
         settlements.make_invoices(self.journal, self.commission_product, grouped=True)
         invoices = settlements.mapped("invoice_id")
         self.assertEqual(2, invoices.settlement_count)
+
+    def test_unlink_settlement_invoice(self):
+        settlements = self._create_multi_settlements()
+        invoices = settlements.make_invoices(self.journal, self.commission_product)
+        self.assertTrue(
+            all(state == "invoiced" for state in settlements.mapped("state"))
+        )
+        invoices.unlink()
+        self.assertTrue(
+            all(state == "settled" for state in settlements.mapped("state"))
+        )
