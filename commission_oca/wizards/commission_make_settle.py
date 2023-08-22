@@ -82,13 +82,12 @@ class CommissionMakeSettle(models.TransientModel):
             limit=1,
         )
 
-    def _prepare_settlement_vals(self, agent, company, currency, sett_from, sett_to):
+    def _prepare_settlement_vals(self, agent, company, sett_from, sett_to):
         return {
             "agent_id": agent.id,
             "date_from": sett_from,
             "date_to": sett_to,
             "company_id": company.id,
-            "currency_id": currency.id,
             "settlement_type": self.settlement_type,
         }
 
@@ -152,11 +151,11 @@ class CommissionMakeSettle(models.TransientModel):
                                 self._prepare_settlement_vals(
                                     agent,
                                     line.company_id,
-                                    line.currency_id,
                                     sett_from,
                                     sett_to,
                                 )
                             )
+                            settlement.currency_id = line.currency_id
                         settlement_ids.append(settlement.id)
                     settlement_line_vals.append(
                         self._prepare_settlement_line_vals(settlement, line)
