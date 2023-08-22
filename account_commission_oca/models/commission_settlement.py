@@ -76,9 +76,6 @@ class CommissionSettlement(models.Model):
     def _get_invoice_partner(self):
         return fields.first(self).agent_id
 
-    def _get_invoice_currency(self):
-        return self[0].currency_id
-
     def _prepare_invoice(self, journal, product, date=False):
         partner = self._get_invoice_partner()
         vals = {
