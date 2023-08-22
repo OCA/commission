@@ -41,7 +41,7 @@ class SaleCommissionLineMixin(models.AbstractModel):
                 AND (item.commission_id = %s)
                 AND (item.active = TRUE)
             ORDER BY
-                item.applied_on, categ.complete_name desc
+                item.applied_on, item.based_on, categ.complete_name desc
             """,
             (
                 product.product_tmpl_id.ids,
