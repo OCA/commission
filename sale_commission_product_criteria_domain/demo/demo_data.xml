@@ -1,0 +1,132 @@
+<?xml version="1.0" ?>
+<odoo>
+    <!--  Commissions  -->
+    <record id="demo_commission_rules_restrict" model="sale.commission">
+        <field name="name">Based on Rules Restricted</field>
+        <field name="commission_type">product_restricted</field>
+    </record>
+
+    <!--  Commission Groups  -->
+    <record id="demo_cig_spain" model="commission.items.group">
+        <field name="name">Spain</field>
+        <field
+            name="commission_ids"
+            eval="[(6, 0, [ref('sale_commission_product_criteria_domain.demo_commission_rules_restrict')])]"
+        />
+    </record>
+
+    <record id="demo_cig_italy" model="commission.items.group">
+        <field name="name">Italy</field>
+        <field
+            name="commission_ids"
+            eval="[(6, 0, [ref('sale_commission_product_criteria_domain.demo_commission_rules_restrict')])]"
+        />
+    </record>
+
+    <!--  Commission Items  -->
+    <record id="demo_crr_item_1" model="commission.item">
+        <field name="commission_id" ref="demo_commission_rules_restrict" />
+        <field name="sequence" eval="1" />
+        <field name="based_on">sol</field>
+        <field name="applied_on">3_global</field>
+        <field name="commission_type">fixed</field>
+        <field name="fixed_amount">10</field>
+        <field name="group_id" ref="demo_cig_italy" />
+    </record>
+
+    <record id="demo_crr_item_2" model="commission.item">
+        <field name="commission_id" ref="demo_commission_rules_restrict" />
+        <field name="sequence" eval="2" />
+        <field name="based_on">sol</field>
+        <field name="applied_on">2_product_category</field>
+        <field name="commission_type">fixed</field>
+        <field name="fixed_amount">20</field>
+        <field name="categ_id" ref="product.product_category_5" />
+        <field name="group_id" ref="demo_cig_spain" />
+    </record>
+
+    <record id="demo_crr_item_3" model="commission.item">
+        <field name="commission_id" ref="demo_commission_rules_restrict" />
+        <field name="sequence" eval="3" />
+        <field name="based_on">sol</field>
+        <field name="applied_on">1_product</field>
+        <field name="commission_type">percentage</field>
+        <field name="percent_amount">5</field>
+        <field
+            name="product_tmpl_id"
+            ref="product.product_product_4_product_template"
+        />
+        <field name="group_id" ref="demo_cig_spain" />
+    </record>
+
+    <record id="demo_crr_item_4" model="commission.item">
+        <field name="commission_id" ref="demo_commission_rules_restrict" />
+        <field name="sequence" eval="4" />
+        <field name="based_on">sol</field>
+        <field name="applied_on">0_product_variant</field>
+        <field name="commission_type">percentage</field>
+        <field name="percent_amount">15</field>
+        <field name="product_id" ref="product.product_product_4" />
+        <field name="group_id" ref="demo_cig_spain" />
+    </record>
+
+    <!-- Agents -->
+    <record id="demo_agent_rules_restricted_italy" model="res.partner">
+        <field name="name">Agent Rules Restricted Italy</field>
+        <field name="is_company">True</field>
+        <field name="agent">True</field>
+        <field name="commission_id" ref="demo_commission_rules_restrict" />
+        <field
+            name="allowed_commission_group_ids"
+            eval="[(6, 0, [ref('sale_commission_product_criteria_domain.demo_cig_italy')])]"
+        />
+    </record>
+    <record id="demo_agent_rules_restricted_spain" model="res.partner">
+        <field name="name">Agent Rules Restricted Spain</field>
+        <field name="is_company">True</field>
+        <field name="agent">True</field>
+        <field name="commission_id" ref="demo_commission_rules_restrict" />
+        <field
+            name="allowed_commission_group_ids"
+            eval="[(6, 0, [ref('sale_commission_product_criteria_domain.demo_cig_spain')])]"
+        />
+    </record>
+
+    <!-- Azure -->
+    <record id="base.res_partner_12" model="res.partner">
+        <field name="apply_commission_restrictions" eval="True" />
+        <field
+            name="agent_ids"
+            eval="[(6, 0, [ref('sale_commission_product_criteria_domain.demo_agent_rules_restricted_spain')])]"
+        />
+    </record>
+    <record id="cia_azure" model="commission.item.agent">
+        <field name="partner_id" ref="base.res_partner_12" />
+        <field
+            name="group_ids"
+            eval="[(6, 0, [ref('sale_commission_product_criteria_domain.demo_cig_spain')])]"
+        />
+        <field name="agent_id" ref="demo_agent_rules_restricted_spain" />
+    </record>
+
+    <!-- Deco -->
+    <record id="base.res_partner_2" model="res.partner">
+        <field name="apply_commission_restrictions" eval="True" />
+        <field
+            name="agent_ids"
+            eval="[(6, 0, [ref('sale_commission_product_criteria_domain.demo_agent_rules_restricted_italy')])]"
+        />
+    </record>
+    <record id="cia_deco" model="commission.item.agent">
+        <field name="partner_id" ref="base.res_partner_2" />
+        <field
+            name="group_ids"
+            eval="[(6, 0, [ref('sale_commission_product_criteria_domain.demo_cig_italy')])]"
+        />
+        <field
+            name="agent_id"
+            ref="sale_commission_product_criteria_domain.demo_agent_rules_restricted_italy"
+        />
+    </record>
+
+</odoo>
