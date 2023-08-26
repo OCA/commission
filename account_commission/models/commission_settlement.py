@@ -93,7 +93,7 @@ class CommissionSettlement(models.Model):
                 line_form.quantity = -1 if settlement.total < 0 else 1
                 line_form.price_unit = abs(settlement.total)
                 # Put period string
-                partner = self.agent_id
+                partner = settlement.agent_id
                 lang = self.env["res.lang"].search(
                     [
                         (
