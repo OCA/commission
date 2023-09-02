@@ -76,6 +76,11 @@ msgid "Balance"
 msgstr "Balance"
 
 #. module: account_commission
+#: model_terms:ir.ui.view,arch_db:account_commission.commission_make_invoice_form
+msgid "Cancel"
+msgstr ""
+
+#. module: account_commission
 #. odoo-python
 #: code:addons/account_commission/models/commission_settlement.py:0
 #, python-format
@@ -565,11 +570,6 @@ msgid "You can't modify a settled line"
 msgstr "No puede modificar una l??nea liquidada"
 
 #. module: account_commission
-#: model_terms:ir.ui.view,arch_db:account_commission.commission_make_invoice_form
-msgid "_Cancel"
-msgstr "_Cancelar"
-
-#. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_graph
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_pivot
 msgid "invoice Commission Analysis"
@@ -579,3 +579,6 @@ msgstr "An??lisis de comisi??n facturada"
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "invoices Commission Analysis"
 msgstr "An??lisis de Comisiones facturadas"
+
+#~ msgid "_Cancel"
+#~ msgstr "_Cancelar"
