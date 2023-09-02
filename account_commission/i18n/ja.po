@@ -27,6 +27,11 @@ msgid "(keep empty for invoicing all the pending settlements)"
 msgstr "(全ての未清算分の請求書を作成するためには空欄にしてください）"
 
 #. module: account_commission
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
+msgid "<strong>Settlement invoice:</strong>"
+msgstr ""
+
+#. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__agent_id
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__agent_id
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
@@ -223,7 +228,6 @@ msgstr "ID"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__invoice_id
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement
 msgid "Invoice"
 msgstr "請求書"
 
@@ -265,7 +269,6 @@ msgstr "請求書ステータス"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__invoice_date
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement
 msgid "Invoice date"
 msgstr "請求日"
 
@@ -275,7 +278,7 @@ msgid "Invoice exception"
 msgstr "請求書例外"
 
 #. module: account_commission
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "Invoice line"
 msgstr "請求書明細"
 
@@ -396,6 +399,11 @@ msgid "Product for invoicing"
 msgstr "請求用プロダクト"
 
 #. module: account_commission
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
+msgid "Quantity"
+msgstr ""
+
+#. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_move_form
 msgid "Regenerate agents"
 msgstr "エージェント再取込"
@@ -486,8 +494,8 @@ msgstr "この明細の仕訳"
 #. module: account_commission
 #: model:ir.model.fields,help:account_commission.field_commission_settlement__settlement_type
 msgid ""
-"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase"
-" order'..."
+"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase "
+"order'..."
 msgstr "精算元　例：「顧客請求書」、「販売オーダ」、「購買オーダ」..."
 
 #. module: account_commission

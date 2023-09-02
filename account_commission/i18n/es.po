@@ -27,6 +27,11 @@ msgid "(keep empty for invoicing all the pending settlements)"
 msgstr "(dejar vacío para facturar todas las liquidaciones pendientes)"
 
 #. module: account_commission
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
+msgid "<strong>Settlement invoice:</strong>"
+msgstr ""
+
+#. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__agent_id
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__agent_id
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
@@ -223,7 +228,6 @@ msgstr "ID"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__invoice_id
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement
 msgid "Invoice"
 msgstr "Factura"
 
@@ -265,7 +269,6 @@ msgstr "Estado de la factura"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__invoice_date
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement
 msgid "Invoice date"
 msgstr "Fecha de factura"
 
@@ -275,7 +278,7 @@ msgid "Invoice exception"
 msgstr "Excepción de factura"
 
 #. module: account_commission
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "Invoice line"
 msgstr "Línea de factura"
 
@@ -396,6 +399,11 @@ msgid "Product for invoicing"
 msgstr "Producto a facturar"
 
 #. module: account_commission
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
+msgid "Quantity"
+msgstr ""
+
+#. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_move_form
 msgid "Regenerate agents"
 msgstr "Regenerar agentes"
@@ -486,8 +494,8 @@ msgstr "El movimiento de esta línea de entrada."
 #. module: account_commission
 #: model:ir.model.fields,help:account_commission.field_commission_settlement__settlement_type
 msgid ""
-"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase"
-" order'..."
+"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase "
+"order'..."
 msgstr ""
 "El origen de esta liquidación, por ej. 'Factura de venta','Pedido de "
 "venta','Pedido de compra'..."
