@@ -37,40 +37,61 @@ msgstr "1 コミッションエージェント"
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid ""
 "<span>\n"
-"                        No automatic settlements can be made. Install any extra\n"
+"                        No automatic settlements can be made. Install any "
+"extra\n"
 "                        commission module for having this feature enabled.\n"
 "                    </span>"
 msgstr ""
 "<span>\n"
 "                        自動精算はできません。この機能を有効にするには、\n"
-"                        "
-"追加のコミッションモジュールをインストールする必要があります。\n"
+"                        追加のコミッションモジュールをインストールする必要が"
+"あります。\n"
 "                    </span>"
 
 #. module: commission
-#: model_terms:ir.ui.view,arch_db:commission.report_settlement
-msgid "<strong>Agent:</strong>"
-msgstr "<strong>エージェント:</strong>"
-
-#. module: commission
-#: model_terms:ir.ui.view,arch_db:commission.report_settlement
+#: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>From:</strong>"
 msgstr "<strong>開始:</strong>"
 
 #. module: commission
-#: model_terms:ir.ui.view,arch_db:commission.report_settlement
+#: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>To:</strong>"
 msgstr "<strong>終了:</strong>"
 
 #. module: commission
-#: model_terms:ir.ui.view,arch_db:commission.report_settlement
+#: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>Total</strong>"
 msgstr "<strong>合計</strong>"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_needaction
+msgid "Action Needed"
+msgstr ""
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__active
 msgid "Active"
 msgstr "有効"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_line_mixin__agent_id
@@ -121,7 +142,7 @@ msgid "Allows to handle commission related stuff."
 msgstr "コミッション関連の処理を許可。"
 
 #. module: commission
-#: model_terms:ir.ui.view,arch_db:commission.report_settlement
+#: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "Amount settled"
 msgstr "精算金額"
 
@@ -129,6 +150,11 @@ msgstr "精算金額"
 #: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__annual
 msgid "Annual"
 msgstr "年次"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__amount_base_type
@@ -170,7 +196,8 @@ msgstr "キャンセル"
 #: model:ir.model.fields,help:commission.field_res_partner__agent
 #: model:ir.model.fields,help:commission.field_res_users__agent
 msgid "Check this field if the partner is a creditor or an agent."
-msgstr "パートナーが債権者またはエージェントである場合、このフィールドをチェックして"
+msgstr ""
+"パートナーが債権者またはエージェントである場合、このフィールドをチェックして"
 "ください。"
 
 #. module: commission
@@ -189,7 +216,7 @@ msgstr "コミッション対象外"
 #: model:ir.model.fields,field_description:commission.field_res_partner__commission_id
 #: model:ir.model.fields,field_description:commission.field_res_users__commission_id
 #: model_terms:ir.ui.view,arch_db:commission.commission_form
-#: model_terms:ir.ui.view,arch_db:commission.report_settlement
+#: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "Commission"
 msgstr "コミッション"
 
@@ -275,6 +302,7 @@ msgstr "通貨"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line__date
+#: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "Date"
 msgstr "日付"
 
@@ -314,6 +342,21 @@ msgid "Fixed percentage"
 msgstr "固定率"
 
 #. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,help:commission.field_commission_settlement__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: commission
 #: model:ir.model.fields,field_description:commission.field_product_product__commission_free
 #: model:ir.model.fields,field_description:commission.field_product_template__commission_free
 msgid "Free of commission"
@@ -342,6 +385,11 @@ msgid "Group By"
 msgstr "グループ化"
 
 #. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__id
 #: model:ir.model.fields,field_description:commission.field_commission_make_settle__id
 #: model:ir.model.fields,field_description:commission.field_commission_section__id
@@ -349,6 +397,33 @@ msgstr "グループ化"
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line__id
 msgid "ID"
 msgstr "ID"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,help:commission.field_commission_settlement__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,help:commission.field_commission_settlement__message_needaction
+#: model:ir.model.fields,help:commission.field_commission_settlement__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,help:commission.field_commission_settlement__message_has_error
+#: model:ir.model.fields,help:commission.field_commission_settlement__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_is_follower
+msgid "Is Follower"
+msgstr ""
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission____last_update
@@ -383,6 +458,11 @@ msgid "Line of a commission settlement"
 msgstr "コミッション精算明細"
 
 #. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid "Make settlements"
 msgstr "精算実行"
@@ -398,9 +478,18 @@ msgid "Manual"
 msgstr "手動"
 
 #. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: commission
 #: model:ir.model,name:commission.model_commission_mixin
-msgid ""
-"Mixin model for applying to any object that wants to handle commissions"
+msgid "Mixin model for applying to any object that wants to handle commissions"
 msgstr "コミッションを処理したいオブジェクトに適用するためのMixinモデル"
 
 #. module: commission
@@ -408,13 +497,19 @@ msgstr "コミッションを処理したいオブジェクトに適用するた
 msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
-msgstr "このオブジェクトを継承したオブジェクトにコミッションエージェント明細を持たせ"
+msgstr ""
+"このオブジェクトを継承したオブジェクトにコミッションエージェント明細を持たせ"
 "るためのMixinモデル"
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__monthly
 msgid "Monthly"
 msgstr "月次"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__name
@@ -428,10 +523,50 @@ msgid "Net Amount"
 msgstr "純額"
 
 #. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: commission
 #: code:addons/commission/models/commission_mixin.py:0
 #, python-format
 msgid "No commission agents"
 msgstr "0 コミッションエージェント"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,help:commission.field_commission_settlement__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,help:commission.field_commission_settlement__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,help:commission.field_commission_settlement__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_line_mixin__object_id
@@ -462,6 +597,16 @@ msgstr "四半期"
 #: model_terms:ir.ui.view,arch_db:commission.commission_form
 msgid "Rates definition"
 msgstr "率の定義"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_commission_mixin_agent_only
@@ -516,6 +661,7 @@ msgstr "精算合計"
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line__settlement_id
 #: model:ir.model.fields,field_description:commission.field_res_partner__settlement_ids
 #: model:ir.model.fields,field_description:commission.field_res_users__settlement_ids
+#: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_form
 msgid "Settlement"
 msgstr "精算"
@@ -572,6 +718,15 @@ msgid "State"
 msgstr "状況"
 
 #. module: commission
+#: model:ir.model.fields,help:commission.field_commission_settlement__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__can_edit
 msgid "Technical field for determining if user can edit settlements"
 msgstr "ユーザが精算を編集できるかどうかを判断するための技術的なフィールド"
@@ -580,7 +735,8 @@ msgstr "ユーザが精算を編集できるかどうかを判断するための
 #: model:ir.model.fields,help:commission.field_commission_make_settle__can_settle
 msgid ""
 "Technical field for improving UX when no extra *commission is installed."
-msgstr "追加の※コミッションをインストールしない場合のUXを改善するための技術的なフィー"
+msgstr ""
+"追加の※コミッションをインストールしない場合のUXを改善するための技術的なフィー"
 "ルド。"
 
 #. module: commission
@@ -592,8 +748,8 @@ msgstr "下限値は上限値より大きくはできません。"
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__settlement_type
 msgid ""
-"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase"
-" order'..."
+"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase "
+"order'..."
 msgstr "精算元　例：「顧客請求書」、「販売オーダ」、「購買オーダ」..."
 
 #. module: commission
@@ -602,7 +758,8 @@ msgstr "精算元　例：「顧客請求書」、「販売オーダ」、「購
 msgid ""
 "This is the default commission used in the sales where this agent is "
 "assigned. It can be changed on each operation if needed."
-msgstr "このエージェントがアサインされている販売で使用されるデフォルトのコミッション"
+msgstr ""
+"このエージェントがアサインされている販売で使用されるデフォルトのコミッション"
 "です。必要に応じて、各オペレーションで変更することができます。"
 
 #. module: commission
@@ -631,6 +788,21 @@ msgid "Type"
 msgstr "タイプ"
 
 #. module: commission
+#: model:ir.model.fields,help:commission.field_commission_settlement__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_make_settle__date_to
 msgid "Up to"
 msgstr "いつまで"
@@ -639,6 +811,16 @@ msgstr "いつまで"
 #: model:res.groups,name:commission.group_commission_user
 msgid "User"
 msgstr "ユーザ"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,help:commission.field_commission_settlement__website_message_ids
+msgid "Website communication history"
+msgstr ""
 
 #. module: commission
 #: model:ir.model,name:commission.model_commission_make_settle
@@ -656,3 +838,6 @@ msgstr "各エージェント1回のみ追加可能です。"
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid "or"
 msgstr "または"
+
+#~ msgid "<strong>Agent:</strong>"
+#~ msgstr "<strong>エージェント:</strong>"
