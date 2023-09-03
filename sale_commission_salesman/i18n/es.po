@@ -50,6 +50,7 @@ msgid "Sales Order Line"
 msgstr "Línea de pedido de ventas"
 
 #. module: sale_commission_salesman
+#. odoo-python
 #: code:addons/sale_commission_salesman/models/res_partner.py:0
 #, python-format
 msgid "You can't have a salesman auto-agent without commission."
