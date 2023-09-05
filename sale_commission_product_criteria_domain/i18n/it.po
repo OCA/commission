@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-04 11:37+0000\n"
+"PO-Revision-Date: 2023-09-05 13:38+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -51,19 +51,19 @@ msgstr "Numero agenti"
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_domain.commission_item_agent_tree
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_domain.view_partner_form_agent_inherit
 msgid "Agents Items Restriction"
-msgstr ""
+msgstr "Restrizioni righe agenti"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__allowed_commission_group_ids
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_users__allowed_commission_group_ids
 msgid "Allowed Commission Group"
-msgstr ""
+msgstr "Gruppi provvigionali ammessi"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__allowed_commission_group_ids_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_users__allowed_commission_group_ids_domain
 msgid "Allowed Commission Group Ids Domain"
-msgstr ""
+msgstr "Dominio ids gruppi provvigionali ammessi"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__apply_commission_restrictions
@@ -80,7 +80,7 @@ msgstr "Provvigione"
 #: code:addons/sale_commission_product_criteria_domain/models/commission_group.py:0
 #, python-format
 msgid "Commission Group Agents"
-msgstr ""
+msgstr "Agenti gruppo provvigionale"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_commission_item
@@ -90,23 +90,23 @@ msgstr "Riga provvigione"
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_commission_item_agent
 msgid "Commission Item Agent"
-msgstr ""
+msgstr "Agenti riga provvigione"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_commission_items_group
 msgid "Commission Items Group"
-msgstr ""
+msgstr "Gruppo di righe provvigioni"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__commission_item_agent_ids
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_users__commission_item_agent_ids
 msgid "Commission Items Groups"
-msgstr ""
+msgstr "Gruppi di righe provvigioni"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__group_ids
 msgid "Commission Items Groups Restrictions"
-msgstr ""
+msgstr "Restrizioni gruppi di righe provvigioni"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item__commission_id
@@ -118,7 +118,7 @@ msgstr "Tipo di provvigione"
 #: model:ir.ui.menu,name:sale_commission_product_criteria_domain.menu_commission_items_group
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_domain.commission_items_group_tree
 msgid "Commission Type Items Groups"
-msgstr ""
+msgstr "Gruppi di righe provvigioni"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_sale_commission
@@ -130,6 +130,8 @@ msgstr "Provvigione nelle vendite"
 msgid ""
 "Commission items group with such name already exists. Name must be unique."
 msgstr ""
+"Esiste già un gruppo di righe provvigioni con questo nome. Inseriscine uno "
+"univoco."
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_res_partner
@@ -228,7 +230,7 @@ msgstr "Partner"
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields.selection,name:sale_commission_product_criteria_domain.selection__sale_commission__commission_type__product_restricted
 msgid "Product criteria (with restrictions)"
-msgstr ""
+msgstr "Criteri prodotto (con restrizioni)"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,help:sale_commission_product_criteria_domain.field_res_partner__allowed_commission_group_ids
@@ -260,3 +262,5 @@ msgid ""
 "You can only add one time each agent into Commission Items Groups "
 "Restrictions table."
 msgstr ""
+"Puoi aggiungere solo una volta ogni agente nella tabella Restrizioni gruppi "
+"di righe provvigione."
