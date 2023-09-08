@@ -1,6 +1,5 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
-
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -32,4 +31,8 @@ class WizardGeoAssign(models.TransientModel):
                 )
             for agent in agents:
                 if agent.is_assignable(partner):
-                    partner.agent_ids = [(4, agent.id)]
+                    self.update_data(partner, agent)
+
+    @api.model
+    def update_data(self, partner, agent):
+        partner.agent_ids = [(4, agent.id)]
