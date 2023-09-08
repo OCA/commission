@@ -1,0 +1,1 @@
+Use server action "Add agents with geo assign" on partners as per sale_commission_geo_assign behavior. Lines in table "Commission items group" will be populated with the commission item groups set in agent's geo-assignation criteria.

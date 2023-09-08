@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2023 Ooops404
+  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="view_partner_form_agent_geo_assign" model="ir.ui.view">
+        <field name="name">view_partner_form_agent_geo_assign</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="sale_commission.view_partner_form_agent" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group[field[@name='agent_country_ids']]"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'invisible': [('commission_type','=','product_restricted')]}</attribute>
+            </xpath>
+            <field name="agent_zip_from" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('commission_type','=','product_restricted')]}</attribute>
+            </field>
+            <field name="agent_zip_to" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('commission_type','=','product_restricted')]}</attribute>
+            </field>
+            <page name="agent_information" position="inside">
+                <field
+                    name="commission_geo_group_ids"
+                    attrs="{'invisible': [('commission_type','!=','product_restricted')]}"
+                >
+                    <tree editable="bottom">
+                        <field name="country_ids" widget="many2many_tags" />
+                        <field name="state_ids" widget="many2many_tags" />
+                        <field name="zip_from" />
+                        <field name="zip_to" />
+                        <field
+                            name="commission_group_ids"
+                            widget="many2many_tags"
+                            options="{'no_create':True, 'no_edit':True, 'no_open':True}"
+                        />
+                        <field name="allowed_commission_group_ids" invisible="1" />
+                    </tree>
+                </field>
+            </page>
+        </field>
+    </record>
+
+</odoo>

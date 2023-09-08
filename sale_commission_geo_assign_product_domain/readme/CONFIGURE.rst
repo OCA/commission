@@ -1,0 +1,1 @@
+In agents with assigned commission type "Product criteria (with restrictions)" it's now possible to set more than one geographic criteria for assignation. Each geo-assignation line must have at least one commission type line group set.

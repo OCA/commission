@@ -30,9 +30,9 @@ class WizardGeoAssign(models.TransientModel):
                     % partner.display_name
                 )
             for agent in agents:
-                if agent.is_assignable(partner):
-                    self.update_data(partner, agent)
+                self.update_partner_data(partner, agent)
 
     @api.model
-    def update_data(self, partner, agent):
-        partner.agent_ids = [(4, agent.id)]
+    def update_partner_data(self, partner, agent):
+        if agent.is_assignable(partner):
+            partner.agent_ids = [(4, agent.id)]
