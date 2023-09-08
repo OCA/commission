@@ -1,40 +1,75 @@
-from odoo import api, models
+from odoo import _, api, models
+from odoo.exceptions import UserError
 
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    def write(self, values):
-        res = super(ResPartner, self).write(values)
-        if len(self.user_ids) > 0 and "agent" in values:
-            group_agent_own_customers = self.env.ref(
-                "sale_commission_agent_restrict.group_agent_own_customers"
+    def assign_remove_agent_groups(self, is_agent):
+        group_agent_own_customers = self.env.ref(
+            "sale_commission_agent_restrict.group_agent_own_customers"
+        )
+        group_agent_own_commissions = self.env.ref(
+            "sale_commission_agent_restrict.group_agent_own_commissions"
+        )
+        if is_agent:
+            self.user_ids.write(
+                {
+                    "groups_id": [
+                        (4, group_agent_own_customers.id),
+                        (4, group_agent_own_commissions.id),
+                    ]
+                }
             )
-            group_agent_own_commissions = self.env.ref(
-                "sale_commission_agent_restrict.group_agent_own_commissions"
+        else:
+            self.user_ids.write(
+                {
+                    "groups_id": [
+                        (3, group_agent_own_customers.id),
+                        (3, group_agent_own_commissions.id),
+                    ]
+                }
             )
-            if values["agent"]:
-                group_agent_own_customers.users = [
-                    (4, user.id) for user in self._origin.user_ids
-                ]
-                group_agent_own_commissions.users = [
-                    (4, user.id) for user in self._origin.user_ids
-                ]
-            else:
-                group_agent_own_customers.users = [
-                    (3, user.id) for user in self._origin.user_ids
-                ]
-                group_agent_own_commissions.users = [
-                    (3, user.id) for user in self._origin.user_ids
-                ]
+
+    @api.model
+    def check_agent_changing_payment_terms(self, vals):
+        if self.env.user.partner_id.agent:
+            if (
+                "property_payment_term_id" in vals
+                or "property_supplier_payment_term_id" in vals
+            ):
+                raise UserError(
+                    _("Agents are not allowed to change Contacts' payment terms")
+                )
+
+    @api.model
+    def check_agent_changing_agents(self, vals):
+        if self.env.user.partner_id.agent:
+            if "agent_ids" in vals:
+                raise UserError(
+                    _(
+                        "Agents are not allowed to change the agents assigned to a Contact"
+                    )
+                )
+
+    def write(self, vals):
+        self.check_agent_changing_payment_terms(vals)
+        self.check_agent_changing_agents(vals)
+        res = super(ResPartner, self).write(vals)
+        if "agent" in vals and self.user_ids:
+            self.assign_remove_agent_groups(vals["agent"])
         return res
 
     @api.model
     def create(self, vals):
+        self.check_agent_changing_payment_terms(vals)
         if self.env.user.partner_id.agent:
-            vals["agent_ids"] = [(4, self.env.user.partner_id.id, 0)]
-        res = super(ResPartner, self).create(vals)
-        return res
+            # extra safe, but the field should never be pre-populated because
+            # agent cannot see the field agent_ids in the form view
+            vals["agent_ids"] = vals.get("agent_ids", []) + [
+                (4, self.env.user.partner_id.id, 0)
+            ]
+        return super(ResPartner, self).create(vals)
 
     def _update_fields_values(self, fields):
         res = super(ResPartner, self)._update_fields_values(fields)
@@ -42,7 +77,7 @@ class ResPartner(models.Model):
             for agent in self.agent_ids:
                 for user_id in agent.user_ids:
                     if user_id and user_id.has_group(
-                        "sale_commission_agent_restrict.group_agent_own_customers"
+                        "sale_commission_agent_restrict.group_agent_own_commissions"
                     ):
                         # do not populate parents agent_ids to child partners
                         res.pop("agent_ids")

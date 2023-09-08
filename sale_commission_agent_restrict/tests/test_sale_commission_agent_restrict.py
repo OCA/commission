@@ -1,58 +1,165 @@
-import odoo.tests.common as common
-from odoo.exceptions import ValidationError
+from odoo.exceptions import AccessError, UserError, ValidationError
+from odoo.tests import Form, SavepointCase
+from odoo.tools import mute_logger
 
 
-class TestsaleCommissionAgentRestrict(common.TransactionCase):
-    def setUp(self):
-        super(TestsaleCommissionAgentRestrict, self).setUp()
-        self.users_model = self.env["res.users"]
-        self.partner_model = self.env["res.partner"]
-        self.commission_model = self.env["sale.commission"]
-
-    def test_sale_commission_agent_restrict(self):
-        group_ids = self.env.ref("base.group_system").ids
-        user_agent = self.users_model.create(
-            {"name": "John", "login": "test1", "groups_id": [(6, 0, group_ids)]}
+class TestsaleCommissionAgentRestrict(SavepointCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.users_model = cls.env["res.users"]
+        cls.partner_model = cls.env["res.partner"]
+        cls.commission_model = cls.env["sale.commission"]
+        cls.group_user = cls.env.ref("base.group_user")
+        cls.group_partner_manager = cls.env.ref("base.group_partner_manager")
+        cls.group_system = cls.env.ref("base.group_system")
+        cls.group_own_customer = cls.env.ref(
+            "sale_commission_agent_restrict.group_agent_own_customers"
         )
-        user_agent.partner_id.agent = True
-        self.assertTrue(
-            user_agent.has_group(
-                "sale_commission_agent_restrict.group_agent_own_customers"
+        cls.group_own_commissions = cls.env.ref(
+            "sale_commission_agent_restrict.group_agent_own_commissions"
+        )
+        cls.user_agent = cls.users_model.create(
+            {
+                "name": "John",
+                "login": "test1",
+                "groups_id": [(6, 0, (cls.group_user + cls.group_partner_manager).ids)],
+            }
+        )
+        cls.user_agent.partner_id.agent = True
+        cls.partner_agent = cls.env.ref(
+            "sale_commission.res_partner_pritesh_sale_agent"
+        )
+
+    def test_assign_group_to_agent(self):
+        self.assertIn(self.group_own_customer, self.user_agent.groups_id)
+        self.assertIn(self.group_own_commissions, self.user_agent.groups_id)
+
+        self.user_agent.partner_id.agent = False
+        self.assertNotIn(self.group_own_customer, self.user_agent.groups_id)
+        self.assertNotIn(self.group_own_commissions, self.user_agent.groups_id)
+
+        self.user_agent.partner_id.agent = True
+        self.assertIn(self.group_own_customer, self.user_agent.groups_id)
+        self.assertIn(self.group_own_commissions, self.user_agent.groups_id)
+
+    def test_assign_agent_to_partner_created_by_agent(self):
+        new_partner = self.partner_model.with_user(self.user_agent).create(
+            {"name": "Test Partner 1"}
+        )
+
+        self.assertIn(self.user_agent.partner_id, new_partner.agent_ids)
+
+        # Add to partner's agent but also preserve existing agents
+        new_partner = self.partner_model.with_user(self.user_agent).create(
+            {"name": "Test Partner 1", "agent_ids": [(6, 0, self.partner_agent.ids)]}
+        )
+
+        self.assertEqual(
+            self.user_agent.partner_id + self.partner_agent,
+            new_partner.sudo().agent_ids,
+        )
+
+    def test_sync_agents_to_children(self):
+        """
+        Field agent_ids on partner should sync to children contacts
+        unless the agent is restricted to their own customers.
+        In that case, the field should not be synced.
+        """
+        # agent_ids should sync normally
+        parent = self.partner_model.create(
+            {
+                "name": "Test Partner 1",
+                "street": "street",
+                "agent_ids": [(6, 0, self.partner_agent.ids)],
+            }
+        )
+        child = self.partner_model.create(
+            {"name": "Test Child 1", "parent_id": parent.id}
+        )
+        self.assertEqual(parent.street, child.street)
+        self.assertEqual(parent.agent_ids, child.agent_ids)
+
+        # agent_ids should not sync
+        parent = self.partner_model.create(
+            {
+                "name": "Test Partner 2",
+                "street": "street",
+                "agent_ids": [(6, 0, self.user_agent.partner_id.ids)],
+            }
+        )
+        child = self.partner_model.create(
+            {"name": "Test Child 2", "parent_id": parent.id}
+        )
+        self.assertEqual(parent.street, child.street)
+        self.assertNotEqual(parent.agent_ids, child.agent_ids)
+        self.assertFalse(child.agent_ids)
+
+    @mute_logger("odoo.addons.base.models.ir_rule")
+    def test_agent_own_customer(self):
+        partner_no_agent = self.partner_model.create({"name": "Test Partner 1"})
+        with self.assertRaises(AccessError):
+            Form(partner_no_agent.with_user(self.user_agent))
+
+        partner_with_agent = self.partner_model.create(
+            {
+                "name": "Test Partner 2",
+                "agent_ids": [(6, 0, self.user_agent.partner_id.ids)],
+            }
+        )
+        Form(partner_with_agent.with_user(self.user_agent))
+
+        # Can also read own partner
+        Form(self.user_agent.partner_id.with_user(self.user_agent))
+
+    def test_agent_cannot_change_payment_terms(self):
+        partner_with_agent = self.partner_model.create(
+            {
+                "name": "Test Partner 1",
+                "agent_ids": [(6, 0, self.user_agent.partner_id.ids)],
+            }
+        )
+        partner_with_agent.write({"property_payment_term_id": False})
+        with self.assertRaises(UserError):
+            partner_with_agent.with_user(self.user_agent).write(
+                {"property_payment_term_id": False}
             )
-        )
-        user_agent.partner_id._get_followers()
-        self.assertFalse(user_agent.partner_id.message_partner_ids)
-        self.assertFalse(user_agent.partner_id.message_channel_ids)
-        user_agent.partner_id.agent = False
-        user_agent.partner_id._get_followers()
-        self.assertTrue(user_agent.partner_id.message_partner_ids is not False)
-        self.assertTrue(user_agent.partner_id.message_channel_ids is not False)
-        agent_id = self.ref("sale_commission.res_partner_pritesh_sale_agent")
-        agent = self.env["res.partner"].browse(agent_id)
-        agent._get_followers()
-        self.assertFalse(
-            user_agent.has_group(
-                "sale_commission_agent_restrict.group_agent_own_customers"
+        partner_with_agent.write({"property_supplier_payment_term_id": False})
+        with self.assertRaises(UserError):
+            partner_with_agent.with_user(self.user_agent).write(
+                {"property_supplier_payment_term_id": False}
             )
-        )
 
-        partner_agent1 = self.partner_model.create(
-            {"name": "Johns Customer", "email": "john_test"}
-        )
-        self.assertNotIn(self.env.user.partner_id.id, partner_agent1.agent_ids.ids)
+        # Also cannot assign them on create
+        with self.assertRaises(UserError):
+            self.partner_model.with_user(self.user_agent).create(
+                {
+                    "name": "Test partner 2",
+                    "property_payment_term_id": False,
+                }
+            )
+        with self.assertRaises(UserError):
+            self.partner_model.with_user(self.user_agent).create(
+                {
+                    "name": "Test partner 3",
+                    "property_supplier_payment_term_id": False,
+                }
+            )
 
-        user_agent.partner_id.agent = True
-        group_partner_manager = self.env.ref("base.group_partner_manager")
-        group_partner_manager.users = [(4, user_agent.id)]
-        partner_agent2 = self.partner_model.with_user(user_agent.id).create(
-            {"name": "Johns Customer 2", "email": "john_test2"}
-        )
-        self.assertIn(user_agent.partner_id.id, partner_agent2.agent_ids.ids)
-        user_agent.write({"name": "New Name"})
-        user_agent.partner_id.agent = False
+    def test_agent_cannot_see_followers(self):
+        self.partner_agent.agent_ids = [(6, 0, self.user_agent.partner_id.ids)]
+        with Form(self.partner_agent) as f:
+            self.assertTrue(f.message_follower_ids)
+
+        with Form(self.partner_agent.with_user(self.user_agent)) as f:
+            self.assertFalse(f.message_follower_ids)
+
+    def test_cannot_assign_groups_to_not_agent(self):
+        user = self.env.ref("base.user_admin")
+        self.assertFalse(user.agent)
         group1_id = self.env.ref(
             "sale_commission_agent_restrict.group_agent_own_customers"
         ).id
         group1_name = "in_group_" + str(group1_id)
         with self.assertRaises(ValidationError):
-            user_agent.write({group1_name: True})
+            user.write({group1_name: True})
