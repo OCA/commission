@@ -2,7 +2,8 @@
 # Copyright 2020 Tecnativa - Manuel Calero
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
-import dateutil.relativedelta
+from datetime import datetime
+
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields
@@ -83,6 +84,15 @@ class TestSaleCommission(SavepointCase):
                 "settlement": "monthly",
                 "lang": "en_US",
                 "commission_id": cls.commission_net_invoice.id,
+            }
+        )
+        cls.agent_monthly_paid = cls.res_partner_model.create(
+            {
+                "name": "Test Agent - Monthly Net Paid",
+                "agent": True,
+                "settlement": "monthly",
+                "lang": "en_US",
+                "commission_id": cls.commission_net_paid.id,
             }
         )
         cls.agent_biweekly = cls.res_partner_model.create(
@@ -175,14 +185,15 @@ class TestSaleCommission(SavepointCase):
         invoice.flush()
         return invoice
 
-    def _settle_agent(self, agent=None, period=None, date=None):
+    def _settle_agent(self, agent=None, period=None, date=None, date_payment_to=None):
         vals = {
             "date_to": (
                 fields.Datetime.from_string(fields.Datetime.now())
-                + dateutil.relativedelta.relativedelta(months=period)
+                + relativedelta(months=period)
             )
             if period
             else date,
+            "date_payment_to": date_payment_to,
         }
         if agent:
             vals["agent_ids"] = [(4, agent.id)]
@@ -629,3 +640,55 @@ class TestSaleCommission(SavepointCase):
             [("agent_id", "=", self.agent_biweekly.id)]
         )
         self.assertEqual(len(settlements), 2)
+
+    def register_payment(self, invoice, payment_date):
+        payment_model = self.env["account.payment.register"]
+        invoice.action_post()
+        return (
+            payment_model.with_context(
+                {"active_model": "account.move", "active_ids": invoice.ids}
+            )
+            .create(
+                {
+                    "payment_date": payment_date,
+                    "amount": invoice.amount_total,
+                    "journal_id": self.env["account.journal"]
+                    .search([("type", "=", "bank")], limit=1)
+                    .id,
+                    "payment_method_id": self.env.ref(
+                        "account.account_payment_method_manual_out"
+                    ).id,
+                }
+            )
+            .action_create_payments()
+        )
+
+    def test_payment_date_settlement(self):
+        so_after_payment_dt_wizard = self._create_sale_order(
+            self.agent_monthly, self.commission_net_paid
+        )
+        so_after_payment_dt_wizard.action_confirm()
+        date = fields.Date.today()
+        inv_after_payment_dt_wizard = self._invoice_sale_order(
+            so_after_payment_dt_wizard
+        )
+        self.register_payment(inv_after_payment_dt_wizard, date + relativedelta(days=2))
+        sale_order = self._create_sale_order(
+            self.agent_monthly, self.commission_net_paid
+        )
+        sale_order.action_confirm()
+        inv = self._invoice_sale_order(sale_order)
+        self.register_payment(inv, date - relativedelta(days=2))
+        self._settle_agent(self.agent_monthly, 1, date_payment_to=datetime.now())
+        settlements = self.env["sale.commission.settlement"].search(
+            [
+                (
+                    "agent_id",
+                    "=",
+                    self.agent_monthly.id,
+                ),
+                ("state", "=", "settled"),
+            ]
+        )
+        self.assertEqual(1, len(settlements))
+        self.assertEqual(1, len(settlements.line_ids))

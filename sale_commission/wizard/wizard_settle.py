@@ -1,6 +1,6 @@
 # Copyright 2014-2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from datetime import date, timedelta
+from datetime import date
 
 from dateutil.relativedelta import relativedelta
 
@@ -11,7 +11,20 @@ class SaleCommissionMakeSettle(models.TransientModel):
     _name = "sale.commission.make.settle"
     _description = "Wizard for settling commissions in invoices"
 
-    date_to = fields.Date("Up to", required=True, default=fields.Date.today())
+    date_to = fields.Date(
+        "Invoice date up to",
+        help="For invoice-based commissions, settlements will be created for invoices \
+            with date up to the one set in this field.",
+        required=True,
+        default=fields.Date.today(),
+    )
+    date_payment_to = fields.Date(
+        "Payment date up to",
+        help="For payment-based commissions, settlements will be created for payments \
+            with date up to the one set in this field.",
+        default=fields.Date.today(),
+    )
+
     agent_ids = fields.Many2many(
         comodel_name="res.partner", domain="[('agent', '=', True)]"
     )
@@ -99,12 +112,16 @@ class SaleCommissionMakeSettle(models.TransientModel):
                     pos += 1
                     if line._skip_settlement():
                         continue
+                    if self.date_payment_to and line._skip_future_payments(
+                        self.date_payment_to
+                    ):
+                        continue
                     if line.invoice_date > sett_to:
                         sett_from = self._get_period_start(agent, line.invoice_date)
                         sett_to = self._get_next_period_date(
                             agent,
                             sett_from,
-                        ) - timedelta(days=1)
+                        ) - relativedelta(days=1)
                         settlement = self._get_settlement(
                             agent, company, sett_from, sett_to
                         )

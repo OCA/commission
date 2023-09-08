@@ -7,6 +7,8 @@
 * Oihane Crucelaegui <oihanecruce@gmail.com>
 * Nicola Malcontenti <nicola.malcontenti@agilebg.com>
 * Aitor Bouzas <aitor.bouzas@adaptivecity.com>
+* Nextev <web@nextev.it>
+
 
 * `Tecnativa <https://www.tecnativa.com>`__:
 
