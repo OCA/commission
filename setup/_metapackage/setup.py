@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo12-addon-sale_commission_delegated_partner',
         'odoo12-addon-sale_commission_formula',
         'odoo12-addon-sale_commission_pricelist',
+        'odoo12-addon-sale_commission_product_based',
         'odoo12-addon-sale_commission_salesman',
         'odoo12-addon-sale_commission_settlement_partial_invoice',
     ],
