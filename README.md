@@ -27,6 +27,7 @@ addon | version | maintainers | summary
 [sale_commission_delegated_partner](sale_commission_delegated_partner/) | 12.0.1.0.0 |  | Allow to delegate the invoices of agent to a delegate partner
 [sale_commission_formula](sale_commission_formula/) | 12.0.1.1.0 |  | Sale commissions computed by formulas
 [sale_commission_pricelist](sale_commission_pricelist/) | 12.0.1.0.0 |  | Sales commissions by pricelist
+[sale_commission_product_based](sale_commission_product_based/) | 12.0.1.0.0 |  | Create commissions based on product
 [sale_commission_salesman](sale_commission_salesman/) | 12.0.1.0.0 |  | Sales commissions from salesman
 [sale_commission_settlement_partial_invoice](sale_commission_settlement_partial_invoice/) | 12.0.2.0.0 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Allow to generate partial agent invoice from settlement
 
