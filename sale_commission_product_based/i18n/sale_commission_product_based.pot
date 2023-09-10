@@ -1,16 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* sale_commission_product_based
+#	* sale_commission_product_based
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-03 14:01+0000\n"
-"PO-Revision-Date: 2022-08-03 14:01+0000\n"
-"Last-Translator: Simone Rubino <sir@takobi.online>\n"
+"Last-Translator: <>\n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,63 +16,62 @@ msgstr ""
 #. module: sale_commission_product_based
 #: selection:sale.commission,commission_type:0
 msgid "Based on Product with Fallback Percentage"
-msgstr "Percentuale basata su prodotto con alternativa"
+msgstr ""
 
 #. module: sale_commission_product_based
 #: selection:sale.commission,commission_type:0
 msgid "By sections"
-msgstr "Per Sezioni"
+msgstr ""
 
 #. module: sale_commission_product_based
 #: model:ir.model.fields,field_description:sale_commission_product_based.field_sale_commission_product_rule__commission_id
 msgid "Commission"
-msgstr "Provvigione"
+msgstr ""
 
 #. module: sale_commission_product_based
 #: model:ir.model,name:sale_commission_product_based.model_sale_commission
 msgid "Commission in sales"
-msgstr "Provvigione in vendite"
+msgstr ""
 
 #. module: sale_commission_product_based
 #: model:ir.model,name:sale_commission_product_based.model_sale_commission_product_rule
 msgid "Commission rule for product"
-msgstr "Regola per commissioni di prodotto"
+msgstr ""
 
 #. module: sale_commission_product_based
 #: model:ir.model.fields,field_description:sale_commission_product_based.field_sale_commission_product_rule__create_uid
 msgid "Created by"
-msgstr "Creato da"
+msgstr ""
 
 #. module: sale_commission_product_based
 #: model:ir.model.fields,field_description:sale_commission_product_based.field_sale_commission_product_rule__create_date
 msgid "Created on"
-msgstr "Creato il"
+msgstr ""
 
 #. module: sale_commission_product_based
 #: model:ir.model.fields,field_description:sale_commission_product_based.field_sale_commission_product_rule__display_name
 msgid "Display Name"
-msgstr "Nome visualizzato"
+msgstr ""
 
 #. module: sale_commission_product_based
 #: sql_constraint:sale.commission.product_rule:0
 msgid "Exactly one of 'Product' and 'Product Category' must have a value."
 msgstr ""
-"Esattamente uno tra 'Prodotto' e 'Categoria prodotto' deve avere un valore."
 
 #. module: sale_commission_product_based
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_based.sale_commission_form
 msgid "Fallback Percentage"
-msgstr "Percentuale alternativa"
+msgstr ""
 
 #. module: sale_commission_product_based
 #: model:ir.model.fields,field_description:sale_commission_product_based.field_sale_commission__product_fallback_amount
 msgid "Fallback Percentage for Product"
-msgstr "Percentuale alternativa per prodotto"
+msgstr ""
 
 #. module: sale_commission_product_based
 #: selection:sale.commission,commission_type:0
 msgid "Fixed percentage"
-msgstr "Percentuale Fissa"
+msgstr ""
 
 #. module: sale_commission_product_based
 #: selection:sale.commission,commission_type:0
@@ -90,53 +86,50 @@ msgstr ""
 #. module: sale_commission_product_based
 #: model:ir.model.fields,field_description:sale_commission_product_based.field_sale_commission_product_rule____last_update
 msgid "Last Modified on"
-msgstr "Ultima modifica il"
+msgstr ""
 
 #. module: sale_commission_product_based
 #: model:ir.model.fields,field_description:sale_commission_product_based.field_sale_commission_product_rule__write_uid
 msgid "Last Updated by"
-msgstr "Ultimo aggiornamento di"
+msgstr ""
 
 #. module: sale_commission_product_based
 #: model:ir.model.fields,field_description:sale_commission_product_based.field_sale_commission_product_rule__write_date
 msgid "Last Updated on"
-msgstr "Ultimo aggiornamento il"
+msgstr ""
 
 #. module: sale_commission_product_based
 #: model:ir.model,name:sale_commission_product_based.model_sale_commission_line_mixin
-msgid ""
-"Mixin model for having commission agent lines in any object inheriting from "
-"this one"
+msgid "Mixin model for having commission agent lines in any object inheriting from this one"
 msgstr ""
-"Modello Mixin per avere righe di commissione per agenti in qualsiasi oggetto "
-"che erediti da questo"
 
 #. module: sale_commission_product_based
 #: model:ir.model.fields,field_description:sale_commission_product_based.field_sale_commission_product_rule__amount
 msgid "Percentage"
-msgstr "Percentuale"
+msgstr ""
 
 #. module: sale_commission_product_based
 #: model:ir.model.fields,field_description:sale_commission_product_based.field_sale_commission_product_rule__product_id
 msgid "Product"
-msgstr "Prodotto"
+msgstr ""
 
 #. module: sale_commission_product_based
 #: model:ir.model.fields,field_description:sale_commission_product_based.field_sale_commission_product_rule__product_category_id
 msgid "Product Category"
-msgstr "Categoria prodotto"
+msgstr ""
 
 #. module: sale_commission_product_based
 #: model:ir.model.fields,field_description:sale_commission_product_based.field_sale_commission__product_rule_ids
 msgid "Product rules"
-msgstr "Regole prodotto"
+msgstr ""
 
 #. module: sale_commission_product_based
 #: model:ir.model.fields,field_description:sale_commission_product_based.field_sale_commission_product_rule__sequence
 msgid "Sequence"
-msgstr "Sequenza"
+msgstr ""
 
 #. module: sale_commission_product_based
 #: model:ir.model.fields,field_description:sale_commission_product_based.field_sale_commission__commission_type
 msgid "Type"
-msgstr "Tipologia"
+msgstr ""
+
