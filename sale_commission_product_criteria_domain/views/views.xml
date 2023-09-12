@@ -31,7 +31,10 @@
                     domain="allowed_commission_group_ids_domain"
                     widget="many2many_tags"
                     options="{'no_create': True}"
-                    attrs="{'invisible': [('commission_type', '!=', 'product_restricted')]}"
+                    attrs="{
+                             'invisible': [('commission_type', '!=', 'product_restricted')],
+                             'required': [('commission_type', '=', 'product_restricted')]
+                            }"
                 />
             </field>
         </field>
