@@ -69,6 +69,12 @@ msgid "Apply Restrictions"
 msgstr ""
 
 #. module: sale_commission_product_criteria_domain
+#: code:addons/sale_commission_product_criteria_domain/models/commission.py:0
+#, python-format
+msgid "At least one group for each restriction must be selected."
+msgstr ""
+
+#. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__commission_ids
 msgid "Commission"
 msgstr ""
