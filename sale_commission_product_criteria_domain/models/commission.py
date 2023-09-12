@@ -1,6 +1,6 @@
 # © 2023 ooops404
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
-from odoo import api, fields, models
+from odoo import _, api, exceptions, fields, models
 
 
 class SaleCommission(models.Model):
@@ -79,3 +79,11 @@ class CommissionItemAgent(models.Model):
                 [("commission_id", "=", rec.agent_id.commission_id.id), dom]
             )
             rec.agent_group_ids = [(6, 0, items.mapped("group_id").ids)]
+
+    @api.constrains("group_ids", "agent_id", "partner_id")
+    def _constraint_commission_item_agent_ids(self):
+        for cia in self:
+            if not cia.group_ids:
+                raise exceptions.ValidationError(
+                    _("At least one group for each restriction must be selected.")
+                )
