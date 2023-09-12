@@ -5,6 +5,7 @@
         <field name="name">res.partner.form.agent.inherit</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="sale_commission.view_partner_form_agent" />
+        <field name="groups_id" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
         <field name="arch" type="xml">
             <field name="agent_ids" position="after">
                 <field name="apply_commission_restrictions" invisible="1" />
