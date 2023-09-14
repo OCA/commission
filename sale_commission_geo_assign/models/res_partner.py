@@ -15,6 +15,8 @@ class Partner(models.Model):
     agent_zip_from = fields.Char("Zip From", help="ZIP range where this agent operates")
     agent_zip_to = fields.Char("Zip To", help="ZIP range where this agent operates")
 
+    no_geo_assign_update = fields.Boolean("Do not allow update with Geo Assign")
+
     @api.onchange("agent_country_ids")
     def onchange_countries(self):
         if self.agent_country_ids:

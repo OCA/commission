@@ -32,6 +32,8 @@ Configure sales agents assigning them to a specific geographical area.
 
 Then, automatically assign agents to customers, according to their geographical area.
 
+A "Do not allow update with Geo Assign" setting can be activated in partner to prevent server action from editing set agents.
+
 **Table of contents**
 
 .. contents::
@@ -49,13 +51,23 @@ For every agent, you can set Countries, States or ZIP range
 Usage
 =====
 
-Go to
+Go to Sales > Agents > open a record: in tab "Agent information", set geographic criteria.
+
+When using server action, this agent will be assigned to customers whose address match the set criteria.
+
+To assign agents, go to:
 
 Sales > Customers
 
 Select the customers you want to assign agents to and click
 
-Action > Geo assign agents
+Action > Add agents with geo assign
+
+- Activating flag "Replace existing agents" will remove agents set in partner and replace them according to geographic criteria.
+
+- Activating flag "Do not add new agents if agents are already assigned" will prevent assignation if agents are already set in partner.
+
+- Deactivating both flags will simply add agents to existing ones in partner according to geographic criteria.
 
 Bug Tracker
 ===========
@@ -79,6 +91,7 @@ Contributors
 ~~~~~~~~~~~~
 
 * iwkse <https://ooops404.com>
+* PyTech SRL <info@pytech.it>
 
 Maintainers
 ~~~~~~~~~~~
