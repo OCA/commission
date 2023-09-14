@@ -53,18 +53,4 @@
         </field>
     </record>
 
-    <record id="view_order_form_partner_domain_inherit" model="ir.ui.view">
-        <field name="name">sale.agent.order.inherit.form</field>
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form" />
-        <field name="arch" type="xml">
-            <field name="partner_id" position="after">
-                <field name="partner_id_domain" invisible="1" />
-            </field>
-            <field name="partner_id" position="attributes">
-                <attribute name="domain">partner_id_domain</attribute>
-            </field>
-        </field>
-    </record>
-
 </odoo>

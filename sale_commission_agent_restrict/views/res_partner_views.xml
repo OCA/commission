@@ -12,4 +12,25 @@
         </field>
     </record>
 
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form.agent.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field
+            name="groups_id"
+            eval="[(4, ref('sale_commission_agent_restrict.group_agent_own_commissions'))]"
+        />
+        <field name="arch" type="xml">
+            <!-- Hide these notebook pages from agents -->
+            <page name='sales_purchases' position="attributes">
+                <attribute name="invisible">1</attribute>
+            </page>
+            <page name='internal_notes' position="attributes">
+                <attribute name="invisible">1</attribute>
+            </page>
+        </field>
+    </record>
+
+
+
 </odoo>
