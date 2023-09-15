@@ -6,126 +6,128 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-09-15 03:52+0000\n"
+"Last-Translator: Davide Corio <enlightx@gmail.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__agent_id
 msgid "Agent"
-msgstr ""
+msgstr "Agente"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order_line_agent
 msgid "Agent detail of commission line in order lines"
-msgstr ""
+msgstr "Dettagli provvigioni agente sulle righe degli ordini"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order__partner_agent_ids
 msgid "Agents"
-msgstr ""
+msgstr "Agenti"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line__agent_ids
 msgid "Agents & commissions"
-msgstr ""
+msgstr "Agenti & provvigioni"
 
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_sale_order_line__agent_ids
 msgid "Agents/Commissions related to the invoice line."
-msgstr ""
+msgstr "Agenti/provvigioni correlate alla riga della fattura."
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line__commission_free
 msgid "Comm. free"
-msgstr ""
+msgstr "Senza provvigione"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line__commission_status
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__commission_id
 msgid "Commission"
-msgstr ""
+msgstr "Provvigione"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__amount
 msgid "Commission Amount"
-msgstr ""
+msgstr "Importo provvigione"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order__commission_total
 msgid "Commissions"
-msgstr ""
+msgstr "Provvigioni"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome completo"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_order_agent_form_inherit
 msgid "Edit agents"
-msgstr ""
+msgstr "Modifica agenti"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultima modifica di"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__object_id
 msgid "Parent"
-msgstr ""
+msgstr "Genitore"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line__product_id
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_order_agent_form_inherit
 msgid "Regenerate agents"
-msgstr ""
+msgstr "Rigenera agenti"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "RIga ordine di vendita"
