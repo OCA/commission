@@ -6,7 +6,7 @@
     "summary": "Bridge module between "
     "sale_commission_product_criteria_domain and "
     "sale_commission_geo_assign",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "author": "PyTech SRL, Ooops404, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/commission",
     "category": "Sales Management",
