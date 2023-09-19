@@ -5,23 +5,26 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="sale_commission.view_partner_form_agent" />
         <field name="arch" type="xml">
-            <xpath
-                expr="//page[@name='agent_information']/group[1]/group[2]"
-                position="after"
-            >
-                <newline />
-                <group>
-                    <field name="agent_country_ids" widget="many2many_tags" />
-                    <field name="agent_state_ids" widget="many2many_tags" />
-                </group>
-                <newline />
-                <group>
-                    <field name="agent_zip_from" />
-                </group>
-                <group>
-                    <field name="agent_zip_to" />
+            <xpath expr="//page[@name='agent_information']" position="inside">
+                <group name="agent_geo_assign" string="Geo-assign to customers">
+                    <group>
+                        <field name="agent_country_ids" widget="many2many_tags" />
+                        <field name="agent_state_ids" widget="many2many_tags" />
+                    </group>
+                    <newline />
+                    <group>
+                        <field name="agent_zip_from" />
+                    </group>
+                    <group>
+                        <field name="agent_zip_to" />
+                    </group>
                 </group>
             </xpath>
+            <page name="sales_purchases" position="inside">
+                <group>
+                    <field name="no_geo_assign_update" />
+                </group>
+            </page>
         </field>
     </record>
 

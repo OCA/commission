@@ -2,7 +2,7 @@
 <odoo>
   <!-- wizard action on res.partner -->
   <record id="action_geo_assign_partner" model="ir.actions.act_window">
-    <field name="name">Geo assign agents</field>
+    <field name="name">Add Agents with Geo Assign</field>
     <field name="res_model">wizard.geo.assign.partner</field>
     <field name="view_mode">form</field>
     <field name="target">new</field>
@@ -11,12 +11,18 @@
 
   <!-- wizard view -->
   <record id="wizard_geo_assign_partner_view" model="ir.ui.view">
-      <field name="name">Geo assign agents</field>
+      <field name="name">Add Agents with Geo Assign</field>
       <field name="model">wizard.geo.assign.partner</field>
       <field name="arch" type="xml">
-          <form string="Geo assign agents">
+          <form>
               <group>
-                  <field name="check_existing_agents" />
+                  <field name="replace_existing_agents" />
+                  <separator />
+                  <field
+                        name="check_existing_agents"
+                        string="Do not add new agents if agents are already assigned"
+                        attrs="{'invisible':[('replace_existing_agents', '=', True)]}"
+                    />
               </group>
               <footer>
                   <button
