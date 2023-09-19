@@ -27,7 +27,7 @@ addon | version | maintainers | summary
 [sale_commission_check_deposit](sale_commission_check_deposit/) | 14.0.1.0.0 |  | Sales commission check deposit
 [sale_commission_delegated_partner](sale_commission_delegated_partner/) | 14.0.1.0.1 |  | Allow to delegate the invoices of agent to a delegate partner
 [sale_commission_formula](sale_commission_formula/) | 14.0.1.0.0 |  | Sale commissions computed by formulas
-[sale_commission_geo_assign](sale_commission_geo_assign/) | 14.0.1.0.2 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Assign agents to partners according to their location
+[sale_commission_geo_assign](sale_commission_geo_assign/) | 14.0.1.1.0 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Assign agents to partners according to their location
 [sale_commission_geo_assign_product_domain](sale_commission_geo_assign_product_domain/) | 14.0.1.0.1 |  | Bridge module between sale_commission_product_criteria_domain and sale_commission_geo_assign
 [sale_commission_pricelist](sale_commission_pricelist/) | 14.0.1.0.0 |  | Sales commissions by pricelist
 [sale_commission_product_criteria](sale_commission_product_criteria/) | 14.0.1.1.2 | [![ilyasProgrammer](https://github.com/ilyasProgrammer.png?size=30px)](https://github.com/ilyasProgrammer) | Advanced commissions rules
