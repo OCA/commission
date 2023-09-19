@@ -101,6 +101,11 @@ msgid "State"
 msgstr ""
 
 #. module: sale_commission_geo_assign_product_domain
+#: model:ir.model,name:sale_commission_geo_assign_product_domain.model_wizard_geo_assign_partner
+msgid "Wizard Geo Assign Partner"
+msgstr ""
+
+#. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,help:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__zip_from
 #: model:ir.model.fields,help:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__zip_to
 msgid "ZIP range where this agent operates"
@@ -114,9 +119,4 @@ msgstr ""
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__zip_to
 msgid "Zip To"
-msgstr ""
-
-#. module: sale_commission_geo_assign_product_domain
-#: model:ir.model,name:sale_commission_geo_assign_product_domain.model_wizard_geo_assign_partner
-msgid "wizard.geo.assign.partner"
 msgstr ""
