@@ -22,19 +22,21 @@ msgid "Agent Access"
 msgstr "Accesso Agente"
 
 #. module: sale_commission_agent_restrict
-#: model:res.groups,name:sale_commission_agent_restrict.group_agent_own_commissions
-msgid "Agent Own Commission Lines"
-msgstr "Solo proprie righe provvigioni"
-
-#. module: sale_commission_agent_restrict
-#: model:res.groups,name:sale_commission_agent_restrict.group_agent_own_customers
-msgid "Agent Own Customers and Orders"
-msgstr "Solo propri clienti ed ordini"
-
-#. module: sale_commission_agent_restrict
 #: model_terms:ir.ui.view,arch_db:sale_commission_agent_restrict.view_sale_order_line_tree_mod
 msgid "Agents"
 msgstr "Agenti"
+
+#. module: sale_commission_agent_restrict
+#: code:addons/sale_commission_agent_restrict/models/res_partner.py:0
+#, python-format
+msgid "Agents are not allowed to change Contacts' payment terms"
+msgstr ""
+
+#. module: sale_commission_agent_restrict
+#: code:addons/sale_commission_agent_restrict/models/res_partner.py:0
+#, python-format
+msgid "Agents are not allowed to change the agents assigned to a Contact"
+msgstr ""
 
 #. module: sale_commission_agent_restrict
 #: model:ir.model,name:sale_commission_agent_restrict.model_res_partner
@@ -42,7 +44,6 @@ msgid "Contact"
 msgstr "Contatto"
 
 #. module: sale_commission_agent_restrict
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_mail_thread__display_name
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_users__display_name
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__display_name
@@ -50,12 +51,16 @@ msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: sale_commission_agent_restrict
-#: model:ir.model,name:sale_commission_agent_restrict.model_mail_thread
-msgid "Email Thread"
-msgstr "Discussione e-mail"
+#: model:res.groups,name:sale_commission_agent_restrict.group_agent_own_commissions
+msgid "Display only own commission data"
+msgstr ""
 
 #. module: sale_commission_agent_restrict
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_mail_thread__id
+#: model:res.groups,name:sale_commission_agent_restrict.group_agent_own_customers
+msgid "Display only own commission data and customers"
+msgstr ""
+
+#. module: sale_commission_agent_restrict
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_partner__id
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_users__id
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__id
@@ -63,7 +68,6 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_commission_agent_restrict
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_mail_thread____last_update
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_partner____last_update
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_users____last_update
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order____last_update
@@ -74,11 +78,6 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__current_agent_total
 msgid "My Commission"
 msgstr "Le mie provvigioni"
-
-#. module: sale_commission_agent_restrict
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__partner_id_domain
-msgid "Partner Id Domain"
-msgstr "Dominio Id Partner"
 
 #. module: sale_commission_agent_restrict
 #: model:ir.model,name:sale_commission_agent_restrict.model_sale_order
@@ -100,3 +99,15 @@ msgstr ""
 #: model:ir.model,name:sale_commission_agent_restrict.model_res_users
 msgid "Users"
 msgstr "Utenti"
+
+#~ msgid "Agent Own Commission Lines"
+#~ msgstr "Solo proprie righe provvigioni"
+
+#~ msgid "Agent Own Customers and Orders"
+#~ msgstr "Solo propri clienti ed ordini"
+
+#~ msgid "Email Thread"
+#~ msgstr "Discussione e-mail"
+
+#~ msgid "Partner Id Domain"
+#~ msgstr "Dominio Id Partner"
