@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_commission_geo_assign
+#: model:ir.actions.act_window,name:sale_commission_geo_assign.action_geo_assign_partner
+msgid "Add Agents with Geo Assign"
+msgstr ""
+
+#. module: sale_commission_geo_assign
 #: model_terms:ir.ui.view,arch_db:sale_commission_geo_assign.wizard_geo_assign_partner_view
 msgid "Apply"
 msgstr ""
@@ -25,7 +30,7 @@ msgstr ""
 
 #. module: sale_commission_geo_assign
 #: model:ir.model.fields,field_description:sale_commission_geo_assign.field_wizard_geo_assign_partner__check_existing_agents
-msgid "Check existing agents"
+msgid "Check Existing Agents"
 msgstr ""
 
 #. module: sale_commission_geo_assign
@@ -62,9 +67,19 @@ msgid "Display Name"
 msgstr ""
 
 #. module: sale_commission_geo_assign
-#: model:ir.actions.act_window,name:sale_commission_geo_assign.action_geo_assign_partner
 #: model_terms:ir.ui.view,arch_db:sale_commission_geo_assign.wizard_geo_assign_partner_view
-msgid "Geo assign agents"
+msgid "Do not add new agents if agents are already assigned"
+msgstr ""
+
+#. module: sale_commission_geo_assign
+#: model:ir.model.fields,field_description:sale_commission_geo_assign.field_res_partner__no_geo_assign_update
+#: model:ir.model.fields,field_description:sale_commission_geo_assign.field_res_users__no_geo_assign_update
+msgid "Do not allow update with Geo Assign"
+msgstr ""
+
+#. module: sale_commission_geo_assign
+#: model_terms:ir.ui.view,arch_db:sale_commission_geo_assign.view_partner_form_agent_geo_assign
+msgid "Geo-assign to customers"
 msgstr ""
 
 #. module: sale_commission_geo_assign
@@ -111,8 +126,19 @@ msgstr ""
 #: code:addons/sale_commission_geo_assign/wizard/wizard_geo_assign_partner.py:0
 #, python-format
 msgid ""
-"Partner %s already has agents. You should remove them or deselect 'Check "
-"existing agents'"
+"Partner %s already has agents. You should remove them or deselect 'Do not "
+"add new agents if agents are already assigned'"
+msgstr ""
+
+#. module: sale_commission_geo_assign
+#: code:addons/sale_commission_geo_assign/wizard/wizard_geo_assign_partner.py:0
+#, python-format
+msgid "Partner %s is not allowed to be updated through geo assignation"
+msgstr ""
+
+#. module: sale_commission_geo_assign
+#: model:ir.model.fields,field_description:sale_commission_geo_assign.field_wizard_geo_assign_partner__replace_existing_agents
+msgid "Replace Existing Agents"
 msgstr ""
 
 #. module: sale_commission_geo_assign
@@ -125,6 +151,11 @@ msgstr ""
 #: model:ir.model.fields,help:sale_commission_geo_assign.field_res_partner__agent_state_ids
 #: model:ir.model.fields,help:sale_commission_geo_assign.field_res_users__agent_state_ids
 msgid "States where this agent operates"
+msgstr ""
+
+#. module: sale_commission_geo_assign
+#: model:ir.model,name:sale_commission_geo_assign.model_wizard_geo_assign_partner
+msgid "Wizard Geo Assign Partner"
 msgstr ""
 
 #. module: sale_commission_geo_assign
@@ -145,9 +176,4 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_commission_geo_assign.field_res_partner__agent_zip_to
 #: model:ir.model.fields,field_description:sale_commission_geo_assign.field_res_users__agent_zip_to
 msgid "Zip To"
-msgstr ""
-
-#. module: sale_commission_geo_assign
-#: model:ir.model,name:sale_commission_geo_assign.model_wizard_geo_assign_partner
-msgid "wizard.geo.assign.partner"
 msgstr ""
