@@ -17,6 +17,11 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_commission_geo_assign
+#: model:ir.actions.act_window,name:sale_commission_geo_assign.action_geo_assign_partner
+msgid "Add Agents with Geo Assign"
+msgstr ""
+
+#. module: sale_commission_geo_assign
 #: model_terms:ir.ui.view,arch_db:sale_commission_geo_assign.wizard_geo_assign_partner_view
 msgid "Apply"
 msgstr "Applica"
@@ -28,8 +33,8 @@ msgstr "Annulla"
 
 #. module: sale_commission_geo_assign
 #: model:ir.model.fields,field_description:sale_commission_geo_assign.field_wizard_geo_assign_partner__check_existing_agents
-msgid "Check existing agents"
-msgstr "Verifica agenti esistenti"
+msgid "Check Existing Agents"
+msgstr ""
 
 #. module: sale_commission_geo_assign
 #: model:ir.model,name:sale_commission_geo_assign.model_res_partner
@@ -65,10 +70,20 @@ msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: sale_commission_geo_assign
-#: model:ir.actions.act_window,name:sale_commission_geo_assign.action_geo_assign_partner
 #: model_terms:ir.ui.view,arch_db:sale_commission_geo_assign.wizard_geo_assign_partner_view
-msgid "Geo assign agents"
-msgstr "Geo-assegnazione agenti"
+msgid "Do not add new agents if agents are already assigned"
+msgstr ""
+
+#. module: sale_commission_geo_assign
+#: model:ir.model.fields,field_description:sale_commission_geo_assign.field_res_partner__no_geo_assign_update
+#: model:ir.model.fields,field_description:sale_commission_geo_assign.field_res_users__no_geo_assign_update
+msgid "Do not allow update with Geo Assign"
+msgstr ""
+
+#. module: sale_commission_geo_assign
+#: model_terms:ir.ui.view,arch_db:sale_commission_geo_assign.view_partner_form_agent_geo_assign
+msgid "Geo-assign to customers"
+msgstr ""
 
 #. module: sale_commission_geo_assign
 #: model:ir.model.fields,field_description:sale_commission_geo_assign.field_res_partner__id
@@ -116,11 +131,20 @@ msgstr "Nessun agente trovato nel sistema"
 #: code:addons/sale_commission_geo_assign/wizard/wizard_geo_assign_partner.py:0
 #, python-format
 msgid ""
-"Partner %s already has agents. You should remove them or deselect 'Check "
-"existing agents'"
+"Partner %s already has agents. You should remove them or deselect 'Do not "
+"add new agents if agents are already assigned'"
 msgstr ""
-"Il contatto %s ha già agenti assegnati. Puoi rimuoverli o deselezionare il "
-"flag 'Verifica agenti esistenti'"
+
+#. module: sale_commission_geo_assign
+#: code:addons/sale_commission_geo_assign/wizard/wizard_geo_assign_partner.py:0
+#, python-format
+msgid "Partner %s is not allowed to be updated through geo assignation"
+msgstr ""
+
+#. module: sale_commission_geo_assign
+#: model:ir.model.fields,field_description:sale_commission_geo_assign.field_wizard_geo_assign_partner__replace_existing_agents
+msgid "Replace Existing Agents"
+msgstr ""
 
 #. module: sale_commission_geo_assign
 #: model:ir.model.fields,field_description:sale_commission_geo_assign.field_res_partner__agent_state_ids
@@ -133,6 +157,11 @@ msgstr "Stati/Province"
 #: model:ir.model.fields,help:sale_commission_geo_assign.field_res_users__agent_state_ids
 msgid "States where this agent operates"
 msgstr "Stati/Province dove opera quest'agente"
+
+#. module: sale_commission_geo_assign
+#: model:ir.model,name:sale_commission_geo_assign.model_wizard_geo_assign_partner
+msgid "Wizard Geo Assign Partner"
+msgstr ""
 
 #. module: sale_commission_geo_assign
 #: model:ir.model.fields,help:sale_commission_geo_assign.field_res_partner__agent_zip_from
@@ -154,7 +183,19 @@ msgstr "CAP da"
 msgid "Zip To"
 msgstr "CAP a"
 
-#. module: sale_commission_geo_assign
-#: model:ir.model,name:sale_commission_geo_assign.model_wizard_geo_assign_partner
-msgid "wizard.geo.assign.partner"
-msgstr "wizard.geo.assign.partner"
+#~ msgid "Check existing agents"
+#~ msgstr "Verifica agenti esistenti"
+
+#~ msgid "Geo assign agents"
+#~ msgstr "Geo-assegnazione agenti"
+
+#, python-format
+#~ msgid ""
+#~ "Partner %s already has agents. You should remove them or deselect 'Check "
+#~ "existing agents'"
+#~ msgstr ""
+#~ "Il contatto %s ha già agenti assegnati. Puoi rimuoverli o deselezionare "
+#~ "il flag 'Verifica agenti esistenti'"
+
+#~ msgid "wizard.geo.assign.partner"
+#~ msgstr "wizard.geo.assign.partner"
