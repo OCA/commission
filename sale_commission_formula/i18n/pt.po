@@ -49,6 +49,11 @@ msgstr "Campos comuns da Linha de Fatura"
 
 #. module: sale_commission_formula
 #: selection:sale.commission,commission_type:0
+msgid "Based on Product with Fallback Percentage"
+msgstr ""
+
+#. module: sale_commission_formula
+#: selection:sale.commission,commission_type:0
 msgid "By sections"
 msgstr "Por secções"
 
