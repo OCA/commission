@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-12-30 12:46+0000\n"
+"PO-Revision-Date: 2023-09-20 08:15+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_commission_agent_restrict
 #: model:ir.module.category,name:sale_commission_agent_restrict.module_category_sale_commission
@@ -31,12 +31,16 @@ msgstr "Agenti"
 #, python-format
 msgid "Agents are not allowed to change Contacts' payment terms"
 msgstr ""
+"Gli agenti non hanno il permesso di modificare i termini di pagamento dei "
+"partner"
 
 #. module: sale_commission_agent_restrict
 #: code:addons/sale_commission_agent_restrict/models/res_partner.py:0
 #, python-format
 msgid "Agents are not allowed to change the agents assigned to a Contact"
 msgstr ""
+"Gli agenti non hanno il permesso di modificare gli agenti assegnati ad un "
+"partner"
 
 #. module: sale_commission_agent_restrict
 #: model:ir.model,name:sale_commission_agent_restrict.model_res_partner
@@ -53,12 +57,12 @@ msgstr "Nome visualizzato"
 #. module: sale_commission_agent_restrict
 #: model:res.groups,name:sale_commission_agent_restrict.group_agent_own_commissions
 msgid "Display only own commission data"
-msgstr ""
+msgstr "Mostra solo i propri dati provvigionali"
 
 #. module: sale_commission_agent_restrict
 #: model:res.groups,name:sale_commission_agent_restrict.group_agent_own_customers
 msgid "Display only own commission data and customers"
-msgstr ""
+msgstr "Mostra solo i propri dati provvigionali e i propri clienti"
 
 #. module: sale_commission_agent_restrict
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_partner__id
