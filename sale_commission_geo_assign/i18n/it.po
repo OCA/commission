@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-20 08:15+0000\n"
+"PO-Revision-Date: 2023-09-20 16:07+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -72,18 +72,18 @@ msgstr "Nome visualizzato"
 #. module: sale_commission_geo_assign
 #: model_terms:ir.ui.view,arch_db:sale_commission_geo_assign.wizard_geo_assign_partner_view
 msgid "Do not add new agents if agents are already assigned"
-msgstr ""
+msgstr "Non aggiungere nuovi agenti se sono già assegnati agenti nel partner"
 
 #. module: sale_commission_geo_assign
 #: model:ir.model.fields,field_description:sale_commission_geo_assign.field_res_partner__no_geo_assign_update
 #: model:ir.model.fields,field_description:sale_commission_geo_assign.field_res_users__no_geo_assign_update
 msgid "Do not allow update with Geo Assign"
-msgstr ""
+msgstr "Non permettere aggiornamento con geo-assegnazione"
 
 #. module: sale_commission_geo_assign
 #: model_terms:ir.ui.view,arch_db:sale_commission_geo_assign.view_partner_form_agent_geo_assign
 msgid "Geo-assign to customers"
-msgstr ""
+msgstr "Geo-assegnazione clienti"
 
 #. module: sale_commission_geo_assign
 #: model:ir.model.fields,field_description:sale_commission_geo_assign.field_res_partner__id
@@ -134,17 +134,19 @@ msgid ""
 "Partner %s already has agents. You should remove them or deselect 'Do not "
 "add new agents if agents are already assigned'"
 msgstr ""
+"Il partner %s ha già agenti assegnati. Dovresti rimuoverli o deselezionare "
+"\"Non aggiungere nuovi agenti se sono già assegnati agenti nel partner\""
 
 #. module: sale_commission_geo_assign
 #: code:addons/sale_commission_geo_assign/wizard/wizard_geo_assign_partner.py:0
 #, python-format
 msgid "Partner %s is not allowed to be updated through geo assignation"
-msgstr ""
+msgstr "Il partner %s non può essere aggiornato tramite geo-assegnazione"
 
 #. module: sale_commission_geo_assign
 #: model:ir.model.fields,field_description:sale_commission_geo_assign.field_wizard_geo_assign_partner__replace_existing_agents
 msgid "Replace Existing Agents"
-msgstr ""
+msgstr "Sostituisci agenti esistenti"
 
 #. module: sale_commission_geo_assign
 #: model:ir.model.fields,field_description:sale_commission_geo_assign.field_res_partner__agent_state_ids
@@ -161,7 +163,7 @@ msgstr "Stati/Province dove opera quest'agente"
 #. module: sale_commission_geo_assign
 #: model:ir.model,name:sale_commission_geo_assign.model_wizard_geo_assign_partner
 msgid "Wizard Geo Assign Partner"
-msgstr ""
+msgstr "Procedura guidata geo-assegnazione agenti"
 
 #. module: sale_commission_geo_assign
 #: model:ir.model.fields,help:sale_commission_geo_assign.field_res_partner__agent_zip_from
