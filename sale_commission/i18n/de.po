@@ -456,6 +456,20 @@ msgid "Fixed percentage"
 msgstr "Fester Prozentsatz"
 
 #. module: sale_commission
+#: model:ir.model.fields,help:sale_commission.field_sale_commission_make_settle__date_to
+msgid ""
+"For invoice-based commissions, settlements will be created for "
+"invoices             with date up to the one set in this field."
+msgstr ""
+
+#. module: sale_commission
+#: model:ir.model.fields,help:sale_commission.field_sale_commission_make_settle__date_payment_to
+msgid ""
+"For payment-based commissions, settlements will be created for "
+"payments             with date up to the one set in this field."
+msgstr ""
+
+#. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_product_product__commission_free
 #: model:ir.model.fields,field_description:sale_commission.field_product_template__commission_free
 msgid "Free of commission"
@@ -550,6 +564,11 @@ msgstr "Rechnungsstatus"
 #: model_terms:ir.ui.view,arch_db:sale_commission.report_settlement
 msgid "Invoice date"
 msgstr "Rechnungsdatum"
+
+#. module: sale_commission
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_settle__date_to
+msgid "Invoice date up to"
+msgstr ""
 
 #. module: sale_commission
 #: model:ir.model.fields.selection,name:sale_commission.selection__sale_commission_settlement__state__except_invoice
@@ -715,6 +734,11 @@ msgstr "Vertreterpartner"
 #: model:ir.model.fields.selection,name:sale_commission.selection__sale_commission__invoice_state__paid
 msgid "Payment Based"
 msgstr "Zahlungsabhängig"
+
+#. module: sale_commission
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_settle__date_payment_to
+msgid "Payment date up to"
+msgstr ""
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_section__percent
@@ -1000,11 +1024,6 @@ msgid "Unit of Measure"
 msgstr ""
 
 #. module: sale_commission
-#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_settle__date_to
-msgid "Up to"
-msgstr "Bis zu"
-
-#. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_make_invoice
 #, fuzzy
 msgid "Wizard for making an invoice from a settlement"
@@ -1051,6 +1070,9 @@ msgstr "Abbre_chen"
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settled_wizard
 msgid "or"
 msgstr "oder"
+
+#~ msgid "Up to"
+#~ msgstr "Bis zu"
 
 #, fuzzy
 #~ msgid "Journal Entries"
