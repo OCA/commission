@@ -195,7 +195,9 @@ class TestSaleCommissionDomain(SavepointCase):
 
         #
         tst_partner = so.partner_id.copy({})
-        tst_partner.commission_item_agent_ids = [(6, 0, self.demo_cig_italy.ids)]
+        tst_partner.commission_item_agent_ids.group_ids = [
+            (6, 0, self.demo_cig_italy.ids)
+        ]
         so.partner_id = tst_partner
         so.order_line.agent_ids.agent_id = self.demo_agent_rules_restricted_italy
         res = so.order_line.agent_ids._get_single_commission_amount(
@@ -284,6 +286,16 @@ class TestSaleCommissionDomain(SavepointCase):
         invoice.line_ids.agent_ids._compute_amount()
         self.assertEqual(so.order_line.agent_ids.amount, 0)
         self.assertEqual(invoice.line_ids.agent_ids.amount, 0)
+
+        # check constraint: group_ids must be set
+        with self.assertRaises(odoo.exceptions.ValidationError):
+            self.env["commission.item.agent"].create(
+                {
+                    "group_ids": False,
+                    "agent_id": 1,
+                    "partner_id": 1,
+                }
+            )
 
     def _create_sale_order(self, product, partner):
         return self.sale_order_model.create(

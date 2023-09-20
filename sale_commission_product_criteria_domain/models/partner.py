@@ -40,14 +40,17 @@ class ResPartner(models.Model):
         for rec in self:
             exiting_agents = rec.commission_item_agent_ids.mapped("agent_id")
             to_create = [
-                {"partner_id": rec._origin.id, "agent_id": x._origin.id}
+                {
+                    "agent_id": x.id,
+                    "group_ids": [(6, 0, x.allowed_commission_group_ids.ids)],
+                }
                 for x in rec.agent_ids.filtered(
                     lambda x: x.commission_id.commission_type == "product_restricted"
                 )
-                if x not in exiting_agents.ids
+                if x not in exiting_agents
             ]
             to_delete = rec.commission_item_agent_ids.filtered(
-                lambda x: x.agent_id.id in (exiting_agents - rec.agent_ids).ids
+                lambda x: x.agent_id in (exiting_agents - rec.agent_ids)
             )
             if to_delete:
                 rec.update(
