@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-20 08:15+0000\n"
+"PO-Revision-Date: 2023-09-20 16:07+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -91,35 +91,35 @@ msgstr "Partner"
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model,name:sale_commission_geo_assign_product_domain.model_res_partner_commission_group
 msgid "Partner Commission Groups by Geolocation"
-msgstr ""
+msgstr "Gruppi provvigioni clienti per geo-assegnazione"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,help:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__allowed_commission_group_ids
 msgid "Related only to agents"
-msgstr ""
+msgstr "Riferito solo agli agenti"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__state_ids
 msgid "State"
-msgstr ""
+msgstr "Provincia"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model,name:sale_commission_geo_assign_product_domain.model_wizard_geo_assign_partner
 msgid "Wizard Geo Assign Partner"
-msgstr ""
+msgstr "Procedura guidata geo-assegnazione agenti"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,help:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__zip_from
 #: model:ir.model.fields,help:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__zip_to
 msgid "ZIP range where this agent operates"
-msgstr ""
+msgstr "Intervallo di CAP in cui opera quest'agente"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__zip_from
 msgid "Zip From"
-msgstr ""
+msgstr "CAP da"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__zip_to
 msgid "Zip To"
-msgstr ""
+msgstr "CAP a"
