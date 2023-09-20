@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-15 03:52+0000\n"
-"Last-Translator: Davide Corio <enlightx@gmail.com>\n"
+"PO-Revision-Date: 2023-09-20 19:54+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgstr "Valuta"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__display_name
 msgid "Display Name"
-msgstr "Nome completo"
+msgstr "Nome visualizzato"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_order_agent_form_inherit
