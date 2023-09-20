@@ -13,6 +13,7 @@
                 </group>
                 <group colspan="2">
                     <field name="date_to" />
+                    <field name="date_payment_to" />
                 </group>
                 <group string="Agents" colspan="4">
                     <p colspan="4">(keep empty for making the settlement of all agents)

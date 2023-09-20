@@ -38,6 +38,8 @@ For settling the commissions to agents:
    want to create commissions. It should be at least one day after the last
    period date. For example, if you settlements are monthly, you have to put
    at least the first day of the following month.
+#. You can select to settle commissions up to a specified payment date.
+   This only applies to commission types with "invoice status=payment based".
 #. You can settle only certain agents if you select them on the "Agents"
    section. Leave it empty for settling all.
 #. Click on "Make settlements" button.

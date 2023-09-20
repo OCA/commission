@@ -221,3 +221,16 @@ class AccountInvoiceLineAgent(models.Model):
             self.commission_id.invoice_state == "paid"
             and self.invoice_id.payment_state not in ["in_payment", "paid"]
         ) or self.invoice_id.state != "posted"
+
+    def _skip_future_payments(self, date_payment_to):
+        if self.commission_id.invoice_state == "paid":
+            payments_dates = []
+            for (
+                _partial,
+                _amount,
+                counterpart_line,
+            ) in self.invoice_id._get_reconciled_invoices_partials():
+                payments_dates.append(counterpart_line.date)
+            if any(date_payment_to < date for date in payments_dates):
+                return True
+        return False
