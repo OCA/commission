@@ -6,85 +6,87 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-09-20 08:15+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__allowed_commission_group_ids
 msgid "Allowed Commission Group"
-msgstr ""
+msgstr "Gruppi provvigione ammessi"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner__commission_geo_group_ids
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_users__commission_geo_group_ids
 msgid "Commission Geo Group"
-msgstr ""
+msgstr "Gruppo geografico provvigioni"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__commission_group_ids
 msgid "Commission Group"
-msgstr ""
+msgstr "Gruppo provvigioni"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model,name:sale_commission_geo_assign_product_domain.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__country_ids
 msgid "Country"
-msgstr ""
+msgstr "Nazione"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__display_name
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_wizard_geo_assign_partner__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner__id
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__id
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_wizard_geo_assign_partner__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner____last_update
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner_commission_group____last_update
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_wizard_geo_assign_partner____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__partner_id
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model,name:sale_commission_geo_assign_product_domain.model_res_partner_commission_group
