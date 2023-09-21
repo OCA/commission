@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-22 08:15+0000\n"
-"PO-Revision-Date: 2023-08-07 09:09+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-09-21 10:38+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -219,7 +219,7 @@ msgstr "Selezionare il campo se il partner è un creditore o un agente."
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line__commission_free
 #, python-format
 msgid "Comm. free"
-msgstr "Senza provv."
+msgstr "Senza provvigione"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent__commission_id
@@ -453,6 +453,8 @@ msgid ""
 "For invoice-based commissions, settlements will be created for "
 "invoices             with date up to the one set in this field."
 msgstr ""
+"Per provvigioni basate su fattura, le regolazioni saranno create per "
+"fatture             con data fino a quella impostata in questo campo."
 
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_sale_commission_make_settle__date_payment_to
@@ -460,6 +462,8 @@ msgid ""
 "For payment-based commissions, settlements will be created for "
 "payments             with date up to the one set in this field."
 msgstr ""
+"Per provvigioni basate su pagamento, le regolazioni saranno create per "
+"pagamenti             con data fino a quella impostata in questo campo."
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_product_product__commission_free
@@ -559,7 +563,7 @@ msgstr "Data fattura"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_settle__date_to
 msgid "Invoice date up to"
-msgstr ""
+msgstr "Data fattura fino a"
 
 #. module: sale_commission
 #: model:ir.model.fields.selection,name:sale_commission.selection__sale_commission_settlement__state__except_invoice
@@ -728,7 +732,7 @@ msgstr "Basato su pagamento"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_settle__date_payment_to
 msgid "Payment date up to"
-msgstr ""
+msgstr "Data pagamento fino a"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_section__percent
