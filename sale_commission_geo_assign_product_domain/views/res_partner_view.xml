@@ -8,6 +8,7 @@
         <field name="name">view_partner_form_agent_geo_assign</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="sale_commission.view_partner_form_agent" />
+        <field name="groups_id" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
         <field name="arch" type="xml">
             <xpath
                 expr="//group[field[@name='agent_country_ids']]"
