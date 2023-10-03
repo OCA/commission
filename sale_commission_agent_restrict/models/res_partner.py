@@ -34,13 +34,21 @@ class ResPartner(models.Model):
     @api.model
     def check_agent_changing_payment_terms(self, vals):
         if self.env.user.partner_id.agent:
-            if (
-                "property_payment_term_id" in vals
-                or "property_supplier_payment_term_id" in vals
-            ):
-                raise UserError(
-                    _("Agents are not allowed to change Contacts' payment terms")
-                )
+            forbidden_fields = [
+                "property_payment_term_id",
+                "property_supplier_payment_term_id",
+            ]
+            # if self is an empty recordset, we're in a create
+            is_create = not self
+            for field in forbidden_fields:
+                # allow empty value in a create
+                # workaround for form filling this field automatically
+                if is_create and not vals.get(field):
+                    continue
+                if field in vals:
+                    raise UserError(
+                        _("Agents are not allowed to change Contacts' payment terms")
+                    )
 
     @api.model
     def check_agent_changing_agents(self, vals):
