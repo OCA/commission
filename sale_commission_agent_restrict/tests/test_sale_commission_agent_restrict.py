@@ -19,6 +19,9 @@ class TestsaleCommissionAgentRestrict(SavepointCase):
         cls.group_own_commissions = cls.env.ref(
             "sale_commission_agent_restrict.group_agent_own_commissions"
         )
+        cls.payment_term_immediate = cls.env.ref(
+            "account.account_payment_term_immediate"
+        )
         cls.user_agent = cls.users_model.create(
             {
                 "name": "John",
@@ -135,16 +138,20 @@ class TestsaleCommissionAgentRestrict(SavepointCase):
             self.partner_model.with_user(self.user_agent).create(
                 {
                     "name": "Test partner 2",
-                    "property_payment_term_id": False,
+                    "property_payment_term_id": self.payment_term_immediate.id,
                 }
             )
         with self.assertRaises(UserError):
             self.partner_model.with_user(self.user_agent).create(
                 {
                     "name": "Test partner 3",
-                    "property_supplier_payment_term_id": False,
+                    "property_supplier_payment_term_id": self.payment_term_immediate.id,
                 }
             )
+        # but can otherwise create a partner
+        f = Form(self.partner_model)
+        f.name = "Test partner 4"
+        f.save()
 
     def test_agent_cannot_see_followers(self):
         self.partner_agent.agent_ids = [(6, 0, self.user_agent.partner_id.ids)]
