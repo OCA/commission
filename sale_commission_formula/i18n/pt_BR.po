@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-12-14 15:14+0000\n"
 "PO-Revision-Date: 2022-02-01 19:33+0000\n"
 "Last-Translator: Rodrigo Macedo <rmsolucoeseminformatica@protonmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
-"23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,6 +59,12 @@ msgid "Discount (%)"
 msgstr "Desconto (%)"
 
 #. module: sale_commission_formula
+#: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission__display_name
+#: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission_line_mixin__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 msgid "Field"
 msgstr "Campo"
@@ -70,6 +76,12 @@ msgid "Formula"
 msgstr "Fórmula"
 
 #. module: sale_commission_formula
+#: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission__id
+#: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission_line_mixin__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_commission_formula
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 msgid "Instructions"
 msgstr "Instruções"
@@ -78,6 +90,12 @@ msgstr "Instruções"
 #: model_terms:ir.ui.view,arch_db:sale_commission_formula.sale_commission_form
 msgid "Label"
 msgstr "Rótulo"
+
+#. module: sale_commission_formula
+#: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission____last_update
+#: model:ir.model.fields,field_description:sale_commission_formula.field_sale_commission_line_mixin____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: sale_commission_formula
 #: model:ir.model,name:sale_commission_formula.model_sale_commission_line_mixin
