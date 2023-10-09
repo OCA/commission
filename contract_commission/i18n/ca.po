@@ -20,6 +20,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: contract_commission
-#: model:ir.model,name:contract_commission.model_account_analytic_account
-msgid "Analytic Account"
-msgstr "Compte analític"
+#: model:ir.model,name:contract_commission.model_contract_line
+msgid "Contract Line"
+msgstr ""
+
+#~ msgid "Analytic Account"
+#~ msgstr "Compte analític"
