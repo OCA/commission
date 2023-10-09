@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_commission_delegated_partner
+# 	* sale_commission_delegated_partner
 #
 msgid ""
 msgstr ""
@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_commission_delegated_partner
-#: code:addons/sale_commission_delegated_partner/models/sale_commission_settlement.py:27
+#: code:addons/sale_commission_delegated_partner/models/sale_commission_settlement.py:0
 #, python-format
 msgid "Agent: %s"
 msgstr "Agente: %s"
@@ -32,6 +32,11 @@ msgstr "Contacto"
 #: model:ir.model.fields,field_description:sale_commission_delegated_partner.field_res_users__delegated_agent_id
 msgid "Delegated Agent"
 msgstr "Agente Delegado"
+
+#. module: sale_commission_delegated_partner
+#: model:ir.model.fields,field_description:sale_commission_delegated_partner.field_sale_commission_settlement__invoice_partner_id
+msgid "Invoice Partner"
+msgstr ""
 
 #. module: sale_commission_delegated_partner
 #: model:ir.model,name:sale_commission_delegated_partner.model_sale_commission_settlement
