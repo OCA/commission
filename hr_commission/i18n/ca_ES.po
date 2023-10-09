@@ -48,7 +48,7 @@ msgid "Salesman (employee)"
 msgstr ""
 
 #. module: hr_commission
-#: model:ir.model,name:hr_commission.model_sale_commission_settlement
+#: model:ir.model,name:hr_commission.model_commission_settlement
 msgid "Settlement"
 msgstr ""
 
