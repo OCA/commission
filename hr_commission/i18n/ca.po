@@ -50,11 +50,12 @@ msgid "Salesman (employee)"
 msgstr "Venedor (empleat)"
 
 #. module: hr_commission
-#: model:ir.model,name:hr_commission.model_sale_commission_settlement
+#: model:ir.model,name:hr_commission.model_commission_settlement
 msgid "Settlement"
 msgstr "Liquidació"
 
 #. module: hr_commission
+#. odoo-python
 #: code:addons/hr_commission/models/res_partner.py:0
 #, python-format
 msgid ""
@@ -73,6 +74,7 @@ msgid "Type"
 msgstr "Tipus"
 
 #. module: hr_commission
+#. odoo-python
 #: code:addons/hr_commission/models/hr_employee.py:0
 #, python-format
 msgid "You can't remove the user, as it's linked to a commission agent."
