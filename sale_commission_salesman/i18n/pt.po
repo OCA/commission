@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_commission_salesman
+# 	* sale_commission_salesman
 #
 msgid ""
 msgstr ""
@@ -30,7 +30,10 @@ msgstr "Converter vendedor em agente"
 #. module: sale_commission_salesman
 #: model:ir.model.fields,help:sale_commission_salesman.field_res_partner__salesman_as_agent
 #: model:ir.model.fields,help:sale_commission_salesman.field_res_users__salesman_as_agent
-msgid "If the user linked to this partner is put as salesman and no other commission rule is triggered, this agent will be added as the commission agent"
+msgid ""
+"If the user linked to this partner is put as salesman and no other "
+"commission rule is triggered, this agent will be added as the commission "
+"agent"
 msgstr ""
 "Se o utilizador ligado a este parceiro é introduzido como vendedor e não for "
 "despoletada outra regra de comissionamento, este agente será adicionado como "
