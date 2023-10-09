@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_commission
+# 	* hr_commission
 #
 msgid ""
 msgstr ""
@@ -55,7 +55,9 @@ msgstr "Comissionamento"
 #. module: hr_commission
 #: code:addons/hr_commission/models/res_partner.py:31
 #, python-format
-msgid "There must one (and only one) employee linked to this partner. To do this, go to 'Human Resources' and check 'Employees'"
+msgid ""
+"There must one (and only one) employee linked to this partner. To do this, "
+"go to 'Human Resources' and check 'Employees'"
 msgstr ""
 "Deve haver um (e apenas um ) funcionário ligado a este parceiro. Para o "
 "fazer, vá a 'Recursos Humanos' e verifique 'Funcionários'"
