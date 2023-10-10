@@ -39,7 +39,8 @@ msgstr "1 provvigione agente"
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid ""
 "<span>\n"
-"                        No automatic settlements can be made. Install any extra\n"
+"                        No automatic settlements can be made. Install any "
+"extra\n"
 "                        commission module for having this feature enabled.\n"
 "                    </span>"
 msgstr ""
@@ -506,8 +507,7 @@ msgstr "Messaggi"
 
 #. module: commission
 #: model:ir.model,name:commission.model_commission_mixin
-msgid ""
-"Mixin model for applying to any object that wants to handle commissions"
+msgid "Mixin model for applying to any object that wants to handle commissions"
 msgstr ""
 
 #. module: commission
@@ -770,8 +770,8 @@ msgstr "Il limite inferiore non può essere maggiore del superiore."
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__settlement_type
 msgid ""
-"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase"
-" order'..."
+"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase "
+"order'..."
 msgstr ""
 "La sorgente della liquidazione, es. 'Fattura di vendita', 'Ordine di "
 "vendita', 'Ordine fornitore'..."
