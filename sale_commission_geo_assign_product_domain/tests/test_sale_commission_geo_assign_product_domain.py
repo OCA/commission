@@ -92,6 +92,49 @@ class TestSaleCommissionGeoAssignProductDomain(common.TransactionCase):
         self.assertEqual(c_es.agent_ids, agent)
         self.assertEqual(c_es.commission_item_agent_ids.group_ids, self.cig_spain)
 
+    def test_geo_assign_twice(self):
+        c_it = self.partner_model.create(
+            {
+                "name": "Customer Italy",
+                "country_id": self.country_italy.id,
+                "state_id": self.state_genova.id,
+            }
+        )
+
+        agent = self.partner_model.create(
+            {
+                "name": "Agent Spain and Italy",
+                "agent": True,
+                "commission_id": self.commission_rules_restrict.id,
+                "allowed_commission_group_ids": [
+                    (6, 0, [self.cig_italy.id, self.cig_spain.id])
+                ],
+            }
+        )
+
+        self.commission_group_model.create(
+            [
+                {
+                    "partner_id": agent.id,
+                    "country_ids": [(6, 0, [self.country_italy.id])],
+                    "commission_group_ids": [(6, 0, [self.cig_italy.id])],
+                },
+                {
+                    "partner_id": agent.id,
+                    "state_ids": [(6, 0, [self.state_genova.id])],
+                    "commission_group_ids": [(6, 0, [self.cig_spain.id])],
+                },
+            ]
+        )
+
+        wizard = self.wizard_model.with_context(active_ids=c_it.ids).create({})
+
+        # Should not raise an error
+        wizard.geo_assign_partner()
+        self.assertEqual(c_it.agent_ids, agent)
+        self.assertIn(self.cig_italy.id, c_it.commission_item_agent_ids.group_ids.ids)
+        self.assertIn(self.cig_spain.id, c_it.commission_item_agent_ids.group_ids.ids)
+
     def test_change_commission_type(self):
         agent = self.partner_model.create(
             {
@@ -107,7 +150,7 @@ class TestSaleCommissionGeoAssignProductDomain(common.TransactionCase):
                 "agent_zip_to": 31333,
             }
         )
-        self.assertNotEquals(agent.commission_type, "product_restricted")
+        self.assertNotEqual(agent.commission_type, "product_restricted")
 
         agent.write(
             {
