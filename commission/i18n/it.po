@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-12 06:38+0000\n"
+"PO-Revision-Date: 2023-10-12 09:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -435,7 +435,7 @@ msgstr "Se selezionato, nuovi messaggi richiedono la tua attenzione."
 #: model:ir.model.fields,help:commission.field_commission_settlement__message_has_error
 #: model:ir.model.fields,help:commission.field_commission_settlement__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "Se selezionato, alcuni messaggi contengono errori di invio."
+msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__message_is_follower
