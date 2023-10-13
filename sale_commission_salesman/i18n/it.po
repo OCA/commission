@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-12-21 13:44+0000\n"
+"PO-Revision-Date: 2023-10-13 12:36+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_commission_salesman
 #: model:ir.model,name:sale_commission_salesman.model_res_partner
@@ -32,14 +32,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_commission_salesman.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sale_commission_salesman.field_sale_order_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: sale_commission_salesman
 #: model:ir.model.fields,field_description:sale_commission_salesman.field_account_move_line__id
 #: model:ir.model.fields,field_description:sale_commission_salesman.field_res_partner__id
 #: model:ir.model.fields,field_description:sale_commission_salesman.field_sale_order_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_commission_salesman
 #: model:ir.model.fields,help:sale_commission_salesman.field_res_partner__salesman_as_agent
