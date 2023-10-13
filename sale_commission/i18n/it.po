@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-22 08:15+0000\n"
-"PO-Revision-Date: 2023-09-21 10:38+0000\n"
+"PO-Revision-Date: 2023-10-13 12:36+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -141,7 +141,7 @@ msgstr "Agenti e provvigioni"
 #: model:ir.model.fields,help:sale_commission.field_sale_commission_mixin__agent_ids
 #: model:ir.model.fields,help:sale_commission.field_sale_order_line__agent_ids
 msgid "Agents/Commissions related to the invoice line."
-msgstr "Agenti/Provvigioni collegati alla riga fattura."
+msgstr "Agenti/provvigioni collegati alla riga fattura."
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__amount
@@ -181,7 +181,7 @@ msgstr "Bi-settimanale"
 #. module: sale_commission
 #: model:ir.model.fields.selection,name:sale_commission.selection__sale_commission__commission_type__section
 msgid "By sections"
-msgstr "Per sezioni"
+msgstr "A scaglioni"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settled_wizard
@@ -264,7 +264,7 @@ msgstr "Righe provvigione"
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_section
 msgid "Commission section"
-msgstr "Sezione provvigioni"
+msgstr "Scaglione provvigione"
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_commission
@@ -1027,7 +1027,7 @@ msgstr "Procedura per regolare le provvigioni nelle fatture"
 #: model:ir.model.constraint,message:sale_commission.constraint_sale_commission_line_mixin_unique_agent
 #: model:ir.model.constraint,message:sale_commission.constraint_sale_order_line_agent_unique_agent
 msgid "You can only add one time each agent."
-msgstr "È possibile aggiungere un solo agente alla volta."
+msgstr "È possibile aggiungere ogni agente solo una volta."
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/account_move.py:0
