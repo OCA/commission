@@ -6,7 +6,7 @@
     "website": "https://github.com/OCA/commission",
     "category": "Sales Management",
     "version": "16.0.1.0.0",
-    "depends": ["sale_commission", "account_commission"],
+    "depends": ["sale_commission"],
     "data": [
         "reports/report_settlement_templates.xml",
         "views/commission_views.xml",
