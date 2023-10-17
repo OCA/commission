@@ -2,9 +2,9 @@
 {
     'name': "Sales commissions based on Sale Order",
 
-    'author': "Opsway",
+    "author": "Opsway, " "Odoo Community Association (OCA)",
     'license': "AGPL-3",
-    'website': "https://www.opsway.com/",
+    'website': "https://github.com/OCA/commission",
     'category': 'Sales Management',
     'version': '16.0.1.0.0',
 
