@@ -11,6 +11,7 @@
                     <group>
                         <field
                             name="formula"
+                            widget="ace"
                             attrs="{'invisible':[('commission_type','!=','formula')]}"
                         />
                     </group>
