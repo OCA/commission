@@ -41,7 +41,8 @@ class SaleOrderLineAgent(models.Model):
         "order_id.state",
     )
     def _compute_settled(self):
-        # TODO: This is a copy of the account.invoice.line.agent method. Should be finished.(look for tests)
+        # TODO: This is a copy of the account.invoice.line.agent method.
+        # Should be finished.(look for tests)
         for line in self:
             line.settled = any(
                 x.settlement_id.state != "cancel" for x in line.settlement_line_ids
