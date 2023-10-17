@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <template id="report_settlement" inherit_id="account_commission.report_settlement">
+    <template id="report_settlement" inherit_id="commission.report_settlement">
         <xpath expr="//th[text()='Invoice date']" position="replace">
             <th>Date</th>
         </xpath>

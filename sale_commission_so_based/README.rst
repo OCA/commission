@@ -42,8 +42,8 @@ Usage
 To use this module, you need to:
 
 #. Go to *Sales > Orders > Quotations* and create a new one and confirm them, be sure agent added.
-#. Go to *Commissions > Settle Commissions.
-#. Select settlement type * Sales Orders.
+#. Go to *Commissions > Settle Commissions*.
+#. Select settlement type *Sales Orders*.
 #. New settlement line created based on Sales Order.
 
 Bug Tracker
