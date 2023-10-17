@@ -6,7 +6,9 @@
         <field name="inherit_id" ref="account_commission.commission_form" />
         <field name="arch" type="xml">
             <field name="invoice_state" position="attributes">
-                <attribute name="attrs">{'invisible': [('settlement_type', '=', 'sale_order')]}</attribute>
+                <attribute
+                    name="attrs"
+                >{'invisible': [('settlement_type', '=', 'sale_order')]}</attribute>
             </field>
         </field>
     </record>

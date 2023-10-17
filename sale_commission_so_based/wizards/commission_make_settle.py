@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-from odoo import models, fields
+from odoo import fields, models
 
 
 class CommissionMakeSettle(models.TransientModel):
@@ -14,7 +13,9 @@ class CommissionMakeSettle(models.TransientModel):
         """Filter sales order agent lines for this type of settlement."""
         if self.settlement_type == "sale_order":
             domain = self._get_account_settle_domain(agent, date_to_agent)
-            return self.env["sale.order.line.agent"].search(domain, order="invoice_date")
+            return self.env["sale.order.line.agent"].search(
+                domain, order="invoice_date"
+            )
         return super()._get_agent_lines(agent, date_to_agent)
 
     def _get_account_settle_domain(self, agent, date_to_agent):
@@ -29,7 +30,7 @@ class CommissionMakeSettle(models.TransientModel):
         """Prepare extra settlement values when the source is a sales order agent line."""
         res = super()._prepare_settlement_line_vals(settlement, line)
         if self.settlement_type == "sale_order":
-            res.pop('invoice_agent_line_id', None)
+            res.pop("invoice_agent_line_id", None)
             res.update(
                 {
                     "sale_agent_line_id": line.id,

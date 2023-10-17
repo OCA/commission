@@ -1,5 +1,5 @@
 # Copyright 2014-2022 Tecnativa - Pedro M. Baeza
-from odoo import fields, models, api
+from odoo import api, fields, models
 
 
 class CommissionSettlement(models.Model):
@@ -7,7 +7,7 @@ class CommissionSettlement(models.Model):
 
     settlement_type = fields.Selection(
         selection_add=[("sale_order", "Sales Orders")],
-        ondelete={"sale_order": "set default"}
+        ondelete={"sale_order": "set default"},
     )
 
 

@@ -1,5 +1,5 @@
 # Copyright 2014-2022 Tecnativa - Pedro M. Baeza
-from odoo import api, fields, models, exceptions, _
+from odoo import _, api, exceptions, fields, models
 
 
 class SaleOrderLineAgent(models.Model):
@@ -65,7 +65,7 @@ class SaleOrderLineAgent(models.Model):
         :return: bool
         """
         self.ensure_one()
-        return self.order_id.state not in ('sale', 'done')
+        return self.order_id.state not in ("sale", "done")
 
     @api.depends("order_id", "order_id.date_order")
     def _compute_invoice_date(self):

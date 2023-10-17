@@ -7,7 +7,10 @@
         <xpath expr="//th[text()='Invoice line']" position="replace">
             <th>Commission line</th>
         </xpath>
-        <xpath expr="//table/tbody/tr/td//span[@t-field='l.invoice_line_id']" position="replace">
+        <xpath
+            expr="//table/tbody/tr/td//span[@t-field='l.invoice_line_id']"
+            position="replace"
+        >
             <span t-if="l.invoice_line_id" t-field="l.invoice_line_id" />
             <span t-if="l.sale_line_id" t-field="l.sale_line_id" />
         </xpath>
