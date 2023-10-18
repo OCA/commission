@@ -1,4 +1,5 @@
 # © 2023 ooops404
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import api, fields, models
@@ -65,9 +66,10 @@ class ResPartner(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        if (
-            self.commission_id.commission_type != "product_restricted"
-            and self.allowed_commission_group_ids
-        ):
-            self.allowed_commission_group_ids = False
+        for partner in self:
+            if (
+                partner.commission_id.commission_type != "product_restricted"
+                and partner.allowed_commission_group_ids
+            ):
+                partner.allowed_commission_group_ids = False
         return res
