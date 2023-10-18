@@ -1,9 +1,10 @@
 # © 2023 ooops404
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 {
     "name": "Sale Commission Product Criteria Discount",
     "summary": "Advanced commissions rules with discount",
-    "version": "14.0.1.0.2",
+    "version": "16.0.1.0.0",
     "author": "Ilyas," "Ooops404," "Odoo Community Association (OCA)",
     "contributors": ["Ilyas"],
     "maintainers": ["ilyasProgrammer"],

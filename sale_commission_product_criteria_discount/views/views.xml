@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
 <odoo>
 
     <record model="ir.ui.view" id="sale_commission_form_sale_commission_type_disc">
-        <field name="name">sale.commission.form.view.inherit.disc</field>
-        <field name="model">sale.commission</field>
+        <field name="name">commission.form.view.inherit.disc</field>
+        <field name="model">commission</field>
         <field
             name="inherit_id"
             ref="sale_commission_product_criteria.sale_commission_form_lines_mod"
@@ -89,8 +93,8 @@
     </record>
 
     <record id="sale_commission_form_lines_mod_inherit" model="ir.ui.view">
-        <field name="name">sale.commission.tree.inherit</field>
-        <field name="model">sale.commission</field>
+        <field name="name">commission.tree.inherit</field>
+        <field name="model">commission</field>
         <field
             name="inherit_id"
             ref="sale_commission_product_criteria.sale_commission_form_lines_mod"

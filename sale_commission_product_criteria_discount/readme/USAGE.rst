@@ -1,6 +1,6 @@
 Make sure "Discounts" are enabled in General Settings > Sale
 
-Go to Sales > Commission Management > Commission Type
+Go to Commissions > Configuration > Commission Type
 
 In a record of type "Product criteria", create or select a line > set field "Based on" = "Discount"
 

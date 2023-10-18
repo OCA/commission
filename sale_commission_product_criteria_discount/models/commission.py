@@ -1,4 +1,5 @@
 # © 2023 ooops404
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
@@ -12,8 +13,8 @@ class CommissionItem(models.Model):
         selection_add=[("discount", "Discount")],
         ondelete={"discount": "set default"},
     )
-    discount_from = fields.Float("Discount From")
-    discount_to = fields.Float("Discount To")
+    discount_from = fields.Float()
+    discount_to = fields.Float()
 
     @api.onchange("based_on")
     def onchange_based_on(self):
