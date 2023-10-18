@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -29,6 +29,7 @@ msgid "Agent detail of commission line in order lines"
 msgstr ""
 
 #. module: sale_commission_product_criteria
+#. odoo-python
 #: code:addons/sale_commission_product_criteria/models/commission.py:0
 #: model:ir.model.fields.selection,name:sale_commission_product_criteria.selection__commission_item__applied_on__3_global
 #, python-format
@@ -52,7 +53,7 @@ msgstr ""
 
 #. module: sale_commission_product_criteria
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_account_invoice_line_agent__applied_commission_id
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission_line_mixin__applied_commission_id
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_line_mixin__applied_commission_id
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent__applied_commission_id
 msgid "Applied Commission"
 msgstr ""
@@ -87,14 +88,17 @@ msgid "Based On"
 msgstr ""
 
 #. module: sale_commission_product_criteria
+#. odoo-python
 #: code:addons/sale_commission_product_criteria/models/commission.py:0
 #, python-format
 msgid "Category: %s"
 msgstr ""
 
 #. module: sale_commission_product_criteria
+#: model:ir.model,name:sale_commission_product_criteria.model_commission
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_account_invoice_line_agent__commission_id
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission_line_mixin__commission_id
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__commission_id
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_line_mixin__commission_id
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent__commission_id
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.commission_item_search
 msgid "Commission"
@@ -120,12 +124,10 @@ msgstr ""
 #: model:ir.actions.act_window,name:sale_commission_product_criteria.commission_item_action
 #: model:ir.actions.act_window,name:sale_commission_product_criteria.commission_item_action_tree
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.commission_item_search
-#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.commission_item_tree_view
 msgid "Commission Items"
 msgstr ""
 
 #. module: sale_commission_product_criteria
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__commission_id
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__commission_type
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent__commission_type
 msgid "Commission Type"
@@ -134,11 +136,6 @@ msgstr ""
 #. module: sale_commission_product_criteria
 #: model:ir.ui.menu,name:sale_commission_product_criteria.menu_sale_commissions_items
 msgid "Commission Type Items"
-msgstr ""
-
-#. module: sale_commission_product_criteria
-#: model:ir.model,name:sale_commission_product_criteria.model_sale_commission
-msgid "Commission in sales"
 msgstr ""
 
 #. module: sale_commission_product_criteria
@@ -172,14 +169,13 @@ msgid "Discount (%)"
 msgstr ""
 
 #. module: sale_commission_product_criteria
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_account_invoice_line_agent__display_name
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__display_name
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission__display_name
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission_line_mixin__display_name
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission_settlement_line__display_name
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line__display_name
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.view_order_agent_form_inherit_sale_commission_product_criteria_mod
+msgid "Edit agents"
 msgstr ""
 
 #. module: sale_commission_product_criteria
@@ -210,34 +206,17 @@ msgid "Group By"
 msgstr ""
 
 #. module: sale_commission_product_criteria
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_account_invoice_line_agent__id
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__id
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission__id
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission_line_mixin__id
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission_settlement_line__id
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line__id
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent__id
 msgid "ID"
 msgstr ""
 
 #. module: sale_commission_product_criteria
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission__item_ids
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission__item_ids
 msgid "Item"
 msgstr ""
 
 #. module: sale_commission_product_criteria
-#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.sale_commission_form_lines_mod
-msgid "Items"
-msgstr ""
-
-#. module: sale_commission_product_criteria
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_account_invoice_line_agent____last_update
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item____last_update
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission____last_update
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission_line_mixin____last_update
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission_settlement_line____last_update
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line____last_update
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -252,12 +231,12 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: sale_commission_product_criteria
-#: model:ir.model,name:sale_commission_product_criteria.model_sale_commission_settlement_line
+#: model:ir.model,name:sale_commission_product_criteria.model_commission_settlement_line
 msgid "Line of a commission settlement"
 msgstr ""
 
 #. module: sale_commission_product_criteria
-#: model:ir.model,name:sale_commission_product_criteria.model_sale_commission_line_mixin
+#: model:ir.model,name:sale_commission_product_criteria.model_commission_line_mixin
 msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
@@ -281,18 +260,21 @@ msgid "Percentage Amount"
 msgstr ""
 
 #. module: sale_commission_product_criteria
+#. odoo-python
 #: code:addons/sale_commission_product_criteria/models/commission.py:0
 #, python-format
 msgid "Please specify the category for which this rule should be applied"
 msgstr ""
 
 #. module: sale_commission_product_criteria
+#. odoo-python
 #: code:addons/sale_commission_product_criteria/models/commission.py:0
 #, python-format
 msgid "Please specify the product for which this rule should be applied"
 msgstr ""
 
 #. module: sale_commission_product_criteria
+#. odoo-python
 #: code:addons/sale_commission_product_criteria/models/commission.py:0
 #, python-format
 msgid ""
@@ -323,11 +305,12 @@ msgid "Product Variant"
 msgstr ""
 
 #. module: sale_commission_product_criteria
-#: model:ir.model.fields.selection,name:sale_commission_product_criteria.selection__sale_commission__commission_type__product
+#: model:ir.model.fields.selection,name:sale_commission_product_criteria.selection__commission__commission_type__product
 msgid "Product criteria"
 msgstr ""
 
 #. module: sale_commission_product_criteria
+#. odoo-python
 #: code:addons/sale_commission_product_criteria/models/commission.py:0
 #, python-format
 msgid "Product: %s"
@@ -341,6 +324,14 @@ msgstr ""
 #. module: sale_commission_product_criteria
 #: model:ir.model,name:sale_commission_product_criteria.model_sale_order_line
 msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,help:sale_commission_product_criteria.field_commission__commission_type
+msgid ""
+"Select the percentage type of the commission:\n"
+"* 'Fixed percentage': all commissions are computed with a fixed percentage. You can fill the percentage in the field \"Fixed percentage\".\n"
+"* 'By sections': percentage varies depending amount intervals. You can fill intervals and percentages in the section \"Rate definition\"."
 msgstr ""
 
 #. module: sale_commission_product_criteria
@@ -370,6 +361,7 @@ msgid ""
 msgstr ""
 
 #. module: sale_commission_product_criteria
+#. odoo-python
 #: code:addons/sale_commission_product_criteria/models/commission.py:0
 #, python-format
 msgid ""
@@ -378,6 +370,7 @@ msgid ""
 msgstr ""
 
 #. module: sale_commission_product_criteria
+#. odoo-python
 #: code:addons/sale_commission_product_criteria/models/commission.py:0
 #, python-format
 msgid ""
@@ -386,7 +379,7 @@ msgid ""
 msgstr ""
 
 #. module: sale_commission_product_criteria
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission__commission_type
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission__commission_type
 msgid "Type"
 msgstr ""
 
@@ -396,6 +389,7 @@ msgid "Value"
 msgstr ""
 
 #. module: sale_commission_product_criteria
+#. odoo-python
 #: code:addons/sale_commission_product_criteria/models/commission.py:0
 #, python-format
 msgid "Variant: %s"

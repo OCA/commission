@@ -1,14 +1,15 @@
 # © 2023 ooops404
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 from odoo import fields, models
 
 
 class SaleCommissionLineMixin(models.AbstractModel):
-    _inherit = "sale.commission.line.mixin"
+    _inherit = "commission.line.mixin"
 
-    applied_commission_id = fields.Many2one("sale.commission", readonly=True)
+    applied_commission_id = fields.Many2one("commission", readonly=True)
     commission_id = fields.Many2one(
-        comodel_name="sale.commission",
+        comodel_name="commission",
         ondelete="restrict",
         required=False,
         compute="_compute_commission_id",

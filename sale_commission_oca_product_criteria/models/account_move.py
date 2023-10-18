@@ -1,4 +1,5 @@
 # © 2023 ooops404
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 from odoo import api, fields, models
 
@@ -14,6 +15,7 @@ class AccountInvoiceLineAgent(models.Model):
         "commission_id",
     )
     def _compute_amount(self):
+        res = None
         for line in self:
             if line.commission_id and line.commission_id.commission_type == "product":
                 inv_line = line.object_id
@@ -24,4 +26,5 @@ class AccountInvoiceLineAgent(models.Model):
                     inv_line.quantity,
                 )
             else:
-                super(AccountInvoiceLineAgent, line)._compute_amount()
+                res = super(AccountInvoiceLineAgent, line)._compute_amount()
+        return res
