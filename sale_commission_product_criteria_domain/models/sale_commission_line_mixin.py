@@ -1,10 +1,11 @@
 # © 2023 ooops404
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 from odoo import models
 
 
 class SaleCommissionLineMixin(models.AbstractModel):
-    _inherit = "sale.commission.line.mixin"
+    _inherit = "commission.line.mixin"
 
     def _get_commission_items(self, commission, product):
         # Method replaced

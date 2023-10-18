@@ -1,24 +1,27 @@
 # Copyright 2023 - ooops404
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import odoo.exceptions
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestSaleCommissionDomain(SavepointCase):
+class TestSaleCommissionDomain(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestSaleCommissionDomain, cls).setUpClass()
-        cls.commission_model = cls.env["sale.commission"]
+        cls.commission_model = cls.env["commission"]
         cls.company = cls.env.ref("base.main_company")
         cls.res_partner_model = cls.env["res.partner"]
         cls.azure = cls.env.ref("base.res_partner_12")  # Azure
-        cls.deco = cls.env.ref("base.res_partner_2")  # Deco
+        cls.deco = cls.env.ref(
+            "sale_commission_product_criteria_domain.res_partner_2"
+        )  # Deco
         cls.partner2 = cls.env.ref("base.res_partner_10")  # The Jackson Group
         cls.sale_order_model = cls.env["sale.order"]
         cls.advance_inv_model = cls.env["sale.advance.payment.inv"]
-        cls.settle_model = cls.env["sale.commission.settlement"]
-        cls.make_settle_model = cls.env["sale.commission.make.settle"]
-        cls.make_inv_model = cls.env["sale.commission.make.invoice"]
+        cls.settle_model = cls.env["commission.settlement"]
+        cls.make_settle_model = cls.env["commission.make.settle"]
+        cls.make_inv_model = cls.env["commission.make.invoice"]
         cls.product_1 = cls.env.ref("product.product_product_1")
         cls.product_4 = cls.env.ref("product.product_product_4")
         cls.product_5 = cls.env.ref("product.product_product_5")
@@ -32,7 +35,7 @@ class TestSaleCommissionDomain(SavepointCase):
         cls.product_6.write({"commission_free": True, "invoice_policy": "order"})
         cls.product_template_4 = cls.env.ref(
             "product.product_product_4_product_template"
-        )  # Customizable Desk (CONFIG)
+        )  # Customizable Desk
         cls.product_template_4.write({"invoice_policy": "order"})
         cls.pt_11 = cls.env.ref("product.product_product_11_product_template")
         cls.journal = cls.env["account.journal"].search(
@@ -74,13 +77,13 @@ class TestSaleCommissionDomain(SavepointCase):
         cls.demo_commission_rules = cls.env.ref(
             "sale_commission_product_criteria.demo_commission_rules"
         )
-        cls.demo_commission = cls.env.ref("sale_commission.demo_commission")
+        cls.demo_commission = cls.env.ref("commission.demo_commission")
         cls.conf_chair_config_id = cls.env.ref(
             "product.product_product_11_product_template"
         )
         cls.cia_azure = cls.env.ref("sale_commission_product_criteria_domain.cia_azure")
         cls.res_partner_tiny_sale_agent = cls.env.ref(
-            "sale_commission.res_partner_tiny_sale_agent"
+            "commission.res_partner_tiny_sale_agent"
         )
 
     def test_commission_domain_demo_cases(self):
@@ -319,14 +322,13 @@ class TestSaleCommissionDomain(SavepointCase):
 
     def _invoice_sale_order(self, sale_order, date=None):
         old_invoices = sale_order.invoice_ids
-        wizard = self.advance_inv_model.create({"advance_payment_method": "delivered"})
-        wizard.with_context(
-            {
+        wizard = self.advance_inv_model.with_context(
+            **{
                 "active_model": "sale.order",
                 "active_ids": [sale_order.id],
                 "active_id": sale_order.id,
             }
-        ).create_invoices()
+        ).create({"advance_payment_method": "delivered"})
+        wizard.create_invoices()
         invoice = sale_order.invoice_ids - old_invoices
-        invoice.flush()
         return invoice

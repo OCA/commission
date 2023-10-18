@@ -1,7 +1,11 @@
 <?xml version="1.0" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
 <odoo>
     <!--  Commissions  -->
-    <record id="demo_commission_rules_restrict" model="sale.commission">
+    <record id="demo_commission_rules_restrict" model="commission">
         <field name="name">Based on Rules Restricted</field>
         <field name="commission_type">product_restricted</field>
     </record>
@@ -110,7 +114,8 @@
     </record>
 
     <!-- Deco -->
-    <record id="base.res_partner_2" model="res.partner">
+    <record id="res_partner_2" model="res.partner">
+        <field name="name">Another Deco partner</field>
         <field name="apply_commission_restrictions" eval="True" />
         <field
             name="agent_ids"
@@ -118,7 +123,7 @@
         />
     </record>
     <record id="cia_deco" model="commission.item.agent">
-        <field name="partner_id" ref="base.res_partner_2" />
+        <field name="partner_id" ref="res_partner_2" />
         <field
             name="group_ids"
             eval="[(6, 0, [ref('sale_commission_product_criteria_domain.demo_cig_italy')])]"

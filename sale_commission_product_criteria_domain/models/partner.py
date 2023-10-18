@@ -1,6 +1,5 @@
 # © 2023 ooops404
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
-import json
 
 from odoo import api, fields, models
 
@@ -15,12 +14,15 @@ class ResPartner(models.Model):
     allowed_commission_group_ids = fields.Many2many(
         "commission.items.group", help="Related only to agents"
     )
-    allowed_commission_group_ids_domain = fields.Char(
+    allowed_commission_group_ids_domain = fields.Binary(
         compute="_compute_allowed_commission_group_ids_domain",
         readonly=True,
         store=False,
     )
-    commission_type = fields.Selection(related="commission_id.commission_type")
+    commission_type = fields.Selection(
+        string="Commission Type",
+        related="commission_id.commission_type",
+    )
 
     @api.depends("commission_id")
     def _compute_allowed_commission_group_ids_domain(self):
@@ -29,9 +31,9 @@ class ResPartner(models.Model):
                 allowed_group_ids = rec.commission_id.filtered(
                     lambda x: x.commission_type == "product_restricted"
                 ).item_ids.mapped("group_id")
-                rec.allowed_commission_group_ids_domain = json.dumps(
-                    [("id", "in", allowed_group_ids.ids)]
-                )
+                rec.allowed_commission_group_ids_domain = [
+                    ("id", "in", allowed_group_ids.ids),
+                ]
             else:
                 rec.allowed_commission_group_ids_domain = False
 
