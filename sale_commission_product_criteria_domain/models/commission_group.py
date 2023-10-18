@@ -1,4 +1,5 @@
 # © 2023 ooops404
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 from odoo import _, api, exceptions, fields, models
 
@@ -17,7 +18,7 @@ class CommissionItemsGroup(models.Model):
 
     name = fields.Char(required=True)
     commission_ids = fields.Many2many(
-        "sale.commission",
+        "commission",
         compute="_compute_commission_ids",
         domain=[("commission_type", "=", "product_restricted")],
         readonly=True,
@@ -33,15 +34,16 @@ class CommissionItemsGroup(models.Model):
         for rec in self:
             rec.commission_ids = [(6, 0, rec.item_ids.mapped("commission_id").ids)]
 
-    def unlink(self):
-        if self.item_ids:
-            raise exceptions.ValidationError(
-                _(
-                    "You can not delete this commission group since "
-                    "there is related to it commission items."
+    @api.ondelete(at_uninstall=False)
+    def _unlink_except_item_ids(self):
+        for group in self:
+            if group.item_ids:
+                raise exceptions.ValidationError(
+                    _(
+                        "You can not delete this commission group since "
+                        "there is related to it commission items."
+                    )
                 )
-            )
-        return super().unlink()
 
     def _compute_agents_count(self):
         res_partner_obj = self.env["res.partner"]

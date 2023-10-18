@@ -1,4 +1,4 @@
-Go to Sales > Commission management > Commission Type Items Groups
+Go to Commissions > Configuration > Commission Type Items Groups
 
 Create one or more new Groups, eg. “Italy” and “Spain”
 

@@ -1,10 +1,11 @@
 # © 2023 ooops404
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 from odoo import _, api, exceptions, fields, models
 
 
 class SaleCommission(models.Model):
-    _inherit = "sale.commission"
+    _inherit = "commission"
 
     commission_type = fields.Selection(
         selection_add=[("product_restricted", "Product criteria (with restrictions)")],
@@ -16,8 +17,8 @@ class CommissionItem(models.Model):
     _inherit = "commission.item"
 
     commission_id = fields.Many2one(
-        "sale.commission",
-        string="Commission Type",
+        "commission",
+        string="Commission",
         domain=[("commission_type", "in", ["product", "product_restricted"])],
         required=True,
     )
