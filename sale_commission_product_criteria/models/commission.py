@@ -1,4 +1,5 @@
 # © 2023 ooops404
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
@@ -6,7 +7,7 @@ from odoo.tools import float_repr
 
 
 class SaleCommission(models.Model):
-    _inherit = "sale.commission"
+    _inherit = "commission"
 
     commission_type = fields.Selection(
         selection_add=[("product", "Product criteria")],
@@ -68,8 +69,8 @@ class CommissionItem(models.Model):
     sequence = fields.Integer(default=10)
     active = fields.Boolean(default=True)
     commission_id = fields.Many2one(
-        "sale.commission",
-        string="Commission Type",
+        "commission",
+        string="Commission",
         domain=[("commission_type", "=", "product")],
         required=True,
     )
@@ -99,7 +100,6 @@ class CommissionItem(models.Model):
     )
     based_on = fields.Selection(
         [("sol", "Any Sale Order Line")],
-        string="Based On",
         required=True,
         default="sol",
     )
@@ -121,7 +121,7 @@ class CommissionItem(models.Model):
         default="fixed",
         required=True,
     )
-    fixed_amount = fields.Float("Fixed Amount", digits="Product Price")
+    fixed_amount = fields.Float(digits="Product Price")
     percent_amount = fields.Float("Percentage Amount")
     company_id = fields.Many2one(
         "res.company",
@@ -135,7 +135,6 @@ class CommissionItem(models.Model):
         readonly=True,
     )
     name = fields.Char(
-        "Name",
         compute="_compute_commission_item_name_value",
         help="Explicit rule name for this commission line.",
     )
@@ -237,15 +236,17 @@ class CommissionItem(models.Model):
             ):
                 item.product_id = None
 
-    @api.model
-    def create(self, values):
-        values = self.validate_values(values)
-        return super(CommissionItem, self).create(values)
+    @api.model_create_multi
+    def create(self, values_list):
+        new_values_list = []
+        for values in values_list:
+            values = self.validate_values(values)
+            new_values_list.append(values)
+        return super(CommissionItem, self).create(new_values_list)
 
     def write(self, values):
         values = self.validate_values(values)
         res = super(CommissionItem, self).write(values)
-        self.invalidate_cache()
         return res
 
     def validate_values(self, values):

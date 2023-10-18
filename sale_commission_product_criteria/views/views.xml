@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
 <odoo>
     <!-- Modified sale_commission views -->
     <record
@@ -15,6 +19,7 @@
             <button name="button_edit_agents" position="replace">
                 <button
                     name="button_edit_agents"
+                    title="Edit agents"
                     icon="fa-users"
                     attrs="{'invisible': [('commission_free', '=', True)]}"
                     type="object"
@@ -24,29 +29,28 @@
     </record>
 
     <record model="ir.ui.view" id="sale_commission_form_lines_mod">
-        <field name="name">sale.commission.form.view.inherit</field>
-        <field name="model">sale.commission</field>
-        <field name="inherit_id" ref="sale_commission.sale_commission_form" />
+        <field name="name">commission.form.view.inherit</field>
+        <field name="model">commission</field>
+        <field name="inherit_id" ref="commission.commission_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='section_ids']/.." position="attributes">
                 <attribute
                     name="attrs"
                 >{'invisible': [('commission_type', '=', 'product')]}</attribute>
             </xpath>
-            <form position="inside">
+            <sheet position="inside">
                 <group
                     string="Rules"
                     name="rules_group"
-                    colspan="4"
                     attrs="{'invisible': [('commission_type', '!=', 'product')]}"
                 >
                     <field
                         name="item_ids"
                         nolabel="1"
                         context="{'hide_commission_id':1}"
-                        colspan="4"
+                        colspan="2"
                     >
-                        <tree string="Items">
+                        <tree>
                             <field name="sequence" invisible="1" />
                             <field name="name" string="Applied On" />
                             <field name="commission_value" />
@@ -54,7 +58,7 @@
                         </tree>
                     </field>
                 </group>
-            </form>
+            </sheet>
         </field>
     </record>
 
@@ -167,7 +171,7 @@
         <field name="name">commission.item.tree</field>
         <field name="model">commission.item</field>
         <field name="arch" type="xml">
-            <tree string="Commission Items">
+            <tree>
                 <field name="commission_id" />
                 <field name="name" />
                 <field name="applied_on" optional="hide" />
@@ -228,7 +232,7 @@
         name="Commission Type Items"
         id="menu_sale_commissions_items"
         action="commission_item_action_tree"
-        parent="sale_commission.menu_sale_commissions_management"
+        parent="commission.menu_commission_management"
         groups="sales_team.group_sale_manager"
         sequence="10"
     />

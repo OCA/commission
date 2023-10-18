@@ -4,4 +4,4 @@ from odoo import models
 
 
 class SettlementLine(models.Model):
-    _inherit = "sale.commission.settlement.line"
+    _inherit = "commission.settlement.line"
