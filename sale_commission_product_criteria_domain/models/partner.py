@@ -1,4 +1,5 @@
 # © 2023 ooops404
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 import json
 
@@ -63,10 +64,10 @@ class ResPartner(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        for rec in self:
+        for partner in self:
             if (
-                rec.commission_id.commission_type != "product_restricted"
-                and rec.allowed_commission_group_ids
+                partner.commission_id.commission_type != "product_restricted"
+                and partner.allowed_commission_group_ids
             ):
-                rec.allowed_commission_group_ids = False
+                partner.allowed_commission_group_ids = False
         return res
