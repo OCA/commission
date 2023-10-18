@@ -1,25 +1,26 @@
 # © 2023 ooops404
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 
 from odoo.exceptions import ValidationError
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestSaleCommission(SavepointCase):
+class TestSaleCommission(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.commission_model = cls.env["sale.commission"]
+        cls.commission_model = cls.env["commission"]
         cls.company = cls.env.ref("base.main_company")
         cls.res_partner_model = cls.env["res.partner"]
         cls.partner = cls.env.ref("base.res_partner_12")
         cls.partner2 = cls.env.ref("base.res_partner_10")
         cls.sale_order_model = cls.env["sale.order"]
         cls.advance_inv_model = cls.env["sale.advance.payment.inv"]
-        cls.settle_model = cls.env["sale.commission.settlement"]
-        cls.make_settle_model = cls.env["sale.commission.make.settle"]
-        cls.make_inv_model = cls.env["sale.commission.make.invoice"]
+        cls.settle_model = cls.env["commission.settlement"]
+        cls.make_settle_model = cls.env["commission.make.settle"]
+        cls.make_inv_model = cls.env["commission.make.invoice"]
         cls.product_1 = cls.env.ref("product.product_product_1")
         cls.product_4 = cls.env.ref("product.product_product_4")
         cls.product_5 = cls.env.ref("product.product_product_5")
@@ -56,7 +57,7 @@ class TestSaleCommission(SavepointCase):
         cls.com_item_5 = cls.env.ref(
             "sale_commission_product_criteria_discount.demo_commission_rules_item_disc_1"
         )
-        cls.no_rules_commission_id = cls.env["sale.commission"].create(
+        cls.no_rules_commission_id = cls.commission_model.create(
             {
                 "name": "No Rules Commission",
                 "commission_type": "product",
@@ -89,11 +90,11 @@ class TestSaleCommission(SavepointCase):
         )
         self.com_item_2.write({"applied_on": "2_product_category"})
         self.com_item_3._compute_commission_item_name_value()
-        self.assertEqual(self.com_item_3.name, "Product: Customizable Desk (CONFIG)")
+        self.assertEqual(self.com_item_3.name, "Product: Customizable Desk")
         self.com_item_3.write({"applied_on": "1_product"})
         self.com_item_4._compute_commission_item_name_value()
         self.assertEqual(
-            self.com_item_4.name, "Variant: Customizable Desk (CONFIG) (Steel, White)"
+            self.com_item_4.name, "Variant: Customizable Desk (Steel, White)"
         )
         self.com_item_4.write({"applied_on": "0_product_variant"})
 
@@ -199,9 +200,9 @@ class TestSaleCommission(SavepointCase):
 
         # Type != product
         self.partner2.agent_ids = self.env.ref(
-            "sale_commission.res_partner_eiffel_sale_agent"
+            "commission.res_partner_eiffel_sale_agent"
         )
-        demo_commission = self.env.ref("sale_commission.demo_commission")
+        demo_commission = self.env.ref("commission.demo_commission")
         self.partner2.agent_ids.commission_id = demo_commission
         so = self._create_sale_order(self.product_4, self.partner2)
         amount = so.order_line.agent_ids._get_single_commission_amount(
@@ -246,14 +247,13 @@ class TestSaleCommission(SavepointCase):
 
     def _invoice_sale_order(self, sale_order, date=None):
         old_invoices = sale_order.invoice_ids
-        wizard = self.advance_inv_model.create({"advance_payment_method": "delivered"})
-        wizard.with_context(
-            {
+        wizard = self.advance_inv_model.with_context(
+            **{
                 "active_model": "sale.order",
                 "active_ids": [sale_order.id],
                 "active_id": sale_order.id,
             }
-        ).create_invoices()
+        ).create({"advance_payment_method": "delivered"})
+        wizard.create_invoices()
         invoice = sale_order.invoice_ids - old_invoices
-        invoice.flush()
         return invoice
