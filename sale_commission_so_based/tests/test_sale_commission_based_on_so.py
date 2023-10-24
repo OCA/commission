@@ -35,7 +35,9 @@ class TestSaleCommissionBasedOnSO(TestSaleCommission):
         self.assertEqual(len(settlement), 1)
         self.assertEqual(settlement.settlement_type, "sale_order")
 
+        settlement.line_ids._compute_commission_id()
         settlement.line_ids._compute_settled_amount()
+        settlement.line_ids._compute_date()
 
         self.assertTrue(sale_order.order_line.agent_ids.settled)
 
