@@ -44,3 +44,21 @@ class TestSaleCommissionBasedOnSO(TestSaleCommission):
         self.assertEqual(fields.Date.today(), settlement.line_ids.date)
         self.assertTrue(settlement.line_ids.commission_id)
         self.assertEqual(settlement.line_ids.settled_amount, 0)
+
+    def test_sale_commission_no_line(self):
+        # Make sure user is in English
+        self.env.user.lang = "en_US"
+        sale_order = self._create_sale_order(
+            self.env.ref("commission.res_partner_pritesh_sale_agent"),
+            self.commission_section_invoice,
+        )
+        sale_order.action_confirm()
+        self._settle_agent_sale_order(
+            self.env.ref("commission.res_partner_pritesh_sale_agent"),
+            1,
+            0,
+        )
+        settlement = self.settle_model.search([("state", "=", "settled")])
+        settlement.line_ids.unlink()
+
+        self.assertFalse(settlement.line_ids)
