@@ -1,6 +1,7 @@
 # Copyright 2016-2022 Tecnativa - Pedro M. Baeza
 from odoo import fields
 from odoo.tests import tagged
+
 from odoo.addons.sale_commission.tests.test_sale_commission import TestSaleCommission
 
 
