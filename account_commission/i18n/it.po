@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-24 14:27+0000\n"
+"PO-Revision-Date: 2023-10-24 15:31+0000\n"
 "Last-Translator: Davide Corio <enlightx@gmail.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -305,9 +305,8 @@ msgstr "Riga fattura"
 #. module: account_commission
 #: model:ir.model.fields.selection,name:account_commission.selection__commission_settlement__state__invoiced
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
-#, fuzzy
 msgid "Invoiced"
-msgstr "Fatturata/e"
+msgstr "Fatturata"
 
 #. module: account_commission
 #: model:ir.actions.act_window,name:account_commission.action_invoicing_commission_settlement
@@ -381,9 +380,8 @@ msgstr "Nessuna liquidazione valida da fatturare."
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
-#, fuzzy
 msgid "Not Settled"
-msgstr "Non liquidata/e"
+msgstr "Non liquidata"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__object_id
