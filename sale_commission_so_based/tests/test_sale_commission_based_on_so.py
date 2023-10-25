@@ -1,5 +1,6 @@
 # Copyright 2016-2022 Tecnativa - Pedro M. Baeza
 from odoo import fields
+from odoo.exceptions import ValidationError
 from odoo.tests import tagged
 
 from odoo.addons.sale_commission.tests.test_sale_commission import TestSaleCommission
@@ -62,3 +63,25 @@ class TestSaleCommissionBasedOnSO(TestSaleCommission):
         settlement.line_ids.unlink()
 
         self.assertFalse(settlement.line_ids)
+
+    def test_sale_commission_so_check_integrity(self):
+        # Make sure user is in English
+        self.env.user.lang = "en_US"
+        sale_order = self._create_sale_order(
+            self.env.ref("commission.res_partner_pritesh_sale_agent"),
+            self.commission_section_invoice,
+        )
+        self.assertIn("1", sale_order.order_line[0].commission_status)
+        self.assertNotIn("agents", sale_order.order_line[0].commission_status)
+
+        sale_order.action_confirm()
+
+        self._settle_agent_sale_order(
+            self.env.ref("commission.res_partner_pritesh_sale_agent"),
+            1,
+            0,
+        )
+
+        settlement = self.settle_model.search([("state", "=", "settled")])
+        with self.assertRaises(ValidationError):
+            settlement.line_ids.sale_agent_line_id.amount = 100
