@@ -27,24 +27,21 @@ class SettlementLine(models.Model):
         # pylint: disable= missing-return
         super()._compute_date()
         for record in self:
-            if not record.sale_agent_line_id:
-                continue
-            record.date = record.sale_agent_line_id.invoice_date
+            if record.sale_agent_line_id:
+                record.date = record.sale_agent_line_id.invoice_date
 
     @api.depends("invoice_agent_line_id", "sale_agent_line_id")
     def _compute_commission_id(self):
         # pylint: disable= missing-return
         super()._compute_date()
         for record in self:
-            if not record.sale_agent_line_id:
-                continue
-            record.commission_id = record.sale_agent_line_id.commission_id
+            if record.sale_agent_line_id:
+                record.commission_id = record.sale_agent_line_id.commission_id
 
     @api.depends("invoice_agent_line_id", "sale_agent_line_id")
     def _compute_settled_amount(self):
         # pylint: disable= missing-return
         super()._compute_date()
         for record in self:
-            if not record.sale_agent_line_id:
-                continue
-            record.settled_amount = record.sale_agent_line_id.amount
+            if record.sale_agent_line_id:
+                record.settled_amount = record.sale_agent_line_id.amount
