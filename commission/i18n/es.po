@@ -415,7 +415,6 @@ msgstr "Si está marcado, nuevos mensajes requieren de su atención."
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__message_has_error
-#: model:ir.model.fields,help:commission.field_commission_settlement__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está seleccionado, algunos mensajes tienen un error de entrega."
 
@@ -602,11 +601,6 @@ msgstr "Definición de tarifas"
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_user_id
 msgid "Responsible User"
 msgstr "Usuario Responsable"
-
-#. module: commission
-#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Error de Entrega SMS"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_commission_mixin_agent_only
@@ -844,6 +838,9 @@ msgstr "Sólo puede añadir una vez cada agente."
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid "or"
 msgstr "o"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error de Entrega SMS"
 
 #~ msgid "<strong>Agent:</strong>"
 #~ msgstr "<strong>Agente:</strong>"
