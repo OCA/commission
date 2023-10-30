@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-12 18:08+0000\n"
+"PO-Revision-Date: 2023-10-30 00:46+0000\n"
 "Last-Translator: Adriano Prado <adrianojprado@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__quantity
 msgid "# of Qty"
-msgstr "# de Qtd"
+msgstr "# Qtd"
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.commission_make_invoice_form
@@ -29,7 +29,7 @@ msgstr "(manter em branco para faturar todas as liquida????es pendentes)"
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "<strong>Settlement invoice:</strong>"
-msgstr ""
+msgstr "<strong>Fatura de Liquida????o:</strong>"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__agent_id
@@ -41,7 +41,7 @@ msgstr "Representante"
 #. module: account_commission
 #: model:ir.model,name:account_commission.model_account_invoice_line_agent
 msgid "Agent detail of commission line in invoice lines"
-msgstr ""
+msgstr "Detalhe da comiss??o do representante nas linhas da fatura"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_bank_statement_line__partner_agent_ids
@@ -58,7 +58,7 @@ msgstr "Representantes & comiss??es"
 #. module: account_commission
 #: model:ir.model.fields,help:account_commission.field_account_move_line__agent_ids
 msgid "Agents/Commissions related to the invoice line."
-msgstr "Agentes/Comiss??es relacionadas com a linha da fatura."
+msgstr "Representantes/Comiss??es relacionadas com a linha da fatura."
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__amount
@@ -78,7 +78,7 @@ msgstr "Saldo"
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.commission_make_invoice_form
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: account_commission
 #. odoo-python
@@ -246,7 +246,7 @@ msgstr "Fatura"
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_commission_settlement_line__invoice_agent_line_id
 msgid "Invoice Agent Line"
-msgstr ""
+msgstr "Linha da fatura do representante"
 
 #. module: account_commission
 #: model:ir.model.fields.selection,name:account_commission.selection__commission__invoice_state__open
@@ -343,7 +343,7 @@ msgstr "??ltima Atualiza????o em"
 #. module: account_commission
 #: model:ir.model,name:account_commission.model_commission_settlement_line
 msgid "Line of a commission settlement"
-msgstr ""
+msgstr "Linha da liquida????o de comiss??o"
 
 #. module: account_commission
 #. odoo-python
@@ -351,24 +351,24 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_commission.view_settlement_form
 #, python-format
 msgid "Make invoice"
-msgstr ""
+msgstr "Faturar"
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.commission_make_invoice_form
 msgid "Make invoices"
-msgstr ""
+msgstr "Faturar"
 
 #. module: account_commission
 #: model:res.groups,name:account_commission.group_invoicing_commission
 msgid "Manage invoices commissions"
-msgstr ""
+msgstr "Gerenciar comiss??es das faturas"
 
 #. module: account_commission
 #. odoo-python
 #: code:addons/account_commission/wizards/wizard_invoice.py:0
 #, python-format
 msgid "No valid settlements to invoice."
-msgstr ""
+msgstr "N??o h?? liquida????es v??lidas para faturar."
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
@@ -416,7 +416,7 @@ msgstr "Produto par Faturar"
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "Quantity"
-msgstr ""
+msgstr "Quantidade"
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_move_form
@@ -453,23 +453,23 @@ msgstr "Liquida????o"
 #: model:ir.model.fields,field_description:account_commission.field_account_move__settlement_count
 #: model:ir.model.fields,field_description:account_commission.field_account_payment__settlement_count
 msgid "Settlement Count"
-msgstr ""
+msgstr "Contagem de liquida????o"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__settlement_line_ids
 msgid "Settlement Line"
-msgstr ""
+msgstr "Linha da liquida????o"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_commission_make_settle__settlement_type
 #: model:ir.model.fields,field_description:account_commission.field_commission_settlement__settlement_type
 msgid "Settlement Type"
-msgstr ""
+msgstr "Tipo de Liquida????o"
 
 #. module: account_commission
 #: model:ir.model.fields,help:account_commission.field_account_move_line__settlement_id
 msgid "Settlement that generates this invoice line"
-msgstr ""
+msgstr "Liquida????o que gera esta linha de fatura"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_bank_statement_line__settlement_ids
@@ -479,27 +479,27 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_commission.view_in_invoice_bill_tree_inherit
 #: model_terms:ir.ui.view,arch_db:account_commission.view_move_form
 msgid "Settlements"
-msgstr ""
+msgstr "Liquida????es"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_commission_settlement_line__invoice_line_id
 msgid "Source invoice line"
-msgstr ""
+msgstr "Linha da fatura de origem"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_commission_settlement__state
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "Status"
-msgstr ""
+msgstr "Situa????o"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__price_subtotal
 msgid "Subtotal"
-msgstr ""
+msgstr "Subtotal"
 
 #. module: account_commission
 #: model:ir.model.fields,help:account_commission.field_commission_settlement__settlement_type
@@ -507,11 +507,13 @@ msgid ""
 "The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase "
 "order'..."
 msgstr ""
+"A origem da liquida????o, por ex. 'Fatura de venda', 'Pedido de venda', 'Ordem "
+"de compra'..."
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "This Year"
-msgstr ""
+msgstr "Este Ano"
 
 #. module: account_commission
 #: model_terms:ir.actions.act_window,help:account_commission.action_invoice_commission_analysis_report
@@ -521,55 +523,60 @@ msgid ""
 "product category, aget, etc. Use this report to perform analysis on invoice "
 "lines agents not beeing settled yet."
 msgstr ""
+"Este relat??rio realiza an??lises das suas comiss??es adicionadas nas linhas da "
+"fatura. Voc?? pode verificar o valor e as linhas que ser??o liquidadas por "
+"data, produto, categoria do produto, idade, etc. Utilize este relat??rio para "
+"realizar an??lises nas linhas da fatura dos representantes que ainda n??o "
+"foram liquidadas."
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__price_unit
 msgid "Unit Price"
-msgstr ""
+msgstr "Pre??o Unit??rio"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__uom_id
 msgid "Unit of Measure"
-msgstr ""
+msgstr "Unidade de Medida"
 
 #. module: account_commission
 #: model:ir.model,name:account_commission.model_commission_make_invoice
 msgid "Wizard for making an invoice from a settlement"
-msgstr ""
+msgstr "Assistente para faturar uma liquida????o"
 
 #. module: account_commission
 #: model:ir.model,name:account_commission.model_commission_make_settle
 msgid "Wizard for settling commissions"
-msgstr ""
+msgstr "Assistente para liquidar comiss??es"
 
 #. module: account_commission
 #. odoo-python
 #: code:addons/account_commission/models/account_move.py:0
 #, python-format
 msgid "You can't cancel an invoice with settled lines"
-msgstr ""
+msgstr "Voc?? n??o pode cancelar uma fatura com linhas liquidadas"
 
 #. module: account_commission
 #. odoo-python
 #: code:addons/account_commission/models/commission_settlement.py:0
 #, python-format
 msgid "You can't delete invoiced settlements."
-msgstr ""
+msgstr "Voc?? n??o pode excluir liquida????es faturadas."
 
 #. module: account_commission
 #. odoo-python
 #: code:addons/account_commission/models/account_move.py:0
 #, python-format
 msgid "You can't modify a settled line"
-msgstr ""
+msgstr "Voc?? n??o pode modificar uma linha liquidada"
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_graph
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_pivot
 msgid "invoice Commission Analysis"
-msgstr ""
+msgstr "an??lise de comiss??o da fatura"
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "invoices Commission Analysis"
-msgstr ""
+msgstr "an??lise de comiss??o da fatura"
