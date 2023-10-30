@@ -6,21 +6,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-08-12 18:59+0000\n"
-"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
+"PO-Revision-Date: 2023-10-30 00:46+0000\n"
+"Last-Translator: Adriano Prado <adrianojprado@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: hr_commission
 #: model:ir.model.fields,help:hr_commission.field_res_partner__employee
 #: model:ir.model.fields,help:hr_commission.field_res_users__employee
 msgid "Check this box if this contact is an Employee."
-msgstr ""
+msgstr "Marque esta caixa se este contato for um Funcion??rio."
 
 #. module: hr_commission
 #: model:ir.model,name:hr_commission.model_res_partner
@@ -42,7 +42,7 @@ msgstr "Marcar como faturado"
 #. module: hr_commission
 #: model:ir.model.fields,field_description:hr_commission.field_res_partner__employee_id
 msgid "Related Employee"
-msgstr ""
+msgstr "Funcion??rio Relacionado"
 
 #. module: hr_commission
 #: model:ir.model.fields.selection,name:hr_commission.selection__res_partner__agent_type__salesman
@@ -52,7 +52,7 @@ msgstr "Vendedor (funcion??rio)"
 #. module: hr_commission
 #: model:ir.model,name:hr_commission.model_commission_settlement
 msgid "Settlement"
-msgstr "Assentamento"
+msgstr "Liquida????o"
 
 #. module: hr_commission
 #. odoo-python
@@ -63,6 +63,9 @@ msgid ""
 "go to 'Employees' and create an Employee with a 'Related User' under 'HR "
 "Settings'."
 msgstr ""
+"Deve haver um (e apenas um) funcion??rio vinculado a este parceiro. Para "
+"fazer isso, v?? em ???Funcion??rios??? e crie um Funcion??rio com um ???Usu??rio "
+"Relacionado??? em ???Configura????es de RH???."
 
 #. module: hr_commission
 #: model:ir.model.fields,field_description:hr_commission.field_res_partner__agent_type
@@ -76,7 +79,8 @@ msgstr "Tipo"
 #, python-format
 msgid "You can't remove the user, as it's linked to a commission agent."
 msgstr ""
-"Voc?? n??o pode remover o usu??rio, pois est?? ligado a um agente da comiss??o."
+"Voc?? n??o pode remover o usu??rio, pois est?? ligado a um representante "
+"comissionado."
 
 #~ msgid "Employee."
 #~ msgstr "Funcionario."
