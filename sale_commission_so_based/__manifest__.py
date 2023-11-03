@@ -9,5 +9,6 @@
     "depends": ["sale_commission"],
     "data": [
         "views/commission_views.xml",
+        "views/commission_settlement_views.xml",
     ],
 }
