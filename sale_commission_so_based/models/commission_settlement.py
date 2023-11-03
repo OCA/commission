@@ -19,7 +19,7 @@ class SettlementLine(models.Model):
         comodel_name="sale.order.line",
         store=True,
         related="sale_agent_line_id.object_id",
-        string="Source invoice line",
+        string="Source sale line",
     )
 
     @api.depends("invoice_agent_line_id", "sale_agent_line_id")
