@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-24 12:10+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-11-04 22:38+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -362,9 +362,9 @@ msgid ""
 "Specify a product category if this rule only applies to products belonging "
 "to this category or its children categories. Keep empty otherwise."
 msgstr ""
-"Specifica una categoria prodotto se questa regola si applica solo ai "
+"Specificare una categoria prodotto se questa regola si applica solo ai "
 "prodotti appartenenti a questa categoria o alle sue categorie figlie, "
-"altrimenti lascia vuoto."
+"altrimenti lasciare vuoto."
 
 #. module: sale_commission_product_criteria
 #: model:ir.model.fields,help:sale_commission_product_criteria.field_commission_item__product_id
@@ -372,8 +372,8 @@ msgid ""
 "Specify a product if this rule only applies to one product. Keep empty "
 "otherwise."
 msgstr ""
-"Specifica un prodotto se questa regola si applica solo ad un prodotto, "
-"altrimenti lascia vuoto."
+"Specificare un prodotto se questa regola si applica solo ad un prodotto, "
+"altrimenti lasciare vuoto."
 
 #. module: sale_commission_product_criteria
 #: model:ir.model.fields,help:sale_commission_product_criteria.field_commission_item__product_tmpl_id
@@ -381,8 +381,8 @@ msgid ""
 "Specify a template if this rule only applies to one product template. Keep "
 "empty otherwise."
 msgstr ""
-"Specifica un modello prodotto se questa regola si applica solo ad un modello "
-"prodotto, altrimenti lascia vuoto."
+"Specificare un modello prodotto se questa regola si applica solo ad un "
+"modello prodotto, altrimenti lasciare vuoto."
 
 #. module: sale_commission_product_criteria
 #: code:addons/sale_commission_product_criteria/models/commission.py:0
