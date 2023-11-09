@@ -1,7 +1,7 @@
 # Copyright 2016-2022 Tecnativa - Pedro M. Baeza
 {
     "name": "Sales commissions based on Sale Order",
-    "author": "Opsway, " "Odoo Community Association (OCA)",
+    "author": "Opsway, " "Odoo Community Association (OCA), " "Tecnativa",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/commission",
     "category": "Sales Management",

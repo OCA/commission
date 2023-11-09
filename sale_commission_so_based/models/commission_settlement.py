@@ -22,7 +22,7 @@ class SettlementLine(models.Model):
         string="Source sale line",
     )
 
-    @api.depends("invoice_agent_line_id", "sale_agent_line_id")
+    @api.depends("sale_agent_line_id")
     def _compute_date(self):
         # pylint: disable= missing-return
         super()._compute_date()
@@ -30,18 +30,18 @@ class SettlementLine(models.Model):
             if record.sale_agent_line_id:
                 record.date = record.sale_agent_line_id.invoice_date
 
-    @api.depends("invoice_agent_line_id", "sale_agent_line_id")
+    @api.depends("sale_agent_line_id")
     def _compute_commission_id(self):
         # pylint: disable= missing-return
-        super()._compute_date()
+        super()._compute_commission_id()
         for record in self:
             if record.sale_agent_line_id:
                 record.commission_id = record.sale_agent_line_id.commission_id
 
-    @api.depends("invoice_agent_line_id", "sale_agent_line_id")
+    @api.depends("sale_agent_line_id")
     def _compute_settled_amount(self):
         # pylint: disable= missing-return
-        super()._compute_date()
+        super()._compute_settled_amount()
         for record in self:
             if record.sale_agent_line_id:
                 record.settled_amount = record.sale_agent_line_id.amount
