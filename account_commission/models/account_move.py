@@ -152,16 +152,6 @@ class AccountMoveLine(models.Model):
 
     @api.depends("move_id.partner_id")
     def _compute_agent_ids(self):
-        for res in self:
-            settlement_lines = self.env["commission.settlement.line"].search(
-                [("invoice_line_id", "=", res.id)]
-            )
-            for line in settlement_lines:
-                line.date = False
-                line.agent_id = False
-                line.settled_amount = 0.00
-                line.currency_id = False
-                line.commission_id = False
         self.agent_ids = False  # for resetting previous agents
         for record in self._filter_commission_applicable_lines():
             if not record.commission_free and record.product_id:
