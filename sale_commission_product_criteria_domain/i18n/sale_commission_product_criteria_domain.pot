@@ -45,12 +45,6 @@ msgid "Agents Count"
 msgstr ""
 
 #. module: sale_commission_product_criteria_domain
-#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_domain.commission_item_agent_tree
-#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_domain.view_partner_form_agent_inherit
-msgid "Agents Items Restriction"
-msgstr ""
-
-#. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__allowed_commission_group_ids
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_users__allowed_commission_group_ids
 msgid "Allowed Commission Group"
@@ -119,7 +113,6 @@ msgstr ""
 #. module: sale_commission_product_criteria_domain
 #: model:ir.actions.act_window,name:sale_commission_product_criteria_domain.commission_items_group_tree_action
 #: model:ir.ui.menu,name:sale_commission_product_criteria_domain.menu_commission_items_group
-#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_domain.commission_items_group_tree
 msgid "Commission Type Items Groups"
 msgstr ""
 
