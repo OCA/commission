@@ -12,13 +12,7 @@
         />
         <field name="arch" type="xml">
             <tree position="replace">
-                <tree
-                    string="Agents"
-                    create="false"
-                    edit="false"
-                    delete="false"
-                    editable="bottom"
-                >
+                <tree create="false" edit="false" delete="false" editable="bottom">
                     <field
                         name="agent_id"
                         context="{'default_agent': True, 'default_customer': False, 'default_supplier': True}"

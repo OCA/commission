@@ -55,8 +55,8 @@
                         >
                             <field name="settlement_ids" nolabel="1">
                                 <tree
-                                    string="Settlements"
-                                    colors="red: state == 'cancel'; gray: state == 'invoiced'"
+                                    decoration-danger="state == 'cancel'"
+                                    decoration-muted="state == 'invoiced'"
                                 >
                                     <field name="date_from" />
                                     <field name="date_to" />

@@ -46,7 +46,7 @@
                         context="{'hide_commission_id':1}"
                         colspan="4"
                     >
-                        <tree string="Items">
+                        <tree>
                             <field name="sequence" invisible="1" />
                             <field name="name" string="Applied On" />
                             <field name="commission_value" />
@@ -167,7 +167,7 @@
         <field name="name">commission.item.tree</field>
         <field name="model">commission.item</field>
         <field name="arch" type="xml">
-            <tree string="Commission Items">
+            <tree>
                 <field name="commission_id" />
                 <field name="name" />
                 <field name="applied_on" optional="hide" />
