@@ -22,11 +22,6 @@ msgid "Agent Access"
 msgstr "Accesso Agente"
 
 #. module: sale_commission_agent_restrict
-#: model_terms:ir.ui.view,arch_db:sale_commission_agent_restrict.view_sale_order_line_tree_mod
-msgid "Agents"
-msgstr "Agenti"
-
-#. module: sale_commission_agent_restrict
 #: code:addons/sale_commission_agent_restrict/models/res_partner.py:0
 #, python-format
 msgid "Agents are not allowed to change Contacts' payment terms"
@@ -103,6 +98,9 @@ msgstr ""
 #: model:ir.model,name:sale_commission_agent_restrict.model_res_users
 msgid "Users"
 msgstr "Utenti"
+
+#~ msgid "Agents"
+#~ msgstr "Agenti"
 
 #~ msgid "Agent Own Commission Lines"
 #~ msgstr "Solo proprie righe provvigioni"
