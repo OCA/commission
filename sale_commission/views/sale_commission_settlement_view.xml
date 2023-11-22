@@ -5,7 +5,6 @@
         <field name="model">sale.commission.settlement</field>
         <field name="arch" type="xml">
             <tree
-                string="Settlements"
                 decoration-muted="state == 'invoiced'"
                 decoration-danger="state == 'cancel'"
                 create="false"
@@ -88,7 +87,7 @@
                 </group>
                 <group string="Commission lines" colspan="4">
                     <field name="line_ids" nolabel="1">
-                        <tree string="Settlement lines">
+                        <tree>
                             <field name="date" />
                             <field name="invoice_line_id" />
                             <field name="commission_id" />
@@ -111,7 +110,7 @@
         <field name="name">Settlement lines</field>
         <field name="model">sale.commission.settlement.line</field>
         <field name="arch" type="xml">
-            <tree string="Settlement lines" create="false">
+            <tree create="false">
                 <field name="date" />
                 <field name="agent_id" />
                 <field name="invoice_line_id" />

@@ -27,7 +27,7 @@ msgstr ""
 #: code:addons/sale_commission/models/sale_commission_mixin.py:0
 #, fuzzy, python-format
 msgid "%s commission agents"
-msgstr "Comissió de les vendes"
+msgstr ""
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form

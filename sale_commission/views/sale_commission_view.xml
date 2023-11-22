@@ -4,7 +4,7 @@
         <field name="name">Sales commissions tree</field>
         <field name="model">sale.commission</field>
         <field name="arch" type="xml">
-            <tree string="Commissions">
+            <tree>
                 <field name="name" />
                 <field name="commission_type" />
                 <field name="amount_base_type" />
@@ -41,7 +41,7 @@
                         nolabel="1"
                         attrs="{'invisible': [('commission_type', '!=', 'section')]}"
                     >
-                        <tree string="Sections" editable="bottom">
+                        <tree editable="bottom">
                             <field name="amount_from" />
                             <field name="amount_to" />
                             <field name="percent" />
