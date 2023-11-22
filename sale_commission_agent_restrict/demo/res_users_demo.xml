@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="res_partner_agent" model="res.partner">
+        <field name="name">Agent Demo</field>
+        <field name="company_type">person</field>
+        <field name="email">agent@example.com</field>
+        <field name="agent" eval="True" />
+    </record>
+
+    <record
+        id="res_users_agent"
+        model="res.users"
+        context="{'no_reset_password': True}"
+    >
+        <field name="name">Agent Demo</field>
+        <field name="partner_id" ref="res_partner_agent" />
+        <field name="login">agent</field>
+        <field name="password">agent</field>
+        <field
+            name="groups_id"
+            eval="[
+                (6, 0, [
+                    ref('sale_commission_agent_restrict.group_agent_own_customers'),
+                    ref('sale_commission_agent_restrict.group_agent_own_commissions')
+                ])
+            ]"
+        />
+    </record>
+
+</odoo>
