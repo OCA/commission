@@ -123,7 +123,6 @@ msgstr "Riga provvigione applicabile all'opzione selezionata"
 #: model:ir.actions.act_window,name:sale_commission_product_criteria.commission_item_action
 #: model:ir.actions.act_window,name:sale_commission_product_criteria.commission_item_action_tree
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.commission_item_search
-#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.commission_item_tree_view
 msgid "Commission Items"
 msgstr "Righe provvigione"
 
@@ -227,11 +226,6 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission__item_ids
 msgid "Item"
 msgstr "Riga"
-
-#. module: sale_commission_product_criteria
-#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.sale_commission_form_lines_mod
-msgid "Items"
-msgstr "Righe"
 
 #. module: sale_commission_product_criteria
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_account_invoice_line_agent____last_update
@@ -419,6 +413,9 @@ msgstr "Valore"
 #, python-format
 msgid "Variant: %s"
 msgstr "Variante: %s"
+
+#~ msgid "Items"
+#~ msgstr "Righe"
 
 #~ msgid "Pricelist"
 #~ msgstr "Listino prezzi"
