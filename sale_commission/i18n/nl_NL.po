@@ -121,7 +121,6 @@ msgstr "Agent informatie"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order__partner_agent_ids
 #: model:ir.ui.menu,name:sale_commission.menu_agent_form
 #: model_terms:ir.ui.view,arch_db:sale_commission.res_partner_view_search
-#: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_order_line_tree
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settled_wizard
 #, python-format
 msgid "Agents"
@@ -276,7 +275,6 @@ msgstr "Commissie types"
 #: model:ir.model.fields,field_description:sale_commission.field_account_move__commission_total
 #: model:ir.model.fields,field_description:sale_commission.field_account_payment__commission_total
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order__commission_total
-#: model_terms:ir.ui.view,arch_db:sale_commission.sale_commission_tree
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_move_line_form
 msgid "Commissions"
 msgstr "Commissies"
@@ -572,11 +570,6 @@ msgid "Invoice line"
 msgstr "Factuurregel"
 
 #. module: sale_commission
-#: model_terms:ir.ui.view,arch_db:sale_commission.invoice_line_agent_tree
-msgid "Invoice line agents and commissions"
-msgstr "Factuurregel agenten en commissies"
-
-#. module: sale_commission
 #: model:ir.model.fields.selection,name:sale_commission.selection__sale_commission_settlement__state__invoiced
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 msgid "Invoiced"
@@ -828,7 +821,6 @@ msgstr "Opslaan"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission__section_ids
-#: model_terms:ir.ui.view,arch_db:sale_commission.sale_commission_form
 msgid "Sections"
 msgstr "Secties"
 
@@ -882,8 +874,6 @@ msgstr "Afrekening analyse"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement__line_ids
-#: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_form
-#: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_line_tree
 msgid "Settlement lines"
 msgstr "Afrekening regels"
 
@@ -918,7 +908,6 @@ msgstr ""
 #: model:ir.ui.menu,name:sale_commission.menu_settle_commissions
 #: model_terms:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_partner_form_agent
-#: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_tree
 msgid "Settlements"
 msgstr "Afrekeningen"
 
@@ -1054,6 +1043,9 @@ msgstr "_Annuleer"
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settled_wizard
 msgid "or"
 msgstr "of"
+
+#~ msgid "Invoice line agents and commissions"
+#~ msgstr "Factuurregel agenten en commissies"
 
 #~ msgid "Up to"
 #~ msgstr "Tot aan"
