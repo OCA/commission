@@ -1,7 +1,7 @@
 # Copyright 2018-2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import _, api, exceptions, fields, models
 
 
 class SaleCommissionMixin(models.AbstractModel):
@@ -86,14 +86,6 @@ class SaleCommissionLineMixin(models.AbstractModel):
     )
     _rec_name = "agent_id"
 
-    _sql_constraints = [
-        (
-            "unique_agent",
-            "UNIQUE(object_id, agent_id)",
-            "You can only add one time each agent.",
-        )
-    ]
-
     object_id = fields.Many2one(
         comodel_name="sale.commission.mixin",
         ondelete="cascade",
@@ -123,6 +115,26 @@ class SaleCommissionLineMixin(models.AbstractModel):
     )
     # Fields to be overriden with proper source (via related or computed field)
     currency_id = fields.Many2one(comodel_name="res.currency")
+
+    @api.constrains("agent_id", "object_id")
+    def _check_unique_agent(self):
+        for record in self:
+            if (
+                self.env["account.invoice.line.agent"].search_count(
+                    [
+                        ("object_id", "=", record.object_id.id),
+                        ("agent_id", "=", record.agent_id.id),
+                        ("commission_id.invoice_state", "!=", "payment_amount"),
+                    ]
+                )
+                > 1
+            ):
+                raise exceptions.ValidationError(
+                    _(
+                        "Each agent can only be present once - unless the commission "
+                        "type is 'Payment Based'"
+                    ),
+                )
 
     def _compute_amount(self):
         """Compute method to be implemented by inherited models."""

@@ -112,6 +112,11 @@ class SaleCommissionMakeSettle(models.TransientModel):
                     pos += 1
                     if line._skip_settlement():
                         continue
+                    if (
+                        line.commission_id.invoice_state == "payment_amount"
+                        and not line.is_partial_settled
+                    ):
+                        continue
                     if self.date_payment_to and line._skip_future_payments(
                         self.date_payment_to
                     ):
@@ -157,4 +162,12 @@ class SaleCommissionMakeSettle(models.TransientModel):
             ],
             order="invoice_date",
         )
-        return aila
+        partial_settlements, lines_to_update = aila.filtered(
+            lambda x: x.commission_id.invoice_state == "payment_amount"
+            and not x.is_partial_settled
+        )._partial_commissions()
+        for line_id in lines_to_update:
+            self.env["account.invoice.line.agent"].browse(line_id).update(
+                lines_to_update[line_id]
+            )
+        return aila + partial_settlements

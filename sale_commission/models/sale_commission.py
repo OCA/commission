@@ -22,7 +22,11 @@ class SaleCommission(models.Model):
     )
     active = fields.Boolean(default=True)
     invoice_state = fields.Selection(
-        [("open", "Invoice Based"), ("paid", "Payment Based")],
+        [
+            ("open", "Invoice Based"),
+            ("paid", "Payment Based"),
+            ("payment_amount", "Payment Amount Based"),
+        ],
         string="Invoice Status",
         required=True,
         default="open",

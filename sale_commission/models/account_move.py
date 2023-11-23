@@ -132,6 +132,26 @@ class AccountMoveLine(models.Model):
         if self.settlement_id and self.env.context.get("include_settlement", False):
             values["settlement_id"] = self.settlement_id.id
 
+    def copy_data(self, default=None):
+        """
+        In case of partial settlements, there may be multiple lines for the same agent
+        when copying, preserve only one line per agent.
+        """
+        res = super().copy_data()
+        for move in res:
+            old_agent_ids = move.get("agent_ids")
+            processed_agents = []
+            new_agent_ids = []
+            for agent_line in old_agent_ids:
+                agent_id = agent_line[2]["agent_id"]
+                if agent_id not in processed_agents:
+                    processed_agents.append(agent_id)
+                    agent_line[2]["is_partial_settled"] = False
+                    new_agent_ids.append(agent_line)
+            if new_agent_ids:
+                move["agent_ids"] = new_agent_ids
+        return res
+
 
 class AccountInvoiceLineAgent(models.Model):
     _inherit = "sale.commission.line.mixin"
@@ -168,6 +188,7 @@ class AccountInvoiceLineAgent(models.Model):
         related="object_id.currency_id",
         readonly=True,
     )
+    is_partial_settled = fields.Boolean()
 
     @api.depends(
         "object_id.price_subtotal",
@@ -234,3 +255,63 @@ class AccountInvoiceLineAgent(models.Model):
             if any(date_payment_to < date for date in payments_dates):
                 return True
         return False
+
+    def _partial_commissions(self):
+        """
+        This method iterates through agent invoice lines and calculates
+        partial commissions based on the payment amount.
+        If the partial payment amount is greater than the invoice line
+        amount, it fully settles the corresponding agent line.
+        Otherwise, it calculates the partial commission proportionally to
+        the amount paid, invoice amount and total commissions.
+        """
+        partial_settlements = self.env["account.invoice.line.agent"]
+        lines_to_update = {}
+        partial_payment_remaining = {}
+        for line in self:
+            line_total_amount = line.amount
+            for (
+                partial,
+                amount,
+                _counterpart_line,
+            ) in line.invoice_id._get_reconciled_invoices_partials():
+                if partial.partial_commission_settled:
+                    continue
+                if partial.id in partial_payment_remaining:
+                    payment_amount = partial_payment_remaining[partial.id][
+                        "remaining_amount"
+                    ]
+                else:
+                    payment_amount = amount
+                    partial_payment_remaining[partial.id] = {"remaining_amount": amount}
+                if line.object_id.price_total < payment_amount:
+                    lines_to_update[line.id] = {
+                        "amount": line_total_amount,
+                        "is_partial_settled": True,
+                    }
+                    partial_payment_remaining[partial.id] = {
+                        "remaining_amount": amount - line.object_id.price_total
+                    }
+                    break
+                paid_in_proportion = payment_amount / line.invoice_id.amount_total
+                partial_commission = (
+                    line.invoice_id.commission_total * paid_in_proportion
+                )
+                if line.id not in lines_to_update:
+                    lines_to_update[line.id] = {
+                        "amount": line_total_amount - partial_commission
+                    }
+                elif partial_commission >= lines_to_update[line.id]["amount"]:
+                    lines_to_update[line.id].update({"is_partial_settled": True})
+                    break
+                partial_commission_to_settle = line.copy(
+                    {
+                        "object_id": line.object_id.id,
+                        "amount": partial_commission,
+                        "is_partial_settled": True,
+                    }
+                )
+                partial_settlements += partial_commission_to_settle
+
+                partial.partial_commission_settled = True
+        return partial_settlements, lines_to_update

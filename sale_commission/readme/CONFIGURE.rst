@@ -21,6 +21,9 @@ For adding commissions:
 
    * **Invoice Based**: Commissions are settled when the invoice is issued.
    * **Payment Based**: Commissions are settled when the invoice is paid.
+   * **Payment Amount Based** : Commissions are settled even when invoice is 
+     not fully paid. It allows to settle partial commissions, proportionally 
+     to payment received.
 
 For adding new agents:
 

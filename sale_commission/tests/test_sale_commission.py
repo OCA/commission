@@ -2,6 +2,7 @@
 # Copyright 2020 Tecnativa - Manuel Calero
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
+
 from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
@@ -39,6 +40,14 @@ class TestSaleCommission(SavepointCase):
                 "section_ids": [
                     (0, 0, {"amount_from": 1.0, "amount_to": 100.0, "percent": 10.0})
                 ],
+                "amount_base_type": "net_amount",
+            }
+        )
+        cls.partial_commission_paid = cls.commission_model.create(
+            {
+                "name": "10% fixed commission (Net amount) - Partial Amount Based",
+                "invoice_state": "payment_amount",
+                "fix_qty": 10.0,
                 "amount_base_type": "net_amount",
             }
         )
@@ -162,7 +171,58 @@ class TestSaleCommission(SavepointCase):
                                 )
                             ],
                         },
-                    )
+                    ),
+                ],
+            }
+        )
+
+    def _create_multi_line_sale_order(self, agent, commission):
+        return self.sale_order_model.create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": self.product.name,
+                            "product_id": self.product.id,
+                            "product_uom_qty": 1.0,
+                            "product_uom": self.ref("uom.product_uom_unit"),
+                            "price_unit": self.product.lst_price,
+                            "agent_ids": [
+                                (
+                                    0,
+                                    0,
+                                    {
+                                        "agent_id": agent.id,
+                                        "commission_id": commission.id,
+                                    },
+                                )
+                            ],
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": self.product.name,
+                            "product_id": self.product.id,
+                            "product_uom_qty": 5.0,
+                            "product_uom": self.ref("uom.product_uom_unit"),
+                            "price_unit": self.product.lst_price,
+                            "agent_ids": [
+                                (
+                                    0,
+                                    0,
+                                    {
+                                        "agent_id": self.agent_monthly.id,
+                                        "commission_id": self.partial_commission_paid.id,
+                                    },
+                                )
+                            ],
+                        },
+                    ),
                 ],
             }
         )
@@ -391,16 +451,6 @@ class TestSaleCommission(SavepointCase):
         # Check agent change
         agent.agent_id = self.agent_quaterly
         self.assertTrue(agent.commission_id, self.commission_section_invoice)
-        # HACK: Remove constraints as in test mode it raises, but not on regular UI
-        # TODO: Check why this is happening only in tests
-        self.env.cr.execute(
-            "ALTER TABLE sale_order_line_agent DROP CONSTRAINT "
-            "sale_order_line_agent_unique_agent"
-        )
-        self.env.cr.execute(
-            "ALTER TABLE account_invoice_line_agent DROP CONSTRAINT "
-            "account_invoice_line_agent_unique_agent"
-        )
         # Check recomputation
         agent.unlink()
         sale_order.recompute_lines_agents()
@@ -641,23 +691,60 @@ class TestSaleCommission(SavepointCase):
         )
         self.assertEqual(len(settlements), 2)
 
-    def register_payment(self, invoice, payment_date):
+    def register_payment(
+        self,
+        invoice,
+        payment_date,
+        amount=None,
+        payment_difference_handling="reconcile",
+    ):
         payment_model = self.env["account.payment.register"]
         invoice.action_post()
+        if not amount:
+            amount = invoice.amount_total
+        ctx = {
+            "active_model": "account.move",
+            "active_ids": [invoice.id],
+        }
         return (
-            payment_model.with_context(
-                {"active_model": "account.move", "active_ids": invoice.ids}
-            )
+            payment_model.with_context(ctx)
             .create(
                 {
                     "payment_date": payment_date,
-                    "amount": invoice.amount_total,
+                    "amount": amount,
                     "journal_id": self.env["account.journal"]
                     .search([("type", "=", "bank")], limit=1)
                     .id,
                     "payment_method_id": self.env.ref(
                         "account.account_payment_method_manual_out"
                     ).id,
+                    "payment_difference_handling": payment_difference_handling,
+                }
+            )
+            .action_create_payments()
+        )
+
+    def register_final_payment(self, invoice, payment_date, amount=None):
+        remaining_amount = invoice.amount_residual if amount is None else amount
+
+        payment_model = self.env["account.payment.register"]
+        ctx = {
+            "active_model": "account.move",
+            "active_ids": [invoice.id],
+        }
+        return (
+            payment_model.with_context(ctx)
+            .create(
+                {
+                    "payment_date": payment_date,
+                    "amount": remaining_amount,
+                    "journal_id": self.env["account.journal"]
+                    .search([("type", "=", "bank")], limit=1)
+                    .id,
+                    "payment_method_id": self.env.ref(
+                        "account.account_payment_method_manual_out"
+                    ).id,
+                    "payment_difference_handling": "reconcile",
                 }
             )
             .action_create_payments()
@@ -692,3 +779,44 @@ class TestSaleCommission(SavepointCase):
         )
         self.assertEqual(1, len(settlements))
         self.assertEqual(1, len(settlements.line_ids))
+        with self.assertRaises(ValidationError):
+            inv.invoice_line_ids[0].agent_ids[0].copy(
+                {"object_id": inv.invoice_line_ids[0].agent_ids[0].object_id.id}
+            )
+
+    def test_partial_payment_amount_settlement(self):
+        sale_order = self._create_multi_line_sale_order(
+            self.agent_monthly, self.partial_commission_paid
+        )
+        sale_order.action_confirm()
+        date = fields.Date.today()
+        invoice = self._invoice_sale_order(sale_order)
+        partial_amount = invoice.amount_total / 3
+        final_amount = invoice.amount_total - partial_amount
+        self.register_payment(
+            invoice, date, amount=partial_amount, payment_difference_handling="open"
+        )
+        self.register_final_payment(invoice, date, amount=final_amount)
+        self.assertTrue(invoice._get_reconciled_invoices_partials())
+        self._settle_agent(self.agent_monthly, 1)
+        settlements = self.env["sale.commission.settlement"].search(
+            [
+                (
+                    "agent_id",
+                    "=",
+                    self.agent_monthly.id,
+                ),
+                ("state", "=", "settled"),
+            ]
+        )
+        self.assertEqual(1, len(settlements))
+        self.assertEqual(3, len(settlements.line_ids))
+        self.assertEqual(3, len(invoice.line_ids.agent_ids))
+        self.assertTrue(
+            invoice.line_ids.agent_ids.filtered(lambda x: x.is_partial_settled)
+        )
+        duplicated_invoice = invoice.copy()
+        self.assertEqual(2, len(duplicated_invoice.line_ids.agent_ids))
+        self.assertFalse(
+            duplicated_invoice.line_ids.agent_ids.mapped("is_partial_settled")[0]
+        )
