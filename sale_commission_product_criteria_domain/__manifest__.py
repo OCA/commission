@@ -19,6 +19,7 @@
     "data": [
         "views/views.xml",
         "security/ir.model.access.csv",
+        "security/sale_commission_security.xml",
     ],
     "application": False,
     "installable": True,

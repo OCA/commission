@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<data noupdate="1">
+    <record id="rule_commission_item_agent_multi_company" model="ir.rule">
+        <field name="name">Commission Item Agent multi-company</field>
+        <field name="model_id" ref="model_commission_item_agent" />
+        <field name="domain_force">['&amp;',
+            '|',
+                ('partner_id.company_id', '=', False),
+                ('partner_id.company_id', 'in', company_ids),
+            '|',
+                ('agent_id.company_id', '=', False),
+                ('agent_id.company_id', 'in', company_ids),
+        ]</field>
+    </record>
+</data>
