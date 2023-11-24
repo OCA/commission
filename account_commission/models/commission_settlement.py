@@ -87,6 +87,7 @@ class CommissionSettlement(models.Model):
         partner = self._get_invoice_partner()
         move_form.partner_id = partner
         move_form.journal_id = journal
+        move_form.currency_id = self.currency_id
         for settlement in self:
             with move_form.invoice_line_ids.new() as line_form:
                 line_form.product_id = product
@@ -118,7 +119,7 @@ class CommissionSettlement(models.Model):
         return vals
 
     def _get_invoice_grouping_keys(self):
-        return ["company_id", "agent_id"]
+        return ["company_id", "currency_id", "agent_id"]
 
     def make_invoices(self, journal, product, date=False, grouped=False):
         invoice_vals_list = []
