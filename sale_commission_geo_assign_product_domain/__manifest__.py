@@ -8,7 +8,7 @@
     "sale_commission_geo_assign",
     "version": "14.0.1.2.0",
     "author": "PyTech SRL, Ooops404, Odoo Community Association (OCA)",
-    "maintainers": ["aleuffre", "pytech-bot"],
+    "maintainers": ["aleuffre", "renda-dev"],
     "website": "https://github.com/OCA/commission",
     "category": "Sales Management",
     "license": "AGPL-3",
