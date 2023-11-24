@@ -83,6 +83,7 @@ class CommissionSettlement(models.Model):
             "partner_id": partner.id,
             "journal_id": journal.id,
             "invoice_line_ids": [],
+            "currency_id": self.currency_id.id,
         }
         if date:
             vals.update({"invoice_date": date})
@@ -123,7 +124,7 @@ class CommissionSettlement(models.Model):
         return vals
 
     def _get_invoice_grouping_keys(self):
-        return ["company_id", "agent_id"]
+        return ["company_id", "currency_id", "agent_id"]
 
     def make_invoices(self, journal, product, date=False, grouped=False):
         invoice_vals_list = []
