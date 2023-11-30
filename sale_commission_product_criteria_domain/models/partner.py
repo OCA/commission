@@ -63,9 +63,10 @@ class ResPartner(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        if (
-            self.commission_id.commission_type != "product_restricted"
-            and self.allowed_commission_group_ids
-        ):
-            self.allowed_commission_group_ids = False
+        for rec in self:
+            if (
+                rec.commission_id.commission_type != "product_restricted"
+                and rec.allowed_commission_group_ids
+            ):
+                rec.allowed_commission_group_ids = False
         return res
