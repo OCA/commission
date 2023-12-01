@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+     <record id="sale_commission_payment_amount" model="ir.ui.view">
+        <field name="name">sale.commission.payment.amount.form</field>
+        <field name="model">sale.commission</field>
+        <field name="inherit_id" ref="sale_commission.sale_commission_form" />
+        <field name="arch" type="xml">
+            <field name="invoice_state" position="after">
+                <field
+                    name="payment_amount_type"
+                    attrs="{'invisible': [('invoice_state', '!=', 'paid')]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
