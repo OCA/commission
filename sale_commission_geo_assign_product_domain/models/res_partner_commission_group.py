@@ -8,7 +8,7 @@ class ResPartnerCommissionGroup(models.Model):
     _name = "res.partner.commission.group"
     _description = "Partner Commission Groups by Geolocation"
 
-    partner_id = fields.Many2one("res.partner", required=True)
+    partner_id = fields.Many2one("res.partner", ondelete="cascade", required=True)
     country_ids = fields.Many2many("res.country", string="Country")
     state_ids = fields.Many2many("res.country.state", string="State")
     zip_from = fields.Char("Zip From", help="ZIP range where this agent operates")

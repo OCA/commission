@@ -10,7 +10,6 @@ class ResPartner(models.Model):
     commission_geo_group_ids = fields.One2many(
         comodel_name="res.partner.commission.group",
         inverse_name="partner_id",
-        ondelete="cascade",
     )
 
     @api.onchange("commission_type")
