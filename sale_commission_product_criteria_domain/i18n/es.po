@@ -6,144 +6,148 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-12-12 23:36+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__agent_id
 msgid "Agent"
-msgstr ""
+msgstr "Agente"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__agent_group_ids
 msgid "Agent Group"
-msgstr ""
+msgstr "Grupo Agente"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_account_invoice_line_agent
 msgid "Agent detail of commission line in invoice lines"
-msgstr ""
+msgstr "Detalle de agente de línea de comisión en líneas de pedido"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_sale_order_line_agent
 msgid "Agent detail of commission line in order lines"
-msgstr ""
+msgstr "Detalle de agente de línea de comisión en líneas de pedido"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__partner_agent_ids
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_domain.commission_items_group_form
 msgid "Agents"
-msgstr ""
+msgstr "Agentes"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__agents_count
 msgid "Agents Count"
-msgstr ""
+msgstr "Recuento de Agentes"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__allowed_commission_group_ids
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_users__allowed_commission_group_ids
 msgid "Allowed Commission Group"
-msgstr ""
+msgstr "Grupo de la Comisión autorizado"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__allowed_commission_group_ids_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_users__allowed_commission_group_ids_domain
 msgid "Allowed Commission Group Ids Domain"
-msgstr ""
+msgstr "Ids de grupo de comisiones permitidos Dominio"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__apply_commission_restrictions
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_users__apply_commission_restrictions
 msgid "Apply Restrictions"
-msgstr ""
+msgstr "Aplicar Restricciones"
 
 #. module: sale_commission_product_criteria_domain
 #: code:addons/sale_commission_product_criteria_domain/models/commission.py:0
 #, python-format
 msgid "At least one group for each restriction must be selected."
-msgstr ""
+msgstr "Debe seleccionarse al menos un grupo para cada restricción."
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__commission_ids
 msgid "Commission"
-msgstr ""
+msgstr "Comisión"
 
 #. module: sale_commission_product_criteria_domain
 #: code:addons/sale_commission_product_criteria_domain/models/commission_group.py:0
 #, python-format
 msgid "Commission Group Agents"
-msgstr ""
+msgstr "Agentes del Grupo Comisión"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_commission_item
 msgid "Commission Item"
-msgstr ""
+msgstr "Artículo de la Comisión"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_commission_item_agent
 msgid "Commission Item Agent"
-msgstr ""
+msgstr "Comisión Artículo Agente"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_commission_items_group
 msgid "Commission Items Group"
-msgstr ""
+msgstr "Grupo de artículos de la Comisión"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__commission_item_agent_ids
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_users__commission_item_agent_ids
 msgid "Commission Items Groups"
-msgstr ""
+msgstr "Temas de la Comisión Grupos"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__group_ids
 msgid "Commission Items Groups Restrictions"
-msgstr ""
+msgstr "Artículos de la Comisión Grupos Restricciones"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item__commission_id
 msgid "Commission Type"
-msgstr ""
+msgstr "Tipo de Comisión"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.actions.act_window,name:sale_commission_product_criteria_domain.commission_items_group_tree_action
 #: model:ir.ui.menu,name:sale_commission_product_criteria_domain.menu_commission_items_group
 msgid "Commission Type Items Groups"
-msgstr ""
+msgstr "Comisión Tipo Artículos Grupos"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_sale_commission
 msgid "Commission in sales"
-msgstr ""
+msgstr "Comisión en ventas"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.constraint,message:sale_commission_product_criteria_domain.constraint_commission_items_group_unique_cig_name
 msgid ""
 "Commission items group with such name already exists. Name must be unique."
 msgstr ""
+"Ya existe un grupo de artículos de la Comisión con ese nombre. El nombre "
+"debe ser único."
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__create_uid
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__create_date
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado el"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_account_invoice_line_agent__display_name
@@ -155,12 +159,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_sale_commission_line_mixin__display_name
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_sale_order_line_agent__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar nombre"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item__group_id
 msgid "Group"
-msgstr ""
+msgstr "Agrupar"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_account_invoice_line_agent__id
@@ -172,12 +176,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_sale_commission_line_mixin__id
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_sale_order_line_agent__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__item_ids
 msgid "Items"
-msgstr ""
+msgstr "artículos"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_account_invoice_line_agent____last_update
@@ -189,19 +193,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_sale_commission_line_mixin____last_update
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_sale_order_line_agent____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__write_uid
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización por"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__write_date
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última Actualización el"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_sale_commission_line_mixin
@@ -209,27 +213,29 @@ msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
 msgstr ""
+"Modelo de mezclador para tener líneas de comisionista en cualquier objeto "
+"que herede de éste"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__name
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__partner_id
 msgid "Partner"
-msgstr ""
+msgstr "Socio"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields.selection,name:sale_commission_product_criteria_domain.selection__sale_commission__commission_type__product_restricted
 msgid "Product criteria (with restrictions)"
-msgstr ""
+msgstr "Criterios del producto (con restricciones)"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,help:sale_commission_product_criteria_domain.field_res_partner__allowed_commission_group_ids
 #: model:ir.model.fields,help:sale_commission_product_criteria_domain.field_res_users__allowed_commission_group_ids
 msgid "Related only to agents"
-msgstr ""
+msgstr "Relacionados sólo con agentes"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item__sale_commission_type
@@ -237,7 +243,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_users__commission_type
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_sale_commission__commission_type
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: sale_commission_product_criteria_domain
 #: code:addons/sale_commission_product_criteria_domain/models/commission_group.py:0
@@ -246,6 +252,8 @@ msgid ""
 "You can not delete this commission group since there is related to it "
 "commission items."
 msgstr ""
+"No puede eliminar este grupo de comisiones ya que hay artículos de comisión "
+"relacionados con él."
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.constraint,message:sale_commission_product_criteria_domain.constraint_commission_item_agent_commission_item_unique_agent
@@ -253,3 +261,5 @@ msgid ""
 "You can only add one time each agent into Commission Items Groups "
 "Restrictions table."
 msgstr ""
+"Sólo puede añadir una vez cada agente en la tabla de Restricciones de Grupos "
+"de Artículos de Comisión."
