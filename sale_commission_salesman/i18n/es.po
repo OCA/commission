@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-12 14:51+0000\n"
-"PO-Revision-Date: 2021-03-17 15:45+0000\n"
-"Last-Translator: Ana Suárez <ana.suarez@qubiq.es>\n"
+"PO-Revision-Date: 2023-12-13 11:29+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_commission_salesman
 #: model:ir.model,name:sale_commission_salesman.model_res_partner
@@ -33,14 +33,14 @@ msgstr "Convertir comercial a agente"
 #: model:ir.model.fields,field_description:sale_commission_salesman.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sale_commission_salesman.field_sale_order_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: sale_commission_salesman
 #: model:ir.model.fields,field_description:sale_commission_salesman.field_account_move_line__id
 #: model:ir.model.fields,field_description:sale_commission_salesman.field_res_partner__id
 #: model:ir.model.fields,field_description:sale_commission_salesman.field_sale_order_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_commission_salesman
 #: model:ir.model.fields,help:sale_commission_salesman.field_res_partner__salesman_as_agent
@@ -63,7 +63,7 @@ msgstr "Apunte contable"
 #: model:ir.model.fields,field_description:sale_commission_salesman.field_res_partner____last_update
 #: model:ir.model.fields,field_description:sale_commission_salesman.field_sale_order_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: sale_commission_salesman
 #: model:ir.model,name:sale_commission_salesman.model_sale_order_line
