@@ -7,6 +7,7 @@
     "license": "AGPL-3",
     "depends": ["sale_commission"],
     "website": "https://github.com/OCA/commission",
+    "maintainers": ["odooNextev"],
     "data": [
         "security/ir.model.access.csv",
         "views/sale_commission_view.xml",
