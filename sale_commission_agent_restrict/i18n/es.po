@@ -6,76 +6,80 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-12-13 11:29+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_commission_agent_restrict
 #: model:ir.module.category,name:sale_commission_agent_restrict.module_category_sale_commission
 msgid "Agent Access"
-msgstr ""
+msgstr "Acceso Agente"
 
 #. module: sale_commission_agent_restrict
 #: code:addons/sale_commission_agent_restrict/models/res_partner.py:0
 #, python-format
 msgid "Agents are not allowed to change Contacts' payment terms"
 msgstr ""
+"Los agentes no están autorizados a modificar los términos de pago de los "
+"Contactos"
 
 #. module: sale_commission_agent_restrict
 #: code:addons/sale_commission_agent_restrict/models/res_partner.py:0
 #, python-format
 msgid "Agents are not allowed to change the agents assigned to a Contact"
-msgstr ""
+msgstr "Los Agentes no pueden cambiar los agentes asignados a un Contacto"
 
 #. module: sale_commission_agent_restrict
 #: model:ir.model,name:sale_commission_agent_restrict.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: sale_commission_agent_restrict
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_users__display_name
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: sale_commission_agent_restrict
 #: model:res.groups,name:sale_commission_agent_restrict.group_agent_own_commissions
 msgid "Display only own commission data"
-msgstr ""
+msgstr "Mostrar sólo los datos de comisiones propias"
 
 #. module: sale_commission_agent_restrict
 #: model:res.groups,name:sale_commission_agent_restrict.group_agent_own_customers
 msgid "Display only own commission data and customers"
-msgstr ""
+msgstr "Mostrar sólo los datos de comisiones y clientes propios"
 
 #. module: sale_commission_agent_restrict
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_partner__id
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_users__id
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_commission_agent_restrict
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_partner____last_update
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_users____last_update
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: sale_commission_agent_restrict
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__current_agent_total
 msgid "My Commission"
-msgstr ""
+msgstr "Mi Comisión"
 
 #. module: sale_commission_agent_restrict
 #: model:ir.model,name:sale_commission_agent_restrict.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Orden de Venta"
 
 #. module: sale_commission_agent_restrict
 #: code:addons/sale_commission_agent_restrict/models/res_users.py:0
@@ -84,8 +88,11 @@ msgid ""
 "This user is not associated to any agent. Please mark corresponding to this "
 "user partner as agent to be able to assign agent related group to him."
 msgstr ""
+"Este usuario no está asociado a ningún agente. Por favor, marque el socio "
+"correspondiente a este usuario como agente para poder asignarle un grupo "
+"relacionado con agentes."
 
 #. module: sale_commission_agent_restrict
 #: model:ir.model,name:sale_commission_agent_restrict.model_res_users
 msgid "Users"
-msgstr ""
+msgstr "Usuarios"
