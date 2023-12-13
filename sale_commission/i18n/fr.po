@@ -237,7 +237,6 @@ msgstr ""
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent__amount
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_line_mixin__amount
-#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__settled_amount
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__amount
 msgid "Commission Amount"
 msgstr "Montant de la commission"
@@ -846,6 +845,11 @@ msgstr "Etablir les commissionnements"
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 msgid "Settled"
 msgstr "Commissionné"
+
+#. module: sale_commission
+#: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__settled_amount
+msgid "Settled Amount"
+msgstr ""
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_partner_form_agent
