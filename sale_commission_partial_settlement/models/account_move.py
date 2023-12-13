@@ -36,7 +36,9 @@ class AccountInvoiceLineAgent(models.Model):
             ) in line.invoice_id._get_reconciled_invoices_partials():
                 if partial.partial_commission_settled:
                     continue
-                elif date_payment_to and date_payment_to < counterpart_line.date:
+                elif partial._skip_future_partial_payments(
+                    date_payment_to, counterpart_line.date
+                ):
                     break
                 if partial.id in partial_payment_remaining:
                     payment_amount = partial_payment_remaining[partial.id][
