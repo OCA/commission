@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-22 08:15+0000\n"
-"PO-Revision-Date: 2023-12-06 18:36+0000\n"
+"PO-Revision-Date: 2023-12-13 14:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -505,7 +505,7 @@ msgstr "Riga Fattura"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report_invoice_state
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_invoice_state
 msgid "Invoice Status"
-msgstr "Stato Fattura"
+msgstr "Stato fattura"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent_invoice_date
