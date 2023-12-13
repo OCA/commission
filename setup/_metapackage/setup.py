@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo14-addon-sale_commission_formula',
         'odoo14-addon-sale_commission_geo_assign',
         'odoo14-addon-sale_commission_geo_assign_product_domain',
+        'odoo14-addon-sale_commission_partial_settlement',
         'odoo14-addon-sale_commission_pricelist',
         'odoo14-addon-sale_commission_product_criteria',
         'odoo14-addon-sale_commission_product_criteria_discount',
