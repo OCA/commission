@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 02:37+0000\n"
-"PO-Revision-Date: 2023-12-13 14:35+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-12-14 11:36+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-commission-8-0/"
 "language/it/)\n"
 "Language: it\n"
@@ -564,7 +564,7 @@ msgstr "Liquidazione provvigioni"
 #: field:account.invoice.line.agent,settled:0
 #: selection:sale.commission.settlement,state:0
 msgid "Settled"
-msgstr "Provvigionato"
+msgstr "Regolata"
 
 #. module: sale_commission
 #: view:res.partner:sale_commission.view_partner_form_agent
