@@ -372,11 +372,6 @@ msgid "General information"
 msgstr "Všeobecné informácie"
 
 #. module: commission
-#: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__gross_amount
-msgid "Gross Amount"
-msgstr "Hrubá suma"
-
-#. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_search
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_search
 msgid "Group By"
@@ -475,6 +470,11 @@ msgid "Manual"
 msgstr "Ručne"
 
 #. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__net_amount
+msgid "Margin (Amount - Cost)"
+msgstr ""
+
+#. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__message_has_error
 msgid "Message Delivery error"
 msgstr ""
@@ -513,11 +513,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__name
 msgid "Name"
 msgstr "Názov"
-
-#. module: commission
-#: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__net_amount
-msgid "Net Amount"
-msgstr "Čistá suma"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_date_deadline
@@ -601,6 +596,11 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__gross_amount
+msgid "Sale/Invoice Amount"
+msgstr ""
+
+#. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_commission_mixin_agent_only
 msgid "Save"
 msgstr "Uložiť"
@@ -611,9 +611,29 @@ msgid "Sections"
 msgstr "Sekcie"
 
 #. module: commission
+#: model:ir.model.fields,help:commission.field_commission__amount_base_type
+msgid ""
+"Select the base amount for computing the percentage:\n"
+"* 'Sale/Invoice Amount': percentage is computed from the amount put on sales "
+"order/invoice.\n"
+"* 'Margin (Amount - Cost)': percentage is computed from the profit only, "
+"taken the cost from the product."
+msgstr ""
+
+#. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid "Select the date up to which you want to make the settlements:"
 msgstr "Vyberte dátum, do ktorého chcete zúčtovať provízie:"
+
+#. module: commission
+#: model:ir.model.fields,help:commission.field_commission__commission_type
+msgid ""
+"Select the percentage type of the commission:\n"
+"* 'Fixed percentage': all commissions are computed with a fixed percentage. "
+"You can fill the percentage in the field \"Fixed percentage\".\n"
+"* 'By sections': percentage varies depending amount intervals. You can fill "
+"intervals and percentages in the section \"Rate definition\"."
+msgstr ""
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__semi
@@ -829,6 +849,12 @@ msgstr "Môžete pridať len jedného zástupcu."
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid "or"
 msgstr "alebo"
+
+#~ msgid "Gross Amount"
+#~ msgstr "Hrubá suma"
+
+#~ msgid "Net Amount"
+#~ msgstr "Čistá suma"
 
 #~ msgid "<strong>Agent:</strong>"
 #~ msgstr "<strong>Zástupca:</strong>"
