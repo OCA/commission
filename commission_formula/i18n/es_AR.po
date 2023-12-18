@@ -96,6 +96,16 @@ msgid "Sale Oder Line common fields"
 msgstr "Campos comunes de la Línea de Orden de Venta"
 
 #. module: commission_formula
+#: model:ir.model.fields,help:commission_formula.field_commission__commission_type
+msgid ""
+"Select the percentage type of the commission:\n"
+"* 'Fixed percentage': all commissions are computed with a fixed percentage. "
+"You can fill the percentage in the field \"Fixed percentage\".\n"
+"* 'By sections': percentage varies depending amount intervals. You can fill "
+"intervals and percentages in the section \"Rate definition\"."
+msgstr ""
+
+#. module: commission_formula
 #: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
 msgid "Subtotal"
 msgstr "Subtotal"
