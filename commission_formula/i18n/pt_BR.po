@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-12-14 15:14+0000\n"
 "PO-Revision-Date: 2023-10-30 00:46+0000\n"
 "Last-Translator: Adriano Prado <adrianojprado@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
-"23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -97,6 +97,16 @@ msgstr "Quantidade"
 #: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
 msgid "Sale Oder Line common fields"
 msgstr "Campos comuns da Linha Order de Venda"
+
+#. module: commission_formula
+#: model:ir.model.fields,help:commission_formula.field_commission__commission_type
+msgid ""
+"Select the percentage type of the commission:\n"
+"* 'Fixed percentage': all commissions are computed with a fixed percentage. "
+"You can fill the percentage in the field \"Fixed percentage\".\n"
+"* 'By sections': percentage varies depending amount intervals. You can fill "
+"intervals and percentages in the section \"Rate definition\"."
+msgstr ""
 
 #. module: commission_formula
 #: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
