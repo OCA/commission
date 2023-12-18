@@ -420,6 +420,14 @@ msgid "Sales Invoices"
 msgstr "販売請求書"
 
 #. module: account_commission
+#: model:ir.model.fields,help:account_commission.field_commission__invoice_state
+msgid ""
+"Select the invoice status for settling the commissions:\n"
+"* 'Invoice Based': Commissions are settled when the invoice is issued.\n"
+"* 'Payment Based': Commissions are settled when the invoice is paid."
+msgstr ""
+
+#. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__settled
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__settled
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
