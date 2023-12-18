@@ -39,15 +39,16 @@ msgstr "1 representante comissionado"
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid ""
 "<span>\n"
-"                        No automatic settlements can be made. Install any extra\n"
+"                        No automatic settlements can be made. Install any "
+"extra\n"
 "                        commission module for having this feature enabled.\n"
 "                    </span>"
 msgstr ""
 "<span>\n"
 "                         Nenhuma liquidação automática pode ser feita. "
 "Instale qualquer extra\n"
-"                         módulo de comissão para ter esse recurso habilitado."
-"\n"
+"                         módulo de comissão para ter esse recurso "
+"habilitado.\n"
 "                     </span>"
 
 #. module: commission
@@ -382,11 +383,6 @@ msgid "General information"
 msgstr "Informações Gerais"
 
 #. module: commission
-#: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__gross_amount
-msgid "Gross Amount"
-msgstr "Valor Bruto"
-
-#. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_search
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_search
 msgid "Group By"
@@ -484,6 +480,11 @@ msgid "Manual"
 msgstr "Manual"
 
 #. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__net_amount
+msgid "Margin (Amount - Cost)"
+msgstr ""
+
+#. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__message_has_error
 msgid "Message Delivery error"
 msgstr "Erro de entrega de Mensagem"
@@ -495,8 +496,7 @@ msgstr "Mensagens"
 
 #. module: commission
 #: model:ir.model,name:commission.model_commission_mixin
-msgid ""
-"Mixin model for applying to any object that wants to handle commissions"
+msgid "Mixin model for applying to any object that wants to handle commissions"
 msgstr ""
 "Modelo Mixin para aplicar a qualquer objeto que queira lidar com comissões"
 
@@ -524,11 +524,6 @@ msgstr "Prazo da minha Atividade"
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__name
 msgid "Name"
 msgstr "Nome"
-
-#. module: commission
-#: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__net_amount
-msgid "Net Amount"
-msgstr "Valor Líquido"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_date_deadline
@@ -604,6 +599,11 @@ msgid "Responsible User"
 msgstr "Usuário Responsável"
 
 #. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__gross_amount
+msgid "Sale/Invoice Amount"
+msgstr ""
+
+#. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_commission_mixin_agent_only
 msgid "Save"
 msgstr "Salvar"
@@ -614,9 +614,29 @@ msgid "Sections"
 msgstr "Seções"
 
 #. module: commission
+#: model:ir.model.fields,help:commission.field_commission__amount_base_type
+msgid ""
+"Select the base amount for computing the percentage:\n"
+"* 'Sale/Invoice Amount': percentage is computed from the amount put on sales "
+"order/invoice.\n"
+"* 'Margin (Amount - Cost)': percentage is computed from the profit only, "
+"taken the cost from the product."
+msgstr ""
+
+#. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid "Select the date up to which you want to make the settlements:"
 msgstr "Selecione a data até a qual deseja efetuar as liquidações:"
+
+#. module: commission
+#: model:ir.model.fields,help:commission.field_commission__commission_type
+msgid ""
+"Select the percentage type of the commission:\n"
+"* 'Fixed percentage': all commissions are computed with a fixed percentage. "
+"You can fill the percentage in the field \"Fixed percentage\".\n"
+"* 'By sections': percentage varies depending amount intervals. You can fill "
+"intervals and percentages in the section \"Rate definition\"."
+msgstr ""
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__semi
@@ -747,8 +767,8 @@ msgstr "O limite inferior não pode ser maior que o superior."
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__settlement_type
 msgid ""
-"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase"
-" order'..."
+"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase "
+"order'..."
 msgstr ""
 "A origem da liquidação, por ex. 'Fatura de venda', 'Pedido de venda', 'Ordem "
 "de compra'..."
@@ -829,3 +849,9 @@ msgstr "Você só pode adicionar uma vez cada representante."
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid "or"
 msgstr "ou"
+
+#~ msgid "Gross Amount"
+#~ msgstr "Valor Bruto"
+
+#~ msgid "Net Amount"
+#~ msgstr "Valor Líquido"
