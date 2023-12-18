@@ -231,6 +231,17 @@ msgid "Related only to agents"
 msgstr ""
 
 #. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,help:sale_commission_product_criteria_domain.field_commission_item__sale_commission_type
+#: model:ir.model.fields,help:sale_commission_product_criteria_domain.field_res_partner__commission_type
+#: model:ir.model.fields,help:sale_commission_product_criteria_domain.field_res_users__commission_type
+#: model:ir.model.fields,help:sale_commission_product_criteria_domain.field_sale_commission__commission_type
+msgid ""
+"Select the percentage type of the commission:\n"
+"* 'Fixed percentage': all commissions are computed with a fixed percentage. You can fill the percentage in the field \"Fixed percentage\".\n"
+"* 'By sections': percentage varies depending amount intervals. You can fill intervals and percentages in the section \"Rate definition\"."
+msgstr ""
+
+#. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item__sale_commission_type
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__commission_type
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_users__commission_type
