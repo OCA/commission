@@ -13,6 +13,11 @@ class SaleCommission(models.Model):
         string="Type",
         required=True,
         default="fixed",
+        help="Select the percentage type of the commission:\n"
+        "* 'Fixed percentage': all commissions are computed with a fixed percentage. "
+        'You can fill the percentage in the field "Fixed percentage".\n'
+        "* 'By sections': percentage varies depending amount intervals. "
+        'You can fill intervals and percentages in the section "Rate definition".',
     )
     fix_qty = fields.Float(string="Fixed percentage")
     section_ids = fields.One2many(
@@ -26,12 +31,23 @@ class SaleCommission(models.Model):
         string="Invoice Status",
         required=True,
         default="open",
+        help="Select the invoice status for settling the commissions:\n"
+        "* 'Invoice Based': Commissions are settled when the invoice is issued.\n"
+        "* 'Payment Based': Commissions are settled when the invoice is paid.",
     )
     amount_base_type = fields.Selection(
-        selection=[("gross_amount", "Gross Amount"), ("net_amount", "Net Amount")],
+        selection=[
+            ("gross_amount", "Sale/Invoice Amount"),
+            ("net_amount", "Margin (Amount - Cost)"),
+        ],
         string="Base",
         required=True,
         default="gross_amount",
+        help="Select the base amount for computing the percentage:\n"
+        "* 'Sale/Invoice Amount': percentage is computed from "
+        "the amount put on sales order/invoice.\n"
+        "* 'Margin (Amount - Cost)': percentage is computed from "
+        "the profit only, taken the cost from the product.",
     )
 
     def calculate_section(self, base):

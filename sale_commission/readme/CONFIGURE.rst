@@ -12,9 +12,9 @@ For adding commissions:
 
 #. Select the base amount for computing the percentage:
 
-   * **Gross Amount**: percentage is computed from the amount put on
+   * **Sale/Invoice Amount**: percentage is computed from the amount put on
      sales order/invoice.
-   * **Net Amount**: percentage is computed from the profit only, taken the
+   * **Margin (Amount - Cost)**: percentage is computed from the profit only, taken the
      cost from the product.
 
 #. Select the invoice status for settling the commissions:
