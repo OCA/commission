@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-22 08:15+0000\n"
-"PO-Revision-Date: 2023-12-14 11:35+0000\n"
+"PO-Revision-Date: 2023-12-19 11:33+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -659,7 +659,7 @@ msgstr "Prepara regolazioni"
 #. module: sale_commission
 #: model:ir.model.fields.selection,name:sale_commission.selection__sale_commission__amount_base_type__net_amount
 msgid "Margin (Amount - Cost)"
-msgstr ""
+msgstr "Margine (Importo - Costo)"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_mixin
@@ -800,7 +800,7 @@ msgstr "Provvigione di vendita"
 #. module: sale_commission
 #: model:ir.model.fields.selection,name:sale_commission.selection__sale_commission__amount_base_type__gross_amount
 msgid "Sale/Invoice Amount"
-msgstr ""
+msgstr "Importo vendita/fattura"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
@@ -836,6 +836,11 @@ msgid ""
 "* 'Margin (Amount - Cost)': percentage is computed from the profit only, "
 "taken the cost from the product."
 msgstr ""
+"Seleziona l'importo di base su cui calcolare la percentuale:\n"
+"* 'Importo Vendita/Fattura': la percentuale è calcolata dall'importo "
+"inserito nell'ordine di vendita/fattura.\n"
+"* 'Margin (Amount - Cost)': la percentuale è calcolata solo in base al "
+"profitto, sottraendo all'importo il costo del prodotto."
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settled_wizard
@@ -849,6 +854,11 @@ msgid ""
 "* 'Invoice Based': Commissions are settled when the invoice is issued.\n"
 "* 'Payment Based': Commissions are settled when the invoice is paid."
 msgstr ""
+"Seleziona la condizione per regolare le provvigioni:\n"
+"* 'Basata su fattura': le provvigioni vengono regolate quando la fattura è "
+"emessa.\n"
+"* 'Basata su pagamento': le provvigioni vengono regolate quando l'intera "
+"fattura è pagata."
 
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_sale_commission__commission_type
@@ -859,6 +869,12 @@ msgid ""
 "* 'By sections': percentage varies depending amount intervals. You can fill "
 "intervals and percentages in the section \"Rate definition\"."
 msgstr ""
+"Seleziona il tipo di percentuale della provvigione:\n"
+"* 'Percentuale fissa': tutte le provvigioni sono calcolate con una "
+"percentuale fissa. Puoi impostare la percentuale nel campo \"Percentuale "
+"fissa\".\n"
+"* 'Per sezioni': la percentuale varia per intervalli dell'importo. Puoi "
+"impostare gli intervalli nella sezione \"Definizione provvigioni\"."
 
 #. module: sale_commission
 #: model:ir.model.fields.selection,name:sale_commission.selection__res_partner__settlement__semi
@@ -883,7 +899,7 @@ msgstr "Regolata"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__settled_amount
 msgid "Settled Amount"
-msgstr ""
+msgstr "Importo regolato"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_partner_form_agent
