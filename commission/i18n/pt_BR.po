@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-30 00:46+0000\n"
+"PO-Revision-Date: 2023-12-28 22:35+0000\n"
 "Last-Translator: Adriano Prado <adrianojprado@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
@@ -482,7 +482,7 @@ msgstr "Manual"
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__net_amount
 msgid "Margin (Amount - Cost)"
-msgstr ""
+msgstr "Margem (Valor - Custo)"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__message_has_error
@@ -601,7 +601,7 @@ msgstr "Usu??rio Respons??vel"
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__gross_amount
 msgid "Sale/Invoice Amount"
-msgstr ""
+msgstr "Valor Venda/Fatura"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_commission_mixin_agent_only
@@ -622,6 +622,11 @@ msgid ""
 "* 'Margin (Amount - Cost)': percentage is computed from the profit only, "
 "taken the cost from the product."
 msgstr ""
+"Selecione o valor base para calcular a porcentagem:\n"
+"* 'Valor Venda/Fatura': o percentual ?? calculado a partir do valor colocado "
+"no pedido/fatura de venda.\n"
+"* 'Margem (Valor - Custo)': o percentual ?? calculado apenas a partir do "
+"lucro, retirado o custo do produto."
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
@@ -637,6 +642,11 @@ msgid ""
 "* 'By sections': percentage varies depending amount intervals. You can fill "
 "intervals and percentages in the section \"Rate definition\"."
 msgstr ""
+"Selecione o tipo de porcentagem da comiss??o:\n"
+"* 'Percentagem fixa': todas as comiss??es s??o calculadas com uma percentagem "
+"fixa. Voc?? pode preencher o percentual no campo ???Porcentagem fixa???.\n"
+"* 'Por se????es': o percentual varia dependendo dos intervalos de valores. "
+"Voc?? pode preencher intervalos e porcentagens na se????o ???Defini????o de taxas???."
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__semi
