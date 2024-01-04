@@ -1058,7 +1058,7 @@ msgid "You can't delete invoiced settlements."
 msgstr "Nemôžete zmazať fakturované zúčtovania."
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/account_invoice.py:198
+#: code:addons/sale_commission/models/account_invoice.py:199
 #, python-format
 msgid "You can't modify a settled line"
 msgstr "Nemôžete zmeniť zúčtovanú položku"
