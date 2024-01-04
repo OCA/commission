@@ -101,16 +101,17 @@ class AccountInvoiceLine(models.Model):
         for record in self:
             record.any_settled = any(record.mapped('agents.settled'))
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         """Add agents for records created from automations instead of UI."""
         # We use this form as this is the way it's returned when no real vals
-        agents_vals = vals.get('agents', [(6, 0, [])])
-        invoice_id = vals.get('invoice_id', False)
-        if (agents_vals and agents_vals[0][0] == 6 and not
-                agents_vals[0][2] and invoice_id):
-            vals['agents'] = self._prepare_agents_vals(vals=vals)
-        return super().create(vals)
+        for vals in vals_list:
+            agents_vals = vals.get('agents', [(6, 0, [])])
+            invoice_id = vals.get('invoice_id', False)
+            if (agents_vals and agents_vals[0][0] == 6 and not
+                    agents_vals[0][2] and invoice_id):
+                vals['agents'] = self._prepare_agents_vals(vals=vals)
+        return super().create(vals_list)
 
     def _prepare_agents_vals(self, vals=None):
         res = super()._prepare_agents_vals(vals=vals)
