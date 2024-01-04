@@ -6,15 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-23 16:37+0000\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2024-01-04 13:52+0100\n"
 "Last-Translator: luis-ron <luis.ron@sygel.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__quantity
@@ -62,6 +63,7 @@ msgstr "Agentes/Comisiones relacionadas a la línea de factura."
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__amount
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "Amount"
 msgstr "Importe"
 
@@ -168,6 +170,7 @@ msgid "Currency"
 msgstr "Moneda"
 
 #. module: account_commission
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "Customer"
 msgstr "Cliente"
@@ -176,6 +179,11 @@ msgstr "Cliente"
 #: model:ir.model.fields,field_description:account_commission.field_commission_make_invoice__date
 msgid "Date"
 msgstr "Fecha"
+
+#. module: account_commission
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
+msgid "Description"
+msgstr "Descripción"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__display_name
@@ -228,6 +236,7 @@ msgstr "ID"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__invoice_id
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "Invoice"
 msgstr "Factura"
 
@@ -276,11 +285,6 @@ msgstr "Fecha de factura"
 #: model:ir.model.fields.selection,name:account_commission.selection__commission_settlement__state__except_invoice
 msgid "Invoice exception"
 msgstr "Excepción de factura"
-
-#. module: account_commission
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
-msgid "Invoice line"
-msgstr "Línea de factura"
 
 #. module: account_commission
 #: model:ir.model.fields.selection,name:account_commission.selection__commission_settlement__state__invoiced
