@@ -61,6 +61,7 @@ msgstr ""
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__amount
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "Amount"
 msgstr ""
 
@@ -174,6 +175,7 @@ msgid "Currency"
 msgstr ""
 
 #. module: account_commission
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "Customer"
 msgstr ""
@@ -181,6 +183,11 @@ msgstr ""
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_commission_make_invoice__date
 msgid "Date"
+msgstr ""
+
+#. module: account_commission
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
+msgid "Description"
 msgstr ""
 
 #. module: account_commission
@@ -239,6 +246,7 @@ msgstr ""
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__invoice_id
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "Invoice"
 msgstr ""
 
@@ -286,11 +294,6 @@ msgstr ""
 #. module: account_commission
 #: model:ir.model.fields.selection,name:account_commission.selection__commission_settlement__state__except_invoice
 msgid "Invoice exception"
-msgstr ""
-
-#. module: account_commission
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
-msgid "Invoice line"
 msgstr ""
 
 #. module: account_commission

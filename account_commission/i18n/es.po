@@ -445,8 +445,8 @@ msgid ""
 "* 'Payment Based': Commissions are settled when the invoice is paid."
 msgstr ""
 "Seleccione el estado de la factura para liquidar las comisiones:\n"
-"* 'Basado en factura': Las comisiones se liquidan cuando se emite la factura."
-"\n"
+"* 'Basado en factura': Las comisiones se liquidan cuando se emite la "
+"factura.\n"
 "* Pago\": Las comisiones se liquidan cuando se paga la factura."
 
 #. module: account_commission

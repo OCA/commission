@@ -62,6 +62,7 @@ msgstr "請求書明細に関連するエージェント/コミッション。"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__amount
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "Amount"
 msgstr "金額"
 
@@ -175,6 +176,7 @@ msgid "Currency"
 msgstr "通貨"
 
 #. module: account_commission
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "Customer"
 msgstr "顧客"
@@ -183,6 +185,11 @@ msgstr "顧客"
 #: model:ir.model.fields,field_description:account_commission.field_commission_make_invoice__date
 msgid "Date"
 msgstr "日付"
+
+#. module: account_commission
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
+msgid "Description"
+msgstr ""
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__display_name
@@ -240,6 +247,7 @@ msgstr "ID"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__invoice_id
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "Invoice"
 msgstr "請求書"
 
@@ -288,11 +296,6 @@ msgstr "請求日"
 #: model:ir.model.fields.selection,name:account_commission.selection__commission_settlement__state__except_invoice
 msgid "Invoice exception"
 msgstr "請求書例外"
-
-#. module: account_commission
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
-msgid "Invoice line"
-msgstr "請求書明細"
 
 #. module: account_commission
 #: model:ir.model.fields.selection,name:account_commission.selection__commission_settlement__state__invoiced
@@ -585,6 +588,9 @@ msgstr "コミッション請求分析"
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "invoices Commission Analysis"
 msgstr "コミッション請求分析"
+
+#~ msgid "Invoice line"
+#~ msgstr "請求書明細"
 
 #~ msgid "The move of this entry line."
 #~ msgstr "この明細の仕訳"
