@@ -33,7 +33,9 @@ class AccountMoveLine(models.Model):
             and x.sale_line_ids.is_downpayment
         )
         for record in down_payment_items:
-            agent_ids = record._prepare_agents_vals_down_payment()
+            agent_ids = record._prepare_agents_vals_down_payment(
+                record.move_id.partner_id
+            )
             record.update({"agent_ids": agent_ids})
         regular_items = self - down_payment_items
         if regular_items:
