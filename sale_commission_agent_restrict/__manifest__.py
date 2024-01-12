@@ -18,5 +18,8 @@
         "views/res_partner_views.xml",
         "views/sale_order_view.xml",
     ],
+    "demo": [
+        "demo/res_users_demo.xml",
+    ],
     "installable": True,
 }
