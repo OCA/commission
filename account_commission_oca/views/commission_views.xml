@@ -8,7 +8,7 @@
             <xpath expr="//group[@name='commision_params']" position="inside">
                 <field
                     name="invoice_state"
-                    attrs="{'required': [('settlement_type', '=', 'sale_invoice')]}"
+                    required="(settlement_type == 'sale_invoice')"
                 />
             </xpath>
         </field>

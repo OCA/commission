@@ -2,7 +2,6 @@
 # Copyright 2014-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from lxml import etree
 
 from odoo import _, api, exceptions, fields, models
 
@@ -87,35 +86,9 @@ class AccountMove(models.Model):
     def recompute_lines_agents(self):
         self.mapped("invoice_line_ids").recompute_agents()
 
-    @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
-        """Inject in this method the needed context for not removing other
-        possible context values.
-        """
-        res = super(AccountMove, self).fields_view_get(
-            view_id=view_id,
-            view_type=view_type,
-            toolbar=toolbar,
-            submenu=submenu,
-        )
-        if view_type == "form":
-            invoice_xml = etree.XML(res["arch"])
-            invoice_line_fields = invoice_xml.xpath("//field[@name='invoice_line_ids']")
-            if invoice_line_fields:
-                invoice_line_field = invoice_line_fields[0]
-                context = invoice_line_field.attrib.get("context", "{}").replace(
-                    "{",
-                    "{'partner_id': partner_id, ",
-                    1,
-                )
-                invoice_line_field.attrib["context"] = context
-                res["arch"] = etree.tostring(invoice_xml)
-        return res
-
     def unlink(self):
-        """Put 'invoiced' settlements associated to the invoices back in settled state."""
+        """Put 'invoiced' settlements associated to the invoices back in
+        settled state."""
         self.invoice_line_ids.settlement_id.filtered(
             lambda s: s.state == "invoiced"
         ).write({"state": "settled"})

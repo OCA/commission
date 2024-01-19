@@ -21,7 +21,7 @@
             <button name="action_cancel" position="before">
                 <button
                     string="Make invoice"
-                    attrs="{'invisible': ['|', ('state', '!=', 'settled'), ('agent_type', '!=', 'agent')]}"
+                    invisible="(state != 'settled') or (agent_type != 'agent')"
                     class="oe_highlight"
                     type="object"
                     name="action_invoice"
@@ -29,7 +29,7 @@
                 />
                 <button
                     string="Reset to draft"
-                    attrs="{'invisible': [('state', '!=', 'except_invoice')]}"
+                    invisible="(state != 'except_invoice')"
                     type="object"
                     name="action_draft"
                     groups="account.group_account_invoice"
@@ -38,7 +38,7 @@
             <field name="settlement_type" position="after">
                 <field
                     name="invoice_id"
-                    attrs="{'invisible': [('state', '!=', 'invoiced')]}"
+                    invisible="(state != 'invoiced')"
                     groups="account.group_account_invoice"
                 />
             </field>
@@ -48,7 +48,7 @@
             >
                 <field
                     name="invoice_line_id"
-                    attrs="{'column_invisible': [('parent.settlement_type', '!=', 'sale_invoice')]}"
+                    column_invisible="(parent.settlement_type != 'sale_invoice')"
                     groups="account.group_account_invoice"
                 />
             </xpath>

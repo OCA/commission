@@ -62,7 +62,6 @@ msgstr "Representantes/Comiss??es relacionadas com a linha da fatura."
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__amount
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "Amount"
 msgstr "Total"
 
@@ -176,7 +175,6 @@ msgid "Currency"
 msgstr "Moeda"
 
 #. module: account_commission
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "Customer"
 msgstr "Cliente"
@@ -185,11 +183,6 @@ msgstr "Cliente"
 #: model:ir.model.fields,field_description:account_commission.field_commission_make_invoice__date
 msgid "Date"
 msgstr "Data"
-
-#. module: account_commission
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
-msgid "Description"
-msgstr ""
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__display_name
@@ -247,7 +240,6 @@ msgstr "ID"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__invoice_id
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "Invoice"
 msgstr "Fatura"
 
@@ -298,6 +290,11 @@ msgid "Invoice exception"
 msgstr "Exce????o Fatura"
 
 #. module: account_commission
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
+msgid "Invoice line"
+msgstr "Linha Fatura"
+
+#. module: account_commission
 #: model:ir.model.fields.selection,name:account_commission.selection__commission_settlement__state__invoiced
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "Invoiced"
@@ -323,13 +320,6 @@ msgstr "Entrada de Di??rio"
 #: model:ir.model,name:account_commission.model_account_move_line
 msgid "Journal Item"
 msgstr "Item Di??rio"
-
-#. module: account_commission
-#: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent____last_update
-#: model:ir.model.fields,field_description:account_commission.field_commission_make_invoice____last_update
-#: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report____last_update
-msgid "Last Modified on"
-msgstr "??ltima Modifica????o em"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__write_uid
@@ -518,8 +508,8 @@ msgid ""
 "The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase "
 "order'..."
 msgstr ""
-"A origem da liquida????o, por ex. 'Fatura de venda', 'Pedido de venda', 'Ordem "
-"de compra'..."
+"A origem da liquida????o, por ex. 'Fatura de venda', 'Pedido de venda', "
+"'Ordem de compra'..."
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
@@ -534,11 +524,11 @@ msgid ""
 "product category, aget, etc. Use this report to perform analysis on invoice "
 "lines agents not beeing settled yet."
 msgstr ""
-"Este relat??rio realiza an??lises das suas comiss??es adicionadas nas linhas da "
-"fatura. Voc?? pode verificar o valor e as linhas que ser??o liquidadas por "
-"data, produto, categoria do produto, idade, etc. Utilize este relat??rio para "
-"realizar an??lises nas linhas da fatura dos representantes que ainda n??o "
-"foram liquidadas."
+"Este relat??rio realiza an??lises das suas comiss??es adicionadas nas linhas "
+"da fatura. Voc?? pode verificar o valor e as linhas que ser??o liquidadas "
+"por data, produto, categoria do produto, idade, etc. Utilize este relat??rio "
+"para realizar an??lises nas linhas da fatura dos representantes que ainda n??"
+"o foram liquidadas."
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__price_unit
@@ -592,5 +582,5 @@ msgstr "an??lise de comiss??o da fatura"
 msgid "invoices Commission Analysis"
 msgstr "an??lise de comiss??o da fatura"
 
-#~ msgid "Invoice line"
-#~ msgstr "Linha Fatura"
+#~ msgid "Last Modified on"
+#~ msgstr "??ltima Modifica????o em"

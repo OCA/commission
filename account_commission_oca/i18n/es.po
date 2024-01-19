@@ -62,7 +62,6 @@ msgstr "Agentes/Comisiones relacionados con la l??nea de factura."
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__amount
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "Amount"
 msgstr "Importe"
 
@@ -176,7 +175,6 @@ msgid "Currency"
 msgstr "Divisa"
 
 #. module: account_commission
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "Customer"
 msgstr "Cliente"
@@ -185,11 +183,6 @@ msgstr "Cliente"
 #: model:ir.model.fields,field_description:account_commission.field_commission_make_invoice__date
 msgid "Date"
 msgstr "Fecha"
-
-#. module: account_commission
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
-msgid "Description"
-msgstr "Descripci??n"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__display_name
@@ -247,7 +240,6 @@ msgstr "ID (identificaci??n)"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__invoice_id
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "Invoice"
 msgstr "Factura"
 
@@ -298,6 +290,11 @@ msgid "Invoice exception"
 msgstr "Excepci??n de factura"
 
 #. module: account_commission
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
+msgid "Invoice line"
+msgstr ""
+
+#. module: account_commission
 #: model:ir.model.fields.selection,name:account_commission.selection__commission_settlement__state__invoiced
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "Invoiced"
@@ -323,13 +320,6 @@ msgstr "Entrada diaria"
 #: model:ir.model,name:account_commission.model_account_move_line
 msgid "Journal Item"
 msgstr "Art??culo diario"
-
-#. module: account_commission
-#: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent____last_update
-#: model:ir.model.fields,field_description:account_commission.field_commission_make_invoice____last_update
-#: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report____last_update
-msgid "Last Modified on"
-msgstr "??ltima Modificaci??n el"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__write_uid
@@ -540,8 +530,8 @@ msgid ""
 msgstr ""
 "Este informe realiza un an??lisis de sus comisiones a??adidas en l??neas de "
 "factura. Puede comprobar el importe y las l??neas que se liquidar??n por "
-"fecha, producto, categor??a de producto, edad, etc. Utilice este informe para "
-"analizar las l??neas de factura que a??n no han sido liquidadas."
+"fecha, producto, categor??a de producto, edad, etc. Utilice este informe "
+"para analizar las l??neas de factura que a??n no han sido liquidadas."
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__price_unit
@@ -594,6 +584,12 @@ msgstr "An??lisis de comisi??n facturada"
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "invoices Commission Analysis"
 msgstr "An??lisis de Comisiones facturadas"
+
+#~ msgid "Description"
+#~ msgstr "Descripci??n"
+
+#~ msgid "Last Modified on"
+#~ msgstr "??ltima Modificaci??n el"
 
 #~ msgid "_Cancel"
 #~ msgstr "_Cancelar"

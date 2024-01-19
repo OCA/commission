@@ -62,7 +62,6 @@ msgstr "Agentes/Comiss??es relacionados com a linha da fatura."
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__amount
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "Amount"
 msgstr "Montante"
 
@@ -176,7 +175,6 @@ msgid "Currency"
 msgstr "Moeda"
 
 #. module: account_commission
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "Customer"
 msgstr "Cliente"
@@ -185,11 +183,6 @@ msgstr "Cliente"
 #: model:ir.model.fields,field_description:account_commission.field_commission_make_invoice__date
 msgid "Date"
 msgstr "Data"
-
-#. module: account_commission
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
-msgid "Description"
-msgstr ""
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__display_name
@@ -247,7 +240,6 @@ msgstr "ID"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__invoice_id
-#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "Invoice"
 msgstr "Fatura"
 
@@ -298,6 +290,11 @@ msgid "Invoice exception"
 msgstr "Exce????o de Fatura"
 
 #. module: account_commission
+#: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
+msgid "Invoice line"
+msgstr "Linha de fatura"
+
+#. module: account_commission
 #: model:ir.model.fields.selection,name:account_commission.selection__commission_settlement__state__invoiced
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "Invoiced"
@@ -323,13 +320,6 @@ msgstr "Lan??amento de Di??rio"
 #: model:ir.model,name:account_commission.model_account_move_line
 msgid "Journal Item"
 msgstr "Item do Di??rio"
-
-#. module: account_commission
-#: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent____last_update
-#: model:ir.model.fields,field_description:account_commission.field_commission_make_invoice____last_update
-#: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report____last_update
-msgid "Last Modified on"
-msgstr "??ltima Modifica????o em"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__write_uid
@@ -592,5 +582,5 @@ msgstr "An??lise de Comiss??es de fatura"
 msgid "invoices Commission Analysis"
 msgstr "An??lise de Comiss??es de Faturas"
 
-#~ msgid "Invoice line"
-#~ msgstr "Linha de fatura"
+#~ msgid "Last Modified on"
+#~ msgstr "??ltima Modifica????o em"

@@ -8,6 +8,7 @@
 - Nicola Malcontenti \<<nicola.malcontenti@agilebg.com>\>
 - Aitor Bouzas \<<aitor.bouzas@adaptivecity.com>\>
 - Alexei Rivera \<<arivera@archeti.com>\>
+- Mina Samir \<<minaw349@outlook.com>\>
 - [Tecnativa](https://www.tecnativa.com):
   - Pedro M. Baeza
   - Manuel Calero
@@ -16,3 +17,5 @@
   - Yoshi Tashiro
 - [Studio73](https://www.studio73.es):
   - Ethan Hildick
+- [Sygel](https://www.sygel.es):
+  - Alberto Martínez

@@ -15,7 +15,7 @@
                     widget="monetary"
                     options="{'currency_field': 'currency_id'}"
                 />
-                <field name="currency_id" invisible="1" />
+                <field name="currency_id" column_invisible="1" />
             </tree>
         </field>
     </record>
@@ -28,15 +28,12 @@
                 <group
                     string="Commissions"
                     name="group_commission"
-                    attrs="{'invisible': [('agent_ids', '=', [])], 'readonly': [('any_settled', '=', True)]}"
+                    invisible="not agent_ids"
+                    readonly="any_settled"
                 >
                     <field name="any_settled" invisible="1" />
                     <field name="commission_free" force_save="1" />
-                    <field
-                        name="agent_ids"
-                        attrs="{'readonly': [('commission_free', '=', True)]}"
-                        force_save="1"
-                    />
+                    <field name="agent_ids" readonly="commission_free" force_save="1" />
                 </group>
             </xpath>
         </field>
@@ -52,7 +49,7 @@
                     type="object"
                     class="oe_stat_button"
                     icon="fa-pencil-square-o"
-                    attrs="{'invisible': [('settlement_count', '=', 0)]}"
+                    invisible="(settlement_count == 0)"
                 >
                     <field
                         name="settlement_count"
@@ -65,28 +62,20 @@
                 expr="//field[@name='invoice_line_ids']/tree//field[@name='price_subtotal']"
                 position="after"
             >
-                <field name="settlement_id" invisible="1" />
-                <field name="commission_free" invisible="1" />
-                <field name="any_settled" invisible="1" />
+                <field name="settlement_id" column_invisible="1" />
+                <field name="commission_free" column_invisible="1" />
+                <field name="any_settled" column_invisible="1" />
                 <button
                     name="button_edit_agents"
                     title="Edit agents"
                     icon="fa-users"
-                    attrs="{'invisible': [
-                        '|',
-                        ('commission_free', '=', True),
-                        ('any_settled', '=', True),
-                    ],
-                    'column_invisible': [
-                        ('parent.move_type', 'not in', ['out_invoice', 'out_refund'])
-                    ]}"
+                    invisible="commission_free or any_settled"
+                    column_invisible="(parent.move_type not in ('out_invoice', 'out_refund'))"
                     type="object"
                 />
                 <field
                     name="commission_status"
-                    attrs="{'column_invisible': [
-                        ('parent.move_type', 'not in', ['out_invoice', 'out_refund'])
-                    ]}"
+                    column_invisible="(parent.move_type not in ('out_invoice', 'out_refund'))"
                 />
             </xpath>
             <xpath expr="//field[@name='invoice_line_ids']" position="after">
@@ -94,28 +83,22 @@
                     name="recompute_lines_agents"
                     type="object"
                     string="Regenerate agents"
-                    attrs="{'invisible': [
-                        '|',
-                        ('move_type', 'not in', ['out_invoice', 'out_refund']),
-                        ('state', '!=', 'draft')
-                    ]}"
+                    invisible="(move_type not in ['out_invoice', 'out_refund']) or (state != 'draft')"
                 />
             </xpath>
             <!-- Needed for fields in invoice lines to be saved -->
             <xpath expr="//field[@name='line_ids']/tree" position="inside">
-                <field name="settlement_id" invisible="1" />
-                <field name="commission_free" invisible="1" />
-                <field name="any_settled" invisible="1" />
-                <field name="commission_status" invisible="1" />
+                <field name="settlement_id" column_invisible="1" />
+                <field name="commission_free" column_invisible="1" />
+                <field name="any_settled" column_invisible="1" />
+                <field name="commission_status" column_invisible="1" />
             </xpath>
             <field name="tax_totals" position="after">
                 <field
                     name="commission_total"
                     widget="monetary"
                     options="{'currency_field': 'currency_id'}"
-                    attrs="{'invisible': [
-                        ('move_type', 'not in', ['out_invoice', 'out_refund'])
-                    ]}"
+                    invisible="(move_type not in ('out_invoice', 'out_refund'))"
                 />
             </field>
         </field>
@@ -132,9 +115,9 @@
                     class="oe_stat_button"
                     icon="fa-pencil-square-o"
                     string="Settlements"
-                    attrs="{'invisible': [('settlement_count', '=', 0)]}"
+                    invisible="(settlement_count == 0)"
                 />
-                <field name="settlement_count" invisible="1" />
+                <field name="settlement_count" column_invisible="1" />
             </field>
         </field>
     </record>
