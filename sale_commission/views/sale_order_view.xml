@@ -9,13 +9,13 @@
                 expr="//field[@name='order_line']/tree//field[@name='price_subtotal']"
                 position="after"
             >
-                <field name="commission_free" invisible="1" />
-                <field name="invoice_lines" invisible="1" />
+                <field name="commission_free" column_invisible="1" />
+                <field name="invoice_lines" column_invisible="1" />
                 <button
                     name="button_edit_agents"
                     title="Edit agents"
                     icon="fa-users"
-                    attrs="{'invisible': ['|', ('commission_free', '=', True), ('invoice_lines', '!=', [])]}"
+                    invisible="commission_free or invoice_lines"
                     type="object"
                 />
                 <field name="commission_status" optional="show" />
@@ -33,7 +33,7 @@
                         name="recompute_lines_agents"
                         type="object"
                         string="Regenerate agents"
-                        states="draft,sent"
+                        invisible="state not in ['draft', 'sent']"
                     />
                 </group>
             </xpath>
