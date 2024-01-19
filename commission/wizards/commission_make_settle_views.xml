@@ -8,7 +8,7 @@
                 <field name="can_settle" invisible="1" />
                 <div
                     class="alert alert-warning text-center"
-                    attrs="{'invisible': [('can_settle', '=', True)]}"
+                    invisible="(can_settle == True)"
                     role="alert"
                 >
                     <span>

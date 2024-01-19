@@ -17,7 +17,7 @@
                     options="{'currency_field': 'currency_id'}"
                 />
                 <field name="state" />
-                <field name="currency_id" invisible="1" />
+                <field name="currency_id" column_invisible="1" />
             </tree>
         </field>
     </record>
@@ -59,7 +59,7 @@
                 <header>
                     <button
                         string="Cancel"
-                        states="settled"
+                        invisible="state != 'settled'"
                         type="object"
                         name="action_cancel"
                     />
@@ -67,7 +67,8 @@
                 </header>
                 <sheet>
                     <field name="can_edit" invisible="1" />
-                    <group attrs="{'readonly': [('can_edit', '=', False)]}">
+
+                    <group readonly="not can_edit">
                         <group colspan="2">
                             <field name="agent_id" />
                         </group>
@@ -92,7 +93,7 @@
                         <field
                             name="line_ids"
                             nolabel="1"
-                            attrs="{'readonly': [('can_edit', '=', False)]}"
+                            readonly="not can_edit"
                             colspan="2"
                         >
                             <tree editable="top">
