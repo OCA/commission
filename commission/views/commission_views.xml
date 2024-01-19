@@ -22,7 +22,7 @@
                         name="web_ribbon"
                         title="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
+                        invisible="active"
                     />
                     <group string="General information">
                         <group>
@@ -39,14 +39,15 @@
                         <group colspan="2">
                             <field
                                 name="fix_qty"
-                                attrs="{'invisible': [('commission_type', '!=', 'fixed')], 'required': [('commission_type', '=', 'fixed')]}"
+                                invisible="(commission_type != 'fixed')"
+                                required="(commission_type == 'fixed')"
                             />
                         </group>
                         <field
                             name="section_ids"
                             colspan="4"
                             nolabel="1"
-                            attrs="{'invisible': [('commission_type', '!=', 'section')]}"
+                            invisible="(commission_type != 'section')"
                         >
                             <tree editable="bottom">
                                 <field name="amount_from" />
