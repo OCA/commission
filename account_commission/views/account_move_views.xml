@@ -28,13 +28,14 @@
                 <group
                     string="Commissions"
                     name="group_commission"
-                    attrs="{'invisible': [('agent_ids', '=', [])], 'readonly': [('any_settled', '=', True)]}"
+                    invisible="(agent_ids == [])"
+                    readonly="(any_settled == True)"
                 >
                     <field name="any_settled" invisible="1" />
                     <field name="commission_free" force_save="1" />
                     <field
                         name="agent_ids"
-                        attrs="{'readonly': [('commission_free', '=', True)]}"
+                        readonly="(commission_free == True)"
                         force_save="1"
                     />
                 </group>
@@ -52,7 +53,7 @@
                     type="object"
                     class="oe_stat_button"
                     icon="fa-pencil-square-o"
-                    attrs="{'invisible': [('settlement_count', '=', 0)]}"
+                    invisible="(settlement_count == 0)"
                 >
                     <field
                         name="settlement_count"
@@ -72,21 +73,13 @@
                     name="button_edit_agents"
                     title="Edit agents"
                     icon="fa-users"
-                    attrs="{'invisible': [
-                        '|',
-                        ('commission_free', '=', True),
-                        ('any_settled', '=', True),
-                    ],
-                    'column_invisible': [
-                        ('parent.move_type', 'not in', ['out_invoice', 'out_refund'])
-                    ]}"
+                    invisible="(commission_free == True) or (any_settled == True)"
+                    column_invisible="(parent.move_type not in ('out_invoice', 'out_refund'))"
                     type="object"
                 />
                 <field
                     name="commission_status"
-                    attrs="{'column_invisible': [
-                        ('parent.move_type', 'not in', ['out_invoice', 'out_refund'])
-                    ]}"
+                    column_invisible="(parent.move_type not in ('out_invoice', 'out_refund'))"
                 />
             </xpath>
             <xpath expr="//field[@name='invoice_line_ids']" position="after">
@@ -94,11 +87,7 @@
                     name="recompute_lines_agents"
                     type="object"
                     string="Regenerate agents"
-                    attrs="{'invisible': [
-                        '|',
-                        ('move_type', 'not in', ['out_invoice', 'out_refund']),
-                        ('state', '!=', 'draft')
-                    ]}"
+                    invisible="(move_type not in ()) or (state != 'draft')"
                 />
             </xpath>
             <!-- Needed for fields in invoice lines to be saved -->
@@ -113,9 +102,7 @@
                     name="commission_total"
                     widget="monetary"
                     options="{'currency_field': 'currency_id'}"
-                    attrs="{'invisible': [
-                        ('move_type', 'not in', ['out_invoice', 'out_refund'])
-                    ]}"
+                    invisible="(move_type not in ('out_invoice', 'out_refund'))"
                 />
             </field>
         </field>
@@ -132,7 +119,7 @@
                     class="oe_stat_button"
                     icon="fa-pencil-square-o"
                     string="Settlements"
-                    attrs="{'invisible': [('settlement_count', '=', 0)]}"
+                    invisible="(settlement_count == 0)"
                 />
                 <field name="settlement_count" invisible="1" />
             </field>
