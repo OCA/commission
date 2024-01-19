@@ -17,24 +17,24 @@ Sales commissions
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fcommission-lightgray.png?logo=github
-    :target: https://github.com/OCA/commission/tree/16.0/sale_commission
+    :target: https://github.com/OCA/commission/tree/17.0/sale_commission
     :alt: OCA/commission
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/commission-16-0/commission-16-0-sale_commission
+    :target: https://translation.odoo-community.org/projects/commission-17-0/commission-17-0-sale_commission
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/commission&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/commission&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module adds the function to calculate commissions in sales orders.
 
-Commission lines assigned to sales order lines will be passed to the corresponding
-invoice lines.
+Commission lines assigned to sales order lines will be passed to the
+corresponding invoice lines.
 
-Creating settlements directly from the sales order lines is outside the scope of this
-module.
+Creating settlements directly from the sales order lines is outside the
+scope of this module.
 
 This module depends on the account_commission module.
 
@@ -48,19 +48,20 @@ Usage
 
 For adding commissions on sales orders:
 
-#. Go to *Sales > Orders > Quotations*.
-#. Edit or create a new record.
-#. When you have selected a partner, each new quotation line you add will have
-   the agents and commissions set at customer level.
-#. You can add, modify or delete these agents discretely clicking on the
-   icon with several persons represented, next to the "Commission" field in the
-   list. This icon will be available only if the line hasn't been invoiced yet.
-#. If you have configured your system for editing lines in a popup window,
-   agents will appear also in this window.
-#. You have a button "Regenerate agents" on the bottom of the page
-   "Order Lines" for forcing a recompute of all agents from the partner setup.
-   This is needed for example when you have changed the partner on the
-   quotation having already inserted lines.
+1. Go to *Sales > Orders > Quotations*.
+2. Edit or create a new record.
+3. When you have selected a partner, each new quotation line you add
+   will have the agents and commissions set at customer level.
+4. You can add, modify or delete these agents discretely clicking on the
+   icon with several persons represented, next to the "Commission" field
+   in the list. This icon will be available only if the line hasn't been
+   invoiced yet.
+5. If you have configured your system for editing lines in a popup
+   window, agents will appear also in this window.
+6. You have a button "Regenerate agents" on the bottom of the page
+   "Order Lines" for forcing a recompute of all agents from the partner
+   setup. This is needed for example when you have changed the partner
+   on the quotation having already inserted lines.
 
 Bug Tracker
 ===========
@@ -68,7 +69,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/commission/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/commission/issues/new?body=module:%20sale_commission%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/commission/issues/new?body=module:%20sale_commission%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -76,39 +77,38 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Pexego.
-* Davide Corio <davide.corio@domsense.com>
-* Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>
-* Sandy Carter <sandy.carter@savoirfairelinux.com>
-* Giorgio Borelli <giorgio.borelli@abstract.it>
-* Daniel Campos <danielcampos@avanzosc.es>
-* Oihane Crucelaegui <oihanecruce@gmail.com>
-* Nicola Malcontenti <nicola.malcontenti@agilebg.com>
-* Aitor Bouzas <aitor.bouzas@adaptivecity.com>
+-  Pexego.
+-  Davide Corio <davide.corio@domsense.com>
+-  Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>
+-  Sandy Carter <sandy.carter@savoirfairelinux.com>
+-  Giorgio Borelli <giorgio.borelli@abstract.it>
+-  Daniel Campos <danielcampos@avanzosc.es>
+-  Oihane Crucelaegui <oihanecruce@gmail.com>
+-  Nicola Malcontenti <nicola.malcontenti@agilebg.com>
+-  Aitor Bouzas <aitor.bouzas@adaptivecity.com>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-* `Tecnativa <https://www.tecnativa.com>`__:
+   -  Pedro M. Baeza
+   -  Manuel Calero
 
-  * Pedro M. Baeza
-  * Manuel Calero
+-  `Quartile <https://www.quartile.co>`__:
 
-* `Quartile <https://www.quartile.co>`__:
+   -  Aung Ko Ko Lin
+   -  Yoshi Tashiro
 
-  * Aung Ko Ko Lin
-  * Yoshi Tashiro
+-  `Studio73 <https://www.studio73.es>`__:
 
-* `Studio73 <https://www.studio73.es>`__:
-
-  * Ethan Hildick
+   -  Ethan Hildick
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -128,6 +128,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-pedrobaeza| 
 
-This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/16.0/sale_commission>`_ project on GitHub.
+This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/17.0/sale_commission>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
