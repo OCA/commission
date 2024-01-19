@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -368,9 +369,11 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:aebcf65d67c56dd22612b39b8beddce430bbf62d966760b7e5381d914fe4cb14
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/commission/tree/16.0/account_commission"><img alt="OCA/commission" src="https://img.shields.io/badge/github-OCA%2Fcommission-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/commission-16-0/commission-16-0-account_commission"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/commission&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module adds the function to calculate commissions in invoices (account moves).</p>
-<p>It also allows to create vendor bills from settlements for external agents.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/commission/tree/17.0/account_commission"><img alt="OCA/commission" src="https://img.shields.io/badge/github-OCA%2Fcommission-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/commission-17-0/commission-17-0-account_commission"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/commission&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>This module adds the function to calculate commissions in invoices
+(account moves).</p>
+<p>It also allows to create vendor bills from settlements for external
+agents.</p>
 <p>This module depends on the commission module.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
@@ -390,9 +393,12 @@ ul.auto-toc {
 <h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
 <p>For selecting invoice status in commissions:</p>
 <ol class="arabic simple">
-<li>Edit or create a new record to select the invoice status for settling the commissions.<ul>
-<li><strong>Invoice Based</strong>: Commissions are settled when the invoice is issued.</li>
-<li><strong>Payment Based</strong>: Commissions are settled when the invoice is paid.</li>
+<li>Edit or create a new record to select the invoice status for settling
+the commissions.<ul>
+<li><strong>Invoice Based</strong>: Commissions are settled when the invoice is
+issued.</li>
+<li><strong>Payment Based</strong>: Commissions are settled when the invoice is
+paid.</li>
 </ul>
 </li>
 </ol>
@@ -403,19 +409,20 @@ ul.auto-toc {
 <ol class="arabic simple">
 <li>Go to <em>Invoicing &gt; Customers &gt; Invoices</em>.</li>
 <li>Edit or create a new record.</li>
-<li>When you have selected a partner, each new invoice line you add will have
-the agents and commissions set at customer level.</li>
+<li>When you have selected a partner, each new invoice line you add will
+have the agents and commissions set at customer level.</li>
 <li>You can add, modify or delete these agents discretely clicking on the
-icon with several persons represented, next to the ???Commission??? field in the
-list. This icon will be available only if the line hasn???t been invoiced yet.</li>
-<li>If you have configured your system for editing lines in a popup window,
-agents will appear also in this window.</li>
-<li>The agents icon will be in this ocassion visible when the line hasn???t been
-settled.</li>
-<li>You have a button ???Regenerate agents??? on the bottom of the page
-???Invoice Lines??? for forcing a recompute of all agents from the partner setup.
-This is needed for example when you have changed the partner on the
-invoice having already inserted lines.</li>
+icon with several persons represented, next to the “Commission” field
+in the list. This icon will be available only if the line hasn’t been
+invoiced yet.</li>
+<li>If you have configured your system for editing lines in a popup
+window, agents will appear also in this window.</li>
+<li>The agents icon will be in this ocassion visible when the line hasn’t
+been settled.</li>
+<li>You have a button “Regenerate agents” on the bottom of the page
+“Invoice Lines” for forcing a recompute of all agents from the
+partner setup. This is needed for example when you have changed the
+partner on the invoice having already inserted lines.</li>
 </ol>
 <p>For invoicing the settlements (only for external agents):</p>
 <ol class="arabic simple">
@@ -423,10 +430,11 @@ invoice having already inserted lines.</li>
 <li>On the window that appears, you can select following data:<ul>
 <li>Product. It should be a service product for being coherent.</li>
 <li>Journal: To be selected between existing purchase journals.</li>
-<li>Date: If you want to choose a specific invoice date. You can leave it
-blank if you prefer.</li>
-<li>Settlements: For selecting specific settlements to invoice. You can leave
-it blank as well for invoicing all the pending settlements.</li>
+<li>Date: If you want to choose a specific invoice date. You can leave
+it blank if you prefer.</li>
+<li>Settlements: For selecting specific settlements to invoice. You
+can leave it blank as well for invoicing all the pending
+settlements.</li>
 </ul>
 </li>
 </ol>
@@ -435,8 +443,8 @@ it blank as well for invoicing all the pending settlements.</li>
 <li>Navigate to <em>Invoicing &gt; Commissions &gt; Invoices Settlements</em>.</li>
 <li>Select it/them on the list.</li>
 <li>Click on <em>Action &gt; Create Commission Invoices</em>.</li>
-<li>You can as well enter in one settlement, and click on the ???Make invoice???
-button.</li>
+<li>You can as well enter in one settlement, and click on the “Make
+invoice” button.</li>
 </ol>
 </div>
 <div class="section" id="bug-tracker">
@@ -444,7 +452,7 @@ button.</li>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/commission/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/commission/issues/new?body=module:%20account_commission%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/commission/issues/new?body=module:%20account_commission%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -493,7 +501,7 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/pedrobaeza"><img alt="pedrobaeza" src="https://github.com/pedrobaeza.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/commission/tree/16.0/account_commission">OCA/commission</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/commission/tree/17.0/account_commission">OCA/commission</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>

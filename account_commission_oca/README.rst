@@ -17,20 +17,22 @@ Account commissions
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fcommission-lightgray.png?logo=github
-    :target: https://github.com/OCA/commission/tree/16.0/account_commission
+    :target: https://github.com/OCA/commission/tree/17.0/account_commission
     :alt: OCA/commission
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/commission-16-0/commission-16-0-account_commission
+    :target: https://translation.odoo-community.org/projects/commission-17-0/commission-17-0-account_commission
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/commission&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/commission&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds the function to calculate commissions in invoices (account moves).
+This module adds the function to calculate commissions in invoices
+(account moves).
 
-It also allows to create vendor bills from settlements for external agents.
+It also allows to create vendor bills from settlements for external
+agents.
 
 This module depends on the commission module.
 
@@ -44,51 +46,56 @@ Configuration
 
 For selecting invoice status in commissions:
 
-#. Edit or create a new record to select the invoice status for settling the commissions.
+1. Edit or create a new record to select the invoice status for settling
+   the commissions.
 
-   * **Invoice Based**: Commissions are settled when the invoice is issued.
-   * **Payment Based**: Commissions are settled when the invoice is paid.
+   -  **Invoice Based**: Commissions are settled when the invoice is
+      issued.
+   -  **Payment Based**: Commissions are settled when the invoice is
+      paid.
 
 Usage
 =====
 
 For adding commissions on invoices:
 
-#. Go to *Invoicing > Customers > Invoices*.
-#. Edit or create a new record.
-#. When you have selected a partner, each new invoice line you add will have
-   the agents and commissions set at customer level.
-#. You can add, modify or delete these agents discretely clicking on the
-   icon with several persons represented, next to the "Commission" field in the
-   list. This icon will be available only if the line hasn't been invoiced yet.
-#. If you have configured your system for editing lines in a popup window,
-   agents will appear also in this window.
-#. The agents icon will be in this ocassion visible when the line hasn't been
-   settled.
-#. You have a button "Regenerate agents" on the bottom of the page
-   "Invoice Lines" for forcing a recompute of all agents from the partner setup.
-   This is needed for example when you have changed the partner on the
-   invoice having already inserted lines.
+1. Go to *Invoicing > Customers > Invoices*.
+2. Edit or create a new record.
+3. When you have selected a partner, each new invoice line you add will
+   have the agents and commissions set at customer level.
+4. You can add, modify or delete these agents discretely clicking on the
+   icon with several persons represented, next to the "Commission" field
+   in the list. This icon will be available only if the line hasn't been
+   invoiced yet.
+5. If you have configured your system for editing lines in a popup
+   window, agents will appear also in this window.
+6. The agents icon will be in this ocassion visible when the line hasn't
+   been settled.
+7. You have a button "Regenerate agents" on the bottom of the page
+   "Invoice Lines" for forcing a recompute of all agents from the
+   partner setup. This is needed for example when you have changed the
+   partner on the invoice having already inserted lines.
 
 For invoicing the settlements (only for external agents):
 
-#. Go to *Invoicing > Commissions > Create Commission Invoices*.
-#. On the window that appears, you can select following data:
+1. Go to *Invoicing > Commissions > Create Commission Invoices*.
+2. On the window that appears, you can select following data:
 
-   * Product. It should be a service product for being coherent.
-   * Journal: To be selected between existing purchase journals.
-   * Date: If you want to choose a specific invoice date. You can leave it
-     blank if you prefer.
-   * Settlements: For selecting specific settlements to invoice. You can leave
-     it blank as well for invoicing all the pending settlements.
+   -  Product. It should be a service product for being coherent.
+   -  Journal: To be selected between existing purchase journals.
+   -  Date: If you want to choose a specific invoice date. You can leave
+      it blank if you prefer.
+   -  Settlements: For selecting specific settlements to invoice. You
+      can leave it blank as well for invoicing all the pending
+      settlements.
 
 If you want to invoice a/some specific settlement/s:
 
-#. Navigate to *Invoicing > Commissions > Invoices Settlements*.
-#. Select it/them on the list.
-#. Click on *Action > Create Commission Invoices*.
-#. You can as well enter in one settlement, and click on the "Make invoice"
-   button.
+1. Navigate to *Invoicing > Commissions > Invoices Settlements*.
+2. Select it/them on the list.
+3. Click on *Action > Create Commission Invoices*.
+4. You can as well enter in one settlement, and click on the "Make
+   invoice" button.
 
 Bug Tracker
 ===========
@@ -96,7 +103,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/commission/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/commission/issues/new?body=module:%20account_commission%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/commission/issues/new?body=module:%20account_commission%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -104,40 +111,39 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Pexego.
-* Davide Corio <davide.corio@domsense.com>
-* Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>
-* Sandy Carter <sandy.carter@savoirfairelinux.com>
-* Giorgio Borelli <giorgio.borelli@abstract.it>
-* Daniel Campos <danielcampos@avanzosc.es>
-* Oihane Crucelaegui <oihanecruce@gmail.com>
-* Nicola Malcontenti <nicola.malcontenti@agilebg.com>
-* Aitor Bouzas <aitor.bouzas@adaptivecity.com>
-* Alexei Rivera <arivera@archeti.com>
+-  Pexego.
+-  Davide Corio <davide.corio@domsense.com>
+-  Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>
+-  Sandy Carter <sandy.carter@savoirfairelinux.com>
+-  Giorgio Borelli <giorgio.borelli@abstract.it>
+-  Daniel Campos <danielcampos@avanzosc.es>
+-  Oihane Crucelaegui <oihanecruce@gmail.com>
+-  Nicola Malcontenti <nicola.malcontenti@agilebg.com>
+-  Aitor Bouzas <aitor.bouzas@adaptivecity.com>
+-  Alexei Rivera <arivera@archeti.com>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-* `Tecnativa <https://www.tecnativa.com>`__:
+   -  Pedro M. Baeza
+   -  Manuel Calero
 
-  * Pedro M. Baeza
-  * Manuel Calero
+-  `Quartile <https://www.quartile.co>`__:
 
-* `Quartile <https://www.quartile.co>`__:
+   -  Aung Ko Ko Lin
+   -  Yoshi Tashiro
 
-  * Aung Ko Ko Lin
-  * Yoshi Tashiro
+-  `Studio73 <https://www.studio73.es>`__:
 
-* `Studio73 <https://www.studio73.es>`__:
-
-  * Ethan Hildick
+   -  Ethan Hildick
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -157,6 +163,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-pedrobaeza| 
 
-This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/16.0/account_commission>`_ project on GitHub.
+This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/17.0/account_commission>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
