@@ -4,10 +4,7 @@
         <field name="arch" type="xml">
             <form>
                 <field name="commission_free" invisible="1" />
-                <field
-                    name="agent_ids"
-                    attrs="{'readonly': [('commission_free', '=', True)]}"
-                />
+                <field name="agent_ids" readonly="commission_free" />
                 <footer class="oe_edit_only">
                     <button string="Save" special="save" class="oe_highlight" />
                     <button string="Discard" special="cancel" />
