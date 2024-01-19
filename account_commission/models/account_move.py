@@ -4,7 +4,7 @@
 
 from lxml import etree
 
-from odoo import _, api, exceptions, fields, models
+from odoo import _, api, exceptions, fields, models, Command
 
 
 class AccountMove(models.Model):
