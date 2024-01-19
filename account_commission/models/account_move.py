@@ -88,13 +88,11 @@ class AccountMove(models.Model):
         self.mapped("invoice_line_ids").recompute_agents()
 
     @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
+    def _get_view(self, view_id=None, view_type="form", toolbar=False, submenu=False):
         """Inject in this method the needed context for not removing other
         possible context values.
         """
-        res = super(AccountMove, self).fields_view_get(
+        res = super()._get_view(
             view_id=view_id,
             view_type=view_type,
             toolbar=toolbar,
@@ -115,7 +113,8 @@ class AccountMove(models.Model):
         return res
 
     def unlink(self):
-        """Put 'invoiced' settlements associated to the invoices back in settled state."""
+        """Put 'invoiced' settlements associated to the invoices back in
+        settled state."""
         self.invoice_line_ids.settlement_id.filtered(
             lambda s: s.state == "invoiced"
         ).write({"state": "settled"})
