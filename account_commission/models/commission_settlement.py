@@ -155,7 +155,7 @@ class CommissionSettlement(models.Model):
         invoices = self.env["account.move"].create(invoice_vals_list)
         invoices.sudo().filtered(lambda m: m.amount_total < 0).with_context(
             include_settlement=True
-        ).action_switch_invoice_into_refund_credit_note()
+        ).action_switch_move_type()
         self.write({"state": "invoiced"})
         return invoices
 
