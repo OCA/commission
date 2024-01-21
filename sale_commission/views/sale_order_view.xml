@@ -22,10 +22,17 @@
             </xpath>
             <field name="tax_totals" position="after">
                 <field
+<<<<<<< HEAD
 					name="commission_total"
 					widget="monetary"
 					options="{'currency_field': 'currency_id'}"
 				/>
+=======
+                    name="commission_total"
+                    widget="monetary"
+                    options="{'currency_field': 'currency_id'}"
+                />
+>>>>>>> parent of 7455341 (Collapsed one expanded xml line)
             </field>
             <xpath expr="//field[@name='note']" position="after">
                 <group name="group_recompute_commission">
