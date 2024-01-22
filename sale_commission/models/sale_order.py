@@ -34,8 +34,16 @@ class SaleOrder(models.Model):
 
     @api.model
     def _search_agents(self, operator, value):
+
+        # Note: we need add in the domain company_id to allow retrieve only
+        # the records of the company the user is logged otherwise we have
+        # problem with this rule: https://shorturl.at/pwBIJ
+
         sol_agents = self.env["sale.order.line.agent"].search(
-            [("agent_id", operator, value)]
+            [
+                ("agent_id", operator, value),
+                ("object_id.company_id", "=", self.env.company.id),
+            ]
         )
         return [("id", "in", sol_agents.mapped("object_id.order_id").ids)]
 
