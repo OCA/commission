@@ -63,7 +63,7 @@ class SaleCommissionMixin(models.AbstractModel):
                 line.commission_status = _("1 commission agent")
             else:
                 line.commission_status = _(
-                    "%s commission agents"
+                    "%d commission agents"
                 ) % len(line.agents)
 
     def _prepare_agents_vals(self, vals=None):
