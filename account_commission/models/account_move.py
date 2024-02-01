@@ -28,25 +28,6 @@ class AccountMove(models.Model):
         compute="_compute_settlement",
     )
 
-    def action_switch_invoice_into_refund_credit_note(self):
-        if any(move.move_type not in ('in_invoice', 'out_invoice') for move in self):
-            raise ValidationError(_("This action isn't available for this document."))
-
-        for move in self:
-            move.write({
-                'move_type': move.move_type.replace('invoice', 'refund'),
-                'partner_bank_id': False,
-                'currency_id': move.currency_id.id,
-            })
-            if move.amount_total < 0:
-                move.write({
-                    'line_ids': [
-                        Command.update(line.id, {'quantity': -line.quantity})
-                        for line in move.line_ids
-                        if line.display_type == 'product'
-                    ]
-                })
-
     def action_view_settlement(self):
         xmlid = "commission.action_commission_settlement"
         action = self.env["ir.actions.actions"]._for_xml_id(xmlid)
