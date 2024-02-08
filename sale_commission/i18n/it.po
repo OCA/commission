@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 02:37+0000\n"
-"PO-Revision-Date: 2023-12-24 19:41+0000\n"
+"PO-Revision-Date: 2024-02-08 10:42+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-commission-8-0/"
 "language/it/)\n"
@@ -376,7 +376,7 @@ msgstr "Eccezione Fattura"
 #: field:account.invoice.line.agent,invoice_line:0
 #: field:sale.commission.settlement.line,invoice_line:0
 msgid "Invoice line"
-msgstr "Riga Fattura"
+msgstr "Riga fattura"
 
 #. module: sale_commission
 #: view:account.invoice.line.agent:sale_commission.invoice_line_agent_tree
