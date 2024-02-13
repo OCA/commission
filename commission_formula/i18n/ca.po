@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-14 15:14+0000\n"
-"PO-Revision-Date: 2017-12-14 15:14+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2024-02-13 20:34+0000\n"
+"Last-Translator: \"Dept. Técnico\" <tecnico@extrememicro.es>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: commission_formula
 #: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
@@ -31,18 +32,25 @@ msgid ""
 "  Use 'result' to return the commission amount.\n"
 "                        </span>"
 msgstr ""
+"<span class=\"instructions\">\n"
+"  Utilitzi 'line' per accedir a tots els camps de la línia.\n"
+"  Com que els noms dels camps poden variar, hauria d'identificar\n"
+"  les formules per sale.order.line i per account.invoice.line.\n"
+"  Pot, per exemple, utilitza line._name == 'sale.order.line'\n"
+"  o line._name == 'account.invoice.line'.\n"
+"\n"
+"  Utilitzi 'result'per obtenir l'import de la comissió.\n"
+"                        </span>"
 
 #. module: commission_formula
 #: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
-#, fuzzy
 msgid "Account Move Line common fields"
-msgstr "Camps comuns de la factura"
+msgstr "Camps comuns de las línies de factura"
 
 #. module: commission_formula
 #: model:ir.model,name:commission_formula.model_commission
-#, fuzzy
 msgid "Commission"
-msgstr "Comissió de les vendes"
+msgstr "Comissió"
 
 #. module: commission_formula
 #: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
@@ -76,6 +84,8 @@ msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
 msgstr ""
+"Model mixin per tenir línies d'agent de comissions en qualsevol objecta "
+"heretant de aquest"
 
 #. module: commission_formula
 #: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
@@ -96,6 +106,11 @@ msgid ""
 "* 'By sections': percentage varies depending amount intervals. You can fill "
 "intervals and percentages in the section \"Rate definition\"."
 msgstr ""
+"Selecciona el temps de ponenteja de la comissió:\n"
+"* \"Ponenteja fixa\":totes les comissions es compten com un ponenteja fix. "
+"Pot omplir el ponenteja en el camp \"Ponenteja fixa\".\n"
+"* 'Per trams': el percentatge varia en funció dels intervals d'import. Pot "
+"omplir els intervals i percentatge en l'apartat \"Definició de la tarifa\"."
 
 #. module: commission_formula
 #: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
@@ -105,7 +120,7 @@ msgstr "Subtotal"
 #. module: commission_formula
 #: model:ir.model.fields,field_description:commission_formula.field_commission__commission_type
 msgid "Type"
-msgstr ""
+msgstr "Tipus"
 
 #. module: commission_formula
 #: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
