@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <!-- Modified sale_commission views -->
+    <record
+        model="ir.ui.view"
+        id="view_order_agent_form_inherit_sale_commission_product_criteria_mod"
+    >
+        <field
+            name="name"
+        >sale.agent.order.inherit.form.sale_commission_product_criteria.mod</field>
+        <field name="model">sale.order</field>
+        <field name="priority" eval="99" />
+        <field name="inherit_id" ref="sale_commission.view_order_agent_form_inherit" />
+        <field name="arch" type="xml">
+            <button name="button_edit_agents" position="replace">
+                <button
+                    name="button_edit_agents"
+                    title="Edit agents"
+                    icon="fa-users"
+                    attrs="{'invisible': [('commission_free', '=', True)]}"
+                    type="object"
+                />
+            </button>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sale_commission_form_lines_mod">
+        <field name="name">commission.form.view.inherit</field>
+        <field name="model">commission</field>
+        <field name="inherit_id" ref="commission.commission_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='section_ids']/.." position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('commission_type', '=', 'product')]}</attribute>
+            </xpath>
+            <sheet position="inside">
+                <group
+                    string="Rules"
+                    name="rules_group"
+                    attrs="{'invisible': [('commission_type', '!=', 'product')]}"
+                >
+                    <field
+                        name="item_ids"
+                        nolabel="1"
+                        context="{'hide_commission_id':1}"
+                        colspan="2"
+                    >
+                        <tree>
+                            <field name="sequence" invisible="1" />
+                            <field name="name" string="Applied On" />
+                            <field name="commission_value" />
+                            <field name="based_on" invisible="1" />
+                        </tree>
+                    </field>
+                </group>
+            </sheet>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_sale_order_line_tree_mod">
+        <field name="name">sale.order.line.agent.mod</field>
+        <field name="model">sale.order.line.agent</field>
+        <field name="priority" eval="99" />
+        <field name="inherit_id" ref="sale_commission.view_sale_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="commission_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="amount" position="before">
+                <field name="applied_on_name" string="Applied On" invisible="1" />
+                <field name="based_on" string="Based On" invisible="1" />
+                <field name="commission_type" string="Price Type" invisible="1" />
+                <field name="fixed_amount" string="Amount (fixed)" invisible="1" />
+                <field name="percent_amount" string="Amount (%)" invisible="1" />
+                <field name="discount" string="Applied Disc. (%)" invisible="1" />
+            </field>
+            <field name="amount" position="replace">
+                <field name="applied_commission_id" invisible="1" />
+                <field name="amount" string="Final Amount" />
+            </field>
+        </field>
+    </record>
+
+    <!-- New views -->
+    <record id="commission_item_form_view" model="ir.ui.view">
+        <field name="name">commission.item.form</field>
+        <field name="model">commission.item</field>
+        <field name="arch" type="xml">
+            <form string="Commission Item">
+                <sheet>
+                    <h1>
+                        <field name="name" />
+                    </h1>
+                    <group>
+                        <group name="pricelist_rule_target">
+                            <field name="company_id" invisible="1" />
+                            <field
+                                name="commission_id"
+                                invisible="context.get('hide_commission_id')"
+                                options="{'no_create': True, 'no_open': 1}"
+                            />
+                            <field name="applied_on" widget="radio" />
+                            <field name="based_on" invisible="1" />
+                            <field
+                                name="categ_id"
+                                attrs="{
+                                      'invisible':[('applied_on', '!=', '2_product_category')],
+                                      'required':[('applied_on', '=', '2_product_category')]}"
+                                options="{'no_create':1}"
+                            />
+                            <field
+                                name="product_tmpl_id"
+                                attrs="{
+                                        'invisible':[('applied_on', '!=', '1_product')],
+                                        'required':[('applied_on', '=', '1_product')]}"
+                                options="{'no_create':1}"
+                            />
+                            <field
+                                name="product_id"
+                                attrs="{
+                                        'invisible':[('applied_on', '!=', '0_product_variant')],
+                                        'required':[('applied_on', '=', '0_product_variant')]}"
+                                options="{'no_create':1}"
+                            />
+                        </group>
+                    </group>
+                    <group
+                        string="Commission Computation"
+                        name="commission_computation"
+                        groups="sales_team.group_sale_manager"
+                    >
+                        <group name="commission_rule_method">
+                            <field
+                                name="commission_type"
+                                string="Compute Price"
+                                widget="radio"
+                            />
+                        </group>
+                        <group name="commission_rule_base">
+                            <field
+                                name="fixed_amount"
+                                attrs="{'invisible':[('commission_type', '!=', 'fixed')]}"
+                            />
+                            <label
+                                for="percent_amount"
+                                attrs="{'invisible':[('commission_type', '!=', 'percentage')]}"
+                            />
+                            <div
+                                attrs="{'invisible':[('commission_type', '!=', 'percentage')]}"
+                            >
+                                <field
+                                    name="percent_amount"
+                                    class="oe_inline"
+                                    attrs="{'invisible':[('commission_type', '!=', 'percentage')]}"
+                                />
+                                %%
+                            </div>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="commission_item_tree_view" model="ir.ui.view">
+        <field name="name">commission.item.tree</field>
+        <field name="model">commission.item</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="commission_id" />
+                <field name="name" />
+                <field name="applied_on" optional="hide" />
+                <field name="commission_value" />
+                <field name="based_on" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="commission_item_search" model="ir.ui.view">
+        <field name="name">commission.item.search.view</field>
+        <field name="model">commission.item</field>
+        <field name="arch" type="xml">
+            <search string="Commission Items">
+                <field name="commission_id" />
+                <field name="product_tmpl_id" />
+                <field name="product_id" />
+                <field name="categ_id" />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Commission"
+                        name="group_by_commission"
+                        domain="[]"
+                        context="{'group_by' : 'commission_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="commission_item_action" model="ir.actions.act_window">
+        <field name="name">Commission Items</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">commission.item</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">
+            {"hide_commission_id":1, 'search_default_group_by_commission': 1,}
+        </field>
+    </record>
+
+    <record id="commission_item_action_tree" model="ir.actions.act_window">
+        <field name="name">Commission Items</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">commission.item</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">
+            {"hide_commission_id":0, 'search_default_group_by_commission': 1,}
+        </field>
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('commission_item_tree_view')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('commission_item_form_view')})]"
+        />
+    </record>
+
+    <menuitem
+        name="Commission Type Items"
+        id="menu_sale_commissions_items"
+        action="commission_item_action_tree"
+        parent="commission.menu_commission_management"
+        groups="sales_team.group_sale_manager"
+        sequence="10"
+    />
+</odoo>
