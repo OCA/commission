@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+
+    <record model="ir.ui.view" id="sale_commission_form_sale_commission_type_disc">
+        <field name="name">commission.form.view.inherit.disc</field>
+        <field name="model">commission</field>
+        <field
+            name="inherit_id"
+            ref="sale_commission_product_criteria.sale_commission_form_lines_mod"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='item_ids']//..//tree//field[@name='based_on']"
+                position="after"
+            >
+                <field name="discount_from" />
+                <field name="discount_to" />
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_sale_order_line_tree_mod">
+        <field name="name">sale.order.line.agent.mod</field>
+        <field name="model">sale.order.line.agent</field>
+        <field
+            name="inherit_id"
+            ref="sale_commission_product_criteria.view_sale_order_line_tree_mod"
+        />
+        <field name="arch" type="xml">
+            <field name="based_on" position="after">
+                <field name="discount_from" string="Disc. From" invisible="1" />
+                <field name="discount_to" string="Disc. To" invisible="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="commission_item_form_view_inherit" model="ir.ui.view">
+        <field name="name">commission.item.form.inherit</field>
+        <field name="model">commission.item</field>
+        <field
+            name="inherit_id"
+            ref="sale_commission_product_criteria.commission_item_form_view"
+        />
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <field name="based_on" position="replace">
+                <field name="based_on" />
+            </field>
+            <group name="pricelist_rule_target" position="after">
+                <group
+                    string="Commission by discount"
+                    name="commission_by_discount"
+                    attrs="{'invisible': [('based_on', '!=', 'discount')]}"
+                >
+                    <field
+                        name="discount_from"
+                        attrs="{'required': [('discount_to', '>', 0)]}"
+                        string="Discount From, %"
+                    />
+                    <field
+                        name="discount_to"
+                        attrs="{'required': [('discount_from', '>',0)]}"
+                        string="Discount To, %"
+                    />
+                    <div class="text-muted" colspan="2">
+                        Please note! "Discount From" must start from decimal
+                        (e.g. 10.01).
+                        <br />
+                        Only exception is if "Discount From" is 0 (e.g. 0.00).
+                    </div>
+                </group>
+            </group>
+        </field>
+    </record>
+
+    <record id="commission_item_tree_view_inherit" model="ir.ui.view">
+        <field name="name">commission.item.tree.inherit</field>
+        <field name="model">commission.item</field>
+        <field
+            name="inherit_id"
+            ref="sale_commission_product_criteria.commission_item_tree_view"
+        />
+        <field name="arch" type="xml">
+            <field name="based_on" position="after">
+                <field name="discount_from" />
+                <field name="discount_to" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_commission_form_lines_mod_inherit" model="ir.ui.view">
+        <field name="name">commission.tree.inherit</field>
+        <field name="model">commission</field>
+        <field
+            name="inherit_id"
+            ref="sale_commission_product_criteria.sale_commission_form_lines_mod"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group[@name='rules_group']//..//tree//field[@name='based_on']"
+                position="attributes"
+            >
+                <attribute name="invisible">0</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
