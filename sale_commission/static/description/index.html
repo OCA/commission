@@ -414,7 +414,9 @@ cost from the product.</li>
 </li>
 <li>Select the invoice status for settling the commissions:<ul>
 <li><strong>Invoice Based</strong>: Commissions are settled when the invoice is issued.</li>
-<li><strong>Payment Based</strong>: Commissions are settled when the invoice is paid.</li>
+<li><strong>Payment Based</strong>: Commissions are settled when the invoice is paid or refunded.
+Note that when refunding an invoice, the corresponding reversed commission will
+be settled as well, resulting in a 0 net commission between both operations.</li>
 </ul>
 </li>
 </ol>
