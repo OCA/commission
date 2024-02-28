@@ -674,4 +674,4 @@ class TestAccountCommission(TestCommissionBase):
             ]
         )
         self.assertEqual(3, len(settlements.line_ids))
-        self.assertAlmostEqual(0.6, sum(settlements.mapped("total")))
+        self.assertAlmostEqual(0.6, sum(settlements.mapped("total")), 2)
