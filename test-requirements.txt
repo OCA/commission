@@ -1,0 +1,2 @@
+# https://github.com/OCA/commission/pull/466
+odoo-addon-sale_commission_product_criteria_discount @ git+https://github.com/OCA/commission.git@refs/pull/466/head#subdirectory=setup/sale_commission_product_criteria_discount
