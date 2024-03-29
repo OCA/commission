@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2024 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record id="commission_item_form_view_inherit" model="ir.ui.view">
+        <field
+            name="name"
+        >Add triple discount management to commission item form view</field>
+        <field name="model">commission.item</field>
+        <field
+            name="inherit_id"
+            ref="sale_commission_product_criteria_discount.commission_item_form_view_inherit"
+        />
+        <field name="arch" type="xml">
+            <field name="discount_to" position="after">
+                <field name="used_discount" />
+            </field>
+        </field>
+    </record>
+</odoo>
