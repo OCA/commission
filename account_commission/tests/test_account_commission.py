@@ -7,7 +7,7 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests import tagged
+from odoo.tests import Form, tagged
 
 from odoo.addons.commission.tests.test_commission import TestCommissionBase
 
@@ -533,7 +533,7 @@ class TestAccountCommission(TestCommissionBase):
         )
         self.assertEqual(2, len(settlements))
 
-    def test_invoice_parcial_refund(self):
+    def test_invoice_partial_refund(self):
         commission = self.commission_net_paid
         agent = self.agent_monthly
         today = fields.Date.today()
@@ -563,20 +563,12 @@ class TestAccountCommission(TestCommissionBase):
                 }
             )
         )
-        refund = self.env["account.move"].browse(
-            move_reversal.reverse_moves()["res_id"]
+        refund_form = Form(
+            self.env["account.move"].browse(move_reversal.reverse_moves()["res_id"])
         )
-        refund.write(
-            {
-                "invoice_line_ids": [
-                    (
-                        1,
-                        refund.invoice_line_ids[:1].id,
-                        {"price_unit": refund.invoice_line_ids[:1].price_unit - 2},
-                    )
-                ]
-            }
-        )
+        with refund_form.invoice_line_ids.edit(0) as line:
+            line.price_unit -= 2
+        refund = refund_form.save()
         refund.action_post()
         # Register payment for the refund
         register_payments = (
@@ -639,20 +631,12 @@ class TestAccountCommission(TestCommissionBase):
                 }
             )
         )
-        invoice2 = self.env["account.move"].browse(
-            move_reversal.reverse_moves()["res_id"]
+        invoice2_form = Form(
+            self.env["account.move"].browse(move_reversal.reverse_moves()["res_id"])
         )
-        invoice2.write(
-            {
-                "invoice_line_ids": [
-                    (
-                        1,
-                        invoice2.invoice_line_ids[:1].id,
-                        {"price_unit": invoice2.invoice_line_ids[:1].price_unit - 2},
-                    )
-                ]
-            }
-        )
+        with invoice2_form.invoice_line_ids.edit(0) as line:
+            line.price_unit -= 2
+        invoice2 = invoice2_form.save()
         invoice2.action_post()
         # Register payment for the new invoice
         payment_journal = self.env["account.journal"].search(
