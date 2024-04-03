@@ -7,7 +7,7 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests import tagged
+from odoo.tests import Form, tagged
 
 from odoo.addons.commission.tests.test_commission import TestCommissionBase
 
@@ -532,3 +532,130 @@ class TestAccountCommission(TestCommissionBase):
             ]
         )
         self.assertEqual(2, len(settlements))
+
+    def test_invoice_partial_refund(self):
+        commission = self.commission_net_paid
+        agent = self.agent_monthly
+        today = fields.Date.today()
+        # Create an invoice
+        invoice = self._create_invoice(agent, commission, today, currency=None)
+        invoice.action_post()
+        # Register payment for invoice
+        payment_journal = self.env["account.journal"].search(
+            [("type", "=", "cash"), ("company_id", "=", invoice.company_id.id)],
+            limit=1,
+        )
+        register_payments = (
+            self.env["account.payment.register"]
+            .with_context(active_ids=invoice.id, active_model="account.move")
+            .create({"journal_id": payment_journal.id})
+        )
+        register_payments.action_create_payments()
+        # Make a parcial refund for the invoice
+        move_reversal = (
+            self.env["account.move.reversal"]
+            .with_context(active_model="account.move", active_ids=invoice.id)
+            .create(
+                {
+                    "reason": "no reason",
+                    "refund_method": "refund",
+                    "journal_id": invoice.journal_id.id,
+                }
+            )
+        )
+        refund_form = Form(
+            self.env["account.move"].browse(move_reversal.reverse_moves()["res_id"])
+        )
+        with refund_form.invoice_line_ids.edit(0) as line:
+            line.price_unit -= 2
+        refund = refund_form.save()
+        refund.action_post()
+        # Register payment for the refund
+        register_payments = (
+            self.env["account.payment.register"]
+            .with_context(active_ids=refund.id, active_model="account.move")
+            .create({"journal_id": payment_journal.id})
+        )
+        register_payments.action_create_payments()
+        # check settlement creation. The commission must be (5 - 3) * 0.2 = 0.4
+        self._settle_agent_invoice(agent, 1)
+        settlements = self.settle_model.search([("agent_id", "=", agent.id)])
+        self.assertEqual(2, len(settlements.line_ids))
+        self.assertEqual(0.4, sum(settlements.mapped("total")))
+
+    def test_invoice_full_refund(self):
+        commission = self.commission_net_paid
+        agent = self.agent_monthly
+        today = fields.Date.today()
+        # Create an invoice and refund it
+        invoice = self._create_invoice(agent, commission, today, currency=None)
+        invoice.action_post()
+        move_reversal = (
+            self.env["account.move.reversal"]
+            .with_context(active_model="account.move", active_ids=invoice.id)
+            .create(
+                {
+                    "reason": "no reason",
+                    "refund_method": "cancel",
+                    "journal_id": invoice.journal_id.id,
+                }
+            )
+        )
+        move_reversal.reverse_moves()
+        # check settlement creation. The commission must be: (5 - 5) * 0.2 = 0
+        self._settle_agent_invoice(agent, 1)
+        settlements = self.settle_model.search(
+            [
+                ("agent_id", "=", agent.id),
+            ]
+        )
+        self.assertEqual(2, len(settlements.line_ids))
+        self.assertEqual(0, sum(settlements.mapped("total")))
+
+    def test_invoice_modify_refund(self):
+        commission = self.commission_net_paid
+        agent = self.agent_monthly
+        today = fields.Date.today()
+        # Create an invoice
+        invoice = self._create_invoice(agent, commission, today, currency=None)
+        invoice.action_post()
+        # Create a full refund and a new invoice
+        move_reversal = (
+            self.env["account.move.reversal"]
+            .with_context(active_model="account.move", active_ids=invoice.id)
+            .create(
+                {
+                    "reason": "no reason",
+                    "refund_method": "modify",
+                    "journal_id": invoice.journal_id.id,
+                }
+            )
+        )
+        invoice2_form = Form(
+            self.env["account.move"].browse(move_reversal.reverse_moves()["res_id"])
+        )
+        with invoice2_form.invoice_line_ids.edit(0) as line:
+            line.price_unit -= 2
+        invoice2 = invoice2_form.save()
+        invoice2.action_post()
+        # Register payment for the new invoice
+        payment_journal = self.env["account.journal"].search(
+            [("type", "=", "cash"), ("company_id", "=", invoice.company_id.id)],
+            limit=1,
+        )
+        register_payments = (
+            self.env["account.payment.register"]
+            .with_context(active_ids=invoice2.id, active_model="account.move")
+            .create({"journal_id": payment_journal.id})
+        )
+        register_payments.action_create_payments()
+
+        # check settlement creation. The commission must be (5 - 5 + 3) * 0.2 = 0.6
+        self._settle_agent_invoice(agent, 1)
+        settlements = self.settle_model.search(
+            [
+                ("agent_id", "=", agent.id),
+            ]
+        )
+        self.assertEqual(3, len(settlements.line_ids))
+        self.assertAlmostEqual(0.6, sum(settlements.mapped("total")), 2)
