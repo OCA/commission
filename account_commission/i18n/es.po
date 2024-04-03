@@ -442,12 +442,9 @@ msgstr "Facturas de Ventas"
 msgid ""
 "Select the invoice status for settling the commissions:\n"
 "* 'Invoice Based': Commissions are settled when the invoice is issued.\n"
-"* 'Payment Based': Commissions are settled when the invoice is paid."
+"* 'Payment Based': Commissions are settled when the invoice is paid (or "
+"refunded)."
 msgstr ""
-"Seleccione el estado de la factura para liquidar las comisiones:\n"
-"* 'Basado en factura': Las comisiones se liquidan cuando se emite la "
-"factura.\n"
-"* Pago\": Las comisiones se liquidan cuando se paga la factura."
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__settled
@@ -594,6 +591,16 @@ msgstr "Análisis de comisión facturada"
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "invoices Commission Analysis"
 msgstr "Análisis de Comisiones facturadas"
+
+#~ msgid ""
+#~ "Select the invoice status for settling the commissions:\n"
+#~ "* 'Invoice Based': Commissions are settled when the invoice is issued.\n"
+#~ "* 'Payment Based': Commissions are settled when the invoice is paid."
+#~ msgstr ""
+#~ "Seleccione el estado de la factura para liquidar las comisiones:\n"
+#~ "* 'Basado en factura': Las comisiones se liquidan cuando se emite la "
+#~ "factura.\n"
+#~ "* Pago\": Las comisiones se liquidan cuando se paga la factura."
 
 #~ msgid "_Cancel"
 #~ msgstr "_Cancelar"
