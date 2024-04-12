@@ -13,7 +13,7 @@
                 </group>
                 <group
                     string="Settlements"
-                    invisible="(from_settlement == True)"
+                    invisible="from_settlement"
                 >
                     <p
                         colspan="4"
