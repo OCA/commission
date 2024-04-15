@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2024 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
 <odoo>
 
     <record id="res_partner_agent" model="res.partner">
@@ -20,7 +24,7 @@
         <field
             name="groups_id"
             eval="[
-                (6, 0, [
+                Command.set([
                     ref('sale_commission_agent_restrict.group_agent_own_customers'),
                     ref('sale_commission_agent_restrict.group_agent_own_commissions')
                 ])

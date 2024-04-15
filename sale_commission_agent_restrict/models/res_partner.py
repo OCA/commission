@@ -1,4 +1,7 @@
-from odoo import _, api, models
+#  Copyright 2024 Simone Rubino - Aion Tech
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+from odoo import Command, _, api, models
 from odoo.exceptions import UserError
 
 
@@ -16,8 +19,8 @@ class ResPartner(models.Model):
             self.user_ids.write(
                 {
                     "groups_id": [
-                        (4, group_agent_own_customers.id),
-                        (4, group_agent_own_commissions.id),
+                        Command.link(group_agent_own_customers.id),
+                        Command.link(group_agent_own_commissions.id),
                     ]
                 }
             )
@@ -25,8 +28,8 @@ class ResPartner(models.Model):
             self.user_ids.write(
                 {
                     "groups_id": [
-                        (3, group_agent_own_customers.id),
-                        (3, group_agent_own_commissions.id),
+                        Command.unlink(group_agent_own_customers.id),
+                        Command.unlink(group_agent_own_commissions.id),
                     ]
                 }
             )
@@ -63,24 +66,26 @@ class ResPartner(models.Model):
     def write(self, vals):
         self.check_agent_changing_payment_terms(vals)
         self.check_agent_changing_agents(vals)
-        res = super(ResPartner, self).write(vals)
+        res = super().write(vals)
         if "agent" in vals and self.user_ids:
             self.assign_remove_agent_groups(vals["agent"])
         return res
 
-    @api.model
-    def create(self, vals):
-        self.check_agent_changing_payment_terms(vals)
-        if self.env.user.partner_id.agent:
-            # extra safe, but the field should never be pre-populated because
-            # agent cannot see the field agent_ids in the form view
-            vals["agent_ids"] = vals.get("agent_ids", []) + [
-                (4, self.env.user.partner_id.id, 0)
-            ]
-        return super(ResPartner, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        current_user_partner = self.env.user.partner_id
+        for vals in vals_list:
+            self.check_agent_changing_payment_terms(vals)
+            if current_user_partner.agent:
+                # extra safe, but the field should never be pre-populated because
+                # agent cannot see the field agent_ids in the form view
+                vals["agent_ids"] = vals.get("agent_ids", []) + [
+                    Command.link(current_user_partner.id)
+                ]
+        return super().create(vals_list)
 
     def _update_fields_values(self, fields):
-        res = super(ResPartner, self)._update_fields_values(fields)
+        res = super()._update_fields_values(fields)
         if "agent_ids" in res.keys():
             for agent in self.agent_ids:
                 for user_id in agent.user_ids:

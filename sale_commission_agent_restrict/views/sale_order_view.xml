@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2024 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
 <odoo>
 
     <record model="ir.ui.view" id="view_sale_order_line_tree_mod">
-        <field name="name">sale.order.line.agent.tree</field>
+        <field name="name">Agent lines for user displaying only own commissions</field>
         <field name="model">sale.order.line.agent</field>
         <field name="priority">100</field>
+        <field name="mode">primary</field>
         <field name="inherit_id" ref="sale_commission.view_sale_order_line_tree" />
-        <field
-            name="groups_id"
-            eval="[(4, ref('sale_commission_agent_restrict.group_agent_own_commissions'))]"
-        />
         <field name="arch" type="xml">
             <tree position="replace">
                 <tree create="false" edit="false" delete="false" editable="bottom">

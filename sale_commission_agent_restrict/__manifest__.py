@@ -1,6 +1,9 @@
+#  Copyright 2024 Simone Rubino - Aion Tech
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 {
     "name": "Sales Commissions Agent Restrict",
-    "version": "14.0.2.0.2",
+    "version": "16.0.1.0.0",
     "author": "Ooops404, Ilyas, Odoo Community Association (OCA)",
     "maintainers": ["aleuffre"],
     "category": "Sales",
@@ -8,9 +11,9 @@
     "license": "AGPL-3",
     "depends": [
         "base_rule_visibility_restriction",
+        "commission",
         "sale_commission",
         "sales_team",
-        "web_domain_field",
     ],
     "data": [
         "security/security.xml",

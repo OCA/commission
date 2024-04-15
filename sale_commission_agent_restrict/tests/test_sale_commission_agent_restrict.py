@@ -1,15 +1,19 @@
+#  Copyright 2024 Simone Rubino - Aion Tech
+#  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+from odoo import Command
 from odoo.exceptions import AccessError, UserError, ValidationError
-from odoo.tests import Form, SavepointCase
+from odoo.tests import Form, TransactionCase
 from odoo.tools import mute_logger
 
 
-class TestsaleCommissionAgentRestrict(SavepointCase):
+class TestsaleCommissionAgentRestrict(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.users_model = cls.env["res.users"]
         cls.partner_model = cls.env["res.partner"]
-        cls.commission_model = cls.env["sale.commission"]
+        cls.commission_model = cls.env["commission"]
         cls.group_user = cls.env.ref("base.group_user")
         cls.group_partner_manager = cls.env.ref("base.group_partner_manager")
         cls.group_system = cls.env.ref("base.group_system")
@@ -26,13 +30,13 @@ class TestsaleCommissionAgentRestrict(SavepointCase):
             {
                 "name": "John",
                 "login": "test1",
-                "groups_id": [(6, 0, (cls.group_user + cls.group_partner_manager).ids)],
+                "groups_id": [
+                    Command.set((cls.group_user + cls.group_partner_manager).ids)
+                ],
             }
         )
         cls.user_agent.partner_id.agent = True
-        cls.partner_agent = cls.env.ref(
-            "sale_commission.res_partner_pritesh_sale_agent"
-        )
+        cls.partner_agent = cls.env.ref("commission.res_partner_pritesh_sale_agent")
 
     def test_assign_group_to_agent(self):
         self.assertIn(self.group_own_customer, self.user_agent.groups_id)
@@ -54,8 +58,26 @@ class TestsaleCommissionAgentRestrict(SavepointCase):
         self.assertIn(self.user_agent.partner_id, new_partner.agent_ids)
 
         # Add to partner's agent but also preserve existing agents
+
+        # `user_agent` is not able to access `partner_agent`.
+        with self.assertRaises(AccessError) as ae:
+            self.partner_model.with_user(self.user_agent).create(
+                {
+                    "name": "Test Partner 1",
+                    "agent_ids": [Command.set(self.partner_agent.ids)],
+                }
+            )
+        exc_message = ae.exception.args[0]
+        self.assertIn("not allowed to access", exc_message)
+        self.assertIn(self.partner_model._name, exc_message)
+
+        # When `partner_agent` is fetched with sudo, it works as expected.
+        self.partner_agent._fetch_field(self.partner_agent._fields["user_id"])
         new_partner = self.partner_model.with_user(self.user_agent).create(
-            {"name": "Test Partner 1", "agent_ids": [(6, 0, self.partner_agent.ids)]}
+            {
+                "name": "Test Partner 1",
+                "agent_ids": [Command.set(self.partner_agent.ids)],
+            }
         )
 
         self.assertEqual(
@@ -74,7 +96,7 @@ class TestsaleCommissionAgentRestrict(SavepointCase):
             {
                 "name": "Test Partner 1",
                 "street": "street",
-                "agent_ids": [(6, 0, self.partner_agent.ids)],
+                "agent_ids": [Command.set(self.partner_agent.ids)],
             }
         )
         child = self.partner_model.create(
@@ -88,7 +110,7 @@ class TestsaleCommissionAgentRestrict(SavepointCase):
             {
                 "name": "Test Partner 2",
                 "street": "street",
-                "agent_ids": [(6, 0, self.user_agent.partner_id.ids)],
+                "agent_ids": [Command.set(self.user_agent.partner_id.ids)],
             }
         )
         child = self.partner_model.create(
@@ -107,7 +129,7 @@ class TestsaleCommissionAgentRestrict(SavepointCase):
         partner_with_agent = self.partner_model.create(
             {
                 "name": "Test Partner 2",
-                "agent_ids": [(6, 0, self.user_agent.partner_id.ids)],
+                "agent_ids": [Command.set(self.user_agent.partner_id.ids)],
             }
         )
         Form(partner_with_agent.with_user(self.user_agent))
@@ -119,7 +141,7 @@ class TestsaleCommissionAgentRestrict(SavepointCase):
         partner_with_agent = self.partner_model.create(
             {
                 "name": "Test Partner 1",
-                "agent_ids": [(6, 0, self.user_agent.partner_id.ids)],
+                "agent_ids": [Command.set(self.user_agent.partner_id.ids)],
             }
         )
         partner_with_agent.write({"property_payment_term_id": False})
@@ -154,7 +176,10 @@ class TestsaleCommissionAgentRestrict(SavepointCase):
         f.save()
 
     def test_agent_cannot_see_followers(self):
-        self.partner_agent.agent_ids = [(6, 0, self.user_agent.partner_id.ids)]
+        self.partner_agent.message_subscribe(
+            partner_ids=self.env.ref("base.partner_root").ids,
+        )
+        self.partner_agent.agent_ids = [Command.set(self.user_agent.partner_id.ids)]
         with Form(self.partner_agent) as f:
             self.assertTrue(f.message_follower_ids)
 
