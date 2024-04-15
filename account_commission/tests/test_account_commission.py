@@ -532,3 +532,6 @@ class TestAccountCommission(TestCommissionBase):
             ]
         )
         self.assertEqual(2, len(settlements))
+
+    def test_inventao(self):
+        self.assertEqual(1, 2)
