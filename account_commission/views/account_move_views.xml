@@ -33,11 +33,7 @@
                 >
                     <field name="any_settled" invisible="1" />
                     <field name="commission_free" force_save="1" />
-                    <field
-                        name="agent_ids"
-                        readonly="commission_free"
-                        force_save="1"
-                    />
+                    <field name="agent_ids" readonly="commission_free" force_save="1" />
                 </group>
             </xpath>
         </field>

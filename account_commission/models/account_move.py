@@ -4,7 +4,7 @@
 
 from lxml import etree
 
-from odoo import _, api, exceptions, fields, models, Command
+from odoo import _, api, exceptions, fields, models
 
 
 class AccountMove(models.Model):
@@ -94,7 +94,7 @@ class AccountMove(models.Model):
         """Inject in this method the needed context for not removing other
         possible context values.
         """
-        res = super(AccountMove, self).fields_view_get(
+        res = super().fields_view_get(
             view_id=view_id,
             view_type=view_type,
             toolbar=toolbar,

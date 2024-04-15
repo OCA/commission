@@ -68,7 +68,8 @@ For adding commissions on invoices:
    in the list. This icon will be available only if the line hasn't been
    invoiced yet.
 5. If you have configured your system for editing lines in a popup
-   window, agents will appear also in this window.
+   window, agents will appear also in this window. TODO: ESTO PARECE NO
+   IR
 6. The agents icon will be in this ocassion visible when the line hasn't
    been settled.
 7. You have a button "Regenerate agents" on the bottom of the page
@@ -128,6 +129,7 @@ Contributors
 -  Nicola Malcontenti <nicola.malcontenti@agilebg.com>
 -  Aitor Bouzas <aitor.bouzas@adaptivecity.com>
 -  Alexei Rivera <arivera@archeti.com>
+-  Mina Samir <minaw349@outlook.com>
 -  `Tecnativa <https://www.tecnativa.com>`__:
 
    -  Pedro M. Baeza

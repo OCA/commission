@@ -11,10 +11,7 @@
                     <field name="product_id" />
                     <field name="date" />
                 </group>
-                <group
-                    string="Settlements"
-                    invisible="from_settlement"
-                >
+                <group string="Settlements" invisible="from_settlement">
                     <p
                         colspan="4"
                     >(keep empty for invoicing all the pending settlements)</p>
