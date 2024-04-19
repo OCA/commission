@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -368,16 +369,16 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:ef8716bc55c65c12f67dd17b169c5bbdb4b30a9267c1e1b26db28bee7b0312a9
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/commission/tree/16.0/commission"><img alt="OCA/commission" src="https://img.shields.io/badge/github-OCA%2Fcommission-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/commission-16-0/commission-16-0-commission"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/commission&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module provides the base functions for commission operations to enable the
-following:</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/commission/tree/17.0/commission"><img alt="OCA/commission" src="https://img.shields.io/badge/github-OCA%2Fcommission-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/commission-17-0/commission-17-0-commission"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/commission&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>This module provides the base functions for commission operations to
+enable the following:</p>
 <ul class="simple">
 <li>Define agents with their commissions</li>
 <li>Assign agents to partners</li>
 <li>Create settlements to summarize commissions for certain periods</li>
 </ul>
-<p>You can define which base amount is going to be taken into account: net amount
-(based on margin) or gross amount (line subtotal amount).</p>
+<p>You can define which base amount is going to be taken into account: net
+amount (based on margin) or gross amount (line subtotal amount).</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -402,41 +403,43 @@ following:</p>
 <li>Select a name for distinguishing that type.</li>
 <li>Select the percentage type of the commission:<ul>
 <li><strong>Fixed percentage</strong>: all commissions are computed with a fixed
-percentage. You can fill the percentage in the field ???Fixed percentage???.</li>
-<li><strong>By sections</strong>: percentage varies depending amount intervals. You can
-fill intervals and percentages in the section ???Rate definition???.</li>
+percentage. You can fill the percentage in the field “Fixed
+percentage”.</li>
+<li><strong>By sections</strong>: percentage varies depending amount intervals. You
+can fill intervals and percentages in the section “Rate
+definition”.</li>
 </ul>
 </li>
 <li>Select the base amount for computing the percentage:<ul>
-<li><strong>Sale/Invoice Amount</strong>: percentage is computed from the amount put on
-sales order/invoice.</li>
-<li><strong>Margin (Amount - Cost)</strong>: percentage is computed from the profit only, taken the
-cost from the product.</li>
+<li><strong>Sale/Invoice Amount</strong>: percentage is computed from the amount
+put on sales order/invoice.</li>
+<li><strong>Margin (Amount - Cost)</strong>: percentage is computed from the profit
+only, taken the cost from the product.</li>
 </ul>
 </li>
 </ol>
 <p>For adding new agents:</p>
 <ol class="arabic">
-<li><p class="first">Go to <em>Commissions &gt; Agents</em>. You can also access from
-<em>Contacts &gt; Contacts</em> or <em>Sales &gt; Orders &gt; Customers</em>.</p>
+<li><p class="first">Go to <em>Commissions &gt; Agents</em>. You can also access from <em>Contacts &gt;
+Contacts</em> or <em>Sales &gt; Orders &gt; Customers</em>.</p>
 </li>
 <li><p class="first">Edit or create a new record.</p>
 </li>
-<li><p class="first">On ???Sales &amp; Purchases??? page, mark ???Agent??? check. It should be checked if
-you have accessed from first menu option.</p>
+<li><p class="first">On “Sales &amp; Purchases” page, mark “Agent” check. It should be checked
+if you have accessed from first menu option.</p>
 </li>
-<li><p class="first">There???s a new page called ???Agent information???. In it, you can set following
-data:</p>
+<li><p class="first">There’s a new page called “Agent information”. In it, you can set
+following data:</p>
 <ul class="simple">
-<li>The agent type, being in this base module ???External agent??? the only
-existing configuration. It can be extended with <cite>hr_commission</cite> module
-for setting an ???Employee??? agent type.</li>
+<li>The agent type, being in this base module “External agent” the
+only existing configuration. It can be extended with hr_commission
+module for setting an “Employee” agent type.</li>
 <li>The associated commission type.</li>
-<li>The settlement period, where you can select ???Bi-weekly???, ???Monthly???, ???Quaterly???,
-???Semi-annual??? or ???Annual???.</li>
+<li>The settlement period, where you can select “Bi-weekly”,
+“Monthly”, “Quaterly”, “Semi-annual” or “Annual”.</li>
 </ul>
-<p>You will also be able to see the settlements that have been made to this
-agent from this page.</p>
+<p>You will also be able to see the settlements that have been made to
+this agent from this page.</p>
 </li>
 </ol>
 </div>
@@ -446,20 +449,21 @@ agent from this page.</p>
 <ol class="arabic simple">
 <li>Go to <em>Invoicing &gt; Customers &gt; Customers</em> or <em>Contacts &gt; Contacts</em>.</li>
 <li>Edit or create a new record.</li>
-<li>On ???Sales &amp; Purchases??? page, you will see a field called ???Agents??? where
-they can be added. You can put the number of agents you want, but you can???t
-select specific commission for each partner in this base module.</li>
+<li>On “Sales &amp; Purchases” page, you will see a field called “Agents”
+where they can be added. You can put the number of agents you want,
+but you can’t select specific commission for each partner in this
+base module.</li>
 </ol>
 <p>For settling the commissions to agents:</p>
 <ol class="arabic simple">
 <li>Go to <em>Commissions &gt; Settlements &gt; Settle Commissions</em>.</li>
-<li>On the window that appears, you should select the date up to which you
-want to create commissions. It should be at least one day after the last
-period date. For example, if you settlements are monthly, you have to put
-at least the first day of the following month.</li>
-<li>You can settle only certain agents if you select them on the ???Agents???
+<li>On the window that appears, you should select the date up to which
+you want to create commissions. It should be at least one day after
+the last period date. For example, if you settlements are monthly,
+you have to put at least the first day of the following month.</li>
+<li>You can settle only certain agents if you select them on the “Agents”
 section. Leave it empty for settling all.</li>
-<li>Click on ???Make settlements??? button.</li>
+<li>Click on “Make settlements” button.</li>
 <li>If there are new settlements, they will be shown after this.</li>
 </ol>
 </div>
@@ -476,7 +480,7 @@ mobile friendly.</li>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/commission/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/commission/issues/new?body=module:%20commission%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/commission/issues/new?body=module:%20commission%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -525,7 +529,7 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/pedrobaeza"><img alt="pedrobaeza" src="https://github.com/pedrobaeza.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/commission/tree/16.0/commission">OCA/commission</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/commission/tree/17.0/commission">OCA/commission</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
