@@ -413,6 +413,7 @@ msgstr "Se selecionado, h?? novas mensagens que requerem a sua aten????o."
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__message_has_error
+#: model:ir.model.fields,help:commission.field_commission_settlement__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se marcada, algumas mensagens t??m um erro de entrega."
 
@@ -420,15 +421,6 @@ msgstr "Se marcada, algumas mensagens t??m um erro de entrega."
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__message_is_follower
 msgid "Is Follower"
 msgstr "?? Seguidor"
-
-#. module: commission
-#: model:ir.model.fields,field_description:commission.field_commission____last_update
-#: model:ir.model.fields,field_description:commission.field_commission_make_settle____last_update
-#: model:ir.model.fields,field_description:commission.field_commission_section____last_update
-#: model:ir.model.fields,field_description:commission.field_commission_settlement____last_update
-#: model:ir.model.fields,field_description:commission.field_commission_settlement_line____last_update
-msgid "Last Modified on"
-msgstr "??ltima Modif. em"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__write_uid
@@ -452,11 +444,6 @@ msgstr "??ltima Atualiz. em"
 #: model:ir.model,name:commission.model_commission_settlement_line
 msgid "Line of a commission settlement"
 msgstr "Linha de liquida????o de comiss??es"
-
-#. module: commission
-#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Anexo Principal"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
@@ -590,6 +577,11 @@ msgstr "Defini????o de taxas de comiss??o"
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_user_id
 msgid "Responsible User"
 msgstr "Utilizador Respons??vel"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__gross_amount
@@ -741,7 +733,8 @@ msgstr ""
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__can_edit
 msgid "Technical field for determining if user can edit settlements"
-msgstr "Campo t??cnico para determinar se o utilizador pode editar liquida????es"
+msgstr ""
+"Campo t??cnico para determinar se o utilizador pode editar liquida????es"
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_make_settle__can_settle
@@ -764,8 +757,8 @@ msgid ""
 "The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase "
 "order'..."
 msgstr ""
-"A origem da liquida????o, por exemplo, ??Fatura de venda??, ??Ordem de venda??, "
-"??Ordem de compra??..."
+"A origem da liquida????o, por exemplo, ??Fatura de venda??, ??Ordem de "
+"venda??, ??Ordem de compra??..."
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_res_partner__commission_id
@@ -774,8 +767,8 @@ msgid ""
 "This is the default commission used in the sales where this agent is "
 "assigned. It can be changed on each operation if needed."
 msgstr ""
-"Esta ?? a comiss??o predefinida usada nas vendas quando um agente ?? atribu??do. "
-"Pode ser alterado em cada opera????o, se necess??rio."
+"Esta ?? a comiss??o predefinida usada nas vendas quando um agente ?? atribu??"
+"do. Pode ser alterado em cada opera????o, se necess??rio."
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_search
@@ -818,24 +811,12 @@ msgid "User"
 msgstr "Utilizador"
 
 #. module: commission
-#: model:ir.model.fields,field_description:commission.field_commission_settlement__website_message_ids
-msgid "Website Messages"
-msgstr "Mensagens do Website"
-
-#. module: commission
-#: model:ir.model.fields,help:commission.field_commission_settlement__website_message_ids
-msgid "Website communication history"
-msgstr "Hist??rico de comunica????o do website"
-
-#. module: commission
 #: model:ir.model,name:commission.model_commission_make_settle
 msgid "Wizard for settling commissions"
 msgstr "Assistente para liquida????o de comiss??es"
 
 #. module: commission
-#: model:ir.model.constraint,message:commission.constraint_account_invoice_line_agent_unique_agent
 #: model:ir.model.constraint,message:commission.constraint_commission_line_mixin_unique_agent
-#: model:ir.model.constraint,message:commission.constraint_sale_order_line_agent_unique_agent
 msgid "You can only add one time each agent."
 msgstr "S?? pode adicionar cada agente uma vez."
 
@@ -843,6 +824,18 @@ msgstr "S?? pode adicionar cada agente uma vez."
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid "or"
 msgstr "ou"
+
+#~ msgid "Last Modified on"
+#~ msgstr "??ltima Modif. em"
+
+#~ msgid "Main Attachment"
+#~ msgstr "Anexo Principal"
+
+#~ msgid "Website Messages"
+#~ msgstr "Mensagens do Website"
+
+#~ msgid "Website communication history"
+#~ msgstr "Hist??rico de comunica????o do website"
 
 #~ msgid "Gross Amount"
 #~ msgstr "Valor Bruto"
