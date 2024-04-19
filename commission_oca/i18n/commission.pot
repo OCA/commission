@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -409,21 +409,13 @@ msgstr ""
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__message_has_error
+#: model:ir.model.fields,help:commission.field_commission_settlement__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__message_is_follower
 msgid "Is Follower"
-msgstr ""
-
-#. module: commission
-#: model:ir.model.fields,field_description:commission.field_commission____last_update
-#: model:ir.model.fields,field_description:commission.field_commission_make_settle____last_update
-#: model:ir.model.fields,field_description:commission.field_commission_section____last_update
-#: model:ir.model.fields,field_description:commission.field_commission_settlement____last_update
-#: model:ir.model.fields,field_description:commission.field_commission_settlement_line____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: commission
@@ -447,11 +439,6 @@ msgstr ""
 #. module: commission
 #: model:ir.model,name:commission.model_commission_settlement_line
 msgid "Line of a commission settlement"
-msgstr ""
-
-#. module: commission
-#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_main_attachment_id
-msgid "Main Attachment"
 msgstr ""
 
 #. module: commission
@@ -584,6 +571,11 @@ msgstr ""
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_user_id
 msgid "Responsible User"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_has_sms_error
+msgid "SMS Delivery error"
 msgstr ""
 
 #. module: commission
@@ -799,24 +791,12 @@ msgid "User"
 msgstr ""
 
 #. module: commission
-#: model:ir.model.fields,field_description:commission.field_commission_settlement__website_message_ids
-msgid "Website Messages"
-msgstr ""
-
-#. module: commission
-#: model:ir.model.fields,help:commission.field_commission_settlement__website_message_ids
-msgid "Website communication history"
-msgstr ""
-
-#. module: commission
 #: model:ir.model,name:commission.model_commission_make_settle
 msgid "Wizard for settling commissions"
 msgstr ""
 
 #. module: commission
-#: model:ir.model.constraint,message:commission.constraint_account_invoice_line_agent_unique_agent
 #: model:ir.model.constraint,message:commission.constraint_commission_line_mixin_unique_agent
-#: model:ir.model.constraint,message:commission.constraint_sale_order_line_agent_unique_agent
 msgid "You can only add one time each agent."
 msgstr ""
 

@@ -421,6 +421,7 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__message_has_error
+#: model:ir.model.fields,help:commission.field_commission_settlement__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
@@ -428,15 +429,6 @@ msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__message_is_follower
 msgid "Is Follower"
 msgstr ""
-
-#. module: commission
-#: model:ir.model.fields,field_description:commission.field_commission____last_update
-#: model:ir.model.fields,field_description:commission.field_commission_make_settle____last_update
-#: model:ir.model.fields,field_description:commission.field_commission_section____last_update
-#: model:ir.model.fields,field_description:commission.field_commission_settlement____last_update
-#: model:ir.model.fields,field_description:commission.field_commission_settlement_line____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__write_uid
@@ -461,11 +453,6 @@ msgstr "Ultimo aggiornamento il"
 #, fuzzy
 msgid "Line of a commission settlement"
 msgstr "Linea di una liquidazione provvigioni"
-
-#. module: commission
-#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Allegato principale"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
@@ -600,6 +587,11 @@ msgstr "Definizione tariffe"
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_user_id
 msgid "Responsible User"
 msgstr "Utente responsabile"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Errore consegna SMS"
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__gross_amount
@@ -835,24 +827,12 @@ msgid "User"
 msgstr "Utente"
 
 #. module: commission
-#: model:ir.model.fields,field_description:commission.field_commission_settlement__website_message_ids
-msgid "Website Messages"
-msgstr "Messaggi sito web"
-
-#. module: commission
-#: model:ir.model.fields,help:commission.field_commission_settlement__website_message_ids
-msgid "Website communication history"
-msgstr "Cronologia comunicazioni sito web"
-
-#. module: commission
 #: model:ir.model,name:commission.model_commission_make_settle
 msgid "Wizard for settling commissions"
 msgstr "Procedura guidata per la liquidazione delle provvigioni"
 
 #. module: commission
-#: model:ir.model.constraint,message:commission.constraint_account_invoice_line_agent_unique_agent
 #: model:ir.model.constraint,message:commission.constraint_commission_line_mixin_unique_agent
-#: model:ir.model.constraint,message:commission.constraint_sale_order_line_agent_unique_agent
 msgid "You can only add one time each agent."
 msgstr "?? possibile aggiungere ogni agente solo una volta."
 
@@ -861,11 +841,20 @@ msgstr "?? possibile aggiungere ogni agente solo una volta."
 msgid "or"
 msgstr "o"
 
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#~ msgid "Main Attachment"
+#~ msgstr "Allegato principale"
+
+#~ msgid "Website Messages"
+#~ msgstr "Messaggi sito web"
+
+#~ msgid "Website communication history"
+#~ msgstr "Cronologia comunicazioni sito web"
+
 #~ msgid "Gross Amount"
 #~ msgstr "Importo lordo"
 
 #~ msgid "Net Amount"
 #~ msgstr "Importo netto"
-
-#~ msgid "SMS Delivery error"
-#~ msgstr "Errore consegna SMS"
