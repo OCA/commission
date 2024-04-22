@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-22 08:15+0000\n"
-"PO-Revision-Date: 2023-12-20 10:36+0000\n"
+"PO-Revision-Date: 2024-04-22 16:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -170,7 +170,7 @@ msgstr "Saldo"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission__amount_base_type
 msgid "Base"
-msgstr "Base"
+msgstr "Imponibile"
 
 #. module: sale_commission
 #: model:ir.model.fields.selection,name:sale_commission.selection__res_partner__settlement__biweekly
@@ -477,7 +477,7 @@ msgstr "Dal"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice__from_settlement
 msgid "From Settlement"
-msgstr "Dalla regolazione"
+msgstr "Dalla liquidazione"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.sale_commission_form
@@ -532,7 +532,7 @@ msgstr "Fattura"
 #. module: sale_commission
 #: model:ir.model.fields.selection,name:sale_commission.selection__sale_commission__invoice_state__open
 msgid "Invoice Based"
-msgstr "Basato su fattura"
+msgstr "Basata sulla fattura"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
@@ -654,12 +654,12 @@ msgstr "Prepara fatture"
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settled_wizard
 msgid "Make settlements"
-msgstr "Prepara regolazioni"
+msgstr "Crea liquidazioni"
 
 #. module: sale_commission
 #: model:ir.model.fields.selection,name:sale_commission.selection__sale_commission__amount_base_type__net_amount
 msgid "Margin (Amount - Cost)"
-msgstr "Margine (Importo - Costo)"
+msgstr "Margine (importo - costo)"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_mixin
@@ -836,10 +836,10 @@ msgid ""
 "* 'Margin (Amount - Cost)': percentage is computed from the profit only, "
 "taken the cost from the product."
 msgstr ""
-"Seleziona l'importo di base su cui calcolare la percentuale:\n"
-"* 'Importo Vendita/Fattura': la percentuale è calcolata dall'importo "
+"Seleziona l'importo imponibile su cui calcolare la percentuale:\n"
+"* 'Importo vendita/fattura': la percentuale è calcolata dall'importo "
 "inserito nell'ordine di vendita/fattura.\n"
-"* 'Margin (Amount - Cost)': la percentuale è calcolata solo in base al "
+"* 'Margine (importo - costo)': la percentuale è calcolata solo in base al "
 "profitto, sottraendo all'importo il costo del prodotto."
 
 #. module: sale_commission
@@ -869,11 +869,11 @@ msgid ""
 "* 'By sections': percentage varies depending amount intervals. You can fill "
 "intervals and percentages in the section \"Rate definition\"."
 msgstr ""
-"Seleziona il tipo di percentuale della provvigione:\n"
+"Selezionare il tipo di percentuale della provvigione:\n"
 "* 'Percentuale fissa': tutte le provvigioni sono calcolate con una "
-"percentuale fissa. Puoi impostare la percentuale nel campo \"Percentuale "
+"percentuale fissa. Si può impostare la percentuale nel campo \"Percentuale "
 "fissa\".\n"
-"* 'Per sezioni': la percentuale varia per intervalli dell'importo. Puoi "
+"* 'Per sezioni': la percentuale varia per intervalli dell'importo. Si può "
 "impostare gli intervalli nella sezione \"Definizione provvigioni\"."
 
 #. module: sale_commission
@@ -922,17 +922,17 @@ msgstr "Regolazione"
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_line_graph
 msgid "Settlement analysis"
-msgstr "Analisi regolazioni"
+msgstr "Analisi liquidazione"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement__line_ids
 msgid "Settlement lines"
-msgstr "Righe regolazione"
+msgstr "Righe liquidazione"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_line_search
 msgid "Settlement lines search"
-msgstr "Ricerca righe regolazione"
+msgstr "Ricerca righe liquidazione"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_res_partner__settlement
@@ -943,12 +943,12 @@ msgstr "Periodo di regolazione"
 #. module: sale_commission
 #: model:ir.actions.report,name:sale_commission.action_report_settlement
 msgid "Settlement report"
-msgstr "Resoconto regolazioni"
+msgstr "Resoconto liquidazione"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_search
 msgid "Settlement search"
-msgstr "Ricerca regolazioni"
+msgstr "Ricerca liquidazione"
 
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_account_move_line__settlement_id
@@ -982,7 +982,7 @@ msgstr "Stato"
 #: code:addons/sale_commission/models/sale_commission.py:0
 #, python-format
 msgid "The lower limit cannot be greater than upper one."
-msgstr "Il limite inferiore non può essere maggiore di quello superiore."
+msgstr "Il limite inferiore non può essere più grande di quello superiore."
 
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_account_invoice_line_agent__invoice_id
@@ -1001,9 +1001,8 @@ msgid ""
 "This is the default commission used in the sales where this agent is "
 "assigned. It can be changed on each operation if needed."
 msgstr ""
-"Provvigione predefinita utilizzata nelle vendite alle quali è stato "
-"assegnato l'agente. Se necessario, può essere cambiata per ciascuna "
-"operazione."
+"Questa è la commissione predefinita usata nelle vendite dove è assegnato "
+"questo agente. Può essere cambiata su ogni operazione se necessario."
 
 #. module: sale_commission
 #: model_terms:ir.actions.act_window,help:sale_commission.action_sale_commission_analysis_report
