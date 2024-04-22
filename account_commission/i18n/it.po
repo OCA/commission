@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-14 11:35+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2024-04-22 14:43+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -18,9 +18,8 @@ msgstr ""
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__quantity
-#, fuzzy
 msgid "# of Qty"
-msgstr "# di q.tà"
+msgstr "N. di q.tà"
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.commission_make_invoice_form
@@ -29,7 +28,6 @@ msgstr "(lasciare vuoto per fatturare tutte le liquidazioni pendenti)"
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
-#, fuzzy
 msgid "<strong>Settlement invoice:</strong>"
 msgstr "<strong>Fattura provvigioni:</strong>"
 
@@ -70,9 +68,8 @@ msgstr "Importo"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_move_line__any_settled
-#, fuzzy
 msgid "Any Settled"
-msgstr "Qualunque liquidata"
+msgstr "Qualsiasi regolata"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__balance
@@ -99,9 +96,8 @@ msgstr "Categoria prodotto"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_move_line__commission_free
-#, fuzzy
 msgid "Comm. free"
-msgstr "No provv."
+msgstr "Senza provvigione"
 
 #. module: account_commission
 #: model:ir.model,name:account_commission.model_commission
@@ -193,7 +189,7 @@ msgstr "Data"
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "Description"
-msgstr ""
+msgstr "Descrizione"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__display_name
@@ -214,15 +210,13 @@ msgstr "Modifica agenti"
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
-#, fuzzy
 msgid "Extended Filters"
-msgstr "Filtri avanzati"
+msgstr "Filtri estesi"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_commission_make_invoice__from_settlement
-#, fuzzy
 msgid "From Settlement"
-msgstr "Da liquidazione"
+msgstr "Dalla liquidazione"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_commission_settlement__invoice_id
@@ -264,15 +258,13 @@ msgstr "Riga fattura agente"
 
 #. module: account_commission
 #: model:ir.model.fields.selection,name:account_commission.selection__commission__invoice_state__open
-#, fuzzy
 msgid "Invoice Based"
-msgstr "Basato su fatture"
+msgstr "Basata sulla fattura"
 
 #. module: account_commission
 #: model:ir.model,name:account_commission.model_invoice_commission_analysis_report
-#, fuzzy
 msgid "Invoice Commission Analysis Report"
-msgstr "Analisi fatture provvigioni"
+msgstr "Resoconto analisi commissioni fattura"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__date_invoice
@@ -388,9 +380,8 @@ msgstr "Non liquidata"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__object_id
-#, fuzzy
 msgid "Parent"
-msgstr "Superiore"
+msgstr "Padre"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__partner_id
@@ -454,6 +445,11 @@ msgid ""
 "* 'Payment Based': Commissions are settled when the invoice is paid (or "
 "refunded)."
 msgstr ""
+"Selezionare lo stato fattura per impostare le commissioni:\n"
+"* 'Basata su fattura': le commissioni sono impostate quando la fattura viene "
+"emessa.\n"
+"* 'Basata sul pagamento': le commissioni sono impostate quando la fattura "
+"viene pagata (o rimborsata)."
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__settled
@@ -473,9 +469,8 @@ msgstr "Liquidazione"
 #: model:ir.model.fields,field_description:account_commission.field_account_bank_statement_line__settlement_count
 #: model:ir.model.fields,field_description:account_commission.field_account_move__settlement_count
 #: model:ir.model.fields,field_description:account_commission.field_account_payment__settlement_count
-#, fuzzy
 msgid "Settlement Count"
-msgstr "N. liquidazioni"
+msgstr "Conteggio liguidazioni"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__settlement_line_ids
@@ -520,9 +515,8 @@ msgstr "Stato"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__price_subtotal
-#, fuzzy
 msgid "Subtotal"
-msgstr "Imponibile"
+msgstr "Subtotale"
 
 #. module: account_commission
 #: model:ir.model.fields,help:account_commission.field_commission_settlement__settlement_type
@@ -530,8 +524,8 @@ msgid ""
 "The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase "
 "order'..."
 msgstr ""
-"La sorgente di questa liquidazione, e.g. 'Fatture di vendita', 'Ordini di "
-"vendita', 'Ordini di acquisto'..."
+"La sorgente della liquidazione, es. 'Fattura di vendita', 'Ordine di "
+"vendita', 'Ordine fornitore'..."
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
