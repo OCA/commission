@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-22 08:15+0000\n"
-"PO-Revision-Date: 2023-12-24 18:42+0000\n"
+"PO-Revision-Date: 2024-04-22 17:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__quantity
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__quantity
 msgid "# of Qty"
-msgstr "# di Qty"
+msgstr "N. di q.tà"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/sale_commission_mixin.py:65
@@ -159,7 +159,7 @@ msgstr "Approvvigionamento"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission__amount_base_type
 msgid "Base"
-msgstr "Base"
+msgstr "Imponibile"
 
 #. module: sale_commission
 #: selection:sale.commission,commission_type:0
@@ -456,7 +456,7 @@ msgstr "Da"
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice__from_settlement
 msgid "From Settlement"
-msgstr "Da liquidazione"
+msgstr "Dalla liquidazione"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.sale_commission_form
@@ -508,7 +508,7 @@ msgstr "Fattura"
 #. module: sale_commission
 #: selection:sale.commission,invoice_state:0
 msgid "Invoice Based"
-msgstr "Basato su fattura"
+msgstr "Basata sulla fattura"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_invoice_line
@@ -627,7 +627,7 @@ msgstr "Crea Fatture"
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settled_wizard
 msgid "Make settlements"
-msgstr "Crea Provvigioni"
+msgstr "Crea liquidazioni"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_mixin
@@ -768,7 +768,7 @@ msgstr "Trimestrale"
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.sale_commission_form
 msgid "Rates definition"
-msgstr "Definizione Aliquote"
+msgstr "Definizione aliquote"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.invoice_form_agent
@@ -828,7 +828,7 @@ msgstr "Riga ordine di vendita"
 #. module: sale_commission
 #: selection:res.partner,agent_type:0
 msgid "Salesman (employee)"
-msgstr "Commerciale"
+msgstr "Venditore (dipendente)"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_commission_analysis_report__salesman_id
@@ -882,30 +882,30 @@ msgstr "Totale regolato"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__settlement
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_form
 msgid "Settlement"
-msgstr "Approvvigionamento"
+msgstr "Liquidazione"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_line_graph
 msgid "Settlement analysis"
-msgstr "Analisi Provvigioni"
+msgstr "Analisi liquidazione"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement__lines
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_form
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_line_tree
 msgid "Settlement lines"
-msgstr "Righe provvigioni"
+msgstr "Righe liquidazione"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_line_search
 msgid "Settlement lines search"
-msgstr "Ricerca righe provvigioni"
+msgstr "Ricerca righe liquidazione"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_res_partner__settlement
 #: model:ir.model.fields,field_description:sale_commission.field_res_users__settlement
 msgid "Settlement period"
-msgstr "Periodo Approvvigionamento"
+msgstr "Periodo liquidazione"
 
 #. module: sale_commission
 #: code:addons/sale_commission/wizard/wizard_settle.py:34
@@ -917,12 +917,12 @@ msgstr "Periodo Approvvigionamento non valido."
 #. module: sale_commission
 #: model:ir.actions.report,name:sale_commission.action_report_settlement
 msgid "Settlement report"
-msgstr "Report provvigioni"
+msgstr "Resoconto liquidazione"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_search
 msgid "Settlement search"
-msgstr "Ricerca provvigioni"
+msgstr "Ricerca liquidazione"
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_settle_commission
@@ -935,7 +935,7 @@ msgstr "Ricerca provvigioni"
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_partner_form_agent
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_tree
 msgid "Settlements"
-msgstr "Provvigioni"
+msgstr "Liquidazioni"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement__state
@@ -953,7 +953,7 @@ msgstr "Stato"
 #: code:addons/sale_commission/models/sale_commission.py:53
 #, python-format
 msgid "The lower limit cannot be greater than upper one."
-msgstr "Il limite inferiore non può essere più grande del maggiore."
+msgstr "Il limite inferiore non può essere più grande di quello superiore."
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
@@ -969,8 +969,8 @@ msgid ""
 "This is the default commission used in the sales where this agent is "
 "assigned. It can be changed on each operation if needed."
 msgstr ""
-"Questa è la provvigione di default usata nelle vendita assegnata a questo "
-"agente. Può essere cambiato a ogni operazione se necessario."
+"Questa è la commissione predefinita usata nelle vendite dove è assegnato "
+"questo agente. Può essere cambiata su ogni operazione se necessario."
 
 #. module: sale_commission
 #: model_terms:ir.actions.act_window,help:sale_commission.action_sale_commission_analysis_report
