@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 02:37+0000\n"
-"PO-Revision-Date: 2024-02-08 10:42+0000\n"
+"PO-Revision-Date: 2024-04-22 17:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-commission-8-0/"
 "language/it/)\n"
@@ -112,7 +112,7 @@ msgstr "Annuale"
 #. module: sale_commission
 #: field:sale.commission,amount_base_type:0
 msgid "Base"
-msgstr "Base"
+msgstr "Imponibile"
 
 #. module: sale_commission
 #: selection:sale.commission,commission_type:0
@@ -307,7 +307,7 @@ msgstr "Da"
 #. module: sale_commission
 #: field:sale.commission.make.invoice,from_settlement:0
 msgid "From settlement"
-msgstr "Da liquidazione"
+msgstr "Dalla liquidazione"
 
 #. module: sale_commission
 #: view:sale.commission:sale_commission.sale_commission_form
@@ -511,7 +511,7 @@ msgstr "Trimestrale"
 #. module: sale_commission
 #: view:sale.commission:sale_commission.sale_commission_form
 msgid "Rates definition"
-msgstr "Definizione Rata"
+msgstr "Definizione aliquote"
 
 #. module: sale_commission
 #: field:sale.commission.make.invoice,refund_journal:0
@@ -536,7 +536,7 @@ msgstr "Riga ordine di vendita"
 #. module: sale_commission
 #: selection:res.partner,agent_type:0
 msgid "Salesman (employee)"
-msgstr "Addetto Vendite (dipendente)"
+msgstr "Venditore (dipendente)"
 
 #. module: sale_commission
 #: field:sale.commission,sections:0
@@ -622,7 +622,7 @@ msgstr "Ricerca liquidazione"
 #: field:sale.commission.make.invoice,settlements:0
 #: view:sale.commission.settlement:sale_commission.view_settlement_tree
 msgid "Settlements"
-msgstr "Provvigioni"
+msgstr "Liquidazioni"
 
 #. module: sale_commission
 #: view:sale.commission.settlement:sale_commission.view_settlement_search
@@ -634,7 +634,7 @@ msgstr "Stato"
 #: code:addons/sale_commission/models/sale_commission.py:65
 #, python-format
 msgid "The lower limit cannot be greater than upper one."
-msgstr "Il limite inferiore non può essere più grande del maggiore"
+msgstr "Il limite inferiore non può essere più grande di quello superiore."
 
 #. module: sale_commission
 #: help:res.partner,commission:0
@@ -642,8 +642,8 @@ msgid ""
 "This is the default commission used in the sales where this agent is "
 "assigned. It can be changed on each operation if needed."
 msgstr ""
-"Questa è la commissione di default usata nelle vendite assegnate all'agente. "
-"Può essere cambiato in ogni operazione se necessario"
+"Questa è la commissione predefinita usata nelle vendite dove è assegnato "
+"questo agente. Può essere cambiata su ogni operazione se necessario."
 
 #. module: sale_commission
 #: view:sale.commission.settlement:sale_commission.view_settlement_search
