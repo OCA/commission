@@ -6,46 +6,48 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-04-22 14:43+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: hr_commission
 #: model:ir.model.fields,help:hr_commission.field_res_partner__employee
 #: model:ir.model.fields,help:hr_commission.field_res_users__employee
 msgid "Check this box if this contact is an Employee."
-msgstr ""
+msgstr "Seleziona questa casella se questo contatto è un dipendente."
 
 #. module: hr_commission
 #: model:ir.model,name:hr_commission.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: hr_commission
 #: model:ir.model,name:hr_commission.model_hr_employee
 #: model:ir.model.fields,field_description:hr_commission.field_res_partner__employee
 #: model:ir.model.fields,field_description:hr_commission.field_res_users__employee
 msgid "Employee"
-msgstr ""
+msgstr "Dipendente"
 
 #. module: hr_commission
 #: model_terms:ir.ui.view,arch_db:hr_commission.view_settlement_form
 msgid "Mark as invoiced"
-msgstr ""
+msgstr "Segna come fatturato"
 
 #. module: hr_commission
 #: model:ir.model.fields,field_description:hr_commission.field_res_partner__employee_id
 msgid "Related Employee"
-msgstr ""
+msgstr "Dipendente collegato"
 
 #. module: hr_commission
 #: model:ir.model.fields.selection,name:hr_commission.selection__res_partner__agent_type__salesman
 msgid "Salesman (employee)"
-msgstr ""
+msgstr "Venditore (dipendente)"
 
 #. module: hr_commission
 #: model:ir.model,name:hr_commission.model_commission_settlement
