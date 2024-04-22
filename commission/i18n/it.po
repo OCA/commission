@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-27 20:33+0000\n"
+"PO-Revision-Date: 2024-04-22 16:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -47,7 +47,7 @@ msgstr ""
 "<span>\n"
 "                        Nessuna liquidazione automatica possibile. "
 "Installare\n"
-"                        moduli extra per abilitare questa funzionalit??.\n"
+"                        moduli extra per abilitare questa funzionalità.\n"
 "                    </span>"
 
 #. module: commission
@@ -78,22 +78,22 @@ msgstr "Attivo"
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_ids
 msgid "Activities"
-msgstr "Attivit??"
+msgstr "Attività"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr "Decorazione eccezione attivit??"
+msgstr "Decorazione eccezione attività"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_state
 msgid "Activity State"
-msgstr "Stato attivit??"
+msgstr "Stato attività"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_type_icon
 msgid "Activity Type Icon"
-msgstr "Icona tipo attivit??"
+msgstr "Icona tipo attività"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_line_mixin__agent_id
@@ -167,7 +167,7 @@ msgstr "Numero allegati"
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__amount_base_type
 msgid "Base"
-msgstr "Base"
+msgstr "Imponibile"
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__biweekly
@@ -182,12 +182,12 @@ msgstr "A scaglioni"
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__can_edit
 msgid "Can Edit"
-msgstr "Pu?? modificare"
+msgstr "Può modificare"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_make_settle__can_settle
 msgid "Can Settle"
-msgstr "Pu?? regolare"
+msgstr "Può liquidare"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
@@ -204,7 +204,7 @@ msgstr "Annullato"
 #: model:ir.model.fields,help:commission.field_res_partner__agent
 #: model:ir.model.fields,help:commission.field_res_users__agent
 msgid "Check this field if the partner is a creditor or an agent."
-msgstr "Selezionare il campo se il partner ?? un creditore o un agente."
+msgstr "Selezionare il campo se il partner è un creditore o un agente."
 
 #. module: commission
 #. odoo-python
@@ -326,9 +326,8 @@ msgstr "Mese"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_commission_mixin_agent_only
-#, fuzzy
 msgid "Discard"
-msgstr "Annulla"
+msgstr "Abbandona"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__display_name
@@ -353,12 +352,12 @@ msgstr "Percentuale fissa"
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Seguito da"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Seguito da (partner)"
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__activity_type_icon
@@ -390,9 +389,8 @@ msgstr "Raggruppa per"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__has_message
-#, fuzzy
 msgid "Has Message"
-msgstr "Ci sono messaggi"
+msgstr "Ha un messaggio"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__id
@@ -410,9 +408,8 @@ msgstr "Icona"
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__activity_exception_icon
-#, fuzzy
 msgid "Icon to indicate an exception activity."
-msgstr "Icona che indica l'eccezzione sull'attivit??"
+msgstr "Icona per indicare un'attività eccezione."
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__message_needaction
@@ -428,7 +425,7 @@ msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Segue"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__write_uid
@@ -450,9 +447,8 @@ msgstr "Ultimo aggiornamento il"
 
 #. module: commission
 #: model:ir.model,name:commission.model_commission_settlement_line
-#, fuzzy
 msgid "Line of a commission settlement"
-msgstr "Linea di una liquidazione provvigioni"
+msgstr "Riga di regolazione provvigione"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
@@ -472,7 +468,7 @@ msgstr "Manuale"
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__net_amount
 msgid "Margin (Amount - Cost)"
-msgstr ""
+msgstr "Margine (importo - costo)"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__message_has_error
@@ -488,6 +484,8 @@ msgstr "Messaggi"
 #: model:ir.model,name:commission.model_commission_mixin
 msgid "Mixin model for applying to any object that wants to handle commissions"
 msgstr ""
+"Modello mixin da applicare a qualsiasi oggetto che voglia gestire le "
+"provvigioni"
 
 #. module: commission
 #: model:ir.model,name:commission.model_commission_line_mixin
@@ -495,6 +493,8 @@ msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
 msgstr ""
+"Modello mixin per avere righe di provvigione agente in qualsiasi oggetto che "
+"erediti dall'attuale"
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__monthly
@@ -503,9 +503,8 @@ msgstr "Mensile"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__my_activity_date_deadline
-#, fuzzy
 msgid "My Activity Deadline"
-msgstr "Scadenza mia attivit??"
+msgstr "Scadenza mia attività"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__name
@@ -516,17 +515,17 @@ msgstr "Nome"
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr "Scadenza prossima attivit??"
+msgstr "Scadenza prossima attività"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_summary
 msgid "Next Activity Summary"
-msgstr "Riepilogo prossima attivit??"
+msgstr "Riepilogo prossima attività"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_type_id
 msgid "Next Activity Type"
-msgstr "Tipo prossima attivit??"
+msgstr "Tipo prossima attività"
 
 #. module: commission
 #. odoo-python
@@ -557,9 +556,8 @@ msgstr "Numero di messaggi con errore di consegna"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_line_mixin__object_id
-#, fuzzy
 msgid "Parent"
-msgstr "Superiore"
+msgstr "Padre"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_section__percent
@@ -579,9 +577,8 @@ msgstr "Trimestrale"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.commission_form
-#, fuzzy
 msgid "Rates definition"
-msgstr "Definizione tariffe"
+msgstr "Definizione aliquote"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_user_id
@@ -596,7 +593,7 @@ msgstr "Errore consegna SMS"
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__gross_amount
 msgid "Sale/Invoice Amount"
-msgstr ""
+msgstr "Importo vendita/fattura"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_commission_mixin_agent_only
@@ -617,6 +614,11 @@ msgid ""
 "* 'Margin (Amount - Cost)': percentage is computed from the profit only, "
 "taken the cost from the product."
 msgstr ""
+"Seleziona l'importo imponibile su cui calcolare la percentuale:\n"
+"* 'Importo vendita/fattura': la percentuale è calcolata dall'importo "
+"inserito nell'ordine di vendita/fattura.\n"
+"* 'Margine (importo - costo)': la percentuale è calcolata solo in base al "
+"profitto, sottraendo all'importo il costo del prodotto."
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
@@ -632,6 +634,12 @@ msgid ""
 "* 'By sections': percentage varies depending amount intervals. You can fill "
 "intervals and percentages in the section \"Rate definition\"."
 msgstr ""
+"Selezionare il tipo di percentuale della provvigione:\n"
+"* 'Percentuale fissa': tutte le provvigioni sono calcolate con una "
+"percentuale fissa. Si può impostare la percentuale nel campo \"Percentuale "
+"fissa\".\n"
+"* 'Per sezioni': la percentuale varia per intervalli dell'importo. Si può "
+"impostare gli intervalli nella sezione \"Definizione provvigioni\"."
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__semi
@@ -685,7 +693,6 @@ msgstr "Tipo liquidazione"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_graph
-#, fuzzy
 msgid "Settlement analysis"
 msgstr "Analisi liquidazione"
 
@@ -707,15 +714,13 @@ msgstr "Periodo liquidazione"
 
 #. module: commission
 #: model:ir.actions.report,name:commission.action_report_settlement
-#, fuzzy
 msgid "Settlement report"
-msgstr "Report liquidazione"
+msgstr "Resoconto liquidazione"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_search
-#, fuzzy
 msgid "Settlement search"
-msgstr "Ricerca liquidazioni"
+msgstr "Ricerca liquidazione"
 
 #. module: commission
 #: model:ir.actions.act_window,name:commission.action_commission_settlement
@@ -738,32 +743,31 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
-"Stato in base alle attivit??\n"
-"Scaduto: la data richiesta ?? trascorsa\n"
-"Oggi: la data attivit?? ?? oggi\n"
-"Pianificato: attivit?? future."
+"Stato in base alle attività\n"
+"Scaduto: la data richiesta è trascorsa\n"
+"Oggi: la data attività è oggi\n"
+"Pianificato: attività future."
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__can_edit
 msgid "Technical field for determining if user can edit settlements"
 msgstr ""
-"Campo tecnico per determinare se l'utente pu?? modificare le liquidazioni"
+"Campo tecnico per determinare se l'utente può modificare le liquidazioni"
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_make_settle__can_settle
-#, fuzzy
 msgid ""
 "Technical field for improving UX when no extra *commission is installed."
 msgstr ""
-"Campo tecnico per migliorare la UX quando non ci sono moduli extra "
-"installati."
+"Campo tecnico per migliorare la UX quando non è installato il modulo "
+"aggiuntivo commissioni."
 
 #. module: commission
 #. odoo-python
 #: code:addons/commission/models/commission.py:0
 #, python-format
 msgid "The lower limit cannot be greater than upper one."
-msgstr "Il limite inferiore non pu?? essere maggiore del superiore."
+msgstr "Il limite inferiore non può essere più grande di quello superiore."
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__settlement_type
@@ -777,13 +781,12 @@ msgstr ""
 #. module: commission
 #: model:ir.model.fields,help:commission.field_res_partner__commission_id
 #: model:ir.model.fields,help:commission.field_res_users__commission_id
-#, fuzzy
 msgid ""
 "This is the default commission used in the sales where this agent is "
 "assigned. It can be changed on each operation if needed."
 msgstr ""
-"Provvigione predefinita quando viene assegnato questo agente ad una vendita. "
-"Pu?? essere cambiata su ogni singola operazione se necessario."
+"Questa è la commissione predefinita usata nelle vendite dove è assegnato "
+"questo agente. Può essere cambiata su ogni operazione se necessario."
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_search
@@ -812,9 +815,8 @@ msgstr "Tipo"
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__activity_exception_decoration
-#, fuzzy
 msgid "Type of the exception activity on record."
-msgstr "Tipo di eccezione attivit?? sul record."
+msgstr "Tipo di attività eccezione sul record."
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_make_settle__date_to
@@ -834,7 +836,7 @@ msgstr "Procedura guidata per la liquidazione delle provvigioni"
 #. module: commission
 #: model:ir.model.constraint,message:commission.constraint_commission_line_mixin_unique_agent
 msgid "You can only add one time each agent."
-msgstr "?? possibile aggiungere ogni agente solo una volta."
+msgstr "È possibile aggiungere ogni agente solo una volta."
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
