@@ -829,6 +829,16 @@ msgid "User"
 msgstr "Usu??rio"
 
 #. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__website_message_ids
+msgid "Website Messages"
+msgstr "Mensagens do Site"
+
+#. module: commission
+#: model:ir.model.fields,help:commission.field_commission_settlement__website_message_ids
+msgid "Website communication history"
+msgstr "Hist??rico de comunica????o do Site"
+
+#. module: commission
 #: model:ir.model,name:commission.model_commission_make_settle
 msgid "Wizard for settling commissions"
 msgstr "Assistente para liquida????o de comiss??es"
@@ -848,12 +858,6 @@ msgstr "ou"
 
 #~ msgid "Main Attachment"
 #~ msgstr "Anexo Principal"
-
-#~ msgid "Website Messages"
-#~ msgstr "Mensagens do Site"
-
-#~ msgid "Website communication history"
-#~ msgstr "Hist??rico de comunica????o do Site"
 
 #~ msgid "Gross Amount"
 #~ msgstr "Valor Bruto"
