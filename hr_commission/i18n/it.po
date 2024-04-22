@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-04-22 14:43+0000\n"
+"PO-Revision-Date: 2024-04-22 17:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -52,7 +52,7 @@ msgstr "Venditore (dipendente)"
 #. module: hr_commission
 #: model:ir.model,name:hr_commission.model_commission_settlement
 msgid "Settlement"
-msgstr ""
+msgstr "Liquidazione"
 
 #. module: hr_commission
 #. odoo-python
@@ -63,12 +63,15 @@ msgid ""
 "go to 'Employees' and create an Employee with a 'Related User' under 'HR "
 "Settings'."
 msgstr ""
+"Ci deve essere un (e uno soltanto) dipendente collegato a questo partner. "
+"Per far questo, accedere a 'Dipendenti' e creare un dipendente con un "
+"'Utente collegato' in 'Impostazioni RU'."
 
 #. module: hr_commission
 #: model:ir.model.fields,field_description:hr_commission.field_res_partner__agent_type
 #: model:ir.model.fields,field_description:hr_commission.field_res_users__agent_type
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: hr_commission
 #. odoo-python
@@ -76,3 +79,4 @@ msgstr ""
 #, python-format
 msgid "You can't remove the user, as it's linked to a commission agent."
 msgstr ""
+"Non si può rimuovere l'utente, perchéé è collegato ad un agente commissione."
