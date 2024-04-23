@@ -49,6 +49,8 @@ class CommissionMakeSettle(models.TransientModel):
                 return date(month=1, year=date_to.year, day=1)
         elif agent.settlement == "annual":
             return date(month=1, year=date_to.year, day=1)
+        elif agent.settlement == "pending":
+            return date(month=date_to.month, year=date_to.year, day=date_to.day)
 
     def _get_next_period_date(self, agent, current_date):
         if agent.settlement == "monthly":
@@ -66,6 +68,10 @@ class CommissionMakeSettle(models.TransientModel):
             return current_date + relativedelta(months=6)
         elif agent.settlement == "annual":
             return current_date + relativedelta(years=1)
+        elif agent.settlement == "pending":
+            return date(
+                month=self.date_to.month, year=self.date_to.year, day=self.date_to.day
+            )
 
     def _get_settlement(self, agent, company, currency, sett_from, sett_to):
         self.ensure_one()
@@ -97,7 +103,7 @@ class CommissionMakeSettle(models.TransientModel):
             "settlement_id": settlement.id,
         }
 
-    def _get_agent_lines(self, date_to_agent):
+    def _get_agent_lines(self, agent, date_to_agent):
         """Need to be extended according to settlement_type."""
         raise NotImplementedError()
 
