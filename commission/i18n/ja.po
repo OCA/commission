@@ -568,6 +568,11 @@ msgid "Parent"
 msgstr "親"
 
 #. module: commission
+#: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__pending
+msgid "Pending commissions"
+msgstr ""
+
+#. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_section__percent
 msgid "Percent"
 msgstr "率"
