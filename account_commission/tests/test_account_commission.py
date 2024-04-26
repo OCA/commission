@@ -659,3 +659,38 @@ class TestAccountCommission(TestCommissionBase):
         )
         self.assertEqual(3, len(settlements.line_ids))
         self.assertAlmostEqual(0.6, sum(settlements.mapped("total")), 2)
+
+    def _register_payment(self, invoice):
+        payment_journal = self.env["account.journal"].search(
+            [("type", "=", "cash"), ("company_id", "=", self.env.company.id)],
+            limit=1,
+        )
+        register_payments = (
+            self.env["account.payment.register"]
+            .with_context(active_ids=invoice.id, active_model="account.move")
+            .create({"journal_id": payment_journal.id})
+        )
+        register_payments.action_create_payments()
+
+    def test_invoice_pending_settlement(self):
+        """Make in one settlement all pending invoices to wizard date"""
+        fields.Date.today()
+        self.commission_net_paid.invoice_state = "paid"
+        invoice1 = self._create_invoice(
+            self.agent_pending, self.commission_net_paid, "2024-02-15", currency=None
+        )
+        # Register payment for the new invoice
+        invoice2 = self._create_invoice(
+            self.agent_pending, self.commission_net_paid, "2024-03-15", currency=None
+        )
+        invoice3 = self._create_invoice(
+            self.agent_pending, self.commission_net_paid, "2024-04-15", currency=None
+        )
+        # invoice1.invoice_line_ids.agent_ids._compute_amount()
+        (invoice1 + invoice2 + invoice3).action_post()
+        self._register_payment(invoice1)
+        self._register_payment(invoice2)
+        self._register_payment(invoice3)
+        self._settle_agent_invoice(self.agent_pending, 1)
+        settlements = self.settle_model.search([("state", "=", "settled")])
+        self.assertEqual(len(settlements.line_ids), 3)
