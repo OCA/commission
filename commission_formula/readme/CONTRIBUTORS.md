@@ -4,3 +4,5 @@
   (<https://komit-consulting.com>)
 - [NextERP Romania](https://www.nexterp.ro):
   - Fekete Mihai \<<feketemihai@nexterp.ro>\>
+- [Sygel](https://www.sygel.es):
+  - Alberto Martínez \<<alberto.martinez@sygel.es>\>
