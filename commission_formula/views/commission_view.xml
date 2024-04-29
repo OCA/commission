@@ -12,10 +12,10 @@
                         <field
                             name="formula"
                             widget="ace"
-                            attrs="{'invisible':[('commission_type','!=','formula')]}"
+                            invisible="commission_type != 'formula'"
                         />
                     </group>
-                    <group attrs="{'invisible':[('commission_type','!=','formula')]}">
+                    <group invisible="commission_type != 'formula'">
                         <h2 name="hr_instructions">Instructions</h2>
                         <span class='instructions'>
   Use 'line' to access all the line fields.

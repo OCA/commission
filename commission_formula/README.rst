@@ -73,6 +73,10 @@ Contributors
 
    -  Fekete Mihai <feketemihai@nexterp.ro>
 
+-  `Sygel <https://www.sygel.es>`__:
+
+   -  Alberto Martínez <alberto.martinez@sygel.es>
+
 Maintainers
 -----------
 
