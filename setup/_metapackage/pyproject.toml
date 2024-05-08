@@ -1,8 +1,9 @@
 [project]
 name = "odoo-addons-oca-commission"
-version = "17.0.20240419.0"
+version = "17.0.20240508.0"
 dependencies = [
     "odoo-addon-commission>=17.0dev,<17.1dev",
+    "odoo-addon-commission_formula>=17.0dev,<17.1dev",
 ]
 classifiers=[
     "Programming Language :: Python",
