@@ -829,6 +829,16 @@ msgid "User"
 msgstr "Utente"
 
 #. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__website_message_ids
+msgid "Website Messages"
+msgstr "Messaggi sito web"
+
+#. module: commission
+#: model:ir.model.fields,help:commission.field_commission_settlement__website_message_ids
+msgid "Website communication history"
+msgstr "Cronologia comunicazioni sito web"
+
+#. module: commission
 #: model:ir.model,name:commission.model_commission_make_settle
 msgid "Wizard for settling commissions"
 msgstr "Procedura guidata per la liquidazione delle provvigioni"
@@ -848,12 +858,6 @@ msgstr "o"
 
 #~ msgid "Main Attachment"
 #~ msgstr "Allegato principale"
-
-#~ msgid "Website Messages"
-#~ msgstr "Messaggi sito web"
-
-#~ msgid "Website communication history"
-#~ msgstr "Cronologia comunicazioni sito web"
 
 #~ msgid "Gross Amount"
 #~ msgstr "Importo lordo"

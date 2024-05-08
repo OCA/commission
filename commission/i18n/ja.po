@@ -808,6 +808,16 @@ msgid "User"
 msgstr "?????????"
 
 #. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: commission
+#: model:ir.model.fields,help:commission.field_commission_settlement__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: commission
 #: model:ir.model,name:commission.model_commission_make_settle
 msgid "Wizard for settling commissions"
 msgstr "???????????????????????????????????????"
