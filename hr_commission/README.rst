@@ -75,6 +75,7 @@ Contributors
    -  Ernesto Garc??a
 
 -  Rattapong C. <rattapongc@ecosoft.co.th>
+-  Mina S. Wahib minaw368@gmail.com
 
 Maintainers
 -----------
