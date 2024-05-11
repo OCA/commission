@@ -6,10 +6,7 @@
         <field name="inherit_id" ref="commission.view_partner_form_agent" />
         <field name="arch" type="xml">
             <field name="commission_id" position="after">
-                <field
-                    name="employee"
-                    attrs="{'invisible': [('agent_type', '!=', 'salesman')]}"
-                />
+                <field name="employee" invisible="agent_type != 'salesman'" />
             </field>
         </field>
     </record>

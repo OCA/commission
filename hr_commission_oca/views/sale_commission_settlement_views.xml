@@ -9,7 +9,7 @@
             <button name="action_invoice" position="before">
                 <button
                     string="Mark as invoiced"
-                    attrs="{'invisible': ['|', ('state', '!=', 'settled'), ('agent_type', '!=', 'salesman')]}"
+                    invisible="(state != 'settled') or (agent_type != 'salesman')"
                     class="oe_highlight"
                     type="object"
                     name="mark_as_invoiced"
