@@ -6,9 +6,9 @@
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="priority" eval="18" />
         <field name="arch" type="xml">
-            <field name="vat" position="after">
+            <xpath expr="//group/group[//field[@name='vat']]" position="inside">
                 <field name="agent" string="Agent" />
-            </field>
+            </xpath>
             <xpath
                 expr="//page[@name='sales_purchases']//field[@name='user_id']"
                 position="after"
