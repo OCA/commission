@@ -111,10 +111,19 @@ promote its widespread use.
 .. |maintainer-eLBati| image:: https://github.com/eLBati.png?size=40px
     :target: https://github.com/eLBati
     :alt: eLBati
+.. |maintainer-aleuffre| image:: https://github.com/aleuffre.png?size=40px
+    :target: https://github.com/aleuffre
+    :alt: aleuffre
+.. |maintainer-renda-dev| image:: https://github.com/renda-dev.png?size=40px
+    :target: https://github.com/renda-dev
+    :alt: renda-dev
+.. |maintainer-PicchiSeba| image:: https://github.com/PicchiSeba.png?size=40px
+    :target: https://github.com/PicchiSeba
+    :alt: PicchiSeba
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-eLBati| 
+|maintainer-eLBati| |maintainer-aleuffre| |maintainer-renda-dev| |maintainer-PicchiSeba| 
 
 This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/14.0/sale_commission_geo_assign>`_ project on GitHub.
 
