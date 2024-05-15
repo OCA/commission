@@ -47,6 +47,10 @@ class WizardGeoAssign(models.TransientModel):
                         "agent_ids": [(5, 0, 0)],
                     }
                 )
+                if "commission_item_agent_ids" in partner._fields:
+                    # compatibility with 'sale_commission_product_criteria_domain'
+                    partner.commission_item_agent_ids.unlink()
+
             for agent in agents:
                 self.update_partner_data(partner, agent)
 
