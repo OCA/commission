@@ -9,7 +9,7 @@
     "category": "Sales Management",
     "website": "https://github.com/OCA/commission",
     "author": "Agile Business Group, Odoo Community Association (OCA)",
-    "maintainers": ["eLBati"],
+    "maintainers": ["eLBati", "aleuffre", "renda-dev", "PicchiSeba"],
     "license": "AGPL-3",
     "application": False,
     "installable": True,
