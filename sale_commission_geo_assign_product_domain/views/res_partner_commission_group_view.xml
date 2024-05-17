@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_partner_commission_group_view_tree" model="ir.ui.view">
+        <field name="name">res.partner.commission.group.tree</field>
+        <field name="model">res.partner.commission.group</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="partner_id" />
+                <field name="country_ids" widget="many2many_tags" />
+                <field name="state_ids" widget="many2many_tags" />
+                <field name="zip_from" />
+                <field name="zip_to" />
+                <field name="allowed_commission_group_ids" invisible="1" />
+                <field name="commission_group_ids" widget="many2many_tags" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="res_partner_commission_group_view_search" model="ir.ui.view">
+        <field name="name">res.partner.commission.group.search</field>
+        <field name="model">res.partner.commission.group</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id" />
+                <field name="country_ids" />
+                <field name="state_ids" />
+                <field name="zip_from" />
+                <field name="zip_to" />
+                <field name="commission_group_ids" />
+                <filter
+                    string="Partner"
+                    name="partner"
+                    domain="[]"
+                    context="{'group_by': 'partner_id'}"
+                />
+            </search>
+        </field>
+    </record>
+
+    <record id="res_partner_commission_group_action" model="ir.actions.act_window">
+        <field name="name">Partner Commission Group</field>
+        <field name="res_model">res.partner.commission.group</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem
+        id="res_partner_commission_group_menu"
+        parent="sale_commission.menu_sale_commissions_management"
+        action="res_partner_commission_group_action"
+        sequence="5"
+    />
+</odoo>
