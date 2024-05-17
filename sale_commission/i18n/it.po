@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 02:37+0000\n"
-"PO-Revision-Date: 2024-05-17 08:00+0000\n"
+"PO-Revision-Date: 2024-05-17 10:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-commission-8-0/"
 "language/it/)\n"
@@ -683,7 +683,7 @@ msgstr "È possibile aggiungere ogni agente solo una volta."
 #: code:addons/sale_commission/models/settlement.py:57
 #, python-format
 msgid "You can't delete invoiced settlements."
-msgstr "Non puoi cancellare liquidazioni fatturate"
+msgstr "Non è possibile eliminare liquidazioni fatturate."
 
 #. module: sale_commission
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
