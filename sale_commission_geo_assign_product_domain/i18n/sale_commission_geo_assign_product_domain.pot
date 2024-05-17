@@ -82,7 +82,14 @@ msgstr ""
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__partner_id
+#: model_terms:ir.ui.view,arch_db:sale_commission_geo_assign_product_domain.res_partner_commission_group_view_search
 msgid "Partner"
+msgstr ""
+
+#. module: sale_commission_geo_assign_product_domain
+#: model:ir.actions.act_window,name:sale_commission_geo_assign_product_domain.res_partner_commission_group_action
+#: model:ir.ui.menu,name:sale_commission_geo_assign_product_domain.res_partner_commission_group_menu
+msgid "Partner Commission Group"
 msgstr ""
 
 #. module: sale_commission_geo_assign_product_domain
