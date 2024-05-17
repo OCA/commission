@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-22 08:15+0000\n"
-"PO-Revision-Date: 2024-04-22 17:37+0000\n"
+"PO-Revision-Date: 2024-05-17 10:39+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -1006,13 +1006,13 @@ msgstr ""
 #: code:addons/sale_commission/models/settlement.py:0
 #, python-format
 msgid "You can't delete invoiced settlements."
-msgstr "Non puoi cancellare provvigioni fatturate."
+msgstr "Non è possibile eliminare liquidazioni fatturate."
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/account_move.py:0
 #, python-format
 msgid "You can't modify a settled line"
-msgstr ""
+msgstr "Non è possibile modificare una riga liquidata"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
