@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 02:37+0000\n"
-"PO-Revision-Date: 2024-04-22 17:36+0000\n"
+"PO-Revision-Date: 2024-05-17 08:00+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-commission-8-0/"
 "language/it/)\n"
@@ -349,7 +349,7 @@ msgstr "Fattura"
 #. module: sale_commission
 #: selection:sale.commission,invoice_state:0
 msgid "Invoice Based"
-msgstr "Basato sulla Fattura"
+msgstr "Basata sulla fattura"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_invoice_line
