@@ -4,7 +4,6 @@ from odoo import api, fields, models
 class AccountMove(models.Model):
     _inherit = "account.move"
 
-    @api.model
     def create(self, vals):
         """
         _prepare_agents_vals_down_payment is called after _get_commission_amount on
@@ -37,11 +36,11 @@ class AccountMoveLine(models.Model):
             record.update({"agent_ids": agent_ids})
         regular_items = self - down_payment_items
         if regular_items:
-            super(AccountMoveLine, regular_items)._compute_agent_ids()
+            return super(AccountMoveLine, regular_items)._compute_agent_ids()
 
-    def _prepare_agents_vals_partner(self, partner):
+    def _prepare_agents_vals_partner(self, partner, settlement_type=None):
         if not self.move_id.has_related_sale_with_down_payment():
-            return super()._prepare_agents_vals_partner(partner)
+            return super()._prepare_agents_vals_partner(partner, settlement_type)
         sol_agents = self.sale_line_ids.mapped("agent_ids").filtered(
             lambda x: x.amount > 0
         )

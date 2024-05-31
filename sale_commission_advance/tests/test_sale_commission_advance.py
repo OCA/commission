@@ -1,11 +1,15 @@
-from odoo.tests.common import SavepointCase
+import logging
+
+from odoo.tests.common import TransactionCase
+
+_logger = logging.getLogger(__name__)
 
 
-class TestSaleCommission(SavepointCase):
+class TestSaleCommission(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.commission_model = cls.env["sale.commission"]
+        cls.commission_model = cls.env["commission"]
         cls.res_partner_model = cls.env["res.partner"]
         cls.sale_order_model = cls.env["sale.order"]
         cls.advance_inv_model = cls.env["sale.advance.payment.inv"]
@@ -43,12 +47,8 @@ class TestSaleCommission(SavepointCase):
         cls.partner.agent_ids = [(6, 0, (cls.agent_1 + cls.agent_2).ids)]
         cls.default_account_revenue = cls.env["account.account"].search(
             [
-                ("company_id", "=", cls.env.user.company_ids[0].id),
-                (
-                    "user_type_id",
-                    "=",
-                    cls.env.ref("account.data_account_type_revenue").id,
-                ),
+                ("company_id", "=", cls.env.company[0].id),
+                ("account_type", "=", "income"),
             ],
             limit=1,
         )
@@ -90,6 +90,7 @@ class TestSaleCommission(SavepointCase):
             wizard = self.advance_inv_model.create(
                 {
                     "advance_payment_method": method,
+                    "sale_order_ids": sale_order.ids,
                 }
             )
         else:
@@ -98,21 +99,16 @@ class TestSaleCommission(SavepointCase):
                     "advance_payment_method": method,
                     "amount": 10,
                     "deposit_account_id": self.default_account_revenue.id,
+                    "sale_order_ids": sale_order.ids,
                 }
             )
-        wizard.with_context(
-            {
-                "active_model": "sale.order",
-                "active_ids": [sale_order.id],
-                "active_id": sale_order.id,
-            }
-        ).create_invoices()
+        wizard.create_invoices()
         invoice = sale_order.invoice_ids - old_invoices
         if date:
             invoice.invoice_date = date
             invoice.date = date
         # We need to use flush() in order to execute commission_amount
-        invoice.flush()
+        invoice.flush_recordset()
         return invoice
 
     def test_down_payment_flow(self):
@@ -133,7 +129,7 @@ class TestSaleCommission(SavepointCase):
         # Regular Invoice
         invoice_id = self._invoice_sale_order(order_id, method="delivered")
         self.assertEqual(invoice_id.commission_total, 90)
-        dp_sol_id = order_id.order_line[-1]
+        dp_sol_id = order_id.order_line[0]
         self.assertEqual(len(dp_sol_id.agent_ids), 1)
 
     def test_regular_flow(self):
