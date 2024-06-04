@@ -1,0 +1,96 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_commission
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-07 11:26+0000\n"
+"PO-Revision-Date: 2023-10-10 22:39+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: hr_commission
+#: model:ir.model.fields,help:hr_commission.field_res_partner__employee
+#: model:ir.model.fields,help:hr_commission.field_res_users__employee
+msgid "Check this box if this contact is an Employee."
+msgstr "Seleccione esta casilla si el contacto es un Empleado."
+
+#. module: hr_commission
+#: model:ir.model,name:hr_commission.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: hr_commission
+#: model:ir.model,name:hr_commission.model_hr_employee
+#: model:ir.model.fields,field_description:hr_commission.field_res_partner__employee
+#: model:ir.model.fields,field_description:hr_commission.field_res_users__employee
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: hr_commission
+#: model_terms:ir.ui.view,arch_db:hr_commission.view_settlement_form
+msgid "Mark as invoiced"
+msgstr "Marcar como facturado"
+
+#. module: hr_commission
+#: model:ir.model.fields,field_description:hr_commission.field_res_partner__employee_id
+msgid "Related Employee"
+msgstr "Empleado relacionado"
+
+#. module: hr_commission
+#: model:ir.model.fields.selection,name:hr_commission.selection__res_partner__agent_type__salesman
+msgid "Salesman (employee)"
+msgstr "Comercial (empleado)"
+
+#. module: hr_commission
+#: model:ir.model,name:hr_commission.model_commission_settlement
+msgid "Settlement"
+msgstr "Liquidaci??n"
+
+#. module: hr_commission
+#. odoo-python
+#: code:addons/hr_commission/models/res_partner.py:0
+#, python-format
+msgid ""
+"There must one (and only one) employee linked to this partner. To do this, "
+"go to 'Employees' and create an Employee with a 'Related User' under 'HR "
+"Settings'."
+msgstr ""
+"Debe haber un (y s??lo un) empleado vinculado a este socio. Para ello, vaya a "
+"'Empleados' y cree un Empleado con un 'Usuario vinculado' en 'Configuraci??n "
+"de RRHH'."
+
+#. module: hr_commission
+#: model:ir.model.fields,field_description:hr_commission.field_res_partner__agent_type
+#: model:ir.model.fields,field_description:hr_commission.field_res_users__agent_type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: hr_commission
+#. odoo-python
+#: code:addons/hr_commission/models/hr_employee.py:0
+#, python-format
+msgid "You can't remove the user, as it's linked to a commission agent."
+msgstr "No puede eliminar el usuario, ya que est?? enlazado a un comisionista."
+
+#~ msgid "Employee."
+#~ msgstr "Empleado."
+
+#~ msgid "External agent"
+#~ msgstr "Agente externo"
+
+#, python-format
+#~ msgid ""
+#~ "There must one (and only one) employee linked to this partner. To do "
+#~ "this, go to 'Human Resources' and check 'Employees'"
+#~ msgstr ""
+#~ "Debe haber un (y s??lo un) empleado enlazado a esta empresa. Para hacer "
+#~ "esto, vaya a 'Recursos humanos' y compruebe la secci??n 'Empleados'"
