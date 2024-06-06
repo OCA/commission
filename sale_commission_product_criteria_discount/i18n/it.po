@@ -1,0 +1,142 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_commission_product_criteria_discount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-05-31 12:08+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_commission_product_criteria_discount
+#: model:ir.model,name:sale_commission_product_criteria_discount.model_sale_order_line_agent
+msgid "Agent detail of commission line in order lines"
+msgstr "Dettaglio riga provvigione agente nelle righe ordine"
+
+#. module: sale_commission_product_criteria_discount
+#: model:ir.model.fields.selection,name:sale_commission_product_criteria_discount.selection__res_config_settings__default_based_on__sol
+msgid "Any Sale Order Line"
+msgstr "Qualsiasi riga ordine di vendita"
+
+#. module: sale_commission_product_criteria_discount
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_commission_item__based_on
+msgid "Based On"
+msgstr "Basato su"
+
+#. module: sale_commission_product_criteria_discount
+#: model:ir.model,name:sale_commission_product_criteria_discount.model_commission_item
+msgid "Commission Item"
+msgstr "Riga provvigione"
+
+#. module: sale_commission_product_criteria_discount
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_discount.commission_item_form_view_inherit
+msgid "Commission by discount"
+msgstr "Provvigione per sconto"
+
+#. module: sale_commission_product_criteria_discount
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_discount.res_config_settings_view_form
+msgid "Commissions"
+msgstr "Provvigioni"
+
+#. module: sale_commission_product_criteria_discount
+#: model:ir.model,name:sale_commission_product_criteria_discount.model_res_config_settings
+msgid "Config Settings"
+msgstr "Impostazioni configurazione"
+
+#. module: sale_commission_product_criteria_discount
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_res_config_settings__default_based_on
+msgid "Default Based On"
+msgstr "Basato su predefinito"
+
+#. module: sale_commission_product_criteria_discount
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_discount.res_config_settings_view_form
+msgid "Default commission item based on value."
+msgstr "Valore predefinito su cui basare le righe provvigione."
+
+#. module: sale_commission_product_criteria_discount
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_discount.view_sale_order_line_tree_mod
+msgid "Disc. From"
+msgstr "Sconto da"
+
+#. module: sale_commission_product_criteria_discount
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_discount.view_sale_order_line_tree_mod
+msgid "Disc. To"
+msgstr "Sconto a"
+
+#. module: sale_commission_product_criteria_discount
+#: model:ir.model.fields.selection,name:sale_commission_product_criteria_discount.selection__commission_item__based_on__discount
+#: model:ir.model.fields.selection,name:sale_commission_product_criteria_discount.selection__res_config_settings__default_based_on__discount
+msgid "Discount"
+msgstr "Sconto"
+
+#. module: sale_commission_product_criteria_discount
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_commission_item__discount_from
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_sale_order_line_agent__discount_from
+msgid "Discount From"
+msgstr "Sconto da"
+
+#. module: sale_commission_product_criteria_discount
+#: code:addons/sale_commission_product_criteria_discount/models/commission.py:0
+#, python-format
+msgid "Discount From should be lower than the Discount To."
+msgstr "Il valore \"sconto da\" deve essere inferiore del valore \"sconto a\"."
+
+#. module: sale_commission_product_criteria_discount
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_discount.commission_item_form_view_inherit
+msgid "Discount From, %"
+msgstr "Sconto da, %"
+
+#. module: sale_commission_product_criteria_discount
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_commission_item__discount_to
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_sale_order_line_agent__discount_to
+msgid "Discount To"
+msgstr "Sconto a"
+
+#. module: sale_commission_product_criteria_discount
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_discount.commission_item_form_view_inherit
+msgid "Discount To, %"
+msgstr "Sconto a, %"
+
+#. module: sale_commission_product_criteria_discount
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_commission_item__display_name
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_sale_order_line_agent__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_commission_product_criteria_discount
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_commission_item__id
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_res_config_settings__id
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_sale_order_line_agent__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_commission_product_criteria_discount
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_commission_item____last_update
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_sale_order_line_agent____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: sale_commission_product_criteria_discount
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_discount.commission_item_form_view_inherit
+msgid ""
+"Please note! \"Discount From\" must start from decimal\n"
+"                        (e.g. 10.01).\n"
+"                        <br/>\n"
+"                        Only exception is if \"Discount From\" is 0 (e.g. "
+"0.00)."
+msgstr ""
+"Attenzione! \"Sconto da\" deve partire dal primo decimale\n"
+"                        (es. 10,01).\n"
+"                        <br/>\n"
+"                        L'unica eccezione è se il valore \"Sconto da\" è 0 "
+"(es. 0,00)."
