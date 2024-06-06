@@ -84,6 +84,7 @@ msgid "Discount From"
 msgstr "Sconto da"
 
 #. module: sale_commission_product_criteria_discount
+#. odoo-python
 #: code:addons/sale_commission_product_criteria_discount/models/commission.py:0
 #, python-format
 msgid "Discount From should be lower than the Discount To."
@@ -106,27 +107,6 @@ msgid "Discount To, %"
 msgstr "Sconto a, %"
 
 #. module: sale_commission_product_criteria_discount
-#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_commission_item__display_name
-#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_res_config_settings__display_name
-#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_sale_order_line_agent__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: sale_commission_product_criteria_discount
-#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_commission_item__id
-#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_res_config_settings__id
-#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_sale_order_line_agent__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_commission_product_criteria_discount
-#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_commission_item____last_update
-#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_res_config_settings____last_update
-#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_sale_order_line_agent____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: sale_commission_product_criteria_discount
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_discount.commission_item_form_view_inherit
 msgid ""
 "Please note! \"Discount From\" must start from decimal\n"
@@ -140,3 +120,12 @@ msgstr ""
 "                        <br/>\n"
 "                        L'unica eccezione è se il valore \"Sconto da\" è 0 "
 "(es. 0,00)."
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
