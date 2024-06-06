@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -81,6 +81,7 @@ msgid "Discount From"
 msgstr ""
 
 #. module: sale_commission_product_criteria_discount
+#. odoo-python
 #: code:addons/sale_commission_product_criteria_discount/models/commission.py:0
 #, python-format
 msgid "Discount From should be lower than the Discount To."
@@ -100,27 +101,6 @@ msgstr ""
 #. module: sale_commission_product_criteria_discount
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_discount.commission_item_form_view_inherit
 msgid "Discount To, %"
-msgstr ""
-
-#. module: sale_commission_product_criteria_discount
-#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_commission_item__display_name
-#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_res_config_settings__display_name
-#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_sale_order_line_agent__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: sale_commission_product_criteria_discount
-#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_commission_item__id
-#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_res_config_settings__id
-#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_sale_order_line_agent__id
-msgid "ID"
-msgstr ""
-
-#. module: sale_commission_product_criteria_discount
-#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_commission_item____last_update
-#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_res_config_settings____last_update
-#: model:ir.model.fields,field_description:sale_commission_product_criteria_discount.field_sale_order_line_agent____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_commission_product_criteria_discount
