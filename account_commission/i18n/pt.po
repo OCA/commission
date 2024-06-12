@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-06-12 13:21+0000\n"
+"PO-Revision-Date: 2024-06-12 15:34+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: none\n"
 "Language: pt\n"
@@ -434,6 +434,11 @@ msgid ""
 "* 'Invoice Based': Commissions are settled when the invoice is issued.\n"
 "* 'Payment Based': Commissions are settled when the invoice is paid."
 msgstr ""
+"Selecione o estado da fatura para liquidação das comissões:\n"
+"* 'Baseado em Fatura': As comissões são liquidadas no momento da emissão da "
+"fatura.\n"
+"* 'Baseado em Pagamento': As comissões são liquidadas no momento do "
+"pagamento da fatura."
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__settled
@@ -495,7 +500,7 @@ msgstr "Estado"
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "Status"
-msgstr "Situa????o"
+msgstr "Situação"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__price_subtotal
@@ -508,8 +513,8 @@ msgid ""
 "The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase "
 "order'..."
 msgstr ""
-"A origem da liquida????o, por exemplo, ??Fatura de venda??, ??Encomenda de "
-"venda??, ??Encomenda de compra??..."
+"A origem da liquidação, por exemplo, «Fatura de venda», «Ordem de venda», «"
+"Ordem de compra»..."
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
@@ -524,16 +529,16 @@ msgid ""
 "product category, aget, etc. Use this report to perform analysis on invoice "
 "lines agents not beeing settled yet."
 msgstr ""
-"Este relat??rio realiza an??lises sobre as suas comiss??es adicionadas em "
-"linhas de faturas. Pode verificar o valor e as linhas que ser??o liquidadas "
-"por data, produto, categoria do produto, agente, etc. Use este relat??rio "
-"para realizar an??lises em linhas de faturas em que os agentes ainda n??o "
-"est??o liquidados."
+"Este relatório realiza análises sobre as suas comissões adicionadas em "
+"linhas de fatura. Pode verificar o valor e as linhas que serão liquidadas "
+"por data, produto, categoria do produto, agente, etc. Use este relatório "
+"para realizar análises em agentes de linhas de fatura que ainda não estão "
+"liquidados."
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__price_unit
 msgid "Unit Price"
-msgstr "Pre??o Unit??rio"
+msgstr "Preço Unitário"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__uom_id
@@ -548,39 +553,39 @@ msgstr "Assistente para fazer uma fatura de um acordo"
 #. module: account_commission
 #: model:ir.model,name:account_commission.model_commission_make_settle
 msgid "Wizard for settling commissions"
-msgstr "Assistente para liquida????o de comiss??es"
+msgstr "Assistente para liquidação de comissões"
 
 #. module: account_commission
 #. odoo-python
 #: code:addons/account_commission/models/account_move.py:0
 #, python-format
 msgid "You can't cancel an invoice with settled lines"
-msgstr "N??o ?? poss??vel cancelar uma fatura com linhas liquidadas"
+msgstr "Não é possível cancelar uma fatura com linhas liquidadas"
 
 #. module: account_commission
 #. odoo-python
 #: code:addons/account_commission/models/commission_settlement.py:0
 #, python-format
 msgid "You can't delete invoiced settlements."
-msgstr "N??o pode excluir liquida????es faturadas."
+msgstr "Não pode excluir liquidações faturados."
 
 #. module: account_commission
 #. odoo-python
 #: code:addons/account_commission/models/account_move.py:0
 #, python-format
 msgid "You can't modify a settled line"
-msgstr "N??o ?? poss??vel modificar uma linha liquidada"
+msgstr "Não é possível modificar uma linha liquidada"
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_graph
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_pivot
 msgid "invoice Commission Analysis"
-msgstr "An??lise de Comiss??es de fatura"
+msgstr "Análise de Comissões de Faturas"
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "invoices Commission Analysis"
-msgstr "An??lise de Comiss??es de Faturas"
+msgstr "Análise de Comissões de Faturas"
 
 #~ msgid "Last Modified on"
 #~ msgstr "??ltima Modifica????o em"
