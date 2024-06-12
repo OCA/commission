@@ -70,4 +70,10 @@ class ResPartner(models.Model):
                 and partner.allowed_commission_group_ids
             ):
                 partner.allowed_commission_group_ids = False
+            if "agent" in vals.keys() and not vals["agent"]:
+                # not agent anymore - remove related cia's
+                cia_records = self.env["commission.item.agent"].search(
+                    [("agent_id", "=", partner.id)]
+                )
+                cia_records.unlink()
         return res
