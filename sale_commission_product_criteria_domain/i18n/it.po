@@ -1,0 +1,272 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_commission_product_criteria_domain
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-10-09 07:53+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__agent_id
+msgid "Agent"
+msgstr "Agente"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__agent_group_ids
+msgid "Agent Group"
+msgstr "Gruppo agente"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model,name:sale_commission_product_criteria_domain.model_account_invoice_line_agent
+msgid "Agent detail of commission line in invoice lines"
+msgstr "Dettaglio riga provvigione agente nelle righe fattura"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model,name:sale_commission_product_criteria_domain.model_sale_order_line_agent
+msgid "Agent detail of commission line in order lines"
+msgstr "Dettaglio riga provvigione agente nelle righe ordine"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__partner_agent_ids
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_domain.commission_items_group_form
+msgid "Agents"
+msgstr "Agenti"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__agents_count
+msgid "Agents Count"
+msgstr "Numero agenti"
+
+#. module: sale_commission_product_criteria_domain
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_domain.commission_item_agent_tree
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_domain.view_partner_form_agent_inherit
+msgid "Agents Items Restriction"
+msgstr "Restrizioni righe agenti"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__allowed_commission_group_ids
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_users__allowed_commission_group_ids
+msgid "Allowed Commission Group"
+msgstr "Gruppi provvigionali ammessi"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__allowed_commission_group_ids_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_users__allowed_commission_group_ids_domain
+msgid "Allowed Commission Group Ids Domain"
+msgstr "Dominio ids gruppi provvigionali ammessi"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__apply_commission_restrictions
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_users__apply_commission_restrictions
+msgid "Apply Restrictions"
+msgstr "Applica limitazioni"
+
+#. module: sale_commission_product_criteria_domain
+#: code:addons/sale_commission_product_criteria_domain/models/commission.py:0
+#, python-format
+msgid "At least one group for each restriction must be selected."
+msgstr "Deve essere selezionato almeno un gruppo per ogni restrizione."
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__commission_ids
+msgid "Commission"
+msgstr "Provvigione"
+
+#. module: sale_commission_product_criteria_domain
+#: code:addons/sale_commission_product_criteria_domain/models/commission_group.py:0
+#, python-format
+msgid "Commission Group Agents"
+msgstr "Agenti gruppo provvigionale"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model,name:sale_commission_product_criteria_domain.model_commission_item
+msgid "Commission Item"
+msgstr "Riga provvigione"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model,name:sale_commission_product_criteria_domain.model_commission_item_agent
+msgid "Commission Item Agent"
+msgstr "Agenti riga provvigione"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model,name:sale_commission_product_criteria_domain.model_commission_items_group
+msgid "Commission Items Group"
+msgstr "Gruppo di righe provvigioni"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__commission_item_agent_ids
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_users__commission_item_agent_ids
+msgid "Commission Items Groups"
+msgstr "Gruppi di righe provvigioni"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__group_ids
+msgid "Commission Items Groups Restrictions"
+msgstr "Restrizioni gruppi di righe provvigioni"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item__commission_id
+msgid "Commission Type"
+msgstr "Tipo di provvigione"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.actions.act_window,name:sale_commission_product_criteria_domain.commission_items_group_tree_action
+#: model:ir.ui.menu,name:sale_commission_product_criteria_domain.menu_commission_items_group
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_domain.commission_items_group_tree
+msgid "Commission Type Items Groups"
+msgstr "Gruppi di righe provvigioni"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model,name:sale_commission_product_criteria_domain.model_sale_commission
+msgid "Commission in sales"
+msgstr "Provvigione nelle vendite"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.constraint,message:sale_commission_product_criteria_domain.constraint_commission_items_group_unique_cig_name
+msgid ""
+"Commission items group with such name already exists. Name must be unique."
+msgstr ""
+"Esiste già un gruppo di righe provvigioni con questo nome. Inseriscine uno "
+"univoco."
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model,name:sale_commission_product_criteria_domain.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__create_uid
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__create_date
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_account_invoice_line_agent__display_name
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item__display_name
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__display_name
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__display_name
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__display_name
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_sale_commission__display_name
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_sale_commission_line_mixin__display_name
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_sale_order_line_agent__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item__group_id
+msgid "Group"
+msgstr "Gruppo"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_account_invoice_line_agent__id
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item__id
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__id
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__id
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__id
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_sale_commission__id
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_sale_commission_line_mixin__id
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_sale_order_line_agent__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__item_ids
+msgid "Items"
+msgstr "Righe"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_account_invoice_line_agent____last_update
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item____last_update
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent____last_update
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group____last_update
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner____last_update
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_sale_commission____last_update
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_sale_commission_line_mixin____last_update
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_sale_order_line_agent____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__write_uid
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__write_date
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model,name:sale_commission_product_criteria_domain.model_sale_commission_line_mixin
+msgid ""
+"Mixin model for having commission agent lines in any object inheriting from "
+"this one"
+msgstr ""
+"Modello mixin per avere righe di provvigione agente in qualsiasi oggetto che "
+"erediti dall'attuale"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__partner_id
+msgid "Partner"
+msgstr "Partner"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields.selection,name:sale_commission_product_criteria_domain.selection__sale_commission__commission_type__product_restricted
+msgid "Product criteria (with restrictions)"
+msgstr "Criteri prodotto (con restrizioni)"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,help:sale_commission_product_criteria_domain.field_res_partner__allowed_commission_group_ids
+#: model:ir.model.fields,help:sale_commission_product_criteria_domain.field_res_users__allowed_commission_group_ids
+msgid "Related only to agents"
+msgstr "Riferito solo agli agenti"
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item__sale_commission_type
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__commission_type
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_users__commission_type
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_sale_commission__commission_type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: sale_commission_product_criteria_domain
+#: code:addons/sale_commission_product_criteria_domain/models/commission_group.py:0
+#, python-format
+msgid ""
+"You can not delete this commission group since there is related to it "
+"commission items."
+msgstr ""
+"Non puoi eliminare questo gruppo di righe provvigione perché è relazionato a "
+"delle righe provvigione."
+
+#. module: sale_commission_product_criteria_domain
+#: model:ir.model.constraint,message:sale_commission_product_criteria_domain.constraint_commission_item_agent_commission_item_unique_agent
+msgid ""
+"You can only add one time each agent into Commission Items Groups "
+"Restrictions table."
+msgstr ""
+"Puoi aggiungere solo una volta ogni agente nella tabella Restrizioni gruppi "
+"di righe provvigione."
