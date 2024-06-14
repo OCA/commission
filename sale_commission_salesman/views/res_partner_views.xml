@@ -8,10 +8,7 @@
         <field name="arch" type="xml">
             <field name="commission_id" position="after">
                 <field name="user_ids" invisible="1" />
-                <field
-                    name="salesman_as_agent"
-                    attrs="{'invisible': [('user_ids', '=', [])]}"
-                />
+                <field name="salesman_as_agent" invisible="not user_ids" />
             </field>
         </field>
     </record>
