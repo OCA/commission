@@ -25,7 +25,7 @@ class AccountInvoiceLineAgent(models.Model):
                     inv_line.product_id,
                     inv_line.quantity,
                 )
-                if line.invoice_id.move_type == 'out_refund':
+                if line.invoice_id.move_type == "out_refund":
                     line.amount = -amount
                 else:
                     line.amount = amount
