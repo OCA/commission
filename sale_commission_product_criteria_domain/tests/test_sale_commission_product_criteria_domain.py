@@ -92,8 +92,12 @@ class TestSaleCommissionDomain(SavepointCase):
         invoice.recompute_lines_agents()
         so.order_line.agent_ids._compute_amount()
         invoice.line_ids.agent_ids._compute_amount()
-        self.assertEqual(so.order_line.agent_ids.fixed_amount, 20)
-        self.assertEqual(invoice.line_ids.agent_ids.amount, 20)
+
+        so_fixed_amounts = so.order_line.agent_ids.mapped("fixed_amount")
+        self.assertEqual(len(so_fixed_amounts), 1)
+        self.assertEqual(so_fixed_amounts[0], 20)
+
+        self.assertEqual(sum(invoice.line_ids.agent_ids.mapped("amount")), 20)
 
         # Azure Spain Customizable Desk (CONFIG) - Product Template
         so = self._create_sale_order(
@@ -105,8 +109,12 @@ class TestSaleCommissionDomain(SavepointCase):
         invoice.recompute_lines_agents()
         so.order_line.agent_ids._compute_amount()
         invoice.line_ids.agent_ids._compute_amount()
-        self.assertEqual(so.order_line.agent_ids.percent_amount, 5)
-        self.assertEqual(invoice.line_ids.agent_ids.amount, 50)
+
+        so_percent_amounts = so.order_line.agent_ids.mapped("percent_amount")
+        self.assertEqual(len(so_percent_amounts), 1)
+        self.assertEqual(so_percent_amounts[0], 5)
+
+        self.assertEqual(sum(invoice.line_ids.agent_ids.mapped("amount")), 50)
 
         # Azure Spain Variant: Customizable Desk (CONFIG) (Steel, White) - Variant
         so = self._create_sale_order(self.product_4, self.azure)
@@ -116,8 +124,11 @@ class TestSaleCommissionDomain(SavepointCase):
         invoice.recompute_lines_agents()
         so.order_line.agent_ids._compute_amount()
         invoice.line_ids.agent_ids._compute_amount()
-        self.assertEqual(so.order_line.agent_ids.percent_amount, 15)
-        self.assertEqual(invoice.line_ids.agent_ids.amount, 150)
+        so_percent_amounts = so.order_line.agent_ids.mapped("percent_amount")
+        self.assertEqual(len(so_percent_amounts), 1)
+        self.assertEqual(so_percent_amounts[0], 15)
+
+        self.assertEqual(sum(invoice.line_ids.agent_ids.mapped("amount")), 150)
 
         # Deco Italy - All products
         so = self._create_sale_order(self.product_product_25, self.deco)
@@ -127,8 +138,10 @@ class TestSaleCommissionDomain(SavepointCase):
         invoice.recompute_lines_agents()
         so.order_line.agent_ids._compute_amount()
         invoice.line_ids.agent_ids._compute_amount()
-        self.assertEqual(so.order_line.agent_ids.fixed_amount, 10)
-        self.assertEqual(invoice.line_ids.agent_ids.amount, 10)
+        so_fixed_amounts = so.order_line.agent_ids.mapped("fixed_amount")
+        self.assertEqual(len(so_fixed_amounts), 1)
+        self.assertEqual(so_fixed_amounts[0], 10)
+        self.assertEqual(sum(invoice.line_ids.agent_ids.mapped("amount")), 10)
 
     def test_commission_domain(self):
         # group must have commission of CI
@@ -190,8 +203,12 @@ class TestSaleCommissionDomain(SavepointCase):
         invoice.recompute_lines_agents()
         so.order_line.agent_ids._compute_amount()
         invoice.line_ids.agent_ids._compute_amount()
-        self.assertEqual(so.order_line.agent_ids.amount, 150)
-        self.assertEqual(invoice.line_ids.agent_ids.amount, 150)
+
+        so_amounts = so.order_line.agent_ids.mapped("amount")
+        self.assertEqual(len(so_amounts), 1)
+        self.assertEqual(so_amounts[0], 150)
+
+        self.assertEqual(sum(invoice.line_ids.agent_ids.mapped("amount")), 150)
 
         #
         tst_partner = so.partner_id.copy({})
@@ -219,8 +236,11 @@ class TestSaleCommissionDomain(SavepointCase):
         invoice.recompute_lines_agents()
         so.order_line.agent_ids._compute_amount()
         invoice.line_ids.agent_ids._compute_amount()
-        self.assertEqual(so.order_line.agent_ids.amount, 20)
-        self.assertEqual(invoice.line_ids.agent_ids.amount, 20)
+        so_amounts = so.order_line.agent_ids.mapped("amount")
+        self.assertEqual(len(so_amounts), 1)
+        self.assertEqual(so_amounts[0], 20)
+
+        self.assertEqual(sum(invoice.line_ids.agent_ids.mapped("amount")), 20)
 
         # computes was modified to consider new commission type: product_restricted
         self.product_5.commission_free = True
@@ -231,8 +251,8 @@ class TestSaleCommissionDomain(SavepointCase):
         invoice.recompute_lines_agents()
         so.order_line.agent_ids._compute_amount()
         invoice.line_ids.agent_ids._compute_amount()
-        self.assertEqual(so.order_line.agent_ids.amount, 0)
-        self.assertEqual(invoice.line_ids.agent_ids.amount, 0)
+        self.assertEqual(sum(so.order_line.agent_ids.mapped("amount")), 0)
+        self.assertEqual(sum(invoice.line_ids.agent_ids.mapped("amount")), 0)
 
         # computes was modified to consider new commission type: product_restricted
         self.azure.agent_ids.commission_id = self.demo_commission_rules
@@ -243,8 +263,8 @@ class TestSaleCommissionDomain(SavepointCase):
         invoice.recompute_lines_agents()
         so.order_line.agent_ids._compute_amount()
         invoice.line_ids.agent_ids._compute_amount()
-        self.assertEqual(so.order_line.agent_ids.amount, 0)
-        self.assertEqual(invoice.line_ids.agent_ids.amount, 0)
+        self.assertEqual(sum(so.order_line.agent_ids.mapped("amount")), 0)
+        self.assertEqual(sum(invoice.line_ids.agent_ids.mapped("amount")), 0)
 
         # computes was modified to consider new commission type: product_restricted
         so = self._create_sale_order(self.product_1, self.azure)
@@ -254,8 +274,11 @@ class TestSaleCommissionDomain(SavepointCase):
         invoice.recompute_lines_agents()
         so.order_line.agent_ids._compute_amount()
         invoice.line_ids.agent_ids._compute_amount()
-        self.assertEqual(so.order_line.agent_ids.amount, 15)
-        self.assertEqual(invoice.line_ids.agent_ids.amount, 15)
+        so_amounts = so.order_line.agent_ids.mapped("amount")
+        self.assertEqual(len(so_amounts), 1)
+        self.assertEqual(so_amounts[0], 15)
+
+        self.assertEqual(sum(invoice.line_ids.agent_ids.mapped("amount")), 15)
 
         # discount net_amount percentage
         self.demo_agent_rules_restricted_spain.commission_id = (
@@ -274,8 +297,8 @@ class TestSaleCommissionDomain(SavepointCase):
         invoice.line_ids.agent_ids.commission_id.amount_base_type = "net_amount"
         invoice.line_ids.agent_ids.commission_id.item_ids.commission_type = "percentage"
         invoice.line_ids.agent_ids._compute_amount()
-        self.assertEqual(so.order_line.agent_ids.amount, 0)
-        self.assertEqual(invoice.line_ids.agent_ids.amount, 0)
+        self.assertEqual(sum(so.order_line.agent_ids.mapped("amount")), 0)
+        self.assertEqual(sum(invoice.line_ids.agent_ids.mapped("amount")), 0)
 
         # no commission items
         self.demo_commission_rules_restrict.item_ids.unlink()
@@ -284,8 +307,8 @@ class TestSaleCommissionDomain(SavepointCase):
         so.action_confirm()
         so.order_line.agent_ids._compute_amount()
         invoice.line_ids.agent_ids._compute_amount()
-        self.assertEqual(so.order_line.agent_ids.amount, 0)
-        self.assertEqual(invoice.line_ids.agent_ids.amount, 0)
+        self.assertEqual(sum(so.order_line.agent_ids.mapped("amount")), 0)
+        self.assertEqual(sum(invoice.line_ids.agent_ids.mapped("amount")), 0)
 
         # check constraint: group_ids must be set
         with self.assertRaises(odoo.exceptions.ValidationError):
