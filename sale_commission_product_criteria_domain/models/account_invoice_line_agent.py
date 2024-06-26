@@ -18,11 +18,15 @@ class AccountInvoiceLineAgent(models.Model):
                 and line.commission_id.commission_type == "product_restricted"
             ):
                 inv_line = line.object_id
-                line.amount = line._get_single_commission_amount(
+                amount = line._get_single_commission_amount(
                     line.commission_id,
                     inv_line.price_subtotal,
                     inv_line.product_id,
                     inv_line.quantity,
                 )
+                if line.invoice_id.move_type == "out_refund":
+                    line.amount = -amount
+                else:
+                    line.amount = amount
             else:
                 super(AccountInvoiceLineAgent, line)._compute_amount()
