@@ -62,6 +62,14 @@ class ResPartner(models.Model):
                     {"commission_item_agent_ids": [(0, 0, line) for line in to_create]}
                 )
 
+    @api.onchange("commission_id")
+    def _onchange_commission_id(self):
+        self.update(
+            {
+                "allowed_commission_group_ids": [(5, 0, 0)],
+            }
+        )
+
     def write(self, vals):
         res = super().write(vals)
         for partner in self:
