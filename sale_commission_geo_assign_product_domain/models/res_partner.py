@@ -23,3 +23,12 @@ class ResPartner(models.Model):
                     "agent_zip_to": False,
                 }
             )
+
+    @api.onchange("commission_id")
+    def _onchange_commission_id(self):
+        super()._onchange_commission_id()
+        self.update(
+            {
+                "commission_geo_group_ids": [(5, 0, 0)],
+            }
+        )
