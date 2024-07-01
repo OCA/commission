@@ -5,7 +5,7 @@
     "version": "14.0.1.0.6",
     "author": "Ilyas," "Ooops404," "Odoo Community Association (OCA)",
     "contributors": ["Ilyas"],
-    "maintainers": ["ilyasProgrammer"],
+    "maintainers": ["ilyasProgrammer", "aleuffre", "renda-dev", "PicchiSeba"],
     "website": "https://github.com/OCA/commission",
     "category": "Sales Management",
     "license": "AGPL-3",
