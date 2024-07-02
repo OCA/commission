@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!--  Groups  -->
+    <record model="ir.module.category" id="module_category_sale_commission">
+        <field name="name">Agent Access</field>
+        <field name="sequence">101</field>
+    </record>
+
+    <record id="group_agent_own_commissions" model="res.groups">
+        <field name="name">Display only own commission data</field>
+        <field
+            name="category_id"
+            ref="sale_commission_agent_restrict.module_category_sale_commission"
+        />
+        <field name="implied_ids" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
+    </record>
+
+    <record id="group_agent_own_customers" model="res.groups">
+        <field name="name">Display only own commission data and customers</field>
+        <field
+            name="category_id"
+            ref="sale_commission_agent_restrict.module_category_sale_commission"
+        />
+        <field
+            name="implied_ids"
+            eval="[(4, ref('sale_commission_agent_restrict.group_agent_own_commissions'))]"
+        />
+    </record>
+
+    <data noupdate="1">
+        <!--  Rules  -->
+        <record model="ir.rule" id="agent_own_agent_lines_ro">
+            <field name="name">Agent: Prevent full access to agent lines</field>
+            <field name="model_id" ref="sale_commission.model_sale_order_line_agent" />
+            <field
+                name="groups"
+                eval="[(4,ref('sale_commission_agent_restrict.group_agent_own_commissions'))]"
+            />
+            <field name="domain_force">[('id', '=', 0)]</field>
+            <field name="perm_create" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_unlink" eval="True" />
+        </record>
+
+        <record model="ir.rule" id="agent_own_agent_lines">
+            <field name="name">Agent: Access only own agent details</field>
+            <field name="model_id" ref="sale_commission.model_sale_order_line_agent" />
+            <field
+                name="groups"
+                eval="[(4,ref('sale_commission_agent_restrict.group_agent_own_commissions'))]"
+            />
+            <field name="domain_force">[('agent_id', '=', user.partner_id.id)]</field>
+            <field name="perm_create" eval="False" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_unlink" eval="False" />
+        </record>
+
+        <record model="ir.rule" id="agent_own_customers_rule">
+            <field name="name">Agent: Only Own Contacts</field>
+            <field name="model_id" ref="base.model_res_partner" />
+            <field
+                name="groups"
+                eval="[(4,ref('sale_commission_agent_restrict.group_agent_own_customers'))]"
+            />
+            <field name="domain_force">[
+                '|','|',
+                ('id', '=', user.partner_id.id),
+                ('active', '=', False),
+                ('agent_ids', 'in', user.partner_id.ids)]</field>
+            <field name="perm_create" eval="False" />
+            <field name="perm_write" eval="False" />
+        </record>
+
+        <record model="ir.rule" id="agent_mail_followers_rule">
+            <field name="name">Agent: Can't see Followers</field>
+            <field name="model_id" ref="mail.model_mail_followers" />
+            <field
+                name="groups"
+                eval="[(4, ref('sale_commission_agent_restrict.group_agent_own_customers'))]"
+            />
+            <field name="domain_force">[('id', '=', 0)]</field>
+            <field name="perm_create" eval="False" />
+            <field name="perm_write" eval="False" />
+        </record>
+
+        <!-- Disable the following rules for "Restrict Own Customers" -->
+        <record id="base.res_partner_rule_private_employee" model="ir.rule">
+            <field
+                name="excluded_group_ids"
+                eval="[(4,ref('sale_commission_agent_restrict.group_agent_own_customers'))]"
+            />
+        </record>
+        <record id="base.res_partner_rule_private_group" model="ir.rule">
+            <field
+                name="excluded_group_ids"
+                eval="[(4,ref('sale_commission_agent_restrict.group_agent_own_customers'))]"
+            />
+        </record>
+        <!-- End disable for groups -->
+    </data>
+</odoo>

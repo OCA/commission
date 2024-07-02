@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2024 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+
+    <record model="ir.ui.view" id="view_sale_order_line_tree_mod">
+        <field name="name">Agent lines for user displaying only own commissions</field>
+        <field name="model">sale.order.line.agent</field>
+        <field name="priority">100</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="sale_commission.view_sale_order_line_tree" />
+        <field name="arch" type="xml">
+            <tree position="replace">
+                <tree create="false" edit="false" delete="false" editable="bottom">
+                    <field
+                        name="agent_id"
+                        context="{'default_agent': True, 'default_customer': False, 'default_supplier': True}"
+                        readonly="1"
+                    />
+                    <field name="commission_id" readonly="1" />
+                    <field name="amount" readonly="1" />
+                </tree>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_order_agent_form_inherit" model="ir.ui.view">
+        <field name="name">sale.agent.order.inherit.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_commission.view_order_agent_form_inherit" />
+        <field name="arch" type="xml">
+            <field name="commission_total" position="after">
+                <field
+                    name="current_agent_total"
+                    widget="monetary"
+                    options="{'currency_field': 'currency_id'}"
+                    groups="sale_commission_agent_restrict.group_agent_own_commissions"
+                />
+            </field>
+            <field name="commission_total" position="attributes">
+                <attribute name="groups">sales_team.group_sale_manager</attribute>
+            </field>
+            <button name="recompute_lines_agents" position="attributes">
+                <attribute name="groups">sales_team.group_sale_manager</attribute>
+            </button>
+        </field>
+    </record>
+
+</odoo>
