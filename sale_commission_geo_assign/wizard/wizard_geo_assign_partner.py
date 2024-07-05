@@ -51,10 +51,10 @@ class WizardGeoAssign(models.TransientModel):
                     # compatibility with 'sale_commission_product_criteria_domain'
                     partner.commission_item_agent_ids.unlink()
 
-            for agent in agents:
-                self.update_partner_data(partner, agent)
+            self.update_partner_data(partner, agents)
 
     @api.model
-    def update_partner_data(self, partner, agent):
-        if agent.is_assignable(partner):
-            partner.agent_ids = [(4, agent.id)]
+    def update_partner_data(self, partner, agents):
+        partner.agent_ids = [
+            (4, agent.id) for agent in agents if agent.is_assignable(partner)
+        ]
