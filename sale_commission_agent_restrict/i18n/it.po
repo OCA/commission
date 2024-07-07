@@ -22,6 +22,7 @@ msgid "Agent Access"
 msgstr "Accesso Agente"
 
 #. module: sale_commission_agent_restrict
+#. odoo-python
 #: code:addons/sale_commission_agent_restrict/models/res_partner.py:0
 #, python-format
 msgid "Agents are not allowed to change Contacts' payment terms"
@@ -30,6 +31,7 @@ msgstr ""
 "partner"
 
 #. module: sale_commission_agent_restrict
+#. odoo-python
 #: code:addons/sale_commission_agent_restrict/models/res_partner.py:0
 #, python-format
 msgid "Agents are not allowed to change the agents assigned to a Contact"
@@ -43,13 +45,6 @@ msgid "Contact"
 msgstr "Contatto"
 
 #. module: sale_commission_agent_restrict
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_partner__display_name
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_users__display_name
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: sale_commission_agent_restrict
 #: model:res.groups,name:sale_commission_agent_restrict.group_agent_own_commissions
 msgid "Display only own commission data"
 msgstr "Mostra solo i propri dati provvigionali"
@@ -58,20 +53,6 @@ msgstr "Mostra solo i propri dati provvigionali"
 #: model:res.groups,name:sale_commission_agent_restrict.group_agent_own_customers
 msgid "Display only own commission data and customers"
 msgstr "Mostra solo i propri dati provvigionali e i propri clienti"
-
-#. module: sale_commission_agent_restrict
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_partner__id
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_users__id
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_commission_agent_restrict
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_partner____last_update
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_res_users____last_update
-#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
 
 #. module: sale_commission_agent_restrict
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__current_agent_total
@@ -84,6 +65,12 @@ msgid "Sales Order"
 msgstr "Ordine di vendita"
 
 #. module: sale_commission_agent_restrict
+#: model:ir.model,name:sale_commission_agent_restrict.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_commission_agent_restrict
+#. odoo-python
 #: code:addons/sale_commission_agent_restrict/models/res_users.py:0
 #, python-format
 msgid ""
@@ -96,8 +83,20 @@ msgstr ""
 
 #. module: sale_commission_agent_restrict
 #: model:ir.model,name:sale_commission_agent_restrict.model_res_users
-msgid "Users"
-msgstr "Utenti"
+msgid "User"
+msgstr ""
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#~ msgid "Users"
+#~ msgstr "Utenti"
 
 #~ msgid "Agents"
 #~ msgstr "Agenti"
