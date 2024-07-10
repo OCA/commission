@@ -26,6 +26,7 @@ addon | version | maintainers | summary
 [commission_formula](commission_formula/) | 17.0.1.0.0 |  | Commissions computed by formulas
 [hr_commission](hr_commission/) | 17.0.1.0.0 |  | HR commissions
 [sale_commission](sale_commission/) | 17.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Sales commissions
+[sale_commission_salesman](sale_commission_salesman/) | 17.0.1.0.0 |  | Sales commissions from salesman
 
 [//]: # (end addons)
 
