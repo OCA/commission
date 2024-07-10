@@ -420,7 +420,6 @@ msgstr "Se marcado novas mensagens solicitar??o sua aten????o."
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__message_has_error
-#: model:ir.model.fields,help:commission.field_commission_settlement__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se marcado, algumas mensagens tem erro de entrega."
 
@@ -585,11 +584,6 @@ msgstr "Defini????o de taxas"
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_user_id
 msgid "Responsible User"
 msgstr "Usu??rio Respons??vel"
-
-#. module: commission
-#: model:ir.model.fields,field_description:commission.field_commission_settlement__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Erro de entrega de SMS"
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__gross_amount
@@ -855,6 +849,9 @@ msgstr "Voc?? s?? pode adicionar uma vez cada representante."
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid "or"
 msgstr "ou"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Erro de entrega de SMS"
 
 #~ msgid "Last Modified on"
 #~ msgstr "??ltima Modifica????o em"
