@@ -30,10 +30,23 @@ Sales commission check deposit
 
 The module allows you to integrate check deposit with agent commissions.
 
-When generating agent commissions, an invoice with checks payment
-will be taken into consideration only after the number of days set in
-the "Safety Days" field in journal configuration from due date set in
-check payment.
+When generating agent settlements, select a
+payment date until which commissions should be settled.
+
+Invoices with checks payment will be taken
+into consideration only if the number of
+days set in the "Safety days for commission"
+field in journal configuration from due date
+set in check payment have passed from settlement payment date.
+
+Eg:
+
+- Invoice 0001 is paid with check
+- Check due date: January 1st
+- "Safety days for commission" set in check journal: 10
+- In settlement wizard:
+    - Settle commissions until payment date: January 5th => commission is not settled for check
+    - Settle commissions until payment date: January 15th => commission is settled for check
 
 **Table of contents**
 
@@ -52,7 +65,6 @@ For pay and register a checks deposit:
 
 #. Create an invoice and using Checks to pay it.
 #. Add a new checks deposit adding that payment.
-#. Validate checks deposit.
 
 For settling the commissions to agents:
 
@@ -64,8 +76,8 @@ For settling the commissions to agents:
 #. You can settle only certain agents if you select them on the "Agents"
    section. Leave it empty for settling all.
 #. Click on "Make settlements" button.
-#. If safety days have passed from due date set in checks payment commission will be
-    settled properly.
+#. If safety days have passed between settlement payment date and check due date,
+   commission will be settled properly.
 
 Bug Tracker
 ===========

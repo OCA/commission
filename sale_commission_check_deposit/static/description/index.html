@@ -371,10 +371,28 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/commission/tree/14.0/sale_commission_check_deposit"><img alt="OCA/commission" src="https://img.shields.io/badge/github-OCA%2Fcommission-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/commission-14-0/commission-14-0-sale_commission_check_deposit"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/commission&amp;target_branch=14.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>The module allows you to integrate check deposit with agent commissions.</p>
-<p>When generating agent commissions, an invoice with checks payment
-will be taken into consideration only after the number of days set in
-the “Safety Days” field in journal configuration from due date set in
-check payment.</p>
+<p>When generating agent settlements, select a
+payment date until which commissions should be settled.</p>
+<p>Invoices with checks payment will be taken
+into consideration only if the number of
+days set in the “Safety days for commission”
+field in journal configuration from due date
+set in check payment have passed from settlement payment date.</p>
+<p>Eg:</p>
+<ul class="simple">
+<li>Invoice 0001 is paid with check</li>
+<li>Check due date: January 1st</li>
+<li>“Safety days for commission” set in check journal: 10</li>
+<li><dl class="first docutils">
+<dt>In settlement wizard:</dt>
+<dd><ul class="first last">
+<li>Settle commissions until payment date: January 5th =&gt; commission is not settled for check</li>
+<li>Settle commissions until payment date: January 15th =&gt; commission is settled for check</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -399,7 +417,6 @@ check payment.</p>
 <ol class="arabic simple">
 <li>Create an invoice and using Checks to pay it.</li>
 <li>Add a new checks deposit adding that payment.</li>
-<li>Validate checks deposit.</li>
 </ol>
 <p>For settling the commissions to agents:</p>
 <ol class="arabic simple">
@@ -411,11 +428,8 @@ at least the first day of the following month.</li>
 <li>You can settle only certain agents if you select them on the “Agents”
 section. Leave it empty for settling all.</li>
 <li>Click on “Make settlements” button.</li>
-<li><dl class="first docutils">
-<dt>If safety days have passed from due date set in checks payment commission will be</dt>
-<dd>settled properly.</dd>
-</dl>
-</li>
+<li>If safety days have passed between settlement payment date and check due date,
+commission will be settled properly.</li>
 </ol>
 </div>
 <div class="section" id="bug-tracker">
