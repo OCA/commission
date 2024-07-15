@@ -103,6 +103,20 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
+.. |maintainer-aleuffre| image:: https://github.com/aleuffre.png?size=40px
+    :target: https://github.com/aleuffre
+    :alt: aleuffre
+.. |maintainer-renda-dev| image:: https://github.com/renda-dev.png?size=40px
+    :target: https://github.com/renda-dev
+    :alt: renda-dev
+.. |maintainer-PicchiSeba| image:: https://github.com/PicchiSeba.png?size=40px
+    :target: https://github.com/PicchiSeba
+    :alt: PicchiSeba
+
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-aleuffre| |maintainer-renda-dev| |maintainer-PicchiSeba| 
+
 This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/14.0/sale_commission_check_deposit>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
