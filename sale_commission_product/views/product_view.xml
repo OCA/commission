@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <openerp>
     <data>
 
@@ -7,11 +7,15 @@
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product.product_normal_form_view" />
             <field name="arch" type="xml">
-                <xpath expr="//form/sheet/notebook/page[@string='Sales']/group[1]" position="after">
-                    <separator colspan="2" string="Agents &amp; commissions"/>
-                    <field name="agents"
-                           attrs="{'readonly': [('commission_free', '=', True)]}"
-                           widget="one2many_tags"
+                <xpath
+                    expr="//form/sheet/notebook/page[@string='Sales']/group[1]"
+                    position="after"
+                >
+                    <separator colspan="2" string="Agents &amp; commissions" />
+                    <field
+                        name="agents"
+                        attrs="{'readonly': [('commission_free', '=', True)]}"
+                        widget="one2many_tags"
                     />
                 </xpath>
             </field>
@@ -22,8 +26,8 @@
             <field name="model">product.product.agent</field>
             <field name="arch" type="xml">
                 <tree string="Agents" editable="bottom">
-                    <field name="agent"/>
-                    <field name="commission"/>
+                    <field name="agent" />
+                    <field name="commission" />
                 </tree>
             </field>
         </record>
