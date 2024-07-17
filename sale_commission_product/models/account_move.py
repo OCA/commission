@@ -5,10 +5,10 @@
 from odoo import api, models
 
 
-class SaleOrderLine(models.Model):
-    _inherit = "sale.order.line"
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
 
     @api.depends("product_id")
-    @api.depends("order_id.partner_id")
+    @api.depends("move_id.partner_id")
     def _compute_agent_ids(self):
         return super()._compute_agent_ids()
