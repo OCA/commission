@@ -2,7 +2,7 @@
 
 
 import json
-from datetime import date, timedelta
+from datetime import timedelta
 
 from odoo import models
 
@@ -31,13 +31,12 @@ class SaleCommissionMakeSettle(models.TransientModel):
             [
                 ("move_id", "in", account_move_ids),
                 ("journal_id.is_check_journal", "=", True),
-                ("check_deposit_id", "!=", False),
             ]
         )
         return all(
             [
                 x.date_maturity + timedelta(days=x.journal_id.safety_days)
-                < date.today()
+                < self.date_payment_to
                 for x in move_lines
             ]
         )
