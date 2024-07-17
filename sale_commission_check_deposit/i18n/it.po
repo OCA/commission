@@ -17,6 +17,11 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: sale_commission_check_deposit
+#: model:ir.model.fields,help:sale_commission_check_deposit.field_account_journal__safety_days
+msgid "Days after expiration date for commission settlement"
+msgstr ""
+
+#. module: sale_commission_check_deposit
 #: model:ir.model.fields,field_description:sale_commission_check_deposit.field_account_journal__display_name
 #: model:ir.model.fields,field_description:sale_commission_check_deposit.field_sale_commission_make_settle__display_name
 msgid "Display Name"
@@ -46,10 +51,13 @@ msgstr "Ultima modifica il"
 
 #. module: sale_commission_check_deposit
 #: model:ir.model.fields,field_description:sale_commission_check_deposit.field_account_journal__safety_days
-msgid "Safety Days"
-msgstr "Giorni di sicurezza"
+msgid "Safety days for commission"
+msgstr ""
 
 #. module: sale_commission_check_deposit
 #: model:ir.model,name:sale_commission_check_deposit.model_sale_commission_make_settle
 msgid "Wizard for settling commissions in invoices"
 msgstr "Procedura per regolare le provvigioni nelle fatture"
+
+#~ msgid "Safety Days"
+#~ msgstr "Giorni di sicurezza"
