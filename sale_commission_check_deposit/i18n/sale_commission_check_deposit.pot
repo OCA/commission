@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_commission_check_deposit
+#: model:ir.model.fields,help:sale_commission_check_deposit.field_account_journal__safety_days
+msgid "Days after expiration date for commission settlement"
+msgstr ""
+
+#. module: sale_commission_check_deposit
 #: model:ir.model.fields,field_description:sale_commission_check_deposit.field_account_journal__display_name
 #: model:ir.model.fields,field_description:sale_commission_check_deposit.field_sale_commission_make_settle__display_name
 msgid "Display Name"
@@ -43,7 +48,7 @@ msgstr ""
 
 #. module: sale_commission_check_deposit
 #: model:ir.model.fields,field_description:sale_commission_check_deposit.field_account_journal__safety_days
-msgid "Safety Days"
+msgid "Safety days for commission"
 msgstr ""
 
 #. module: sale_commission_check_deposit
