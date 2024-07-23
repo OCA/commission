@@ -34,9 +34,10 @@ class SaleCommissionMakeSettle(models.TransientModel):
             ]
         )
         return all(
-            [
+            x.date_maturity
+            and (
                 x.date_maturity + timedelta(days=x.journal_id.safety_days)
                 < self.date_payment_to
-                for x in move_lines
-            ]
+            )
+            for x in move_lines
         )
