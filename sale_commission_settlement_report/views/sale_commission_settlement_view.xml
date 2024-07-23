@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_settlement_form" model="ir.ui.view">
+        <field name="name">Settlements</field>
+        <field name="model">sale.commission.settlement</field>
+        <field name="inherit_id" ref="sale_commission.view_settlement_form" />
+        <field name="arch" type="xml">
+            <field name="line_ids" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <xpath expr="//field[@name='line_ids']/.." position="after">
+                <group>
+                    <field name="showable_line_ids" nolabel="1">
+                        <tree>
+                            <field name="date" />
+                            <field name="invoice_line_id" />
+                            <field name="partner_id" />
+                            <field name="commission_id" />
+                            <field name="settled_amount" />
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

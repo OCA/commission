@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_settlement" inherit_id="sale_commission.report_settlement">
+        <xpath expr="//thead/tr/th[1]" position="after">
+            <t t-if="o.show_partner_settlement_report">
+                <th>Partner</th>
+            </t>
+        </xpath>
+        <xpath expr="//tbody/tr" position="attributes">
+            <attribute name="t-foreach">o.showable_line_ids</attribute>
+        </xpath>
+        <xpath expr="//tbody/tr/td[1]" position="after">
+            <t t-if="l.show_partner_settlement_report">
+                <td>
+                    <span t-field="l.partner_id" />
+                </td>
+            </t>
+        </xpath>
+    </template>
+</odoo>
