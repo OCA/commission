@@ -36,6 +36,7 @@ addon | version | maintainers | summary
 [sale_commission_product_criteria_domain](sale_commission_product_criteria_domain/) | 14.0.1.0.11 | [![ilyasProgrammer](https://github.com/ilyasProgrammer.png?size=30px)](https://github.com/ilyasProgrammer) [![aleuffre](https://github.com/aleuffre.png?size=30px)](https://github.com/aleuffre) [![renda-dev](https://github.com/renda-dev.png?size=30px)](https://github.com/renda-dev) [![PicchiSeba](https://github.com/PicchiSeba.png?size=30px)](https://github.com/PicchiSeba) | Sale Commission Product Criteria Domain
 [sale_commission_queued](sale_commission_queued/) | 14.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Sales commissions queued
 [sale_commission_salesman](sale_commission_salesman/) | 14.0.1.0.1 |  | Sales commissions from salesman
+[sale_commission_settlement_report](sale_commission_settlement_report/) | 14.0.1.0.0 | [![PicchiSeba](https://github.com/PicchiSeba.png?size=30px)](https://github.com/PicchiSeba) | Settings to customize the settlement report
 [sale_quick_commission](sale_quick_commission/) | 14.0.1.0.0 |  | Makes modules compatible
 
 [//]: # (end addons)
