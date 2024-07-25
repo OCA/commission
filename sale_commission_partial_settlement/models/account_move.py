@@ -13,6 +13,10 @@ class AccountInvoiceLineAgent(models.Model):
         filtered_lines = self.filtered(
             lambda x: x.commission_id.payment_amount_type != "paid"
         )
+        for line in self - filtered_lines:
+            if not line.mapped("agent_line.settlement_id"):
+                line.settled = False
+
         super(AccountInvoiceLineAgent, filtered_lines)._compute_settled()
 
     def _partial_commissions(self, date_payment_to):
