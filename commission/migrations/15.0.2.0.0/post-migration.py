@@ -20,3 +20,11 @@ def migrate(env, version):
             WHERE id = sal_rel.settlement_id
         """,
     )
+    # All the existing settlements are of this type for now
+    openupgrade.logged_query(
+        env.cr,
+        """
+        UPDATE commission_settlement
+        SET settlement_type = 'sale_invoice'
+        """,
+    )
