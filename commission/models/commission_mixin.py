@@ -23,9 +23,9 @@ class CommissionMixin(models.AbstractModel):
     product_id = fields.Many2one(comodel_name="product.product", string="Product")
     commission_free = fields.Boolean(
         string="Comm. free",
-        related="product_id.commission_free",
+        compute="_compute_commission_free",
         store=True,
-        readonly=True,
+        readonly=False,
     )
     commission_status = fields.Char(
         compute="_compute_commission_status",
@@ -44,6 +44,11 @@ class CommissionMixin(models.AbstractModel):
                 or x.commission_id.settlement_type == settlement_type
             )
         return [(0, 0, self._prepare_agent_vals(agent)) for agent in agents]
+
+    @api.depends("product_id")
+    def _compute_commission_free(self):
+        for record in self:
+            record.commission_free = record.product_id.commission_free
 
     @api.depends("commission_free")
     def _compute_agent_ids(self):

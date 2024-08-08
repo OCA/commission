@@ -31,7 +31,7 @@
                     attrs="{'invisible': [('agent_ids', '=', [])], 'readonly': [('any_settled', '=', True)]}"
                 >
                     <field name="any_settled" invisible="1" />
-                    <field name="commission_free" force_save="1" />
+                    <field name="commission_free" force_save="1" readonly="1" />
                     <field
                         name="agent_ids"
                         attrs="{'readonly': [('commission_free', '=', True)]}"
