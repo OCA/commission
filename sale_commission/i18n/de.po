@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-14 15:14+0000\n"
-"PO-Revision-Date: 2018-10-05 18:25+0000\n"
-"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
+"PO-Revision-Date: 2024-08-11 20:58+0000\n"
+"Last-Translator: Peter Schubert <psc@saco.info>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.1.1\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__quantity
@@ -28,7 +28,7 @@ msgstr ""
 #: code:addons/sale_commission/models/sale_commission_mixin.py:0
 #, python-format
 msgid "%s commission agents"
-msgstr ""
+msgstr "%s Vertreter"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.sale_commission_make_invoice_form
@@ -42,29 +42,29 @@ msgstr "(leer lassen, um alle Vertreterprovisionen abzurechnen)"
 
 #. module: sale_commission
 #: code:addons/sale_commission/models/sale_commission_mixin.py:0
-#, fuzzy, python-format
+#, python-format
 msgid "1 commission agent"
-msgstr "Provisionsverwaltung"
+msgstr "1 Vertreter"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.report_settlement
 msgid "<strong>Agent:</strong>"
-msgstr ""
+msgstr "<strong>Vertreter:</strong>"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.report_settlement
 msgid "<strong>From:</strong>"
-msgstr ""
+msgstr "<strong>Von:</strong>"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.report_settlement
 msgid "<strong>To:</strong>"
-msgstr ""
+msgstr "<strong>An:</strong>"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.report_settlement
 msgid "<strong>Total</strong>"
-msgstr ""
+msgstr "<strong>Gesamt</strong>"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission__active
@@ -99,9 +99,9 @@ msgstr "Vertreterpartner"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_invoice_line_agent
-#, fuzzy
 msgid "Agent detail of commission line in invoice lines"
-msgstr "Vertreter/Provisionen mit Bezug zur Rechnungsposition."
+msgstr ""
+"Vertreter Detail zu Provisisionsposition mit Bezug zur Rechnungsposition"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order_line_agent
@@ -166,9 +166,8 @@ msgstr "Ermittelt"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__balance
-#, fuzzy
 msgid "Balance"
-msgstr "Abbrechen"
+msgstr "Saldo"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission__amount_base_type
@@ -178,7 +177,7 @@ msgstr "Basis"
 #. module: sale_commission
 #: model:ir.model.fields.selection,name:sale_commission.selection__res_partner__settlement__biweekly
 msgid "Bi-weekly"
-msgstr ""
+msgstr "Zweiwöchentlich"
 
 #. module: sale_commission
 #: model:ir.model.fields.selection,name:sale_commission.selection__sale_commission__commission_type__section
@@ -206,7 +205,7 @@ msgstr "Kann eine abgerechnete Provision nicht stornieren."
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__categ_id
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 msgid "Category of Product"
-msgstr ""
+msgstr "Produkt Kategorie"
 
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_res_partner__agent
@@ -245,16 +244,14 @@ msgstr "Provision"
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent__amount
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_line_mixin__amount
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__amount
-#, fuzzy
 msgid "Commission Amount"
-msgstr "Provisionbereich"
+msgstr "Provisions Betrag"
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_sale_commission_analysis_report
 #: model:ir.ui.menu,name:sale_commission.menu_sale_commissions_analysis
-#, fuzzy
 msgid "Commission Analysis"
-msgstr "Provisionspositionen"
+msgstr "Provisions Auswertung"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission
@@ -382,7 +379,7 @@ msgstr "Währung"
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 msgid "Customer"
-msgstr ""
+msgstr "Kunde"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_make_invoice__date
@@ -391,9 +388,8 @@ msgstr "Datum"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_analysis_report__date_invoice
-#, fuzzy
 msgid "Date Invoice"
-msgstr "Angelegte Rechnungen"
+msgstr "Rechnungsdatum"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_search
@@ -408,7 +404,7 @@ msgstr "Monat des Datums"
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_mixin_agent_only
 msgid "Discard"
-msgstr ""
+msgstr "Verwerfen"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent__display_name
@@ -434,12 +430,12 @@ msgstr "Anzeigebezeichnung"
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 msgid "Draft"
-msgstr ""
+msgstr "Entwurf"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_sale_commission_analysis_search
 msgid "Extended Filters"
-msgstr ""
+msgstr "Erweiterte Filter"
 
 #. module: sale_commission
 #: model:ir.model.fields.selection,name:sale_commission.selection__res_partner__agent_type__agent
