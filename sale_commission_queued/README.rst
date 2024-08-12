@@ -59,6 +59,11 @@ Authors
 * Ilyas
 * Ooops404
 
+Contributors
+~~~~~~~~~~~~
+
+* Eduard Brahas <eduard@ooops404.com>
+
 Maintainers
 ~~~~~~~~~~~
 
