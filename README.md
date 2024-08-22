@@ -30,7 +30,7 @@ addon | version | maintainers | summary
 [sale_commission_product_criteria](sale_commission_product_criteria/) | 16.0.1.0.0 | [![ilyasProgrammer](https://github.com/ilyasProgrammer.png?size=30px)](https://github.com/ilyasProgrammer) | Advanced commissions rules
 [sale_commission_product_criteria_discount](sale_commission_product_criteria_discount/) | 16.0.1.0.0 | [![ilyasProgrammer](https://github.com/ilyasProgrammer.png?size=30px)](https://github.com/ilyasProgrammer) | Advanced commissions rules with discount
 [sale_commission_product_criteria_domain](sale_commission_product_criteria_domain/) | 16.0.1.0.2 | [![ilyasProgrammer](https://github.com/ilyasProgrammer.png?size=30px)](https://github.com/ilyasProgrammer) | Sale Commission Product Criteria Domain
-[sale_commission_salesman](sale_commission_salesman/) | 16.0.1.0.0 |  | Sales commissions from salesman
+[sale_commission_salesman](sale_commission_salesman/) | 16.0.1.0.1 |  | Sales commissions from salesman
 
 [//]: # (end addons)
 
