@@ -29,6 +29,8 @@ class SaleOrderLineAgent(models.Model):
                     order_line.product_id,
                     order_line.product_uom_qty,
                 )
+                if line.invoice_id.move_type and "refund" in line.invoice_id.move_type:
+                    line.amount = -line.amount
             else:
                 super(SaleOrderLineAgent, line)._compute_amount()
 
