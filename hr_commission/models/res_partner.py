@@ -8,7 +8,9 @@ from odoo import _, api, exceptions, fields, models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    agent_type = fields.Selection(selection_add=[("salesman", "Salesman (employee)")],)
+    agent_type = fields.Selection(
+        selection_add=[("salesman", "Salesman (employee)")],
+    )
     employee_id = fields.Many2one(
         string="Related Employee",
         comodel_name="hr.employee",
