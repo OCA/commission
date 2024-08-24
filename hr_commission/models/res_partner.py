@@ -54,4 +54,4 @@ class ResPartner(models.Model):
     @api.onchange("agent_type")
     def onchange_agent_type_hr_commission(self):
         if self.agent_type == "salesman":
-            self.supplier = False
+            self.supplier_rank = 0
