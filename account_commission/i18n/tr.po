@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-08-26 11:06+0000\n"
+"Last-Translator: Metin GÜLSOY <metin.gulsoy@kitayazilim.com>\n"
 "Language-Team: none\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__quantity
@@ -34,7 +36,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__agent_id
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "Agent"
-msgstr ""
+msgstr "Temsilci"
 
 #. module: account_commission
 #: model:ir.model,name:account_commission.model_account_invoice_line_agent
@@ -46,22 +48,22 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_commission.field_account_move__partner_agent_ids
 #: model:ir.model.fields,field_description:account_commission.field_account_payment__partner_agent_ids
 msgid "Agents"
-msgstr ""
+msgstr "Temsilciler"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_move_line__agent_ids
 msgid "Agents & commissions"
-msgstr ""
+msgstr "Temsilciler ve Komisyonlar"
 
 #. module: account_commission
 #: model:ir.model.fields,help:account_commission.field_account_move_line__agent_ids
 msgid "Agents/Commissions related to the invoice line."
-msgstr ""
+msgstr "Fatura satırıyla ilgili temsilciler/komisyonlar."
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__amount
 msgid "Amount"
-msgstr ""
+msgstr "Miktar"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_move_line__any_settled
@@ -76,7 +78,7 @@ msgstr ""
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.commission_make_invoice_form
 msgid "Cancel"
-msgstr ""
+msgstr "İptal"
 
 #. module: account_commission
 #. odoo-python
@@ -94,7 +96,7 @@ msgstr ""
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_move_line__commission_free
 msgid "Comm. free"
-msgstr ""
+msgstr "Komisyonsuz"
 
 #. module: account_commission
 #: model:ir.model,name:account_commission.model_commission
@@ -102,12 +104,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_commission.field_account_move_line__commission_status
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__commission_id
 msgid "Commission"
-msgstr ""
+msgstr "Komisyon"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__amount
 msgid "Commission Amount"
-msgstr ""
+msgstr "Komisyon Miktarı"
 
 #. module: account_commission
 #: model:ir.actions.act_window,name:account_commission.action_invoice_commission_analysis_report
