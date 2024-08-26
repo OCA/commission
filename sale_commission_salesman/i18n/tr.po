@@ -6,24 +6,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-08-26 11:06+0000\n"
+"Last-Translator: Metin GÜLSOY <metin.gulsoy@kitayazilim.com>\n"
 "Language-Team: none\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: sale_commission_salesman
 #: model:ir.model,name:sale_commission_salesman.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Kontak"
 
 #. module: sale_commission_salesman
 #: model:ir.model.fields,field_description:sale_commission_salesman.field_res_partner__salesman_as_agent
 #: model:ir.model.fields,field_description:sale_commission_salesman.field_res_users__salesman_as_agent
 msgid "Convert salesman into agent"
-msgstr ""
+msgstr "Satıcıyı temsilciye çevirin"
 
 #. module: sale_commission_salesman
 #: model:ir.model.fields,help:sale_commission_salesman.field_res_partner__salesman_as_agent
@@ -33,16 +35,18 @@ msgid ""
 "commission rule is triggered, this agent will be added as the commission "
 "agent"
 msgstr ""
+"Bu ortağa bağlı kullanıcı satıcı olarak belirlenmişse ve başka bir komisyon\n"
+"kuralı tetiklenmemişse, bu temsilci komisyon temsilcisi olarak eklenecektir"
 
 #. module: sale_commission_salesman
 #: model:ir.model,name:sale_commission_salesman.model_account_move_line
 msgid "Journal Item"
-msgstr ""
+msgstr "Yevmiye Öğesi"
 
 #. module: sale_commission_salesman
 #: model:ir.model,name:sale_commission_salesman.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Satış Sipariş Satırı"
 
 #. module: sale_commission_salesman
 #. odoo-python
