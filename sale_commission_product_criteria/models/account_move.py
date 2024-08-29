@@ -25,6 +25,8 @@ class AccountInvoiceLineAgent(models.Model):
                     inv_line.product_id,
                     inv_line.quantity,
                 )
+                if line.invoice_id.move_type and "refund" in line.invoice_id.move_type:
+                    line.amount = -line.amount
             else:
                 res = super(AccountInvoiceLineAgent, line)._compute_amount()
         return res
