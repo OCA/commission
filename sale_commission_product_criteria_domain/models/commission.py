@@ -42,15 +42,6 @@ class CommissionItemAgent(models.Model):
     _name = "commission.item.agent"
     _description = "Commission Item Agent"
 
-    _sql_constraints = [
-        (
-            "commission_item_unique_agent",
-            "UNIQUE(partner_id, agent_id)",
-            "You can only add one time each agent into Commission "
-            "Items Groups Restrictions table.",
-        )
-    ]
-
     partner_agent_ids = fields.Many2many(related="partner_id.agent_ids")
     agent_group_ids = fields.Many2many(
         "commission.items.group", compute="_compute_agent_group_ids"
@@ -86,4 +77,22 @@ class CommissionItemAgent(models.Model):
             if not cia.group_ids:
                 raise exceptions.ValidationError(
                     _("At least one group for each restriction must be selected.")
+                )
+
+    @api.constrains("agent_id", "partner_id")
+    def _constraint_unique_commission_item_agent_ids(self):
+        for cia in self:
+            duplicate_items = self.search(
+                [
+                    ("id", "!=", cia.id),
+                    ("partner_id", "=", cia.partner_id.id),
+                    ("agent_id", "=", cia.agent_id.id),
+                ]
+            )
+            if duplicate_items:
+                raise exceptions.ValidationError(
+                    _(
+                        "You can only add one time each agent into Commission Items "
+                        "Groups Restrictions table."
+                    )
                 )
