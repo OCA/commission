@@ -1,8 +1,8 @@
 from odoo import api, fields, models
 
 
-class SettlementLine(models.Model):
-    _inherit = "sale.commission.settlement.line"
+class CommissionSettlementLine(models.Model):
+    _inherit = "commission.settlement.line"
 
     agent_line_partial_ids = fields.Many2many(
         comodel_name="account.invoice.line.agent.partial",
@@ -23,4 +23,4 @@ class SettlementLine(models.Model):
             if rec.commission_id.payment_amount_type == "paid":
                 rec.settled_amount = rec.agent_line_partial_ids[:1].amount
             else:
-                rec.settled_amount = rec.agent_line[:1].amount
+                rec.settled_amount = rec.invoice_agent_line_id[:1].amount

@@ -10,7 +10,7 @@ class SaleOrderLineAgent(models.Model):
     discount_to = fields.Float(related="applied_commission_item_id.discount_to")
 
     def _get_single_commission_amount(self, commission, subtotal, product, quantity):
-        # Replaced to add pricelist condition. Original in sale.commission.line.mixin.
+        # Replaced to add pricelist condition. Original in commission.line.mixin.
         self.ensure_one()
         if product.commission_free or not commission:
             return 0.0

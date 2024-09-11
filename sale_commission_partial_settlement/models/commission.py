@@ -3,8 +3,8 @@
 from odoo import fields, models
 
 
-class SaleCommission(models.Model):
-    _inherit = "sale.commission"
+class Commission(models.Model):
+    _inherit = "commission"
 
     payment_amount_type = fields.Selection(
         [("full", "Full amount"), ("paid", "Paid amount")],
