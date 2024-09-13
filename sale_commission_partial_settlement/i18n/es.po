@@ -1,0 +1,148 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_commission_partial_settlement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-13 07:50+0000\n"
+"PO-Revision-Date: 2024-09-13 07:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__agent_line
+msgid "Agent Line"
+msgstr "Línea de Agente"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_commission_settlement_line__agent_line_partial_ids
+msgid "Agent Line Partial"
+msgstr "Línea de Agente Parcial"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model,name:sale_commission_partial_settlement.model_account_invoice_line_agent
+msgid "Agent detail of commission line in invoice lines"
+msgstr "Detalle de agente de línea de comisión en líneas de pedido"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model,name:sale_commission_partial_settlement.model_commission
+msgid "Commission"
+msgstr "Comisión"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__amount
+msgid "Commission Amount"
+msgstr "Importe de la Comisión"
+
+#. module: sale_commission_partial_settlement
+#. odoo-python
+#: code:addons/sale_commission_partial_settlement/wizard/commission_make_settle.py:0
+#, python-format
+msgid "Created Settlements"
+msgstr "Liquidaciones Creadas"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__currency_id
+msgid "Currency"
+msgstr "Divisa"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model.fields.selection,name:sale_commission_partial_settlement.selection__commission__payment_amount_type__full
+msgid "Full amount"
+msgstr "Importe total"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__invoice_line_agent_id
+msgid "Invoice Line Agent"
+msgstr "Agente de Línea de Facturación"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model,name:sale_commission_partial_settlement.model_commission_settlement_line
+msgid "Line of a commission settlement"
+msgstr "Línea de liquidación de una comisión"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model.fields.selection,name:sale_commission_partial_settlement.selection__commission__payment_amount_type__paid
+msgid "Paid amount"
+msgstr "Importe pagado"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent__partial_settled
+msgid "Partial Commission Amount Settled"
+msgstr "Comisión Parcial Importe liquidado"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_partial_reconcile__partial_commission_settled
+msgid "Partial Commission Settled"
+msgstr "Comisión Parcial Liquidada"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model,name:sale_commission_partial_settlement.model_account_partial_reconcile
+msgid "Partial Reconcile"
+msgstr "Conciliación parcial"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model,name:sale_commission_partial_settlement.model_account_invoice_line_agent_partial
+msgid "Partial agent commissions"
+msgstr "Comisiones parciales de agente"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_commission__payment_amount_type
+msgid "Payment amount type"
+msgstr "Tipo de importe del pago"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__settled
+msgid "Settled"
+msgstr "Liquidado"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_commission_settlement_line__settled_amount
+msgid "Settled Amount"
+msgstr "Cantidad Liquidada"
+
+#. module: sale_commission_partial_settlement
+#: model:ir.model,name:sale_commission_partial_settlement.model_commission_make_settle
+msgid "Wizard for settling commissions"
+msgstr "Asistente para liquidación de comisiones"
