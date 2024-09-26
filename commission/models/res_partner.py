@@ -43,6 +43,7 @@ class ResPartner(models.Model):
             ("quaterly", "Quarterly"),
             ("semi", "Semi-annual"),
             ("annual", "Annual"),
+            ("pending", "Pending commissions"),
         ],
         string="Settlement period",
         default="monthly",
