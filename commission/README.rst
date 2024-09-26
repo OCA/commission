@@ -156,6 +156,7 @@ Contributors
 
    -  Pedro M. Baeza
    -  Manuel Calero
+   -  Sergio Teruel
 
 -  `Quartile <https://www.quartile.co>`__:
 
