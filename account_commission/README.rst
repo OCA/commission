@@ -52,7 +52,9 @@ For selecting invoice status in commissions:
    -  **Invoice Based**: Commissions are settled when the invoice is
       issued.
    -  **Payment Based**: Commissions are settled when the invoice is
-      paid.
+      paid or refunded. Note that when refunding an invoice, the
+      corresponding reversed commission will be settled as well,
+      resulting in a 0 net commission between both operations.
 
 Usage
 =====
@@ -128,11 +130,11 @@ Contributors
 -  Nicola Malcontenti <nicola.malcontenti@agilebg.com>
 -  Aitor Bouzas <aitor.bouzas@adaptivecity.com>
 -  Alexei Rivera <arivera@archeti.com>
--  Mina Samir <minaw349@outlook.com>
 -  `Tecnativa <https://www.tecnativa.com>`__:
 
    -  Pedro M. Baeza
    -  Manuel Calero
+   -  Sergio Teruel
 
 -  `Quartile <https://www.quartile.co>`__:
 
@@ -142,10 +144,6 @@ Contributors
 -  `Studio73 <https://www.studio73.es>`__:
 
    -  Ethan Hildick
-
--  `Sygel <https://www.sygel.es>`__:
-
-   -  Alberto Martínez
 
 Maintainers
 -----------

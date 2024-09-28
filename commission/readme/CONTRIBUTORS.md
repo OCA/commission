@@ -11,6 +11,7 @@
 - [Tecnativa](https://www.tecnativa.com):
   - Pedro M. Baeza
   - Manuel Calero
+  - Sergio Teruel
 - [Quartile](https://www.quartile.co):
   - Aung Ko Ko Lin
   - Yoshi Tashiro

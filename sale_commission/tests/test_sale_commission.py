@@ -15,6 +15,13 @@ class TestSaleCommission(TestAccountCommission):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.pricelist = cls.env["product.pricelist"].create(
+            {
+                "name": "Pricelist for tests",
+                "currency_id": cls.company.currency_id.id,
+            }
+        )
+        cls.partner.property_product_pricelist = cls.pricelist
         cls.sale_order_model = cls.env["sale.order"]
         cls.advance_inv_model = cls.env["sale.advance.payment.inv"]
         cls.product.write({"invoice_policy": "order"})
