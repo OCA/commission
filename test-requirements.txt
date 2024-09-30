@@ -1,0 +1,1 @@
+odoo-addon-sale_quick @ git+https://github.com/OCA/sale-workflow.git@refs/pull/3130/head#subdirectory=setup/sale_quick
