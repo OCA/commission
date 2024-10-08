@@ -2,11 +2,15 @@
 # Copyright 2020 Tecnativa - Manuel Calero
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import base64
+import io
 from itertools import groupby
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tests.common import Form
+from odoo.tools import format_date
+from odoo.tools.misc import xlsxwriter
 
 
 class Settlement(models.Model):
@@ -176,6 +180,91 @@ class Settlement(models.Model):
         self.write({"state": "invoiced"})
         return invoices
 
+    def generate_excel_report(self):
+        self.ensure_one()
+
+        # Create an in-memory Excel file
+        output = io.BytesIO()
+        workbook = xlsxwriter.Workbook(output)
+        ws = workbook.add_worksheet()
+
+        # Set Excel formatting (optional)
+        bold = workbook.add_format({"bold": True})
+
+        # Write header data
+        date_from = format_date(self.env, self.date_from)
+        date_to = format_date(self.env, self.date_to)
+
+        ws.write(0, 0, "Settlement Report", bold)
+        ws.write(2, 0, "Agent", bold)
+        ws.write(2, 1, self.agent_id.name)
+        ws.write(2, 4, "Company", bold)
+        ws.write(2, 5, self.company_id.name)
+
+        ws.write(3, 0, "From", bold)
+        ws.write(3, 1, date_from)
+        ws.write(3, 4, "To", bold)
+        ws.write(3, 5, date_to)
+
+        # Write lines data
+        row = 5
+        ws.write(row, 0, "Reference Number", bold)
+        ws.write(row, 1, "Invoice Date", bold)
+        ws.write(row, 2, "Source Invoice Line", bold)
+        ws.write(row, 3, "Partner", bold)
+        ws.write(row, 4, "Ship To Address", bold)
+        ws.write(row, 5, "Commission", bold)
+        ws.write(row, 6, "Commission Amount", bold)
+        row += 1
+        for line in self.line_ids:
+            commission_date = format_date(self.env, line.date)
+            ws.write(row, 0, line.order_id.name or "")
+            ws.write(row, 1, commission_date)
+            ws.write(row, 2, line.invoice_line_id.name)
+            ws.write(row, 3, line.partner_id.name)
+            ws.write(row, 4, line.partner_shipping_id.name or "")
+            ws.write(row, 5, line.commission_id.name)
+            ws.write(row, 6, line.settled_amount)
+            row += 1
+
+        ws.write(row, 5, "Total", bold)
+        ws.write(row, 6, self.total, bold)
+
+        # Set column widths
+        ws.set_column(0, 1, 15)
+        ws.set_column(2, 2, 45)
+        ws.set_column(3, 6, 15)
+        workbook.close()
+
+        # Get the binary content of the file
+        output.seek(0)
+        xls_data = output.read()
+        output.close()
+        encoded_file = base64.b64encode(xls_data)
+
+        # Create an attachment record to store the file
+        filename = (
+            f"Settlement Report - {self.agent_id.name} "
+            f"{self.date_from} to {self.date_to}.xlsx"
+        )
+        attachment = self.env["ir.attachment"].create(
+            {
+                "name": filename,
+                "type": "binary",
+                "datas": encoded_file,
+                "res_model": "sale.commission.settlement",
+                "res_id": self.id,
+                "mimetype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            }
+        )
+
+        # Return the download action to the user
+        return {
+            "type": "ir.actions.act_url",
+            "url": "/web/content/%s?download=true" % attachment.id,
+            "target": "self",
+        }
+
 
 class SettlementLine(models.Model):
     _name = "sale.commission.settlement.line"
@@ -219,6 +308,39 @@ class SettlementLine(models.Model):
         comodel_name="res.company",
         related="settlement_id.company_id",
     )
+    order_id = fields.Many2one(
+        "sale.order",
+        compute="_compute_order_partner_id",
+        string="Reference Number",
+        store=True,
+    )
+    partner_id = fields.Many2one(
+        "res.partner", compute="_compute_order_partner_id", string="Partner", store=True
+    )
+    partner_shipping_id = fields.Many2one(
+        "res.partner",
+        compute="_compute_order_partner_id",
+        string="Ship To Address",
+        store=True,
+    )
+
+    @api.depends(
+        "invoice_line_id",
+        "invoice_line_id.partner_id",
+        "invoice_line_id.sale_line_ids.order_id.partner_id",
+        "invoice_line_id.sale_line_ids.order_id.partner_shipping_id",
+    )
+    def _compute_order_partner_id(self):
+        recs = self.filtered("invoice_line_id")
+        for rec in recs:
+            rec.order_id = rec.invoice_line_id.sale_line_ids.order_id.id
+            rec.partner_id = (
+                rec.order_id.partner_id.id or rec.invoice_line_id.partner_id.id
+            )
+            rec.partner_shipping_id = rec.order_id.partner_shipping_id.id
+        (self - recs).update(
+            dict(order_id=False, partner_id=False, partner_shipping_id=False)
+        )
 
     @api.constrains("settlement_id", "agent_line")
     def _check_company(self):

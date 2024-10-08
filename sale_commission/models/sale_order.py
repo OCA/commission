@@ -15,7 +15,7 @@ class SaleOrder(models.Model):
     commission_total = fields.Float(
         string="Commissions",
         compute="_compute_commission_total",
-        store=True,
+        # store=True, Cause install to timeout on existing large database
     )
 
     partner_agent_ids = fields.Many2many(

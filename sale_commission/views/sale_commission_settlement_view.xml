@@ -67,6 +67,11 @@
                         type="object"
                         name="action_cancel"
                     />
+                    <button
+                        name="generate_excel_report"
+                        string="Download Excel"
+                        type="object"
+                    />
                     <field name="state" widget="statusbar" />
                 </header>
                 <group>
@@ -85,24 +90,28 @@
                         <field name="agent_type" invisible="1" />
                     </group>
                 </group>
-                <group string="Commission lines" colspan="4">
-                    <field name="line_ids" nolabel="1">
-                        <tree>
-                            <field name="date" />
-                            <field name="invoice_line_id" />
-                            <field name="commission_id" />
-                            <field name="settled_amount" />
-                        </tree>
-                    </field>
-                </group>
-                <group class="oe_subtotal_footer oe_right">
-                    <field
-                        name="total"
-                        class="oe_subtotal_footer_separator"
-                        widget="monetary"
-                        options="{'currency_field': 'currency_id'}"
-                    />
-                </group>
+                <notebook>
+                    <page string="Commission lines" id="commission_lines">
+                        <field name="line_ids" nolabel="1">
+                            <tree>
+                                <field name="date" />
+                                <field name="invoice_line_id" />
+                                <field name="partner_id" optional="show" />
+                                <field name="partner_shipping_id" optional="show" />
+                                <field name="commission_id" />
+                                <field name="settled_amount" />
+                            </tree>
+                        </field>
+                    </page>
+                    <group class="oe_subtotal_footer oe_right">
+                        <field
+                            name="total"
+                            class="oe_subtotal_footer_separator"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                </notebook>
             </form>
         </field>
     </record>

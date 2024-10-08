@@ -22,28 +22,39 @@
                         <table class="table table-condensed">
                             <thead>
                                 <tr>
-                                    <th>Invoice date</th>
-                                    <th>Invoice</th>
-                                    <th>Invoice line</th>
-                                    <th>Commission</th>
-                                    <th class="text-right">Amount settled</th>
+                                    <th name="th_reference">Reference Number</th>
+                                    <th name="th_invoice_date">Invoice date</th>
+                                    <th name="th_invoice_line">Invoice line</th>
+                                    <th name="th_partner">Partner</th>
+                                    <th name="th_partner_shipping">Ship To Address</th>
+                                    <th name="th_commission">Commission</th>
+                                    <th
+                                        name="th_amount_settled"
+                                        class="text-right"
+                                    >Amount settled</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr t-foreach="o.line_ids" t-as="l">
-                                    <td>
+                                    <td name="td_reference">
+                                        <span t-field="l.order_id" />
+                                    </td>
+                                    <td name="td_invoice_date">
                                         <span t-field="l.date" />
                                     </td>
-                                    <td>
-                                        <span t-field="l.settlement_id.invoice_id" />
-                                    </td>
-                                    <td>
+                                    <td name="td_invoice_line">
                                         <span t-field="l.invoice_line_id" />
                                     </td>
-                                    <td>
+                                    <td name="td_partner">
+                                        <span t-field="l.partner_id" />
+                                    </td>
+                                    <td name="td_partner_shipping">
+                                        <span t-field="l.partner_shipping_id" />
+                                    </td>
+                                    <td name="td_commission">
                                         <span t-field="l.commission_id" />
                                     </td>
-                                    <td class="text-right">
+                                    <td name="td_amount_settled" class="text-right">
                                         <span
                                             t-field="l.settled_amount"
                                             t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"

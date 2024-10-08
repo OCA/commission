@@ -24,7 +24,7 @@ class SaleCommissionMixin(models.AbstractModel):
     commission_free = fields.Boolean(
         string="Comm. free",
         related="product_id.commission_free",
-        store=True,
+        # store=True, Cause install to timeout on existing large database
         readonly=True,
     )
     commission_status = fields.Char(
