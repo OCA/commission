@@ -24,7 +24,6 @@
                         context="{'default_agent': True, 'default_customer': False, 'default_supplier': True}"
                         readonly="1"
                     />
-                    <field name="commission_id" readonly="1" />
                     <field name="amount" readonly="1" />
                 </tree>
             </tree>
