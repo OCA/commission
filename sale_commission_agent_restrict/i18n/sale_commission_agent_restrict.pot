@@ -1,0 +1,63 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_commission_agent_restrict
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-29 10:41+0000\n"
+"PO-Revision-Date: 2022-08-29 10:41+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_commission_agent_restrict
+#: model:ir.module.category,name:sale_commission_agent_restrict.module_category_sale_commission
+msgid "Agent Access"
+msgstr ""
+
+#. module: sale_commission_agent_restrict
+#: model:res.groups,name:sale_commission_agent_restrict.group_agent_own_commissions
+msgid "Agent Own Commission Lines"
+msgstr ""
+
+#. module: sale_commission_agent_restrict
+#: model:res.groups,name:sale_commission_agent_restrict.group_agent_own_customers
+msgid "Agent Own Customers and Orders"
+msgstr ""
+
+#. module: sale_commission_agent_restrict
+#: model_terms:ir.ui.view,arch_db:sale_commission_agent_restrict.view_sale_order_line_tree_mod
+msgid "Agents"
+msgstr ""
+
+#. module: sale_commission_agent_restrict
+#: model:ir.model,name:sale_commission_agent_restrict.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: sale_commission_agent_restrict
+#: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__current_agent_total
+msgid "My Commission"
+msgstr ""
+
+#. module: sale_commission_agent_restrict
+#: model:ir.model,name:sale_commission_agent_restrict.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_commission_agent_restrict
+#: code:addons/sale_commission_agent_restrict/models/res_users.py:38
+#, python-format
+msgid "User {user} is not associated to any agent.\n"
+"Please mark partner corresponding to this user as agent to be able to assign agent related group to him."
+msgstr ""
+
+#. module: sale_commission_agent_restrict
+#: model:ir.model,name:sale_commission_agent_restrict.model_res_users
+msgid "Users"
+msgstr ""
