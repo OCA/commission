@@ -51,6 +51,40 @@ class TestSaleCommission(SavepointCase):
             "sale_commission_product_criteria.demo_commission_rules_item_4"
         )
 
+    def _create_sale_order(self, product, partner):
+        return self.sale_order_model.create(
+            {
+                "partner_id": partner.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": product.name,
+                            "product_id": product.id,
+                            "product_uom_qty": 1.0,
+                            "product_uom": product.uom_id.id,
+                            "price_unit": 1000,
+                        },
+                    )
+                ],
+            }
+        )
+
+    def _invoice_sale_order(self, sale_order, date=None):
+        old_invoices = sale_order.invoice_ids
+        wizard = self.advance_inv_model.create({"advance_payment_method": "delivered"})
+        wizard.with_context(
+            {
+                "active_model": "sale.order",
+                "active_ids": [sale_order.id],
+                "active_id": sale_order.id,
+            }
+        ).create_invoices()
+        invoice = sale_order.invoice_ids - old_invoices
+        invoice.flush()
+        return invoice
+
     def test_sale_commission_product_criteria_items(self):
         # items names
         self.com_item_1._compute_commission_item_name_value()
@@ -164,40 +198,6 @@ class TestSaleCommission(SavepointCase):
         self.com_item_4.product_tmpl_id = self.product_template_4
         with self.assertRaises(ValidationError):
             self.com_item_4._onchange_product_tmpl_id()
-
-    def _create_sale_order(self, product, partner):
-        return self.sale_order_model.create(
-            {
-                "partner_id": partner.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": product.name,
-                            "product_id": product.id,
-                            "product_uom_qty": 1.0,
-                            "product_uom": product.uom_id.id,
-                            "price_unit": 1000,
-                        },
-                    )
-                ],
-            }
-        )
-
-    def _invoice_sale_order(self, sale_order, date=None):
-        old_invoices = sale_order.invoice_ids
-        wizard = self.advance_inv_model.create({"advance_payment_method": "delivered"})
-        wizard.with_context(
-            {
-                "active_model": "sale.order",
-                "active_ids": [sale_order.id],
-                "active_id": sale_order.id,
-            }
-        ).create_invoices()
-        invoice = sale_order.invoice_ids - old_invoices
-        invoice.flush()
-        return invoice
 
     def test_on_create_check(self):
         f = Form(self.commission_model)
