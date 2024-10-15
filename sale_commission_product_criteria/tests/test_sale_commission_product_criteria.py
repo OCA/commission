@@ -3,7 +3,7 @@
 
 
 from odoo.exceptions import ValidationError
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import Form, SavepointCase
 
 
 class TestSaleCommission(SavepointCase):
@@ -198,3 +198,19 @@ class TestSaleCommission(SavepointCase):
         invoice = sale_order.invoice_ids - old_invoices
         invoice.flush()
         return invoice
+
+    def test_on_create_check(self):
+        f = Form(self.commission_model)
+        f.name = "New commission type"
+        f.save()
+
+        so = self._create_sale_order(self.product_4, self.partner)
+        self.assertEqual(
+            so.order_line.agent_ids.commission_id, self.rules_commission_id
+        )
+        self.assertEqual(self.rules_commission_id.commission_type, "product")
+
+        so.action_confirm()
+        with self.assertRaises(ValidationError):
+            self.rules_commission_id.commission_type = "fixed"
+            self.rules_commission_id.onchange_commission_type()
