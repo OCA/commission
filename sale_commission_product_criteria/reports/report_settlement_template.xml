@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_settlement" inherit_id="sale_commission.report_settlement">
+        <xpath expr="//table/thead/tr/th[last()]" position="before">
+            <t
+                t-set="show_value_column"
+                t-value="any(l.agent_line.applied_commission_item_id for l in o.line_ids)"
+            />
+            <t t-if="show_value_column">
+                <th>Value</th>
+            </t>
+        </xpath>
+        <xpath expr="//table/tbody/tr/td[last()]" position="before">
+            <t t-if="show_value_column">
+                <td>
+                    <t
+                        t-set="comm_item"
+                        t-value="l.agent_line.applied_commission_item_id"
+                    />
+                    <t t-if="comm_item.commission_type == 'fixed'">
+                        <span
+                            t-field="comm_item.fixed_amount"
+                            t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
+                        />
+                    </t>
+                    <t t-elif="comm_item.commission_type == 'percentage'">
+                        <span t-field="comm_item.percent_amount" />%
+                    </t>
+                </td>
+            </t>
+        </xpath>
+    </template>
+</odoo>
