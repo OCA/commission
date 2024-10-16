@@ -3,7 +3,7 @@
 {
     "name": "Sale Commission Product Criteria Discount",
     "summary": "Advanced commissions rules with discount",
-    "version": "14.0.1.0.2",
+    "version": "14.0.1.0.3",
     "author": "Ilyas," "Ooops404," "Odoo Community Association (OCA)",
     "contributors": ["Ilyas"],
     "maintainers": [
