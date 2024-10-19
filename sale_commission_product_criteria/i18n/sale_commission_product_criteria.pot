@@ -175,7 +175,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__display_name
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission__display_name
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission_line_mixin__display_name
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission_settlement_line__display_name
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line__display_name
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent__display_name
 msgid "Display Name"
@@ -213,7 +212,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__id
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission__id
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission_line_mixin__id
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission_settlement_line__id
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line__id
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent__id
 msgid "ID"
@@ -229,7 +227,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item____last_update
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission____last_update
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission_line_mixin____last_update
-#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_commission_settlement_line____last_update
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line____last_update
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent____last_update
 msgid "Last Modified on"
@@ -243,11 +240,6 @@ msgstr ""
 #. module: sale_commission_product_criteria
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__write_date
 msgid "Last Updated on"
-msgstr ""
-
-#. module: sale_commission_product_criteria
-#: model:ir.model,name:sale_commission_product_criteria.model_sale_commission_settlement_line
-msgid "Line of a commission settlement"
 msgstr ""
 
 #. module: sale_commission_product_criteria
@@ -394,6 +386,7 @@ msgstr ""
 
 #. module: sale_commission_product_criteria
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__commission_value
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.report_settlement
 msgid "Value"
 msgstr ""
 
