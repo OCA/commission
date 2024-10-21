@@ -46,6 +46,8 @@ class SaleCommission(models.Model):
             )
 
     def check_type_change_allowed_moves(self):
+        if not self._origin:
+            return
         aila_ids = self.env["account.invoice.line.agent"].search(
             [("commission_id", "=", self._origin.id)]
         )
