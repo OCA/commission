@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="view_settled_wizard" model="ir.ui.view">
+        <field name="model">sale.commission.make.settle</field>
+        <field name="inherit_id" ref="sale_commission.view_settled_wizard" />
+        <field name="arch" type="xml">
+            <button name="action_settle" position="before">
+                <button
+                    name="action_settle_queued"
+                    string="Make settlements in Queue"
+                    type="object"
+                    class="oe_highlight"
+                />
+            </button>
+        </field>
+    </record>
+</odoo>

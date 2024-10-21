@@ -6,7 +6,7 @@
     "license": "AGPL-3",
     "depends": ["sale_commission", "queue_job"],
     "website": "https://github.com/OCA/commission",
-    "maintainers": ["pedrobaeza"],
+    "maintainers": ["renda-dev", "aleuffre"],
     "data": [
         "wizard/wizard_invoice.xml",
     ],
