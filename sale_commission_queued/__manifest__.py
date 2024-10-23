@@ -1,6 +1,6 @@
 {
     "name": "Sales commissions queued",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.1.0",
     "author": "Ilyas, Ooops404," "Odoo Community Association (OCA)",
     "category": "Sales Management",
     "license": "AGPL-3",
