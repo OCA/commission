@@ -40,6 +40,8 @@ Usage
 
 In Create commission invoices wizard, use button "enqueue invoices creation" to use the queue feature.
 
+In Commission settle wizard, use button 'Make settlements in Queue' button to use the queue feature.
+
 Bug Tracker
 ===========
 
@@ -59,6 +61,11 @@ Authors
 * Ilyas
 * Ooops404
 
+Contributors
+~~~~~~~~~~~~
+
+* Eduard Brahas <eduard@ooops404.com>
+
 Maintainers
 ~~~~~~~~~~~
 
@@ -72,13 +79,16 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-.. |maintainer-pedrobaeza| image:: https://github.com/pedrobaeza.png?size=40px
-    :target: https://github.com/pedrobaeza
-    :alt: pedrobaeza
+.. |maintainer-renda-dev| image:: https://github.com/renda-dev.png?size=40px
+    :target: https://github.com/renda-dev
+    :alt: renda-dev
+.. |maintainer-aleuffre| image:: https://github.com/aleuffre.png?size=40px
+    :target: https://github.com/aleuffre
+    :alt: aleuffre
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-pedrobaeza| 
+|maintainer-renda-dev| |maintainer-aleuffre| 
 
 This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/14.0/sale_commission_queued>`_ project on GitHub.
 
