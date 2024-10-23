@@ -55,13 +55,18 @@ msgstr "<strong>De:</strong>"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.report_settlement
+msgid "<strong>Global commission amount:</strong>"
+msgstr ""
+
+#. module: sale_commission
+#: model_terms:ir.ui.view,arch_db:sale_commission.report_settlement
 msgid "<strong>To:</strong>"
 msgstr "<strong>Para:</strong>"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.report_settlement
-msgid "<strong>Total</strong>"
-msgstr "<strong>Total</strong>"
+msgid "<strong>Total</strong> ("
+msgstr ""
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission__active
@@ -1073,6 +1078,9 @@ msgstr "_Cancelar"
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settled_wizard
 msgid "or"
 msgstr "ou"
+
+#~ msgid "<strong>Total</strong>"
+#~ msgstr "<strong>Total</strong>"
 
 #~ msgid "Gross Amount"
 #~ msgstr "Valor Bruto"

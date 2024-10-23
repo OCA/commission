@@ -58,13 +58,18 @@ msgstr "<strong>Dal:</strong>"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.report_settlement
+msgid "<strong>Global commission amount:</strong>"
+msgstr ""
+
+#. module: sale_commission
+#: model_terms:ir.ui.view,arch_db:sale_commission.report_settlement
 msgid "<strong>To:</strong>"
 msgstr "<strong>Al:</strong>"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.report_settlement
-msgid "<strong>Total</strong>"
-msgstr "<strong>Totale</strong>"
+msgid "<strong>Total</strong> ("
+msgstr ""
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission__active
@@ -1093,6 +1098,9 @@ msgstr "_Annulla"
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settled_wizard
 msgid "or"
 msgstr "oppure"
+
+#~ msgid "<strong>Total</strong>"
+#~ msgstr "<strong>Totale</strong>"
 
 #~ msgid "Gross Amount"
 #~ msgstr "Importo lordo"
