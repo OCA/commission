@@ -2,9 +2,22 @@
 <odoo>
     <template id="report_settlement">
         <t t-call="web.html_container">
+            <t
+                t-set="show_doc_total"
+                t-value="len(docs) > 1 and len(docs.mapped('currency_id')) == 1"
+            />
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.internal_layout">
                     <div class="page">
+                        <t t-if="show_doc_total">
+                            <div class="text-right">
+                                <strong>Global commission amount:</strong>
+                                <span
+                                    t-esc="sum(docs.mapped('total'))"
+                                    t-options="{'widget': 'monetary', 'display_currency': docs[0].currency_id}"
+                                />
+                            </div>
+                        </t>
                         <div class="row mt32 mb32">
                             <div class="col-auto col-3 mw-100 mb-2" t-if="o.agent_id">
                                 <strong>Agent:</strong>
@@ -19,7 +32,7 @@
                                 <p t-field="o.date_to" />
                             </div>
                         </div>
-                        <table class="table table-condensed">
+                        <table class="table table-sm">
                             <thead>
                                 <tr>
                                     <th>Invoice date</th>
@@ -51,20 +64,27 @@
                                     </td>
                                 </tr>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="4">
-                                        <strong>Total</strong>
-                                    </td>
-                                    <td class="text-right">
-                                        <span
-                                            t-field="o.total"
-                                            t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
-                                        />
-                                    </td>
-                                </tr>
-                            </tfoot>
                         </table>
+                        <div class="clearfix" name="commission_total_summary">
+                            <div id="total" class="row" name="total">
+                                <div class="col-6 ml-auto">
+                                    <table class="table table-sm">
+                                        <tr class="border-black o_total">
+                                            <td name="td_amount_total_label"><strong
+                                                >Total</strong> (<span
+                                                    t-field="o.date_from"
+                                                /> - <span t-field="o.date_to" />)</td>
+                                            <td class="text-right">
+                                                <span
+                                                    t-field="o.total"
+                                                    t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
+                                                />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </t>
             </t>
