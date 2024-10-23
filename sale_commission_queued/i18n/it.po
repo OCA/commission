@@ -18,6 +18,7 @@ msgstr ""
 
 #. module: sale_commission_queued
 #: model:ir.model.fields,field_description:sale_commission_queued.field_sale_commission_make_invoice__display_name
+#: model:ir.model.fields,field_description:sale_commission_queued.field_sale_commission_make_settle__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
 
@@ -28,11 +29,13 @@ msgstr "Accoda creazione fatture"
 
 #. module: sale_commission_queued
 #: model:ir.model.fields,field_description:sale_commission_queued.field_sale_commission_make_invoice__id
+#: model:ir.model.fields,field_description:sale_commission_queued.field_sale_commission_make_settle__id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_commission_queued
 #: model:ir.model.fields,field_description:sale_commission_queued.field_sale_commission_make_invoice____last_update
+#: model:ir.model.fields,field_description:sale_commission_queued.field_sale_commission_make_settle____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
@@ -40,3 +43,8 @@ msgstr "Ultima modifica il"
 #: model:ir.model,name:sale_commission_queued.model_sale_commission_make_invoice
 msgid "Wizard for making an invoice from a settlement"
 msgstr "Procedura per preparare una fattura da una provvigione"
+
+#. module: sale_commission_queued
+#: model:ir.model,name:sale_commission_queued.model_sale_commission_make_settle
+msgid "Wizard for settling commissions in invoices"
+msgstr ""
