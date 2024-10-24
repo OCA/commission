@@ -107,6 +107,14 @@ class TestCommissionBase(TransactionCase):
                 "lang": "en_US",
             }
         )
+        cls.agent_pending = cls.res_partner_model.create(
+            {
+                "name": "Test Agent - Pending",
+                "agent": True,
+                "settlement": "pending",
+                "lang": "en_US",
+            }
+        )
 
     # Expected to be used in inheriting modules.
     def _get_make_settle_vals(self, agent=None, period=None, date=None):

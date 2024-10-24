@@ -12,5 +12,6 @@ class Commission(models.Model):
         default="open",
         help="Select the invoice status for settling the commissions:\n"
         "* 'Invoice Based': Commissions are settled when the invoice is issued.\n"
-        "* 'Payment Based': Commissions are settled when the invoice is paid.",
+        "* 'Payment Based': Commissions are settled when the invoice is paid "
+        "(or refunded).",
     )

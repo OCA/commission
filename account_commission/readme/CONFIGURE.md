@@ -5,4 +5,6 @@ For selecting invoice status in commissions:
     - **Invoice Based**: Commissions are settled when the invoice is
       issued.
     - **Payment Based**: Commissions are settled when the invoice is
-      paid.
+      paid or refunded. Note that when refunding an invoice, the
+      corresponding reversed commission will be settled as well,
+      resulting in a 0 net commission between both operations.
