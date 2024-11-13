@@ -84,6 +84,14 @@
                         <field name="currency_id" invisible="1" />
                         <field name="agent_type" invisible="1" />
                     </group>
+                    <group
+                        attrs="{'invisible': [('show_settlement_dates', '=', False)]}"
+                    >
+                        <field name="show_settlement_dates" invisible="1" />
+                        <field name="settlement_date_to" />
+                        <field name="settlement_date_payment_to" />
+                        <field name="create_date" />
+                    </group>
                 </group>
                 <group string="Commission lines" colspan="4">
                     <field name="line_ids" nolabel="1">

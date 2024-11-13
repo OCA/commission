@@ -84,6 +84,8 @@ class SaleCommissionMakeSettle(models.TransientModel):
             "date_from": sett_from,
             "date_to": sett_to,
             "company_id": company.id,
+            "settlement_date_to": self.date_to,
+            "settlement_date_payment_to": self.date_payment_to,
         }
 
     def action_settle(self):

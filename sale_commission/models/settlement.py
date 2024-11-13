@@ -61,6 +61,19 @@ class Settlement(models.Model):
         default=lambda self: self.env.user.company_id,
         required=True,
     )
+    show_settlement_dates = fields.Boolean(
+        related="company_id.commission_show_settlement_dates"
+    )
+    settlement_date_to = fields.Date(
+        readonly=True,
+        string="Invoice date up to",
+        help="The invoice date used to create the settlement",
+    )
+    settlement_date_payment_to = fields.Date(
+        readonly=True,
+        string="Payment date up to",
+        help="The payment date used to create the settlement",
+    )
 
     @api.depends("line_ids", "line_ids.settled_amount")
     def _compute_total(self):
