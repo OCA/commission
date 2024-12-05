@@ -660,15 +660,19 @@ class TestAccountCommission(TestCommissionBase):
         self.assertEqual(3, len(settlements.line_ids))
         self.assertAlmostEqual(0.6, sum(settlements.mapped("total")), 2)
 
-    def _register_payment(self, invoice):
+    def _register_payment(self, invoice, payment_wiz_vals=None):
+        if payment_wiz_vals is None:
+            payment_wiz_vals = {}
+
         payment_journal = self.env["account.journal"].search(
             [("type", "=", "cash"), ("company_id", "=", self.env.company.id)],
             limit=1,
         )
+        payment_wiz_vals["journal_id"] = payment_journal.id
         register_payments = (
             self.env["account.payment.register"]
             .with_context(active_ids=invoice.id, active_model="account.move")
-            .create({"journal_id": payment_journal.id})
+            .create(payment_wiz_vals)
         )
         register_payments.action_create_payments()
 
@@ -694,3 +698,41 @@ class TestAccountCommission(TestCommissionBase):
         self._settle_agent_invoice(self.agent_pending, 1)
         settlements = self.settle_model.search([("state", "=", "settled")])
         self.assertEqual(len(settlements.line_ids), 3)
+
+    def test_settle_invoice_on_payment_date(self):
+        """When commission is "Payment Date Based",
+        the commission is settled based on the date of the payment.
+        """
+        # Arrange
+        commission = self.commission_model.create(
+            {
+                "name": "20% based on payment date",
+                "fix_qty": 20.0,
+                "amount_base_type": "net_amount",
+                "invoice_state": "paid_date",
+            }
+        )
+        agent = self.agent_monthly
+        agent.commission_id = commission
+        invoice = self._create_invoice(
+            agent,
+            commission,
+            date="2020-01-15",
+        )
+        invoice.action_post()
+        self._register_payment(
+            invoice,
+            payment_wiz_vals={
+                "payment_date": "2020-02-15",
+            },
+        )
+
+        # Act
+        self._settle_agent_invoice(agent=agent, date="2020-02-01")
+        january_settlement = self.settle_model.search([("state", "=", "settled")])
+        self._settle_agent_invoice(agent=agent, date="2020-03-01")
+        february_settlement = self.settle_model.search([("state", "=", "settled")])
+
+        # Assert
+        self.assertFalse(january_settlement)
+        self.assertEqual(invoice, february_settlement.line_ids.invoice_line_id.move_id)

@@ -48,8 +48,10 @@ For selecting invoice status in commissions:
 
    * **Invoice Based**: Commissions are settled when the invoice is issued.
    * **Payment Based**: Commissions are settled when the invoice is paid or refunded.
-     Note that when refunding an invoice, the corresponding reversed commission will
-     be settled as well, resulting in a 0 net commission between both operations.
+   * **Payment Date Based**: Commissions are settled based on the payment date.
+
+   Note that when refunding an invoice, the corresponding reversed commission will
+   be settled as well, resulting in a 0 net commission between both operations.
 
 Usage
 =====
@@ -138,6 +140,10 @@ Contributors
 * `Studio73 <https://www.studio73.es>`__:
 
   * Ethan Hildick
+
+* `Aion Tech <https://aiontech.company/>`_:
+
+  * Simone Rubino <simone.rubino@aion-tech.it>
 
 Maintainers
 ~~~~~~~~~~~

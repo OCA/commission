@@ -2,6 +2,8 @@
 # Copyright 2014-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from datetime import date
+
 from lxml import etree
 
 from odoo import _, api, exceptions, fields, models
@@ -248,9 +250,17 @@ class AccountInvoiceLineAgent(models.Model):
     def _skip_settlement(self):
         self.ensure_one()
         return (
-            self.commission_id.invoice_state == "paid"
+            self.commission_id.invoice_state in ("paid", "paid_date")
             and self.invoice_id.payment_state not in ["in_payment", "paid", "reversed"]
         ) or self.invoice_id.state != "posted"
 
     def _get_commission_settlement_date(self):
-        return self.invoice_date
+        if self.commission_id.invoice_state == "paid_date":
+            payments = self.invoice_id._get_reconciled_amls().move_id
+            commission_settlement_date = max(
+                payments.mapped("date"),
+                default=date.min,
+            )
+        else:
+            commission_settlement_date = self.invoice_date
+        return commission_settlement_date

@@ -172,6 +172,18 @@ class SettlementLine(models.Model):
         related="invoice_agent_line_id.object_id",
         string="Source invoice line",
     )
+    invoice_payment_date = fields.Date(
+        string="Payment date",
+        compute="_compute_invoice_payment_date",
+    )
+
+    def _compute_invoice_payment_date(self):
+        for line in self:
+            payments = line.invoice_line_id.move_id._get_reconciled_amls().move_id
+            line.invoice_payment_date = max(
+                payments.mapped("date"),
+                default=False,
+            )
 
     @api.depends("invoice_agent_line_id")
     def _compute_date(self):

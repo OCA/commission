@@ -23,3 +23,7 @@
 * `Studio73 <https://www.studio73.es>`__:
 
   * Ethan Hildick
+
+* `Aion Tech <https://aiontech.company/>`_:
+
+  * Simone Rubino <simone.rubino@aion-tech.it>

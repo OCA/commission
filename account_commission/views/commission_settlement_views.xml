@@ -47,6 +47,11 @@
                 position="after"
             >
                 <field
+                    name="invoice_payment_date"
+                    attrs="{'column_invisible': [('parent.settlement_type', '!=', 'sale_invoice')]}"
+                    groups="account.group_account_invoice"
+                />
+                <field
                     name="invoice_line_id"
                     attrs="{'column_invisible': [('parent.settlement_type', '!=', 'sale_invoice')]}"
                     groups="account.group_account_invoice"
