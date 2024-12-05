@@ -162,3 +162,14 @@ class CommissionLineMixin(models.AbstractModel):
     def _compute_commission_id(self):
         for record in self:
             record.commission_id = record.agent_id.commission_id
+
+    def _skip_settlement(self):
+        """This function should return False if the commission can be paid.
+
+        :return: bool
+        """
+        raise NotImplementedError()
+
+    def _get_commission_settlement_date(self):
+        """Date used to insert this line in a commission settlement."""
+        raise NotImplementedError()

@@ -246,12 +246,11 @@ class AccountInvoiceLineAgent(models.Model):
                 )
 
     def _skip_settlement(self):
-        """This function should return False if the commission can be paid.
-
-        :return: bool
-        """
         self.ensure_one()
         return (
             self.commission_id.invoice_state == "paid"
             and self.invoice_id.payment_state not in ["in_payment", "paid", "reversed"]
         ) or self.invoice_id.state != "posted"
+
+    def _get_commission_settlement_date(self):
+        return self.invoice_date

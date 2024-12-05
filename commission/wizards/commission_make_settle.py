@@ -124,7 +124,6 @@ class CommissionMakeSettle(models.TransientModel):
             [("agent", "=", True)]
         )
         date_to = self.date_to
-        settlement_line_vals = []
         for agent in agents:
             date_to_agent = self._get_period_start(agent, date_to)
             # Get non settled elements
@@ -145,8 +144,9 @@ class CommissionMakeSettle(models.TransientModel):
                     pos += 1
                     if line._skip_settlement():
                         continue
-                    if line.invoice_date > sett_to:
-                        sett_from = self._get_period_start(agent, line.invoice_date)
+                    line_date = line._get_commission_settlement_date()
+                    if line_date > sett_to:
+                        sett_from = self._get_period_start(agent, line_date)
                         sett_to = self._get_next_period_date(agent, sett_from)
                         sett_to -= timedelta(days=1)
                         settlement = self._get_settlement(
