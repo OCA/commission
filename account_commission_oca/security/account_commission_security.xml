@@ -2,7 +2,7 @@
 <!-- Copyright 2020-2022 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-     <data>
+    <data>
         <record id="group_invoicing_commission" model="res.groups">
             <field name="name">Manage invoices commissions</field>
             <field name="category_id" ref="base.module_category_hidden" />
@@ -12,8 +12,8 @@
                 eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
             />
         </record>
-     </data>
-     <data noupdate="1">
+    </data>
+    <data noupdate="1">
         <record id="rule_invoice_line_agent_multi_company" model="ir.rule">
             <field name="name">Invoice commission line multi-company</field>
             <field name="model_id" ref="model_account_invoice_line_agent" />
