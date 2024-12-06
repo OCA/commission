@@ -5,7 +5,7 @@
 
 from odoo.tests import Form, tagged
 
-from odoo.addons.account_commission.tests.test_account_commission import (
+from odoo.addons.account_commission_oca.tests.test_account_commission import (
     TestAccountCommission,
 )
 
@@ -62,7 +62,7 @@ class TestSaleCommission(TestAccountCommission):
 
     def test_sale_commission_gross_amount_payment(self):
         self._check_full(
-            self.env.ref("commission.res_partner_pritesh_sale_agent"),
+            self.env.ref("commission_oca.res_partner_pritesh_sale_agent"),
             self.commission_section_paid,
             1,
             0,
@@ -72,7 +72,7 @@ class TestSaleCommission(TestAccountCommission):
         # Make sure user is in English
         self.env.user.lang = "en_US"
         sale_order = self._create_sale_order(
-            self.env.ref("commission.res_partner_pritesh_sale_agent"),
+            self.env.ref("commission_oca.res_partner_pritesh_sale_agent"),
             self.commission_section_invoice,
         )
         self.assertIn("1", sale_order.order_line[0].commission_status)
@@ -85,9 +85,9 @@ class TestSaleCommission(TestAccountCommission):
                 0,
                 {
                     "agent_id": self.env.ref(
-                        "commission.res_partner_pritesh_sale_agent"
+                        "commission_oca.res_partner_pritesh_sale_agent"
                     ).id,
-                    "commission_id": self.env.ref("commission.demo_commission").id,
+                    "commission_id": self.env.ref("commission_oca.demo_commission").id,
                 },
             ),
             (
@@ -95,9 +95,9 @@ class TestSaleCommission(TestAccountCommission):
                 0,
                 {
                     "agent_id": self.env.ref(
-                        "commission.res_partner_eiffel_sale_agent"
+                        "commission_oca.res_partner_eiffel_sale_agent"
                     ).id,
-                    "commission_id": self.env.ref("commission.demo_commission").id,
+                    "commission_id": self.env.ref("commission_oca.demo_commission").id,
                 },
             ),
         ]

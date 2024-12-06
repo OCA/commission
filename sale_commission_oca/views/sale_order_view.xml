@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']/tree//field[@name='price_subtotal']"
+                expr="//field[@name='order_line']/list//field[@name='price_subtotal']"
                 position="after"
             >
                 <field name="commission_free" column_invisible="1" />
@@ -54,7 +54,7 @@
         <field name="name">sale.order.line.agent.tree</field>
         <field name="model">sale.order.line.agent</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <list editable="bottom">
                 <field
                     name="agent_id"
                     context="{'default_agent': True, 'default_customer': False, 'default_supplier': True}"
@@ -64,7 +64,7 @@
                     domain="['|', ('settlement_type', '=', 'sale_invoice'), ('settlement_type', '=', False)]"
                 />
                 <field name="amount" />
-            </tree>
+            </list>
         </field>
     </record>
 </odoo>
