@@ -2,7 +2,7 @@
 <odoo>
     <template
         id="report_settlement_document"
-        inherit_id="commission.report_settlement_document"
+        inherit_id="commission_oca.report_settlement_document"
     >
         <xpath expr="//div[@id='informations']" position="inside">
             <div class="col-auto col-3 mw-100 mb-2" t-if="o.invoice_id">

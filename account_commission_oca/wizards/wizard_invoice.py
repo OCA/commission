@@ -1,4 +1,4 @@
-from odoo import _, exceptions, fields, models
+from odoo import exceptions, fields, models
 
 
 class CommissionMakeInvoice(models.TransientModel):
@@ -25,7 +25,9 @@ class CommissionMakeInvoice(models.TransientModel):
                 ]
             )
             if not settlements:
-                raise exceptions.UserError(_("No valid settlements to invoice."))
+                raise exceptions.UserError(
+                    self.env._("No valid settlements to invoice.")
+                )
             return settlements.ids
         return self.env.context.get("settlement_ids", [])
 
@@ -77,7 +79,7 @@ class CommissionMakeInvoice(models.TransientModel):
         # go to results
         if len(settlements):
             return {
-                "name": _("Created Invoices"),
+                "name": self.env._("Created Invoices"),
                 "type": "ir.actions.act_window",
                 "views": [[False, "list"], [False, "form"]],
                 "res_model": "account.move",

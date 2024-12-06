@@ -3,7 +3,7 @@
 # Copyright 2014-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import groupby
 
@@ -51,7 +51,7 @@ class CommissionSettlement(models.Model):
     def action_cancel(self):
         """Check if any settlement has been invoiced."""
         if any(x.state != "settled" for x in self):
-            raise UserError(_("Cannot cancel an invoiced settlement."))
+            raise UserError(self.env._("Cannot cancel an invoiced settlement."))
         return super().action_cancel()
 
     def action_draft(self):
@@ -60,13 +60,13 @@ class CommissionSettlement(models.Model):
     def unlink(self):
         """Allow to delete only cancelled settlements."""
         if any(x.state == "invoiced" for x in self):
-            raise UserError(_("You can't delete invoiced settlements."))
+            raise UserError(self.env._("You can't delete invoiced settlements."))
         return super().unlink()
 
     def action_invoice(self):
         return {
             "type": "ir.actions.act_window",
-            "name": _("Make invoice"),
+            "name": self.env._("Make invoice"),
             "res_model": "commission.make.invoice",
             "target": "new",
             "view_mode": "form",
@@ -110,7 +110,7 @@ class CommissionSettlement(models.Model):
                         "price_unit": abs(settlement.total),
                         "name": product.with_context(lang=lang.code).display_name
                         + "\n"
-                        + _(
+                        + settlement.env._(
                             "Period: from %(date_from)s to %(date_to)s",
                             date_from=date_from.strftime(lang.date_format),
                             date_to=date_to.strftime(lang.date_format),

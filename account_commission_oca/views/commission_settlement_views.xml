@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record model="ir.ui.view" id="view_settlement_tree">
-        <field name="name">Settlements tree - Invoice decoration</field>
+        <field name="name">Settlements list - Invoice decoration</field>
         <field name="model">commission.settlement</field>
-        <field name="inherit_id" ref="commission.view_settlement_tree" />
+        <field name="inherit_id" ref="commission_oca.view_settlement_tree" />
         <field name="arch" type="xml">
-            <tree position="attributes">
+            <list position="attributes">
                 <attribute name="decoration-muted">state == 'invoiced'</attribute>
                 <attribute
                     name="decoration-danger"
                 >state == 'except_invoice'</attribute>
-            </tree>
+            </list>
         </field>
     </record>
     <record model="ir.ui.view" id="view_settlement_form">
         <field name="name">Settlements - Add invoice stuff</field>
         <field name="model">commission.settlement</field>
-        <field name="inherit_id" ref="commission.view_settlement_form" />
+        <field name="inherit_id" ref="commission_oca.view_settlement_form" />
         <field name="arch" type="xml">
             <button name="action_cancel" position="before">
                 <button
@@ -43,7 +43,7 @@
                 />
             </field>
             <xpath
-                expr="//field[@name='line_ids']/tree/field[@name='date']"
+                expr="//field[@name='line_ids']/list/field[@name='date']"
                 position="after"
             >
                 <field
@@ -57,7 +57,7 @@
     <record model="ir.ui.view" id="view_settlement_line_tree_inherit">
         <field name="name">Settlement lines</field>
         <field name="model">commission.settlement.line</field>
-        <field name="inherit_id" ref="commission.view_settlement_line_tree" />
+        <field name="inherit_id" ref="commission_oca.view_settlement_line_tree" />
         <field name="arch" type="xml">
             <xpath expr="field[@name='agent_id']" position="after">
                 <field name="invoice_line_id" />
@@ -68,7 +68,7 @@
         <field name="name">Invoices Settlements</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">commission.settlement</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[('settlement_type', '=', 'sale_invoice')]</field>
     </record>
     <menuitem

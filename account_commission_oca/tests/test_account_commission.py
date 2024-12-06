@@ -9,7 +9,7 @@ from odoo import fields
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import tagged
 
-from odoo.addons.commission.tests.test_commission import TestCommissionBase
+from odoo.addons.commission_oca.tests.test_commission import TestCommissionBase
 
 
 @tagged("post_install", "-at_install")
@@ -37,7 +37,7 @@ class TestAccountCommission(TestCommissionBase):
         )
         cls.default_line_account = cls.env["account.account"].search(
             [
-                ("company_id", "=", cls.company.id),
+                ("company_ids", "in", cls.company.id),
                 ("account_type", "=", "asset_receivable"),
             ],
             limit=1,
@@ -53,7 +53,7 @@ class TestAccountCommission(TestCommissionBase):
         )
         cls.income_account = cls.env["account.account"].search(
             [
-                ("company_id", "=", cls.company.id),
+                ("company_ids", "in", cls.company.id),
                 ("account_type", "=", "income"),
             ],
             limit=1,
@@ -149,17 +149,18 @@ class TestAccountCommission(TestCommissionBase):
 
     def test_commission_gross_amount(self):
         settlements = self._check_settlements(
-            self.env.ref("commission.res_partner_pritesh_sale_agent"),
+            self.env.ref("commission_oca.res_partner_pritesh_sale_agent"),
             self.commission_section_paid,
         )
         # Check report print - It shouldn't fail
         self.env["ir.actions.report"]._render_qweb_html(
-            self.env.ref("commission.action_report_settlement").id, settlements[0].ids
+            self.env.ref("commission_oca.action_report_settlement").id,
+            settlements[0].ids,
         )
 
     def test_account_commission_gross_amount_payment(self):
         self._check_invoice_thru_settle(
-            self.env.ref("commission.res_partner_pritesh_sale_agent"),
+            self.env.ref("commission_oca.res_partner_pritesh_sale_agent"),
             self.commission_section_paid,
             1,
             0,
@@ -179,7 +180,7 @@ class TestAccountCommission(TestCommissionBase):
     def test_account_commission_gross_amount_invoice(self):
         self._process_invoice_and_settle(
             self.agent_quaterly,
-            self.env.ref("commission.demo_commission"),
+            self.env.ref("commission_oca.demo_commission"),
             1,
         )
         settlements = self.settle_model.search([("state", "=", "invoiced")])
@@ -195,7 +196,7 @@ class TestAccountCommission(TestCommissionBase):
         # Make sure user is in English
         self.env.user.lang = "en_US"
         invoice = self._create_invoice(
-            self.env.ref("commission.res_partner_pritesh_sale_agent"),
+            self.env.ref("commission_oca.res_partner_pritesh_sale_agent"),
             self.commission_section_invoice,
         )
         self.assertIn("1", invoice.invoice_line_ids[0].commission_status)
@@ -208,9 +209,9 @@ class TestAccountCommission(TestCommissionBase):
                 0,
                 {
                     "agent_id": self.env.ref(
-                        "commission.res_partner_pritesh_sale_agent"
+                        "commission_oca.res_partner_pritesh_sale_agent"
                     ).id,
-                    "commission_id": self.env.ref("commission.demo_commission").id,
+                    "commission_id": self.env.ref("commission_oca.demo_commission").id,
                 },
             ),
             (
@@ -218,9 +219,9 @@ class TestAccountCommission(TestCommissionBase):
                 0,
                 {
                     "agent_id": self.env.ref(
-                        "commission.res_partner_eiffel_sale_agent"
+                        "commission_oca.res_partner_eiffel_sale_agent"
                     ).id,
-                    "commission_id": self.env.ref("commission.demo_commission").id,
+                    "commission_id": self.env.ref("commission_oca.demo_commission").id,
                 },
             ),
         ]
@@ -443,7 +444,7 @@ class TestAccountCommission(TestCommissionBase):
 
     def test_account_commission_single_settlement_ids(self):
         settlement = self._check_invoice_thru_settle(
-            self.env.ref("commission.res_partner_pritesh_sale_agent"),
+            self.env.ref("commission_oca.res_partner_pritesh_sale_agent"),
             self.commission_section_paid,
             1,
             0,

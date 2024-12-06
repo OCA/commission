@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 
 class AccountMove(models.Model):
@@ -28,14 +28,14 @@ class AccountMove(models.Model):
     )
 
     def action_view_settlement(self):
-        xmlid = "commission.action_commission_settlement"
+        xmlid = "commission_oca.action_commission_settlement"
         action = self.env["ir.actions.actions"]._for_xml_id(xmlid)
         action["context"] = {}
         settlements = self.mapped("settlement_ids")
         if not settlements or len(settlements) > 1:
             action["domain"] = [("id", "in", settlements.ids)]
         elif len(settlements) == 1:
-            res = self.env.ref("commission.view_settlement_form", False)
+            res = self.env.ref("commission_oca.view_settlement_form", False)
             action["views"] = [(res and res.id or False, "form")]
             action["res_id"] = settlements.id
         return action
@@ -78,7 +78,7 @@ class AccountMove(models.Model):
         """
         if any(self.mapped("invoice_line_ids.any_settled")):
             raise exceptions.ValidationError(
-                _("You can't cancel an invoice with settled lines"),
+                self.env._("You can't cancel an invoice with settled lines"),
             )
         self.mapped("line_ids.settlement_id").write({"state": "except_invoice"})
         return super().button_cancel()
@@ -215,7 +215,7 @@ class AccountInvoiceLineAgent(models.Model):
         for record in self:
             if any(record.mapped("settled")):
                 raise exceptions.ValidationError(
-                    _("You can't modify a settled line"),
+                    record.env._("You can't modify a settled line"),
                 )
 
     def _skip_settlement(self):
