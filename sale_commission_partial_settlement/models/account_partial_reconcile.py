@@ -18,8 +18,9 @@ class AccountPartialReconcile(models.Model):
     )
     def _compute_partial_commission_settled(self):
         for rec in self:
-            rec.partial_commission_settled = bool(
-                rec.account_invoice_line_agent_partial_ids.filtered(
-                    lambda x: x.mapped("agent_line.settlement_id")[:1].state != "cancel"
+            rec.partial_commission_settled = any(
+                settlement.state != "cancel"
+                for settlement in rec.mapped(
+                    "account_invoice_line_agent_partial_ids.agent_line.settlement_id"
                 )
             )

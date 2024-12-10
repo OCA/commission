@@ -27,7 +27,10 @@ class AccountInvoiceLineAgent(models.Model):
             rec.partial_settled = sum(
                 ailap.amount
                 for ailap in rec.invoice_line_agent_partial_ids
-                if ailap.mapped("agent_line.settlement_id")[:1].state != "cancel"
+                if any(
+                    settlement.state != "cancel"
+                    for settlement in ailap.mapped("agent_line.settlement_id")
+                )
             )
 
     @api.depends(
