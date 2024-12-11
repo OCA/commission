@@ -1,7 +1,7 @@
 # Copyright 2023 Nextev
 {
     "name": "Sales commissions based on paid amount",
-    "version": "14.0.1.2.0",
+    "version": "14.0.1.2.1",
     "author": "Nextev Srl," "Ooops," "Odoo Community Association (OCA)",
     "maintainers": ["aleuffre", "renda-dev", "PicchiSeba"],
     "category": "Sales Management",
