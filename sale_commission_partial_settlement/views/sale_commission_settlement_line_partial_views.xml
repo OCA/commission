@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="commission_settlement_line_partial_tree_embedded" model="ir.ui.view">
+        <field name="name">commission.settlement.line.partial.tree.embedded</field>
+        <field name="model">sale.commission.settlement.line.partial</field>
+        <field name="priority">999</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="agent_id" />
+                <field name="date_maturity" />
+                <field name="reconcile_amount" />
+                <field name="amount" />
+                <field name="currency_id" invisible="1" />
+                <field name="is_settled" />
+            </tree>
+        </field>
+    </record>
+    <record id="commission_settlement_line_partial_tree" model="ir.ui.view">
+        <field name="name">commission.settlement.line.partial.tree</field>
+        <field name="model">sale.commission.settlement.line.partial</field>
+        <field
+            name="inherit_id"
+            ref="commission_settlement_line_partial_tree_embedded"
+        />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="create">0</attribute>
+            </tree>
+            <field name="agent_id" position="after">
+                <field name="move_id" />
+                <field name="invoice_line_id" />
+                <field name="settlement_id" />
+                <field name="reconcile_debit_move_id" optional="hide" />
+                <field name="reconcile_credit_move_id" optional="hide" />
+            </field>
+        </field>
+    </record>
+    <record id="commission_settlement_line_partial_search" model="ir.ui.view">
+        <field name="name">commission.settlement.line.partial.search</field>
+        <field name="model">sale.commission.settlement.line.partial</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="agent_id" />
+                <field name="move_id" />
+                <field name="invoice_line_id" />
+            </search>
+        </field>
+    </record>
+    <record
+        id="action_sale_commission_settlement_line_partial"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Partial Commissions</field>
+        <field name="res_model">sale.commission.settlement.line.partial</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <menuitem
+        name="Partial Commissions"
+        id="menu_partial_commissions"
+        parent="sale_commission.menu_sale_commissions_management"
+        action="action_sale_commission_settlement_line_partial"
+        sequence="22"
+    />
+</odoo>

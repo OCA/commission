@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="invoice_line_agent_tree" model="ir.ui.view">
+        <field name="model">account.invoice.line.agent</field>
+        <field name="inherit_id" ref="sale_commission.invoice_line_agent_tree" />
+        <field name="arch" type="xml">
+            <field name="amount" position="after">
+                <field name="payment_amount_type" invisible="1" />
+                <button
+                    name="action_see_partial_commissions"
+                    icon="fa-list"
+                    attrs="{'invisible': [
+                        ('payment_amount_type', '!=', 'paid'),
+                        ]
+                    }"
+                    type="object"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="account_invoice_line_agent_form_partial_only" model="ir.ui.view">
+        <field name="model">account.invoice.line.agent</field>
+        <field name="priority">999</field>
+        <field name="arch" type="xml">
+            <form>
+                <group string="Forecast">
+                    <field
+                        name="invoice_line_agent_partial_ids"
+                        readonly="1"
+                        nolabel="1"
+                        context="{
+                            'tree_view_ref': 'sale_commission_partial_settlement.invoice_line_agent_partial_tree_embedded',
+                        }"
+                    />
+                </group>
+                <group string="Actual">
+                    <field
+                        name="commission_settlement_line_partial_ids"
+                        readonly="1"
+                        nolabel="1"
+                        context="{
+                            'tree_view_ref': 'sale_commission_partial_settlement.commission_settlement_line_partial_tree_embedded',
+                        }"
+                    />
+                </group>
+                <footer>
+                    <button string="Close" class="oe_highlight" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

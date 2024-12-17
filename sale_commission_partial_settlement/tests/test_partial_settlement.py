@@ -19,7 +19,7 @@ class TestPartialSettlement(SavepointCase):
                 "name": "20% fixed commission (Net amount) - Payment Based - Partial",
                 "fix_qty": 20.0,
                 "invoice_state": "paid",
-                "amount_base_type": "net_amount",
+                "amount_base_type": "gross_amount",
                 "payment_amount_type": "paid",
             }
         )
@@ -61,7 +61,7 @@ class TestPartialSettlement(SavepointCase):
             {
                 "name": "10% fixed commission (Net amount) - Invoice Based",
                 "fix_qty": 10.0,
-                "amount_base_type": "net_amount",
+                "amount_base_type": "gross_amount",
             }
         )
         cls.agent_biweekly = cls.res_partner_model.create(
@@ -142,11 +142,10 @@ class TestPartialSettlement(SavepointCase):
     def _settle_agent(self, agent=None, period=None, date=None, date_payment_to=None):
         vals = {
             "date_to": (
-                fields.Datetime.from_string(fields.Datetime.now())
-                + relativedelta(months=period)
-            )
-            if period
-            else date,
+                (fields.Datetime.now() + relativedelta(months=period))
+                if period
+                else date
+            ),
             "date_payment_to": date_payment_to,
         }
         if agent:
@@ -202,7 +201,11 @@ class TestPartialSettlement(SavepointCase):
             payment_difference_handling="open",
         )
         self.assertTrue(invoice._get_reconciled_invoices_partials())
-        self._settle_agent(self.agent_monthly, 1, date_payment_to=datetime.now())
+        self._settle_agent(
+            self.agent_monthly,
+            2,
+            date_payment_to=datetime.today() + relativedelta(months=2),
+        )
         settlements = self.env["sale.commission.settlement"].search(
             [
                 (

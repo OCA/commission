@@ -17,7 +17,3 @@ class SaleCommissionSettlement(models.Model):
         string="Payment date up to",
         help="The payment date used to create the settlement",
     )
-
-    def unlink(self):
-        self.mapped("line_ids.agent_line_partial_ids").unlink()
-        return super().unlink()
