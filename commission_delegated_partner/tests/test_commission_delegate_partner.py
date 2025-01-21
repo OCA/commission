@@ -4,14 +4,14 @@
 import dateutil.relativedelta
 
 from odoo import fields
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestSaleCommissionDelegatePartner(SavepointCase):
+class TestSaleCommissionDelegatePartner(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.commission_model = cls.env["sale.commission"]
+        cls.commission_model = cls.env["commission"]
         cls.commission_net_invoice = cls.commission_model.create(
             {
                 "name": "10% fixed commission (Net amount) - Invoice Based",
@@ -20,15 +20,12 @@ class TestSaleCommissionDelegatePartner(SavepointCase):
             }
         )
         cls.res_partner_model = cls.env["res.partner"]
-        cls.partner = cls.env.ref("base.res_partner_2")
+        cls.partner = cls.res_partner_model.create({"name": "Test Partner"})
         cls.partner.write({"agent": False})
-        cls.sale_order_model = cls.env["sale.order"]
-        cls.advance_inv_model = cls.env["sale.advance.payment.inv"]
-        cls.settle_model = cls.env["sale.commission.settlement"]
-        cls.make_settle_model = cls.env["sale.commission.make.settle"]
-        cls.make_inv_model = cls.env["sale.commission.make.invoice"]
-        cls.product = cls.env.ref("product.product_product_5")
-        cls.product.write({"invoice_policy": "order"})
+        cls.settle_model = cls.env["commission.settlement"]
+        cls.make_settle_model = cls.env["commission.make.settle"]
+        cls.make_inv_model = cls.env["commission.make.invoice"]
+        cls.product = cls.env["product.product"].create({"name": "Test Product"})
         cls.journal = cls.env["account.journal"].search(
             [("type", "=", "purchase")], limit=1
         )
@@ -51,56 +48,41 @@ class TestSaleCommissionDelegatePartner(SavepointCase):
             }
         )
 
-    def _create_sale_order(self, agent, commission):
-        sale_order = self.sale_order_model.create(
-            {
-                "partner_id": self.partner.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.product.name,
-                            "product_id": self.product.id,
-                            "product_uom_qty": 1.0,
-                            "product_uom": self.ref("uom.product_uom_unit"),
-                            "price_unit": self.product.lst_price,
-                            "agent_ids": [
-                                (
-                                    0,
-                                    0,
-                                    {
-                                        "agent_id": agent.id,
-                                        "commission_id": commission.id,
-                                    },
-                                )
-                            ],
-                        },
-                    )
-                ],
-            }
-        )
-        sale_order.action_confirm()
-        self.assertEqual(len(sale_order.invoice_ids), 0)
-        payment = self.advance_inv_model.create({"advance_payment_method": "delivered"})
-        context = {
-            "active_model": "sale.order",
-            "active_ids": [sale_order.id],
-            "active_id": sale_order.id,
+    def _create_invoice(self, agent, commission, date=None, currency=None):
+        vals = {
+            "move_type": "out_invoice",
+            "partner_id": self.partner.id,
+            "invoice_line_ids": [
+                (
+                    0,
+                    0,
+                    {
+                        "product_id": self.product.id,
+                        "agent_ids": [
+                            (
+                                0,
+                                0,
+                                {"agent_id": agent.id, "commission_id": commission.id},
+                            )
+                        ],
+                    },
+                )
+            ],
         }
-        payment.with_context(context).create_invoices()
-        self.assertEqual(len(sale_order.invoice_ids), 1)
-        for invoice in sale_order.invoice_ids:
-            invoice.flush()
-            invoice.action_post()
-            self.assertEqual(invoice.state, "posted")
+        if date:
+            vals.update({"invoice_date": date, "date": date})
+        if currency:
+            vals.update({"currency_id": currency.id})
+        move = self.env["account.move"].create([vals])
+        move.action_post()
+        return move
 
     def test_settlement(self):
-        self._create_sale_order(
+        self._create_invoice(
             self.agent_monthly,
             self.commission_net_invoice,
         )
-        self._create_sale_order(
+        self._create_invoice(
             self.agent_monthly_02,
             self.commission_net_invoice,
         )
@@ -109,13 +91,14 @@ class TestSaleCommissionDelegatePartner(SavepointCase):
                 "date_to": (
                     fields.Datetime.from_string(fields.Datetime.now())
                     + dateutil.relativedelta.relativedelta(months=1)
-                )
+                ),
+                "settlement_type": "sale_invoice",
             }
         )
         wizard.action_settle()
         settlements = self.settle_model.search([("state", "=", "settled")])
         self.assertEqual(len(settlements), 2)
-        self.env["sale.commission.make.invoice"].with_context(
+        self.env["commission.make.invoice"].with_context(
             settlement_ids=settlements.ids
         ).create(
             {
