@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-commission Odoo addons",
     version=version,
     install_requires=[
+        'odoo14-addon-hr_commission',
         'odoo14-addon-sale_commission',
         'odoo14-addon-sale_commission_advance',
         'odoo14-addon-sale_commission_agent_restrict',
