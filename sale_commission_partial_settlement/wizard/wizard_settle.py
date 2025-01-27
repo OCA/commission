@@ -32,74 +32,70 @@ class SaleCommissionMakeSettle(models.TransientModel):
         self.ensure_one()
         settlement_obj = self.env["sale.commission.settlement"]
         settlement_line_obj = self.env["sale.commission.settlement.line"]
-        settlement_ids = []
-
-        if self.agent_ids:
-            agents = self.agent_ids
-        else:
-            agents = self.env["res.partner"].search([("agent", "=", True)])
-        date_to = self.date_to
+        settlements = settlement_obj.browse()
+        agents = self.agent_ids or self.env["res.partner"].search(
+            [("agent", "=", True)]
+        )
         for agent in agents:
-            date_to_agent = self._get_period_start(agent, date_to)
-            main_agent_line = self.get_partial_agent_lines(agent, date_to_agent)
-            partial_agent_lines = main_agent_line._partial_commissions(
-                self.date_payment_to
+            partial_settlement_lines = self.get_partial_settlement_lines(
+                agent, self.date_to, self.date_payment_to
             )
-            for company in partial_agent_lines.mapped(
-                "invoice_line_agent_id.company_id"
-            ):
-                agent_lines_company = partial_agent_lines.filtered(
-                    lambda r: r.invoice_line_agent_id.object_id.company_id == company
-                )
-                sett_to = date.min
-                for line in agent_lines_company:
-                    if line.invoice_line_agent_id.invoice_date > sett_to:
-                        sett_from = self._get_period_start(
-                            agent, line.invoice_line_agent_id.invoice_date
-                        )
-                        sett_to = self._get_next_period_date(
-                            agent,
-                            sett_from,
-                        ) - relativedelta(days=1)
-                        settlement = self._get_settlement(
-                            agent, company, sett_from, sett_to
-                        )
-                        if not settlement:
-                            settlement = settlement_obj.create(
-                                self._prepare_settlement_vals(
-                                    agent, company, sett_from, sett_to
-                                )
-                            )
-                        settlement_ids.append(settlement.id)
-                    settlement_line_obj.create(
-                        {
-                            "settlement_id": settlement.id,
-                            "agent_line_partial_ids": [(6, 0, [line.id])],
-                            "agent_line": [(6, 0, [line.invoice_line_agent_id.id])],
-                        }
+            sett_from = sett_to = date.min
+            settlement = None
+            for partial in partial_settlement_lines:
+                if partial.invoice_date > sett_to:
+                    sett_from = self._get_period_start(agent, partial.invoice_date)
+                    sett_to = self._get_next_period_date(
+                        agent,
+                        sett_from,
+                    ) - relativedelta(days=1)
+                    settlement = self._get_settlement(
+                        agent, partial.company_id, sett_from, sett_to
                     )
-        if len(settlement_ids):
+                if not settlement:
+                    settlement = settlement_obj.create(
+                        self._prepare_settlement_vals(
+                            agent, partial.company_id, sett_from, sett_to
+                        )
+                    )
+                    settlements += settlement
+                settlement_line_obj.create(
+                    {
+                        "settlement_id": settlement.id,
+                        "agent_line_partial_ids": [
+                            (4, partial.invoice_agent_partial_id.id)
+                        ],
+                        "agent_line": [(4, partial.invoice_line_agent_id.id)],
+                        "settlement_line_partial_ids": [(4, partial.id)],
+                    }
+                )
+        if settlements:
             return {
                 "name": _("Created Settlements"),
                 "type": "ir.actions.act_window",
                 "view_type": "form",
                 "view_mode": "tree,form",
                 "res_model": "sale.commission.settlement",
-                "domain": [["id", "in", settlement_ids]],
+                "domain": [["id", "in", settlements.ids]],
             }
 
     def _get_agent_lines(self, agent, date_to_agent):
         aila = super()._get_agent_lines(agent, date_to_agent)
         return aila.filtered(lambda x: x.commission_id.payment_amount_type != "paid")
 
-    def get_partial_agent_lines(self, agent, date_to_agent):
-        main_agent_line = self.env["account.invoice.line.agent"].search(
-            [
-                ("invoice_date", "<", date_to_agent),
-                ("agent_id", "=", agent.id),
-                ("settled", "=", False),
-                ("commission_id.payment_amount_type", "=", "paid"),
-            ],
+    def get_partial_settlement_lines(self, agent, date_to_agent, date_to_payment):
+        partial_to_settle = self.env["sale.commission.settlement.line.partial"].search(
+            self.get_partial_settlement_domain(agent, date_to_agent, date_to_payment),
             order="invoice_date",
         )
-        return main_agent_line
+        return partial_to_settle
+
+    def get_partial_settlement_domain(self, agent, date_to_agent, date_to_payment):
+        domain = [
+            ("invoice_date", "<", date_to_agent),
+            ("agent_id", "=", agent.id),
+            ("is_settled", "=", False),
+        ]
+        if date_to_payment:
+            domain.append(("date_maturity", "<", date_to_payment))
+        return domain
