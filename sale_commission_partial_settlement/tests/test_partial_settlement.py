@@ -201,6 +201,8 @@ class TestPartialSettlement(SavepointCase):
             payment_difference_handling="open",
         )
         self.assertTrue(invoice._get_reconciled_invoices_partials())
+        # fix flaky test and ensure computes run
+        invoice.flush()
         self._settle_agent(
             self.agent_monthly,
             2,
