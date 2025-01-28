@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-11-20 13:06+0000\n"
+"PO-Revision-Date: 2025-01-28 11:06+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -38,13 +38,13 @@ msgstr "Riconcilia parziale fattura"
 #. module: sale_commission_partial_settlement
 #: model_terms:ir.ui.view,arch_db:sale_commission_partial_settlement.account_invoice_line_agent_form_partial_only
 msgid "Actual"
-msgstr ""
+msgstr "Reale"
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__agent_id
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_sale_commission_settlement_line_partial__agent_id
 msgid "Agent"
-msgstr ""
+msgstr "Agente"
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_sale_commission_settlement_line__agent_line_partial_ids
@@ -61,12 +61,12 @@ msgstr "Dettaglio riga provvigione agente nelle righe fattura"
 msgid ""
 "Always positive amount concerned by this matching expressed in the company "
 "currency."
-msgstr ""
+msgstr "Importo sempre positivo nella valuta dell'azienda."
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_sale_commission_settlement_line_partial__amount
 msgid "Amount"
-msgstr ""
+msgstr "Importo"
 
 #. module: sale_commission_partial_settlement
 #: code:addons/sale_commission_partial_settlement/models/sale_commission_settlement_line_partial.py:0
@@ -76,11 +76,14 @@ msgid ""
 "%(amount)s, date maturity %(date_maturity)s because it is already part of a "
 "settlement"
 msgstr ""
+"Non è possibile eliminare la riga liquidazione parziale per l'agente "
+"%(agent_name)s, importo %(amount)s, data maturazione %(date_maturity)s in "
+"quanto è già parte di una liquidazione"
 
 #. module: sale_commission_partial_settlement
 #: model_terms:ir.ui.view,arch_db:sale_commission_partial_settlement.account_invoice_line_agent_form_partial_only
 msgid "Close"
-msgstr ""
+msgstr "Chiudi"
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__amount
@@ -90,7 +93,7 @@ msgstr "Importo provvigione"
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent__commission_settlement_line_partial_ids
 msgid "Commission Settlement Line Partial"
-msgstr ""
+msgstr "Riga parziale liquidazioni provvigioni"
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model,name:sale_commission_partial_settlement.model_sale_commission
@@ -106,7 +109,7 @@ msgstr "Aziende"
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__company_id
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_sale_commission_settlement_line_partial__company_id
 msgid "Company"
-msgstr ""
+msgstr "Azienda"
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model,name:sale_commission_partial_settlement.model_res_config_settings
@@ -134,7 +137,7 @@ msgstr "Creato il"
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_sale_commission_settlement_line_partial__reconcile_credit_move_id
 msgid "Credit move line"
-msgstr ""
+msgstr "Riga movimento di accredito"
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__currency_id
@@ -145,7 +148,7 @@ msgstr "Valuta"
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_sale_commission_settlement_line_partial__reconcile_debit_move_id
 msgid "Debit move line"
-msgstr ""
+msgstr "Riga movimento di addebito"
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent__display_name
@@ -164,12 +167,12 @@ msgstr "Nome visualizzato"
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__date_maturity
 msgid "Due Date"
-msgstr ""
+msgstr "Scadenza"
 
 #. module: sale_commission_partial_settlement
 #: model_terms:ir.ui.view,arch_db:sale_commission_partial_settlement.account_invoice_line_agent_form_partial_only
 msgid "Forecast"
-msgstr ""
+msgstr "Previsione"
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields.selection,name:sale_commission_partial_settlement.selection__sale_commission__payment_amount_type__full
@@ -179,7 +182,7 @@ msgstr "Importo totale"
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__is_settled
 msgid "Fully settled"
-msgstr ""
+msgstr "Interamente liquidata"
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent__id
@@ -199,18 +202,18 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__move_id
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_sale_commission_settlement_line_partial__move_id
 msgid "Invoice"
-msgstr ""
+msgstr "Fattura"
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_sale_commission_settlement_line_partial__invoice_agent_partial_id
 msgid "Invoice Agent Partial"
-msgstr ""
+msgstr "Parziale agente in fattura"
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__invoice_line_id
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_sale_commission_settlement_line_partial__invoice_line_id
 msgid "Invoice Line"
-msgstr ""
+msgstr "Riga fattura"
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__invoice_line_agent_id
@@ -227,7 +230,7 @@ msgstr "Riga fattura parziale agente"
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__invoice_date
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_sale_commission_settlement_line_partial__invoice_date
 msgid "Invoice date"
-msgstr ""
+msgstr "Data fattura"
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_sale_commission_settlement__settlement_date_to
@@ -242,7 +245,7 @@ msgstr "E' totalmente liquidata"
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_sale_commission_settlement_line_partial__is_settled
 msgid "Is Settled"
-msgstr ""
+msgstr "E' liquidata"
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent____last_update
@@ -278,12 +281,12 @@ msgstr "Riga di regolazione provvigione"
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_sale_commission_settlement_line_partial__date_maturity
 msgid "Max Date of Matched Lines"
-msgstr ""
+msgstr "Data massima delle righe abbinate"
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__move_line_id
 msgid "Move Line"
-msgstr ""
+msgstr "Riga movimento"
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields.selection,name:sale_commission_partial_settlement.selection__sale_commission__payment_amount_type__paid
@@ -299,7 +302,7 @@ msgstr "Importo parziale provvigione regolata"
 #: model:ir.actions.act_window,name:sale_commission_partial_settlement.action_invoice_line_agent_partial
 #: model:ir.ui.menu,name:sale_commission_partial_settlement.menu_partial_commission_forecast
 msgid "Partial Commission Forecast"
-msgstr ""
+msgstr "Previsione provvigioni parziali"
 
 #. module: sale_commission_partial_settlement
 #: code:addons/sale_commission_partial_settlement/models/account_invoice_line_agent.py:0
@@ -307,7 +310,7 @@ msgstr ""
 #: model:ir.ui.menu,name:sale_commission_partial_settlement.menu_partial_commissions
 #, python-format
 msgid "Partial Commissions"
-msgstr ""
+msgstr "Provvigioni parziali"
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model,name:sale_commission_partial_settlement.model_account_partial_reconcile
@@ -318,17 +321,17 @@ msgstr "Riconciliazione parziale"
 #. module: sale_commission_partial_settlement
 #: model:ir.model,name:sale_commission_partial_settlement.model_account_invoice_line_agent_partial
 msgid "Partial agent commissions. "
-msgstr ""
+msgstr "Provvigioni parziali agente. "
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model,name:sale_commission_partial_settlement.model_sale_commission_settlement_line_partial
 msgid "Partial settlements. "
-msgstr ""
+msgstr "Liquidazioni parziali. "
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_sale_commission_settlement_line_partial__reconcile_amount
 msgid "Payment amount"
-msgstr ""
+msgstr "Importo pagamento"
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent__payment_amount_type
@@ -356,13 +359,13 @@ msgstr "Liquidazione"
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_sale_commission_settlement_line_partial__settlement_line_ids
 msgid "Settlement Line"
-msgstr ""
+msgstr "Riga liquidazione"
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__settlement_line_partial_ids
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_sale_commission_settlement_line__settlement_line_partial_ids
 msgid "Settlement Line Partial"
-msgstr ""
+msgstr "Parziale riga liquidazione"
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,field_description:sale_commission_partial_settlement.field_res_company__commission_show_settlement_dates
@@ -382,6 +385,9 @@ msgid ""
 "Technical field used to determine at which date this reconciliation needs to "
 "be shown on the aged receivable/payable reports."
 msgstr ""
+"Campo tecnico utilizzato per determinare in quale data questa "
+"riconciliazione deve essere mostrata sui rendiconti ricevibili/pagabili "
+"maturati."
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,help:sale_commission_partial_settlement.field_sale_commission_settlement__settlement_date_to
@@ -392,7 +398,7 @@ msgstr "La data fattura limite usata per creare la liquidazione"
 #: model:ir.model.fields,help:sale_commission_partial_settlement.field_account_invoice_line_agent_partial__move_id
 #: model:ir.model.fields,help:sale_commission_partial_settlement.field_sale_commission_settlement_line_partial__move_id
 msgid "The move of this entry line."
-msgstr ""
+msgstr "Il movimento per questa riga di registrazione."
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model.fields,help:sale_commission_partial_settlement.field_sale_commission_settlement__settlement_date_payment_to
@@ -405,6 +411,8 @@ msgid ""
 "This field is used for payable and receivable journal entries. You can put "
 "the limit date for the payment of this line."
 msgstr ""
+"Questo campo viene usato per pagare e ricevere registrazioni contabili. Si "
+"può inserire la data limite per il pagamento di questa riga."
 
 #. module: sale_commission_partial_settlement
 #: model:ir.model,name:sale_commission_partial_settlement.model_sale_commission_make_settle
