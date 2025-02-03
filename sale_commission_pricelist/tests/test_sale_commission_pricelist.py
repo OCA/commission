@@ -7,7 +7,7 @@ from odoo.tests.common import SavepointCase
 class TestSaleCommissionPricelist(SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(TestSaleCommissionPricelist, cls).setUpClass()
+        super().setUpClass()
         cls.product = cls.env["product.product"].create(
             {"name": "Test Product 1", "list_price": 100}
         )
