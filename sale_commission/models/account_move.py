@@ -117,15 +117,19 @@ class AccountMoveLine(models.Model):
         for record in self:
             record.any_settled = any(record.mapped("agent_ids.settled"))
 
+    def _get_partner_for_commission(self):
+        return self.move_id.partner_id
+
     @api.depends("move_id.partner_id")
     def _compute_agent_ids(self):
         self.agent_ids = False  # for resetting previous agents
         for record in self.filtered(
-            lambda x: x.move_id.partner_id and x.move_id.move_type[:3] == "out"
+            lambda x: x._get_partner_for_commission()
+            and x.move_id.move_type[:3] == "out"
         ):
             if not record.commission_free and record.product_id:
                 record.agent_ids = record._prepare_agents_vals_partner(
-                    record.move_id.partner_id
+                    record._get_partner_for_commission()
                 )
 
     def _copy_data_extend_business_fields(self, values):

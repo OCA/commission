@@ -24,11 +24,14 @@ class AccountMove(models.Model):
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
+    def _get_partner_for_commission(self):
+        return self.move_id.partner_id
+
     @api.depends("move_id.partner_id")
     def _compute_agent_ids(self):
         self.agent_ids = False  # for resetting previous agents
         down_payment_items = self.filtered(
-            lambda x: x.move_id.partner_id
+            lambda x: x._get_partner_for_commission()
             and x.move_id.move_type[:3] == "out"
             and x.sale_line_ids.is_downpayment
         )

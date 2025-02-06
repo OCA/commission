@@ -32,6 +32,9 @@ class SaleCommissionMixin(models.AbstractModel):
         string="Commission",
     )
 
+    def _get_partner_for_commission(self):
+        raise NotImplementedError()
+
     def _prepare_agent_vals(self, agent):
         return {"agent_id": agent.id, "commission_id": agent.commission_id.id}
 

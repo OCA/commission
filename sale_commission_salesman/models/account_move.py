@@ -7,13 +7,16 @@ from odoo import models
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
+    def _get_partner_for_commission(self):
+        return self.move_id.partner_id
+
     def _compute_agent_ids(self):
         """Add salesman agent if configured so and no other commission
         already populated.
         """
         super()._compute_agent_ids()
         for record in self.filtered(
-            lambda x: x.move_id.partner_id
+            lambda x: x._get_partner_for_commission()
             and x.move_id.move_type[:3] == "out"
             and x.product_id
             and not x.agent_ids

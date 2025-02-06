@@ -52,13 +52,16 @@ class SaleOrderLine(models.Model):
 
     agent_ids = fields.One2many(comodel_name="sale.order.line.agent")
 
+    def _get_partner_for_commission(self):
+        return self.order_id.partner_id
+
     @api.depends("order_id.partner_id")
     def _compute_agent_ids(self):
         self.agent_ids = False  # for resetting previous agents
-        for record in self.filtered(lambda x: x.order_id.partner_id):
+        for record in self.filtered(lambda x: x._get_partner_for_commission()):
             if not record.commission_free:
                 record.agent_ids = record._prepare_agents_vals_partner(
-                    record.order_id.partner_id
+                    record._get_partner_for_commission()
                 )
 
     def _prepare_invoice_line(self, **optional_values):
