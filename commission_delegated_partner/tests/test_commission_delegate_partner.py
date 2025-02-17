@@ -3,11 +3,12 @@
 
 import dateutil.relativedelta
 
-from odoo import fields
-from odoo.tests.common import TransactionCase
+from odoo import Command, fields
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleCommissionDelegatePartner(TransactionCase):
+class TestSaleCommissionDelegatePartner(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -53,15 +54,11 @@ class TestSaleCommissionDelegatePartner(TransactionCase):
             "move_type": "out_invoice",
             "partner_id": self.partner.id,
             "invoice_line_ids": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "product_id": self.product.id,
                         "agent_ids": [
-                            (
-                                0,
-                                0,
+                            Command.create(
                                 {"agent_id": agent.id, "commission_id": commission.id},
                             )
                         ],
@@ -118,3 +115,39 @@ class TestSaleCommissionDelegatePartner(TransactionCase):
         self.assertTrue(settlement)
         self.assertEqual(1, len(settlement))
         self.assertEqual(self.agent_monthly_02, settlement.invoice_id.partner_id)
+
+    def test_get_invoice_grouping_keys(self):
+        """Test that _get_invoice_grouping_keys replaces
+        agent_id with invoice_partner_id"""
+        settlement = self.settle_model.create(
+            {
+                "agent_id": self.agent_monthly.id,  # Ensuring agent_id is set
+                "date_from": fields.Date.today(),
+                "date_to": fields.Date.today(),
+            }
+        )
+        keys = settlement._get_invoice_grouping_keys()
+        self.assertIn("invoice_partner_id", keys)
+        self.assertNotIn("agent_id", keys)
+
+    def test_get_invoice_partner(self):
+        """Test that _get_invoice_partner returns the delegated agent if present"""
+        settlement = self.settle_model.create(
+            {
+                "agent_id": self.agent_monthly.id,
+                "date_from": fields.Date.today(),
+                "date_to": fields.Date.today(),
+            }
+        )
+        self.assertEqual(settlement._get_invoice_partner(), self.delegate_agent)
+
+        settlement_no_delegate = self.settle_model.create(
+            {
+                "agent_id": self.agent_monthly_02.id,
+                "date_from": fields.Date.today(),
+                "date_to": fields.Date.today(),
+            }
+        )
+        self.assertEqual(
+            settlement_no_delegate._get_invoice_partner(), self.agent_monthly_02
+        )
