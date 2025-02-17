@@ -17,13 +17,13 @@ Sale Commission Delegate Partner
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fcommission-lightgray.png?logo=github
-    :target: https://github.com/OCA/commission/tree/16.0/commission_delegated_partner
+    :target: https://github.com/OCA/commission/tree/17.0/commission_delegated_partner
     :alt: OCA/commission
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/commission-16-0/commission-16-0-commission_delegated_partner
+    :target: https://translation.odoo-community.org/projects/commission-17-0/commission-17-0-commission_delegated_partner
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/commission&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/commission&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -40,10 +40,10 @@ Configuration
 
 For adding delegated partner:
 
-#. Go to Sales > Commission Management > Agents.
-#. Edit or create new record.
-#. Go to the page Agent information.
-#. Select or edit delegated agent.
+1. Go to Sales > Commission Management > Agents.
+2. Edit or create new record.
+3. Go to the page Agent information.
+4. Select or edit delegated agent.
 
 Bug Tracker
 ===========
@@ -51,7 +51,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/commission/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/commission/issues/new?body=module:%20commission_delegated_partner%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/commission/issues/new?body=module:%20commission_delegated_partner%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -59,17 +59,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Creu Blanca
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Enric Tobella <etobella@creublanca.es>
+- Enric Tobella <etobella@creublanca.es>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -81,6 +81,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/16.0/commission_delegated_partner>`_ project on GitHub.
+This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/17.0/commission_delegated_partner>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
