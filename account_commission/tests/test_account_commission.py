@@ -59,31 +59,29 @@ class TestAccountCommission(TestCommissionBase):
             limit=1,
         )
 
-    def _create_invoice(self, agent, commission, date=None, currency=None):
+    def _create_invoice(self, agents=None, commission=None, date=None, currency=None):
+        if not agents:
+            agents = []
+        elif not isinstance(agents, list):
+            agents = [agents]
+        agent_lines = []
+        if commission and agents:
+            agent_lines = [
+                (0, 0, {"agent_id": agent.id, "commission_id": commission.id})
+                for agent in agents
+            ]
         vals = {
             "move_type": "out_invoice",
             "partner_id": self.partner.id,
             "invoice_line_ids": [
-                (
-                    0,
-                    0,
-                    {
-                        "product_id": self.product.id,
-                        "agent_ids": [
-                            (
-                                0,
-                                0,
-                                {"agent_id": agent.id, "commission_id": commission.id},
-                            )
-                        ],
-                    },
-                )
+                (0, 0, {"product_id": self.product.id, "agent_ids": agent_lines})
             ],
         }
         if date:
-            vals.update({"invoice_date": date, "date": date})
+            vals["invoice_date"] = date
+            vals["date"] = date
         if currency:
-            vals.update({"currency_id": currency.id})
+            vals["currency_id"] = currency.id
         return self.env["account.move"].create([vals])
 
     def _settle_agent_invoice(self, agent=None, period=None, date=None):
@@ -190,6 +188,32 @@ class TestAccountCommission(TestCommissionBase):
                 0,
                 "Settlements need to be in Invoiced State.",
             )
+
+    def test_contact_agent_ids(self):
+        agent1 = self.env.ref("commission.res_partner_pritesh_sale_agent")
+        invoice = self._create_invoice(
+            agent1,
+            self.commission_section_invoice,
+        )
+        self.assertEqual(invoice.contact_by_agent_ids(), str(agent1.id))
+
+    def test_multiple_contact_agent_ids(self):
+        agent_lines = [self.agent_monthly, self.agent_quaterly, self.agent_semi]
+        invoice = self._create_invoice(
+            agent_lines,
+            self.commission_section_invoice,
+        )
+        self.assertEqual(
+            invoice.contact_by_agent_ids(),
+            f"{agent_lines[0].id},{agent_lines[1].id},{agent_lines[2].id}",
+        )
+
+    def test_empty_contact_agent_ids(self):
+        invoice = self._create_invoice(
+            None,
+            self.commission_section_invoice,
+        )
+        self.assertEqual(invoice.contact_by_agent_ids(), "")
 
     def test_commission_status(self):
         # Make sure user is in English

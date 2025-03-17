@@ -121,6 +121,13 @@ class AccountMove(models.Model):
         ).write({"state": "settled"})
         return super().unlink()
 
+    def contact_by_agent_ids(self):
+        """
+        Return a comma-separated string of agent IDs associated with the invoice.
+        Useful as a placeholder in the email template (e.g., for the partner_to field).
+        """
+        return ",".join(map(str, self.partner_agent_ids.ids))
+
 
 class AccountMoveLine(models.Model):
     _inherit = [
