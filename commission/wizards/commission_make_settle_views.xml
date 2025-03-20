@@ -33,18 +33,18 @@
                 </group>
                 <footer>
                     <button
-                        name="action_settle"
-                        string="Make settlements"
-                        type="object"
-                        class="oe_highlight"
-                    />
+                    name="action_settle"
+                    string="Make settlements"
+                    type="object"
+                    class="oe_highlight"
+                />
                     or
                     <button
-                        name="action_cancel"
-                        string="Cancel"
-                        class="oe_link"
-                        special="cancel"
-                    />
+                    name="action_cancel"
+                    string="Cancel"
+                    class="oe_link"
+                    special="cancel"
+                />
                 </footer>
             </form>
         </field>

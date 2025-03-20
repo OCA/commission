@@ -2,7 +2,7 @@
 <!-- Copyright 2020-2022 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-     <data>
+    <data>
         <record id="module_category_commission" model="ir.module.category">
             <field name="name">Commissions</field>
             <field name="description">Allows to handle commission related stuff.</field>
