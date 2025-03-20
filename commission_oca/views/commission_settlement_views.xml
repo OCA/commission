@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record model="ir.ui.view" id="view_settlement_tree">
-        <field name="name">Settlements tree</field>
+        <field name="name">Settlements list</field>
         <field name="model">commission.settlement</field>
         <field name="arch" type="xml">
-            <tree decoration-danger="state == 'cancel'">
+            <list decoration-danger="state == 'cancel'">
                 <field name="agent_id" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="date_from" />
@@ -18,7 +18,7 @@
                 />
                 <field name="state" />
                 <field name="currency_id" column_invisible="1" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_settlement_search" model="ir.ui.view">
@@ -96,11 +96,11 @@
                             readonly="not can_edit"
                             colspan="2"
                         >
-                            <tree editable="top">
+                            <list editable="top">
                                 <field name="date" />
                                 <field name="commission_id" />
                                 <field name="settled_amount" />
-                            </tree>
+                            </list>
                         </field>
                     </group>
                     <group>
@@ -114,11 +114,7 @@
                         </group>
                     </group>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" />
-                    <field name="activity_ids" />
-                    <field name="message_ids" />
-                </div>
+                <chatter />
             </form>
         </field>
     </record>
@@ -126,12 +122,12 @@
         <field name="name">Settlement lines</field>
         <field name="model">commission.settlement.line</field>
         <field name="arch" type="xml">
-            <tree create="false">
+            <list create="false">
                 <field name="date" />
                 <field name="agent_id" />
                 <field name="commission_id" />
                 <field name="settled_amount" sum="Settled total" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_settlement_line_search" model="ir.ui.view">
@@ -178,7 +174,7 @@
         <field name="name">Settlements</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">commission.settlement</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem
         name="Settlements"
