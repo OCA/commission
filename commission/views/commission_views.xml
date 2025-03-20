@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record model="ir.ui.view" id="commission_tree">
-        <field name="name">commissions tree</field>
+        <field name="name">commissions list</field>
         <field name="model">commission</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="commission_type" />
                 <field name="settlement_type" />
                 <field name="amount_base_type" />
-            </tree>
+            </list>
         </field>
     </record>
     <record model="ir.ui.view" id="commission_form">
@@ -49,11 +49,11 @@
                             nolabel="1"
                             invisible="(commission_type != 'section')"
                         >
-                            <tree editable="bottom">
+                            <list editable="bottom">
                                 <field name="amount_from" />
                                 <field name="amount_to" />
                                 <field name="percent" />
-                            </tree>
+                            </list>
                         </field>
                     </group>
                 </sheet>
@@ -64,7 +64,7 @@
         <field name="name">Commission types</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">commission</field>
-        <field name="binding_view_types">form,tree</field>
+        <field name="binding_view_types">form,list</field>
     </record>
     <menuitem
         name="Commission types"

@@ -38,7 +38,7 @@
                             invisible="not settlement_ids"
                         >
                             <field colspan="2" name="settlement_ids" nolabel="1">
-                                <tree
+                                <list
                                     decoration-danger="state == 'cancel'"
                                     decoration-success="state == 'invoiced'"
                                 >
@@ -46,7 +46,7 @@
                                     <field name="date_to" />
                                     <field name="total" sum="Settled total" />
                                     <field name="state" />
-                                </tree>
+                                </list>
                             </field>
                         </group>
                     </group>
@@ -74,7 +74,7 @@
         <field name="name">Agents</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">res.partner</field>
-        <field name="view_mode">kanban,form,tree</field>
+        <field name="view_mode">kanban,form,list</field>
         <field name="context">{"search_default_agent": 1, 'default_agent': 1}</field>
         <field name="search_view_id" ref="res_partner_view_search" />
     </record>

@@ -16,3 +16,4 @@
   - Yoshi Tashiro
 - [Studio73](https://www.studio73.es):
   - Ethan Hildick
+- Moaad Bourhim
