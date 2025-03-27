@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-09-10 14:06+0000\n"
+"PO-Revision-Date: 2025-03-27 15:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.2\n"
 
 #. module: sale_commission_geo_assign
 #: model:ir.actions.act_window,name:sale_commission_geo_assign.action_geo_assign_partner
@@ -177,13 +177,13 @@ msgstr "Intervallo di CAP in cui opera quest'agente"
 #: model:ir.model.fields,field_description:sale_commission_geo_assign.field_res_partner__agent_zip_from
 #: model:ir.model.fields,field_description:sale_commission_geo_assign.field_res_users__agent_zip_from
 msgid "Zip From"
-msgstr "CAP da"
+msgstr "Da CAP"
 
 #. module: sale_commission_geo_assign
 #: model:ir.model.fields,field_description:sale_commission_geo_assign.field_res_partner__agent_zip_to
 #: model:ir.model.fields,field_description:sale_commission_geo_assign.field_res_users__agent_zip_to
 msgid "Zip To"
-msgstr "CAP a"
+msgstr "A CAP"
 
 #~ msgid "Check existing agents"
 #~ msgstr "Verifica agenti esistenti"
