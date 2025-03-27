@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-05-21 16:37+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2025-03-27 15:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.2\n"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__allowed_commission_group_ids
@@ -124,9 +124,9 @@ msgstr "Intervallo di CAP in cui opera quest'agente"
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__zip_from
 msgid "Zip From"
-msgstr "CAP da"
+msgstr "Da CAP"
 
 #. module: sale_commission_geo_assign_product_domain
 #: model:ir.model.fields,field_description:sale_commission_geo_assign_product_domain.field_res_partner_commission_group__zip_to
 msgid "Zip To"
-msgstr "CAP a"
+msgstr "A CAP"
