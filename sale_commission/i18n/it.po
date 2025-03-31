@@ -857,13 +857,9 @@ msgstr "Selezionare la data fino alla quale preparare le liquidazioni:"
 msgid ""
 "Select the invoice status for settling the commissions:\n"
 "* 'Invoice Based': Commissions are settled when the invoice is issued.\n"
-"* 'Payment Based': Commissions are settled when the invoice is paid."
+"* 'Payment Based': Commissions are settled when the invoice is paid (or "
+"refunded)."
 msgstr ""
-"Seleziona la condizione per liquidare le provvigioni:\n"
-"* 'Basata su fattura': le provvigioni vengono liquidate quando la fattura è "
-"emessa.\n"
-"* 'Basata su pagamento': le provvigioni vengono liquidate quando l'intera "
-"fattura è pagata."
 
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_sale_commission__commission_type
@@ -1098,6 +1094,17 @@ msgstr "_Annulla"
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settled_wizard
 msgid "or"
 msgstr "oppure"
+
+#~ msgid ""
+#~ "Select the invoice status for settling the commissions:\n"
+#~ "* 'Invoice Based': Commissions are settled when the invoice is issued.\n"
+#~ "* 'Payment Based': Commissions are settled when the invoice is paid."
+#~ msgstr ""
+#~ "Seleziona la condizione per liquidare le provvigioni:\n"
+#~ "* 'Basata su fattura': le provvigioni vengono liquidate quando la fattura "
+#~ "è emessa.\n"
+#~ "* 'Basata su pagamento': le provvigioni vengono liquidate quando l'intera "
+#~ "fattura è pagata."
 
 #~ msgid "<strong>Total</strong>"
 #~ msgstr "<strong>Totale</strong>"

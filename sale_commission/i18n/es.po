@@ -859,12 +859,9 @@ msgstr "Seleccione la fecha hasta la que quiere realizar las liquidaciones:"
 msgid ""
 "Select the invoice status for settling the commissions:\n"
 "* 'Invoice Based': Commissions are settled when the invoice is issued.\n"
-"* 'Payment Based': Commissions are settled when the invoice is paid."
+"* 'Payment Based': Commissions are settled when the invoice is paid (or "
+"refunded)."
 msgstr ""
-"Seleccione el estado de la factura para liquidar las comisiones:\n"
-"* 'Basado en factura': Las comisiones se liquidan cuando se emite la "
-"factura.\n"
-"* Pago\": Las comisiones se liquidan cuando se paga la factura."
 
 #. module: sale_commission
 #: model:ir.model.fields,help:sale_commission.field_sale_commission__commission_type
@@ -1097,6 +1094,16 @@ msgstr "Cancelar"
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settled_wizard
 msgid "or"
 msgstr "o"
+
+#~ msgid ""
+#~ "Select the invoice status for settling the commissions:\n"
+#~ "* 'Invoice Based': Commissions are settled when the invoice is issued.\n"
+#~ "* 'Payment Based': Commissions are settled when the invoice is paid."
+#~ msgstr ""
+#~ "Seleccione el estado de la factura para liquidar las comisiones:\n"
+#~ "* 'Basado en factura': Las comisiones se liquidan cuando se emite la "
+#~ "factura.\n"
+#~ "* Pago\": Las comisiones se liquidan cuando se paga la factura."
 
 #~ msgid "<strong>Total</strong>"
 #~ msgstr "<strong>Total</strong>"

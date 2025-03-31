@@ -849,7 +849,8 @@ msgstr "Selecione a data até a qual deseja realizar os abatimentos:"
 msgid ""
 "Select the invoice status for settling the commissions:\n"
 "* 'Invoice Based': Commissions are settled when the invoice is issued.\n"
-"* 'Payment Based': Commissions are settled when the invoice is paid."
+"* 'Payment Based': Commissions are settled when the invoice is paid (or "
+"refunded)."
 msgstr ""
 
 #. module: sale_commission
