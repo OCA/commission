@@ -708,3 +708,187 @@ class TestSaleCommission(SavepointCase):
         self.assertTrue(
             all(state == "settled" for state in settlements.mapped("state"))
         )
+
+    def test_invoice_partial_refund(self):
+        # for commission calculations
+        self.product.write({"standard_price": 1})
+        agent = self.agent_monthly_paid
+        # Create a SO and invoice
+        sale_order = self._create_sale_order(agent, self.commission_net_paid)
+        sale_order.action_confirm()
+        invoice = self._invoice_sale_order(sale_order)
+        # invoice.invoice_line_ids.agent_ids._compute_amount()
+        invoice.action_post()
+        invoice.invoice_line_ids.agent_ids.flush()
+        # Register payment for invoice
+        payment_journal = self.env["account.journal"].search(
+            [("type", "=", "cash"), ("company_id", "=", invoice.company_id.id)],
+            limit=1,
+        )
+        register_payments = (
+            self.env["account.payment.register"]
+            .with_context(active_ids=invoice.id, active_model="account.move")
+            .create({"journal_id": payment_journal.id})
+        )
+        register_payments.action_create_payments()
+        # Make a partial refund for the invoice
+        move_reversal = (
+            self.env["account.move.reversal"]
+            .with_context(active_model="account.move", active_ids=invoice.id)
+            .create(
+                {
+                    "reason": "no reason",
+                    "refund_method": "refund",
+                    "journal_id": invoice.journal_id.id,
+                }
+            )
+        )
+        refund = self.env["account.move"].browse(
+            move_reversal.reverse_moves()["res_id"]
+        )
+        refund.write(
+            {
+                "invoice_line_ids": [
+                    (
+                        1,
+                        refund.invoice_line_ids[:1].id,
+                        {"price_unit": refund.invoice_line_ids[:1].price_unit - 2},
+                    )
+                ]
+            }
+        )
+        # for some reason, the previous lines removes the agents,
+        # so we re-add them here
+        refund.invoice_line_ids.agent_ids = [
+            (
+                0,
+                0,
+                {
+                    "agent_id": invoice.invoice_line_ids.agent_ids.agent_id.id,
+                    "commission_id": invoice.invoice_line_ids.agent_ids.commission_id.id,
+                },
+            )
+        ]
+        refund.action_post()
+        refund.flush()
+        # Register payment for the refund
+        register_payments = (
+            self.env["account.payment.register"]
+            .with_context(active_ids=refund.id, active_model="account.move")
+            .create({"journal_id": payment_journal.id})
+        )
+        register_payments.action_create_payments()
+        # check settlement creation. The commission must be (5 - 3) * 0.1 = 0.4
+        self._settle_agent(agent, 1)
+        settlements = self.settle_model.search([("agent_id", "=", agent.id)])
+        self.assertEqual(2, len(settlements.line_ids))
+        self.assertEqual(0.4, sum(settlements.mapped("total")))
+
+    def test_invoice_full_refund(self):
+        # for commission calculations
+        self.product.write({"standard_price": 1})
+        agent = self.agent_monthly_paid
+        # Create a SO and invoice
+        sale_order = self._create_sale_order(agent, self.commission_net_paid)
+        sale_order.action_confirm()
+        invoice = self._invoice_sale_order(sale_order)
+        invoice.invoice_line_ids.agent_ids._compute_amount()
+        invoice.action_post()
+        invoice.invoice_line_ids.agent_ids.flush()
+        move_reversal = (
+            self.env["account.move.reversal"]
+            .with_context(active_model="account.move", active_ids=invoice.id)
+            .create(
+                {
+                    "reason": "no reason",
+                    "refund_method": "cancel",
+                    "journal_id": invoice.journal_id.id,
+                }
+            )
+        )
+        refund = self.env["account.move"].browse(
+            move_reversal.reverse_moves()["res_id"]
+        )
+        refund.flush()
+        # check settlement creation. The commission must be: (5 - 5) * 0.1 = 0
+        self._settle_agent(agent, 1)
+        settlements = self.settle_model.search(
+            [
+                ("agent_id", "=", agent.id),
+            ]
+        )
+        self.assertEqual(2, len(settlements.line_ids))
+        self.assertEqual(0, sum(settlements.mapped("total")))
+
+    def test_invoice_modify_refund(self):
+        # for commission calculations
+        self.product.write({"standard_price": 0})
+        agent = self.agent_monthly_paid
+        # Create a SO and invoice
+        sale_order = self._create_sale_order(agent, self.commission_net_paid)
+        sale_order.action_confirm()
+        invoice = self._invoice_sale_order(sale_order)
+        invoice.invoice_line_ids.agent_ids._compute_amount()
+        invoice.action_post()
+        invoice.invoice_line_ids.agent_ids.flush()
+        # Create a full refund and a new invoice
+        move_reversal = (
+            self.env["account.move.reversal"]
+            .with_context(active_model="account.move", active_ids=invoice.id)
+            .create(
+                {
+                    "reason": "no reason",
+                    "refund_method": "modify",
+                    "journal_id": invoice.journal_id.id,
+                }
+            )
+        )
+        invoice2 = self.env["account.move"].browse(
+            move_reversal.reverse_moves()["res_id"]
+        )
+        invoice2.write(
+            {
+                "invoice_line_ids": [
+                    (
+                        1,
+                        invoice2.invoice_line_ids[:1].id,
+                        {"price_unit": invoice2.invoice_line_ids[:1].price_unit - 2},
+                    )
+                ]
+            }
+        )
+        # for some reason, the previous lines removes the agents,
+        # so we re-add them here
+        invoice2.invoice_line_ids.agent_ids = [
+            (
+                0,
+                0,
+                {
+                    "agent_id": invoice.invoice_line_ids.agent_ids.agent_id.id,
+                    "commission_id": invoice.invoice_line_ids.agent_ids.commission_id.id,
+                },
+            )
+        ]
+        invoice2.action_post()
+        invoice2.flush()
+        # Register payment for the new invoice
+        payment_journal = self.env["account.journal"].search(
+            [("type", "=", "cash"), ("company_id", "=", invoice.company_id.id)],
+            limit=1,
+        )
+        register_payments = (
+            self.env["account.payment.register"]
+            .with_context(active_ids=invoice2.id, active_model="account.move")
+            .create({"journal_id": payment_journal.id})
+        )
+        register_payments.action_create_payments()
+
+        # check settlement creation. The commission must be (5 - 5 + 3) * 0.1 = 0.6
+        self._settle_agent(agent, 1)
+        settlements = self.settle_model.search(
+            [
+                ("agent_id", "=", agent.id),
+            ]
+        )
+        self.assertEqual(3, len(settlements.line_ids))
+        self.assertEqual(0.6, sum(settlements.mapped("total")))

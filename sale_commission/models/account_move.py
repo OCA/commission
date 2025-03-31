@@ -226,7 +226,7 @@ class AccountInvoiceLineAgent(models.Model):
         self.ensure_one()
         return (
             self.commission_id.invoice_state == "paid"
-            and self.invoice_id.payment_state not in ["in_payment", "paid"]
+            and self.invoice_id.payment_state not in ["in_payment", "paid", "reversed"]
         ) or self.invoice_id.state != "posted"
 
     def _skip_future_payments(self, date_payment_to):
