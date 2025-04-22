@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-     <record id="action_report_settlement" model="ir.actions.report">
+    <record id="action_report_settlement" model="ir.actions.report">
         <field name="name">Settlement report</field>
         <field name="model">commission.settlement</field>
         <field name="report_type">qweb-pdf</field>
