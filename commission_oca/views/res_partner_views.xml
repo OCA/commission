@@ -23,7 +23,7 @@
                 <page
                     name="agent_information"
                     string="Agent information"
-                    groups="commission.group_commission_user"
+                    groups="commission_oca.group_commission_user"
                     invisible="not agent"
                 >
                     <group>

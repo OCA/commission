@@ -69,7 +69,7 @@
     <menuitem
         name="Commission types"
         id="menu_commission_type"
-        parent="commission.menu_commission_management"
+        parent="commission_oca.menu_commission_management"
         action="action_commission"
     />
 </odoo>
