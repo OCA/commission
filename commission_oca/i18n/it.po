@@ -19,7 +19,6 @@ msgstr ""
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
-#, python-format
 msgid "%s commission agents"
 msgstr "%s agenti con provvigione"
 
@@ -31,7 +30,6 @@ msgstr "(lasciare vuoto per preparare le regolazioni di tutti gli agenti)"
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
-#, python-format
 msgid "1 commission agent"
 msgstr "1 agente con provvigione"
 
@@ -125,7 +123,6 @@ msgstr "Informazioni agente"
 #: model:ir.ui.menu,name:commission_oca.menu_agent_form
 #: model_terms:ir.ui.view,arch_db:commission_oca.res_partner_view_search
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
-#, python-format
 msgid "Agents"
 msgstr "Agenti"
 
@@ -210,7 +207,6 @@ msgstr "Selezionare il campo se il partner è un creditore o un agente."
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
 #: model:ir.model.fields,field_description:commission_oca.field_commission_mixin__commission_free
-#, python-format
 msgid "Comm. free"
 msgstr "Senza provvigione"
 
@@ -273,7 +269,6 @@ msgstr "Contatto"
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/wizards/commission_make_settle.py:0
-#, python-format
 msgid "Created Settlements"
 msgstr "Regolazioni create"
 
@@ -418,6 +413,7 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_error
+#: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
@@ -529,7 +525,6 @@ msgstr "Tipo prossima attività"
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
-#, python-format
 msgid "No commission agents"
 msgstr "Nessuna provvigione agente"
 
@@ -583,6 +578,11 @@ msgstr "Definizione aliquote"
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__activity_user_id
 msgid "Responsible User"
 msgstr "Utente responsabile"
+
+#. module: commission_oca
+#: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Errore consegna SMS"
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__commission__amount_base_type__gross_amount
@@ -759,7 +759,6 @@ msgstr ""
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission.py:0
-#, python-format
 msgid "The lower limit cannot be greater than upper one."
 msgstr "Il limite inferiore non può essere più grande di quello superiore."
 
@@ -848,9 +847,6 @@ msgstr "È possibile aggiungere ogni agente solo una volta."
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
 msgid "or"
 msgstr "o"
-
-#~ msgid "SMS Delivery error"
-#~ msgstr "Errore consegna SMS"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Ultima modifica il"
