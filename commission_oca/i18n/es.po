@@ -19,7 +19,6 @@ msgstr ""
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
-#, python-format
 msgid "%s commission agents"
 msgstr "%s agentes de comisión"
 
@@ -31,7 +30,6 @@ msgstr "(mantener vacío para hacer la liquidación de todos los agentes)"
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
-#, python-format
 msgid "1 commission agent"
 msgstr "1 agente comisionado"
 
@@ -126,7 +124,6 @@ msgstr "Información del agente"
 #: model:ir.ui.menu,name:commission_oca.menu_agent_form
 #: model_terms:ir.ui.view,arch_db:commission_oca.res_partner_view_search
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
-#, python-format
 msgid "Agents"
 msgstr "Agentes"
 
@@ -211,7 +208,6 @@ msgstr "Marque este campo si el socio es acreedor o un agente."
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
 #: model:ir.model.fields,field_description:commission_oca.field_commission_mixin__commission_free
-#, python-format
 msgid "Comm. free"
 msgstr "Libre de comisión"
 
@@ -274,7 +270,6 @@ msgstr "Contacto"
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/wizards/commission_make_settle.py:0
-#, python-format
 msgid "Created Settlements"
 msgstr "Liquidaciones creadas"
 
@@ -419,6 +414,7 @@ msgstr "Si está marcada, nuevos mensajes requieren su atención."
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_error
+#: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcada, algunos mensajes tienen un error de entrega."
 
@@ -530,7 +526,6 @@ msgstr "Tipo de la Siguiente Actividad"
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
-#, python-format
 msgid "No commission agents"
 msgstr "Agentes sin comisión"
 
@@ -584,6 +579,11 @@ msgstr "Definición de tarifas"
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__activity_user_id
 msgid "Responsible User"
 msgstr "Usuario Responsable"
+
+#. module: commission_oca
+#: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error en la entrega de sms"
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__commission__amount_base_type__gross_amount
@@ -759,7 +759,6 @@ msgstr ""
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission.py:0
-#, python-format
 msgid "The lower limit cannot be greater than upper one."
 msgstr "El límite inferior no puede ser mayor que el superior."
 
@@ -848,9 +847,6 @@ msgstr "Sólo puede añadir una vez cada agente."
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
 msgid "or"
 msgstr "o"
-
-#~ msgid "SMS Delivery error"
-#~ msgstr "Error en la entrega de sms"
 
 #~ msgid "Last Modified on"
 #~ msgstr "??ltima Modificaci??n el"

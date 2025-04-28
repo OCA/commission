@@ -75,7 +75,7 @@ class CommissionMixin(models.AbstractModel):
 
     def button_edit_agents(self):
         self.ensure_one()
-        view = self.env.ref("commission.view_commission_mixin_agent_only")
+        view = self.env.ref("commission_oca.view_commission_mixin_agent_only")
         return {
             "name": _("Agents"),
             "type": "ir.actions.act_window",

@@ -19,7 +19,6 @@ msgstr ""
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
-#, python-format
 msgid "%s commission agents"
 msgstr ""
 
@@ -31,7 +30,6 @@ msgstr "(tüm temsilcilerin anlaşmasını yapması için boş bırakın)"
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
-#, python-format
 msgid "1 commission agent"
 msgstr ""
 
@@ -39,17 +37,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
 msgid ""
 "<span>\n"
-"                        No automatic settlements can be made. Install any extra\n"
+"                        No automatic settlements can be made. Install any "
+"extra\n"
 "                        commission module for having this feature enabled.\n"
 "                    </span>"
 msgstr ""
-"<span>\\n"
-"\n"
+"<span>\\n\n"
 "                        Otomatik anlaşma yapılamaz. Bu özelliğin aktif "
-"olması için\\n"
-"\n"
-"                        ekstra komisyon modülleri kurun.\\n"
-"                     </span>"
+"olması için\\n\n"
+"                        ekstra komisyon modülleri kurun."
+"\\n                     </span>"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.report_settlement_document
@@ -126,7 +123,6 @@ msgstr "Temsilci bilgisi"
 #: model:ir.ui.menu,name:commission_oca.menu_agent_form
 #: model_terms:ir.ui.view,arch_db:commission_oca.res_partner_view_search
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
-#, python-format
 msgid "Agents"
 msgstr "Temsilciler"
 
@@ -211,7 +207,6 @@ msgstr "İş ortağı alacaklı ya da temsilci ise bu alanı işaretleyin."
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
 #: model:ir.model.fields,field_description:commission_oca.field_commission_mixin__commission_free
-#, python-format
 msgid "Comm. free"
 msgstr "Komisyonsuz"
 
@@ -274,7 +269,6 @@ msgstr "Kontak"
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/wizards/commission_make_settle.py:0
-#, python-format
 msgid "Created Settlements"
 msgstr ""
 
@@ -419,6 +413,7 @@ msgstr "İşaretliyse yeni mesajlara dikkat etmeniz gerekir."
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_error
+#: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "İşaretliyse bazı mesajlarda ileti sorunu vardır."
 
@@ -482,8 +477,7 @@ msgstr "Mesajlar"
 
 #. module: commission_oca
 #: model:ir.model,name:commission_oca.model_commission_mixin
-msgid ""
-"Mixin model for applying to any object that wants to handle commissions"
+msgid "Mixin model for applying to any object that wants to handle commissions"
 msgstr ""
 "Komisyonları işlemek isteyen herhangi bir nesneye uygulamak için mixin modeli"
 
@@ -530,7 +524,6 @@ msgstr "Sonraki Etkinliğin Türü"
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
-#, python-format
 msgid "No commission agents"
 msgstr ""
 
@@ -586,6 +579,11 @@ msgid "Responsible User"
 msgstr "Sorumlu Kullanıcı"
 
 #. module: commission_oca
+#: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__commission__amount_base_type__gross_amount
 msgid "Sale/Invoice Amount"
 msgstr "Satış/Fatura Miktarı"
@@ -604,8 +602,10 @@ msgstr "Bölümler"
 #: model:ir.model.fields,help:commission_oca.field_commission__amount_base_type
 msgid ""
 "Select the base amount for computing the percentage:\n"
-"* 'Sale/Invoice Amount': percentage is computed from the amount put on sales order/invoice.\n"
-"* 'Margin (Amount - Cost)': percentage is computed from the profit only, taken the cost from the product."
+"* 'Sale/Invoice Amount': percentage is computed from the amount put on sales "
+"order/invoice.\n"
+"* 'Margin (Amount - Cost)': percentage is computed from the profit only, "
+"taken the cost from the product."
 msgstr ""
 "Yüzdeyi hesaplamak için baz tutarı seçin:\n"
 "* 'Satış / Fatura Tutarı': yüzde, satış siparişi / faturaya konulan tutardan "
@@ -622,8 +622,10 @@ msgstr "Anlaşmayı yapmak istediğiniz tarihi seçin:"
 #: model:ir.model.fields,help:commission_oca.field_commission__commission_type
 msgid ""
 "Select the percentage type of the commission:\n"
-"* 'Fixed percentage': all commissions are computed with a fixed percentage. You can fill the percentage in the field \"Fixed percentage\".\n"
-"* 'By sections': percentage varies depending amount intervals. You can fill intervals and percentages in the section \"Rate definition\"."
+"* 'Fixed percentage': all commissions are computed with a fixed percentage. "
+"You can fill the percentage in the field \"Fixed percentage\".\n"
+"* 'By sections': percentage varies depending amount intervals. You can fill "
+"intervals and percentages in the section \"Rate definition\"."
 msgstr ""
 "Komisyonun oran tipini seçin:\n"
 "* 'Sabit Oran': Tüm komisyonlar sabit oranla hesaplanır. Oranı \\\"Sabit "
@@ -753,15 +755,14 @@ msgstr "Ekstra komisyon olmadığında UX'i geliştirmek için teknik alan."
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission.py:0
-#, python-format
 msgid "The lower limit cannot be greater than upper one."
 msgstr ""
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__settlement_type
 msgid ""
-"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase"
-" order'..."
+"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase "
+"order'..."
 msgstr ""
 "Anlaşmanın kaynağı, ör. 'Satış faturası', 'Satış siparişi', 'Alış "
 "siparişi'..."

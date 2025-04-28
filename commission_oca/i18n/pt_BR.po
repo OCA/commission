@@ -20,7 +20,6 @@ msgstr ""
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
-#, python-format
 msgid "%s commission agents"
 msgstr "%s representantes comissionados"
 
@@ -32,7 +31,6 @@ msgstr "(manter vazio para efetuar a liquida????o de todos os representantes)"
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
-#, python-format
 msgid "1 commission agent"
 msgstr "1 representante comissionado"
 
@@ -127,7 +125,6 @@ msgstr "Informa????es do Representante"
 #: model:ir.ui.menu,name:commission_oca.menu_agent_form
 #: model_terms:ir.ui.view,arch_db:commission_oca.res_partner_view_search
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
-#, python-format
 msgid "Agents"
 msgstr "Representantes"
 
@@ -212,7 +209,6 @@ msgstr "Marque este campo se o parceiro for credor ou representante."
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
 #: model:ir.model.fields,field_description:commission_oca.field_commission_mixin__commission_free
-#, python-format
 msgid "Comm. free"
 msgstr "Com. livre"
 
@@ -275,7 +271,6 @@ msgstr "Contato"
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/wizards/commission_make_settle.py:0
-#, python-format
 msgid "Created Settlements"
 msgstr "Liquida????es Criadas"
 
@@ -420,6 +415,7 @@ msgstr "Se marcado novas mensagens solicitar??o sua aten????o."
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_error
+#: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se marcado, algumas mensagens tem erro de entrega."
 
@@ -530,7 +526,6 @@ msgstr "Tipo da Pr??xima Atividade"
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
-#, python-format
 msgid "No commission agents"
 msgstr "Sem representantes comissionados"
 
@@ -584,6 +579,11 @@ msgstr "Defini????o de taxas"
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__activity_user_id
 msgid "Responsible User"
 msgstr "Usu??rio Respons??vel"
+
+#. module: commission_oca
+#: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Erro de entrega de SMS"
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__commission__amount_base_type__gross_amount
@@ -760,7 +760,6 @@ msgstr ""
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission.py:0
-#, python-format
 msgid "The lower limit cannot be greater than upper one."
 msgstr "O limite inferior n??o pode ser maior que o superior."
 
@@ -849,9 +848,6 @@ msgstr "Voc?? s?? pode adicionar uma vez cada representante."
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
 msgid "or"
 msgstr "ou"
-
-#~ msgid "SMS Delivery error"
-#~ msgstr "Erro de entrega de SMS"
 
 #~ msgid "Last Modified on"
 #~ msgstr "??ltima Modifica????o em"

@@ -784,12 +784,24 @@ msgid "User"
 msgstr ""
 
 #. module: commission_oca
+#: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: commission_oca
+#: model:ir.model.fields,help:commission_oca.field_commission_settlement__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: commission_oca
 #: model:ir.model,name:commission_oca.model_commission_make_settle
 msgid "Wizard for settling commissions"
 msgstr ""
 
 #. module: commission_oca
+#: model:ir.model.constraint,message:commission_oca.constraint_account_invoice_line_agent_unique_agent
 #: model:ir.model.constraint,message:commission_oca.constraint_commission_line_mixin_unique_agent
+#: model:ir.model.constraint,message:commission_oca.constraint_sale_order_line_agent_unique_agent
 msgid "You can only add one time each agent."
 msgstr ""
 
