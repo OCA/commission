@@ -2,7 +2,7 @@
 # Copyright 2022 Quartile
 # Copyright 2014-2022 Tecnativa - Pedro M. Baeza
 {
-    "name": "Account commissions",
+    "name": "Account commissions OCA",
     "version": "18.0.1.0.0",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "category": "Sales Management",
