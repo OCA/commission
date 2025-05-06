@@ -4,7 +4,7 @@
         name="Commissions"
         id="menu_commission"
         groups="group_commission_user"
-        web_icon="commission,static/description/icon.png"
+        web_icon="commission_oca,static/description/icon.png"
         sequence="50"
     />
     <menuitem
