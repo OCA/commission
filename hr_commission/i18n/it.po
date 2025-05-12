@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-10-24 09:06+0000\n"
+"PO-Revision-Date: 2025-05-12 09:24+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: hr_commission
 #: model:ir.model.fields,help:hr_commission.field_res_partner__employee
@@ -79,4 +79,4 @@ msgstr "Tipo"
 #, python-format
 msgid "You can't remove the user, as it's linked to a commission agent."
 msgstr ""
-"Non si pu?? rimuovere l'utente, perch???? ?? collegato ad un agente commissione."
+"Non si può rimuovere l'utente, perché è collegato ad un agente commissione."
