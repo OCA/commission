@@ -18,38 +18,51 @@ class SaleCommissionLineMixin(models.AbstractModel):
         copy=True,
     )
 
-    def _get_commission_items(self, commission, product):
-        # Method replaced
+    def _commission_items_from(self):
+        return """ commission_item AS item
+            LEFT JOIN product_category AS categ ON item.categ_id = categ.id
+        """
+
+    def _commission_items_where(self):
+        return """ (item.product_tmpl_id IS NULL OR item.product_tmpl_id = any(%(prod_tmpls)s))
+            AND (item.product_id IS NULL OR item.product_id = any(%(prod_prods)s))
+            AND (item.categ_id IS NULL OR item.categ_id = any(%(categs)s))
+            AND (item.commission_id = %(commission)s)
+            AND (item.active = TRUE)
+        """
+
+    def _commission_items_order(self):
+        return """item.applied_on,
+            item.based_on,
+            categ.complete_name desc
+        """
+
+    def _commission_items_query(self):
+        return f"""
+            SELECT item.id
+            FROM {self._commission_items_from()}
+            WHERE {self._commission_items_where()}
+            ORDER BY {self._commission_items_order()}
+        """
+
+    def _commission_items_query_params(self, commission, product):
         categ_ids = {}
         categ = product.categ_id
         while categ:
             categ_ids[categ.id] = True
             categ = categ.parent_id
         categ_ids = list(categ_ids)
-        # Select all suitable items. Order by best match
-        # (priority is: all/cat/subcat/product/variant).
+        return {
+            "prod_tmpls": product.product_tmpl_id.ids,
+            "prod_prods": product.ids,
+            "categs": categ_ids,
+            "commission": commission._origin.id,
+        }
+
+    def _get_commission_items(self, commission, product):
         self.env.cr.execute(
-            """
-            SELECT
-                item.id
-            FROM
-                commission_item AS item
-            LEFT JOIN product_category AS categ ON item.categ_id = categ.id
-            WHERE
-                (item.product_tmpl_id IS NULL OR item.product_tmpl_id = any(%s))
-                AND (item.product_id IS NULL OR item.product_id = any(%s))
-                AND (item.categ_id IS NULL OR item.categ_id = any(%s))
-                AND (item.commission_id = %s)
-                AND (item.active = TRUE)
-            ORDER BY
-                item.applied_on, item.based_on, categ.complete_name desc
-            """,
-            (
-                product.product_tmpl_id.ids,
-                product.ids,
-                categ_ids,
-                commission._origin.id,  # Added this
-            ),
+            self._commission_items_query(),
+            self._commission_items_query_params(commission, product),
         )
         item_ids = [x[0] for x in self.env.cr.fetchall()]
         return item_ids
