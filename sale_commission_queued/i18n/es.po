@@ -40,6 +40,11 @@ msgid "Last Modified on"
 msgstr "Última Modificación el"
 
 #. module: sale_commission_queued
+#: model_terms:ir.ui.view,arch_db:sale_commission_queued.view_settled_wizard
+msgid "Make settlements in Queue"
+msgstr ""
+
+#. module: sale_commission_queued
 #: model:ir.model,name:sale_commission_queued.model_sale_commission_make_invoice
 msgid "Wizard for making an invoice from a settlement"
 msgstr "Asistente para hacer una factura a partir de una liquidación"
