@@ -9,6 +9,7 @@
     "maintainers": ["renda-dev", "aleuffre"],
     "data": [
         "wizard/wizard_invoice.xml",
+        "wizard/wizard_settle.xml",
     ],
     "installable": True,
 }
