@@ -21,11 +21,11 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[account_commission](account_commission/) | 15.0.3.4.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Account commissions
-[commission](commission/) | 15.0.3.3.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Commissions
+[account_commission](account_commission/) | 15.0.3.4.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Account commissions
+[commission](commission/) | 15.0.3.3.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Commissions
 [commission_formula](commission_formula/) | 15.0.1.0.0 |  | Commissions computed by formulas
 [hr_commission](hr_commission/) | 15.0.1.0.1 |  | HR commissions
-[sale_commission](sale_commission/) | 15.0.2.1.1 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Sales commissions
+[sale_commission](sale_commission/) | 15.0.2.1.1 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Sales commissions
 [sale_commission_salesman](sale_commission_salesman/) | 15.0.1.0.1 |  | Sales commissions from salesman
 
 [//]: # (end addons)
