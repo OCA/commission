@@ -23,13 +23,13 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [contract_commission](contract_commission/) | 12.0.1.0.1 |  | Commissions in contract invoices
 [hr_commission](hr_commission/) | 12.0.1.1.1 |  | HR commissions
-[sale_commission](sale_commission/) | 12.0.3.3.3 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Sales commissions
+[sale_commission](sale_commission/) | 12.0.3.3.3 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Sales commissions
 [sale_commission_delegated_partner](sale_commission_delegated_partner/) | 12.0.1.0.0 |  | Allow to delegate the invoices of agent to a delegate partner
 [sale_commission_formula](sale_commission_formula/) | 12.0.1.1.0 |  | Sale commissions computed by formulas
 [sale_commission_pricelist](sale_commission_pricelist/) | 12.0.1.0.0 |  | Sales commissions by pricelist
 [sale_commission_product_based](sale_commission_product_based/) | 12.0.1.0.0 |  | Create commissions based on product
 [sale_commission_salesman](sale_commission_salesman/) | 12.0.1.0.0 |  | Sales commissions from salesman
-[sale_commission_settlement_partial_invoice](sale_commission_settlement_partial_invoice/) | 12.0.2.0.0 | [![eLBati](https://github.com/eLBati.png?size=30px)](https://github.com/eLBati) | Allow to generate partial agent invoice from settlement
+[sale_commission_settlement_partial_invoice](sale_commission_settlement_partial_invoice/) | 12.0.2.0.0 | <a href='https://github.com/eLBati'><img src='https://github.com/eLBati.png' width='32' height='32' style='border-radius:50%;' alt='eLBati'/></a> | Allow to generate partial agent invoice from settlement
 
 [//]: # (end addons)
 
