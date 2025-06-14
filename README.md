@@ -25,7 +25,7 @@ addon | version | maintainers | summary
 [commission](commission/) | 17.0.1.1.1 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Commissions
 [commission_formula](commission_formula/) | 17.0.1.0.0 |  | Commissions computed by formulas
 [hr_commission](hr_commission/) | 17.0.1.0.0 |  | HR commissions
-[sale_commission](sale_commission/) | 17.0.1.0.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Sales commissions
+[sale_commission](sale_commission/) | 17.0.1.1.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Sales commissions
 [sale_commission_pricelist](sale_commission_pricelist/) | 17.0.1.0.0 |  | Sales commissions by pricelist
 [sale_commission_salesman](sale_commission_salesman/) | 17.0.1.0.1 |  | Sales commissions from salesman
 
