@@ -93,11 +93,6 @@ msgid "ID"
 msgstr "ID (identificación)"
 
 #. module: sale_commission
-#: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
-
-#. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_order_line_agent__write_uid
 msgid "Last Updated by"
 msgstr "Actualizado por última vez por"
@@ -119,6 +114,11 @@ msgstr "Producto"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_order_agent_form_inherit
+msgid "Recompute amounts"
+msgstr ""
+
+#. module: sale_commission
+#: model_terms:ir.ui.view,arch_db:sale_commission.view_order_agent_form_inherit
 msgid "Regenerate agents"
 msgstr "Regenerar agentes"
 
@@ -131,3 +131,6 @@ msgstr "Órdenes de Venta"
 #: model:ir.model,name:sale_commission.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línea de Orden de Venta"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"
