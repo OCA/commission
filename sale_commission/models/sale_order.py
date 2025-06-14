@@ -42,6 +42,9 @@ class SaleOrder(models.Model):
     def recompute_lines_agents(self):
         self.mapped("order_line").recompute_agents()
 
+    def recompute_lines_agents_amount(self):
+        self.mapped("order_line").agent_ids._compute_amount()
+
 
 class SaleOrderLine(models.Model):
     _inherit = [

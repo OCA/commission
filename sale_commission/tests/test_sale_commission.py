@@ -129,6 +129,10 @@ class TestSaleCommission(TestAccountCommission):
         sale_order.recompute_lines_agents()
         agent = sale_order.order_line.agent_ids
         self._check_propagation(agent, self.commission_net_invoice, self.agent_monthly)
+        # Check recomputation of amount
+        agent.amount = 5
+        sale_order.recompute_lines_agents_amount()
+        self.assertEqual(agent.amount, 1)
 
     def test_sale_commission_invoice_line_agent(self):
         sale_order = self._create_sale_order(

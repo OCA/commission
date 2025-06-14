@@ -35,6 +35,12 @@
                         string="Regenerate agents"
                         invisible="state not in ['draft', 'sent']"
                     />
+                    <button
+                        name="recompute_lines_agents_amount"
+                        type="object"
+                        string="Recompute amounts"
+                        invisible="state not in ['draft', 'sent']"
+                    />
                 </group>
             </xpath>
         </field>
