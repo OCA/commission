@@ -413,7 +413,6 @@ msgstr "İşaretliyse yeni mesajlara dikkat etmeniz gerekir."
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_error
-#: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "İşaretliyse bazı mesajlarda ileti sorunu vardır."
 
@@ -577,11 +576,6 @@ msgstr "Oranların tanımı"
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__activity_user_id
 msgid "Responsible User"
 msgstr "Sorumlu Kullanıcı"
-
-#. module: commission_oca
-#: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr ""
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__commission__amount_base_type__gross_amount
