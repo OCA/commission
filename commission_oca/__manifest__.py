@@ -23,6 +23,12 @@
         "reports/report_settlement_templates.xml",
         "wizards/commission_make_settle_views.xml",
     ],
+    "external_dependencies": {
+        "python": [
+            "openupgradelib",
+        ],
+    },
+    "pre_init_hook": "_commission_oca_pre_init_hook",
     "demo": ["demo/commission_and_agent_demo.xml"],
     "installable": True,
 }

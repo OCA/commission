@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===============
 Commissions OCA
 ===============
@@ -17,7 +13,7 @@ Commissions OCA
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fcommission-lightgray.png?logo=github
@@ -35,9 +31,9 @@ Commissions OCA
 This module provides the base functions for commission operations to
 enable the following:
 
-- Define agents with their commissions
-- Assign agents to partners
-- Create settlements to summarize commissions for certain periods
+-  Define agents with their commissions
+-  Assign agents to partners
+-  Create settlements to summarize commissions for certain periods
 
 You can define which base amount is going to be taken into account: net
 amount (based on margin) or gross amount (line subtotal amount).
@@ -57,19 +53,19 @@ For adding commissions:
 3. Select a name for distinguishing that type.
 4. Select the percentage type of the commission:
 
-   - **Fixed percentage**: all commissions are computed with a fixed
-     percentage. You can fill the percentage in the field "Fixed
-     percentage".
-   - **By sections**: percentage varies depending amount intervals. You
-     can fill intervals and percentages in the section "Rate
-     definition".
+   -  **Fixed percentage**: all commissions are computed with a fixed
+      percentage. You can fill the percentage in the field "Fixed
+      percentage".
+   -  **By sections**: percentage varies depending amount intervals. You
+      can fill intervals and percentages in the section "Rate
+      definition".
 
 5. Select the base amount for computing the percentage:
 
-   - **Sale/Invoice Amount**: percentage is computed from the amount put
-     on sales order/invoice.
-   - **Margin (Amount - Cost)**: percentage is computed from the profit
-     only, taken the cost from the product.
+   -  **Sale/Invoice Amount**: percentage is computed from the amount
+      put on sales order/invoice.
+   -  **Margin (Amount - Cost)**: percentage is computed from the profit
+      only, taken the cost from the product.
 
 For adding new agents:
 
@@ -84,12 +80,12 @@ For adding new agents:
 4. There's a new page called "Agent information". In it, you can set
    following data:
 
-   - The agent type, being in this base module "External agent" the only
-     existing configuration. It can be extended with hr_commission
-     module for setting an "Employee" agent type.
-   - The associated commission type.
-   - The settlement period, where you can select "Bi-weekly", "Monthly",
-     "Quaterly", "Semi-annual" or "Annual".
+   -  The agent type, being in this base module "External agent" the
+      only existing configuration. It can be extended with hr_commission
+      module for setting an "Employee" agent type.
+   -  The associated commission type.
+   -  The settlement period, where you can select "Bi-weekly",
+      "Monthly", "Quaterly", "Semi-annual" or "Annual".
 
    You will also be able to see the settlements that have been made to
    this agent from this page.
@@ -121,9 +117,9 @@ For settling the commissions to agents:
 Known issues / Roadmap
 ======================
 
-- Make it totally multi-company aware.
-- Set agent popup window with a kanban view with richer information and
-  mobile friendly.
+-  Make it totally multi-company aware.
+-  Set agent popup window with a kanban view with richer information and
+   mobile friendly.
 
 Bug Tracker
 ===========
@@ -146,31 +142,31 @@ Authors
 Contributors
 ------------
 
-- Pexego.
-- Davide Corio <davide.corio@domsense.com>
-- Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>
-- Sandy Carter <sandy.carter@savoirfairelinux.com>
-- Giorgio Borelli <giorgio.borelli@abstract.it>
-- Daniel Campos <danielcampos@avanzosc.es>
-- Oihane Crucelaegui <oihanecruce@gmail.com>
-- Nicola Malcontenti <nicola.malcontenti@agilebg.com>
-- Aitor Bouzas <aitor.bouzas@adaptivecity.com>
-- Alexei Rivera <arivera@archeti.com>
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  Pexego.
+-  Davide Corio <davide.corio@domsense.com>
+-  Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>
+-  Sandy Carter <sandy.carter@savoirfairelinux.com>
+-  Giorgio Borelli <giorgio.borelli@abstract.it>
+-  Daniel Campos <danielcampos@avanzosc.es>
+-  Oihane Crucelaegui <oihanecruce@gmail.com>
+-  Nicola Malcontenti <nicola.malcontenti@agilebg.com>
+-  Aitor Bouzas <aitor.bouzas@adaptivecity.com>
+-  Alexei Rivera <arivera@archeti.com>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Pedro M. Baeza
-  - Manuel Calero
+   -  Pedro M. Baeza
+   -  Manuel Calero
 
-- `Quartile <https://www.quartile.co>`__:
+-  `Quartile <https://www.quartile.co>`__:
 
-  - Aung Ko Ko Lin
-  - Yoshi Tashiro
+   -  Aung Ko Ko Lin
+   -  Yoshi Tashiro
 
-- `Studio73 <https://www.studio73.es>`__:
+-  `Studio73 <https://www.studio73.es>`__:
 
-  - Ethan Hildick
+   -  Ethan Hildick
 
-- Moaad Bourhim
+-  Moaad Bourhim
 
 Maintainers
 -----------
