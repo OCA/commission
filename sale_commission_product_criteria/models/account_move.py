@@ -28,4 +28,4 @@ class AccountInvoiceLineAgent(models.Model):
                 else:
                     line.amount = amount
             else:
-                super(AccountInvoiceLineAgent, line)._compute_amount()
+                return super(AccountInvoiceLineAgent, line)._compute_amount()

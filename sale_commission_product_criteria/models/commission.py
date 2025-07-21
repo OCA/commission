@@ -137,7 +137,6 @@ class CommissionItem(models.Model):
         readonly=True,
     )
     name = fields.Char(
-        "Name",
         compute="_compute_commission_item_name_value",
         help="Explicit rule name for this commission line.",
     )

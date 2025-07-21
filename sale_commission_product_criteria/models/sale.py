@@ -30,7 +30,7 @@ class SaleOrderLineAgent(models.Model):
                     order_line.product_uom_qty,
                 )
             else:
-                super(SaleOrderLineAgent, line)._compute_amount()
+                return super(SaleOrderLineAgent, line)._compute_amount()
 
 
 class SaleOrderLine(models.Model):
