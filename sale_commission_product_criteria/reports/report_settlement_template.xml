@@ -10,7 +10,8 @@
         >
             <t
                 t-set="show_value_column"
-                t-value="any(l.agent_line.applied_commission_item_id for l in o.line_ids)"
+                t-value="any(l.invoice_agent_line_id
+                    and l.invoice_agent_line_id.applied_commission_item_id for l in o.line_ids)"
             />
             <t t-if="show_value_column">
                 <th>Value</th>
@@ -25,7 +26,7 @@
                 <td>
                     <t
                         t-set="comm_item"
-                        t-value="l.agent_line.applied_commission_item_id"
+                        t-value="l.invoice_agent_line_id.applied_commission_item_id"
                     />
                     <t t-if="comm_item.commission_type == 'fixed'">
                         <span
