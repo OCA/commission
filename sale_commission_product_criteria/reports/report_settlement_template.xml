@@ -10,8 +10,7 @@
         >
             <t
                 t-set="show_value_column"
-                t-value="any(l.invoice_agent_line_id
-                    and l.invoice_agent_line_id.applied_commission_item_id for l in o.line_ids)"
+                t-value="any(l.invoice_agent_line_id.applied_commission_item_id for l in o.line_ids)"
             />
             <t t-if="show_value_column">
                 <th>Value</th>
