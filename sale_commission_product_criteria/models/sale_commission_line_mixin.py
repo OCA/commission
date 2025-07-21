@@ -75,4 +75,3 @@ class SaleCommissionLineMixin(models.AbstractModel):
     def _get_discount_value(self, commission_item):
         # Will be overridden
         return self.object_id.discount
-    

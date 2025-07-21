@@ -214,4 +214,3 @@ class TestSaleCommission(SavepointCase):
         with self.assertRaises(ValidationError):
             self.rules_commission_id.commission_type = "fixed"
             self.rules_commission_id.onchange_commission_type()
-            

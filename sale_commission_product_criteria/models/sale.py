@@ -50,4 +50,3 @@ class SaleOrderLine(models.Model):
             for x in self.agent_ids
         ]
         return vals
-    

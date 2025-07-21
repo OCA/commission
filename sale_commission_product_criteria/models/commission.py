@@ -265,4 +265,3 @@ class CommissionItem(models.Model):
             elif applied_on == "0_product_variant":
                 values.update(dict(categ_id=None))
         return values
-    
