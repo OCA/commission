@@ -1,38 +1,58 @@
-# © 2025 Ooops404
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0.html)
+# © 2023 ooops404
+# Copyright 2023 Simone Rubino - Aion Tech
+# License AGPL‑3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo.tests.common import SavepointCase
+from odoo.exceptions import ValidationError
+from odoo.tests.common import Form, TransactionCase
 
 
-class TestSaleCommissionProductCriteriaMinimal(SavepointCase):
+class TestSaleCommissionProductCriteria(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.rule = cls.env.ref("sale_commission_product_criteria.demo_commission_rules")
-        cls.items = [
-            cls.env.ref(
-                "sale_commission_product_criteria.demo_commission_rules_item_1"
-            ),
-            cls.env.ref(
-                "sale_commission_product_criteria.demo_commission_rules_item_2"
-            ),
-            cls.env.ref(
-                "sale_commission_product_criteria.demo_commission_rules_item_3"
-            ),
-            cls.env.ref(
-                "sale_commission_product_criteria.demo_commission_rules_item_4"
-            ),
-        ]
+        cls.commission_model = cls.env["commission"]
+        cls.company = cls.env.ref("base.main_company")
+        cls.res_partner_model = cls.env["res.partner"]
+        cls.partner = cls.env.ref("base.res_partner_12")
+        cls.partner2 = cls.env.ref("base.res_partner_10")
+        cls.sale_order_model = cls.env["sale.order"]
+        cls.advance_inv_model = cls.env["sale.advance.payment.inv"]
+        cls.settle_model = cls.env["commission.settlement"]
+        cls.make_settle_model = cls.env["commission.make.settle"]
+        cls.make_inv_model = cls.env["commission.make.invoice"]
+        cls.product_1 = cls.env.ref("product.product_product_1")
+        cls.product_4 = cls.env.ref("product.product_product_4")
+        cls.product_5 = cls.env.ref("product.product_product_5")
+        cls.product_6 = cls.env.ref("product.product_product_6")
+        cls.product_1.write({"invoice_policy": "order"})
+        cls.product_4.write({"invoice_policy": "order"})
+        cls.product_5.write({"invoice_policy": "order"})
+        cls.product_6.write({"commission_free": True})
+        cls.product_template_4 = cls.env.ref(
+            "product.product_product_4_product_template"
+        )
+        cls.product_template_4.write({"invoice_policy": "order"})
+        cls.journal = cls.env["account.journal"].search(
+            [("type", "=", "purchase")], limit=1
+        )
+        cls.rules_commission_id = cls.env.ref(
+            "sale_commission_product_criteria.demo_commission_rules"
+        )
+        cls.com_item_1 = cls.env.ref(
+            "sale_commission_product_criteria.demo_commission_rules_item_1"
+        )
+        cls.com_item_2 = cls.env.ref(
+            "sale_commission_product_criteria.demo_commission_rules_item_2"
+        )
+        cls.com_item_3 = cls.env.ref(
+            "sale_commission_product_criteria.demo_commission_rules_item_3"
+        )
+        cls.com_item_4 = cls.env.ref(
+            "sale_commission_product_criteria.demo_commission_rules_item_4"
+        )
 
-    def test_item_name_computation(self):
-        for item in self.items:
-            item._compute_commission_item_name_value()
-            self.assertTrue(isinstance(item.name, str))
-
-    def test_sale_order_commission_applied(self):
-        partner = self.env.ref("base.res_partner_12")
-        product = self.env.ref("product.product_product_1")
-        so = self.env["sale.order"].create(
+    def _create_sale_order(self, product, partner):
+        return self.sale_order_model.create(
             {
                 "partner_id": partner.id,
                 "order_line": [
@@ -40,14 +60,159 @@ class TestSaleCommissionProductCriteriaMinimal(SavepointCase):
                         0,
                         0,
                         {
+                            "name": product.name,
                             "product_id": product.id,
                             "product_uom_qty": 1.0,
-                            "price_unit": 100,
+                            "product_uom": product.uom_id.id,
+                            "price_unit": 1000,
                         },
                     )
                 ],
             }
         )
-        so.recompute_lines_agents()
+
+    def _invoice_sale_order(self, sale_order, date=None):
+        old_invoices = sale_order.invoice_ids
+        wizard = self.advance_inv_model.with_context(
+            **{
+                "active_model": "sale.order",
+                "active_ids": [sale_order.id],
+                "active_id": sale_order.id,
+            }
+        ).create({"advance_payment_method": "delivered"})
+        wizard.create_invoices()
+        invoice = sale_order.invoice_ids - old_invoices
+        return invoice
+
+    def test_sale_commission_product_criteria_items(self):
+        """Comprova noms generats per cada item de la regla."""
+        # 1. "All Products"
+        self.com_item_1._compute_commission_item_name_value()
+        self.com_item_1.currency_id.position = "after"
+        self.com_item_1._compute_commission_item_name_value()
+        self.assertEqual(self.com_item_1.name, "All Products")
+        self.com_item_1.write({"applied_on": "3_global"})
+        # 2. Category
+        self.com_item_2._compute_commission_item_name_value()
+        self.assertEqual(
+            self.com_item_2.name, "Category: All / Saleable / Office Furniture"
+        )
+        self.com_item_2.write({"applied_on": "2_product_category"})
+        # 3. Product
+        self.com_item_3._compute_commission_item_name_value()
+        self.assertEqual(self.com_item_3.name, "Product: Customizable Desk")
+        self.com_item_3.write({"applied_on": "1_product"})
+        # 4. Variant
+        self.com_item_4._compute_commission_item_name_value()
+        self.assertEqual(
+            self.com_item_4.name, "Variant: Customizable Desk (Steel, White)"
+        )
+        self.com_item_4.write({"applied_on": "0_product_variant"})
+
+    def test_sale_and_invoice_commission_flow(self):
+        """Comprova aplicació de comissions en diferents casos de v15."""
+        # 3_global
+        so1 = self._create_sale_order(self.product_1, self.partner)
+        so1.recompute_lines_agents()
+        self.assertEqual(so1.partner_agent_ids.name, "Agent Rules")
+        self.assertEqual(so1.order_line.agent_ids.amount, 10)
+        so1.action_confirm()
+        inv1 = self._invoice_sale_order(so1)
+        inv1.recompute_lines_agents()
+        inv1.action_post()
+
+        # 2_product_category
+        so2 = self._create_sale_order(self.product_5, self.partner)
+        so2.recompute_lines_agents()
+        self.assertEqual(so2.partner_agent_ids.name, "Agent Rules")
+        self.assertEqual(so2.order_line.agent_ids.amount, 20)
+        so2.action_confirm()
+        inv2 = self._invoice_sale_order(so2)
+        inv2.recompute_lines_agents()
+
+        # 1_product (5%)
+        pp4 = self.product_template_4.product_variant_id
+        so3 = self._create_sale_order(pp4, self.partner)
+        so3.recompute_lines_agents()
+        self.assertEqual(so3.order_line.agent_ids.amount, 50)
+        so3.action_confirm()
+        inv3 = self._invoice_sale_order(so3)
+        inv3.recompute_lines_agents()
+
+        # 0_product_variant (15%)
+        so4 = self._create_sale_order(self.product_4, self.partner)
+        so4.recompute_lines_agents()
+        self.assertEqual(so4.order_line.agent_ids.amount, 150)
+        so4.action_confirm()
+        inv4 = self._invoice_sale_order(so4)
+        inv4.recompute_lines_agents()
+
+        # Product commission_free
+        so5 = self._create_sale_order(self.product_6, self.partner)
+        so5.recompute_lines_agents()  # no hi ha agents
+
+        # Type != product
+        so6 = self._create_sale_order(self.product_4, self.partner2)
+        so6.recompute_lines_agents()  # segueix sense agents
+
+        # Net amount base
+        self.rules_commission_id.amount_base_type = "net_amount"
+        so7 = self._create_sale_order(self.product_4, self.partner)
+        so7.order_line.agent_ids._compute_amount()
+
+        # Archive / unarchive
+        self.rules_commission_id.action_archive()
+        self.rules_commission_id.action_unarchive()
+
+        # Copy
+        new_rule = self.rules_commission_id.copy()
+        self.assertEqual(len(new_rule.item_ids), len(self.rules_commission_id.item_ids))
+
+        # Change commission_type validations
+        self.rules_commission_id.commission_type = "fixed"
+        with self.assertRaises(ValidationError):
+            self.rules_commission_id.check_type_change_allowed_moves()
+        with self.assertRaises(ValidationError):
+            self.rules_commission_id.check_type_change_allowed_sale()
+
+        # No rule found
+        self.env.ref(
+            "sale_commission_product_criteria.demo_commission_rules_item_1"
+        ).unlink()
+        so8 = self._create_sale_order(self.product_1, self.partner)
+        so8.order_line.agent_ids._compute_amount()
+
+        # Consistència de producte
+        with self.assertRaises(ValidationError):
+            self.com_item_2.categ_id = False
+        with self.assertRaises(ValidationError):
+            self.com_item_3.product_tmpl_id = False
+        with self.assertRaises(ValidationError):
+            self.com_item_4.product_id = False
+
+        # Onchange handlers
+        self.com_item_4.product_id = self.product_1
+        self.com_item_4._onchange_product_id()
+        self.com_item_4.with_context(
+            default_applied_on="1_product"
+        )._onchange_product_id()
+        self.com_item_4.product_tmpl_id = self.product_template_4
+        self.com_item_4._onchange_product_id()
+        with self.assertRaises(ValidationError):
+            self.com_item_4._onchange_product_tmpl_id()
+
+    def test_on_create_check(self):
+        f = Form(self.commission_model)
+        f.name = "New commission type"
+        f.save()
+
+        so = self._create_sale_order(self.product_4, self.partner)
+        self.assertEqual(
+            so.order_line.agent_ids.commission_id, self.rules_commission_id
+        )
+        self.assertEqual(self.rules_commission_id.commission_type, "product")
+
         so.action_confirm()
-        self.assertTrue(so.order_line.agent_ids, "No s'ha aplicat cap agent a la línia")
+        with self.assertRaises(ValidationError):
+            self.rules_commission_id.commission_type = "fixed"
+            self.rules_commission_id.onchange_commission_type()

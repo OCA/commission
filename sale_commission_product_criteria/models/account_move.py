@@ -14,18 +14,14 @@ class AccountInvoiceLineAgent(models.Model):
         "commission_id",
     )
     def _compute_amount(self):
+        res = super(AccountInvoiceLineAgent, self)._compute_amount()
         for line in self:
             if line.commission_id and line.commission_id.commission_type == "product":
                 inv_line = line.object_id
-                amount = line._get_single_commission_amount(
+                line.amount = line._get_single_commission_amount(
                     line.commission_id,
                     inv_line.price_subtotal,
                     inv_line.product_id,
                     inv_line.quantity,
                 )
-                if line.invoice_id.move_type in ("out_refund", "in_refund"):
-                    line.amount = -amount
-                else:
-                    line.amount = amount
-            else:
-                return super(AccountInvoiceLineAgent, line)._compute_amount()
+        return res
