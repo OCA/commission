@@ -101,7 +101,6 @@ class CommissionItem(models.Model):
     )
     based_on = fields.Selection(
         [("sol", "Any Sale Order Line")],
-        string="Based On",
         required=True,
         default="sol",
     )
@@ -123,8 +122,8 @@ class CommissionItem(models.Model):
         default="fixed",
         required=True,
     )
-    fixed_amount = fields.Float("Fixed Amount", digits="Product Price")
-    percent_amount = fields.Float("Percentage Amount")
+    fixed_amount = fields.Float(digits="Product Price")
+    percent_amount = fields.Float()
     company_id = fields.Many2one(
         "res.company",
         "Company",

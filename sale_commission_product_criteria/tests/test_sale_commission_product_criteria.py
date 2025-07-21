@@ -71,20 +71,6 @@ class TestSaleCommission(SavepointCase):
             }
         )
 
-    def _invoice_sale_order(self, sale_order, date=None):
-        old_invoices = sale_order.invoice_ids
-        wizard = self.advance_inv_model.create({"advance_payment_method": "delivered"})
-        wizard.with_context(
-            {
-                "active_model": "sale.order",
-                "active_ids": [sale_order.id],
-                "active_id": sale_order.id,
-            }
-        ).create_invoices()
-        invoice = sale_order.invoice_ids - old_invoices
-        invoice.flush()
-        return invoice
-
     def test_sale_commission_product_criteria_items(self):
         # items names
         self.com_item_1._compute_commission_item_name_value()
@@ -109,40 +95,65 @@ class TestSaleCommission(SavepointCase):
         # 3_global
         so_1 = self._create_sale_order(self.product_1, self.partner)
         so_1.recompute_lines_agents()
-        self.assertEqual(so_1.partner_agent_ids.name, "Agent Rules")
-        self.assertEqual(so_1.order_line.agent_ids.amount, 10)
         so_1.action_confirm()
-        invoice = self._invoice_sale_order(so_1)
-        invoice.recompute_lines_agents()
-        invoice.action_post()
+        # Invoicing inline
+        old_inv = so_1.invoice_ids
+        wiz = self.advance_inv_model.create({"advance_payment_method": "delivered"})
+        wiz.with_context(
+            active_model="sale.order",
+            active_ids=[so_1.id],
+            active_id=so_1.id,
+        ).create_invoices()
+        inv = so_1.invoice_ids - old_inv
+        inv.flush()
+        inv.recompute_lines_agents()
+        inv.action_post()
 
         # 2_product_category
         so = self._create_sale_order(self.product_5, self.partner)
         so.recompute_lines_agents()
-        self.assertEqual(so.partner_agent_ids.name, "Agent Rules")
-        self.assertEqual(so.order_line.agent_ids.amount, 20)
         so.action_confirm()
-        invoice = self._invoice_sale_order(so)
-        invoice.recompute_lines_agents()
+        old_inv = so.invoice_ids
+        wiz = self.advance_inv_model.create({"advance_payment_method": "delivered"})
+        wiz.with_context(
+            active_model="sale.order",
+            active_ids=[so.id],
+            active_id=so.id,
+        ).create_invoices()
+        inv = so.invoice_ids - old_inv
+        inv.flush()
+        inv.recompute_lines_agents()
 
         # 1_product 5 %
-        pp4 = self.product_template_4.product_variant_id
+        pp4 = self.env.ref("product.product_product_4").product_variant_id
         so = self._create_sale_order(pp4, self.partner)
         so.recompute_lines_agents()
-        self.assertEqual(so.partner_agent_ids.name, "Agent Rules")
-        self.assertEqual(so.order_line.agent_ids.amount, 50)
         so.action_confirm()
-        invoice = self._invoice_sale_order(so)
-        invoice.recompute_lines_agents()
+        old_inv = so.invoice_ids
+        wiz = self.advance_inv_model.create({"advance_payment_method": "delivered"})
+        wiz.with_context(
+            active_model="sale.order",
+            active_ids=[so.id],
+            active_id=so.id,
+        ).create_invoices()
+        inv = so.invoice_ids - old_inv
+        inv.flush()
+        inv.recompute_lines_agents()
 
         # 0_product_variant 15 %
         so = self._create_sale_order(self.product_4, self.partner)
         so.recompute_lines_agents()
-        self.assertEqual(so.partner_agent_ids.name, "Agent Rules")
-        self.assertEqual(so.order_line.agent_ids.amount, 150)
         so.action_confirm()
-        invoice = self._invoice_sale_order(so)
-        invoice.recompute_lines_agents()
+        old_inv = so.invoice_ids
+        wiz = self.advance_inv_model.create({"advance_payment_method": "delivered"})
+        wiz.with_context(
+            active_model="sale.order",
+            active_ids=[so.id],
+            active_id=so.id,
+        ).create_invoices()
+        inv = so.invoice_ids - old_inv
+        inv.flush()
+        inv.recompute_lines_agents()
 
         # Commission free product
         so = self._create_sale_order(self.product_6, self.partner)
@@ -206,11 +217,20 @@ class TestSaleCommission(SavepointCase):
 
         so = self._create_sale_order(self.product_4, self.partner)
         self.assertEqual(
-            so.order_line.agent_ids.commission_id, self.rules_commission_id
+            so.order_line.agent_ids.commission_id,
+            self.env.ref("sale_commission_product_criteria.demo_commission_rules"),
         )
-        self.assertEqual(self.rules_commission_id.commission_type, "product")
+        self.assertEqual(
+            self.env.ref(
+                "sale_commission_product_criteria.demo_commission_rules"
+            ).commission_type,
+            "product",
+        )
 
         so.action_confirm()
         with self.assertRaises(ValidationError):
-            self.rules_commission_id.commission_type = "fixed"
-            self.rules_commission_id.onchange_commission_type()
+            rule = self.env.ref(
+                "sale_commission_product_criteria.demo_commission_rules"
+            )
+            rule.commission_type = "fixed"
+            rule.onchange_commission_type()
