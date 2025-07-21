@@ -218,24 +218,29 @@ class CommissionItem(models.Model):
 
     @api.onchange("product_id")
     def _onchange_product_id(self):
-        has_product_id = self.filtered("product_id")
-        for item in has_product_id:
+        if any(item.applied_on != "0_product_variant" for item in self):
+            raise ValidationError(
+                _("No es pot seleccionar un variant quan l'ítem s'aplica a '%s'.")
+                % dict(self._fields["applied_on"].selection)[self.applied_on]
+            )
+
+        for item in self:
             item.product_tmpl_id = item.product_id.product_tmpl_id
-        if self.env.context.get("default_applied_on", False) == "1_product":
-            # If a product variant is specified, apply on variants instead
-            # Reset if product variant is removed
-            has_product_id.update({"applied_on": "0_product_variant"})
-            (self - has_product_id).update({"applied_on": "1_product"})
 
     @api.onchange("product_tmpl_id")
     def _onchange_product_tmpl_id(self):
-        has_tmpl_id = self.filtered("product_tmpl_id")
-        for item in has_tmpl_id:
+        if any(item.applied_on != "1_product" for item in self):
+            raise ValidationError(
+                _("No es pot seleccionar un template quan l'ítem s'aplica a '%s'.")
+                % dict(self._fields["applied_on"].selection)[self.applied_on]
+            )
+
+        for item in self:
             if (
                 item.product_id
                 and item.product_id.product_tmpl_id != item.product_tmpl_id
             ):
-                item.product_id = None
+                item.product_id = False
 
     @api.model
     def create(self, values):
