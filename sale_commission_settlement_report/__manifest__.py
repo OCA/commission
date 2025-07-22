@@ -7,7 +7,7 @@
     "category": "Sales",
     "website": "https://github.com/OCA/commission",
     "license": "AGPL-3",
-    "depends": ["commission", "sale_commission"],
+    "depends": ["commission", "sale_commission", "sale_management"],
     "data": [
         "views/report_settlement_templates.xml",
         "views/res_config_settings_view.xml",
