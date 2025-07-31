@@ -37,6 +37,10 @@
                             />
                         </group>
                         <field
+                            name="use_range"
+                            attrs="{'invisible': [('commission_type', '!=', 'section')]}"
+                        />
+                        <field
                             name="section_ids"
                             widget="one2many_list"
                             colspan="4"
@@ -44,8 +48,19 @@
                             attrs="{'invisible': [('commission_type', '!=', 'section')]}"
                         >
                             <tree editable="bottom">
-                                <field name="amount_from" />
-                                <field name="amount_to" />
+                                <field name="product_id" />
+                                <field
+                                    name="category_id"
+                                    attrs="{'invisible': [('product_id', '!=', False)]}"
+                                />
+                                <field
+                                    name="amount_from"
+                                    attrs="{'column_invisible': [('parent.use_range', '=', False)]}"
+                                />
+                                <field
+                                    name="amount_to"
+                                    attrs="{'column_invisible': [('parent.use_range', '=', False)]}"
+                                />
                                 <field name="percent" />
                             </tree>
                         </field>

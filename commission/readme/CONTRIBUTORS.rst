@@ -14,6 +14,7 @@
   * Pedro M. Baeza
   * Manuel Calero
   * Sergio Teruel
+  * Carlos Roca
 
 * `Quartile <https://www.quartile.co>`__:
 

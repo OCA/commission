@@ -7,8 +7,9 @@ For adding commissions:
 
    * **Fixed percentage**: all commissions are computed with a fixed
      percentage. You can fill the percentage in the field "Fixed percentage".
-   * **By sections**: percentage varies depending amount intervals. You can
-     fill intervals and percentages in the section "Rate definition".
+   * **By sections**: percentage varies depending on products or categories. **NOTE:**
+     You can make a range variation by selecting "Use Range" option. Then you will be
+     able to fill intervals in the section "Rate definition".
 
 #. Select the base amount for computing the percentage:
 

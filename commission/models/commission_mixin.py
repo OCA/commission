@@ -156,7 +156,7 @@ class CommissionLineMixin(models.AbstractModel):
         if commission.commission_type == "fixed":
             return subtotal * (commission.fix_qty / 100.0)
         elif commission.commission_type == "section":
-            return commission.calculate_section(subtotal)
+            return commission.calculate_section(subtotal, record=self.object_id)
 
     @api.depends("agent_id")
     def _compute_commission_id(self):
