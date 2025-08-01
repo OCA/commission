@@ -7,13 +7,15 @@ class TestCommissionSettlementShowableLines(TransactionCase):
         company = self.env.user.company_id
 
         # Create a new "commission.settlement" record in memory with two lines
-        settlement = Settlement.new({
-            "company_id": company.id,
-            "line_ids": [
-                (0, 0, {"settled_amount": 0.0}),
-                (0, 0, {"settled_amount": 42.0}),
-            ],
-        })
+        settlement = Settlement.new(
+            {
+                "company_id": company.id,
+                "line_ids": [
+                    (0, 0, {"settled_amount": 0.0}),
+                    (0, 0, {"settled_amount": 42.0}),
+                ],
+            }
+        )
 
         # Case 1: without filtering zero lines (flag = False)
         company.write({"settlement_skip_zero_amount_lines": False})
