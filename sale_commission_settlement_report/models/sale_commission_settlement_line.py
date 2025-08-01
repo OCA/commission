@@ -17,5 +17,5 @@ class SaleCommissionSettlement(models.Model):
         for record in self:
             lines = record.line_ids
             if record.company_id.settlement_skip_zero_amount_lines:
-                lines = lines.filtered(lambda line: line.settled_amount)
+                lines = lines.filtered(key=lambda line: line.settled_amount)
             record.showable_line_ids = lines
