@@ -20,6 +20,7 @@ class SaleOrderLineAgent(models.Model):
         "object_id.price_subtotal", "object_id.product_id", "object_id.product_uom_qty"
     )
     def _compute_amount(self):
+        res = None
         for line in self:
             if line.commission_id and line.commission_id.commission_type == "product":
                 order_line = line.object_id
@@ -30,7 +31,8 @@ class SaleOrderLineAgent(models.Model):
                     order_line.product_uom_qty,
                 )
             else:
-                super(SaleOrderLineAgent, line)._compute_amount()
+                res = super(SaleOrderLineAgent, line)._compute_amount()
+        return res
 
 
 class SaleOrderLine(models.Model):

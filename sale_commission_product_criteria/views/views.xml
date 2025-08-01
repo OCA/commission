@@ -24,16 +24,16 @@
     </record>
 
     <record model="ir.ui.view" id="sale_commission_form_lines_mod">
-        <field name="name">sale.commission.form.view.inherit</field>
-        <field name="model">sale.commission</field>
-        <field name="inherit_id" ref="sale_commission.sale_commission_form" />
+        <field name="name">commission.form.view.inherit</field>
+        <field name="model">commission</field>
+        <field name="inherit_id" ref="commission.commission_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='section_ids']/.." position="attributes">
                 <attribute
                     name="attrs"
                 >{'invisible': [('commission_type', '=', 'product')]}</attribute>
             </xpath>
-            <form position="inside">
+            <xpath expr="//sheet" position="inside">
                 <group
                     string="Rules"
                     name="rules_group"
@@ -43,7 +43,7 @@
                     <field
                         name="item_ids"
                         nolabel="1"
-                        context="{'hide_commission_id':1}"
+                        context="{'hide_commission_id': 1}"
                         colspan="4"
                     >
                         <tree>
@@ -54,7 +54,7 @@
                         </tree>
                     </field>
                 </group>
-            </form>
+            </xpath>
         </field>
     </record>
 
@@ -64,6 +64,9 @@
         <field name="priority" eval="99" />
         <field name="inherit_id" ref="sale_commission.view_sale_order_line_tree" />
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='commission_id']" position="attributes">
+                <attribute name="domain">[]</attribute>
+            </xpath>
             <field name="commission_id" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
@@ -223,13 +226,4 @@
             (0, 0, {'view_mode': 'form', 'view_id': ref('commission_item_form_view')})]"
         />
     </record>
-
-    <menuitem
-        name="Commission Type Items"
-        id="menu_sale_commissions_items"
-        action="commission_item_action_tree"
-        parent="sale_commission.menu_sale_commissions_management"
-        groups="sales_team.group_sale_manager"
-        sequence="10"
-    />
 </odoo>

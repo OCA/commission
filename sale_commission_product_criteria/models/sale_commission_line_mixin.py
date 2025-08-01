@@ -1,14 +1,16 @@
 # © 2023 ooops404
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
+from psycopg2.extensions import AsIs
+
 from odoo import fields, models
 
 
 class SaleCommissionLineMixin(models.AbstractModel):
-    _inherit = "sale.commission.line.mixin"
+    _inherit = "commission.line.mixin"
 
-    applied_commission_id = fields.Many2one("sale.commission", readonly=True)
+    applied_commission_id = fields.Many2one("commission", readonly=True)
     commission_id = fields.Many2one(
-        comodel_name="sale.commission",
+        comodel_name="commission",
         ondelete="restrict",
         required=False,
         compute="_compute_commission_id",
@@ -17,7 +19,9 @@ class SaleCommissionLineMixin(models.AbstractModel):
         copy=True,
     )
 
-    def _get_commission_items(self, commission, product):
+    def _get_commission_items(
+        self, commission, product, _select="", _from="", _where="", _order_by=""
+    ):
         # Method replaced
         categ_ids = {}
         categ = product.categ_id
@@ -31,23 +35,31 @@ class SaleCommissionLineMixin(models.AbstractModel):
             """
             SELECT
                 item.id
+                %s
             FROM
                 commission_item AS item
             LEFT JOIN product_category AS categ ON item.categ_id = categ.id
+                %s
             WHERE
                 (item.product_tmpl_id IS NULL OR item.product_tmpl_id = any(%s))
                 AND (item.product_id IS NULL OR item.product_id = any(%s))
                 AND (item.categ_id IS NULL OR item.categ_id = any(%s))
                 AND (item.commission_id = %s)
                 AND (item.active = TRUE)
+                %s
             ORDER BY
                 item.applied_on, item.based_on, categ.complete_name desc
+                %s
             """,
             (
+                AsIs(_select),
+                AsIs(_from),
                 product.product_tmpl_id.ids,
                 product.ids,
                 categ_ids,
                 commission._origin.id,  # Added this
+                AsIs(_where),
+                AsIs(_order_by),
             ),
         )
         item_ids = [x[0] for x in self.env.cr.fetchall()]

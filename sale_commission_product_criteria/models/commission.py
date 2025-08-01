@@ -6,7 +6,7 @@ from odoo.tools import float_repr
 
 
 class SaleCommission(models.Model):
-    _inherit = "sale.commission"
+    _inherit = "commission"
 
     commission_type = fields.Selection(
         selection_add=[("product", "Product criteria")],
@@ -70,7 +70,7 @@ class CommissionItem(models.Model):
     sequence = fields.Integer(default=10)
     active = fields.Boolean(default=True)
     commission_id = fields.Many2one(
-        "sale.commission",
+        "commission",
         string="Commission Type",
         domain=[("commission_type", "=", "product")],
         required=True,
@@ -101,7 +101,6 @@ class CommissionItem(models.Model):
     )
     based_on = fields.Selection(
         [("sol", "Any Sale Order Line")],
-        string="Based On",
         required=True,
         default="sol",
     )
@@ -123,8 +122,8 @@ class CommissionItem(models.Model):
         default="fixed",
         required=True,
     )
-    fixed_amount = fields.Float("Fixed Amount", digits="Product Price")
-    percent_amount = fields.Float("Percentage Amount")
+    fixed_amount = fields.Float(digits="Product Price")
+    percent_amount = fields.Float()
     company_id = fields.Many2one(
         "res.company",
         "Company",
@@ -137,7 +136,6 @@ class CommissionItem(models.Model):
         readonly=True,
     )
     name = fields.Char(
-        "Name",
         compute="_compute_commission_item_name_value",
         help="Explicit rule name for this commission line.",
     )
