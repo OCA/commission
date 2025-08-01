@@ -2,10 +2,10 @@ from odoo import api, fields, models
 
 
 class SaleCommissionSettlement(models.Model):
-    _inherit = "sale.commission.settlement"
+    _inherit = "commission.settlement"
 
     showable_line_ids = fields.Many2many(
-        "sale.commission.settlement.line",
+        "commission.settlement.line",
         compute="_compute_showable_line_ids",
     )
     show_partner_settlement_report = fields.Boolean(

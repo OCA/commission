@@ -2,7 +2,7 @@ from odoo import fields, models
 
 
 class SettlementLine(models.Model):
-    _inherit = "sale.commission.settlement.line"
+    _inherit = "commission.settlement.line"
 
     partner_id = fields.Many2one(
         "res.partner",

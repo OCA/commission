@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <template id="report_settlement" inherit_id="sale_commission.report_settlement">
+    <template id="report_settlement" inherit_id="commission.report_settlement_document">
         <xpath expr="//thead/tr/th[1]" position="after">
             <t t-if="o.show_partner_settlement_report">
                 <th>Partner</th>
