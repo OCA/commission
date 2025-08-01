@@ -14,6 +14,7 @@ class AccountInvoiceLineAgent(models.Model):
         "commission_id",
     )
     def _compute_amount(self):
+        res = None
         for line in self:
             if line.commission_id and line.commission_id.commission_type == "product":
                 inv_line = line.object_id
@@ -28,4 +29,5 @@ class AccountInvoiceLineAgent(models.Model):
                 else:
                     line.amount = amount
             else:
-                super(AccountInvoiceLineAgent, line)._compute_amount()
+                res = super(AccountInvoiceLineAgent, line)._compute_amount()
+        return res

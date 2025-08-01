@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <odoo>
 
-    <record id="demo_commission_rules" model="sale.commission">
+    <record id="demo_commission_rules" model="commission">
         <field name="name">Based on Rules</field>
         <field name="commission_type">product</field>
     </record>
