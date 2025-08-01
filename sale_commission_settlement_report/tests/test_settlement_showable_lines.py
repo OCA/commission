@@ -7,7 +7,7 @@ class TestCommissionSettlementShowableLines(TransactionCase):
         company = self.env.user.company_id
 
         # Create a new "commission.settlement" record in memory with two lines
-        settlement = Settlement.new(
+        settlement = Settlement.create(
             {
                 "company_id": company.id,
                 "line_ids": [
