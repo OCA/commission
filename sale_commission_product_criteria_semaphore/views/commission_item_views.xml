@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_commission_form_lines_mod" model="ir.ui.view">
+        <field name="model">commission</field>
+        <field
+            name="inherit_id"
+            ref="sale_commission_product_criteria.sale_commission_form_lines_mod"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='section_ids']/.." position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('commission_type', '=', 'product')]}</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='item_ids']//field[@name='name']"
+                position="after"
+            >
+                <field name="semaphore" />
+            </xpath>
+        </field>
+    </record>
+    <record id="commission_item_form_view" model="ir.ui.view">
+        <field name="model">commission.item</field>
+        <field
+            name="inherit_id"
+            ref="sale_commission_product_criteria.commission_item_form_view"
+        />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="semaphore" />
+            </field>
+        </field>
+    </record>
+    <record id="commission_item_tree_view" model="ir.ui.view">
+        <field name="model">commission.item</field>
+        <field
+            name="inherit_id"
+            ref="sale_commission_product_criteria.commission_item_tree_view"
+        />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="semaphore" />
+            </field>
+        </field>
+    </record>
+</odoo>
