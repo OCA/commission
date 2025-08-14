@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+
+    <record id="demo_commission_rules" model="commission">
+        <field name="name">Based on Rules</field>
+        <field name="commission_type">product</field>
+    </record>
+
+    <record id="demo_commission_rules_item_1" model="commission.item">
+        <field name="commission_id" ref="demo_commission_rules" />
+        <field name="sequence" eval="1" />
+        <field name="based_on">sol</field>
+        <field name="applied_on">3_global</field>
+        <field name="commission_type">fixed</field>
+        <field name="fixed_amount">10</field>
+    </record>
+
+    <record id="demo_commission_rules_item_2" model="commission.item">
+        <field name="commission_id" ref="demo_commission_rules" />
+        <field name="sequence" eval="2" />
+        <field name="based_on">sol</field>
+        <field name="applied_on">2_product_category</field>
+        <field name="commission_type">fixed</field>
+        <field name="fixed_amount">20</field>
+        <field name="categ_id" ref="product.product_category_5" />
+    </record>
+
+    <record id="demo_commission_rules_item_3" model="commission.item">
+        <field name="commission_id" ref="demo_commission_rules" />
+        <field name="sequence" eval="3" />
+        <field name="based_on">sol</field>
+        <field name="applied_on">1_product</field>
+        <field name="commission_type">percentage</field>
+        <field name="percent_amount">5</field>
+        <field
+            name="product_tmpl_id"
+            ref="product.product_product_4_product_template"
+        />
+    </record>
+
+    <record id="demo_commission_rules_item_4" model="commission.item">
+        <field name="commission_id" ref="demo_commission_rules" />
+        <field name="sequence" eval="4" />
+        <field name="based_on">sol</field>
+        <field name="applied_on">0_product_variant</field>
+        <field name="commission_type">percentage</field>
+        <field name="percent_amount">15</field>
+        <field name="product_id" ref="product.product_product_4" />
+    </record>
+
+    <record id="demo_agent_rules" model="res.partner">
+        <field name="name">Agent Rules</field>
+        <field name="is_company">True</field>
+        <field name="agent">True</field>
+        <field name="commission_id" ref="demo_commission_rules" />
+    </record>
+
+    <record id="base.res_partner_12" model="res.partner">
+        <field
+            name="agent_ids"
+            eval="[(6, 0, [ref('sale_commission_product_criteria.demo_agent_rules')])]"
+        />
+    </record>
+
+</odoo>

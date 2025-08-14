@@ -1,0 +1,396 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_commission_product_criteria
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__active
+msgid "Active"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model,name:sale_commission_product_criteria.model_account_invoice_line_agent
+msgid "Agent detail of commission line in invoice lines"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model,name:sale_commission_product_criteria.model_sale_order_line_agent
+msgid "Agent detail of commission line in order lines"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#. odoo-python
+#: code:addons/sale_commission_product_criteria/models/commission.py:0
+#: model:ir.model.fields.selection,name:sale_commission_product_criteria.selection__commission_item__applied_on__3_global
+#, python-format
+msgid "All Products"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.view_sale_order_line_tree_mod
+msgid "Amount (%)"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.view_sale_order_line_tree_mod
+msgid "Amount (fixed)"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields.selection,name:sale_commission_product_criteria.selection__commission_item__based_on__sol
+msgid "Any Sale Order Line"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_account_invoice_line_agent__applied_commission_id
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_line_mixin__applied_commission_id
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent__applied_commission_id
+msgid "Applied Commission"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_account_invoice_line_agent__applied_commission_item_id
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent__applied_commission_item_id
+msgid "Applied Commission Item"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.view_sale_order_line_tree_mod
+msgid "Applied Disc. (%)"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.sale_commission_form_lines_mod
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.view_sale_order_line_tree_mod
+msgid "Applied On"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__applied_on
+msgid "Apply On"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__based_on
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent__based_on
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.view_sale_order_line_tree_mod
+msgid "Based On"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#. odoo-python
+#: code:addons/sale_commission_product_criteria/models/commission.py:0
+#, python-format
+msgid "Category: %s"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model,name:sale_commission_product_criteria.model_commission
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_account_invoice_line_agent__commission_id
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__commission_id
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_line_mixin__commission_id
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent__commission_id
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.commission_item_search
+msgid "Commission"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.commission_item_form_view
+msgid "Commission Computation"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model,name:sale_commission_product_criteria.model_commission_item
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.commission_item_form_view
+msgid "Commission Item"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,help:sale_commission_product_criteria.field_commission_item__applied_on
+msgid "Commission Item applicable on selected option"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.actions.act_window,name:sale_commission_product_criteria.commission_item_action
+#: model:ir.actions.act_window,name:sale_commission_product_criteria.commission_item_action_tree
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.commission_item_search
+msgid "Commission Items"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__commission_type
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent__commission_type
+msgid "Commission Type"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.ui.menu,name:sale_commission_product_criteria.menu_sale_commissions_items
+msgid "Commission Type Items"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__company_id
+msgid "Company"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.commission_item_form_view
+msgid "Compute Price"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent__discount
+msgid "Discount (%)"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.view_order_agent_form_inherit_sale_commission_product_criteria_mod
+msgid "Edit agents"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,help:sale_commission_product_criteria.field_commission_item__name
+#: model:ir.model.fields,help:sale_commission_product_criteria.field_sale_order_line_agent__applied_on_name
+msgid "Explicit rule name for this commission line."
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.view_sale_order_line_tree_mod
+msgid "Final Amount"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields.selection,name:sale_commission_product_criteria.selection__commission_item__commission_type__fixed
+msgid "Fixed"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__fixed_amount
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent__fixed_amount
+msgid "Fixed Amount"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.commission_item_search
+msgid "Group By"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission__item_ids
+msgid "Item"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model,name:sale_commission_product_criteria.model_commission_settlement_line
+msgid "Line of a commission settlement"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model,name:sale_commission_product_criteria.model_commission_line_mixin
+msgid ""
+"Mixin model for having commission agent lines in any object inheriting from "
+"this one"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__name
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent__applied_on_name
+msgid "Name"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields.selection,name:sale_commission_product_criteria.selection__commission_item__commission_type__percentage
+msgid "Percentage"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__percent_amount
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent__percent_amount
+msgid "Percentage Amount"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#. odoo-python
+#: code:addons/sale_commission_product_criteria/models/commission.py:0
+#, python-format
+msgid "Please specify the category for which this rule should be applied"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#. odoo-python
+#: code:addons/sale_commission_product_criteria/models/commission.py:0
+#, python-format
+msgid "Please specify the product for which this rule should be applied"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#. odoo-python
+#: code:addons/sale_commission_product_criteria/models/commission.py:0
+#, python-format
+msgid ""
+"Please specify the product variant for which this rule should be applied"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.view_sale_order_line_tree_mod
+msgid "Price Type"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__product_tmpl_id
+#: model:ir.model.fields.selection,name:sale_commission_product_criteria.selection__commission_item__applied_on__1_product
+msgid "Product"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__categ_id
+#: model:ir.model.fields.selection,name:sale_commission_product_criteria.selection__commission_item__applied_on__2_product_category
+msgid "Product Category"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__product_id
+#: model:ir.model.fields.selection,name:sale_commission_product_criteria.selection__commission_item__applied_on__0_product_variant
+msgid "Product Variant"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields.selection,name:sale_commission_product_criteria.selection__commission__commission_type__product
+msgid "Product criteria"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#. odoo-python
+#: code:addons/sale_commission_product_criteria/models/commission.py:0
+#, python-format
+msgid "Product: %s"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.sale_commission_form_lines_mod
+msgid "Rules"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model,name:sale_commission_product_criteria.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,help:sale_commission_product_criteria.field_commission__commission_type
+msgid ""
+"Select the percentage type of the commission:\n"
+"* 'Fixed percentage': all commissions are computed with a fixed percentage. You can fill the percentage in the field \"Fixed percentage\".\n"
+"* 'By sections': percentage varies depending amount intervals. You can fill intervals and percentages in the section \"Rate definition\"."
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,help:sale_commission_product_criteria.field_commission_item__categ_id
+msgid ""
+"Specify a product category if this rule only applies to products belonging "
+"to this category or its children categories. Keep empty otherwise."
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,help:sale_commission_product_criteria.field_commission_item__product_id
+msgid ""
+"Specify a product if this rule only applies to one product. Keep empty "
+"otherwise."
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,help:sale_commission_product_criteria.field_commission_item__product_tmpl_id
+msgid ""
+"Specify a template if this rule only applies to one product template. Keep "
+"empty otherwise."
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#. odoo-python
+#: code:addons/sale_commission_product_criteria/models/commission.py:0
+#, python-format
+msgid ""
+"There is done Sale Orders with this commission. Commission type change is "
+"not allowed."
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#. odoo-python
+#: code:addons/sale_commission_product_criteria/models/commission.py:0
+#, python-format
+msgid ""
+"There is posted Account Move Lines with this commission. Commission type "
+"change is not allowed."
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission__commission_type
+msgid "Type"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__commission_value
+msgid "Value"
+msgstr ""
+
+#. module: sale_commission_product_criteria
+#. odoo-python
+#: code:addons/sale_commission_product_criteria/models/commission.py:0
+#, python-format
+msgid "Variant: %s"
+msgstr ""
