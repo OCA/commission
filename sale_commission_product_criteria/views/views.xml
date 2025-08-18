@@ -14,7 +14,10 @@
         >sale.agent.order.inherit.form.sale_commission_product_criteria.mod</field>
         <field name="model">sale.order</field>
         <field name="priority" eval="99" />
-        <field name="inherit_id" ref="sale_commission_oca.view_order_agent_form_inherit" />
+        <field
+            name="inherit_id"
+            ref="sale_commission_oca.view_order_agent_form_inherit"
+        />
         <field name="arch" type="xml">
             <button name="button_edit_agents" position="replace">
                 <button
@@ -140,14 +143,12 @@
                                 for="percent_amount"
                                 invisible="commission_type != 'percentage'"
                             />
-                            <div
-                                invisible="commission_type != 'percentage'"
-                            >
+                            <div invisible="commission_type != 'percentage'">
                                 <field
-                                    name="percent_amount"
-                                    class="oe_inline"
-                                    invisible="commission_type != 'percentage'"
-                                />
+                                name="percent_amount"
+                                class="oe_inline"
+                                invisible="commission_type != 'percentage'"
+                            />
                                 %%
                             </div>
                         </group>
@@ -179,7 +180,10 @@
                 <field name="name" string="Applied On" />
                 <field name="commission_type" />
                 <field name="fixed_amount" invisible="commission_type != 'fixed'" />
-                <field name="percent_amount" invisible="commission_type != 'percentage'" />
+                <field
+                    name="percent_amount"
+                    invisible="commission_type != 'percentage'"
+                />
                 <field name="based_on" invisible="1" />
             </list>
         </field>
