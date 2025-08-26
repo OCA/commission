@@ -6,7 +6,7 @@ from odoo.exceptions import ValidationError
 from odoo.tools import float_repr
 
 
-class SaleCommission(models.Model):
+class Commission(models.Model):
     _inherit = "commission"
 
     commission_type = fields.Selection(
