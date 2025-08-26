@@ -12,10 +12,36 @@ class TestSaleCommission(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.commission_model = cls.env["commission"]
-        cls.company = cls.env.ref("base.main_company")
+        cls.company = cls.env.company
+        cls.pricelist = cls.env["product.pricelist"].create(
+            {
+                "name": "Test",
+                "currency_id": cls.company.currency_id.id,
+                "company_id": cls.company.id,
+            }
+        )
         cls.res_partner_model = cls.env["res.partner"]
-        cls.partner = cls.env.ref("base.res_partner_12")
-        cls.partner2 = cls.env.ref("base.res_partner_10")
+        cls.partner = cls.env["res.partner"].create(
+            {
+                "name": "Test partner 1",
+                "property_product_pricelist": cls.pricelist.id,
+                "agent_ids": [
+                    (
+                        6,
+                        0,
+                        cls.env.ref(
+                            "sale_commission_product_criteria.demo_agent_rules"
+                        ).ids,
+                    )
+                ],
+            }
+        )
+        cls.partner2 = cls.env["res.partner"].create(
+            {
+                "name": "Test partner 2",
+                "property_product_pricelist": cls.pricelist.id,
+            }
+        )
         cls.sale_order_model = cls.env["sale.order"]
         cls.advance_inv_model = cls.env["sale.advance.payment.inv"]
         cls.settle_model = cls.env["commission.settlement"]
@@ -34,7 +60,7 @@ class TestSaleCommission(TransactionCase):
         )
         cls.product_template_4.write({"invoice_policy": "order"})
         cls.journal = cls.env["account.journal"].search(
-            [("type", "=", "purchase")], limit=1
+            [("type", "=", "purchase"), ("company_id", "=", cls.company.id)], limit=1
         )
         cls.rules_commission_id = cls.env.ref(
             "sale_commission_oca_product_criteria.demo_commission_rules"

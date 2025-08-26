@@ -1,6 +1,7 @@
 # © 2023 ooops404
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
+
 from odoo import fields, models
 
 
@@ -18,61 +19,42 @@ class SaleCommissionLineMixin(models.AbstractModel):
         copy=True,
     )
 
-    def _commission_items_from(self):
-        return """ commission_item AS item
-            LEFT JOIN product_category AS categ ON item.categ_id = categ.id
-        """
-
-    def _commission_items_where(self):
-        return """ (item.product_tmpl_id IS NULL OR item.product_tmpl_id = any(%(prod_tmpls)s))
-            AND (item.product_id IS NULL OR item.product_id = any(%(prod_prods)s))
-            AND (item.categ_id IS NULL OR item.categ_id = any(%(categs)s))
-            AND (item.commission_id = %(commission)s)
-            AND (item.active = TRUE)
-        """
-
-    def _commission_items_order(self):
-        return """item.applied_on,
-            item.based_on,
-            categ.complete_name desc
-        """
-
-    def _commission_items_query(self):
-        return f"""
-            SELECT item.id
-            FROM {self._commission_items_from()}
-            WHERE {self._commission_items_where()}
-            ORDER BY {self._commission_items_order()}
-        """
-
-    def _commission_items_query_params(self, commission, product):
+    def _get_commission_items_domain(self, commission, product):
+        # Method replaced
         categ_ids = {}
         categ = product.categ_id
         while categ:
             categ_ids[categ.id] = True
             categ = categ.parent_id
         categ_ids = list(categ_ids)
-        return {
-            "prod_tmpls": product.product_tmpl_id.ids,
-            "prod_prods": product.ids,
-            "categs": categ_ids,
-            "commission": commission._origin.id,
-        }
+        return [
+            ("commission_id", "=", commission.id),
+            "|",
+            ("product_tmpl_id", "=", False),
+            ("product_tmpl_id", "=", product.product_tmpl_id.id),
+            "|",
+            ("product_id", "=", False),
+            ("product_id", "=", product.id),
+            "|",
+            ("categ_id", "=", False),
+            ("categ_id", "in", categ_ids),
+        ]
 
-    def _get_commission_items(self, commission, product):
-        self.env.cr.execute(
-            self._commission_items_query(),
-            self._commission_items_query_params(commission, product),
+    def _get_commission_item(self, commission, product):
+        # Select all suitable items. Order by best match
+        # (priority is: all/cat/subcat/product/variant).
+        # In future versions use filtered_domain. Note: not used in this
+        # version because exists a bug that is not returning the
+        # correct result.
+        return self.env["commission.item"].search(
+            self._get_commission_items_domain(commission, product), limit=1
         )
-        item_ids = [x[0] for x in self.env.cr.fetchall()]
-        return item_ids
 
     def _get_single_commission_amount(self, commission, subtotal, product, quantity):
         self.ensure_one()
-        item_ids = self._get_commission_items(commission, product)
-        if not item_ids:
+        commission_item = self._get_commission_item(commission, product)
+        if not commission_item:
             return 0.0
-        commission_item = self.env["commission.item"].browse(item_ids[0])
         if commission.amount_base_type == "net_amount":
             # If subtotal (sale_price * quantity) is less than
             # standard_price * quantity, it means that we are selling at
