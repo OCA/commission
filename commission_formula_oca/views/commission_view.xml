@@ -5,7 +5,6 @@
         <field name="model">commission</field>
         <field name="inherit_id" ref="commission.commission_form" />
         <field name="arch" type="xml">
-
             <xpath expr="//sheet/group[2]" position="after">
                 <group>
                     <group>
@@ -79,7 +78,6 @@
                     </group>
                 </group>
             </xpath>
-
         </field>
     </record>
 </odoo>
