@@ -19,8 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Weblate 5.6.2\n"
 
-#. module: commission_formula
-#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
+#. module: commission_formula_oca
+#: model_terms:ir.ui.view,arch_db:commission_formula_oca.commission_form
 msgid ""
 "<span class=\"instructions\">\n"
 "  Use 'line' to access all the line fields.\n"
@@ -33,44 +33,44 @@ msgid ""
 "                        </span>"
 msgstr ""
 
-#. module: commission_formula
-#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
+#. module: commission_formula_oca
+#: model_terms:ir.ui.view,arch_db:commission_formula_oca.commission_form
 msgid "Account Move Line common fields"
 msgstr "Hesap taşıma hattı ortak alanları"
 
-#. module: commission_formula
-#: model:ir.model,name:commission_formula.model_commission
+#. module: commission_formula_oca
+#: model:ir.model,name:commission_formula_oca.model_commission
 msgid "Commission"
 msgstr "Komisyon"
 
-#. module: commission_formula
-#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
+#. module: commission_formula_oca
+#: model_terms:ir.ui.view,arch_db:commission_formula_oca.commission_form
 msgid "Discount (%)"
 msgstr "İndirim (%)"
 
-#. module: commission_formula
-#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
+#. module: commission_formula_oca
+#: model_terms:ir.ui.view,arch_db:commission_formula_oca.commission_form
 msgid "Field"
 msgstr "Alan"
 
-#. module: commission_formula
-#: model:ir.model.fields,field_description:commission_formula.field_commission__formula
-#: model:ir.model.fields.selection,name:commission_formula.selection__commission__commission_type__formula
+#. module: commission_formula_oca
+#: model:ir.model.fields,field_description:commission_formula_oca.field_commission__formula
+#: model:ir.model.fields.selection,name:commission_formula_oca.selection__commission__commission_type__formula
 msgid "Formula"
 msgstr "Alan"
 
-#. module: commission_formula
-#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
+#. module: commission_formula_oca
+#: model_terms:ir.ui.view,arch_db:commission_formula_oca.commission_form
 msgid "Instructions"
 msgstr "Talimatlar"
 
-#. module: commission_formula
-#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
+#. module: commission_formula_oca
+#: model_terms:ir.ui.view,arch_db:commission_formula_oca.commission_form
 msgid "Label"
 msgstr "Etiket"
 
-#. module: commission_formula
-#: model:ir.model,name:commission_formula.model_commission_line_mixin
+#. module: commission_formula_oca
+#: model:ir.model,name:commission_formula_oca.model_commission_line_mixin
 msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
@@ -78,18 +78,18 @@ msgstr ""
 "Bunu kullanan herhangi bir nesnede komisyon temsilcisi satırlarına sahip \n"
 "olmak için mixin modeli"
 
-#. module: commission_formula
-#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
+#. module: commission_formula_oca
+#: model_terms:ir.ui.view,arch_db:commission_formula_oca.commission_form
 msgid "Quantity"
 msgstr "Miktar"
 
-#. module: commission_formula
-#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
+#. module: commission_formula_oca
+#: model_terms:ir.ui.view,arch_db:commission_formula_oca.commission_form
 msgid "Sale Oder Line common fields"
 msgstr "Satış Sipariş Satırı Ortak Alanları"
 
-#. module: commission_formula
-#: model:ir.model.fields,help:commission_formula.field_commission__commission_type
+#. module: commission_formula_oca
+#: model:ir.model.fields,help:commission_formula_oca.field_commission__commission_type
 msgid ""
 "Select the percentage type of the commission:\n"
 "* 'Fixed percentage': all commissions are computed with a fixed percentage. "
@@ -97,25 +97,23 @@ msgid ""
 "* 'By sections': percentage varies depending amount intervals. You can fill "
 "intervals and percentages in the section \"Rate definition\"."
 msgstr ""
-"Komisyonun oran tipini seçin:\\n"
-"\n"
+"Komisyonun oran tipini seçin:\\n\n"
 "* 'Sabit Oran': Tüm komisyonlar sabit oranla hesaplanır. Oranı \\\"Sabit "
-"oran\\ alanına girebilirsiniz.\\\".\\n"
-"\n"
+"oran\\ alanına girebilirsiniz.\\\".\\n\n"
 "* 'Bölümlere göre': Oran miktar aralıklarına bağlı olarak değişir. Miktar "
 "aralıklarını ve oranları \\\"Oran tanımı\\\" alanına girebilirsiniz ."
 
-#. module: commission_formula
-#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
+#. module: commission_formula_oca
+#: model_terms:ir.ui.view,arch_db:commission_formula_oca.commission_form
 msgid "Subtotal"
 msgstr "Ara toplam"
 
-#. module: commission_formula
-#: model:ir.model.fields,field_description:commission_formula.field_commission__commission_type
+#. module: commission_formula_oca
+#: model:ir.model.fields,field_description:commission_formula_oca.field_commission__commission_type
 msgid "Type"
 msgstr "Tür"
 
-#. module: commission_formula
-#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
+#. module: commission_formula_oca
+#: model_terms:ir.ui.view,arch_db:commission_formula_oca.commission_form
 msgid "Unit Price"
 msgstr "Birim Fiyatı"

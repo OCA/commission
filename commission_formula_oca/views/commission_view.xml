@@ -3,7 +3,7 @@
     <record id="commission_form" model="ir.ui.view">
         <field name="name">commission.form.inherit</field>
         <field name="model">commission</field>
-        <field name="inherit_id" ref="commission.commission_form" />
+        <field name="inherit_id" ref="commission_oca.commission_form" />
         <field name="arch" type="xml">
             <xpath expr="//sheet/group[2]" position="after">
                 <group>

@@ -19,8 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.10.4\n"
 
-#. module: commission_formula
-#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
+#. module: commission_formula_oca
+#: model_terms:ir.ui.view,arch_db:commission_formula_oca.commission_form
 msgid ""
 "<span class=\"instructions\">\n"
 "  Use 'line' to access all the line fields.\n"
@@ -42,44 +42,44 @@ msgstr ""
 "  Utilizzare 'result' per restituire l'importo della provvigione.\n"
 "                        </span>"
 
-#. module: commission_formula
-#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
+#. module: commission_formula_oca
+#: model_terms:ir.ui.view,arch_db:commission_formula_oca.commission_form
 msgid "Account Move Line common fields"
 msgstr "Campi comuni righe movimenti contabili"
 
-#. module: commission_formula
-#: model:ir.model,name:commission_formula.model_commission
+#. module: commission_formula_oca
+#: model:ir.model,name:commission_formula_oca.model_commission
 msgid "Commission"
 msgstr "Provvigione"
 
-#. module: commission_formula
-#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
+#. module: commission_formula_oca
+#: model_terms:ir.ui.view,arch_db:commission_formula_oca.commission_form
 msgid "Discount (%)"
 msgstr "Sconto (%)"
 
-#. module: commission_formula
-#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
+#. module: commission_formula_oca
+#: model_terms:ir.ui.view,arch_db:commission_formula_oca.commission_form
 msgid "Field"
 msgstr "Campo"
 
-#. module: commission_formula
-#: model:ir.model.fields,field_description:commission_formula.field_commission__formula
-#: model:ir.model.fields.selection,name:commission_formula.selection__commission__commission_type__formula
+#. module: commission_formula_oca
+#: model:ir.model.fields,field_description:commission_formula_oca.field_commission__formula
+#: model:ir.model.fields.selection,name:commission_formula_oca.selection__commission__commission_type__formula
 msgid "Formula"
 msgstr "Formula"
 
-#. module: commission_formula
-#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
+#. module: commission_formula_oca
+#: model_terms:ir.ui.view,arch_db:commission_formula_oca.commission_form
 msgid "Instructions"
 msgstr "Istruzioni"
 
-#. module: commission_formula
-#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
+#. module: commission_formula_oca
+#: model_terms:ir.ui.view,arch_db:commission_formula_oca.commission_form
 msgid "Label"
 msgstr "Etichetta"
 
-#. module: commission_formula
-#: model:ir.model,name:commission_formula.model_commission_line_mixin
+#. module: commission_formula_oca
+#: model:ir.model,name:commission_formula_oca.model_commission_line_mixin
 msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
@@ -87,18 +87,18 @@ msgstr ""
 "Modello mixin per avere righe di provvigione agente in qualsiasi oggetto che "
 "erediti dall'attuale"
 
-#. module: commission_formula
-#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
+#. module: commission_formula_oca
+#: model_terms:ir.ui.view,arch_db:commission_formula_oca.commission_form
 msgid "Quantity"
 msgstr "Quantità"
 
-#. module: commission_formula
-#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
+#. module: commission_formula_oca
+#: model_terms:ir.ui.view,arch_db:commission_formula_oca.commission_form
 msgid "Sale Oder Line common fields"
 msgstr "Campi comuni righe ordini di vendita"
 
-#. module: commission_formula
-#: model:ir.model.fields,help:commission_formula.field_commission__commission_type
+#. module: commission_formula_oca
+#: model:ir.model.fields,help:commission_formula_oca.field_commission__commission_type
 msgid ""
 "Select the percentage type of the commission:\n"
 "* 'Fixed percentage': all commissions are computed with a fixed percentage. "
@@ -113,18 +113,18 @@ msgstr ""
 "* 'Per sezioni': la percentuale varia per intervalli dell'importo. Si può "
 "impostare gli intervalli nella sezione \"Definizione provvigioni\"."
 
-#. module: commission_formula
-#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
+#. module: commission_formula_oca
+#: model_terms:ir.ui.view,arch_db:commission_formula_oca.commission_form
 msgid "Subtotal"
 msgstr "Subtotale"
 
-#. module: commission_formula
-#: model:ir.model.fields,field_description:commission_formula.field_commission__commission_type
+#. module: commission_formula_oca
+#: model:ir.model.fields,field_description:commission_formula_oca.field_commission__commission_type
 msgid "Type"
 msgstr "Tipo"
 
-#. module: commission_formula
-#: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
+#. module: commission_formula_oca
+#: model_terms:ir.ui.view,arch_db:commission_formula_oca.commission_form
 msgid "Unit Price"
 msgstr "Prezzo unitario"
 
