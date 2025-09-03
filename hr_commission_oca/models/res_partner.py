@@ -2,7 +2,7 @@
 # Copyright 2021 Tecnativa - Jo??o Marques
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 
 class ResPartner(models.Model):
@@ -45,7 +45,7 @@ class ResPartner(models.Model):
         for partner in self:
             if partner.agent_type == "salesman" and not partner.employee_id:
                 raise exceptions.ValidationError(
-                    _(
+                    self.env._(
                         "There must one (and only one) employee linked to this "
                         "partner. To do this, go to 'Employees' and create an "
                         "Employee with a 'Related User' under 'HR Settings'."

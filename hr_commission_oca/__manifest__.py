@@ -3,12 +3,12 @@
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 {
-    "name": "HR commissions",
+    "name": "HR commissions OCA",
     "version": "18.0.1.0.0",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/commission",
     "category": "Commissions",
-    "depends": ["account_commission", "hr"],
+    "depends": ["account_commission_oca", "hr"],
     "license": "AGPL-3",
     "data": [
         "views/res_partner_view.xml",

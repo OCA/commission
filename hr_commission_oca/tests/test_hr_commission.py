@@ -2,8 +2,9 @@
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import exceptions
+from odoo.tests import new_test_user
 
-from odoo.addons.commission.tests.test_commission import TestCommissionBase
+from odoo.addons.commission_oca.tests.test_commission import TestCommissionBase
 
 
 class TestHrCommission(TestCommissionBase):
@@ -11,8 +12,8 @@ class TestHrCommission(TestCommissionBase):
     def setUpClass(cls):
         super().setUpClass()
         cls.employee = cls.env["hr.employee"].create({"name": "Test employee"})
-        cls.user = cls.env["res.users"].create(
-            {"name": "Test user", "login": "test_hr_commission@example.org"}
+        cls.user = new_test_user(
+            cls.env, name="Test user", login="test_hr_commission@example.org"
         )
         cls.partner = cls.user.partner_id
 

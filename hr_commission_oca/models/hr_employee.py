@@ -1,7 +1,7 @@
 # Copyright 2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo import _, exceptions, models
+from odoo import exceptions, models
 
 
 class HrEmployee(models.Model):
@@ -13,7 +13,7 @@ class HrEmployee(models.Model):
             for emp in self:
                 if emp.user_id.partner_id.agent_type == "salesman":
                     raise exceptions.ValidationError(
-                        _(
+                        self.env._(
                             "You can't remove the user, as it's linked to "
                             "a commission agent."
                         )
