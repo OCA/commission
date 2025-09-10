@@ -1,7 +1,7 @@
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 
 class ResPartner(models.Model):
@@ -19,5 +19,7 @@ class ResPartner(models.Model):
         for record in self:
             if record.salesman_as_agent and not record.commission_id:
                 raise exceptions.ValidationError(
-                    _("You can't have a salesman auto-agent without commission.")
+                    self.env._(
+                        "You can't have a salesman auto-agent without commission."
+                    )
                 )

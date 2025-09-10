@@ -2,10 +2,12 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import exceptions
-from odoo.tests import Form, TransactionCase
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleCommissionSalesman(TransactionCase):
+class TestSaleCommissionSalesman(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

@@ -3,12 +3,12 @@
 
 {
     "name": "Sales commissions from salesman",
-    "version": "17.0.1.0.1",
-    "author": "Tecnativa, " "Odoo Community Association (OCA)",
+    "version": "18.0.1.0.0",
+    "author": "Tecnativa, Odoo Community Association (OCA)",
     "category": "Sales",
     "website": "https://github.com/OCA/commission",
     "license": "AGPL-3",
-    "depends": ["sale_commission"],
+    "depends": ["sale_commission_oca"],
     "data": ["views/res_partner_views.xml"],
     "installable": True,
 }
