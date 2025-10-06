@@ -1,10 +1,12 @@
 [project]
 name = "odoo-addons-oca-commission"
-version = "18.0.20250506.0"
+version = "18.0.20250916.0"
 dependencies = [
     "odoo-addon-account_commission_oca==18.0.*",
     "odoo-addon-commission_oca==18.0.*",
+    "odoo-addon-hr_commission_oca==18.0.*",
     "odoo-addon-sale_commission_oca==18.0.*",
+    "odoo-addon-sale_commission_salesman==18.0.*",
 ]
 classifiers=[
     "Programming Language :: Python",
