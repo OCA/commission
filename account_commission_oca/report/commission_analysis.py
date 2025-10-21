@@ -94,8 +94,8 @@ class InvoiceCommissionAnalysisReport(models.Model):
 
     @api.model
     def init(self):
-        tools.drop_view_if_exists(self._cr, self._table)
-        self._cr.execute(
+        tools.drop_view_if_exists(self.env.cr, self._table)
+        self.env.cr.execute(
             "CREATE or REPLACE VIEW %s AS ( %s FROM ( %s ) %s )",
             (
                 AsIs(self._table),

@@ -5,6 +5,7 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Command
 from odoo.tools import groupby
 
 
@@ -58,10 +59,13 @@ class CommissionSettlement(models.Model):
         self.write({"state": "settled"})
 
     def unlink(self):
-        """Allow to delete only cancelled settlements."""
-        if any(x.state == "invoiced" for x in self):
-            raise UserError(self.env._("You can't delete invoiced settlements."))
         return super().unlink()
+
+    @api.ondelete(at_uninstall=False)
+    def _check_can_delete(self):
+        """Check if any settlement is cancelled"""
+        if any(x.state == "invoiced" for x in self):
+            raise UserError(self.env._("You can't delete invoiced settlement"))
 
     def action_invoice(self):
         return {
@@ -74,7 +78,7 @@ class CommissionSettlement(models.Model):
         }
 
     def _get_invoice_partner(self):
-        return fields.first(self).agent_id
+        return self[0].agent_id
 
     def _prepare_invoice(self, journal, product, date=False):
         partner = self._get_invoice_partner()
@@ -101,9 +105,7 @@ class CommissionSettlement(models.Model):
             date_from = fields.Date.from_string(settlement.date_from)
             date_to = fields.Date.from_string(settlement.date_to)
             vals["invoice_line_ids"].append(
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "product_id": product.id,
                         "quantity": -1 if settlement.total < 0 else 1,
@@ -118,7 +120,7 @@ class CommissionSettlement(models.Model):
                         # todo or compute agent currency_id?
                         "currency_id": settlement.currency_id.id,
                         "settlement_id": settlement.id,
-                    },
+                    }
                 )
             )
         return vals

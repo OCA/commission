@@ -15,7 +15,6 @@
                     <p
                         colspan="4"
                     >(keep empty for invoicing all the pending settlements)</p>
-                    <field name="from_settlement" invisible="1" />
                     <group>
                         <field name="grouped" />
                     </group>

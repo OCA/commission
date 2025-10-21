@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 =======================
 Account commissions OCA
 =======================
@@ -13,17 +17,17 @@ Account commissions OCA
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fcommission-lightgray.png?logo=github
-    :target: https://github.com/OCA/commission/tree/18.0/account_commission_oca
+    :target: https://github.com/OCA/commission/tree/19.0/account_commission_oca
     :alt: OCA/commission
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/commission-18-0/commission-18-0-account_commission_oca
+    :target: https://translation.odoo-community.org/projects/commission-19-0/commission-19-0-account_commission_oca
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/commission&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/commission&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -49,10 +53,10 @@ For selecting invoice status in commissions:
 1. Edit or create a new record to select the invoice status for settling
    the commissions.
 
-   - **Invoice Based**: Commissions are settled when the invoice is
-     issued.
-   - **Payment Based**: Commissions are settled when the invoice is
-     paid.
+   -  **Invoice Based**: Commissions are settled when the invoice is
+      issued.
+   -  **Payment Based**: Commissions are settled when the invoice is
+      paid.
 
 Usage
 =====
@@ -81,12 +85,13 @@ For invoicing the settlements (only for external agents):
 1. Go to *Invoicing > Commissions > Create Commission Invoices*.
 2. On the window that appears, you can select following data:
 
-   - Product. It should be a service product for being coherent.
-   - Journal: To be selected between existing purchase journals.
-   - Date: If you want to choose a specific invoice date. You can leave
-     it blank if you prefer.
-   - Settlements: For selecting specific settlements to invoice. You can
-     leave it blank as well for invoicing all the pending settlements.
+   -  Product. It should be a service product for being coherent.
+   -  Journal: To be selected between existing purchase journals.
+   -  Date: If you want to choose a specific invoice date. You can leave
+      it blank if you prefer.
+   -  Settlements: For selecting specific settlements to invoice. You
+      can leave it blank as well for invoicing all the pending
+      settlements.
 
 If you want to invoice a/some specific settlement/s:
 
@@ -102,7 +107,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/commission/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/commission/issues/new?body=module:%20account_commission_oca%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/commission/issues/new?body=module:%20account_commission_oca%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -117,34 +122,35 @@ Authors
 Contributors
 ------------
 
-- Pexego.
-- Davide Corio <davide.corio@domsense.com>
-- Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>
-- Sandy Carter <sandy.carter@savoirfairelinux.com>
-- Giorgio Borelli <giorgio.borelli@abstract.it>
-- Daniel Campos <danielcampos@avanzosc.es>
-- Oihane Crucelaegui <oihanecruce@gmail.com>
-- Nicola Malcontenti <nicola.malcontenti@agilebg.com>
-- Aitor Bouzas <aitor.bouzas@adaptivecity.com>
-- Alexei Rivera <arivera@archeti.com>
-- Mina Samir <minaw349@outlook.com>
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  Pexego.
+-  Davide Corio <davide.corio@domsense.com>
+-  Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>
+-  Sandy Carter <sandy.carter@savoirfairelinux.com>
+-  Giorgio Borelli <giorgio.borelli@abstract.it>
+-  Daniel Campos <danielcampos@avanzosc.es>
+-  Oihane Crucelaegui <oihanecruce@gmail.com>
+-  Nicola Malcontenti <nicola.malcontenti@agilebg.com>
+-  Aitor Bouzas <aitor.bouzas@adaptivecity.com>
+-  Alexei Rivera <arivera@archeti.com>
+-  Mina Samir <minaw349@outlook.com>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Pedro M. Baeza
-  - Manuel Calero
+   -  Pedro M. Baeza
+   -  Manuel Calero
 
-- `Quartile <https://www.quartile.co>`__:
+-  `Quartile <https://www.quartile.co>`__:
 
-  - Aung Ko Ko Lin
-  - Yoshi Tashiro
+   -  Aung Ko Ko Lin
+   -  Yoshi Tashiro
 
-- `Studio73 <https://www.studio73.es>`__:
+-  `Studio73 <https://www.studio73.es>`__:
 
-  - Ethan Hildick
+   -  Ethan Hildick
+   -  Pablo Cortés
 
-- `Sygel <https://www.sygel.es>`__:
+-  `Sygel <https://www.sygel.es>`__:
 
-  - Alberto Martínez
+   -  Alberto Martínez
 
 Maintainers
 -----------
@@ -167,6 +173,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-pedrobaeza| 
 
-This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/18.0/account_commission_oca>`_ project on GitHub.
+This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/19.0/account_commission_oca>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

@@ -4,6 +4,7 @@
 
 
 from odoo import fields, models
+from odoo.fields import Domain
 
 
 class CommissionMakeSettle(models.TransientModel):
@@ -15,12 +16,14 @@ class CommissionMakeSettle(models.TransientModel):
     )
 
     def _get_account_settle_domain(self, agent, date_to_agent):
-        return [
-            ("invoice_date", "<", date_to_agent),
-            ("agent_id", "=", agent.id),
-            ("settled", "=", False),
-            ("object_id.display_type", "=", "product"),
-        ]
+        return Domain.AND(
+            [
+                Domain("invoice_date", "<", date_to_agent),
+                Domain("agent_id", "=", agent.id),
+                Domain("settled", "=", False),
+                Domain("object_id.display_type", "=", "product"),
+            ]
+        )
 
     def _get_agent_lines(self, agent, date_to_agent):
         """Filter sales invoice agent lines for this type of settlement."""

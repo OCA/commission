@@ -4,6 +4,7 @@
 
 
 from odoo import api, exceptions, fields, models
+from odoo.fields import Command, Domain
 
 
 class AccountMove(models.Model):
@@ -33,7 +34,7 @@ class AccountMove(models.Model):
         action["context"] = {}
         settlements = self.mapped("settlement_ids")
         if not settlements or len(settlements) > 1:
-            action["domain"] = [("id", "in", settlements.ids)]
+            action["domain"] = Domain("id", "in", settlements.ids)
         elif len(settlements) == 1:
             res = self.env.ref("commission_oca.view_settlement_form", False)
             action["views"] = [(res and res.id or False, "form")]
@@ -49,16 +50,15 @@ class AccountMove(models.Model):
     @api.depends("partner_agent_ids", "invoice_line_ids.agent_ids.agent_id")
     def _compute_agents(self):
         for move in self:
-            move.partner_agent_ids = [
-                (6, 0, move.mapped("invoice_line_ids.agent_ids.agent_id").ids)
-            ]
+            agent_ids = move.mapped("invoice_line_ids.agent_ids.agent_id").ids
+            move.partner_agent_ids = [Command.set(agent_ids)]
 
     @api.model
     def _search_agents(self, operator, value):
         ail_agents = self.env["account.invoice.line.agent"].search(
             [("agent_id", operator, value)]
         )
-        return [("id", "in", ail_agents.mapped("object_id.move_id").ids)]
+        return Domain("id", "in", ail_agents.mapped("invoice_id").ids)
 
     @api.depends("line_ids.agent_ids.amount")
     def _compute_commission_total(self):

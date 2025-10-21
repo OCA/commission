@@ -7,6 +7,7 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
+from odoo.fields import Command
 from odoo.tests import tagged
 
 from odoo.addons.commission_oca.tests.test_commission import TestCommissionBase
@@ -19,6 +20,14 @@ class TestAccountCommission(TestCommissionBase):
         super().setUpClass()
         cls.journal = cls.env["account.journal"].search(
             [("type", "=", "purchase"), ("company_id", "=", cls.company.id)], limit=1
+        )
+        cls.cash_journal = cls.env["account.journal"].create(
+            {
+                "name": "Test Cash Journal",
+                "type": "cash",
+                "code": "CSH1",
+                "company_id": cls.company.id,
+            }
         )
         cls.commission_net_paid.write({"invoice_state": "paid"})
         cls.commission_net_invoice = cls.commission_model.create(
@@ -64,16 +73,12 @@ class TestAccountCommission(TestCommissionBase):
             "move_type": "out_invoice",
             "partner_id": self.partner.id,
             "invoice_line_ids": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "product_id": self.product.id,
                         "agent_ids": [
-                            (
-                                0,
-                                0,
-                                {"agent_id": agent.id, "commission_id": commission.id},
+                            Command.create(
+                                {"agent_id": agent.id, "commission_id": commission.id}
                             )
                         ],
                     },
@@ -120,14 +125,10 @@ class TestAccountCommission(TestCommissionBase):
         invoice = self._process_invoice_and_settle(agent, commission, period, order)
         settlements = self.settle_model.search([("state", "=", "settled")])
         self.assertEqual(len(settlements), initial_count)
-        journal = self.env["account.journal"].search(
-            [("type", "=", "cash"), ("company_id", "=", invoice.company_id.id)],
-            limit=1,
-        )
         register_payments = (
             self.env["account.payment.register"]
             .with_context(active_ids=invoice.id, active_model="account.move")
-            .create({"journal_id": journal.id})
+            .create({"journal_id": self.cash_journal.id})
         )
         register_payments.action_create_payments()
         self.assertEqual(invoice.partner_agent_ids.ids, agent.ids)
@@ -149,7 +150,7 @@ class TestAccountCommission(TestCommissionBase):
 
     def test_commission_gross_amount(self):
         settlements = self._check_settlements(
-            self.env.ref("commission_oca.res_partner_pritesh_sale_agent"),
+            self.agent_monthly,
             self.commission_section_paid,
         )
         # Check report print - It shouldn't fail
@@ -160,7 +161,7 @@ class TestAccountCommission(TestCommissionBase):
 
     def test_account_commission_gross_amount_payment(self):
         self._check_invoice_thru_settle(
-            self.env.ref("commission_oca.res_partner_pritesh_sale_agent"),
+            self.agent_monthly,
             self.commission_section_paid,
             1,
             0,
@@ -180,7 +181,7 @@ class TestAccountCommission(TestCommissionBase):
     def test_account_commission_gross_amount_invoice(self):
         self._process_invoice_and_settle(
             self.agent_quaterly,
-            self.env.ref("commission_oca.demo_commission"),
+            self.commission_section_invoice,
             1,
         )
         settlements = self.settle_model.search([("state", "=", "invoiced")])
@@ -196,7 +197,7 @@ class TestAccountCommission(TestCommissionBase):
         # Make sure user is in English
         self.env.user.lang = "en_US"
         invoice = self._create_invoice(
-            self.env.ref("commission_oca.res_partner_pritesh_sale_agent"),
+            self.agent_monthly,
             self.commission_section_invoice,
         )
         self.assertIn("1", invoice.invoice_line_ids[0].commission_status)
@@ -204,24 +205,16 @@ class TestAccountCommission(TestCommissionBase):
         invoice.mapped("invoice_line_ids.agent_ids").unlink()
         self.assertIn("No", invoice.invoice_line_ids[0].commission_status)
         invoice.invoice_line_ids[0].agent_ids = [
-            (
-                0,
-                0,
+            Command.create(
                 {
-                    "agent_id": self.env.ref(
-                        "commission_oca.res_partner_pritesh_sale_agent"
-                    ).id,
-                    "commission_id": self.env.ref("commission_oca.demo_commission").id,
+                    "agent_id": self.agent_monthly.id,
+                    "commission_id": self.commission_net_invoice.id,
                 },
             ),
-            (
-                0,
-                0,
+            Command.create(
                 {
-                    "agent_id": self.env.ref(
-                        "commission_oca.res_partner_eiffel_sale_agent"
-                    ).id,
-                    "commission_id": self.env.ref("commission_oca.demo_commission").id,
+                    "agent_id": self.agent_quaterly.id,
+                    "commission_id": self.commission_net_paid.id,
                 },
             ),
         ]
@@ -246,9 +239,7 @@ class TestAccountCommission(TestCommissionBase):
                     "partner_id": self.partner.id,
                     "ref": "sale_comission_TEST",
                     "invoice_line_ids": [
-                        (
-                            0,
-                            0,
+                        Command.create(
                             {
                                 "product_id": self.product.id,
                                 "quantity": 1,
@@ -270,9 +261,7 @@ class TestAccountCommission(TestCommissionBase):
                     "move_type": "out_invoice",
                     "partner_id": self.partner.id,
                     "invoice_line_ids": [
-                        (
-                            0,
-                            0,
+                        Command.create(
                             {
                                 "product_id": self.product.id,
                                 "quantity": 1,
@@ -444,7 +433,7 @@ class TestAccountCommission(TestCommissionBase):
 
     def test_account_commission_single_settlement_ids(self):
         settlement = self._check_invoice_thru_settle(
-            self.env.ref("commission_oca.res_partner_pritesh_sale_agent"),
+            self.agent_monthly,
             self.commission_section_paid,
             1,
             0,

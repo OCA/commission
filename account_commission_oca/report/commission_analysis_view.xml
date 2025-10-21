@@ -56,14 +56,14 @@
                 <field name="agent_id" />
                 <field name="partner_id" />
                 <field name="product_id" />
-                <group expand="0" string="Extended Filters">
+                <group>
                     <field
                         name="categ_id"
                         filter_domain="[('categ_id', 'child_of', self)]"
                     />
                     <field name="company_id" groups="base.group_multi_company" />
                 </group>
-                <group expand="1" string="Group By">
+                <group>
                     <filter
                         string="Agent"
                         name="Agent"
