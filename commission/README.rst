@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===========
 Commissions
 ===========
@@ -17,7 +13,7 @@ Commissions
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fcommission-lightgray.png?logo=github
@@ -41,6 +37,10 @@ enable the following:
 
 You can define which base amount is going to be taken into account: net
 amount (based on margin) or gross amount (line subtotal amount).
+
+Additional feature provided by this module:
+
+- Adds a grouped settlement report by date.
 
 **Table of contents**
 
@@ -169,6 +169,11 @@ Contributors
 - `Studio73 <https://www.studio73.es>`__:
 
   - Ethan Hildick
+
+- `Sygel <https://www.sygel.es/>`__:
+
+  - Valentín Vinagre
+  - Ángel Rivas
 
 Maintainers
 -----------

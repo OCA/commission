@@ -7,3 +7,7 @@ enable the following:
 
 You can define which base amount is going to be taken into account: net
 amount (based on margin) or gross amount (line subtotal amount).
+
+Additional feature provided by this module:
+
+- Adds a grouped settlement report by date.

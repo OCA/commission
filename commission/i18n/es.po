@@ -4,17 +4,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-05-08 17:35+0000\n"
-"Last-Translator: luis-ron <luis.ron@sygel.es>\n"
-"Language-Team: none\n"
+"POT-Creation-Date: 2025-10-30 07:59+0000\n"
+"PO-Revision-Date: 2025-10-30 09:01+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: commission
 #. odoo-python
@@ -39,32 +40,29 @@ msgstr "1 agente comisionado"
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid ""
 "<span>\n"
-"                        No automatic settlements can be made. Install any "
-"extra\n"
+"                        No automatic settlements can be made. Install any extra\n"
 "                        commission module for having this feature enabled.\n"
 "                    </span>"
 msgstr ""
 "<span>\n"
-"                        No se pueden realizar liquidaciones automáticas. "
-"Instale cualquier\n"
-"                        módulo de comisión adicional para tener esta función "
-"activada.\n"
+"                        No se pueden realizar liquidaciones automáticas. Instale cualquier\n"
+"                        módulo de comisión adicional para tener esta función activada.\n"
 "                    </span>"
 
 #. module: commission
-#: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>From:</strong>"
 msgstr "<strong>De:</strong>"
 
 #. module: commission
-#: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>To:</strong>"
 msgstr "<strong>Para:</strong>"
 
 #. module: commission
-#: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>Total</strong>"
-msgstr "<strong>Total</strong>"
+msgstr ""
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__message_needaction
@@ -100,10 +98,8 @@ msgstr "Icono de Tipo de Actividad"
 #: model:ir.model.fields,field_description:commission.field_commission_line_mixin__agent_id
 #: model:ir.model.fields,field_description:commission.field_commission_make_settle__agent_ids
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__agent_id
-#: model:ir.model.fields,field_description:commission.field_commission_settlement_line__agent_id
-#: model_terms:ir.ui.view,arch_db:commission.view_partner_form_agent
-#: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_search
-#: model_terms:ir.ui.view,arch_db:commission.view_settlement_search
+#: model:ir.model.fields,field_description:commission.field_commission_settlement_line__agent_id model_terms:ir.ui.view,arch_db:commission.view_partner_form_agent
+#: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_search model_terms:ir.ui.view,arch_db:commission.view_settlement_search
 msgid "Agent"
 msgstr "Agente"
 
@@ -119,12 +115,9 @@ msgstr "Información del agente"
 
 #. module: commission
 #. odoo-python
-#: code:addons/commission/models/commission_mixin.py:0
-#: model:ir.actions.act_window,name:commission.action_agent_form
-#: model:ir.model.fields,field_description:commission.field_res_partner__agent_ids
-#: model:ir.model.fields,field_description:commission.field_res_users__agent_ids
-#: model:ir.ui.menu,name:commission.menu_agent_form
-#: model_terms:ir.ui.view,arch_db:commission.res_partner_view_search
+#: code:addons/commission/models/commission_mixin.py:0 model:ir.actions.act_window,name:commission.action_agent_form
+#: model:ir.model.fields,field_description:commission.field_res_partner__agent_ids model:ir.model.fields,field_description:commission.field_res_users__agent_ids
+#: model:ir.ui.menu,name:commission.menu_agent_form model_terms:ir.ui.view,arch_db:commission.res_partner_view_search
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 #, python-format
 msgid "Agents"
@@ -146,7 +139,7 @@ msgid "Allows to handle commission related stuff."
 msgstr "Permite gestionar asuntos relacionados con las comisiones."
 
 #. module: commission
-#: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "Amount settled"
 msgstr "Importe liquidado"
 
@@ -191,8 +184,7 @@ msgid "Can Settle"
 msgstr "Puede Liquidar"
 
 #. module: commission
-#: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
-#: model_terms:ir.ui.view,arch_db:commission.view_settlement_form
+#: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard model_terms:ir.ui.view,arch_db:commission.view_settlement_form
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -202,29 +194,25 @@ msgid "Canceled"
 msgstr "Cancelado"
 
 #. module: commission
-#: model:ir.model.fields,help:commission.field_res_partner__agent
-#: model:ir.model.fields,help:commission.field_res_users__agent
+#: model:ir.model.fields,help:commission.field_res_partner__agent model:ir.model.fields,help:commission.field_res_users__agent
 msgid "Check this field if the partner is a creditor or an agent."
 msgstr "Marque este campo si el socio es acreedor o un agente."
 
 #. module: commission
 #. odoo-python
-#: code:addons/commission/models/commission_mixin.py:0
-#: model:ir.model.fields,field_description:commission.field_commission_mixin__commission_free
+#: code:addons/commission/models/commission_mixin.py:0 model:ir.model.fields,field_description:commission.field_commission_mixin__commission_free
 #, python-format
 msgid "Comm. free"
 msgstr "Libre de comisión"
 
 #. module: commission
-#: model:ir.model,name:commission.model_commission
-#: model:ir.model.fields,field_description:commission.field_commission_line_mixin__commission_id
+#: model:ir.model,name:commission.model_commission model:ir.model.fields,field_description:commission.field_commission_line_mixin__commission_id
 #: model:ir.model.fields,field_description:commission.field_commission_mixin__commission_status
 #: model:ir.model.fields,field_description:commission.field_commission_section__commission_id
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line__commission_id
 #: model:ir.model.fields,field_description:commission.field_res_partner__commission_id
-#: model:ir.model.fields,field_description:commission.field_res_users__commission_id
-#: model_terms:ir.ui.view,arch_db:commission.commission_form
-#: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
+#: model:ir.model.fields,field_description:commission.field_res_users__commission_id model_terms:ir.ui.view,arch_db:commission.commission_form
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "Commission"
 msgstr "Comisión"
 
@@ -244,14 +232,12 @@ msgid "Commission section"
 msgstr "Sección de comisión"
 
 #. module: commission
-#: model:ir.actions.act_window,name:commission.action_commission
-#: model:ir.ui.menu,name:commission.menu_commission_type
+#: model:ir.actions.act_window,name:commission.action_commission model:ir.ui.menu,name:commission.menu_commission_type
 msgid "Commission types"
 msgstr "Tipos de comisión"
 
 #. module: commission
-#: model:ir.module.category,name:commission.module_category_commission
-#: model:ir.ui.menu,name:commission.menu_commission
+#: model:ir.module.category,name:commission.module_category_commission model:ir.ui.menu,name:commission.menu_commission
 msgid "Commissions"
 msgstr "Comisiones"
 
@@ -297,8 +283,7 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: commission
-#: model:ir.model.fields,field_description:commission.field_res_partner__agent
-#: model:ir.model.fields,field_description:commission.field_res_users__agent
+#: model:ir.model.fields,field_description:commission.field_res_partner__agent model:ir.model.fields,field_description:commission.field_res_users__agent
 msgid "Creditor/Agent"
 msgstr "Acreedor/Agente"
 
@@ -311,7 +296,7 @@ msgstr "Divisa"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line__date
-#: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "Date"
 msgstr "Fecha"
 
@@ -383,10 +368,19 @@ msgid "General information"
 msgstr "Información general"
 
 #. module: commission
-#: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_search
-#: model_terms:ir.ui.view,arch_db:commission.view_settlement_search
+#: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_search model_terms:ir.ui.view,arch_db:commission.view_settlement_search
 msgid "Group By"
 msgstr "Agrupado Por"
+
+#. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
+msgid "Grouped Settlement"
+msgstr "Liquidación agrupada"
+
+#. module: commission
+#: model:ir.actions.report,name:commission.action_grouped_report_settlement
+msgid "Grouped settlement report"
+msgstr "Informe de liquidación agrupado"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__has_message
@@ -394,10 +388,8 @@ msgid "Has Message"
 msgstr "Tiene Mensaje"
 
 #. module: commission
-#: model:ir.model.fields,field_description:commission.field_commission__id
-#: model:ir.model.fields,field_description:commission.field_commission_make_settle__id
-#: model:ir.model.fields,field_description:commission.field_commission_section__id
-#: model:ir.model.fields,field_description:commission.field_commission_settlement__id
+#: model:ir.model.fields,field_description:commission.field_commission__id model:ir.model.fields,field_description:commission.field_commission_make_settle__id
+#: model:ir.model.fields,field_description:commission.field_commission_section__id model:ir.model.fields,field_description:commission.field_commission_settlement__id
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line__id
 msgid "ID"
 msgstr "ID (identificación)"
@@ -463,7 +455,7 @@ msgstr "Gerente"
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__commission_settlement__settlement_type__manual
 msgid "Manual"
-msgstr "Manual"
+msgstr ""
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__commission__amount_base_type__net_amount
@@ -483,18 +475,12 @@ msgstr "Mensajes"
 #. module: commission
 #: model:ir.model,name:commission.model_commission_mixin
 msgid "Mixin model for applying to any object that wants to handle commissions"
-msgstr ""
-"Modelo de mezclador para aplicar a cualquier objeto que quiera gestionar "
-"comisiones"
+msgstr "Modelo de mezclador para aplicar a cualquier objeto que quiera gestionar comisiones"
 
 #. module: commission
 #: model:ir.model,name:commission.model_commission_line_mixin
-msgid ""
-"Mixin model for having commission agent lines in any object inheriting from "
-"this one"
-msgstr ""
-"Modelo de mezclador para tener líneas de comisionista en cualquier objeto "
-"que herede de éste"
+msgid "Mixin model for having commission agent lines in any object inheriting from this one"
+msgstr "Modelo mixin para tener líneas de agente de comisiones en cualquier objeto heredando de éste"
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__monthly
@@ -507,10 +493,14 @@ msgid "My Activity Deadline"
 msgstr "Fecha Límite de mi Actividad"
 
 #. module: commission
-#: model:ir.model.fields,field_description:commission.field_commission__name
-#: model:ir.model.fields,field_description:commission.field_commission_settlement__name
+#: model:ir.model.fields,field_description:commission.field_commission__name model:ir.model.fields,field_description:commission.field_commission_settlement__name
 msgid "Name"
 msgstr "Nombre"
+
+#. module: commission
+#: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_date_deadline
@@ -565,8 +555,7 @@ msgid "Percent"
 msgstr "Porcentaje"
 
 #. module: commission
-#: model:ir.model,name:commission.model_product_template
-#: model:ir.model.fields,field_description:commission.field_commission_mixin__product_id
+#: model:ir.model,name:commission.model_product_template model:ir.model.fields,field_description:commission.field_commission_mixin__product_id
 msgid "Product"
 msgstr "Producto"
 
@@ -604,16 +593,12 @@ msgstr "Secciones"
 #: model:ir.model.fields,help:commission.field_commission__amount_base_type
 msgid ""
 "Select the base amount for computing the percentage:\n"
-"* 'Sale/Invoice Amount': percentage is computed from the amount put on sales "
-"order/invoice.\n"
-"* 'Margin (Amount - Cost)': percentage is computed from the profit only, "
-"taken the cost from the product."
+"* 'Sale/Invoice Amount': percentage is computed from the amount put on sales order/invoice.\n"
+"* 'Margin (Amount - Cost)': percentage is computed from the profit only, taken the cost from the product."
 msgstr ""
 "Seleccione el importe base para calcular el porcentaje:\n"
-"* 'Importe Venta/Factura': el porcentaje se computa a partir del importe "
-"puesto en la orden de venta/factura.\n"
-"* Margen (Importe - Coste)\": el porcentaje se calcula únicamente a partir "
-"del beneficio, teniendo en cuenta el coste del producto."
+"* 'Importe Venta/Factura': el porcentaje se computa a partir del importe puesto en la orden de venta/factura.\n"
+"* Margen (Importe - Coste)\": el porcentaje se calcula únicamente a partir del beneficio, teniendo en cuenta el coste del producto."
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
@@ -624,17 +609,12 @@ msgstr "Seleccione la fecha hasta la que desea realizar las liquidaciones:"
 #: model:ir.model.fields,help:commission.field_commission__commission_type
 msgid ""
 "Select the percentage type of the commission:\n"
-"* 'Fixed percentage': all commissions are computed with a fixed percentage. "
-"You can fill the percentage in the field \"Fixed percentage\".\n"
-"* 'By sections': percentage varies depending amount intervals. You can fill "
-"intervals and percentages in the section \"Rate definition\"."
+"* 'Fixed percentage': all commissions are computed with a fixed percentage. You can fill the percentage in the field \"Fixed percentage\".\n"
+"* 'By sections': percentage varies depending amount intervals. You can fill intervals and percentages in the section \"Rate definition\"."
 msgstr ""
 "Seleccione el tipo de porcentaje de la comisión:\n"
-"* \"Porcentaje fijo\": todas las comisiones se computan con un porcentaje "
-"fijo. Puede rellenar el porcentaje en el campo \"Porcentaje fijo\".\n"
-"* 'Por tramos': el porcentaje varía en función de los intervalos de importe. "
-"Puede rellenar los intervalos y porcentajes en el apartado \"Definición de "
-"la tarifa\"."
+"* \"Porcentaje fijo\": todas las comisiones se computan con un porcentaje fijo. Puede rellenar el porcentaje en el campo \"Porcentaje fijo\".\n"
+"* 'Por tramos': el porcentaje varía en función de los intervalos de importe. Puede rellenar los intervalos y porcentajes en el apartado \"Definición de la tarifa\"."
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__semi
@@ -642,8 +622,7 @@ msgid "Semi-annual"
 msgstr "Semi-anual"
 
 #. module: commission
-#: model:ir.actions.act_window,name:commission.action_agents_settlement
-#: model:ir.ui.menu,name:commission.menu_commission_make_settle
+#: model:ir.actions.act_window,name:commission.action_agents_settlement model:ir.ui.menu,name:commission.menu_commission_make_settle
 msgid "Settle Commissions"
 msgstr "Liquidar Comisiones"
 
@@ -663,18 +642,15 @@ msgid "Settled Amount"
 msgstr "Importe Liquidado"
 
 #. module: commission
-#: model_terms:ir.ui.view,arch_db:commission.view_partner_form_agent
-#: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_tree
+#: model_terms:ir.ui.view,arch_db:commission.view_partner_form_agent model_terms:ir.ui.view,arch_db:commission.view_settlement_line_tree
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_tree
 msgid "Settled total"
 msgstr "Total liquidado"
 
 #. module: commission
-#: model:ir.model,name:commission.model_commission_settlement
-#: model:ir.model.fields,field_description:commission.field_commission_settlement_line__settlement_id
+#: model:ir.model,name:commission.model_commission_settlement model:ir.model.fields,field_description:commission.field_commission_settlement_line__settlement_id
 #: model:ir.model.fields,field_description:commission.field_res_partner__settlement_ids
-#: model:ir.model.fields,field_description:commission.field_res_users__settlement_ids
-#: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
+#: model:ir.model.fields,field_description:commission.field_res_users__settlement_ids model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_form
 msgid "Settlement"
 msgstr "Liquidación"
@@ -702,8 +678,7 @@ msgid "Settlement lines search"
 msgstr "Búsqueda de líneas de liquidación"
 
 #. module: commission
-#: model:ir.model.fields,field_description:commission.field_res_partner__settlement
-#: model:ir.model.fields,field_description:commission.field_res_users__settlement
+#: model:ir.model.fields,field_description:commission.field_res_partner__settlement model:ir.model.fields,field_description:commission.field_res_users__settlement
 msgid "Settlement period"
 msgstr "Período de liquidación"
 
@@ -718,10 +693,8 @@ msgid "Settlement search"
 msgstr "Búsqueda de liquidación"
 
 #. module: commission
-#: model:ir.actions.act_window,name:commission.action_commission_settlement
-#: model:ir.ui.menu,name:commission.menu_settlement
-#: model:ir.ui.menu,name:commission.menu_settlement_parent
-#: model_terms:ir.ui.view,arch_db:commission.view_partner_form_agent
+#: model:ir.actions.act_window,name:commission.action_commission_settlement model:ir.ui.menu,name:commission.menu_settlement
+#: model:ir.ui.menu,name:commission.menu_settlement_parent model_terms:ir.ui.view,arch_db:commission.view_partner_form_agent
 msgid "Settlements"
 msgstr "Liquidaciones"
 
@@ -750,11 +723,8 @@ msgstr "Campo técnico para determinar si el usuario puede editar liquidaciones"
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_make_settle__can_settle
-msgid ""
-"Technical field for improving UX when no extra *commission is installed."
-msgstr ""
-"Campo técnico para mejorar la UX cuando no se instala ninguna *comisión "
-"adicional."
+msgid "Technical field for improving UX when no extra *commission is installed."
+msgstr "Campo técnico para mejorar la UX cuando no se instala ninguna *comisión adicional."
 
 #. module: commission
 #. odoo-python
@@ -765,26 +735,16 @@ msgstr "El límite inferior no puede ser mayor que el superior."
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__settlement_type
-msgid ""
-"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase "
-"order'..."
-msgstr ""
-"El origen de la liquidación, por ejemplo, 'Factura de venta','Pedido de "
-"venta', 'Pedido de compra'..."
+msgid "The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase order'..."
+msgstr "El origen de la liquidación, por ejemplo, 'Factura de venta','Pedido de venta', 'Pedido de compra'..."
 
 #. module: commission
-#: model:ir.model.fields,help:commission.field_res_partner__commission_id
-#: model:ir.model.fields,help:commission.field_res_users__commission_id
-msgid ""
-"This is the default commission used in the sales where this agent is "
-"assigned. It can be changed on each operation if needed."
-msgstr ""
-"Esta es la comisión por defecto utilizada en las ventas donde este agente "
-"está asignado. Se puede cambiar en cada operación si es necesario."
+#: model:ir.model.fields,help:commission.field_res_partner__commission_id model:ir.model.fields,help:commission.field_res_users__commission_id
+msgid "This is the default commission used in the sales where this agent is assigned. It can be changed on each operation if needed."
+msgstr "Esta es la comisión por defecto utilizada en las ventas donde este agente está asignado. Se puede cambiar en cada operación si es necesario."
 
 #. module: commission
-#: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_search
-#: model_terms:ir.ui.view,arch_db:commission.view_settlement_search
+#: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_search model_terms:ir.ui.view,arch_db:commission.view_settlement_search
 msgid "This year"
 msgstr "Este año"
 
@@ -802,8 +762,7 @@ msgstr "Total"
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__commission_type
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__agent_type
-#: model:ir.model.fields,field_description:commission.field_res_partner__agent_type
-#: model:ir.model.fields,field_description:commission.field_res_users__agent_type
+#: model:ir.model.fields,field_description:commission.field_res_partner__agent_type model:ir.model.fields,field_description:commission.field_res_users__agent_type
 msgid "Type"
 msgstr "Tipo"
 
@@ -823,16 +782,6 @@ msgid "User"
 msgstr "Usuario"
 
 #. module: commission
-#: model:ir.model.fields,field_description:commission.field_commission_settlement__website_message_ids
-msgid "Website Messages"
-msgstr "Mensajes de la Página Web"
-
-#. module: commission
-#: model:ir.model.fields,help:commission.field_commission_settlement__website_message_ids
-msgid "Website communication history"
-msgstr "Historial de la comunicación en la página web"
-
-#. module: commission
 #: model:ir.model,name:commission.model_commission_make_settle
 msgid "Wizard for settling commissions"
 msgstr "Asistente para liquidación de comisiones"
@@ -848,18 +797,3 @@ msgstr "Sólo puede añadir una vez cada agente."
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid "or"
 msgstr "o"
-
-#~ msgid "SMS Delivery error"
-#~ msgstr "Error en la entrega de sms"
-
-#~ msgid "Last Modified on"
-#~ msgstr "??ltima Modificaci??n el"
-
-#~ msgid "Main Attachment"
-#~ msgstr "Archivo Adjunto Principal"
-
-#~ msgid "Gross Amount"
-#~ msgstr "Importe Bruto"
-
-#~ msgid "Net Amount"
-#~ msgstr "Importe Neto"
