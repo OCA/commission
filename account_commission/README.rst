@@ -36,6 +36,9 @@ agents.
 
 This module depends on the commission module.
 
+Additionally, it extends the grouped settlement report from the
+commission module to include a grouping by invoice
+
 **Table of contents**
 
 .. contents::
@@ -49,10 +52,10 @@ For selecting invoice status in commissions:
 1. Edit or create a new record to select the invoice status for settling
    the commissions.
 
-   -  **Invoice Based**: Commissions are settled when the invoice is
-      issued.
-   -  **Payment Based**: Commissions are settled when the invoice is
-      paid.
+   - **Invoice Based**: Commissions are settled when the invoice is
+     issued.
+   - **Payment Based**: Commissions are settled when the invoice is
+     paid.
 
 Usage
 =====
@@ -81,13 +84,12 @@ For invoicing the settlements (only for external agents):
 1. Go to *Invoicing > Commissions > Create Commission Invoices*.
 2. On the window that appears, you can select following data:
 
-   -  Product. It should be a service product for being coherent.
-   -  Journal: To be selected between existing purchase journals.
-   -  Date: If you want to choose a specific invoice date. You can leave
-      it blank if you prefer.
-   -  Settlements: For selecting specific settlements to invoice. You
-      can leave it blank as well for invoicing all the pending
-      settlements.
+   - Product. It should be a service product for being coherent.
+   - Journal: To be selected between existing purchase journals.
+   - Date: If you want to choose a specific invoice date. You can leave
+     it blank if you prefer.
+   - Settlements: For selecting specific settlements to invoice. You can
+     leave it blank as well for invoicing all the pending settlements.
 
 If you want to invoice a/some specific settlement/s:
 
@@ -118,34 +120,36 @@ Authors
 Contributors
 ------------
 
--  Pexego.
--  Davide Corio <davide.corio@domsense.com>
--  Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>
--  Sandy Carter <sandy.carter@savoirfairelinux.com>
--  Giorgio Borelli <giorgio.borelli@abstract.it>
--  Daniel Campos <danielcampos@avanzosc.es>
--  Oihane Crucelaegui <oihanecruce@gmail.com>
--  Nicola Malcontenti <nicola.malcontenti@agilebg.com>
--  Aitor Bouzas <aitor.bouzas@adaptivecity.com>
--  Alexei Rivera <arivera@archeti.com>
--  Mina Samir <minaw349@outlook.com>
--  `Tecnativa <https://www.tecnativa.com>`__:
+- Pexego.
+- Davide Corio <davide.corio@domsense.com>
+- Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>
+- Sandy Carter <sandy.carter@savoirfairelinux.com>
+- Giorgio Borelli <giorgio.borelli@abstract.it>
+- Daniel Campos <danielcampos@avanzosc.es>
+- Oihane Crucelaegui <oihanecruce@gmail.com>
+- Nicola Malcontenti <nicola.malcontenti@agilebg.com>
+- Aitor Bouzas <aitor.bouzas@adaptivecity.com>
+- Alexei Rivera <arivera@archeti.com>
+- Mina Samir <minaw349@outlook.com>
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-   -  Pedro M. Baeza
-   -  Manuel Calero
+  - Pedro M. Baeza
+  - Manuel Calero
 
--  `Quartile <https://www.quartile.co>`__:
+- `Quartile <https://www.quartile.co>`__:
 
-   -  Aung Ko Ko Lin
-   -  Yoshi Tashiro
+  - Aung Ko Ko Lin
+  - Yoshi Tashiro
 
--  `Studio73 <https://www.studio73.es>`__:
+- `Studio73 <https://www.studio73.es>`__:
 
-   -  Ethan Hildick
+  - Ethan Hildick
 
--  `Sygel <https://www.sygel.es>`__:
+- `Sygel <https://www.sygel.es>`__:
 
-   -  Alberto Martínez
+  - Alberto Martínez
+  - Valentín Vinagre
+  - Ángel Rivas
 
 Maintainers
 -----------
