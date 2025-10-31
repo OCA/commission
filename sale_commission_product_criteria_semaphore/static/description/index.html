@@ -370,7 +370,11 @@ ul.auto-toc {
 !! source digest: sha256:5382ae9bf9d612dabb6d846f0dbf3657ffbd48e948007bf06a93d3e06abe6114
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/commission/tree/15.0/sale_commission_product_criteria_semaphore"><img alt="OCA/commission" src="https://img.shields.io/badge/github-OCA%2Fcommission-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/commission-15-0/commission-15-0-sale_commission_product_criteria_semaphore"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/commission&amp;target_branch=15.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module allows applying commissions by product/category and by semaphore status.</p>
+<p>This module extends <tt class="docutils literal">sale_commission_product_criteria</tt> so commission rules can
+also be filtered by semaphore status.</p>
+<p>With it, you can keep the usual product/category-based rules and add more
+specific percentages for lines marked as green, yellow or red in
+<tt class="docutils literal">sale_semaphore</tt>. Generic rules without semaphore remain valid as a fallback.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -386,8 +390,25 @@ ul.auto-toc {
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-1">Usage</a></h1>
-<p>To use this module see sale_commission_product_criteria.</p>
-<p>In the lines of commision, is added a new field semaphore, that allows you to add percentages by semaphore status.</p>
+<p>To use this module:</p>
+<ol class="arabic simple">
+<li>Install <tt class="docutils literal">sale_commission_product_criteria_semaphore</tt> together with its
+dependencies.</li>
+<li>Go to <strong>Commissions &gt; Configuration &gt; Commission types</strong> and open or create a
+commission of type <em>Product criteria</em>.</li>
+<li>Add commission items as usual and optionally set a <strong>Semaphore</strong> value on
+each line:<ul>
+<li>empty semaphore: fallback rule that applies to any line.</li>
+<li><tt class="docutils literal">🟢</tt> success: applies only to green lines.</li>
+<li><tt class="docutils literal">🟡</tt> warning: applies only to yellow lines.</li>
+<li><tt class="docutils literal">🔴</tt> danger: applies only to red lines.</li>
+</ul>
+</li>
+<li>When commissions are generated, the module evaluates both the product
+criteria and the semaphore of the source line.</li>
+<li>Settlement lines keep the semaphore value, and the settlement report shows
+totals grouped by semaphore color.</li>
+</ol>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h1>

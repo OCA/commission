@@ -10,7 +10,11 @@
     "category": "Sales Management",
     "license": "AGPL-3",
     "depends": ["sale_commission_product_criteria", "sale_semaphore"],
-    "data": ["views/commission_item_views.xml"],
+    "data": [
+        "reports/report_settlement_templates.xml",
+        "views/commission_item_views.xml",
+        "views/commission_settlement_views.xml",
+    ],
     "application": False,
     "installable": True,
     "auto_install": False,

@@ -28,7 +28,12 @@ Sale Commission Product Criteria Semaphore
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows applying commissions by product/category and by semaphore status.
+This module extends ``sale_commission_product_criteria`` so commission rules can
+also be filtered by semaphore status.
+
+With it, you can keep the usual product/category-based rules and add more
+specific percentages for lines marked as green, yellow or red in
+``sale_semaphore``. Generic rules without semaphore remain valid as a fallback.
 
 **Table of contents**
 
@@ -38,9 +43,24 @@ This module allows applying commissions by product/category and by semaphore sta
 Usage
 =====
 
-To use this module see sale_commission_product_criteria.
+To use this module:
 
-In the lines of commision, is added a new field semaphore, that allows you to add percentages by semaphore status.
+#. Install ``sale_commission_product_criteria_semaphore`` together with its
+   dependencies.
+#. Go to **Commissions > Configuration > Commission types** and open or create a
+   commission of type *Product criteria*.
+#. Add commission items as usual and optionally set a **Semaphore** value on
+   each line:
+
+   * empty semaphore: fallback rule that applies to any line.
+   * ``🟢`` success: applies only to green lines.
+   * ``🟡`` warning: applies only to yellow lines.
+   * ``🔴`` danger: applies only to red lines.
+
+#. When commissions are generated, the module evaluates both the product
+   criteria and the semaphore of the source line.
+#. Settlement lines keep the semaphore value, and the settlement report shows
+   totals grouped by semaphore color.
 
 Bug Tracker
 ===========
