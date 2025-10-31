@@ -39,9 +39,15 @@
                     <table class="table table-sm" name="invoice_line_table">
                         <thead>
                             <tr>
-                                <th class="text-start">Date</th>
-                                <th class="text-start">Commission</th>
-                                <th class="text-end">Amount settled</th>
+                                <th name="th_date" class="text-start">Date</th>
+                                <th
+                                    name="th_commission"
+                                    class="text-start"
+                                >Commission</th>
+                                <th
+                                    name="th_amount"
+                                    class="text-end"
+                                >Amount settled</th>
                             </tr>
                         </thead>
                         <tbody>
