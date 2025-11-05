@@ -3,6 +3,7 @@
 # Copyright 2016-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
+from odoo.fields import Command
 from odoo.tests import Form, tagged
 
 from odoo.addons.account_commission_oca.tests.test_account_commission import (
@@ -26,7 +27,7 @@ class TestSaleCommission(TestAccountCommission):
             line_form.product_id = self.product
         order = order_form.save()
         order.order_line.agent_ids = [
-            (0, 0, {"agent_id": agent.id, "commission_id": commission.id})
+            Command.create({"agent_id": agent.id, "commission_id": commission.id})
         ]
         return order
 
@@ -35,7 +36,7 @@ class TestSaleCommission(TestAccountCommission):
         wizard = self.advance_inv_model.create(
             {
                 "advance_payment_method": "delivered",
-                "sale_order_ids": [(4, sale_order.id)],
+                "sale_order_ids": [Command.link(sale_order.id)],
             }
         )
         wizard.create_invoices()
@@ -62,7 +63,7 @@ class TestSaleCommission(TestAccountCommission):
 
     def test_sale_commission_gross_amount_payment(self):
         self._check_full(
-            self.env.ref("commission_oca.res_partner_pritesh_sale_agent"),
+            self.agent_monthly,
             self.commission_section_paid,
             1,
             0,
@@ -72,7 +73,7 @@ class TestSaleCommission(TestAccountCommission):
         # Make sure user is in English
         self.env.user.lang = "en_US"
         sale_order = self._create_sale_order(
-            self.env.ref("commission_oca.res_partner_pritesh_sale_agent"),
+            self.agent_monthly,
             self.commission_section_invoice,
         )
         self.assertIn("1", sale_order.order_line[0].commission_status)
@@ -80,24 +81,16 @@ class TestSaleCommission(TestAccountCommission):
         sale_order.mapped("order_line.agent_ids").unlink()
         self.assertIn("No", sale_order.order_line[0].commission_status)
         sale_order.order_line[0].agent_ids = [
-            (
-                0,
-                0,
+            Command.create(
                 {
-                    "agent_id": self.env.ref(
-                        "commission_oca.res_partner_pritesh_sale_agent"
-                    ).id,
-                    "commission_id": self.env.ref("commission_oca.demo_commission").id,
-                },
+                    "agent_id": self.agent_monthly.id,
+                    "commission_id": self.commission_section_invoice.id,
+                }
             ),
-            (
-                0,
-                0,
+            Command.create(
                 {
-                    "agent_id": self.env.ref(
-                        "commission_oca.res_partner_eiffel_sale_agent"
-                    ).id,
-                    "commission_id": self.env.ref("commission_oca.demo_commission").id,
+                    "agent_id": self.agent_quaterly.id,
+                    "commission_id": self.commission_section_invoice.id,
                 },
             ),
         ]

@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.fields import Command, Domain
 
 
 class SaleOrder(models.Model):
@@ -28,16 +29,16 @@ class SaleOrder(models.Model):
     @api.depends("partner_agent_ids", "order_line.agent_ids.agent_id")
     def _compute_agents(self):
         for so in self:
-            so.partner_agent_ids = [
-                (6, 0, so.mapped("order_line.agent_ids.agent_id").ids)
-            ]
+            agents = so.mapped("order_line.agent_ids.agent_id")
+            so.partner_agent_ids = [Command.set(agents.ids)]
 
     @api.model
     def _search_agents(self, operator, value):
         sol_agents = self.env["sale.order.line.agent"].search(
             [("agent_id", operator, value)]
         )
-        return [("id", "in", sol_agents.mapped("object_id.order_id").ids)]
+        agent_ids = sol_agents.object_id.order_id.ids
+        return Domain("id", "in", agent_ids)
 
     def recompute_lines_agents(self):
         self.mapped("order_line").recompute_agents()
@@ -54,7 +55,7 @@ class SaleOrderLine(models.Model):
 
     @api.depends("order_id.partner_id")
     def _compute_agent_ids(self):
-        self.agent_ids = False  # for resetting previous agents
+        self.agent_ids = False
         for record in self:
             if record.order_id.partner_id and not record.commission_free:
                 record.agent_ids = record._prepare_agents_vals_partner(
@@ -64,7 +65,9 @@ class SaleOrderLine(models.Model):
     def _prepare_invoice_line(self, **optional_values):
         vals = super()._prepare_invoice_line(**optional_values)
         vals["agent_ids"] = [
-            (0, 0, {"agent_id": x.agent_id.id, "commission_id": x.commission_id.id})
+            Command.create(
+                {"agent_id": x.agent_id.id, "commission_id": x.commission_id.id}
+            )
             for x in self.agent_ids
         ]
         return vals
