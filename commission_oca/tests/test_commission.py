@@ -66,7 +66,7 @@ class TestCommissionBase(TransactionCase):
             }
         )
         cls.res_partner_model = cls.env["res.partner"]
-        cls.partner = cls.env.ref("base.res_partner_2")
+        cls.partner = cls.res_partner_model.create({"name": "Agent for tests"})
         cls.partner.write({"agent": False})
         cls.settle_model = cls.env["commission.settlement"]
         cls.make_settle_model = cls.env["commission.make.settle"]
@@ -112,11 +112,10 @@ class TestCommissionBase(TransactionCase):
     def _get_make_settle_vals(self, agent=None, period=None, date=None):
         vals = {
             "date_to": (
-                fields.Datetime.from_string(fields.Datetime.now())
-                + relativedelta(months=period)
-            )
-            if period
-            else date,
+                (fields.Datetime.now() + relativedelta(months=period))
+                if period
+                else date
+            ),
         }
         if agent:
             vals["agent_ids"] = [(4, agent.id)]

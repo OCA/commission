@@ -2,11 +2,11 @@
 # Copyright 2014-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from datetime import date, timedelta
-from itertools import groupby
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
+from odoo.tools import groupby
 
 
 class CommissionMakeSettle(models.TransientModel):
@@ -164,7 +164,7 @@ class CommissionMakeSettle(models.TransientModel):
         # go to results
         if len(settlement_ids):
             return {
-                "name": _("Created Settlements"),
+                "name": self.env._("Created Settlements"),
                 "type": "ir.actions.act_window",
                 "views": [[False, "list"], [False, "form"]],
                 "res_model": "commission.settlement",

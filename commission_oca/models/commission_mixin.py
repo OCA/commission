@@ -1,7 +1,7 @@
 # Copyright 2018-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class CommissionMixin(models.AbstractModel):
@@ -60,14 +60,14 @@ class CommissionMixin(models.AbstractModel):
     def _compute_commission_status(self):
         for line in self:
             if line.commission_free:
-                line.commission_status = _("Comm. free")
+                line.commission_status = self.env._("Comm. free")
             elif len(line.agent_ids) == 0:
-                line.commission_status = _("No commission agents")
+                line.commission_status = self.env._("No commission agents")
             elif len(line.agent_ids) == 1:
-                line.commission_status = _("1 commission agent")
+                line.commission_status = self.env._("1 commission agent")
             else:
-                line.commission_status = _("%s commission agents") % (
-                    len(line.agent_ids),
+                line.commission_status = self.env._(
+                    "%s commission agents", len(line.agent_ids)
                 )
 
     def recompute_agents(self):
@@ -77,7 +77,7 @@ class CommissionMixin(models.AbstractModel):
         self.ensure_one()
         view = self.env.ref("commission_oca.view_commission_mixin_agent_only")
         return {
-            "name": _("Agents"),
+            "name": self.env._("Agents"),
             "type": "ir.actions.act_window",
             "view_mode": "form",
             "res_model": self._name,
@@ -97,13 +97,10 @@ class CommissionLineMixin(models.AbstractModel):
     )
     _rec_name = "agent_id"
 
-    _sql_constraints = [
-        (
-            "unique_agent",
-            "UNIQUE(object_id, agent_id)",
-            "You can only add one time each agent.",
-        )
-    ]
+    _unique_agent = models.Constraint(
+        "UNIQUE(object_id, agent_id)",
+        "You can only add one time each agent.",
+    )
 
     object_id = fields.Many2one(
         comodel_name="commission.mixin",
