@@ -5,7 +5,6 @@
         <field name="model">commission.make.settle</field>
         <field name="arch" type="xml">
             <form string="Settle commissions">
-                <field name="can_settle" invisible="1" />
                 <div
                     class="alert alert-warning text-center"
                     invisible="(can_settle == True)"

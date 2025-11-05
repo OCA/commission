@@ -17,7 +17,6 @@
                     options="{'currency_field': 'currency_id'}"
                 />
                 <field name="state" />
-                <field name="currency_id" column_invisible="1" />
             </list>
         </field>
     </record>
@@ -36,7 +35,7 @@
                     domain="[('date_from', '&gt;=', time.strftime('%%Y-01-01')), ('date_to', '&lt;=', time.strftime('%%Y-12-31'))]"
                 />
                 <separator />
-                <group expand="1" string="Group By">
+                <group>
                     <filter
                         string="Agent"
                         name="group_agent"
@@ -66,8 +65,6 @@
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
-                    <field name="can_edit" invisible="1" />
-
                     <group readonly="not can_edit">
                         <group colspan="2">
                             <field name="agent_id" />
@@ -86,7 +83,6 @@
                                 name="currency_id"
                                 groups="base.group_multi_currency"
                             />
-                            <field name="agent_type" invisible="1" />
                         </group>
                     </group>
                     <group string="Commission lines">
@@ -144,7 +140,7 @@
                     domain="['|', ('date', '=', False), '&amp;',('date','&lt;=', time.strftime('%%Y-12-31')),('date','&gt;=',time.strftime('%%Y-01-01'))]"
                 />
                 <separator />
-                <group expand="1" string="Group By">
+                <group>
                     <filter
                         string="Agent"
                         name="group_agent"

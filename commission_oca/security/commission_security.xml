@@ -8,18 +8,29 @@
             <field name="description">Allows to handle commission related stuff.</field>
             <field name="sequence">8</field>
         </record>
+        <record model="res.groups.privilege" id="res_groups_privilege_commission">
+            <field name="name">Commissions</field>
+            <field name="category_id" ref="commission_oca.module_category_commission" />
+            <field name="sequence">8</field>
+        </record>
         <record id="group_commission_user" model="res.groups">
             <field name="name">User</field>
-            <field name="category_id" ref="module_category_commission" />
+            <field
+                name="privilege_id"
+                ref="commission_oca.res_groups_privilege_commission"
+            />
             <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
         </record>
         <record id="group_commission_manager" model="res.groups">
             <field name="name">Manager</field>
-            <field name="category_id" ref="module_category_commission" />
+            <field
+                name="privilege_id"
+                ref="commission_oca.res_groups_privilege_commission"
+            />
             <field name="implied_ids" eval="[(4, ref('group_commission_user'))]" />
         </record>
         <record id="base.user_admin" model="res.users">
-            <field name="groups_id" eval="[(4, ref('group_commission_manager'))]" />
+            <field name="group_ids" eval="[(4, ref('group_commission_manager'))]" />
         </record>
         <record id="base.group_system" model="res.groups">
             <field name="implied_ids" eval="[(4, ref('group_commission_manager'))]" />

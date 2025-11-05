@@ -1,7 +1,7 @@
 # Copyright 2016-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 
 class Commission(models.Model):
@@ -72,5 +72,5 @@ class CommissionSection(models.Model):
         for section in self:
             if section.amount_to < section.amount_from:
                 raise exceptions.ValidationError(
-                    _("The lower limit cannot be greater than upper one.")
+                    self.env._("The lower limit cannot be greater than upper one.")
                 )

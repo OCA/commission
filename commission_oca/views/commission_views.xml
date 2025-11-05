@@ -27,7 +27,6 @@
                     <group string="General information">
                         <group>
                             <field name="name" />
-                            <field name="active" invisible="1" />
                         </group>
                         <group name="commision_params">
                             <field name="commission_type" />

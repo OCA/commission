@@ -21,13 +21,13 @@ Commissions OCA
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fcommission-lightgray.png?logo=github
-    :target: https://github.com/OCA/commission/tree/18.0/commission_oca
+    :target: https://github.com/OCA/commission/tree/19.0/commission_oca
     :alt: OCA/commission
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/commission-18-0/commission-18-0-commission_oca
+    :target: https://translation.odoo-community.org/projects/commission-19-0/commission-19-0-commission_oca
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/commission&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/commission&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -35,9 +35,9 @@ Commissions OCA
 This module provides the base functions for commission operations to
 enable the following:
 
-- Define agents with their commissions
-- Assign agents to partners
-- Create settlements to summarize commissions for certain periods
+-  Define agents with their commissions
+-  Assign agents to partners
+-  Create settlements to summarize commissions for certain periods
 
 You can define which base amount is going to be taken into account: net
 amount (based on margin) or gross amount (line subtotal amount).
@@ -57,19 +57,19 @@ For adding commissions:
 3. Select a name for distinguishing that type.
 4. Select the percentage type of the commission:
 
-   - **Fixed percentage**: all commissions are computed with a fixed
-     percentage. You can fill the percentage in the field "Fixed
-     percentage".
-   - **By sections**: percentage varies depending amount intervals. You
-     can fill intervals and percentages in the section "Rate
-     definition".
+   -  **Fixed percentage**: all commissions are computed with a fixed
+      percentage. You can fill the percentage in the field "Fixed
+      percentage".
+   -  **By sections**: percentage varies depending amount intervals. You
+      can fill intervals and percentages in the section "Rate
+      definition".
 
 5. Select the base amount for computing the percentage:
 
-   - **Sale/Invoice Amount**: percentage is computed from the amount put
-     on sales order/invoice.
-   - **Margin (Amount - Cost)**: percentage is computed from the profit
-     only, taken the cost from the product.
+   -  **Sale/Invoice Amount**: percentage is computed from the amount
+      put on sales order/invoice.
+   -  **Margin (Amount - Cost)**: percentage is computed from the profit
+      only, taken the cost from the product.
 
 For adding new agents:
 
@@ -84,12 +84,12 @@ For adding new agents:
 4. There's a new page called "Agent information". In it, you can set
    following data:
 
-   - The agent type, being in this base module "External agent" the only
-     existing configuration. It can be extended with hr_commission
-     module for setting an "Employee" agent type.
-   - The associated commission type.
-   - The settlement period, where you can select "Bi-weekly", "Monthly",
-     "Quaterly", "Semi-annual" or "Annual".
+   -  The agent type, being in this base module "External agent" the
+      only existing configuration. It can be extended with hr_commission
+      module for setting an "Employee" agent type.
+   -  The associated commission type.
+   -  The settlement period, where you can select "Bi-weekly",
+      "Monthly", "Quaterly", "Semi-annual" or "Annual".
 
    You will also be able to see the settlements that have been made to
    this agent from this page.
@@ -121,9 +121,9 @@ For settling the commissions to agents:
 Known issues / Roadmap
 ======================
 
-- Make it totally multi-company aware.
-- Set agent popup window with a kanban view with richer information and
-  mobile friendly.
+-  Make it totally multi-company aware.
+-  Set agent popup window with a kanban view with richer information and
+   mobile friendly.
 
 Bug Tracker
 ===========
@@ -131,7 +131,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/commission/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/commission/issues/new?body=module:%20commission_oca%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/commission/issues/new?body=module:%20commission_oca%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -146,31 +146,32 @@ Authors
 Contributors
 ------------
 
-- Pexego.
-- Davide Corio <davide.corio@domsense.com>
-- Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>
-- Sandy Carter <sandy.carter@savoirfairelinux.com>
-- Giorgio Borelli <giorgio.borelli@abstract.it>
-- Daniel Campos <danielcampos@avanzosc.es>
-- Oihane Crucelaegui <oihanecruce@gmail.com>
-- Nicola Malcontenti <nicola.malcontenti@agilebg.com>
-- Aitor Bouzas <aitor.bouzas@adaptivecity.com>
-- Alexei Rivera <arivera@archeti.com>
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  Pexego.
+-  Davide Corio <davide.corio@domsense.com>
+-  Joao Alfredo Gama Batista <joao.gama@savoirfairelinux.com>
+-  Sandy Carter <sandy.carter@savoirfairelinux.com>
+-  Giorgio Borelli <giorgio.borelli@abstract.it>
+-  Daniel Campos <danielcampos@avanzosc.es>
+-  Oihane Crucelaegui <oihanecruce@gmail.com>
+-  Nicola Malcontenti <nicola.malcontenti@agilebg.com>
+-  Aitor Bouzas <aitor.bouzas@adaptivecity.com>
+-  Alexei Rivera <arivera@archeti.com>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Pedro M. Baeza
-  - Manuel Calero
+   -  Pedro M. Baeza
+   -  Manuel Calero
 
-- `Quartile <https://www.quartile.co>`__:
+-  `Quartile <https://www.quartile.co>`__:
 
-  - Aung Ko Ko Lin
-  - Yoshi Tashiro
+   -  Aung Ko Ko Lin
+   -  Yoshi Tashiro
 
-- `Studio73 <https://www.studio73.es>`__:
+-  `Studio73 <https://www.studio73.es>`__:
 
-  - Ethan Hildick
+   -  Ethan Hildick
+   -  Pablo Cortés
 
-- Moaad Bourhim
+-  Moaad Bourhim
 
 Maintainers
 -----------
@@ -193,6 +194,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-pedrobaeza| 
 
-This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/18.0/commission_oca>`_ project on GitHub.
+This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/19.0/commission_oca>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
