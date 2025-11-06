@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -238,6 +238,7 @@ msgstr ""
 #. module: commission_oca
 #: model:ir.module.category,name:commission_oca.module_category_commission
 #: model:ir.ui.menu,name:commission_oca.menu_commission
+#: model:res.groups.privilege,name:commission_oca.res_groups_privilege_commission
 msgid "Commissions"
 msgstr ""
 
@@ -317,10 +318,14 @@ msgstr ""
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__display_name
+#: model:ir.model.fields,field_description:commission_oca.field_commission_line_mixin__display_name
 #: model:ir.model.fields,field_description:commission_oca.field_commission_make_settle__display_name
+#: model:ir.model.fields,field_description:commission_oca.field_commission_mixin__display_name
 #: model:ir.model.fields,field_description:commission_oca.field_commission_section__display_name
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__display_name
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__display_name
+#: model:ir.model.fields,field_description:commission_oca.field_product_template__display_name
+#: model:ir.model.fields,field_description:commission_oca.field_res_partner__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -368,22 +373,20 @@ msgid "General information"
 msgstr ""
 
 #. module: commission_oca
-#: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_line_search
-#: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_search
-msgid "Group By"
-msgstr ""
-
-#. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__has_message
 msgid "Has Message"
 msgstr ""
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__id
+#: model:ir.model.fields,field_description:commission_oca.field_commission_line_mixin__id
 #: model:ir.model.fields,field_description:commission_oca.field_commission_make_settle__id
+#: model:ir.model.fields,field_description:commission_oca.field_commission_mixin__id
 #: model:ir.model.fields,field_description:commission_oca.field_commission_section__id
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__id
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__id
+#: model:ir.model.fields,field_description:commission_oca.field_product_template__id
+#: model:ir.model.fields,field_description:commission_oca.field_res_partner__id
 msgid "ID"
 msgstr ""
 
@@ -404,6 +407,7 @@ msgstr ""
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_error
+#: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -564,6 +568,11 @@ msgstr ""
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__activity_user_id
 msgid "Responsible User"
+msgstr ""
+
+#. module: commission_oca
+#: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__message_has_sms_error
+msgid "SMS Delivery error"
 msgstr ""
 
 #. module: commission_oca
@@ -778,24 +787,12 @@ msgid "User"
 msgstr ""
 
 #. module: commission_oca
-#: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__website_message_ids
-msgid "Website Messages"
-msgstr ""
-
-#. module: commission_oca
-#: model:ir.model.fields,help:commission_oca.field_commission_settlement__website_message_ids
-msgid "Website communication history"
-msgstr ""
-
-#. module: commission_oca
 #: model:ir.model,name:commission_oca.model_commission_make_settle
 msgid "Wizard for settling commissions"
 msgstr ""
 
 #. module: commission_oca
-#: model:ir.model.constraint,message:commission_oca.constraint_account_invoice_line_agent_unique_agent
 #: model:ir.model.constraint,message:commission_oca.constraint_commission_line_mixin_unique_agent
-#: model:ir.model.constraint,message:commission_oca.constraint_sale_order_line_agent_unique_agent
 msgid "You can only add one time each agent."
 msgstr ""
 
