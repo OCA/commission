@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="grouped_report_settlement_document"
+        inherit_id="commission.grouped_report_settlement_document"
+    >
+        <xpath expr="//th[@name='th_commission']" position="attributes">
+            <attribute name="t-if">o.settlement_type != 'sale_invoice'</attribute>
+        </xpath>
+        <xpath expr="//td[@name='td_commission']" position="attributes">
+            <attribute name="t-if">o.settlement_type != 'sale_invoice'</attribute>
+        </xpath>
+        <xpath expr="//th[@name='th_date']" position="after">
+            <t t-if="o.settlement_type == 'sale_invoice'">
+                <th class="text-start">Invoice</th>
+                <th class="text-start">Partner</th>
+                <th class="text-start">Subtotal</th>
+            </t>
+        </xpath>
+        <xpath expr="//td[@name='td_date']" position="after">
+            <t t-if="o.settlement_type == 'sale_invoice'">
+                <td><span t-out="l.get('invoice')" /></td>
+                <td><span t-out="l.get('partner')" /></td>
+                <td><span t-out="round(l.get('base_commission', 0.0), 2)" /></td>
+            </t>
+        </xpath>
+        <xpath expr="//tr[td[@name='td_total']]" position="after">
+            <tr t-if="o.settlement_type == 'sale_invoice'">
+                <td />
+                <td />
+                <td />
+                <td class="text-end"><strong>Total</strong></td>
+                <td class="text-end">
+                    <span
+                        t-field="o.total"
+                        t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
+                    />
+                </td>
+            </tr>
+        </xpath>
+        <xpath expr="//tr[td[@name='td_total']]" position="attributes">
+            <attribute name="t-if">o.settlement_type != 'sale_invoice'</attribute>
+        </xpath>
+    </template>
+</odoo>

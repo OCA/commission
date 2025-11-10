@@ -19,3 +19,5 @@
   - Ethan Hildick
 - [Sygel](https://www.sygel.es):
   - Alberto Martínez
+  - Valentín Vinagre
+  - Ángel Rivas

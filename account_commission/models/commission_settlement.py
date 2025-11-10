@@ -159,6 +159,42 @@ class CommissionSettlement(models.Model):
         self.write({"state": "invoiced"})
         return invoices
 
+    def grouped_report_lines(self):
+        self.ensure_one()
+        if self.settlement_type == "sale_invoice":
+            grouped_res = {}
+            for line in self.line_ids:
+                origin = (
+                    line.invoice_line_id.move_id if line.invoice_line_id else "Manual"
+                )
+                move = line.invoice_line_id.move_id
+                sign = -1 if move and "refund" in move.move_type else 1
+                group = grouped_res.setdefault(
+                    (line.date, origin),
+                    {"commission": 0.0, "base_commission": 0.0},
+                )
+                if move:
+                    group["base_commission"] += (
+                        sign * line.invoice_line_id.price_subtotal
+                    )
+                group["commission"] += line.settled_amount
+            res = []
+            for (date, origin), values in grouped_res.items():
+                res.append(
+                    {
+                        "date": date,
+                        "settled_amount": values["commission"],
+                        "base_commission": values["base_commission"],
+                        "invoice": origin if isinstance(origin, str) else origin.name,
+                        "partner": ""
+                        if isinstance(origin, str)
+                        else origin.partner_id.display_name,
+                    }
+                )
+        else:
+            res = super().grouped_report_lines()
+        return res
+
 
 class SettlementLine(models.Model):
     _inherit = "commission.settlement.line"

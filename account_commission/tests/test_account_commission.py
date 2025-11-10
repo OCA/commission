@@ -532,3 +532,82 @@ class TestAccountCommission(TestCommissionBase):
             ]
         )
         self.assertEqual(2, len(settlements))
+
+    def test_grouped_report_lines_sale_invoice(self):
+        """Test grouped report lines for settlements coming from sale invoices."""
+        invoice = self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "partner_id": self.partner.id,
+                "invoice_date": fields.Date.today(),
+                "invoice_line_ids": [
+                    (0, 0, {"name": "Line 1", "price_unit": 100.0, "quantity": 1.0}),
+                    (0, 0, {"name": "Line 2", "price_unit": 50.0, "quantity": 1.0}),
+                ],
+            }
+        )
+        agent_line1 = self.env["account.invoice.line.agent"].create(
+            {
+                "object_id": invoice.invoice_line_ids[0].id,
+                "commission_id": self.commission_net_paid.id,
+                "amount": 20.0,
+                "agent_id": self.agent_monthly.id,
+                "invoice_date": fields.Date.today(),
+                "company_id": self.company.id,
+            }
+        )
+        agent_line2 = self.env["account.invoice.line.agent"].create(
+            {
+                "object_id": invoice.invoice_line_ids[1].id,
+                "commission_id": self.commission_net_paid.id,
+                "amount": 10.0,
+                "agent_id": self.agent_monthly.id,
+                "invoice_date": fields.Date.today(),
+                "company_id": self.company.id,
+            }
+        )
+        settlement = self.settle_model.create(
+            {
+                "agent_id": self.agent_monthly.id,
+                "date_from": fields.Date.today(),
+                "date_to": fields.Date.today(),
+                "settlement_type": "sale_invoice",
+                "company_id": self.company.id,
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "date": fields.Date.today(),
+                            "agent_id": self.agent_monthly.id,
+                            "commission_id": self.commission_net_paid.id,
+                            "settled_amount": 20.0,
+                            "invoice_agent_line_id": agent_line1.id,
+                            "currency_id": self.company.currency_id.id,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "date": fields.Date.today(),
+                            "agent_id": self.agent_monthly.id,
+                            "commission_id": self.commission_net_paid.id,
+                            "settled_amount": 10.0,
+                            "invoice_agent_line_id": agent_line2.id,
+                            "currency_id": self.company.currency_id.id,
+                        },
+                    ),
+                ],
+            }
+        )
+        grouped_lines = settlement.grouped_report_lines()
+        self.assertEqual(
+            len(grouped_lines), 1, "Lines from same invoice should be grouped together"
+        )
+
+        gl = grouped_lines[0]
+        self.assertEqual(
+            gl["settled_amount"], 30.0, "Grouped settled amount should be summed"
+        )
+        self.assertEqual(gl["invoice"], invoice.name)
