@@ -32,6 +32,11 @@ msgid "<strong>Settlement invoice:</strong>"
 msgstr "<strong>Anlaşma faturası:</strong>"
 
 #. module: account_commission
+#: model_terms:ir.ui.view,arch_db:account_commission.grouped_report_settlement_document
+msgid "<strong>Total</strong>"
+msgstr ""
+
+#. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__agent_id
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__agent_id
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
@@ -240,6 +245,7 @@ msgstr "Kimlik"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__invoice_id
+#: model_terms:ir.ui.view,arch_db:account_commission.grouped_report_settlement_document
 msgid "Invoice"
 msgstr "Fatura"
 
@@ -375,6 +381,7 @@ msgstr "Üst"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__partner_id
+#: model_terms:ir.ui.view,arch_db:account_commission.grouped_report_settlement_document
 msgid "Partner"
 msgstr "Ortak"
 
@@ -502,14 +509,15 @@ msgstr "Durum"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__price_subtotal
+#: model_terms:ir.ui.view,arch_db:account_commission.grouped_report_settlement_document
 msgid "Subtotal"
 msgstr "Aratoplam"
 
 #. module: account_commission
 #: model:ir.model.fields,help:account_commission.field_commission_settlement__settlement_type
 msgid ""
-"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase"
-" order'..."
+"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase "
+"order'..."
 msgstr ""
 "Anlaşmanın kaynağı, ör. 'Satış faturası', 'Satış siparişi', 'Alış "
 "siparişi'..."

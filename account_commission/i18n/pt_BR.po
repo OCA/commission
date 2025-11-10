@@ -33,6 +33,11 @@ msgid "<strong>Settlement invoice:</strong>"
 msgstr "<strong>Fatura de Liquida????o:</strong>"
 
 #. module: account_commission
+#: model_terms:ir.ui.view,arch_db:account_commission.grouped_report_settlement_document
+msgid "<strong>Total</strong>"
+msgstr ""
+
+#. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__agent_id
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__agent_id
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
@@ -241,6 +246,7 @@ msgstr "ID"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__invoice_id
+#: model_terms:ir.ui.view,arch_db:account_commission.grouped_report_settlement_document
 msgid "Invoice"
 msgstr "Fatura"
 
@@ -376,6 +382,7 @@ msgstr "Pai"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__partner_id
+#: model_terms:ir.ui.view,arch_db:account_commission.grouped_report_settlement_document
 msgid "Partner"
 msgstr "Parceiro"
 
@@ -505,6 +512,7 @@ msgstr "Situa????o"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__price_subtotal
+#: model_terms:ir.ui.view,arch_db:account_commission.grouped_report_settlement_document
 msgid "Subtotal"
 msgstr "Subtotal"
 
