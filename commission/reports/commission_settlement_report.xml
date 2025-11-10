@@ -9,4 +9,13 @@
         <field name="binding_model_id" ref="model_commission_settlement" />
         <field name="binding_type">report</field>
     </record>
+    <record id="action_grouped_report_settlement" model="ir.actions.report">
+        <field name="name">Grouped settlement report</field>
+        <field name="model">commission.settlement</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">commission.grouped_report_settlement</field>
+        <field name="report_file">commission.grouped_report_settlement</field>
+        <field name="binding_model_id" ref="model_commission_settlement" />
+        <field name="binding_type">report</field>
+    </record>
 </odoo>

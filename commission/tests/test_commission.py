@@ -189,3 +189,57 @@ class TestCommission(TestCommissionBase):
         )
         # Agent must be in the followers
         self.assertIn(self.agent_monthly, settlement.message_partner_ids)
+
+    def test_grouped_report_lines(self):
+        date_29 = "2025-10-29"
+        date_30 = "2025-10-30"
+        date_29_fmt = "29 Oct 2025"
+        date_30_fmt = "30 Oct 2025"
+
+        settlement = self.env["commission.settlement"].create(
+            {
+                "name": "Test Settlement",
+                "agent_id": self.agent_monthly.id,
+                "date_from": "2025-10-01",
+                "date_to": "2025-10-31",
+                "company_id": self.company.id,
+                "currency_id": self.company.currency_id.id,
+            }
+        )
+        self.env["commission.settlement.line"].create(
+            [
+                {
+                    "settlement_id": settlement.id,
+                    "date": date_29,  # YYYY-MM-DD
+                    "commission_id": self.commission_net_paid.id,
+                    "settled_amount": 100.0,
+                    "currency_id": self.company.currency_id.id,
+                },
+                {
+                    "settlement_id": settlement.id,
+                    "date": date_29,
+                    "commission_id": self.commission_net_paid.id,
+                    "settled_amount": 50.0,
+                    "currency_id": self.company.currency_id.id,
+                },
+                {
+                    "settlement_id": settlement.id,
+                    "date": date_30,
+                    "commission_id": self.commission_section_invoice.id,
+                    "settled_amount": 200.0,
+                    "currency_id": self.company.currency_id.id,
+                },
+            ]
+        )
+        result = settlement.grouped_report_lines()
+        self.assertEqual(len(result), 2)
+        grouped = {(r["date"], r["commission"]): r["settled_amount"] for r in result}
+        expected_keys = {
+            (date_29_fmt, self.commission_net_paid.name),
+            (date_30_fmt, self.commission_section_invoice.name),
+        }
+        self.assertEqual(set(grouped.keys()), expected_keys)
+        self.assertEqual(grouped[(date_29_fmt, self.commission_net_paid.name)], 150.0)
+        self.assertEqual(
+            grouped[(date_30_fmt, self.commission_section_invoice.name)], 200.0
+        )
