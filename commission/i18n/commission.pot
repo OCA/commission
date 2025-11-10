@@ -42,16 +42,19 @@ msgid ""
 msgstr ""
 
 #. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>From:</strong>"
 msgstr ""
 
 #. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>To:</strong>"
 msgstr ""
 
 #. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>Total</strong>"
 msgstr ""
@@ -136,6 +139,7 @@ msgid "Allows to handle commission related stuff."
 msgstr ""
 
 #. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "Amount settled"
 msgstr ""
@@ -214,6 +218,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:commission.field_res_partner__commission_id
 #: model:ir.model.fields,field_description:commission.field_res_users__commission_id
 #: model_terms:ir.ui.view,arch_db:commission.commission_form
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "Commission"
 msgstr ""
@@ -301,6 +306,7 @@ msgstr ""
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line__date
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "Date"
 msgstr ""
@@ -376,6 +382,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_search
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_search
 msgid "Group By"
+msgstr ""
+
+#. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
+msgid "Grouped Settlement"
+msgstr ""
+
+#. module: commission
+#: model:ir.actions.report,name:commission.action_grouped_report_settlement
+msgid "Grouped settlement report"
 msgstr ""
 
 #. module: commission
