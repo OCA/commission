@@ -39,29 +39,31 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid ""
 "<span>\n"
-"                        No automatic settlements can be made. Install any extra\n"
+"                        No automatic settlements can be made. Install any "
+"extra\n"
 "                        commission module for having this feature enabled.\n"
 "                    </span>"
 msgstr ""
-"<span>\\n"
-"\n"
+"<span>\\n\n"
 "                        Otomatik anlaşma yapılamaz. Bu özelliğin aktif "
-"olması için\\n"
-"\n"
-"                        ekstra komisyon modülleri kurun.\\n"
-"                     </span>"
+"olması için\\n\n"
+"                        ekstra komisyon modülleri kurun."
+"\\n                     </span>"
 
 #. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>From:</strong>"
 msgstr "<strong>Tarafından:</strong>"
 
 #. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>To:</strong>"
 msgstr "<strong>'a:</strong>"
 
 #. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>Total</strong>"
 msgstr "<strong>Toplam</strong>"
@@ -146,6 +148,7 @@ msgid "Allows to handle commission related stuff."
 msgstr "Komisyonla ilgili işlemlerin yapılmasını sağlar."
 
 #. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "Amount settled"
 msgstr "Anlaşılmış miktar"
@@ -224,6 +227,7 @@ msgstr "Komisyonsuz"
 #: model:ir.model.fields,field_description:commission.field_res_partner__commission_id
 #: model:ir.model.fields,field_description:commission.field_res_users__commission_id
 #: model_terms:ir.ui.view,arch_db:commission.commission_form
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "Commission"
 msgstr "Komisyon"
@@ -311,6 +315,7 @@ msgstr "Kur"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line__date
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "Date"
 msgstr "Tarih"
@@ -387,6 +392,16 @@ msgstr "Genel bilgiler"
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_search
 msgid "Group By"
 msgstr "Gruplandır"
+
+#. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
+msgid "Grouped Settlement"
+msgstr ""
+
+#. module: commission
+#: model:ir.actions.report,name:commission.action_grouped_report_settlement
+msgid "Grouped settlement report"
+msgstr ""
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__has_message
@@ -482,8 +497,7 @@ msgstr "Mesajlar"
 
 #. module: commission
 #: model:ir.model,name:commission.model_commission_mixin
-msgid ""
-"Mixin model for applying to any object that wants to handle commissions"
+msgid "Mixin model for applying to any object that wants to handle commissions"
 msgstr ""
 "Komisyonları işlemek isteyen herhangi bir nesneye uygulamak için mixin modeli"
 
@@ -604,8 +618,10 @@ msgstr "Bölümler"
 #: model:ir.model.fields,help:commission.field_commission__amount_base_type
 msgid ""
 "Select the base amount for computing the percentage:\n"
-"* 'Sale/Invoice Amount': percentage is computed from the amount put on sales order/invoice.\n"
-"* 'Margin (Amount - Cost)': percentage is computed from the profit only, taken the cost from the product."
+"* 'Sale/Invoice Amount': percentage is computed from the amount put on sales "
+"order/invoice.\n"
+"* 'Margin (Amount - Cost)': percentage is computed from the profit only, "
+"taken the cost from the product."
 msgstr ""
 "Yüzdeyi hesaplamak için baz tutarı seçin:\n"
 "* 'Satış / Fatura Tutarı': yüzde, satış siparişi / faturaya konulan tutardan "
@@ -622,8 +638,10 @@ msgstr "Anlaşmayı yapmak istediğiniz tarihi seçin:"
 #: model:ir.model.fields,help:commission.field_commission__commission_type
 msgid ""
 "Select the percentage type of the commission:\n"
-"* 'Fixed percentage': all commissions are computed with a fixed percentage. You can fill the percentage in the field \"Fixed percentage\".\n"
-"* 'By sections': percentage varies depending amount intervals. You can fill intervals and percentages in the section \"Rate definition\"."
+"* 'Fixed percentage': all commissions are computed with a fixed percentage. "
+"You can fill the percentage in the field \"Fixed percentage\".\n"
+"* 'By sections': percentage varies depending amount intervals. You can fill "
+"intervals and percentages in the section \"Rate definition\"."
 msgstr ""
 "Komisyonun oran tipini seçin:\n"
 "* 'Sabit Oran': Tüm komisyonlar sabit oranla hesaplanır. Oranı \\\"Sabit "
@@ -760,8 +778,8 @@ msgstr ""
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__settlement_type
 msgid ""
-"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase"
-" order'..."
+"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase "
+"order'..."
 msgstr ""
 "Anlaşmanın kaynağı, ör. 'Satış faturası', 'Satış siparişi', 'Alış "
 "siparişi'..."

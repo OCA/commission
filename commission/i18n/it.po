@@ -51,16 +51,19 @@ msgstr ""
 "                    </span>"
 
 #. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>From:</strong>"
 msgstr "<strong>Da:</strong>"
 
 #. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>To:</strong>"
 msgstr "<strong>A:</strong>"
 
 #. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>Total</strong>"
 msgstr "<strong>Totale</strong>"
@@ -145,6 +148,7 @@ msgid "Allows to handle commission related stuff."
 msgstr "Permette di gestire le questioni legate alle provvigioni."
 
 #. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "Amount settled"
 msgstr "Importo regolato"
@@ -223,6 +227,7 @@ msgstr "Senza provvigione"
 #: model:ir.model.fields,field_description:commission.field_res_partner__commission_id
 #: model:ir.model.fields,field_description:commission.field_res_users__commission_id
 #: model_terms:ir.ui.view,arch_db:commission.commission_form
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "Commission"
 msgstr "Provvigione"
@@ -310,6 +315,7 @@ msgstr "Valuta"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line__date
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "Date"
 msgstr "Data"
@@ -386,6 +392,16 @@ msgstr "Informazioni generali"
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_search
 msgid "Group By"
 msgstr "Raggruppa per"
+
+#. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.grouped_report_settlement_document
+msgid "Grouped Settlement"
+msgstr ""
+
+#. module: commission
+#: model:ir.actions.report,name:commission.action_grouped_report_settlement
+msgid "Grouped settlement report"
+msgstr ""
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__has_message
