@@ -56,13 +56,18 @@ msgstr "<strong>De:</strong>"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
+msgid "<strong>Global commission amount:</strong>"
+msgstr ""
+
+#. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>To:</strong>"
 msgstr "<strong>Para:</strong>"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
-msgid "<strong>Total</strong>"
-msgstr "<strong>Total</strong>"
+msgid "<strong>Total</strong> ("
+msgstr ""
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__message_needaction
@@ -874,6 +879,9 @@ msgstr "Sólo puede añadir una vez cada agente."
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid "or"
 msgstr "o"
+
+#~ msgid "<strong>Total</strong>"
+#~ msgstr "<strong>Total</strong>"
 
 #~ msgid "Gross Amount"
 #~ msgstr "Importe bruto"

@@ -55,13 +55,18 @@ msgstr "<strong>開始:</strong>"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
+msgid "<strong>Global commission amount:</strong>"
+msgstr ""
+
+#. module: commission
+#: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>To:</strong>"
 msgstr "<strong>終了:</strong>"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
-msgid "<strong>Total</strong>"
-msgstr "<strong>合計</strong>"
+msgid "<strong>Total</strong> ("
+msgstr ""
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__message_needaction
@@ -857,6 +862,9 @@ msgstr "各エージェント1回のみ追加可能です。"
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid "or"
 msgstr "または"
+
+#~ msgid "<strong>Total</strong>"
+#~ msgstr "<strong>合計</strong>"
 
 #~ msgid "Gross Amount"
 #~ msgstr "総額"
