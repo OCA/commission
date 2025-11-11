@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-06-04 10:26+0000\n"
+"PO-Revision-Date: 2025-11-11 12:42+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -34,7 +34,7 @@ msgstr "<strong>Fattura provvigione:</strong>"
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.grouped_report_settlement_document
 msgid "<strong>Total</strong>"
-msgstr ""
+msgstr "<strong>Totale</strong>"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__agent_id
