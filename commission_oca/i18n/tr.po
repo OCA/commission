@@ -247,6 +247,7 @@ msgstr "Komisyon Türleri"
 #. module: commission_oca
 #: model:ir.module.category,name:commission_oca.module_category_commission
 #: model:ir.ui.menu,name:commission_oca.menu_commission
+#: model:res.groups.privilege,name:commission_oca.res_groups_privilege_commission
 msgid "Commissions"
 msgstr "Komisyonlar"
 
@@ -326,10 +327,14 @@ msgstr "Vazgeç"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__display_name
+#: model:ir.model.fields,field_description:commission_oca.field_commission_line_mixin__display_name
 #: model:ir.model.fields,field_description:commission_oca.field_commission_make_settle__display_name
+#: model:ir.model.fields,field_description:commission_oca.field_commission_mixin__display_name
 #: model:ir.model.fields,field_description:commission_oca.field_commission_section__display_name
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__display_name
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__display_name
+#: model:ir.model.fields,field_description:commission_oca.field_product_template__display_name
+#: model:ir.model.fields,field_description:commission_oca.field_res_partner__display_name
 msgid "Display Name"
 msgstr "Görünen Adı"
 
@@ -377,22 +382,20 @@ msgid "General information"
 msgstr "Genel Bilgiler"
 
 #. module: commission_oca
-#: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_line_search
-#: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_search
-msgid "Group By"
-msgstr "Grupla"
-
-#. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__has_message
 msgid "Has Message"
 msgstr "Mesajı Var"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__id
+#: model:ir.model.fields,field_description:commission_oca.field_commission_line_mixin__id
 #: model:ir.model.fields,field_description:commission_oca.field_commission_make_settle__id
+#: model:ir.model.fields,field_description:commission_oca.field_commission_mixin__id
 #: model:ir.model.fields,field_description:commission_oca.field_commission_section__id
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__id
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__id
+#: model:ir.model.fields,field_description:commission_oca.field_product_template__id
+#: model:ir.model.fields,field_description:commission_oca.field_res_partner__id
 msgid "ID"
 msgstr "ID"
 
@@ -413,6 +416,7 @@ msgstr "İşaretliyse yeni mesajlara dikkat etmeniz gerekir."
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_error
+#: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "İşaretlenirse, bazı mesajların teslim hatası var."
 
@@ -578,6 +582,11 @@ msgid "Responsible User"
 msgstr "Sorumlu Kullanıcı"
 
 #. module: commission_oca
+#: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__commission__amount_base_type__gross_amount
 msgid "Sale/Invoice Amount"
 msgstr "Satış/Fatura Miktarı"
@@ -622,8 +631,8 @@ msgid ""
 "intervals and percentages in the section \"Rate definition\"."
 msgstr ""
 "Komisyonun oran türünü seçin:\n"
-"* 'Sabit Oran': Tüm komisyonlar sabit oranla hesaplanır. Oranı \\"
-"\"Sabit oran\\\" alanına girebilirsiniz.\n"
+"* 'Sabit Oran': Tüm komisyonlar sabit oranla hesaplanır. Oranı \\\"Sabit "
+"oran\\\" alanına girebilirsiniz.\n"
 "\"* 'Bölümlere göre': Oran miktar aralıklarına bağlı olarak değişir. Miktar "
 "aralıklarını ve oranları \\\"Oran tanımı\\\" alanına girebilirsiniz ."
 
@@ -829,7 +838,6 @@ msgstr "Komisyonları ayarlamak için sihirbaz"
 #. module: commission_oca
 #: model:ir.model.constraint,message:commission_oca.constraint_account_invoice_line_agent_unique_agent
 #: model:ir.model.constraint,message:commission_oca.constraint_commission_line_mixin_unique_agent
-#: model:ir.model.constraint,message:commission_oca.constraint_sale_order_line_agent_unique_agent
 msgid "You can only add one time each agent."
 msgstr "Her temsilciye tek seferde bir kez ekleme yapabilirsiniz."
 
@@ -837,3 +845,6 @@ msgstr "Her temsilciye tek seferde bir kez ekleme yapabilirsiniz."
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
 msgid "or"
 msgstr "veya"
+
+#~ msgid "Group By"
+#~ msgstr "Grupla"

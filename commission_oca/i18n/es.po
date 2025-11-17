@@ -248,6 +248,7 @@ msgstr "Tipos de comisión"
 #. module: commission_oca
 #: model:ir.module.category,name:commission_oca.module_category_commission
 #: model:ir.ui.menu,name:commission_oca.menu_commission
+#: model:res.groups.privilege,name:commission_oca.res_groups_privilege_commission
 msgid "Commissions"
 msgstr "Comisiones"
 
@@ -327,10 +328,14 @@ msgstr "Descartar"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__display_name
+#: model:ir.model.fields,field_description:commission_oca.field_commission_line_mixin__display_name
 #: model:ir.model.fields,field_description:commission_oca.field_commission_make_settle__display_name
+#: model:ir.model.fields,field_description:commission_oca.field_commission_mixin__display_name
 #: model:ir.model.fields,field_description:commission_oca.field_commission_section__display_name
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__display_name
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__display_name
+#: model:ir.model.fields,field_description:commission_oca.field_product_template__display_name
+#: model:ir.model.fields,field_description:commission_oca.field_res_partner__display_name
 msgid "Display Name"
 msgstr "Mostrar Nombre"
 
@@ -378,22 +383,20 @@ msgid "General information"
 msgstr "Información general"
 
 #. module: commission_oca
-#: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_line_search
-#: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_search
-msgid "Group By"
-msgstr "Agrupado Por"
-
-#. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__has_message
 msgid "Has Message"
 msgstr "Tiene Mensaje"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__id
+#: model:ir.model.fields,field_description:commission_oca.field_commission_line_mixin__id
 #: model:ir.model.fields,field_description:commission_oca.field_commission_make_settle__id
+#: model:ir.model.fields,field_description:commission_oca.field_commission_mixin__id
 #: model:ir.model.fields,field_description:commission_oca.field_commission_section__id
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__id
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__id
+#: model:ir.model.fields,field_description:commission_oca.field_product_template__id
+#: model:ir.model.fields,field_description:commission_oca.field_res_partner__id
 msgid "ID"
 msgstr "ID (identificación)"
 
@@ -414,6 +417,7 @@ msgstr "Si está marcada, nuevos mensajes requieren su atención."
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_error
+#: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcada, algunos mensajes tienen un error de entrega."
 
@@ -578,6 +582,11 @@ msgstr "Definición de tarifas"
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__activity_user_id
 msgid "Responsible User"
 msgstr "Usuario Responsable"
+
+#. module: commission_oca
+#: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error en la entrega de sms"
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__commission__amount_base_type__gross_amount
@@ -833,7 +842,6 @@ msgstr "Asistente para liquidación de comisiones"
 #. module: commission_oca
 #: model:ir.model.constraint,message:commission_oca.constraint_account_invoice_line_agent_unique_agent
 #: model:ir.model.constraint,message:commission_oca.constraint_commission_line_mixin_unique_agent
-#: model:ir.model.constraint,message:commission_oca.constraint_sale_order_line_agent_unique_agent
 msgid "You can only add one time each agent."
 msgstr "Sólo puede añadir una vez cada agente."
 
@@ -842,8 +850,8 @@ msgstr "Sólo puede añadir una vez cada agente."
 msgid "or"
 msgstr "o"
 
-#~ msgid "SMS Delivery error"
-#~ msgstr "Error en la entrega de sms"
+#~ msgid "Group By"
+#~ msgstr "Agrupado Por"
 
 #~ msgid "Last Modified on"
 #~ msgstr "??ltima Modificaci??n el"
