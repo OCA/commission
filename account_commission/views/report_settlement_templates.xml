@@ -34,7 +34,10 @@
                     <span t-field="l.invoice_line_id.quantity" />
                 </td>
                 <td>
-                    <span t-field="l.invoice_line_id.price_subtotal" />
+                    <span
+                        t-esc="-l.invoice_line_id.price_subtotal if l.invoice_line_id.move_id.move_type == 'out_refund' else l.invoice_line_id.price_subtotal"
+                        t-options="{'widget': 'monetary', 'display_currency': l.invoice_line_id.currency_id}"
+                    />
                 </td>
             </t>
         </xpath>
