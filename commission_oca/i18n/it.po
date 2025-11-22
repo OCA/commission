@@ -842,6 +842,7 @@ msgstr "Procedura guidata per la liquidazione delle provvigioni"
 #. module: commission_oca
 #: model:ir.model.constraint,message:commission_oca.constraint_account_invoice_line_agent_unique_agent
 #: model:ir.model.constraint,message:commission_oca.constraint_commission_line_mixin_unique_agent
+#: model:ir.model.constraint,message:commission_oca.constraint_sale_order_line_agent_unique_agent
 msgid "You can only add one time each agent."
 msgstr "È possibile aggiungere ogni agente solo una volta."
 
