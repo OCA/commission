@@ -174,21 +174,19 @@ class CommissionItem(models.Model):
                     "Product Price"
                 )
                 if item.currency_id.position == "after":
-                    item.commission_value = "%s %s" % (
+                    item.commission_value = f"{
                         float_repr(
                             item.fixed_amount,
                             decimal_places,
-                        ),
-                        item.currency_id.symbol or "",
-                    )
+                        )
+                    } {item.currency_id.symbol or ''}"
                 else:
-                    item.commission_value = "%s %s" % (
-                        item.currency_id.symbol or "",
+                    item.commission_value = f"{item.currency_id.symbol or ''} {
                         float_repr(
                             item.fixed_amount,
                             decimal_places,
-                        ),
-                    )
+                        )
+                    }"
             elif item.commission_type == "percentage":
                 item.commission_value = str(item.percent_amount) + " %"
 
@@ -244,11 +242,11 @@ class CommissionItem(models.Model):
         for values in values_list:
             values = self.validate_values(values)
             new_values_list.append(values)
-        return super(CommissionItem, self).create(new_values_list)
+        return super().create(new_values_list)
 
     def write(self, values):
         values = self.validate_values(values)
-        res = super(CommissionItem, self).write(values)
+        res = super().write(values)
         return res
 
     def validate_values(self, values):

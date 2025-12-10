@@ -24,7 +24,8 @@ class SaleCommissionLineMixin(models.AbstractModel):
         """
 
     def _commission_items_where(self):
-        return """ (item.product_tmpl_id IS NULL OR item.product_tmpl_id = any(%(prod_tmpls)s))
+        return """ (item.product_tmpl_id IS NULL
+            OR item.product_tmpl_id = any(%(prod_tmpls)s))
             AND (item.product_id IS NULL OR item.product_id = any(%(prod_prods)s))
             AND (item.categ_id IS NULL OR item.categ_id = any(%(categs)s))
             AND (item.commission_id = %(commission)s)
