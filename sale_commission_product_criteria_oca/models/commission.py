@@ -1,7 +1,7 @@
 # © 2023 ooops404
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools import float_repr
 
@@ -39,7 +39,7 @@ class SaleCommission(models.Model):
         done_so_ids = sola_ids.filtered(lambda x: x.object_id.state in ["done", "sale"])
         if done_so_ids:
             raise ValidationError(
-                _(
+                self.env._(
                     "There is done Sale Orders with this commission. "
                     "Commission type change is not allowed."
                 )
@@ -56,7 +56,7 @@ class SaleCommission(models.Model):
         )
         if done_move_ids:
             raise ValidationError(
-                _(
+                self.env._(
                     "There is posted Account Move Lines with this commission. "
                     "Commission type change is not allowed."
                 )
@@ -157,36 +157,34 @@ class CommissionItem(models.Model):
     def _compute_commission_item_name_value(self):
         for item in self:
             if item.categ_id and item.applied_on == "2_product_category":
-                item.name = _("Category: %s") % (item.categ_id.display_name)
+                item.name = self.env._("Category: %s") % (item.categ_id.display_name)
             elif item.product_tmpl_id and item.applied_on == "1_product":
-                item.name = _("Product: %s") % (item.product_tmpl_id.display_name)
+                item.name = self.env._("Product: %s") % (
+                    item.product_tmpl_id.display_name
+                )
             elif item.product_id and item.applied_on == "0_product_variant":
-                item.name = _("Variant: %s") % (
+                item.name = self.env._("Variant: %s") % (
                     item.product_id.with_context(
                         display_default_code=False
                     ).display_name
                 )
             else:
-                item.name = _("All Products")
+                item.name = self.env._("All Products")
 
             if item.commission_type == "fixed":
                 decimal_places = self.env["decimal.precision"].precision_get(
                     "Product Price"
                 )
                 if item.currency_id.position == "after":
-                    item.commission_value = f"{
-                        float_repr(
-                            item.fixed_amount,
-                            decimal_places,
-                        )
-                    } {item.currency_id.symbol or ''}"
+                    item.commission_value = (
+                        f"{float_repr(item.fixed_amount, decimal_places)}"
+                        + f"{item.currency_id.symbol or ''}"
+                    )
                 else:
-                    item.commission_value = f"{item.currency_id.symbol or ''} {
-                        float_repr(
-                            item.fixed_amount,
-                            decimal_places,
-                        )
-                    }"
+                    item.commission_value = (
+                        f"{item.currency_id.symbol or ''}"
+                        + f"{float_repr(item.fixed_amount, decimal_places)}"
+                    )
             elif item.commission_type == "percentage":
                 item.commission_value = str(item.percent_amount) + " %"
 
@@ -195,21 +193,21 @@ class CommissionItem(models.Model):
         for item in self:
             if item.applied_on == "2_product_category" and not item.categ_id:
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "Please specify the category for which this rule should "
                         "be applied"
                     )
                 )
             elif item.applied_on == "1_product" and not item.product_tmpl_id:
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "Please specify the product for which this rule should "
                         "be applied"
                     )
                 )
             elif item.applied_on == "0_product_variant" and not item.product_id:
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "Please specify the product variant for "
                         "which this rule should be applied"
                     )

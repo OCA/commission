@@ -4,13 +4,14 @@
 
 
 from odoo.exceptions import ValidationError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form, TransactionCase
 
 
 class TestSaleCommission(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.commission_model = cls.env["commission"]
         cls.company = cls.env.ref("base.main_company")
         cls.res_partner_model = cls.env["res.partner"]
@@ -37,19 +38,19 @@ class TestSaleCommission(TransactionCase):
             [("type", "=", "purchase")], limit=1
         )
         cls.rules_commission_id = cls.env.ref(
-            "sale_commission_product_criteria.demo_commission_rules"
+            "sale_commission_product_criteria_oca.demo_commission_rules"
         )
         cls.com_item_1 = cls.env.ref(
-            "sale_commission_product_criteria.demo_commission_rules_item_1"
+            "sale_commission_product_criteria_oca.demo_commission_rules_item_1"
         )
         cls.com_item_2 = cls.env.ref(
-            "sale_commission_product_criteria.demo_commission_rules_item_2"
+            "sale_commission_product_criteria_oca.demo_commission_rules_item_2"
         )
         cls.com_item_3 = cls.env.ref(
-            "sale_commission_product_criteria.demo_commission_rules_item_3"
+            "sale_commission_product_criteria_oca.demo_commission_rules_item_3"
         )
         cls.com_item_4 = cls.env.ref(
-            "sale_commission_product_criteria.demo_commission_rules_item_4"
+            "sale_commission_product_criteria_oca.demo_commission_rules_item_4"
         )
 
     def _create_sale_order(self, product, partner):
@@ -178,7 +179,7 @@ class TestSaleCommission(TransactionCase):
 
         # no rule found
         self.env.ref(
-            "sale_commission_product_criteria.demo_commission_rules_item_1"
+            "sale_commission_product_criteria_oca.demo_commission_rules_item_1"
         ).unlink()
         so = self._create_sale_order(self.product_1, self.partner)
         so.order_line.agent_ids._compute_amount()

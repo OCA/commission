@@ -2,15 +2,15 @@
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 {
-    "name": "Sale Commission Product Criteria",
+    "name": "Sale Commission Product Criteria OCA",
     "summary": "Advanced commissions rules",
-    "version": "16.0.1.0.1",
+    "version": "18.0.1.0.0",
     "author": "Ilyas, Ooops404, Odoo Community Association (OCA)",
     "maintainers": ["ilyasProgrammer"],
     "website": "https://github.com/OCA/commission",
     "category": "Sales Management",
     "license": "AGPL-3",
-    "depends": ["sale_commission"],
+    "depends": ["sale_commission_oca"],
     "data": [
         "views/views.xml",
         "security/ir.model.access.csv",
