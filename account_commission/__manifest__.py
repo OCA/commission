@@ -25,5 +25,6 @@
         "wizards/wizard_invoice.xml",
         "wizards/commission_make_settle_views.xml",
     ],
+    "pre_init_hook": "pre_init_hook",
     "installable": True,
 }

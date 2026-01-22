@@ -1,3 +1,5 @@
+This module doesn't recompute past data.
+
 For selecting invoice status in commissions:
 
 #. Edit or create a new record to select the invoice status for settling the commissions.
