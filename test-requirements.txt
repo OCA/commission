@@ -1,0 +1,2 @@
+odoo_test_helper
+odoo-addon-sale_price_compliance @ git+https://github.com/OCA/sale-workflow.git@refs/pull/4115/head#subdirectory=sale_price_compliance
