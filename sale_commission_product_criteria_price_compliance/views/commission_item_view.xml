@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Moduon Team S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<data>
+    <record id="commission_item_form_view" model="ir.ui.view">
+        <field name="model">commission.item</field>
+        <field
+            name="inherit_id"
+            ref="sale_commission_product_criteria.commission_item_form_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="price_compliance_tier" />
+            </xpath>
+        </field>
+    </record>
+    <record id="commission_item_tree_view" model="ir.ui.view">
+        <field name="model">commission.item</field>
+        <field
+            name="inherit_id"
+            ref="sale_commission_product_criteria.commission_item_tree_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="price_compliance_tier" />
+            </xpath>
+        </field>
+    </record>
+    <record id="commission_item_search" model="ir.ui.view">
+        <field name="model">commission.item</field>
+        <field
+            name="inherit_id"
+            ref="sale_commission_product_criteria.commission_item_search"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside">
+                <filter
+                    string="Price Compliance Tier"
+                    name="group_price_compliance_tier"
+                    domain="[]"
+                    context="{'group_by':'price_compliance_tier'}"
+                />
+            </xpath>
+        </field>
+    </record>
+</data>

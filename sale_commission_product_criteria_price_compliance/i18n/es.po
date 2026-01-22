@@ -1,0 +1,60 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_commission_product_criteria_price_compliance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-19 11:13+0000\n"
+"PO-Revision-Date: 2026-02-19 12:14+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.6\n"
+
+#. module: sale_commission_product_criteria_price_compliance
+#: model:ir.model,name:sale_commission_product_criteria_price_compliance.model_commission_item
+msgid "Commission Item"
+msgstr "Detalle de la comisión"
+
+#. module: sale_commission_product_criteria_price_compliance
+#: model:ir.model.fields,help:sale_commission_product_criteria_price_compliance.field_commission_item__price_compliance_tier
+#: model:ir.model.fields,help:sale_commission_product_criteria_price_compliance.field_commission_settlement_line__price_compliance_tier
+msgid ""
+"Indicates the Tier of Price Compliance based on the unit price and applied "
+"discount compared to defined thresholds."
+msgstr ""
+"Indica el tramo del Cumplimiento de Precios basado en el precio unitario y "
+"el descuento aplicado comparado con los tramos definidos."
+
+#. module: sale_commission_product_criteria_price_compliance
+#: model:ir.model,name:sale_commission_product_criteria_price_compliance.model_commission_settlement_line
+msgid "Line of a commission settlement"
+msgstr "Línea de liquidación de una comisión"
+
+#. module: sale_commission_product_criteria_price_compliance
+#: model:ir.model,name:sale_commission_product_criteria_price_compliance.model_commission_line_mixin
+msgid ""
+"Mixin model for having commission agent lines in any object inheriting from "
+"this one"
+msgstr ""
+"Modelo de mezclador para tener líneas de comisionista en cualquier objeto "
+"que herede de éste"
+
+#. module: sale_commission_product_criteria_price_compliance
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_price_compliance.report_settlement_document
+msgid "Price Compliance"
+msgstr "Cumplimiento de Precios"
+
+#. module: sale_commission_product_criteria_price_compliance
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_price_compliance.field_commission_item__price_compliance_tier
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_price_compliance.field_commission_settlement_line__price_compliance_tier
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_price_compliance.commission_item_search
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_price_compliance.view_settlement_line_search
+msgid "Price Compliance Tier"
+msgstr "Nivel de cumplimiento de precios"

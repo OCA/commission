@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Moduon Team S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<data>
+    <record id="sale_commission_form_lines_mod" model="ir.ui.view">
+        <field name="model">commission</field>
+        <field
+            name="inherit_id"
+            ref="sale_commission_product_criteria.sale_commission_form_lines_mod"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='item_ids']//field[@name='name']"
+                position="after"
+            >
+                <field name="price_compliance_tier" />
+            </xpath>
+        </field>
+    </record>
+</data>

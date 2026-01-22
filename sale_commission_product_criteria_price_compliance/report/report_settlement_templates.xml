@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Moduon Team S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<odoo>
+    <template
+        id="report_settlement_document"
+        inherit_id="commission.report_settlement_document"
+    >
+        <xpath
+            expr="//table[@name='invoice_line_table']/thead/tr/th[last()]"
+            position="before"
+        >
+            <th class="text-start">Price Compliance</th>
+        </xpath>
+        <xpath
+            expr="//table[@name='invoice_line_table']/tbody/tr/td/span[@t-field='l.commission_id']/.."
+            position="after"
+        >
+            <td class="text-start">
+                <span t-field="l.price_compliance_tier" />
+            </td>
+        </xpath>
+    </template>
+</odoo>

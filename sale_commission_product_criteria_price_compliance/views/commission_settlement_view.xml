@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Moduon Team S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<data>
+    <record id="view_settlement_form" model="ir.ui.view">
+        <field name="model">commission.settlement</field>
+        <field name="inherit_id" ref="commission.view_settlement_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='line_ids']/tree/field[@name='commission_id']"
+                position="after"
+            >
+                <field name="price_compliance_tier" />
+            </xpath>
+        </field>
+    </record>
+</data>
