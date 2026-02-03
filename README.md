@@ -21,7 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[account_commission](account_commission/) | 16.0.2.5.1 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Account commissions
+[account_commission](account_commission/) | 16.0.2.5.2 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Account commissions
 [commission](commission/) | 16.0.2.4.1 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Commissions
 [commission_delegated_partner](commission_delegated_partner/) | 16.0.1.0.1 |  | Allow to delegate the invoices of agent to a delegate partner
 [commission_formula](commission_formula/) | 16.0.1.0.0 |  | Commissions computed by formulas
