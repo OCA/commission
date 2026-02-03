@@ -59,6 +59,8 @@ class SaleCommissionLineMixin(models.AbstractModel):
         }
 
     def _get_commission_items(self, commission, product):
+        if not commission:
+            return []
         self.env.cr.execute(
             self._commission_items_query(),
             self._commission_items_query_params(commission, product),
