@@ -231,7 +231,7 @@ class TestAccountCommission(TestCommissionBase):
 
     def test_supplier_invoice(self):
         """No agents should be populated on supplier invoices."""
-        self.partner.agent_ids = self.agent_semi
+        self.partner.commission_agent_ids = self.agent_semi
         invoice = self.env["account.move"].create(
             [
                 {
@@ -254,7 +254,7 @@ class TestAccountCommission(TestCommissionBase):
 
     def test_commission_propagation(self):
         """Test propagation of agents from partner to invoice."""
-        self.partner.agent_ids = [(4, self.agent_monthly.id)]
+        self.partner.commission_agent_ids = [(4, self.agent_monthly.id)]
         invoice = self.env["account.move"].create(
             [
                 {
