@@ -105,7 +105,7 @@ class TestSaleCommission(TestAccountCommission):
         self.assertEqual(action["res_id"], sale_order.order_line.id)
 
     def test_sale_commission_propagation(self):
-        self.partner.agent_ids = [(4, self.agent_monthly.id)]
+        self.partner.commission_agent_ids = [(4, self.agent_monthly.id)]
         sale_order_form = Form(self.env["sale.order"])
         sale_order_form.partner_id = self.partner
         with sale_order_form.order_line.new() as line_form:
