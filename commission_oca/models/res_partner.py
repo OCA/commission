@@ -10,7 +10,7 @@ class ResPartner(models.Model):
 
     _inherit = "res.partner"
 
-    agent_ids = fields.Many2many(
+    commission_agent_ids = fields.Many2many(
         comodel_name="res.partner",
         relation="partner_agent_rel",
         column1="partner_id",
@@ -57,5 +57,5 @@ class ResPartner(models.Model):
     def _commercial_fields(self):
         """Add agents to commercial fields that are synced from parent to childs."""
         res = super()._commercial_fields()
-        res.append("agent_ids")
+        res.append("commission_agent_ids")
         return res

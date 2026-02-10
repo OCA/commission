@@ -170,17 +170,24 @@ class TestCommission(TestCommissionBase):
         partner = self.env["res.partner"].create(
             {
                 "name": "Test partner",
-                "agent_ids": [(4, self.agent_monthly.id), (4, self.agent_quaterly.id)],
+                "commission_agent_ids": [
+                    (4, self.agent_monthly.id),
+                    (4, self.agent_quaterly.id),
+                ],
             }
         )
         # Create
         child = self.env["res.partner"].create(
             {"name": "Test child", "parent_id": partner.id}
         )
-        self.assertEqual(set(child.agent_ids.ids), set(partner.agent_ids.ids))
+        self.assertEqual(
+            set(child.commission_agent_ids.ids), set(partner.commission_agent_ids.ids)
+        )
         # Write
-        partner.agent_ids = [(4, self.agent_annual.id)]
-        self.assertEqual(set(child.agent_ids.ids), set(partner.agent_ids.ids))
+        partner.commission_agent_ids = [(4, self.agent_annual.id)]
+        self.assertEqual(
+            set(child.commission_agent_ids.ids), set(partner.commission_agent_ids.ids)
+        )
 
     def test_auto_subscribe_agent(self):
         settlement = self._create_settlement(

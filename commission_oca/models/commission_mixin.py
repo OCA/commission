@@ -37,7 +37,7 @@ class CommissionMixin(models.AbstractModel):
 
     def _prepare_agents_vals_partner(self, partner, settlement_type=None):
         """Utility method for getting agents creation dictionary of a partner."""
-        agents = partner.agent_ids
+        agents = partner.commission_agent_ids
         if settlement_type:
             agents = agents.filtered(
                 lambda x: not x.commission_id.settlement_type
