@@ -14,7 +14,7 @@
                 position="after"
             >
                 <field
-                    name="agent_ids"
+                    name="commission_agent_ids"
                     widget="many2many_tags"
                     context="{'default_agent': True}"
                 />
