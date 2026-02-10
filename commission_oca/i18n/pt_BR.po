@@ -120,8 +120,8 @@ msgstr "Informa????es do Representante"
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
 #: model:ir.actions.act_window,name:commission_oca.action_agent_form
-#: model:ir.model.fields,field_description:commission_oca.field_res_partner__agent_ids
-#: model:ir.model.fields,field_description:commission_oca.field_res_users__agent_ids
+#: model:ir.model.fields,field_description:commission_oca.field_res_partner__commission_agent_ids
+#: model:ir.model.fields,field_description:commission_oca.field_res_users__commission_agent_ids
 #: model:ir.ui.menu,name:commission_oca.menu_agent_form
 #: model_terms:ir.ui.view,arch_db:commission_oca.res_partner_view_search
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
