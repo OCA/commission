@@ -4,53 +4,135 @@
 
 
 from odoo.exceptions import ValidationError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form, TransactionCase
 
 
 class TestSaleCommission(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.commission_model = cls.env["commission"]
         cls.company = cls.env.ref("base.main_company")
         cls.res_partner_model = cls.env["res.partner"]
-        cls.partner = cls.env.ref("base.res_partner_12")
-        cls.partner2 = cls.env.ref("base.res_partner_10")
+        cls.partner = cls.env["res.partner"].create({"name": "Test Partner 1"})
+        cls.partner2 = cls.env["res.partner"].create({"name": "Test Partner 2"})
         cls.sale_order_model = cls.env["sale.order"]
         cls.advance_inv_model = cls.env["sale.advance.payment.inv"]
         cls.settle_model = cls.env["commission.settlement"]
         cls.make_settle_model = cls.env["commission.make.settle"]
         cls.make_inv_model = cls.env["commission.make.invoice"]
-        cls.product_1 = cls.env.ref("product.product_product_1")
-        cls.product_4 = cls.env.ref("product.product_product_4")
-        cls.product_5 = cls.env.ref("product.product_product_5")
-        cls.product_6 = cls.env.ref("product.product_product_6")
-        cls.product_1.write({"invoice_policy": "order"})
-        cls.product_4.write({"invoice_policy": "order"})
-        cls.product_5.write({"invoice_policy": "order"})
-        cls.product_6.write({"commission_free": True})
-        cls.product_template_4 = cls.env.ref(
-            "product.product_product_4_product_template"
+
+        # Create products instead of relying on demo data
+        cls.product_1 = cls.env["product.product"].create(
+            {"name": "Product 1", "invoice_policy": "order"}
         )
-        cls.product_template_4.write({"invoice_policy": "order"})
+        cls.product_template_4 = cls.env["product.template"].create(
+            {"name": "Product 4 Template", "invoice_policy": "order"}
+        )
+        attribute = cls.env["product.attribute"].create({"name": "Test Attribute"})
+        value_a = cls.env["product.attribute.value"].create(
+            {"name": "A", "attribute_id": attribute.id}
+        )
+        value_b = cls.env["product.attribute.value"].create(
+            {"name": "B", "attribute_id": attribute.id}
+        )
+        cls.product_template_4.write(
+            {
+                "attribute_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "attribute_id": attribute.id,
+                            "value_ids": [(6, 0, [value_a.id, value_b.id])],
+                        },
+                    )
+                ]
+            }
+        )
+        product_variants = cls.product_template_4.product_variant_ids.sorted("id")
+        cls.product_4 = product_variants[0]
+        cls.product_4b = product_variants[1]
+        cls.product_5 = cls.env["product.product"].create(
+            {"name": "Product 5", "invoice_policy": "order"}
+        )
+        cls.product_6 = cls.env["product.product"].create(
+            {"name": "Product 6", "commission_free": True}
+        )
+
         cls.journal = cls.env["account.journal"].search(
             [("type", "=", "purchase")], limit=1
         )
-        cls.rules_commission_id = cls.env.ref(
-            "sale_commission_product_criteria.demo_commission_rules"
+        if not cls.journal:
+            cls.journal = cls.env["account.journal"].create(
+                {"name": "Purchase Journal", "code": "PURCHT", "type": "purchase"}
+            )
+
+        # Create commission rules manually
+        cls.rules_commission_id = cls.env["commission"].create(
+            {"name": "Based on Rules", "commission_type": "product"}
         )
-        cls.com_item_1 = cls.env.ref(
-            "sale_commission_product_criteria.demo_commission_rules_item_1"
+
+        cls.com_item_1 = cls.env["commission.item"].create(
+            {
+                "commission_id": cls.rules_commission_id.id,
+                "sequence": 1,
+                "based_on": "sol",
+                "applied_on": "3_global",
+                "commission_type": "fixed",
+                "fixed_amount": 10,
+            }
         )
-        cls.com_item_2 = cls.env.ref(
-            "sale_commission_product_criteria.demo_commission_rules_item_2"
+
+        # Need a category for com_item_2
+        categ = cls.env["product.category"].create({"name": "Test Category 5"})
+        cls.product_5.categ_id = categ.id
+        cls.com_item_2 = cls.env["commission.item"].create(
+            {
+                "commission_id": cls.rules_commission_id.id,
+                "sequence": 2,
+                "based_on": "sol",
+                "applied_on": "2_product_category",
+                "commission_type": "fixed",
+                "fixed_amount": 20,
+                "categ_id": categ.id,
+            }
         )
-        cls.com_item_3 = cls.env.ref(
-            "sale_commission_product_criteria.demo_commission_rules_item_3"
+
+        cls.com_item_3 = cls.env["commission.item"].create(
+            {
+                "commission_id": cls.rules_commission_id.id,
+                "sequence": 3,
+                "based_on": "sol",
+                "applied_on": "1_product",
+                "commission_type": "percentage",
+                "percent_amount": 5,
+                "product_tmpl_id": cls.product_template_4.id,
+            }
         )
-        cls.com_item_4 = cls.env.ref(
-            "sale_commission_product_criteria.demo_commission_rules_item_4"
+
+        cls.com_item_4 = cls.env["commission.item"].create(
+            {
+                "commission_id": cls.rules_commission_id.id,
+                "sequence": 4,
+                "based_on": "sol",
+                "applied_on": "0_product_variant",
+                "commission_type": "percentage",
+                "percent_amount": 15,
+                "product_id": cls.product_4.id,
+            }
         )
+
+        # We must add commission to partner
+        agent = cls.env["res.partner"].create(
+            {
+                "name": "Agent Rules",
+                "agent": True,
+                "commission_id": cls.rules_commission_id.id,
+            }
+        )
+        cls.partner.write({"commission_agent_ids": [(4, agent.id)]})
 
     def _create_sale_order(self, product, partner):
         return self.sale_order_model.create(
@@ -64,7 +146,7 @@ class TestSaleCommission(TransactionCase):
                             "name": product.name,
                             "product_id": product.id,
                             "product_uom_qty": 1.0,
-                            "product_uom": product.uom_id.id,
+                            "product_uom_id": product.uom_id.id,
                             "price_unit": 1000,
                         },
                     )
@@ -89,7 +171,7 @@ class TestSaleCommission(TransactionCase):
         invoice = sale_order.invoice_ids - old_invoices
         return invoice
 
-    def test_sale_commission_product_criteria_items(self):
+    def test_sale_commission_product_criteria_oca_items(self):
         # items names
         self.com_item_1._compute_commission_item_name_value()
         self.com_item_1.currency_id.position = "after"
@@ -97,17 +179,16 @@ class TestSaleCommission(TransactionCase):
         self.assertEqual(self.com_item_1.name, "All Products")
         self.com_item_1.write({"applied_on": "3_global"})
         self.com_item_2._compute_commission_item_name_value()
-        self.assertEqual(
-            self.com_item_2.name, "Category: All / Saleable / Office Furniture"
-        )
+        self.assertEqual(self.com_item_2.name, "Category: Test Category 5")
         self.com_item_2.write({"applied_on": "2_product_category"})
         self.com_item_3._compute_commission_item_name_value()
-        self.assertEqual(self.com_item_3.name, "Product: Customizable Desk")
+        self.assertEqual(self.com_item_3.name, "Product: Product 4 Template")
         self.com_item_3.write({"applied_on": "1_product"})
         self.com_item_4._compute_commission_item_name_value()
-        self.assertEqual(
-            self.com_item_4.name, "Variant: Customizable Desk (Steel, White)"
-        )
+        variant_name = self.product_4.with_context(
+            display_default_code=False
+        ).display_name
+        self.assertEqual(self.com_item_4.name, f"Variant: {variant_name}")
         self.com_item_4.write({"applied_on": "0_product_variant"})
 
         # 3_global
@@ -130,7 +211,7 @@ class TestSaleCommission(TransactionCase):
         invoice.recompute_lines_agents()
 
         # 1_product 5 %
-        pp4 = self.product_template_4.product_variant_id
+        pp4 = self.product_4b
         so = self._create_sale_order(pp4, self.partner)
         so.recompute_lines_agents()
         self.assertEqual(so.partner_agent_ids.name, "Agent Rules")
@@ -177,9 +258,7 @@ class TestSaleCommission(TransactionCase):
             self.rules_commission_id.check_type_change_allowed_sale()
 
         # no rule found
-        self.env.ref(
-            "sale_commission_product_criteria.demo_commission_rules_item_1"
-        ).unlink()
+        self.com_item_1.unlink()
         so = self._create_sale_order(self.product_1, self.partner)
         so.order_line.agent_ids._compute_amount()
 

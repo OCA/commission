@@ -58,10 +58,12 @@
         <field name="commission_id" ref="demo_commission_rules" />
     </record>
 
-    <record id="base.res_partner_12" model="res.partner">
+    <record id="demo_res_partner_12" model="res.partner">
+        <field name="name">Demo Partner 12</field>
+        <field name="is_company">True</field>
         <field
-            name="agent_ids"
-            eval="[(6, 0, [ref('sale_commission_product_criteria.demo_agent_rules')])]"
+            name="commission_agent_ids"
+            eval="[(6, 0, [ref('sale_commission_product_criteria_oca.demo_agent_rules')])]"
         />
     </record>
 </odoo>
