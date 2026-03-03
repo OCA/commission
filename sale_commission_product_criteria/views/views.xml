@@ -154,10 +154,10 @@
                                 attrs="{'invisible':[('commission_type', '!=', 'percentage')]}"
                             >
                                 <field
-                                    name="percent_amount"
-                                    class="oe_inline"
-                                    attrs="{'invisible':[('commission_type', '!=', 'percentage')]}"
-                                />
+                                name="percent_amount"
+                                class="oe_inline"
+                                attrs="{'invisible':[('commission_type', '!=', 'percentage')]}"
+                            />
                                 %%
                             </div>
                         </group>
