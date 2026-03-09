@@ -62,7 +62,7 @@ class TestSaleCommissionSalesman(BaseCommon):
         self.assertTrue(line.agent_ids.commission_id, self.commission_1)
 
     def test_sale_commission_salesman_no_population(self):
-        self.partner.agent_ids = [(4, self.other_agent.id)]
+        self.partner.commission_agent_ids = [(4, self.other_agent.id)]
         line = self.env["sale.order.line"].create(
             {"order_id": self.sale_order.id, "product_id": self.product.id}
         )
@@ -80,7 +80,7 @@ class TestSaleCommissionSalesman(BaseCommon):
         self.assertTrue(line.agent_ids.commission_id, self.commission_1)
 
     def test_invoice_commission_salesman_no_population(self):
-        self.partner.agent_ids = [(4, self.other_agent.id)]
+        self.partner.commission_agent_ids = [(4, self.other_agent.id)]
         invoice_form = Form(self.invoice)
         with invoice_form.invoice_line_ids.new() as line_form:
             line_form.product_id = self.product

@@ -7,7 +7,6 @@
         <field name="inherit_id" ref="commission_oca.view_partner_form_agent" />
         <field name="arch" type="xml">
             <field name="commission_id" position="after">
-                <field name="user_ids" invisible="1" />
                 <field name="salesman_as_agent" invisible="not user_ids" />
             </field>
         </field>
