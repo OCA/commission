@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-03-11 09:51+0000\n"
+"PO-Revision-Date: 2026-03-11 09:57+0000\n"
 "Last-Translator: davidbeckercbl <becker@cbl-computer.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -27,6 +27,7 @@ msgstr "%s Provisionsempfänger"
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid "(keep empty for making the settlement of all agents)"
 msgstr ""
+"(leer lassen, um die Abrechnung für alle Provisionsempfänger durchzuführen)"
 
 #. module: commission
 #. odoo-python
@@ -43,56 +44,61 @@ msgid ""
 "                        commission module for having this feature enabled.\n"
 "                    </span>"
 msgstr ""
+"<span>\n"
+"                        Keine automatischen Abrechnungen möglich. "
+"Installieren Sie ein zusätzliches\n"
+"                        Provisionsmodul, um diese Funktion zu aktivieren.\n"
+"                        </span>"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>From:</strong>"
-msgstr ""
+msgstr "<strong>Ab:</strong>"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>Global commission amount:</strong>"
-msgstr ""
+msgstr "<strong>Gesamtprovisionsbetrag:</strong>"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>To:</strong>"
-msgstr ""
+msgstr "<strong>Bis:</strong>"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 msgid "<strong>Total</strong>"
-msgstr ""
+msgstr "<strong>Gesamt</strong>"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Aktion Erforderlich"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__active
 msgid "Active"
-msgstr ""
+msgstr "Aktiv"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Aktivitäten"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "Ausnahmenkennzeichung"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "Status Aktivität"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Aktivitätstyp Symbol"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_line_mixin__agent_id
@@ -103,17 +109,17 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_search
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_search
 msgid "Agent"
-msgstr ""
+msgstr "Provisionsempfänger"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.res_partner_view_search
 msgid "Agent Partners"
-msgstr ""
+msgstr "Provisionsempfänger"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_partner_form_agent
 msgid "Agent information"
-msgstr ""
+msgstr "Information Provisionsempfänger"
 
 #. module: commission
 #. odoo-python
@@ -658,35 +664,35 @@ msgstr ""
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__res_partner__settlement__semi
 msgid "Semi-annual"
-msgstr ""
+msgstr "Halbjährlich"
 
 #. module: commission
 #: model:ir.actions.act_window,name:commission.action_agents_settlement
 #: model:ir.ui.menu,name:commission.menu_commission_make_settle
 msgid "Settle Commissions"
-msgstr ""
+msgstr "Provisionen abrechnen"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid "Settle commissions"
-msgstr ""
+msgstr "Provisionen abrechnen"
 
 #. module: commission
 #: model:ir.model.fields.selection,name:commission.selection__commission_settlement__state__settled
 msgid "Settled"
-msgstr ""
+msgstr "Abgerechnet"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement_line__settled_amount
 msgid "Settled Amount"
-msgstr ""
+msgstr "Abgerechneter Betrag"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_partner_form_agent
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_tree
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_tree
 msgid "Settled total"
-msgstr ""
+msgstr "Gesamtsumme abgerechnet"
 
 #. module: commission
 #: model:ir.model,name:commission.model_commission_settlement
