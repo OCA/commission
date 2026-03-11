@@ -6,28 +6,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-03-11 12:45+0000\n"
+"Last-Translator: davidbeckercbl <becker@cbl-computer.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_commission_product_criteria
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__active
 msgid "Active"
-msgstr ""
+msgstr "Aktiv"
 
 #. module: sale_commission_product_criteria
 #: model:ir.model,name:sale_commission_product_criteria.model_account_invoice_line_agent
 msgid "Agent detail of commission line in invoice lines"
 msgstr ""
+"Provisionsempfänger-Detail zu Provisionsposition mit Bezug zur "
+"Rechnungsposition"
 
 #. module: sale_commission_product_criteria
 #: model:ir.model,name:sale_commission_product_criteria.model_sale_order_line_agent
 msgid "Agent detail of commission line in order lines"
-msgstr ""
+msgstr "Provisionsempfängerdetails der Provisionszeile in Auftragszeilen"
 
 #. module: sale_commission_product_criteria
 #. odoo-python
@@ -35,65 +39,65 @@ msgstr ""
 #: model:ir.model.fields.selection,name:sale_commission_product_criteria.selection__commission_item__applied_on__3_global
 #, python-format
 msgid "All Products"
-msgstr ""
+msgstr "Alle Produkte"
 
 #. module: sale_commission_product_criteria
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.view_sale_order_line_tree_mod
 msgid "Amount (%)"
-msgstr ""
+msgstr "Betrag (%)"
 
 #. module: sale_commission_product_criteria
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.view_sale_order_line_tree_mod
 msgid "Amount (fixed)"
-msgstr ""
+msgstr "Betrag (fix)"
 
 #. module: sale_commission_product_criteria
 #: model:ir.model.fields.selection,name:sale_commission_product_criteria.selection__commission_item__based_on__sol
 msgid "Any Sale Order Line"
-msgstr ""
+msgstr "Jegliche Verkaufsauftragszeile"
 
 #. module: sale_commission_product_criteria
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_account_invoice_line_agent__applied_commission_id
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_line_mixin__applied_commission_id
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent__applied_commission_id
 msgid "Applied Commission"
-msgstr ""
+msgstr "Angewandte Provision"
 
 #. module: sale_commission_product_criteria
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_account_invoice_line_agent__applied_commission_item_id
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent__applied_commission_item_id
 msgid "Applied Commission Item"
-msgstr ""
+msgstr "Angewandte Provisionsposition"
 
 #. module: sale_commission_product_criteria
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.view_sale_order_line_tree_mod
 msgid "Applied Disc. (%)"
-msgstr ""
+msgstr "Angewendeter Rabatt (%)"
 
 #. module: sale_commission_product_criteria
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.sale_commission_form_lines_mod
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.view_sale_order_line_tree_mod
 msgid "Applied On"
-msgstr ""
+msgstr "Angewendet auf"
 
 #. module: sale_commission_product_criteria
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__applied_on
 msgid "Apply On"
-msgstr ""
+msgstr "Anwenden auf"
 
 #. module: sale_commission_product_criteria
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_commission_item__based_on
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent__based_on
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.view_sale_order_line_tree_mod
 msgid "Based On"
-msgstr ""
+msgstr "Basierend auf"
 
 #. module: sale_commission_product_criteria
 #. odoo-python
 #: code:addons/sale_commission_product_criteria/models/commission.py:0
 #, python-format
 msgid "Category: %s"
-msgstr ""
+msgstr "Kategorie: %s"
 
 #. module: sale_commission_product_criteria
 #: model:ir.model,name:sale_commission_product_criteria.model_commission
@@ -103,18 +107,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_commission_product_criteria.field_sale_order_line_agent__commission_id
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.commission_item_search
 msgid "Commission"
-msgstr ""
+msgstr "Provision"
 
 #. module: sale_commission_product_criteria
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.commission_item_form_view
 msgid "Commission Computation"
-msgstr ""
+msgstr "Provisionsberechnung"
 
 #. module: sale_commission_product_criteria
 #: model:ir.model,name:sale_commission_product_criteria.model_commission_item
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.commission_item_form_view
 msgid "Commission Item"
-msgstr ""
+msgstr "Provisionsposition"
 
 #. module: sale_commission_product_criteria
 #: model:ir.model.fields,help:sale_commission_product_criteria.field_commission_item__applied_on
@@ -177,7 +181,7 @@ msgstr ""
 #. module: sale_commission_product_criteria
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria.view_order_agent_form_inherit_sale_commission_product_criteria_mod
 msgid "Edit agents"
-msgstr ""
+msgstr "Provisionsempfänger bearbeiten"
 
 #. module: sale_commission_product_criteria
 #: model:ir.model.fields,help:sale_commission_product_criteria.field_commission_item__name
