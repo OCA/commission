@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-03-11 12:45+0000\n"
+"PO-Revision-Date: 2026-03-11 15:45+0000\n"
 "Last-Translator: davidbeckercbl <becker@cbl-computer.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -118,7 +118,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__commission_type
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_users__commission_type
 msgid "Commission Type"
-msgstr ""
+msgstr "Provisionstyp"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.actions.act_window,name:sale_commission_product_criteria_domain.commission_items_group_tree_action
@@ -135,36 +135,36 @@ msgstr ""
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__create_uid
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Angelegt von"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__create_date
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Erstellt am"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__display_name
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Anzeigname"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item__group_id
 msgid "Group"
-msgstr ""
+msgstr "Gruppe"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__id
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__item_ids
@@ -175,19 +175,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent____last_update
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zuletzt bearbeitet am"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__write_uid
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zuletzt geändert am"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__write_date
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zuletzt aktualisiert am"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_commission_line_mixin
@@ -201,12 +201,12 @@ msgstr ""
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__name
 msgid "Name"
-msgstr ""
+msgstr "Bezeichnung"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__partner_id
 msgid "Partner"
-msgstr ""
+msgstr "Kontakt"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields.selection,name:sale_commission_product_criteria_domain.selection__commission__commission_type__product_restricted
@@ -217,7 +217,7 @@ msgstr ""
 #: model:ir.model.fields,help:sale_commission_product_criteria_domain.field_res_partner__allowed_commission_group_ids
 #: model:ir.model.fields,help:sale_commission_product_criteria_domain.field_res_users__allowed_commission_group_ids
 msgid "Related only to agents"
-msgstr ""
+msgstr "Nur mit Provisionsempfängern verknüpft"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,help:sale_commission_product_criteria_domain.field_commission__commission_type
@@ -229,12 +229,19 @@ msgid ""
 "* 'Fixed percentage': all commissions are computed with a fixed percentage. You can fill the percentage in the field \"Fixed percentage\".\n"
 "* 'By sections': percentage varies depending amount intervals. You can fill intervals and percentages in the section \"Rate definition\"."
 msgstr ""
+"Wählen Sie den Provisions-Prozenttyp aus:\n"
+"* 'Fester Prozentsatz': Alle Provisionen werden mit einem festen Prozentsatz "
+"berechnet. Den Prozentsatz können Sie im Feld \"Fester Prozentsatz\" "
+"eintragen.\n"
+"* 'Nach Abschnitten': Der Prozentsatz variiert je nach Betragsintervallen. "
+"Die Intervalle und Prozentsätze können Sie im Abschnitt "
+"\"Staffelfestlegung\" eintragen."
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission__commission_type
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item__sale_commission_type
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #. module: sale_commission_product_criteria_domain
 #. odoo-python
