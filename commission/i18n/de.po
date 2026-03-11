@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-03-11 10:00+0000\n"
+"PO-Revision-Date: 2026-03-11 10:01+0000\n"
 "Last-Translator: davidbeckercbl <becker@cbl-computer.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -772,19 +772,22 @@ msgstr ""
 #: model:ir.model.fields,help:commission.field_commission_settlement__can_edit
 msgid "Technical field for determining if user can edit settlements"
 msgstr ""
+"Technisches Feld zur Bestimmung, ob der Benutzer Abrechnungen bearbeiten darf"
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_make_settle__can_settle
 msgid ""
 "Technical field for improving UX when no extra *commission is installed."
 msgstr ""
+"Technisches Feld zur Verbesserung der Benutzerfreundlichkeit, wenn kein "
+"zusätzliches Provisionsmodul installiert ist."
 
 #. module: commission
 #. odoo-python
 #: code:addons/commission/models/commission.py:0
 #, python-format
 msgid "The lower limit cannot be greater than upper one."
-msgstr ""
+msgstr "Die Untergrenze darf nicht größer als die Obergrenze sein."
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__settlement_type
@@ -792,6 +795,8 @@ msgid ""
 "The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase"
 " order'..."
 msgstr ""
+"Die Quelle der Abrechnung, z. B. 'Verkaufsrechnung', 'Verkaufsauftrag', "
+"'Einkaufsauftrag' …"
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_res_partner__commission_id
