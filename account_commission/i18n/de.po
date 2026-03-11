@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-03-11 12:45+0000\n"
+"Last-Translator: davidbeckercbl <becker@cbl-computer.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__quantity
@@ -22,80 +24,82 @@ msgstr ""
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.commission_make_invoice_form
 msgid "(keep empty for invoicing all the pending settlements)"
-msgstr ""
+msgstr "(leer lassen um alle offenen Provisionen abzurechnen)"
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "<strong>Settlement invoice:</strong>"
-msgstr ""
+msgstr "<strong>Provisionsabrechnung:</strong>"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__agent_id
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__agent_id
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "Agent"
-msgstr ""
+msgstr "Provisionsempfänger"
 
 #. module: account_commission
 #: model:ir.model,name:account_commission.model_account_invoice_line_agent
 msgid "Agent detail of commission line in invoice lines"
 msgstr ""
+"Provisionsempfänger-Detail zu Provisionsposition mit Bezug zur "
+"Rechnungsposition"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_bank_statement_line__partner_agent_ids
 #: model:ir.model.fields,field_description:account_commission.field_account_move__partner_agent_ids
 #: model:ir.model.fields,field_description:account_commission.field_account_payment__partner_agent_ids
 msgid "Agents"
-msgstr ""
+msgstr "Provisionsempfänger"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_move_line__agent_ids
 msgid "Agents & commissions"
-msgstr ""
+msgstr "Provisionen & -empfänger"
 
 #. module: account_commission
 #: model:ir.model.fields,help:account_commission.field_account_move_line__agent_ids
 msgid "Agents/Commissions related to the invoice line."
-msgstr ""
+msgstr "Provisionen/-empfänger zu dieser Rechnungszeile."
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__amount
 #: model_terms:ir.ui.view,arch_db:account_commission.report_settlement_document
 msgid "Amount"
-msgstr ""
+msgstr "Betrag"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_move_line__any_settled
 msgid "Any Settled"
-msgstr ""
+msgstr "Jegliche abgerechnete"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__balance
 msgid "Balance"
-msgstr ""
+msgstr "Saldo"
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.commission_make_invoice_form
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #. module: account_commission
 #. odoo-python
 #: code:addons/account_commission/models/commission_settlement.py:0
 #, python-format
 msgid "Cannot cancel an invoiced settlement."
-msgstr ""
+msgstr "Kann eine abgerechnete Provision nicht stornieren."
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__categ_id
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "Category of Product"
-msgstr ""
+msgstr "Produktkategorie"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_move_line__commission_free
 msgid "Comm. free"
-msgstr ""
+msgstr "Provisionsfrei"
 
 #. module: account_commission
 #: model:ir.model,name:account_commission.model_commission
@@ -103,18 +107,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_commission.field_account_move_line__commission_status
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__commission_id
 msgid "Commission"
-msgstr ""
+msgstr "Provision"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_invoice_line_agent__amount
 msgid "Commission Amount"
-msgstr ""
+msgstr "Provisionsbetrag"
 
 #. module: account_commission
 #: model:ir.actions.act_window,name:account_commission.action_invoice_commission_analysis_report
 #: model:ir.ui.menu,name:account_commission.menu_invoice_commissions_analysis
 msgid "Commission Analysis"
-msgstr ""
+msgstr "Provisionsauswertung"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_bank_statement_line__commission_total
@@ -204,7 +208,7 @@ msgstr ""
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_move_form
 msgid "Edit agents"
-msgstr ""
+msgstr "Provisionsempfänger bearbeiten"
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
