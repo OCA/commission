@@ -6,62 +6,66 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-03-11 12:45+0000\n"
+"Last-Translator: davidbeckercbl <becker@cbl-computer.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__agent_id
 msgid "Agent"
-msgstr ""
+msgstr "Provisionsempfänger"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__agent_group_ids
 msgid "Agent Group"
-msgstr ""
+msgstr "Provisionsempfängergruppe"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_account_invoice_line_agent
 msgid "Agent detail of commission line in invoice lines"
 msgstr ""
+"Provisionsempfänger-Detail zu Provisionsposition mit Bezug zur "
+"Rechnungsposition"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_sale_order_line_agent
 msgid "Agent detail of commission line in order lines"
-msgstr ""
+msgstr "Provisionsempfängerdetails der Provisionszeile in Auftragszeilen"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__partner_agent_ids
 #: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_domain.commission_items_group_form
 msgid "Agents"
-msgstr ""
+msgstr "Provisionsempfänger"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__agents_count
 msgid "Agents Count"
-msgstr ""
+msgstr "Anzahl Provisionsempfänger"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__allowed_commission_group_ids
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_users__allowed_commission_group_ids
 msgid "Allowed Commission Group"
-msgstr ""
+msgstr "Erlaubte Provisionsgruppe"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__allowed_commission_group_ids_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_users__allowed_commission_group_ids_domain
 msgid "Allowed Commission Group Ids Domain"
-msgstr ""
+msgstr "Filter erlaubte Provisionsgruppe"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__apply_commission_restrictions
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_users__apply_commission_restrictions
 msgid "Apply Restrictions"
-msgstr ""
+msgstr "Einschränkungen anwenden"
 
 #. module: sale_commission_product_criteria_domain
 #. odoo-python
@@ -75,35 +79,35 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item__commission_id
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__commission_ids
 msgid "Commission"
-msgstr ""
+msgstr "Provision"
 
 #. module: sale_commission_product_criteria_domain
 #. odoo-python
 #: code:addons/sale_commission_product_criteria_domain/models/commission_group.py:0
 #, python-format
 msgid "Commission Group Agents"
-msgstr ""
+msgstr "Provisionsgruppe Provisionsempfänger"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_commission_item
 msgid "Commission Item"
-msgstr ""
+msgstr "Provisionsposition"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_commission_item_agent
 msgid "Commission Item Agent"
-msgstr ""
+msgstr "Provisionsposition Provisionsempfänger"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_commission_items_group
 msgid "Commission Items Group"
-msgstr ""
+msgstr "Provisionspositionengruppe"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__commission_item_agent_ids
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_users__commission_item_agent_ids
 msgid "Commission Items Groups"
-msgstr ""
+msgstr "Provisionspositionengruppen"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__group_ids
@@ -191,6 +195,8 @@ msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
 msgstr ""
+"Mixin-Modell für die Verwaltung von Provisionsempfänger-Positionen in "
+"beliebigen Objekten, die von diesem Modell erben"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__name
