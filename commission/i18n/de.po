@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-03-11 09:57+0000\n"
+"PO-Revision-Date: 2026-03-11 10:00+0000\n"
 "Last-Translator: davidbeckercbl <becker@cbl-computer.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -702,45 +702,45 @@ msgstr "Gesamtsumme abgerechnet"
 #: model_terms:ir.ui.view,arch_db:commission.report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_form
 msgid "Settlement"
-msgstr ""
+msgstr "Provisionsabrechnung"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__settlement_type
 #: model:ir.model.fields,field_description:commission.field_commission_make_settle__settlement_type
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__settlement_type
 msgid "Settlement Type"
-msgstr ""
+msgstr "Abrechnungstyp"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_graph
 msgid "Settlement analysis"
-msgstr ""
+msgstr "Abrechnungsauswertung"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__line_ids
 msgid "Settlement lines"
-msgstr ""
+msgstr "Provisionspositionen"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_search
 msgid "Settlement lines search"
-msgstr ""
+msgstr "Suche Provisionspositionen"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_res_partner__settlement
 #: model:ir.model.fields,field_description:commission.field_res_users__settlement
 msgid "Settlement period"
-msgstr ""
+msgstr "Abrechnungsperiode"
 
 #. module: commission
 #: model:ir.actions.report,name:commission.action_report_settlement
 msgid "Settlement report"
-msgstr ""
+msgstr "Abrechnungsbericht"
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_search
 msgid "Settlement search"
-msgstr ""
+msgstr "Abrechnungssuche"
 
 #. module: commission
 #: model:ir.actions.act_window,name:commission.action_commission_settlement
@@ -748,12 +748,12 @@ msgstr ""
 #: model:ir.ui.menu,name:commission.menu_settlement_parent
 #: model_terms:ir.ui.view,arch_db:commission.view_partner_form_agent
 msgid "Settlements"
-msgstr ""
+msgstr "Abrechnungen"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__state
 msgid "State"
-msgstr ""
+msgstr "Status"
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__activity_state
@@ -763,6 +763,10 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Status basierend auf Aktivitäten\n"
+"Überfällig: Fälligkeitsdatum ist bereits abgelaufen\n"
+"Heute: Aktivitätsdatum ist heute\n"
+"Geplant: Zukünftige Aktivitäten."
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__can_edit
