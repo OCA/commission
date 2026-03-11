@@ -6,18 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-03-11 12:45+0000\n"
+"Last-Translator: davidbeckercbl <becker@cbl-computer.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_commission_agent_restrict
 #: model:ir.module.category,name:sale_commission_agent_restrict.module_category_sale_commission
 msgid "Agent Access"
-msgstr ""
+msgstr "Zugriff Provisionsempfänger"
 
 #. module: sale_commission_agent_restrict
 #. odoo-python
@@ -25,6 +27,8 @@ msgstr ""
 #, python-format
 msgid "Agents are not allowed to change Contacts' payment terms"
 msgstr ""
+"Provisionsempfänger sind nicht berechtigt die Zahlungsbedingungen eines "
+"Kontaktes zu verändern"
 
 #. module: sale_commission_agent_restrict
 #. odoo-python
@@ -32,36 +36,38 @@ msgstr ""
 #, python-format
 msgid "Agents are not allowed to change the agents assigned to a Contact"
 msgstr ""
+"Provisionsempfänger sind nicht berechtigt, die einem Kontakt zugewiesenen "
+"Provisionsempfänger zu ändern"
 
 #. module: sale_commission_agent_restrict
 #: model:ir.model,name:sale_commission_agent_restrict.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #. module: sale_commission_agent_restrict
 #: model:res.groups,name:sale_commission_agent_restrict.group_agent_own_commissions
 msgid "Display only own commission data"
-msgstr ""
+msgstr "Zeige nur eigene Provisionsdaten an"
 
 #. module: sale_commission_agent_restrict
 #: model:res.groups,name:sale_commission_agent_restrict.group_agent_own_customers
 msgid "Display only own commission data and customers"
-msgstr ""
+msgstr "Zeige nur eigene Provisionsdaten und Kunden an"
 
 #. module: sale_commission_agent_restrict
 #: model:ir.model.fields,field_description:sale_commission_agent_restrict.field_sale_order__current_agent_total
 msgid "My Commission"
-msgstr ""
+msgstr "Meine Provision"
 
 #. module: sale_commission_agent_restrict
 #: model:ir.model,name:sale_commission_agent_restrict.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Verkaufsauftrag"
 
 #. module: sale_commission_agent_restrict
 #: model:ir.model,name:sale_commission_agent_restrict.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Verkaufsauftragszeile"
 
 #. module: sale_commission_agent_restrict
 #. odoo-python
@@ -71,8 +77,11 @@ msgid ""
 "This user is not associated to any agent. Please mark corresponding to this "
 "user partner as agent to be able to assign agent related group to him."
 msgstr ""
+"Dieser Benutzer ist keinem Provisionsempfänger zugeordnet. Bitte markieren "
+"Sie den Kontakt dieses Benutzers als Provisionsempfänger, damit Sie ihm eine "
+"Gruppe zuweisen können."
 
 #. module: sale_commission_agent_restrict
 #: model:ir.model,name:sale_commission_agent_restrict.model_res_users
 msgid "User"
-msgstr ""
+msgstr "Anwender"
