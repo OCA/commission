@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-03-11 10:01+0000\n"
+"PO-Revision-Date: 2026-03-11 12:45+0000\n"
 "Last-Translator: davidbeckercbl <becker@cbl-computer.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -805,23 +805,26 @@ msgid ""
 "This is the default commission used in the sales where this agent is "
 "assigned. It can be changed on each operation if needed."
 msgstr ""
+"Dies ist die Standardprovision, die bei Verkäufen verwendet wird, bei denen "
+"dieser Provisionsempfänger zugewiesen ist. Sie kann bei Bedarf für jeden "
+"einzelnen Vorgang angepasst werden."
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_line_search
 #: model_terms:ir.ui.view,arch_db:commission.view_settlement_search
 msgid "This year"
-msgstr ""
+msgstr "Dieses Jahr"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_section__amount_to
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__date_to
 msgid "To"
-msgstr ""
+msgstr "Bis"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__total
 msgid "Total"
-msgstr ""
+msgstr "Gesamt"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission__commission_type
@@ -829,46 +832,46 @@ msgstr ""
 #: model:ir.model.fields,field_description:commission.field_res_partner__agent_type
 #: model:ir.model.fields,field_description:commission.field_res_users__agent_type
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Art der aufgezeichneten Ausnahmeaktivität."
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_make_settle__date_to
 msgid "Up to"
-msgstr ""
+msgstr "Bis zu"
 
 #. module: commission
 #: model:res.groups,name:commission.group_commission_user
 msgid "User"
-msgstr ""
+msgstr "Anwender"
 
 #. module: commission
 #: model:ir.model.fields,field_description:commission.field_commission_settlement__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Website-Nachrichten"
 
 #. module: commission
 #: model:ir.model.fields,help:commission.field_commission_settlement__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Webseiten-Kommunikationsverlauf"
 
 #. module: commission
 #: model:ir.model,name:commission.model_commission_make_settle
 msgid "Wizard for settling commissions"
-msgstr ""
+msgstr "Assistent für die Provisionsabrechnung"
 
 #. module: commission
 #: model:ir.model.constraint,message:commission.constraint_account_invoice_line_agent_unique_agent
 #: model:ir.model.constraint,message:commission.constraint_commission_line_mixin_unique_agent
 #: model:ir.model.constraint,message:commission.constraint_sale_order_line_agent_unique_agent
 msgid "You can only add one time each agent."
-msgstr ""
+msgstr "Sie dürfen jeden Provisionsempfänger nur ein Mal eintragen."
 
 #. module: commission
 #: model_terms:ir.ui.view,arch_db:commission.view_settled_wizard
 msgid "or"
-msgstr ""
+msgstr "oder"
