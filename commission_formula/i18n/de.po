@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-14 15:14+0000\n"
-"PO-Revision-Date: 2026-03-10 15:45+0000\n"
+"PO-Revision-Date: 2026-03-11 12:45+0000\n"
 "Last-Translator: davidbeckercbl <becker@cbl-computer.de>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
@@ -21,7 +21,6 @@ msgstr ""
 
 #. module: commission_formula
 #: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
-#, fuzzy
 msgid ""
 "<span class=\"instructions\">\n"
 "  Use 'line' to access all the line fields.\n"
@@ -34,26 +33,24 @@ msgid ""
 "                        </span>"
 msgstr ""
 "<span class=\"instructions\">\n"
-"  'line' für Zugriff auf alle Positions-Felder verwenden.\n"
-"  Da Feldnamen abweichen können, sollten Sie Formeln\n"
-"  für sale.order.line und account.invoice.line unterscheiden.\n"
-"  Sie können z.B. line._name == 'sale.order.line'\n"
-"  oder line._name == 'account.invoice.line' verwenden.\n"
+"  Verwenden Sie 'line', um auf alle Zeilenfelder zuzugreifen.\n"
+"  Da Feldnamen variieren können, sollten Sie die Formeln für\n"
+"  sale.order.line und account.move.line unterscheiden.\n"
+"  Sie können z. B. line._name == 'sale.order.line' oder\n"
+"  line._name == 'account.move.line' verwenden.\n"
 "\n"
-"  Nutzen Sie 'result' um den Provisionsbetrag zurück zu geben.\n"
+"  Verwenden Sie 'result', um den Provisionsbetrag zurückzugeben.\n"
 "                        </span>"
 
 #. module: commission_formula
 #: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
-#, fuzzy
 msgid "Account Move Line common fields"
-msgstr "Allgemeine Felder der Kontenabrechnungsposition"
+msgstr "Allgemeine Felder der Rechnungsposition"
 
 #. module: commission_formula
 #: model:ir.model,name:commission_formula.model_commission
-#, fuzzy
 msgid "Commission"
-msgstr "Provision im Verkauf"
+msgstr "Provision"
 
 #. module: commission_formula
 #: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
@@ -87,6 +84,8 @@ msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
 msgstr ""
+"Mixin-Modell für die Verwaltung von Provisionsempfänger-Positionen in "
+"beliebigen Objekten, die von diesem Modell erben"
 
 #. module: commission_formula
 #: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
@@ -107,6 +106,13 @@ msgid ""
 "* 'By sections': percentage varies depending amount intervals. You can fill "
 "intervals and percentages in the section \"Rate definition\"."
 msgstr ""
+"Wählen Sie den Provisions-Prozenttyp aus:\n"
+"* 'Fester Prozentsatz': Alle Provisionen werden mit einem festen Prozentsatz "
+"berechnet. Den Prozentsatz können Sie im Feld \"Fester Prozentsatz\" "
+"eintragen.\n"
+"* 'Nach Abschnitten': Der Prozentsatz variiert je nach Betragsintervallen. "
+"Die Intervalle und Prozentsätze können Sie im Abschnitt "
+"\"Staffelfestlegung\" eintragen."
 
 #. module: commission_formula
 #: model_terms:ir.ui.view,arch_db:commission_formula.commission_form
