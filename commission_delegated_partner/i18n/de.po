@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-03-11 12:45+0000\n"
+"PO-Revision-Date: 2026-03-12 12:45+0000\n"
 "Last-Translator: davidbeckercbl <becker@cbl-computer.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -32,7 +32,7 @@ msgstr "Kontakt"
 #: model:ir.model.fields,field_description:commission_delegated_partner.field_res_partner__delegated_agent_id
 #: model:ir.model.fields,field_description:commission_delegated_partner.field_res_users__delegated_agent_id
 msgid "Delegated Agent"
-msgstr ""
+msgstr "Beauftragter Provisionsempfänger"
 
 #. module: commission_delegated_partner
 #: model:ir.model.fields,field_description:commission_delegated_partner.field_commission_settlement__invoice_partner_id
