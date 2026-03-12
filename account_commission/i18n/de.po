@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-03-11 15:45+0000\n"
+"PO-Revision-Date: 2026-03-12 12:45+0000\n"
 "Last-Translator: davidbeckercbl <becker@cbl-computer.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__quantity
 msgid "# of Qty"
-msgstr ""
+msgstr "Mengenanzahl"
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.commission_make_invoice_form
@@ -275,7 +275,7 @@ msgstr "Rechnungsbasiert"
 #. module: account_commission
 #: model:ir.model,name:account_commission.model_invoice_commission_analysis_report
 msgid "Invoice Commission Analysis Report"
-msgstr ""
+msgstr "Rechnung Provisionsauswertung Bericht"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__date_invoice
@@ -375,7 +375,7 @@ msgstr "Rechnungen erstellen"
 #. module: account_commission
 #: model:res.groups,name:account_commission.group_invoicing_commission
 msgid "Manage invoices commissions"
-msgstr ""
+msgstr "Provisionsabrechnungen verwalten"
 
 #. module: account_commission
 #. odoo-python
@@ -555,55 +555,61 @@ msgid ""
 "product category, aget, etc. Use this report to perform analysis on invoice "
 "lines agents not beeing settled yet."
 msgstr ""
+"Dieser Bericht führt eine Analyse der in den Rechnungspositionen "
+"hinzugefügten Provisionen durch. Sie können die Beträge und Positionen "
+"prüfen, die nach Datum, Produkt, Produktkategorie, Provisionsempfänger etc. "
+"abgerechnet werden. Verwenden Sie diesen Bericht, um Analysen zu "
+"Rechnungspositionen durchzuführen, deren Provisionsempfänger noch nicht "
+"abgerechnet wurden."
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__price_unit
 msgid "Unit Price"
-msgstr ""
+msgstr "Einzelpreis"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__uom_id
 msgid "Unit of Measure"
-msgstr ""
+msgstr "Mengeneinheit"
 
 #. module: account_commission
 #: model:ir.model,name:account_commission.model_commission_make_invoice
 msgid "Wizard for making an invoice from a settlement"
-msgstr ""
+msgstr "Assistent zum Erstellen einer Rechnung aus einer Abrechnung"
 
 #. module: account_commission
 #: model:ir.model,name:account_commission.model_commission_make_settle
 msgid "Wizard for settling commissions"
-msgstr ""
+msgstr "Assistent für die Provisionsabrechnung"
 
 #. module: account_commission
 #. odoo-python
 #: code:addons/account_commission/models/account_move.py:0
 #, python-format
 msgid "You can't cancel an invoice with settled lines"
-msgstr ""
+msgstr "Eine Rechnung mit abgerechneten Positionen kann nicht storniert werden"
 
 #. module: account_commission
 #. odoo-python
 #: code:addons/account_commission/models/commission_settlement.py:0
 #, python-format
 msgid "You can't delete invoiced settlements."
-msgstr ""
+msgstr "Sie dürfen abgerechnete Provisionen nicht löschen."
 
 #. module: account_commission
 #. odoo-python
 #: code:addons/account_commission/models/account_move.py:0
 #, python-format
 msgid "You can't modify a settled line"
-msgstr ""
+msgstr "Eine abgerechnete Position kann nicht geändert werden"
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_graph
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_pivot
 msgid "invoice Commission Analysis"
-msgstr ""
+msgstr "Rechnung Provisionsauswertung"
 
 #. module: account_commission
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "invoices Commission Analysis"
-msgstr ""
+msgstr "Rechnungen Provisionsauswertung"
