@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-03-11 15:45+0000\n"
+"PO-Revision-Date: 2026-03-12 12:45+0000\n"
 "Last-Translator: davidbeckercbl <becker@cbl-computer.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -72,7 +72,7 @@ msgstr "Einschränkungen anwenden"
 #: code:addons/sale_commission_product_criteria_domain/models/commission.py:0
 #, python-format
 msgid "At least one group for each restriction must be selected."
-msgstr ""
+msgstr "Für jede Einschränkung muss mindestens eine Gruppe ausgewählt werden."
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_commission
@@ -112,7 +112,7 @@ msgstr "Provisionspositionengruppen"
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent__group_ids
 msgid "Commission Items Groups Restrictions"
-msgstr ""
+msgstr "Einschränkungen für Provisionspositionsgruppen"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_res_partner__commission_type
@@ -124,13 +124,15 @@ msgstr "Provisionstyp"
 #: model:ir.actions.act_window,name:sale_commission_product_criteria_domain.commission_items_group_tree_action
 #: model:ir.ui.menu,name:sale_commission_product_criteria_domain.menu_commission_items_group
 msgid "Commission Type Items Groups"
-msgstr ""
+msgstr "Provisionstypen-Artikelgruppen"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.constraint,message:sale_commission_product_criteria_domain.constraint_commission_items_group_unique_cig_name
 msgid ""
 "Commission items group with such name already exists. Name must be unique."
 msgstr ""
+"Eine Provisionsartikelgruppe mit diesem Namen existiert bereits. Der Name "
+"muss einzigartig sein."
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model,name:sale_commission_product_criteria_domain.model_res_partner
@@ -169,7 +171,7 @@ msgstr "ID"
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_items_group__item_ids
 msgid "Items"
-msgstr ""
+msgstr "Artikel"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_domain.field_commission_item_agent____last_update
@@ -211,7 +213,7 @@ msgstr "Kontakt"
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields.selection,name:sale_commission_product_criteria_domain.selection__commission__commission_type__product_restricted
 msgid "Product criteria (with restrictions)"
-msgstr ""
+msgstr "Produktkriterien (mit Einschränkungen)"
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.fields,help:sale_commission_product_criteria_domain.field_res_partner__allowed_commission_group_ids
@@ -251,6 +253,8 @@ msgid ""
 "You can not delete this commission group since there is related to it "
 "commission items."
 msgstr ""
+"Sie können diese Provisionsgruppe nicht löschen, da ihr Provisionsartikel "
+"zugeordnet sind."
 
 #. module: sale_commission_product_criteria_domain
 #: model:ir.model.constraint,message:sale_commission_product_criteria_domain.constraint_commission_item_agent_commission_item_unique_agent
@@ -258,3 +262,5 @@ msgid ""
 "You can only add one time each agent into Commission Items Groups "
 "Restrictions table."
 msgstr ""
+"Jeden Provisionsempfänger können Sie nur einmal in die Tabelle "
+"\"Einschränkungen der Provisionsartikelgruppen\" eintragen."
