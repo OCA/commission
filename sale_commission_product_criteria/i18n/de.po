@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-03-11 15:45+0000\n"
+"PO-Revision-Date: 2026-03-12 12:45+0000\n"
 "Last-Translator: davidbeckercbl <becker@cbl-computer.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -364,6 +364,9 @@ msgid ""
 "Specify a product category if this rule only applies to products belonging "
 "to this category or its children categories. Keep empty otherwise."
 msgstr ""
+"Geben Sie eine Produktkategorie an, wenn diese Regel nur für Produkte gilt, "
+"die zu dieser Kategorie oder ihren Unterkategorien gehören. Andernfalls "
+"freilassen."
 
 #. module: sale_commission_product_criteria
 #: model:ir.model.fields,help:sale_commission_product_criteria.field_commission_item__product_id
@@ -371,6 +374,8 @@ msgid ""
 "Specify a product if this rule only applies to one product. Keep empty "
 "otherwise."
 msgstr ""
+"Geben Sie ein Produkt an, wenn diese Regel nur für ein bestimmtes Produkt "
+"gilt. Andernfalls freilassen."
 
 #. module: sale_commission_product_criteria
 #: model:ir.model.fields,help:sale_commission_product_criteria.field_commission_item__product_tmpl_id
@@ -378,6 +383,8 @@ msgid ""
 "Specify a template if this rule only applies to one product template. Keep "
 "empty otherwise."
 msgstr ""
+"Geben Sie eine Produktvorlage an, wenn diese Regel nur für eine bestimmte "
+"Produktvorlage gilt. Andernfalls freilassen."
 
 #. module: sale_commission_product_criteria
 #. odoo-python
