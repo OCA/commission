@@ -1,5 +1,4 @@
-from . import sale_commission_line_mixin
+from . import commission_line_mixin
 from . import commission
-from . import sale
+from . import sale_order
 from . import account_move
-from . import settlement

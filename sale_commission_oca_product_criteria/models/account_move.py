@@ -14,8 +14,7 @@ class AccountInvoiceLineAgent(models.Model):
         "object_id.product_id.commission_free",
         "commission_id",
     )
-    def _compute_amount(self):
-        res = None
+    def _compute_amount(self):  # pylint: disable=W8110 # Computes don't return
         for line in self:
             if line.commission_id and line.commission_id.commission_type == "product":
                 inv_line = line.object_id
@@ -25,6 +24,8 @@ class AccountInvoiceLineAgent(models.Model):
                     inv_line.product_id,
                     inv_line.quantity,
                 )
+                # Refunds commissions are negative
+                if line.invoice_id.move_type and "refund" in line.invoice_id.move_type:
+                    line.amount = -line.amount
             else:
-                res = super(AccountInvoiceLineAgent, line)._compute_amount()
-        return res
+                super(AccountInvoiceLineAgent, line)._compute_amount()

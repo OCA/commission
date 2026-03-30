@@ -5,7 +5,7 @@
 from odoo import fields, models
 
 
-class SaleCommissionLineMixin(models.AbstractModel):
+class CommissionLineMixin(models.AbstractModel):
     _inherit = "commission.line.mixin"
 
     applied_commission_id = fields.Many2one("commission", readonly=True)

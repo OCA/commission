@@ -6,7 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-05 12:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -32,9 +31,9 @@ msgid "Agent detail of commission line in order lines"
 msgstr "Dettaglio riga provvigione agente nelle righe ordine"
 
 #. module: sale_commission_oca_product_criteria
+#. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
 #: model:ir.model.fields.selection,name:sale_commission_oca_product_criteria.selection__commission_item__applied_on__3_global
-#, python-format
 msgid "All Products"
 msgstr "Tutti i prodotti"
 
@@ -55,7 +54,7 @@ msgstr "Qualsiasi riga ordine di vendita"
 
 #. module: sale_commission_oca_product_criteria
 #: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_account_invoice_line_agent__applied_commission_id
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_commission_line_mixin__applied_commission_id
+#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_commission_line_mixin__applied_commission_id
 #: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_order_line_agent__applied_commission_id
 msgid "Applied Commission"
 msgstr "Provvigione applicata"
@@ -90,14 +89,16 @@ msgid "Based On"
 msgstr "Basato su"
 
 #. module: sale_commission_oca_product_criteria
+#. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
-msgid "Category: %s"
-msgstr "Categoria: %s"
+msgid "Category: %(name)s"
+msgstr "Categoria: %(name)s"
 
 #. module: sale_commission_oca_product_criteria
+#: model:ir.model,name:sale_commission_oca_product_criteria.model_commission
 #: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_account_invoice_line_agent__commission_id
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_commission_line_mixin__commission_id
+#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_commission_item__commission_id
+#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_commission_line_mixin__commission_id
 #: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_order_line_agent__commission_id
 #: model_terms:ir.ui.view,arch_db:sale_commission_oca_product_criteria.commission_item_search
 msgid "Commission"
@@ -123,12 +124,10 @@ msgstr "Riga provvigione applicabile all'opzione selezionata"
 #: model:ir.actions.act_window,name:sale_commission_oca_product_criteria.commission_item_action
 #: model:ir.actions.act_window,name:sale_commission_oca_product_criteria.commission_item_action_tree
 #: model_terms:ir.ui.view,arch_db:sale_commission_oca_product_criteria.commission_item_search
-#: model_terms:ir.ui.view,arch_db:sale_commission_oca_product_criteria.commission_item_tree_view
 msgid "Commission Items"
 msgstr "Righe provvigione"
 
 #. module: sale_commission_oca_product_criteria
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_commission_item__commission_id
 #: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_commission_item__commission_type
 #: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_order_line_agent__commission_type
 msgid "Commission Type"
@@ -138,11 +137,6 @@ msgstr "Tipo di provvigione"
 #: model:ir.ui.menu,name:sale_commission_oca_product_criteria.menu_sale_commissions_items
 msgid "Commission Type Items"
 msgstr "Righe tipi di provvigione"
-
-#. module: sale_commission_oca_product_criteria
-#: model:ir.model,name:sale_commission_oca_product_criteria.model_sale_commission
-msgid "Commission in sales"
-msgstr "Provvigione nelle vendite"
 
 #. module: sale_commission_oca_product_criteria
 #: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_commission_item__company_id
@@ -175,15 +169,14 @@ msgid "Discount (%)"
 msgstr "Sconto (%)"
 
 #. module: sale_commission_oca_product_criteria
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_account_invoice_line_agent__display_name
 #: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_commission_item__display_name
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_commission__display_name
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_commission_line_mixin__display_name
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_commission_settlement_line__display_name
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_order_line__display_name
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_order_line_agent__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
+
+#. module: sale_commission_oca_product_criteria
+#: model_terms:ir.ui.view,arch_db:sale_commission_oca_product_criteria.view_order_agent_form_inherit_sale_commission_oca_product_criteria_mod
+msgid "Edit agents"
+msgstr ""
 
 #. module: sale_commission_oca_product_criteria
 #: model:ir.model.fields,help:sale_commission_oca_product_criteria.field_commission_item__name
@@ -213,36 +206,14 @@ msgid "Group By"
 msgstr "Raggruppa per"
 
 #. module: sale_commission_oca_product_criteria
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_account_invoice_line_agent__id
 #: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_commission_item__id
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_commission__id
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_commission_line_mixin__id
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_commission_settlement_line__id
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_order_line__id
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_order_line_agent__id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_commission_oca_product_criteria
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_commission__item_ids
+#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_commission__item_ids
 msgid "Item"
 msgstr "Riga"
-
-#. module: sale_commission_oca_product_criteria
-#: model_terms:ir.ui.view,arch_db:sale_commission_oca_product_criteria.sale_commission_form_lines_mod
-msgid "Items"
-msgstr "Righe"
-
-#. module: sale_commission_oca_product_criteria
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_account_invoice_line_agent____last_update
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_commission_item____last_update
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_commission____last_update
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_commission_line_mixin____last_update
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_commission_settlement_line____last_update
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_order_line____last_update
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_order_line_agent____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
 
 #. module: sale_commission_oca_product_criteria
 #: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_commission_item__write_uid
@@ -255,12 +226,7 @@ msgid "Last Updated on"
 msgstr "Ultimo aggiornamento il"
 
 #. module: sale_commission_oca_product_criteria
-#: model:ir.model,name:sale_commission_oca_product_criteria.model_sale_commission_settlement_line
-msgid "Line of a commission settlement"
-msgstr "Riga di regolazione provvigione"
-
-#. module: sale_commission_oca_product_criteria
-#: model:ir.model,name:sale_commission_oca_product_criteria.model_sale_commission_line_mixin
+#: model:ir.model,name:sale_commission_oca_product_criteria.model_commission_line_mixin
 msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
@@ -286,21 +252,21 @@ msgid "Percentage Amount"
 msgstr "Importo percentuale"
 
 #. module: sale_commission_oca_product_criteria
+#. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
 msgid "Please specify the category for which this rule should be applied"
 msgstr ""
 "Specifica la categoria per la quale questa regola deve essere applicata"
 
 #. module: sale_commission_oca_product_criteria
+#. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
 msgid "Please specify the product for which this rule should be applied"
 msgstr "Specifica il prodotto per la quale questa regola deve essere applicata"
 
 #. module: sale_commission_oca_product_criteria
+#. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
 msgid ""
 "Please specify the product variant for which this rule should be applied"
 msgstr ""
@@ -331,15 +297,15 @@ msgid "Product Variant"
 msgstr "Variante prodotto"
 
 #. module: sale_commission_oca_product_criteria
-#: model:ir.model.fields.selection,name:sale_commission_oca_product_criteria.selection__sale_commission__commission_type__product
+#: model:ir.model.fields.selection,name:sale_commission_oca_product_criteria.selection__commission__commission_type__product
 msgid "Product criteria"
 msgstr "Criteri prodotto"
 
 #. module: sale_commission_oca_product_criteria
+#. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
-msgid "Product: %s"
-msgstr "Prodotto: %s"
+msgid "Product: %(name)s"
+msgstr "Prodotto: %(name)s"
 
 #. module: sale_commission_oca_product_criteria
 #: model_terms:ir.ui.view,arch_db:sale_commission_oca_product_criteria.sale_commission_form_lines_mod
@@ -350,6 +316,16 @@ msgstr "Regole"
 #: model:ir.model,name:sale_commission_oca_product_criteria.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Riga ordine di vendita"
+
+#. module: sale_commission_oca_product_criteria
+#: model:ir.model.fields,help:sale_commission_oca_product_criteria.field_commission__commission_type
+msgid ""
+"Select the percentage type of the commission:\n"
+"* 'Fixed percentage': all commissions are computed with a fixed percentage. "
+"You can fill the percentage in the field \"Fixed percentage\".\n"
+"* 'By sections': percentage varies depending amount intervals. You can fill "
+"intervals and percentages in the section \"Rate definition\"."
+msgstr ""
 
 #. module: sale_commission_oca_product_criteria
 #: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_commission_item__sequence
@@ -385,8 +361,8 @@ msgstr ""
 "modello prodotto, altrimenti lasciare vuoto."
 
 #. module: sale_commission_oca_product_criteria
+#. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
 msgid ""
 "There is done Sale Orders with this commission. Commission type change is "
 "not allowed."
@@ -395,8 +371,8 @@ msgstr ""
 "possibile modificare il tipo."
 
 #. module: sale_commission_oca_product_criteria
+#. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
 msgid ""
 "There is posted Account Move Lines with this commission. Commission type "
 "change is not allowed."
@@ -405,7 +381,7 @@ msgstr ""
 "modificare il tipo."
 
 #. module: sale_commission_oca_product_criteria
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_sale_commission__commission_type
+#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_commission__commission_type
 msgid "Type"
 msgstr "Tipo"
 
@@ -415,13 +391,7 @@ msgid "Value"
 msgstr "Valore"
 
 #. module: sale_commission_oca_product_criteria
+#. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
-msgid "Variant: %s"
-msgstr "Variante: %s"
-
-#~ msgid "Pricelist"
-#~ msgstr "Listino prezzi"
-
-#~ msgid "Use Pricelist"
-#~ msgstr "Usa listino prezzi"
+msgid "Variant: %(name)s"
+msgstr "Variante: %(name)s"
