@@ -17,33 +17,41 @@ Sale Commission Product Criteria
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fcommission-lightgray.png?logo=github
-    :target: https://github.com/OCA/commission/tree/16.0/sale_commission_oca_product_criteria
+    :target: https://github.com/OCA/commission/tree/18.0/sale_commission_oca_product_criteria
     :alt: OCA/commission
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/commission-16-0/commission-16-0-sale_commission_oca_product_criteria
+    :target: https://translation.odoo-community.org/projects/commission-18-0/commission-18-0-sale_commission_oca_product_criteria
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/commission&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/commission&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows to set in the same Commission Type different commission rates according to the product on SO/invoice line.
+This module allows to set in the same Commission Type different
+commission rates according to the product on SO/invoice line.
 
-This is made possible since this module adds a new "Product criteria" type to Commission Type and applies commission rates with the same logic of sale pricelist items.
+This is made possible since this module adds a new "Product criteria"
+type to Commission Type and applies commission rates with the same logic
+of sale pricelist items.
 
 For example, such a Commission Type can grant:
 
-10% on a specific Product A,
-10$ on Product B,
-4% on products in Category 1 and
-5$ on all other products.
+10% on a specific Product A, 10$ on Product B, 4% on products in
+Category 1 and 5$ on all other products.
 
-In SO/invoice, system will apply different commissions based on variant/product/category or global, applied hierarchically. This means that for the example above, if product A is assigned to Category 1, commission assigned is 10%, as per variant/product/category/global rule application order.
+In SO/invoice, system will apply different commissions based on
+variant/product/category or global, applied hierarchically. This means
+that for the example above, if product A is assigned to Category 1,
+commission assigned is 10%, as per variant/product/category/global rule
+application order.
 
-Furthermore, these commission type items can be accessed and created by a specific menu, to facilitate their management in environments with lots of records.
+Furthermore, these commission type items can be accessed and created by
+a specific menu, to facilitate their management in environments with
+lots of records.
 
-The form for commission type item can be extended by future modules with further conditions to decide when to apply a specific item.
+The form for commission type item can be extended by future modules with
+further conditions to decide when to apply a specific item.
 
 **Table of contents**
 
@@ -55,11 +63,12 @@ Usage
 
 To use features of this module, you need to:
 
-#. Go to Commissions > Configuration > Commission Types.
-#. Create a Commission Type with type = "Product criteria".
-#. Create multiple rules based on variant/product/category or global
-#. These rules will be sorted according to the same logic of sale pricelist.
-#. Rest flow is according to OCA sale_commission module.
+1. Go to Commissions > Configuration > Commission Types.
+2. Create a Commission Type with type = "Product criteria".
+3. Create multiple rules based on variant/product/category or global
+4. These rules will be sorted according to the same logic of sale
+   pricelist.
+5. Rest flow is according to OCA sale_commission module.
 
 Bug Tracker
 ===========
@@ -67,7 +76,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/commission/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/commission/issues/new?body=module:%20sale_commission_oca_product_criteria%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/commission/issues/new?body=module:%20sale_commission_oca_product_criteria%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -75,23 +84,24 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Ilyas
 * Ooops404
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Ooops404 <https://www.ooops404.com>`__:
+- `Ooops404 <https://www.ooops404.com>`__:
 
-  * Ilyas <irazor147@gmail.com>
-* `Aion Tech <https://aiontech.company/>`_:
+  - Ilyas <irazor147@gmail.com>
 
-  * Simone Rubino <simone.rubino@aion-tech.it>
+- `Aion Tech <https://aiontech.company/>`__:
+
+  - Simone Rubino <simone.rubino@aion-tech.it>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -111,6 +121,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-ilyasProgrammer| 
 
-This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/16.0/sale_commission_oca_product_criteria>`_ project on GitHub.
+This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/18.0/sale_commission_oca_product_criteria>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

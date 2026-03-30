@@ -4,7 +4,6 @@
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
   -->
 <odoo>
-
     <record id="demo_commission_rules" model="commission">
         <field name="name">Based on Rules</field>
         <field name="commission_type">product</field>
@@ -65,5 +64,4 @@
             eval="[(6, 0, [ref('sale_commission_oca_product_criteria.demo_agent_rules')])]"
         />
     </record>
-
 </odoo>
