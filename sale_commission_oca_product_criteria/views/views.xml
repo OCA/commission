@@ -7,11 +7,11 @@
     <!-- Modified sale_commission views -->
     <record
         model="ir.ui.view"
-        id="view_order_agent_form_inherit_sale_commission_product_criteria_mod"
+        id="view_order_agent_form_inherit_sale_commission_oca_product_criteria_mod"
     >
         <field
             name="name"
-        >sale.agent.order.inherit.form.sale_commission_product_criteria.mod</field>
+        >sale.agent.order.inherit.form.sale_commission_oca_product_criteria.mod</field>
         <field name="model">sale.order</field>
         <field name="priority" eval="99" />
         <field name="inherit_id" ref="sale_commission.view_order_agent_form_inherit" />

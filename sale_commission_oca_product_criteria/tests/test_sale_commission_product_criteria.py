@@ -37,19 +37,19 @@ class TestSaleCommission(TransactionCase):
             [("type", "=", "purchase")], limit=1
         )
         cls.rules_commission_id = cls.env.ref(
-            "sale_commission_product_criteria.demo_commission_rules"
+            "sale_commission_oca_product_criteria.demo_commission_rules"
         )
         cls.com_item_1 = cls.env.ref(
-            "sale_commission_product_criteria.demo_commission_rules_item_1"
+            "sale_commission_oca_product_criteria.demo_commission_rules_item_1"
         )
         cls.com_item_2 = cls.env.ref(
-            "sale_commission_product_criteria.demo_commission_rules_item_2"
+            "sale_commission_oca_product_criteria.demo_commission_rules_item_2"
         )
         cls.com_item_3 = cls.env.ref(
-            "sale_commission_product_criteria.demo_commission_rules_item_3"
+            "sale_commission_oca_product_criteria.demo_commission_rules_item_3"
         )
         cls.com_item_4 = cls.env.ref(
-            "sale_commission_product_criteria.demo_commission_rules_item_4"
+            "sale_commission_oca_product_criteria.demo_commission_rules_item_4"
         )
 
     def _create_sale_order(self, product, partner):
@@ -89,7 +89,7 @@ class TestSaleCommission(TransactionCase):
         invoice = sale_order.invoice_ids - old_invoices
         return invoice
 
-    def test_sale_commission_product_criteria_items(self):
+    def test_sale_commission_oca_product_criteria_items(self):
         # items names
         self.com_item_1._compute_commission_item_name_value()
         self.com_item_1.currency_id.position = "after"
@@ -178,7 +178,7 @@ class TestSaleCommission(TransactionCase):
 
         # no rule found
         self.env.ref(
-            "sale_commission_product_criteria.demo_commission_rules_item_1"
+            "sale_commission_oca_product_criteria.demo_commission_rules_item_1"
         ).unlink()
         so = self._create_sale_order(self.product_1, self.partner)
         so.order_line.agent_ids._compute_amount()
