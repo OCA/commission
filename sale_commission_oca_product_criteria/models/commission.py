@@ -244,11 +244,11 @@ class CommissionItem(models.Model):
         for values in values_list:
             values = self.validate_values(values)
             new_values_list.append(values)
-        return super(CommissionItem, self).create(new_values_list)
+        return super().create(new_values_list)
 
     def write(self, values):
         values = self.validate_values(values)
-        res = super(CommissionItem, self).write(values)
+        res = super().write(values)
         return res
 
     def validate_values(self, values):
