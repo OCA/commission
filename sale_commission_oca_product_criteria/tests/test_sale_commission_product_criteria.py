@@ -2,12 +2,16 @@
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
-
+from odoo import Command
 from odoo.exceptions import ValidationError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+
+from odoo.addons.sale_commission_oca.tests.test_sale_commission import (
+    TestSaleCommission,
+)
 
 
-class TestSaleCommission(TransactionCase):
+class TestSaleCommission(TestSaleCommission):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -26,11 +30,9 @@ class TestSaleCommission(TransactionCase):
                 "name": "Test partner 1",
                 "property_product_pricelist": cls.pricelist.id,
                 "agent_ids": [
-                    (
-                        6,
-                        0,
+                    Command.set(
                         cls.env.ref(
-                            "sale_commission_product_criteria.demo_agent_rules"
+                            "sale_commission_oca_product_criteria.demo_agent_rules"
                         ).ids,
                     )
                 ],
@@ -78,14 +80,13 @@ class TestSaleCommission(TransactionCase):
             "sale_commission_oca_product_criteria.demo_commission_rules_item_4"
         )
 
-    def _create_sale_order(self, product, partner):
+    def _create_sale_order_no_co(self, product, partner):
+        # TestSaleCommission already has a _create_sale_order with different params
         return self.sale_order_model.create(
             {
                 "partner_id": partner.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": product.name,
                             "product_id": product.id,
@@ -97,23 +98,6 @@ class TestSaleCommission(TransactionCase):
                 ],
             }
         )
-
-    def _invoice_sale_order(self, sale_order, date=None):
-        old_invoices = sale_order.invoice_ids
-        wizard = self.advance_inv_model.with_context(
-            **{
-                "active_model": "sale.order",
-                "active_ids": [sale_order.id],
-                "active_id": sale_order.id,
-            }
-        ).create(
-            {
-                "advance_payment_method": "delivered",
-            }
-        )
-        wizard.create_invoices()
-        invoice = sale_order.invoice_ids - old_invoices
-        return invoice
 
     def test_sale_commission_oca_product_criteria_items(self):
         # items names
@@ -135,80 +119,72 @@ class TestSaleCommission(TransactionCase):
             self.com_item_4.name, "Variant: Customizable Desk (Steel, White)"
         )
         self.com_item_4.write({"applied_on": "0_product_variant"})
-
         # 3_global
-        so_1 = self._create_sale_order(self.product_1, self.partner)
+        so_1 = self._create_sale_order_no_co(self.product_1, self.partner)
         so_1.recompute_lines_agents()
         self.assertEqual(so_1.partner_agent_ids.name, "Agent Rules")
         self.assertEqual(so_1.order_line.agent_ids.amount, 10)
         so_1.action_confirm()
-        invoice = self._invoice_sale_order(so_1)
+        self._invoice_sale_order(so_1)
+        invoice = so_1.invoice_ids
         invoice.recompute_lines_agents()
         invoice.action_post()
-
         # 2_product_category
-        so = self._create_sale_order(self.product_5, self.partner)
+        so = self._create_sale_order_no_co(self.product_5, self.partner)
         so.recompute_lines_agents()
         self.assertEqual(so.partner_agent_ids.name, "Agent Rules")
         self.assertEqual(so.order_line.agent_ids.amount, 20)
         so.action_confirm()
-        invoice = self._invoice_sale_order(so)
+        self._invoice_sale_order(so)
+        invoice = so.invoice_ids
         invoice.recompute_lines_agents()
-
         # 1_product 5 %
         pp4 = self.product_template_4.product_variant_id
-        so = self._create_sale_order(pp4, self.partner)
+        so = self._create_sale_order_no_co(pp4, self.partner)
         so.recompute_lines_agents()
         self.assertEqual(so.partner_agent_ids.name, "Agent Rules")
         self.assertEqual(so.order_line.agent_ids.amount, 50)
         so.action_confirm()
-        invoice = self._invoice_sale_order(so)
+        self._invoice_sale_order(so)
+        invoice = so.invoice_ids
         invoice.recompute_lines_agents()
-
         # 0_product_variant 15 %
-        so = self._create_sale_order(self.product_4, self.partner)
+        so = self._create_sale_order_no_co(self.product_4, self.partner)
         so.recompute_lines_agents()
         self.assertEqual(so.partner_agent_ids.name, "Agent Rules")
         self.assertEqual(so.order_line.agent_ids.amount, 150)
         so.action_confirm()
-        invoice = self._invoice_sale_order(so)
+        self._invoice_sale_order(so)
+        invoice = so.invoice_ids
         invoice.recompute_lines_agents()
-
         # Commission free product
-        so = self._create_sale_order(self.product_6, self.partner)
+        so = self._create_sale_order_no_co(self.product_6, self.partner)
         so.recompute_lines_agents()
-
         # Type != product
-        so = self._create_sale_order(self.product_4, self.partner2)
+        so = self._create_sale_order_no_co(self.product_4, self.partner2)
         so.recompute_lines_agents()
-
         # net amount
         self.rules_commission_id.amount_base_type = "net_amount"
-        so = self._create_sale_order(self.product_4, self.partner)
+        so = self._create_sale_order_no_co(self.product_4, self.partner)
         so.order_line.agent_ids._compute_amount()
-
         # archive
         self.rules_commission_id.action_archive()
         self.rules_commission_id.action_unarchive()
-
         # copy
         new_rule = self.rules_commission_id.copy()
         self.assertEqual(len(new_rule.item_ids), len(self.rules_commission_id.item_ids))
-
         # change commission_type
         self.rules_commission_id.commission_type = "fixed"
         with self.assertRaises(ValidationError):
             self.rules_commission_id.check_type_change_allowed_moves()
         with self.assertRaises(ValidationError):
             self.rules_commission_id.check_type_change_allowed_sale()
-
         # no rule found
         self.env.ref(
             "sale_commission_oca_product_criteria.demo_commission_rules_item_1"
         ).unlink()
-        so = self._create_sale_order(self.product_1, self.partner)
+        so = self._create_sale_order_no_co(self.product_1, self.partner)
         so.order_line.agent_ids._compute_amount()
-
         # _check_product_consistency
         with self.assertRaises(ValidationError):
             self.com_item_2.categ_id = False
@@ -216,7 +192,6 @@ class TestSaleCommission(TransactionCase):
             self.com_item_3.product_tmpl_id = False
         with self.assertRaises(ValidationError):
             self.com_item_4.product_id = False
-
         # _onchange_product_id
         self.com_item_4.product_id = self.product_1
         self.com_item_4._onchange_product_id()
@@ -230,16 +205,13 @@ class TestSaleCommission(TransactionCase):
             self.com_item_4._onchange_product_tmpl_id()
 
     def test_on_create_check(self):
-        f = Form(self.commission_model)
-        f.name = "New commission type"
-        f.save()
-
-        so = self._create_sale_order(self.product_4, self.partner)
+        with Form(self.commission_model) as f:
+            f.name = "New commission type"
+        so = self._create_sale_order_no_co(self.product_4, self.partner)
         self.assertEqual(
             so.order_line.agent_ids.commission_id, self.rules_commission_id
         )
         self.assertEqual(self.rules_commission_id.commission_type, "product")
-
         so.action_confirm()
         with self.assertRaises(ValidationError):
             self.rules_commission_id.commission_type = "fixed"

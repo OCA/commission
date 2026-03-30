@@ -100,6 +100,11 @@ Contributors
 
   - Simone Rubino <simone.rubino@aion-tech.it>
 
+- `Tecnativa <https://www.tecnativa.com>`__
+
+  - Carlos Roca
+  - David Bañón Gil
+
 Maintainers
 -----------
 

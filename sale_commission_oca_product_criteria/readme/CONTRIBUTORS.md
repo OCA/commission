@@ -4,3 +4,4 @@
   - Simone Rubino \<simone.rubino@aion-tech.it\>
 - [Tecnativa](https://www.tecnativa.com)
   - Carlos Roca
+  - David Bañón Gil

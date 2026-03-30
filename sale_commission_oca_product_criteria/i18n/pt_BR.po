@@ -33,7 +33,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
 #: model:ir.model.fields.selection,name:sale_commission_oca_product_criteria.selection__commission_item__applied_on__3_global
-#, python-format
 msgid "All Products"
 msgstr ""
 
@@ -91,8 +90,7 @@ msgstr ""
 #. module: sale_commission_oca_product_criteria
 #. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
-msgid "Category: %s"
+msgid "Category: %(name)s"
 msgstr ""
 
 #. module: sale_commission_oca_product_criteria
@@ -217,11 +215,6 @@ msgid "Item"
 msgstr ""
 
 #. module: sale_commission_oca_product_criteria
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_commission_item____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: sale_commission_oca_product_criteria
 #: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_commission_item__write_uid
 msgid "Last Updated by"
 msgstr ""
@@ -229,11 +222,6 @@ msgstr ""
 #. module: sale_commission_oca_product_criteria
 #: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_commission_item__write_date
 msgid "Last Updated on"
-msgstr ""
-
-#. module: sale_commission_oca_product_criteria
-#: model:ir.model,name:sale_commission_oca_product_criteria.model_commission_settlement_line
-msgid "Line of a commission settlement"
 msgstr ""
 
 #. module: sale_commission_oca_product_criteria
@@ -263,21 +251,18 @@ msgstr ""
 #. module: sale_commission_oca_product_criteria
 #. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
 msgid "Please specify the category for which this rule should be applied"
 msgstr ""
 
 #. module: sale_commission_oca_product_criteria
 #. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
 msgid "Please specify the product for which this rule should be applied"
 msgstr ""
 
 #. module: sale_commission_oca_product_criteria
 #. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
 msgid ""
 "Please specify the product variant for which this rule should be applied"
 msgstr ""
@@ -313,8 +298,7 @@ msgstr ""
 #. module: sale_commission_oca_product_criteria
 #. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
-msgid "Product: %s"
+msgid "Product: %(name)s"
 msgstr ""
 
 #. module: sale_commission_oca_product_criteria
@@ -331,8 +315,10 @@ msgstr ""
 #: model:ir.model.fields,help:sale_commission_oca_product_criteria.field_commission__commission_type
 msgid ""
 "Select the percentage type of the commission:\n"
-"* 'Fixed percentage': all commissions are computed with a fixed percentage. You can fill the percentage in the field \"Fixed percentage\".\n"
-"* 'By sections': percentage varies depending amount intervals. You can fill intervals and percentages in the section \"Rate definition\"."
+"* 'Fixed percentage': all commissions are computed with a fixed percentage. "
+"You can fill the percentage in the field \"Fixed percentage\".\n"
+"* 'By sections': percentage varies depending amount intervals. You can fill "
+"intervals and percentages in the section \"Rate definition\"."
 msgstr ""
 
 #. module: sale_commission_oca_product_criteria
@@ -364,7 +350,6 @@ msgstr ""
 #. module: sale_commission_oca_product_criteria
 #. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
 msgid ""
 "There is done Sale Orders with this commission. Commission type change is "
 "not allowed."
@@ -373,7 +358,6 @@ msgstr ""
 #. module: sale_commission_oca_product_criteria
 #. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
 msgid ""
 "There is posted Account Move Lines with this commission. Commission type "
 "change is not allowed."
@@ -392,6 +376,5 @@ msgstr ""
 #. module: sale_commission_oca_product_criteria
 #. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
-msgid "Variant: %s"
+msgid "Variant: %(name)s"
 msgstr ""

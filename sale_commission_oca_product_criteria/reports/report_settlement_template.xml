@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <template id="report_settlement" inherit_id="sale_commission.report_settlement">
+    <template
+        id="report_settlement_document"
+        inherit_id="commission_oca.report_settlement_document"
+    >
         <xpath expr="//table/thead/tr/th[last()]" position="before">
             <t
                 t-set="show_value_column"
-                t-value="any(l.agent_line.applied_commission_item_id for l in o.line_ids)"
+                t-value="any(l.invoice_agent_line_id.applied_commission_item_id for l in o.line_ids)"
             />
             <t t-if="show_value_column">
                 <th>Value</th>
@@ -15,7 +18,7 @@
                 <td>
                     <t
                         t-set="comm_item"
-                        t-value="l.agent_line.applied_commission_item_id"
+                        t-value="l.invoice_agent_line_id.applied_commission_item_id"
                     />
                     <t t-if="comm_item.commission_type == 'fixed'">
                         <span

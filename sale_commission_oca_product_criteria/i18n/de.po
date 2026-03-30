@@ -6,7 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-03-12 12:45+0000\n"
 "Last-Translator: davidbeckercbl <becker@cbl-computer.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -37,7 +36,6 @@ msgstr "Provisionsempfängerdetails der Provisionszeile in Auftragszeilen"
 #. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
 #: model:ir.model.fields.selection,name:sale_commission_oca_product_criteria.selection__commission_item__applied_on__3_global
-#, python-format
 msgid "All Products"
 msgstr "Alle Produkte"
 
@@ -95,9 +93,8 @@ msgstr "Basierend auf"
 #. module: sale_commission_oca_product_criteria
 #. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
-msgid "Category: %s"
-msgstr "Kategorie: %s"
+msgid "Category: %(name)s"
+msgstr "Kategorie: %(name)s"
 
 #. module: sale_commission_oca_product_criteria
 #: model:ir.model,name:sale_commission_oca_product_criteria.model_commission
@@ -221,11 +218,6 @@ msgid "Item"
 msgstr ""
 
 #. module: sale_commission_oca_product_criteria
-#: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_commission_item____last_update
-msgid "Last Modified on"
-msgstr "Zuletzt bearbeitet am"
-
-#. module: sale_commission_oca_product_criteria
 #: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_commission_item__write_uid
 msgid "Last Updated by"
 msgstr "Zuletzt geändert am"
@@ -234,11 +226,6 @@ msgstr "Zuletzt geändert am"
 #: model:ir.model.fields,field_description:sale_commission_oca_product_criteria.field_commission_item__write_date
 msgid "Last Updated on"
 msgstr "Zuletzt aktualisiert am"
-
-#. module: sale_commission_oca_product_criteria
-#: model:ir.model,name:sale_commission_oca_product_criteria.model_commission_settlement_line
-msgid "Line of a commission settlement"
-msgstr "Zeile einer Provisionsabrechnung"
 
 #. module: sale_commission_oca_product_criteria
 #: model:ir.model,name:sale_commission_oca_product_criteria.model_commission_line_mixin
@@ -269,7 +256,6 @@ msgstr "Prozentsatz Betrag"
 #. module: sale_commission_oca_product_criteria
 #. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
 msgid "Please specify the category for which this rule should be applied"
 msgstr ""
 "Bitte legen Sie die Kategorie fest, für die diese Regel angewendet werden "
@@ -278,7 +264,6 @@ msgstr ""
 #. module: sale_commission_oca_product_criteria
 #. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
 msgid "Please specify the product for which this rule should be applied"
 msgstr ""
 "Bitte legen Sie das Produkt fest, für das diese Regel angewendet werden soll"
@@ -286,7 +271,6 @@ msgstr ""
 #. module: sale_commission_oca_product_criteria
 #. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
 msgid ""
 "Please specify the product variant for which this rule should be applied"
 msgstr ""
@@ -324,9 +308,8 @@ msgstr "Produktkriterium"
 #. module: sale_commission_oca_product_criteria
 #. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
-msgid "Product: %s"
-msgstr "Produkt: %s"
+msgid "Product: %(name)s"
+msgstr "Produkt: %(name)s"
 
 #. module: sale_commission_oca_product_criteria
 #: model_terms:ir.ui.view,arch_db:sale_commission_oca_product_criteria.sale_commission_form_lines_mod
@@ -342,8 +325,10 @@ msgstr "Verkaufsauftragszeile"
 #: model:ir.model.fields,help:sale_commission_oca_product_criteria.field_commission__commission_type
 msgid ""
 "Select the percentage type of the commission:\n"
-"* 'Fixed percentage': all commissions are computed with a fixed percentage. You can fill the percentage in the field \"Fixed percentage\".\n"
-"* 'By sections': percentage varies depending amount intervals. You can fill intervals and percentages in the section \"Rate definition\"."
+"* 'Fixed percentage': all commissions are computed with a fixed percentage. "
+"You can fill the percentage in the field \"Fixed percentage\".\n"
+"* 'By sections': percentage varies depending amount intervals. You can fill "
+"intervals and percentages in the section \"Rate definition\"."
 msgstr ""
 "Wählen Sie den Provisions-Prozenttyp aus:\n"
 "* 'Fester Prozentsatz': Alle Provisionen werden mit einem festen Prozentsatz "
@@ -389,7 +374,6 @@ msgstr ""
 #. module: sale_commission_oca_product_criteria
 #. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
 msgid ""
 "There is done Sale Orders with this commission. Commission type change is "
 "not allowed."
@@ -400,7 +384,6 @@ msgstr ""
 #. module: sale_commission_oca_product_criteria
 #. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
 msgid ""
 "There is posted Account Move Lines with this commission. Commission type "
 "change is not allowed."
@@ -421,6 +404,5 @@ msgstr "Wert"
 #. module: sale_commission_oca_product_criteria
 #. odoo-python
 #: code:addons/sale_commission_oca_product_criteria/models/commission.py:0
-#, python-format
-msgid "Variant: %s"
-msgstr "Variante: %s"
+msgid "Variant: %(name)s"
+msgstr "Variante: %(name)s"
