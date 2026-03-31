@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-02-02 17:34+0000\n"
-"Last-Translator: felipemotter <felipkin@gmail.com>\n"
+"PO-Revision-Date: 2026-03-31 19:45+0000\n"
+"Last-Translator: \"Rodrigo A. Madureira\" <rodrigomadu85@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -219,6 +219,8 @@ msgid ""
 "For payment-based commissions, settlements will be created for "
 "payments             with date up to the one set in this field."
 msgstr ""
+"Para comissões baseadas em pagamentos, os acertos serão criados para "
+"pagamentos com data até a definida neste campo."
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_commission_make_invoice__from_settlement
@@ -403,7 +405,7 @@ msgstr "Pagamento Relacionado"
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_commission_make_settle__date_payment_to
 msgid "Payment date up to"
-msgstr ""
+msgstr "Data de pagamento até"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__percentage
