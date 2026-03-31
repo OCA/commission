@@ -6,33 +6,36 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-03-31 19:45+0000\n"
+"Last-Translator: \"Rodrigo A. Madureira\" <rodrigomadu85@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_commission_product_criteria_fiscal_position_type
 #: model:ir.model,name:sale_commission_product_criteria_fiscal_position_type.model_account_invoice_line_agent
 msgid "Agent detail of commission line in invoice lines"
 msgstr ""
+"Detalhes do vendedor referentes à linha de comissão nas linhas da fatura"
 
 #. module: sale_commission_product_criteria_fiscal_position_type
 #: model:ir.model,name:sale_commission_product_criteria_fiscal_position_type.model_sale_order_line_agent
 msgid "Agent detail of commission line in order lines"
-msgstr ""
+msgstr "Detalhes do vendedor na linha de comissão das linhas de pedido"
 
 #. module: sale_commission_product_criteria_fiscal_position_type
 #: model:ir.model,name:sale_commission_product_criteria_fiscal_position_type.model_commission_item
 msgid "Commission Item"
-msgstr ""
+msgstr "Item de comissão"
 
 #. module: sale_commission_product_criteria_fiscal_position_type
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_fiscal_position_type.field_commission_item__fiscal_position_type
 msgid "Fiscal Position Type"
-msgstr ""
+msgstr "Tipo de Posição Fiscal"
 
 #. module: sale_commission_product_criteria_fiscal_position_type
 #: model:ir.model,name:sale_commission_product_criteria_fiscal_position_type.model_commission_line_mixin
@@ -40,3 +43,5 @@ msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
 msgstr ""
+"Modelo Mixin para incluir linhas de vendedores comissionados em qualquer "
+"objeto que herde deste"
