@@ -6,54 +6,57 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-03-31 19:45+0000\n"
+"Last-Translator: \"Rodrigo A. Madureira\" <rodrigomadu85@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_commission_margin
 #: model:ir.model.fields,field_description:sale_commission_margin.field_account_move_line__agent_ids
 #: model:ir.model.fields,field_description:sale_commission_margin.field_commission_mixin__agent_ids
 #: model:ir.model.fields,field_description:sale_commission_margin.field_sale_order_line__agent_ids
 msgid "Agents & commissions"
-msgstr ""
+msgstr "Vendedores & comissões"
 
 #. module: sale_commission_margin
 #: model:ir.model.fields,help:sale_commission_margin.field_account_move_line__agent_ids
 #: model:ir.model.fields,help:sale_commission_margin.field_commission_mixin__agent_ids
 #: model:ir.model.fields,help:sale_commission_margin.field_sale_order_line__agent_ids
 msgid "Agents/Commissions related to the invoice line."
-msgstr ""
+msgstr "Vendedores/Comissões relacionado para a linha de fatura."
 
 #. module: sale_commission_margin
 #: model:ir.model.fields,field_description:sale_commission_margin.field_account_move_line__commission_free
 #: model:ir.model.fields,field_description:sale_commission_margin.field_commission_mixin__commission_free
 #: model:ir.model.fields,field_description:sale_commission_margin.field_sale_order_line__commission_free
 msgid "Comm. free"
-msgstr ""
+msgstr "Livre de Comissão"
 
 #. module: sale_commission_margin
 #: model:ir.model.fields,field_description:sale_commission_margin.field_account_invoice_line_agent__commission_id
 #: model:ir.model.fields,field_description:sale_commission_margin.field_commission_line_mixin__commission_id
 #: model:ir.model.fields,field_description:sale_commission_margin.field_sale_order_line_agent__commission_id
 msgid "Commission"
-msgstr ""
+msgstr "Comissão"
 
 #. module: sale_commission_margin
 #: model:ir.model.fields,field_description:sale_commission_margin.field_account_invoice_line_agent__amount
 #: model:ir.model.fields,field_description:sale_commission_margin.field_commission_line_mixin__amount
 #: model:ir.model.fields,field_description:sale_commission_margin.field_sale_order_line_agent__amount
 msgid "Commission Amount"
-msgstr ""
+msgstr "Valor da comissão"
 
 #. module: sale_commission_margin
 #: model:ir.model,name:sale_commission_margin.model_commission_mixin
 msgid ""
 "Mixin model for applying to any object that wants to handle commissions"
 msgstr ""
+"Modelo Mixin para aplicar a qualquer objeto que deseje gerenciar comissões"
 
 #. module: sale_commission_margin
 #: model:ir.model,name:sale_commission_margin.model_commission_line_mixin
@@ -61,8 +64,10 @@ msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
 msgstr ""
+"Modelo Mixin para incluir linhas de vendedores comissionados em qualquer "
+"objeto que herde deste"
 
 #. module: sale_commission_margin
 #: model:ir.model,name:sale_commission_margin.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Linha do Pedido de Venda"
