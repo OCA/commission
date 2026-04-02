@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-07 12:13+0000\n"
-"PO-Revision-Date: 2025-08-07 12:13+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,8 +14,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_commission_product_criteria_semaphore
+#: model_terms:ir.ui.view,arch_db:sale_commission_product_criteria_semaphore.report_settlement_document
+msgid "Amount settled"
+msgstr ""
+
+#. module: sale_commission_product_criteria_semaphore
 #: model:ir.model,name:sale_commission_product_criteria_semaphore.model_commission_item
 msgid "Commission Item"
+msgstr ""
+
+#. module: sale_commission_product_criteria_semaphore
+#: model:ir.model,name:sale_commission_product_criteria_semaphore.model_commission_settlement_line
+msgid "Line of a commission settlement"
 msgstr ""
 
 #. module: sale_commission_product_criteria_semaphore
@@ -29,5 +37,6 @@ msgstr ""
 
 #. module: sale_commission_product_criteria_semaphore
 #: model:ir.model.fields,field_description:sale_commission_product_criteria_semaphore.field_commission_item__semaphore
+#: model:ir.model.fields,field_description:sale_commission_product_criteria_semaphore.field_commission_settlement_line__semaphore
 msgid "Semaphore"
 msgstr ""
