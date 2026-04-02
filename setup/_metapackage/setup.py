@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo-addon-hr_commission>=15.0dev,<15.1dev',
         'odoo-addon-sale_commission>=15.0dev,<15.1dev',
         'odoo-addon-sale_commission_product_criteria>=15.0dev,<15.1dev',
+        'odoo-addon-sale_commission_product_criteria_semaphore>=15.0dev,<15.1dev',
         'odoo-addon-sale_commission_salesman>=15.0dev,<15.1dev',
     ],
     classifiers=[
