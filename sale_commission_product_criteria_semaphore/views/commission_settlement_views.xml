@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_settlement_form" model="ir.ui.view">
+        <field name="model">commission.settlement</field>
+        <field name="inherit_id" ref="commission.view_settlement_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='line_ids']/tree/field[@name='commission_id']"
+                position="before"
+            >
+                <field name="semaphore" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_settlement_document"
+        inherit_id="sale_commission_product_criteria.report_settlement_add_value_column"
+    >
+        <xpath expr="//span[@t-field='l.commission_id']/.." position="after">
+            <td class="text-start">
+                <span t-attf-class="fa fa-circle text-{{l.semaphore}}" />
+            </td>
+        </xpath>
+        <xpath expr="//th[@name='th_commission']" position="after">
+            <th name="th_semaphore" />
+        </xpath>
+        <xpath expr="//table[@name='invoice_line_table']" position="before">
+            <table class="table table-sm" name="semaphore_totals">
+                <thead>
+                    <tr>
+                        <th />
+                        <th name="th_amount" class="text-right">Amount settled</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-set="semaphore_success" t-value="0.0" />
+                    <t t-set="semaphore_warning" t-value="0.0" />
+                    <t t-set="semaphore_danger" t-value="0.0" />
+                    <t t-set="semaphore_none" t-value="0.0" />
+                    <t t-foreach="o.line_ids" t-as="line">
+                        <t t-if="line.semaphore == 'success'">
+                            <t
+                                t-set="semaphore_success"
+                                t-value="semaphore_success + line.settled_amount"
+                            />
+                        </t>
+                        <t t-elif="line.semaphore == 'warning'">
+                            <t
+                                t-set="semaphore_warning"
+                                t-value="semaphore_warning + line.settled_amount"
+                            />
+                        </t>
+                        <t t-elif="line.semaphore == 'danger'">
+                            <t
+                                t-set="semaphore_danger"
+                                t-value="semaphore_danger + line.settled_amount"
+                            />
+                        </t>
+                        <t t-else="">
+                            <t
+                                t-set="semaphore_none"
+                                t-value="semaphore_none + line.settled_amount"
+                            />
+                        </t>
+                    </t>
+                    <tr>
+                        <td><span class="fa fa-circle text-success" /></td>
+                        <td class="text-right">
+                            <span
+                                t-esc="semaphore_success"
+                                t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="fa fa-circle text-warning" /></td>
+                        <td class="text-right">
+                            <span
+                                t-esc="semaphore_warning"
+                                t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="fa fa-circle text-danger" /></td>
+                        <td class="text-right">
+                            <span
+                                t-esc="semaphore_danger"
+                                t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="fa fa-circle" /></td>
+                        <td class="text-right">
+                            <span
+                                t-esc="semaphore_none"
+                                t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
+                            />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </xpath>
+    </template>
+</odoo>
