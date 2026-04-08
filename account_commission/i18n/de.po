@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-03-12 12:45+0000\n"
+"PO-Revision-Date: 2026-04-08 12:45+0000\n"
 "Last-Translator: davidbeckercbl <becker@cbl-computer.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -71,7 +71,7 @@ msgstr "Betrag"
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_account_move_line__any_settled
 msgid "Any Settled"
-msgstr "Jegliche abgerechnete"
+msgstr "Alle Provisionsreifen"
 
 #. module: account_commission
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__balance
@@ -461,9 +461,9 @@ msgid ""
 "* 'Payment Based': Commissions are settled when the invoice is paid (or refunded)."
 msgstr ""
 "Wählen Sie den Rechnungsstatus für die Abrechnung der Provisionen aus:\n"
-"* 'Rechnungsbasiert': Provisionen werden abgerechnet, wenn die Rechnung "
+"* 'Rechnungsbasiert': Provisionen werden provisionsreif, wenn die Rechnung "
 "ausgestellt wird.\n"
-"* 'Zahlungsbasiert': Provisionen werden abgerechnet, wenn die Rechnung "
+"* 'Zahlungsbasiert': Provisionen werden provisionsreif, wenn die Rechnung "
 "bezahlt (oder erstattet) wird."
 
 #. module: account_commission
@@ -471,7 +471,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_commission.field_invoice_commission_analysis_report__settled
 #: model_terms:ir.ui.view,arch_db:account_commission.view_invoice_commission_analysis_search
 msgid "Settled"
-msgstr "Abgerechnet"
+msgstr "Provisionsreif"
 
 #. module: account_commission
 #: model:ir.model,name:account_commission.model_commission_settlement
