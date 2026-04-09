@@ -71,7 +71,6 @@ class CommissionItem(models.Model):
     active = fields.Boolean(default=True)
     commission_id = fields.Many2one(
         "sale.commission",
-        string="Commission Type",
         domain=[("commission_type", "=", "product")],
         required=True,
     )
