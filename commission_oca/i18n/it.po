@@ -416,7 +416,6 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_error
-#: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
@@ -581,11 +580,6 @@ msgstr "Definizione aliquote"
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__activity_user_id
 msgid "Responsible User"
 msgstr "Utente responsabile"
-
-#. module: commission_oca
-#: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Errore consegna SMS"
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__commission__amount_base_type__gross_amount
@@ -850,6 +844,9 @@ msgstr "È possibile aggiungere ogni agente solo una volta."
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
 msgid "or"
 msgstr "o"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Errore consegna SMS"
 
 #~ msgid "Group By"
 #~ msgstr "Raggruppa per"
