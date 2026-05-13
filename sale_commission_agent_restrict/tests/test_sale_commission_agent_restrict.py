@@ -1,6 +1,8 @@
 #  Copyright 2024 Simone Rubino - Aion Tech
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from lxml import etree
+
 from odoo import Command
 from odoo.exceptions import AccessError, UserError, ValidationError
 from odoo.tests import Form, TransactionCase
@@ -195,3 +197,94 @@ class TestsaleCommissionAgentRestrict(TransactionCase):
         group1_name = "in_group_" + str(group1_id)
         with self.assertRaises(ValidationError):
             user.write({group1_name: True})
+
+    def _get_partner_form_arch(self, user=None):
+        partner = self.partner_model
+        if user:
+            partner = partner.with_user(user)
+        view = self.env.ref("base.view_partner_form")
+        result = partner.get_view(view_id=view.id, view_type="form")
+        return etree.XML(result["arch"])
+
+    def test_third_party_view_can_use_a_field_inside_the_page(self):
+        """A field inside the page can be referenced by another view.
+
+        A ``groups`` attribute on a node removes that node and every field it
+        contains from the architecture, so a module that puts a field inside
+        the page and references it outside the page is rejected while the view
+        is validated. Removing the pages only when the view is served keeps the
+        stored architecture free of restrictions and lets such a view exist.
+        """
+        field_name = "tz"
+        arch = self._get_partner_form_arch()
+        # The field must not be in the form yet: otherwise it would already be
+        # available for every user and the test would prove nothing.
+        self.assertFalse(arch.xpath("//field[@name='%s']" % field_name))
+
+        view_arch = """
+            <data>
+                <xpath expr="//page[@name='sales_purchases']" position="inside">
+                    <field name="%(field)s"/>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <div attrs="{'invisible': [('%(field)s', '=', False)]}"/>
+                </xpath>
+            </data>
+        """ % {
+            "field": field_name
+        }
+
+        third_party_view = self.env["ir.ui.view"].create(
+            {
+                "name": "Third party view using a field inside the sales page",
+                "model": "res.partner",
+                "inherit_id": self.env.ref("base.view_partner_form").id,
+                "arch": view_arch,
+            }
+        )
+        self.assertTrue(third_party_view)
+
+    def test_agent_does_not_get_the_pages(self):
+        """The pages are removed for agents and kept for other users.
+
+        The architecture is cached without the user in the cache key, so the
+        pages have to be removed after the cache and only for the requesting
+        user. Loading the form first as a non-agent exposes any mutation that
+        leaks into the shared cache.
+        """
+        group = "sale_commission_agent_restrict.group_agent_own_commissions"
+        # ``has_group`` is a plain SQL check: make sure the non-agent fixture
+        # really is not an agent before using it as such.
+        self.assertFalse(self.env.user.has_group(group))
+        # Cold cache: the first caller really seeds it.
+        self.env.registry.clear_caches()
+
+        regular_arch = self._get_partner_form_arch()
+        agent_arch = self._get_partner_form_arch(self.user_agent)
+
+        self.assertTrue(regular_arch.xpath("//page[@name='sales_purchases']"))
+        self.assertFalse(agent_arch.xpath("//page[@name='sales_purchases']"))
+        self.assertFalse(agent_arch.xpath("//page[@name='internal_notes']"))
+        # The hidden duplicates must stay available for the agent, other
+        # modules use user_id and team_id in contexts and domains.
+        self.assertTrue(agent_arch.xpath("//field[@name='user_id']"))
+        self.assertTrue(agent_arch.xpath("//field[@name='team_id']"))
+
+    def test_agent_view_without_pages_does_not_crash(self):
+        """Agent forms that do not have those pages must still load."""
+        # A cold cache makes sure the views are built while the agent asks for
+        # them, which is when the pages are looked up.
+        self.env.registry.clear_caches()
+
+        partner = self.partner_model.with_user(self.user_agent)
+        for view_ref in (
+            "base.view_partner_simple_form",
+            "base.view_partner_address_form",
+            "base.res_partner_view_form_private",
+        ):
+            view = self.env.ref(view_ref)
+            result = partner.get_view(view_id=view.id, view_type="form")
+            self.assertIn("arch", result)
+
+        # The address form built from the context has no such pages either.
+        partner.with_context(force_email=True).get_view(view_type="form")

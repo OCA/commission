@@ -21,17 +21,6 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
-            <!-- Hide these notebook pages from agents -->
-            <page name='sales_purchases' position="attributes">
-                <attribute
-                    name="groups"
-                >!sale_commission_agent_restrict.group_agent_own_commissions</attribute>
-            </page>
-            <page name='internal_notes' position="attributes">
-                <attribute
-                    name="groups"
-                >!sale_commission_agent_restrict.group_agent_own_commissions</attribute>
-            </page>
             <!-- Add fields needed by context/domains as hidden -->
             <page name='sales_purchases' position="before">
                 <field
@@ -47,7 +36,5 @@
             </page>
         </field>
     </record>
-
-
 
 </odoo>
