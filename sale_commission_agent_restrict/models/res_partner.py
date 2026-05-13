@@ -96,3 +96,16 @@ class ResPartner(models.Model):
                         res.pop("agent_ids")
                         return res
         return res
+
+    @api.model
+    def _get_view(self, view_id=None, view_type="form", **options):
+        arch, view = super()._get_view(view_id=view_id, view_type=view_type, **options)
+
+        if view_type == "form" and self.env.user.has_group(
+            "sale_commission_agent_restrict.group_agent_own_commissions"
+        ):
+            node_page_sale_purchases = arch.xpath("//page[@name='sales_purchases']")[0]
+            node_page_sale_purchases.set("invisible", "1")
+            node_page_internal_notes = arch.xpath("//page[@name='internal_notes']")[0]
+            node_page_internal_notes.set("invisible", "1")
+        return arch, view
