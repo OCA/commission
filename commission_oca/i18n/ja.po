@@ -6,32 +6,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-12-16 14:45+0000\n"
-"Last-Translator: Ryoko Tsuda <ryoko@quartile.co>\n"
+"PO-Revision-Date: 2026-06-23 07:46+0000\n"
+"Last-Translator: Shinnosuke Morita <m.shinnosuke1202@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
 msgid "%s commission agents"
-msgstr "%s ????????????????????????????????????"
+msgstr "コミッションエージェント %s 件"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
 msgid "(keep empty for making the settlement of all agents)"
-msgstr "(???????????????????????????????????????????????????????????????????????????????????????)"
+msgstr "(全エージェントの精算を行う場合は空のままにします)"
 
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
 msgid "1 commission agent"
-msgstr "1 ????????????????????????????????????"
+msgstr "コミッションエージェント 1 件"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
@@ -43,54 +43,56 @@ msgid ""
 "                    </span>"
 msgstr ""
 "<span>\n"
-"                        ????????????????????????????????????????????????????????????????????????\n"
-"                        ?????????????????????????????????????????????????????????????????????????????????????????????\n"
+"                        自動精算は実行できません。この機能を有効にするには"
+"、\n"
+"                        追加のコミッションモジュールをインストールしてくださ"
+"い。\n"
 "                    </span>"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.report_settlement_document
 msgid "<strong>From:</strong>"
-msgstr "<strong>??????:</strong>"
+msgstr "<strong>開始:</strong>"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.report_settlement_document
 msgid "<strong>To:</strong>"
-msgstr "<strong>??????:</strong>"
+msgstr "<strong>終了:</strong>"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.report_settlement_document
 msgid "<strong>Total</strong>"
-msgstr "<strong>??????</strong>"
+msgstr "<strong>合計</strong>"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "要アクション"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__active
 msgid "Active"
-msgstr "??????"
+msgstr "有効"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "活動"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "例外の活動を示す装飾"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "活動ステータス"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "活動タイプアイコン"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_line_mixin__agent_id
@@ -101,17 +103,17 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_line_search
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_search
 msgid "Agent"
-msgstr "??????????????????"
+msgstr "エージェント"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.res_partner_view_search
 msgid "Agent Partners"
-msgstr "???????????????????????????"
+msgstr "エージェント取引先"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_partner_form_agent
 msgid "Agent information"
-msgstr "????????????????????????"
+msgstr "エージェント情報"
 
 #. module: commission_oca
 #. odoo-python
@@ -123,91 +125,91 @@ msgstr "????????????????????????"
 #: model_terms:ir.ui.view,arch_db:commission_oca.res_partner_view_search
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
 msgid "Agents"
-msgstr "??????????????????"
+msgstr "エージェント"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_mixin__agent_ids
 msgid "Agents & commissions"
-msgstr "???????????????????????????????????????"
+msgstr "エージェントとコミッション"
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_mixin__agent_ids
 msgid "Agents/Commissions related to the invoice line."
-msgstr "?????????????????????????????????????????????/?????????????????????"
+msgstr "請求明細に関連するエージェント/コミッション。"
 
 #. module: commission_oca
 #: model:ir.module.category,description:commission_oca.module_category_commission
 msgid "Allows to handle commission related stuff."
-msgstr "?????????????????????????????????????????????"
+msgstr "コミッション関連の処理を可能にします。"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.report_settlement_document
 msgid "Amount settled"
-msgstr "????????????"
+msgstr "精算済金額"
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__res_partner__settlement__annual
 msgid "Annual"
-msgstr "??????"
+msgstr "年次"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.commission_form
 msgid "Archived"
-msgstr ""
+msgstr "アーカイブ済"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "添付数"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__amount_base_type
 msgid "Base"
-msgstr "??????"
+msgstr "ベース"
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__res_partner__settlement__biweekly
 msgid "Bi-weekly"
-msgstr "??????"
+msgstr "隔週"
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__commission__commission_type__section
 msgid "By sections"
-msgstr "?????????????????????"
+msgstr "セクション別"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__can_edit
 msgid "Can Edit"
-msgstr "?????????"
+msgstr "編集可能"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_make_settle__can_settle
 msgid "Can Settle"
-msgstr "?????????"
+msgstr "精算可能"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_form
 msgid "Cancel"
-msgstr "???????????????"
+msgstr "キャンセル"
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__commission_settlement__state__cancel
 msgid "Canceled"
-msgstr "???????????????"
+msgstr "取消済"
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_res_partner__agent
 #: model:ir.model.fields,help:commission_oca.field_res_users__agent
 msgid "Check this field if the partner is a creditor or an agent."
-msgstr "?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????"
+msgstr "取引先が債権者またはエージェントの場合、このフィールドをチェックします。"
 
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
 #: model:ir.model.fields,field_description:commission_oca.field_commission_mixin__commission_free
 msgid "Comm. free"
-msgstr "???????????????????????????"
+msgstr "コミッション対象外"
 
 #. module: commission_oca
 #: model:ir.model,name:commission_oca.model_commission
@@ -220,57 +222,57 @@ msgstr "???????????????????????????"
 #: model_terms:ir.ui.view,arch_db:commission_oca.commission_form
 #: model_terms:ir.ui.view,arch_db:commission_oca.report_settlement_document
 msgid "Commission"
-msgstr "??????????????????"
+msgstr "手数料"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_line_mixin__amount
 msgid "Commission Amount"
-msgstr "????????????????????????"
+msgstr "コミッション金額"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_form
 msgid "Commission lines"
-msgstr "????????????????????????"
+msgstr "コミッション明細"
 
 #. module: commission_oca
 #: model:ir.model,name:commission_oca.model_commission_section
 msgid "Commission section"
-msgstr "?????????????????????????????????"
+msgstr "コミッションセクション"
 
 #. module: commission_oca
 #: model:ir.actions.act_window,name:commission_oca.action_commission
 #: model:ir.ui.menu,name:commission_oca.menu_commission_type
 msgid "Commission types"
-msgstr "???????????????????????????"
+msgstr "コミッションタイプ"
 
 #. module: commission_oca
 #: model:ir.module.category,name:commission_oca.module_category_commission
 #: model:ir.ui.menu,name:commission_oca.menu_commission
 #: model:res.groups.privilege,name:commission_oca.res_groups_privilege_commission
 msgid "Commissions"
-msgstr "??????????????????"
+msgstr "コミッション"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__company_id
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__company_id
 msgid "Company"
-msgstr "??????"
+msgstr "会社"
 
 #. module: commission_oca
 #: model:ir.ui.menu,name:commission_oca.menu_commission_management
 msgid "Configuration"
-msgstr "??????"
+msgstr "設定"
 
 #. module: commission_oca
 #: model:ir.model,name:commission_oca.model_res_partner
 msgid "Contact"
-msgstr "?????????"
+msgstr "連絡先"
 
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/wizards/commission_make_settle.py:0
 msgid "Created Settlements"
-msgstr "?????????????????????"
+msgstr "作成された精算"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__create_uid
@@ -279,7 +281,7 @@ msgstr "?????????????????????"
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__create_uid
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__create_uid
 msgid "Created by"
-msgstr "?????????"
+msgstr "作成者"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__create_date
@@ -288,41 +290,41 @@ msgstr "?????????"
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__create_date
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__create_date
 msgid "Created on"
-msgstr "?????????"
+msgstr "作成日"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_res_partner__agent
 #: model:ir.model.fields,field_description:commission_oca.field_res_users__agent
 msgid "Creditor/Agent"
-msgstr "?????????/??????????????????"
+msgstr "債権者/エージェント"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_line_mixin__currency_id
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__currency_id
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__currency_id
 msgid "Currency"
-msgstr "??????"
+msgstr "通貨"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__date
 #: model_terms:ir.ui.view,arch_db:commission_oca.report_settlement_document
 msgid "Date"
-msgstr "??????"
+msgstr "日付"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_search
 msgid "Date from month"
-msgstr "??????"
+msgstr "開始日（月）"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_line_search
 msgid "Date month"
-msgstr "??????"
+msgstr "日付（月）"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_commission_mixin_agent_only
 msgid "Discard"
-msgstr "??????"
+msgstr "破棄"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__display_name
@@ -335,55 +337,55 @@ msgstr "??????"
 #: model:ir.model.fields,field_description:commission_oca.field_product_template__display_name
 #: model:ir.model.fields,field_description:commission_oca.field_res_partner__display_name
 msgid "Display Name"
-msgstr "?????????"
+msgstr "表示名"
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__res_partner__agent_type__agent
 msgid "External agent"
-msgstr "????????????????????????"
+msgstr "外部エージェント"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__fix_qty
 #: model:ir.model.fields.selection,name:commission_oca.selection__commission__commission_type__fixed
 msgid "Fixed percentage"
-msgstr "?????????"
+msgstr "固定パーセンテージ"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "フォロワー"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "フォロワー (取引先)"
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Font awesomeのアイコン 例. fa-tasks"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_product_product__commission_free
 #: model:ir.model.fields,field_description:commission_oca.field_product_template__commission_free
 msgid "Free of commission"
-msgstr "???????????????????????????"
+msgstr "コミッション対象外"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_section__amount_from
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__date_from
 msgid "From"
-msgstr "??????"
+msgstr "from"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.commission_form
 msgid "General information"
-msgstr "????????????"
+msgstr "一般情報"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "メッセージあり"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__id
@@ -401,27 +403,27 @@ msgstr "ID"
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "アイコン"
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "例外活動を示すアイコン"
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "チェックした場合は、新しいメッセージに注意が必要です。"
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "有効にすると、一部のメッセージに配信エラーが発生します。"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "フォロー中"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__write_uid
@@ -430,7 +432,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__write_uid
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__write_uid
 msgid "Last Updated by"
-msgstr "???????????????"
+msgstr "最終更新者"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__write_date
@@ -439,49 +441,47 @@ msgstr "???????????????"
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__write_date
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__write_date
 msgid "Last Updated on"
-msgstr "???????????????"
+msgstr "最終更新日"
 
 #. module: commission_oca
 #: model:ir.model,name:commission_oca.model_commission_settlement_line
 msgid "Line of a commission settlement"
-msgstr "??????????????????????????????"
+msgstr "コミッション精算の明細"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
 msgid "Make settlements"
-msgstr "????????????"
+msgstr "精算を作成"
 
 #. module: commission_oca
 #: model:res.groups,name:commission_oca.group_commission_manager
 msgid "Manager"
-msgstr "???????????????"
+msgstr "管理者"
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__commission_settlement__settlement_type__manual
 msgid "Manual"
-msgstr "??????"
+msgstr "手動"
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__commission__amount_base_type__net_amount
 msgid "Margin (Amount - Cost)"
-msgstr ""
+msgstr "マージン（金額 - 原価）"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "メッセージ配信エラー"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "メッセージ"
 
 #. module: commission_oca
 #: model:ir.model,name:commission_oca.model_commission_mixin
 msgid "Mixin model for applying to any object that wants to handle commissions"
-msgstr ""
-"??????????????????????????????????????????????????????????????????????????????"
-"Mixin?????????"
+msgstr "コミッションを処理する任意のオブジェクトに適用するMixinモデル"
 
 #. module: commission_oca
 #: model:ir.model,name:commission_oca.model_commission_line_mixin
@@ -489,111 +489,111 @@ msgid ""
 "Mixin model for having commission agent lines in any object inheriting from "
 "this one"
 msgstr ""
-"??????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????"
-"Mixin?????????"
+"これを継承する任意のオブジェクトにコミッションエージェント明細を持たせるため"
+"のMixinモデル"
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__res_partner__settlement__monthly
 msgid "Monthly"
-msgstr "??????"
+msgstr "月次"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "活動期限"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__name
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__name
 msgid "Name"
-msgstr "??????"
+msgstr "名称"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "次の活動期限"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "次の活動概要"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "次の活動タイプ"
 
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
 msgid "No commission agents"
-msgstr "0 ????????????????????????????????????"
+msgstr "コミッションエージェントなし"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "アクション数"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "エラー数"
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "対応が必要なメッセージ数"
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "配信エラーが発生されたメッセージ数"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_line_mixin__object_id
 msgid "Parent"
-msgstr "???"
+msgstr "親"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_section__percent
 msgid "Percent"
-msgstr "???"
+msgstr "パーセント"
 
 #. module: commission_oca
 #: model:ir.model,name:commission_oca.model_product_template
 #: model:ir.model.fields,field_description:commission_oca.field_commission_mixin__product_id
 msgid "Product"
-msgstr "???????????????"
+msgstr "プロダクト"
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__res_partner__settlement__quaterly
 msgid "Quarterly"
-msgstr "?????????"
+msgstr "四半期毎"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.commission_form
 msgid "Rates definition"
-msgstr "????????????"
+msgstr "レート定義"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "担当ユーザ"
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__commission__amount_base_type__gross_amount
 msgid "Sale/Invoice Amount"
-msgstr ""
+msgstr "販売/請求金額"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_commission_mixin_agent_only
 msgid "Save"
-msgstr "??????"
+msgstr "保存"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__section_ids
 msgid "Sections"
-msgstr "???????????????"
+msgstr "セクション"
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission__amount_base_type
@@ -604,11 +604,16 @@ msgid ""
 "* 'Margin (Amount - Cost)': percentage is computed from the profit only, "
 "taken the cost from the product."
 msgstr ""
+"パーセンテージを計算する基準額を選択します:\n"
+"* '販売/請求金額': パーセンテージは販売オーダ/請求書に記載された金額から計算"
+"されます。\n"
+"* 'マージン（金額 - 原価）': パーセンテージはプロダクトの原価を差し引いた利益"
+"のみから計算されます。"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
 msgid "Select the date up to which you want to make the settlements:"
-msgstr "????????????????????????????????????????????????"
+msgstr "精算を行う対象期間の終了日を選択してください:"
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission__commission_type
@@ -619,39 +624,44 @@ msgid ""
 "* 'By sections': percentage varies depending amount intervals. You can fill "
 "intervals and percentages in the section \"Rate definition\"."
 msgstr ""
+"コミッションのパーセンテージタイプを選択します:\n"
+"* '固定パーセンテージ': すべてのコミッションは固定パーセンテージで計算されま"
+"す。「固定パーセンテージ」フィールドにパーセンテージを入力できます。\n"
+"* 'セクション別': パーセンテージは金額の範囲に応じて変動します。「レート定義"
+"」セクションで範囲とパーセンテージを入力できます。"
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__res_partner__settlement__semi
 msgid "Semi-annual"
-msgstr "??????"
+msgstr "半期"
 
 #. module: commission_oca
 #: model:ir.actions.act_window,name:commission_oca.action_agents_settlement
 #: model:ir.ui.menu,name:commission_oca.menu_commission_make_settle
 msgid "Settle Commissions"
-msgstr "????????????????????????"
+msgstr "コミッションを精算"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
 msgid "Settle commissions"
-msgstr "????????????????????????"
+msgstr "コミッションを精算"
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__commission_settlement__state__settled
 msgid "Settled"
-msgstr "??????"
+msgstr "精算済"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__settled_amount
 msgid "Settled Amount"
-msgstr "????????????"
+msgstr "精算済金額"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_partner_form_agent
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_line_tree
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_tree
 msgid "Settled total"
-msgstr "????????????"
+msgstr "精算済合計"
 
 #. module: commission_oca
 #: model:ir.model,name:commission_oca.model_commission_settlement
@@ -661,45 +671,45 @@ msgstr "????????????"
 #: model_terms:ir.ui.view,arch_db:commission_oca.report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_form
 msgid "Settlement"
-msgstr "??????"
+msgstr "精算"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__settlement_type
 #: model:ir.model.fields,field_description:commission_oca.field_commission_make_settle__settlement_type
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__settlement_type
 msgid "Settlement Type"
-msgstr "???????????????"
+msgstr "精算タイプ"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_line_graph
 msgid "Settlement analysis"
-msgstr "????????????"
+msgstr "精算分析"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__line_ids
 msgid "Settlement lines"
-msgstr "????????????"
+msgstr "精算明細"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_line_search
 msgid "Settlement lines search"
-msgstr "??????????????????"
+msgstr "精算明細検索"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_res_partner__settlement
 #: model:ir.model.fields,field_description:commission_oca.field_res_users__settlement
 msgid "Settlement period"
-msgstr "????????????"
+msgstr "精算期間"
 
 #. module: commission_oca
 #: model:ir.actions.report,name:commission_oca.action_report_settlement
 msgid "Settlement report"
-msgstr "??????????????????"
+msgstr "精算レポート"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_search
 msgid "Settlement search"
-msgstr "????????????"
+msgstr "精算検索"
 
 #. module: commission_oca
 #: model:ir.actions.act_window,name:commission_oca.action_commission_settlement
@@ -707,12 +717,12 @@ msgstr "????????????"
 #: model:ir.ui.menu,name:commission_oca.menu_settlement_parent
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_partner_form_agent
 msgid "Settlements"
-msgstr "??????"
+msgstr "精算"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__state
 msgid "State"
-msgstr "??????"
+msgstr "都道府県・州"
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__activity_state
@@ -722,32 +732,36 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"活動に基づくステータス\n"
+"期限超過：期限日がすでに過ぎています\n"
+"今日: 活動日は今日です\n"
+"予定: 将来の活動。"
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__can_edit
 msgid "Technical field for determining if user can edit settlements"
-msgstr "???????????????????????????????????????????????????????????????????????????????????????????????????"
+msgstr "ユーザが精算を編集できるかどうかを判定するための技術フィールド"
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_make_settle__can_settle
 msgid ""
 "Technical field for improving UX when no extra *commission is installed."
 msgstr ""
-"?????????????????????????????????????????????????????????????????????"
-"UX??????????????????????????????????????????????????????"
+"追加の *commission モジュールがインストールされていない場合にUXを向上させるた"
+"めの技術フィールド。"
 
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission.py:0
 msgid "The lower limit cannot be greater than upper one."
-msgstr "?????????????????????????????????????????????????????????"
+msgstr "下限を上限より大きくすることはできません。"
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__settlement_type
 msgid ""
 "The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase "
 "order'..."
-msgstr "???????????????????????????????????????????????????????????????????????????????????????..."
+msgstr "精算のソース。例: '顧客請求書'、'販売オーダ'、'購買オーダ'..."
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_res_partner__commission_id
@@ -755,24 +769,26 @@ msgstr "????????????????????????????????????????????????????????????????????????
 msgid ""
 "This is the default commission used in the sales where this agent is "
 "assigned. It can be changed on each operation if needed."
-msgstr "???????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????"
+msgstr ""
+"これはこのエージェントが割り当てられた販売で使用されるデフォルトの"
+"コミッションです。必要に応じて各操作で変更できます。"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_line_search
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_search
 msgid "This year"
-msgstr "??????"
+msgstr "今年"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_section__amount_to
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__date_to
 msgid "To"
-msgstr "??????"
+msgstr "終了日"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__total
 msgid "Total"
-msgstr "??????"
+msgstr "合計"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__commission_type
@@ -780,49 +796,49 @@ msgstr "??????"
 #: model:ir.model.fields,field_description:commission_oca.field_res_partner__agent_type
 #: model:ir.model.fields,field_description:commission_oca.field_res_users__agent_type
 msgid "Type"
-msgstr "?????????"
+msgstr "タイプ"
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "レコード上の例外の活動タイプ。"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_make_settle__date_to
 msgid "Up to"
-msgstr "????????????"
+msgstr "まで"
 
 #. module: commission_oca
 #: model:res.groups,name:commission_oca.group_commission_user
 msgid "User"
-msgstr "?????????"
+msgstr "ユーザ"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "ウェブサイトメッセージ"
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "ウェブサイト通信履歴"
 
 #. module: commission_oca
 #: model:ir.model,name:commission_oca.model_commission_make_settle
 msgid "Wizard for settling commissions"
-msgstr "???????????????????????????????????????"
+msgstr "コミッションを精算するウィザード"
 
 #. module: commission_oca
 #: model:ir.model.constraint,message:commission_oca.constraint_account_invoice_line_agent_unique_agent
 #: model:ir.model.constraint,message:commission_oca.constraint_commission_line_mixin_unique_agent
 #: model:ir.model.constraint,message:commission_oca.constraint_sale_order_line_agent_unique_agent
 msgid "You can only add one time each agent."
-msgstr "?????????????????????1??????????????????????????????"
+msgstr "各エージェントは一度しか追加できません。"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
 msgid "or"
-msgstr "?????????"
+msgstr "又は"
 
 #~ msgid "Group By"
 #~ msgstr "???????????????"
