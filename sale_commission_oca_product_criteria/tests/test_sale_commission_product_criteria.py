@@ -29,7 +29,7 @@ class TestSaleCommission(TestSaleCommission):
             {
                 "name": "Test partner 1",
                 "property_product_pricelist": cls.pricelist.id,
-                "agent_ids": [
+                "commission_agent_ids": [
                     Command.set(
                         cls.env.ref(
                             "sale_commission_oca_product_criteria.demo_agent_rules"
@@ -91,7 +91,7 @@ class TestSaleCommission(TestSaleCommission):
                             "name": product.name,
                             "product_id": product.id,
                             "product_uom_qty": 1.0,
-                            "product_uom": product.uom_id.id,
+                            "product_uom_id": product.uom_id.id,
                             "price_unit": 1000,
                         },
                     )

@@ -73,15 +73,37 @@
                 <attribute name="column_invisible">1</attribute>
             </field>
             <field name="amount" position="before">
-                <field name="applied_on_name" string="Applied On" invisible="1" />
-                <field name="based_on" string="Based On" invisible="1" />
-                <field name="commission_type" string="Price Type" invisible="1" />
-                <field name="fixed_amount" string="Amount (fixed)" invisible="1" />
-                <field name="percent_amount" string="Amount (%)" invisible="1" />
-                <field name="discount" string="Applied Disc. (%)" invisible="1" />
+                <field
+                    name="applied_on_name"
+                    string="Applied On"
+                    column_invisible="1"
+                />
+                <field name="based_on" string="Based On" column_invisible="1" />
+                <field
+                    name="commission_type"
+                    string="Price Type"
+                    column_invisible="1"
+                />
+                <field
+                    name="fixed_amount"
+                    string="Amount (fixed)"
+                    optional="hide"
+                    invisible="commission_type != 'fixed'"
+                />
+                <field
+                    name="percent_amount"
+                    string="Amount (%)"
+                    optional="hide"
+                    invisible="commission_type != 'percent'"
+                />
+                <field
+                    name="discount"
+                    string="Applied Disc. (%)"
+                    column_invisible="1"
+                />
             </field>
             <field name="amount" position="replace">
-                <field name="applied_commission_id" invisible="1" />
+                <field name="applied_commission_id" />
                 <field name="amount" string="Final Amount" />
             </field>
         </field>
@@ -184,7 +206,7 @@
                 <field name="product_tmpl_id" />
                 <field name="product_id" />
                 <field name="categ_id" />
-                <group expand="0" string="Group By">
+                <group name="group_by">
                     <filter
                         string="Commission"
                         name="group_by_commission"

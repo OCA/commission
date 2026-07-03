@@ -60,7 +60,7 @@
 
     <record id="base.res_partner_12" model="res.partner">
         <field
-            name="agent_ids"
+            name="commission_agent_ids"
             eval="[Command.set([ref('sale_commission_oca_product_criteria.demo_agent_rules')])]"
         />
     </record>
