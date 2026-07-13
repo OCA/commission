@@ -214,3 +214,20 @@ class TestSaleCommission(SavepointCase):
         with self.assertRaises(ValidationError):
             self.rules_commission_id.commission_type = "fixed"
             self.rules_commission_id.onchange_commission_type()
+
+    def test_get_items_without_commission(self):
+        """When there is no commission,
+        no items should be found by `_get_commission_items`."""
+        # Arrange
+        product = self.product_4
+        sale_order = self._create_sale_order(product, self.partner)
+        agent_line = sale_order.order_line.agent_ids
+
+        # Act
+        items_ids = agent_line._get_commission_items(
+            self.commission_model.browse(),
+            product,
+        )
+
+        # Assert
+        self.assertFalse(items_ids)
