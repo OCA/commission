@@ -2,6 +2,8 @@
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
+from datetime import date
+
 from odoo import Command
 from odoo.exceptions import ValidationError
 from odoo.tests import Form
@@ -138,7 +140,7 @@ class TestSaleCommissionProductCriteria(TestSaleCommission):
             }
         )
 
-    def _create_sale_order_no_co(self, product, partner):
+    def _create_sale_order_no_co(self, product, partner, qty=1.0):
         # TestSaleCommission already has a _create_sale_order with different params
         return self.sale_order_model.create(
             {
@@ -148,14 +150,60 @@ class TestSaleCommissionProductCriteria(TestSaleCommission):
                         {
                             "name": product.name,
                             "product_id": product.id,
-                            "product_uom_qty": 1.0,
-                            "product_uom": product.uom_id.id,
+                            "product_uom_qty": qty,
+                            "product_uom_id": product.uom_id.id,
                             "price_unit": 1000,
                         },
                     )
                 ],
             }
         )
+
+    def _create_invoice_no_co(self, product, partner, qty=1.0, invoice_date=None):
+        # TestAccountCommission already has a _create_invoice with different params
+        return self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "partner_id": partner.id,
+                "invoice_date": invoice_date,
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "product_id": product.id,
+                            "quantity": qty,
+                            "price_unit": 1000,
+                            "agent_ids": [
+                                Command.create(
+                                    {
+                                        "agent_id": self.agent_rules.id,
+                                        "commission_id": self.rules_commission_id.id,
+                                    }
+                                )
+                            ],
+                        }
+                    )
+                ],
+            }
+        )
+
+    def _create_foreign_currency(self, rate):
+        """Return a currency other than the company one, at the given rate."""
+        currency = self.env.ref("base.EUR")
+        if currency == self.company.currency_id:
+            currency = self.env.ref("base.USD")
+        currency.active = True
+        self.env["res.currency.rate"].search(
+            [("currency_id", "=", currency.id)]
+        ).unlink()
+        self.env["res.currency.rate"].create(
+            {
+                "name": date(2000, 1, 1),
+                "currency_id": currency.id,
+                "company_id": self.company.id,
+                "rate": rate,
+            }
+        )
+        return currency
 
     def test_sale_commission_oca_product_criteria_items(self):
         # items names
@@ -280,3 +328,56 @@ class TestSaleCommissionProductCriteria(TestSaleCommission):
         with self.assertRaises(ValidationError):
             self.rules_commission_id.commission_type = "fixed"
             self.rules_commission_id.onchange_commission_type()
+
+    def test_item_conditions(self):
+        """Per unit amounts, minimum quantities and validity dates of the items,
+        matched again when the document changes."""
+        volume_item = self.env["commission.item"].create(
+            {
+                "commission_id": self.rules_commission_id.id,
+                "based_on": "sol",
+                "applied_on": "3_global",
+                "commission_type": "fixed",
+                "fixed_amount": 8,
+                "per_unit": True,
+                "min_qty": 10,
+            }
+        )
+        self.com_item_1.per_unit = True
+        self.assertTrue(self.com_item_1.commission_value.endswith("/ unit"))
+        so = self._create_sale_order_no_co(self.product_1, self.partner, qty=5)
+        so.recompute_lines_agents()
+        line = so.order_line
+        self.assertEqual(line.agent_ids.amount, 50)
+        line.product_uom_qty = 12
+        self.assertEqual(line.agent_ids.amount, 96)
+        with self.assertRaises(ValidationError):
+            volume_item.write(
+                {"date_start": date(2026, 2, 1), "date_end": date(2026, 1, 1)}
+            )
+        volume_item.write(
+            {"date_start": date(2026, 1, 15), "date_end": date(2026, 1, 31)}
+        )
+        # The order date is evaluated in the company timezone: 2026-01-15 08:00
+        # in Tokyo is still 2026-01-14 in UTC and in New York
+        self.company.partner_id.tz = "Asia/Tokyo"
+        self.env.user.tz = "America/New_York"
+        so.date_order = "2026-01-14 23:00:00"
+        self.assertEqual(line.agent_ids.amount, 96)
+        so.date_order = "2026-06-01 12:00:00"
+        self.assertEqual(line.agent_ids.amount, 120)
+        invoice = self._create_invoice_no_co(
+            self.product_1, self.partner, qty=11, invoice_date=date(2026, 6, 1)
+        )
+        self.assertEqual(invoice.invoice_line_ids.agent_ids.amount, 110)
+        invoice.invoice_date = date(2026, 1, 20)
+        self.assertEqual(invoice.invoice_line_ids.agent_ids.amount, 88)
+        # Fixed amounts are converted from the company currency
+        invoice.currency_id = self._create_foreign_currency(rate=2.0)
+        self.assertEqual(invoice.invoice_line_ids.agent_ids.amount, 176)
+        # Only the items of the company of the document apply to it
+        company = self.env["res.company"].create({"name": "Test other company"})
+        self.env.user.company_ids = [Command.link(company.id)]
+        volume_item.company_id = company
+        invoice.invoice_line_ids.quantity = 12
+        self.assertEqual(invoice.invoice_line_ids.agent_ids.amount, 240)

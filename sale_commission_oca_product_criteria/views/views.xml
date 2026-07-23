@@ -52,9 +52,12 @@
                         colspan="2"
                     >
                         <list>
-                            <field name="sequence" column_invisible="1" />
+                            <field name="sequence" optional="hide" />
                             <field name="name" string="Applied On" />
                             <field name="commission_value" />
+                            <field name="min_qty" optional="hide" />
+                            <field name="date_start" optional="hide" />
+                            <field name="date_end" optional="hide" />
                             <field name="based_on" column_invisible="1" />
                         </list>
                     </field>
@@ -99,7 +102,11 @@
                     </h1>
                     <group>
                         <group name="pricelist_rule_target">
-                            <field name="company_id" invisible="1" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                                options="{'no_create': True}"
+                            />
                             <field
                                 name="commission_id"
                                 invisible="context.get('hide_commission_id')"
@@ -144,6 +151,10 @@
                                 name="fixed_amount"
                                 invisible="commission_type != 'fixed'"
                             />
+                            <field
+                                name="per_unit"
+                                invisible="commission_type != 'fixed'"
+                            />
                             <label
                                 for="percent_amount"
                                 invisible="commission_type != 'percentage'"
@@ -154,6 +165,22 @@
                                 class="oe_inline"
                                 invisible="commission_type != 'percentage'"
                             /> % </div>
+                        </group>
+                    </group>
+                    <group
+                        string="Conditions"
+                        name="conditions_group"
+                        groups="sales_team.group_sale_manager"
+                    >
+                        <group>
+                            <field name="min_qty" />
+                            <field
+                                name="date_start"
+                                string="Validity"
+                                widget="daterange"
+                                options="{'end_date_field': 'date_end'}"
+                            />
+                            <field name="date_end" invisible="1" />
                         </group>
                     </group>
                 </sheet>
@@ -168,8 +195,16 @@
             <list>
                 <field name="commission_id" />
                 <field name="name" />
+                <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                    optional="hide"
+                />
                 <field name="applied_on" optional="hide" />
                 <field name="commission_value" />
+                <field name="min_qty" optional="hide" />
+                <field name="date_start" optional="hide" />
+                <field name="date_end" optional="hide" />
                 <field name="based_on" />
             </list>
         </field>

@@ -15,6 +15,7 @@
         "reports/report_settlement_template.xml",
         "views/views.xml",
         "security/ir.model.access.csv",
+        "security/commission_item_security.xml",
     ],
     "demo": ["demo/sale_agent_demo.xml"],
     "application": False,
