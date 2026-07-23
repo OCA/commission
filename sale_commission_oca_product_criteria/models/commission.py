@@ -72,7 +72,6 @@ class CommissionItem(models.Model):
     active = fields.Boolean(default=True)
     commission_id = fields.Many2one(
         "commission",
-        string="Commission",
         domain=[("commission_type", "=", "product")],
         required=True,
     )
@@ -127,7 +126,6 @@ class CommissionItem(models.Model):
     percent_amount = fields.Float("Percentage Amount")
     company_id = fields.Many2one(
         "res.company",
-        "Company",
         default=lambda self: self.env.company,
         readonly=True,
     )

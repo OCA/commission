@@ -1,7 +1,7 @@
 # © 2023 ooops404
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
-from odoo import Command, api, fields, models
+from odoo import api, fields, models
 
 
 class SaleOrderLineAgent(models.Model):
@@ -32,20 +32,3 @@ class SaleOrderLineAgent(models.Model):
                 )
             else:
                 super(SaleOrderLineAgent, line)._compute_amount()
-
-
-class SaleOrderLine(models.Model):
-    _inherit = "sale.order.line"
-
-    def _prepare_invoice_line(self, **optional_values):
-        vals = super()._prepare_invoice_line(**optional_values)
-        vals["agent_ids"] = [
-            Command.create(
-                {
-                    "agent_id": x.agent_id.id,
-                    "commission_id": x.commission_id.id,
-                },
-            )
-            for x in self.agent_ids
-        ]
-        return vals

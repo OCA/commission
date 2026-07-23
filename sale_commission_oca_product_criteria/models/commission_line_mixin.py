@@ -61,7 +61,6 @@ class CommissionLineMixin(models.AbstractModel):
             # lower price than we bought, so set amount_base to 0
             subtotal = max([0, subtotal - product.standard_price * quantity])
         self.applied_commission_item_id = commission_item
-        # if self.agent_id.use_multi_type_commissions:
         self.applied_commission_id = commission_item.commission_id
         if commission_item.commission_type == "fixed":
             return commission_item.fixed_amount

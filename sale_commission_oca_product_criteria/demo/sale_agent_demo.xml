@@ -25,7 +25,7 @@
         <field name="applied_on">2_product_category</field>
         <field name="commission_type">fixed</field>
         <field name="fixed_amount">20</field>
-        <field name="categ_id" ref="product.product_category_5" />
+        <field name="categ_id" ref="product.product_category_office" />
     </record>
 
     <record id="demo_commission_rules_item_3" model="commission.item">
@@ -60,7 +60,7 @@
 
     <record id="base.res_partner_12" model="res.partner">
         <field
-            name="agent_ids"
+            name="commission_agent_ids"
             eval="[Command.set([ref('sale_commission_oca_product_criteria.demo_agent_rules')])]"
         />
     </record>
