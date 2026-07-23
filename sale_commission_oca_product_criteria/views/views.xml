@@ -153,7 +153,7 @@
                                 name="percent_amount"
                                 class="oe_inline"
                                 invisible="commission_type != 'percentage'"
-                            /> %% </div>
+                            /> % </div>
                         </group>
                     </group>
                 </sheet>
@@ -184,7 +184,7 @@
                 <field name="product_tmpl_id" />
                 <field name="product_id" />
                 <field name="categ_id" />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         string="Commission"
                         name="group_by_commission"
