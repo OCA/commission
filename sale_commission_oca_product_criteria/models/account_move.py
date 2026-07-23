@@ -9,11 +9,20 @@ class AccountInvoiceLineAgent(models.Model):
 
     applied_commission_item_id = fields.Many2one("commission.item")
 
+    def _get_line_uom(self):
+        return self.object_id.product_uom_id
+
+    def _get_commission_date(self):
+        return self.invoice_date or super()._get_commission_date()
+
     @api.depends(
         "object_id.price_subtotal",
         "object_id.product_id.commission_free",
         "object_id.quantity",
+        "object_id.product_uom_id",
+        "object_id.currency_id",
         "commission_id",
+        "invoice_date",
     )
     def _compute_amount(self):  # pylint: disable=W8110 # Computes don't return
         for line in self:

@@ -5,3 +5,6 @@
 - [Tecnativa](https://www.tecnativa.com)
   - Carlos Roca
   - David Bañón Gil
+- [Quartile](https://www.quartile.co)
+  - Aung Ko Ko Lin
+  - Tatsuki Kanda

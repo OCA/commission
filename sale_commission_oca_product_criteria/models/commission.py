@@ -3,7 +3,7 @@
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
-from odoo.tools import float_repr
+from odoo.tools import formatLang
 
 
 class Commission(models.Model):
@@ -66,9 +66,13 @@ class Commission(models.Model):
 class CommissionItem(models.Model):
     _name = "commission.item"
     _description = "Commission Item"
-    _order = "applied_on, based_on, categ_id desc, id desc"
+    _order = "applied_on, min_qty desc, based_on, categ_id desc, sequence, id desc"
 
-    sequence = fields.Integer(default=10)
+    sequence = fields.Integer(
+        default=10,
+        help="Order in which the rules matching equally well are evaluated: "
+        "the lowest sequence is the one that applies.",
+    )
     active = fields.Boolean(default=True)
     commission_id = fields.Many2one(
         "commission",
@@ -124,17 +128,42 @@ class CommissionItem(models.Model):
         required=True,
     )
     fixed_amount = fields.Float(digits="Product Price")
+    per_unit = fields.Boolean(
+        help="When checked, the fixed commission amount is multiplied by "
+        "the quantity on the sale/invoice line.\n"
+        "Expressed in the default unit of measure of the product.",
+    )
     percent_amount = fields.Float("Percentage Amount")
+    min_qty = fields.Float(
+        string="Min. Quantity",
+        default=0.0,
+        digits="Product Unit",
+        help="Minimum quantity on the sale/invoice line for this rule to "
+        "apply. When several rules match, the one with the highest "
+        "applicable minimum quantity is used.\n"
+        "Expressed in the default unit of measure of the product.",
+    )
+    date_start = fields.Date(
+        help="Start date for this rule (inclusive). Leave empty for no "
+        "start date restriction.",
+    )
+    date_end = fields.Date(
+        help="End date for this rule (inclusive). Leave empty for no "
+        "end date restriction.",
+    )
     company_id = fields.Many2one(
         "res.company",
         "Company",
         default=lambda self: self.env.company,
-        readonly=True,
+        help="Company this rule applies to. Leave empty to share it with "
+        "every company.",
     )
     currency_id = fields.Many2one(
         "res.currency",
         related="company_id.currency_id",
-        readonly=True,
+        help="Currency the fixed amount of the rule is expressed in. A rule "
+        "shared by every company has none, as its amount is then taken in "
+        "the currency of the company of the order or the invoice.",
     )
     name = fields.Char(
         compute="_compute_commission_item_name_value",
@@ -151,7 +180,9 @@ class CommissionItem(models.Model):
         "product_tmpl_id",
         "product_id",
         "commission_type",
+        "currency_id",
         "fixed_amount",
+        "per_unit",
         "percent_amount",
     )
     def _compute_commission_item_name_value(self):
@@ -174,17 +205,29 @@ class CommissionItem(models.Model):
             else:
                 item.name = self.env._("All Products")
             if item.commission_type == "fixed":
-                decimal_places = self.env["decimal.precision"].precision_get(
-                    "Product Price"
+                # A rule shared by every company has no currency of its own,
+                # so its amount is displayed without any currency symbol.
+                value = formatLang(
+                    self.env,
+                    item.fixed_amount,
+                    dp="Product Price",
+                    currency_obj=item.currency_id,
                 )
-                amount = float_repr(item.fixed_amount, decimal_places)
-                currency_symbol = item.currency_id.symbol or ""
-                if item.currency_id.position == "after":
-                    item.commission_value = f"{amount} {currency_symbol}"
-                else:
-                    item.commission_value = f"{currency_symbol} {amount}"
+                item.commission_value = (
+                    self.env._("%(value)s / unit", value=value)
+                    if item.per_unit
+                    else value
+                )
             elif item.commission_type == "percentage":
                 item.commission_value = f"{item.percent_amount} %"
+
+    @api.constrains("date_start", "date_end")
+    def _check_dates(self):
+        for item in self:
+            if item.date_start and item.date_end and item.date_start > item.date_end:
+                raise ValidationError(
+                    self.env._("The start date cannot be after the end date.")
+                )
 
     @api.constrains("product_id", "product_tmpl_id", "categ_id")
     def _check_product_consistency(self):

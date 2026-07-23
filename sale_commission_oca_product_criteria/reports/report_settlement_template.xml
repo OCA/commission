@@ -4,7 +4,10 @@
         id="report_settlement_document"
         inherit_id="commission_oca.report_settlement_document"
     >
-        <xpath expr="//table/thead/tr/th[last()]" position="before">
+        <xpath
+            expr="//table[@name='invoice_line_table']/thead/tr/th[last()]"
+            position="before"
+        >
             <t
                 t-set="show_value_column"
                 t-value="any(l.invoice_agent_line_id.applied_commission_item_id for l in o.line_ids)"
@@ -13,23 +16,27 @@
                 <th>Value</th>
             </t>
         </xpath>
-        <xpath expr="//table/tbody/tr/td[last()]" position="before">
+        <xpath
+            expr="//table[@name='invoice_line_table']/tbody/tr/td[last()]"
+            position="before"
+        >
             <t t-if="show_value_column">
                 <td>
                     <t
                         t-set="comm_item"
                         t-value="l.invoice_agent_line_id.applied_commission_item_id"
                     />
-                    <t t-if="comm_item.commission_type == 'fixed'">
-                        <span
-                            t-field="comm_item.fixed_amount"
-                            t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"
-                        />
-                    </t>
-                    <t t-elif="comm_item.commission_type == 'percentage'">
-                        <span t-field="comm_item.percent_amount" />%
-                    </t>
+                    <span t-field="comm_item.commission_value" />
                 </td>
+            </t>
+        </xpath>
+        <xpath
+            expr="//table[@name='invoice_line_table']/tfoot/tr/td[last()]"
+            position="before"
+        >
+            <!-- Keep the total under the amount column it totals -->
+            <t t-if="show_value_column">
+                <td />
             </t>
         </xpath>
     </template>
