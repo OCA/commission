@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-04-13 12:45+0000\n"
+"PO-Revision-Date: 2026-07-27 11:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -271,7 +271,7 @@ msgstr "Contatto"
 #. odoo-python
 #: code:addons/commission_oca/wizards/commission_make_settle.py:0
 msgid "Created Settlements"
-msgstr "Regolazioni create"
+msgstr "Liquidazioni create"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__create_uid
