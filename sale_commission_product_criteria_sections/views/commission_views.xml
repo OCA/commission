@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record
+    model="ir.ui.view"
+    id="sale_commission_form_product_sections_inherit"
+  >
+        <field name="name">commission.form.product.sections.inherit</field>
+        <field name="model">commission</field>
+        <field name="inherit_id" ref="commission.commission_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='section_ids']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': [('commission_type', '!=', 'section')]}
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sale_commission_item_form_sections_inherit">
+        <field name="name">commission.item.form.sections.inherit</field>
+        <field name="model">commission.item</field>
+        <field
+      name="inherit_id"
+      ref="sale_commission_product_criteria.commission_item_form_view"
+    />
+        <field name="arch" type="xml">
+            <group name="commission_rule_base" position="after">
+                <field
+          name="section_ids"
+          attrs="{'invisible': [('commission_type', '!=', 'section')]}"
+          nolabel="1"
+          colspan="2"
+        >
+                    <tree editable="bottom">
+                        <field name="amount_from" />
+                        <field name="amount_to" />
+                        <field name="percent" />
+                    </tree>
+                </field>
+            </group>
+        </field>
+    </record>
+</odoo>
