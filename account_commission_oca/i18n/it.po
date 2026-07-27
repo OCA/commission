@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-04-13 12:45+0000\n"
+"PO-Revision-Date: 2026-07-27 11:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -304,7 +304,7 @@ msgstr "Fatturata"
 #: model:ir.actions.act_window,name:account_commission_oca.action_invoicing_commission_settlement
 #: model:ir.ui.menu,name:account_commission_oca.menu_invoicing_settlements
 msgid "Invoices Settlements"
-msgstr "Fatture liquidazioni"
+msgstr "Liquidazioni fatture"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission_make_invoice__journal_id
