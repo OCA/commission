@@ -28,19 +28,28 @@
                 />
             </field>
             <xpath expr="//field[@name='note']" position="after">
-                <group name="group_recompute_commission">
-                    <button
-                        name="recompute_lines_agents"
-                        type="object"
-                        string="Regenerate agents"
-                        states="draft,sent"
-                    />
-                    <button
-                        name="recompute_lines_agents_amount"
-                        type="object"
-                        string="Recompute amounts"
-                        states="draft,sent"
-                    />
+                <group
+                    name="group_recompute_commission"
+                    attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"
+                    colspan="2"
+                    groups="commission.group_commission_user"
+                    string="Commission actions"
+                >
+                    <div class="o_row" colspan="2">
+                        <button
+                            name="recompute_lines_agents"
+                            type="object"
+                            string="Regenerate agents"
+                            class="btn-secondary me-3"
+                            groups="commission.group_commission_manager"
+                        />
+                        <button
+                            name="recompute_lines_agents_amount"
+                            type="object"
+                            string="Recompute amounts"
+                            class="btn-secondary"
+                        />
+                    </div>
                 </group>
             </xpath>
         </field>
