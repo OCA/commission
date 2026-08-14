@@ -8,7 +8,16 @@ from odoo import fields, models
 class CommissionLineMixin(models.AbstractModel):
     _inherit = "commission.line.mixin"
 
-    applied_commission_id = fields.Many2one("commission", readonly=True)
+    applied_commission_id = fields.Many2one(
+        "commission",
+        compute="_compute_amount",
+        store=True,
+    )
+    applied_commission_item_id = fields.Many2one(
+        "commission.item",
+        compute="_compute_amount",
+        store=True,
+    )
     commission_id = fields.Many2one(
         comodel_name="commission",
         ondelete="restrict",
@@ -136,12 +145,29 @@ class CommissionLineMixin(models.AbstractModel):
             return amount
         return company_currency._convert(amount, currency, company, date)
 
+    def _set_applied_commission(self, commission_item=None):
+        """Store the commission item that has been applied on this line.
+
+        Both fields are computed by _compute_amount, so they have to be set
+        for every line it runs on, even the ones no item applies to.
+        """
+        self.ensure_one()
+        commission_item = commission_item or self.env["commission.item"]
+        self.applied_commission_item_id = commission_item
+        self.applied_commission_id = commission_item.commission_id
+
     def _get_single_commission_amount(self, commission, subtotal, product, quantity):
         self.ensure_one()
+        # A commission free product earns nothing, the same way it doesn't on
+        # the commission types of the base module.
+        if product.commission_free:
+            self._set_applied_commission()
+            return 0.0
         company = self._get_commission_company()
         quantity = self._get_quantity_in_product_uom(product, quantity)
         date = self._get_commission_date()
         commission_item = self._get_commission_item(commission, product, quantity, date)
+        self._set_applied_commission(commission_item)
         if not commission_item:
             return 0.0
         if commission.amount_base_type == "net_amount":
@@ -150,8 +176,6 @@ class CommissionLineMixin(models.AbstractModel):
             # lower price than we bought, so set amount_base to 0
             cost = product.with_company(company).standard_price * quantity
             subtotal = max([0, subtotal - self._convert_amount(cost, company, date)])
-        self.applied_commission_item_id = commission_item
-        self.applied_commission_id = commission_item.commission_id
         if commission_item.commission_type == "fixed":
             amount = commission_item.fixed_amount
             if commission_item.per_unit:
@@ -161,6 +185,9 @@ class CommissionLineMixin(models.AbstractModel):
             )
         elif commission_item.commission_type == "percentage":
             return subtotal * (commission_item.percent_amount / 100.0)
+        # A commission type added by another module earns nothing until that
+        # module computes its own amount, rather than returning None.
+        return 0.0
 
     def _get_discount_value(self, commission_item):
         # Will be overridden

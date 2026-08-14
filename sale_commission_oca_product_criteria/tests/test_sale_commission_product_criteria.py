@@ -159,11 +159,13 @@ class TestSaleCommissionProductCriteria(TestSaleCommission):
             }
         )
 
-    def _create_invoice_no_co(self, product, partner, qty=1.0, invoice_date=None):
+    def _create_invoice_no_co(
+        self, product, partner, qty=1.0, invoice_date=None, move_type="out_invoice"
+    ):
         # TestAccountCommission already has a _create_invoice with different params
         return self.env["account.move"].create(
             {
-                "move_type": "out_invoice",
+                "move_type": move_type,
                 "partner_id": partner.id,
                 "invoice_date": invoice_date,
                 "invoice_line_ids": [
@@ -274,6 +276,7 @@ class TestSaleCommissionProductCriteria(TestSaleCommission):
         # Commission free product
         so = self._create_sale_order_no_co(self.product_6, self.partner)
         so.recompute_lines_agents()
+        self.assertFalse(so.order_line.agent_ids)
         # Type != product
         so = self._create_sale_order_no_co(self.product_4, self.partner2)
         so.recompute_lines_agents()
@@ -287,16 +290,11 @@ class TestSaleCommissionProductCriteria(TestSaleCommission):
         # copy
         new_rule = self.rules_commission_id.copy()
         self.assertEqual(len(new_rule.item_ids), len(self.rules_commission_id.item_ids))
-        # change commission_type
-        self.rules_commission_id.commission_type = "fixed"
-        with self.assertRaises(ValidationError):
-            self.rules_commission_id.check_type_change_allowed_moves()
-        with self.assertRaises(ValidationError):
-            self.rules_commission_id.check_type_change_allowed_sale()
         # no rule found
         self.com_item_1.unlink()
         so = self._create_sale_order_no_co(self.product_1, self.partner)
         so.order_line.agent_ids._compute_amount()
+        self.assertEqual(so.order_line.agent_ids.amount, 0)
         # _check_product_consistency
         with self.assertRaises(ValidationError):
             self.com_item_2.categ_id = False
@@ -327,7 +325,13 @@ class TestSaleCommissionProductCriteria(TestSaleCommission):
         so.action_confirm()
         with self.assertRaises(ValidationError):
             self.rules_commission_id.commission_type = "fixed"
-            self.rules_commission_id.onchange_commission_type()
+        # Also once invoiced, while rewriting the same value as an import does
+        # is not a change
+        invoice = self._create_invoice(self.agent_rules, self.rules_commission_id)
+        invoice.action_post()
+        self.rules_commission_id.write({"commission_type": "product"})
+        with self.assertRaises(ValidationError):
+            self.rules_commission_id.write({"commission_type": "fixed"})
 
     def test_item_conditions(self):
         """Per unit amounts, minimum quantities and validity dates of the items,
@@ -381,3 +385,17 @@ class TestSaleCommissionProductCriteria(TestSaleCommission):
         volume_item.company_id = company
         invoice.invoice_line_ids.quantity = 12
         self.assertEqual(invoice.invoice_line_ids.agent_ids.amount, 240)
+        refund = self._create_invoice_no_co(
+            self.product_1, self.partner, qty=3, move_type="out_refund"
+        )
+        self.assertEqual(refund.invoice_line_ids.agent_ids.amount, -30)
+        # The applied item is cleared once the commission is not a product
+        # criteria one, or the product is flagged commission free
+        agent_line = invoice.invoice_line_ids.agent_ids
+        agent_line.commission_id = self.commission_net_invoice
+        self.assertFalse(agent_line.applied_commission_item_id)
+        self.assertFalse(agent_line.applied_commission_id)
+        self.assertEqual(line.agent_ids.applied_commission_item_id, self.com_item_1)
+        self.product_1.commission_free = True
+        self.assertEqual(line.agent_ids.amount, 0)
+        self.assertFalse(line.agent_ids.applied_commission_item_id)

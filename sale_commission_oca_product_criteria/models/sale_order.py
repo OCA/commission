@@ -8,7 +8,6 @@ class SaleOrderLineAgent(models.Model):
     _inherit = "sale.order.line.agent"
 
     discount = fields.Float(related="object_id.discount")
-    applied_commission_item_id = fields.Many2one("commission.item")
     based_on = fields.Selection(related="applied_commission_item_id.based_on")
     applied_on_name = fields.Char(related="applied_commission_item_id.name")
     commission_type = fields.Selection(
@@ -32,6 +31,7 @@ class SaleOrderLineAgent(models.Model):
     @api.depends(
         "object_id.price_subtotal",
         "object_id.product_id",
+        "object_id.product_id.commission_free",
         "object_id.product_uom_qty",
         "object_id.product_uom_id",
         "object_id.currency_id",
@@ -48,4 +48,5 @@ class SaleOrderLineAgent(models.Model):
                     order_line.product_uom_qty,
                 )
             else:
+                line._set_applied_commission()
                 super(SaleOrderLineAgent, line)._compute_amount()
