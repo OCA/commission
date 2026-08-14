@@ -1,13 +1,11 @@
 # © 2023 ooops404
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
-from odoo import api, fields, models
+from odoo import api, models
 
 
 class AccountInvoiceLineAgent(models.Model):
     _inherit = "account.invoice.line.agent"
-
-    applied_commission_item_id = fields.Many2one("commission.item")
 
     def _get_line_uom(self):
         return self.object_id.product_uom_id
@@ -38,4 +36,5 @@ class AccountInvoiceLineAgent(models.Model):
                 if line.invoice_id.move_type and "refund" in line.invoice_id.move_type:
                     line.amount = -line.amount
             else:
+                line._set_applied_commission()
                 super(AccountInvoiceLineAgent, line)._compute_amount()

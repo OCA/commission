@@ -159,11 +159,13 @@ class TestSaleCommissionProductCriteria(TestSaleCommission):
             }
         )
 
-    def _create_invoice_no_co(self, product, partner, qty=1.0, invoice_date=None):
+    def _create_invoice_no_co(
+        self, product, partner, qty=1.0, invoice_date=None, move_type="out_invoice"
+    ):
         # TestAccountCommission already has a _create_invoice with different params
         return self.env["account.move"].create(
             {
-                "move_type": "out_invoice",
+                "move_type": move_type,
                 "partner_id": partner.id,
                 "invoice_date": invoice_date,
                 "invoice_line_ids": [
@@ -284,6 +286,7 @@ class TestSaleCommissionProductCriteria(TestSaleCommission):
         # Commission free product
         so = self._create_sale_order_no_co(self.product_6, self.partner)
         so.recompute_lines_agents()
+        self.assertFalse(so.order_line.agent_ids)
         # Type != product
         so = self._create_sale_order_no_co(self.product_4, self.partner2)
         so.recompute_lines_agents()
@@ -297,16 +300,11 @@ class TestSaleCommissionProductCriteria(TestSaleCommission):
         # copy
         new_rule = self.rules_commission_id.copy()
         self.assertEqual(len(new_rule.item_ids), len(self.rules_commission_id.item_ids))
-        # change commission_type
-        self.rules_commission_id.commission_type = "fixed"
-        with self.assertRaises(ValidationError):
-            self.rules_commission_id.check_type_change_allowed_moves()
-        with self.assertRaises(ValidationError):
-            self.rules_commission_id.check_type_change_allowed_sale()
         # no rule found
         self.com_item_1.unlink()
         so = self._create_sale_order_no_co(self.product_1, self.partner)
         so.order_line.agent_ids._compute_amount()
+        self.assertEqual(so.order_line.agent_ids.amount, 0)
         # _check_product_consistency
         with self.assertRaises(ValidationError):
             self.com_item_2.categ_id = False
@@ -337,7 +335,53 @@ class TestSaleCommissionProductCriteria(TestSaleCommission):
         so.action_confirm()
         with self.assertRaises(ValidationError):
             self.rules_commission_id.commission_type = "fixed"
-            self.rules_commission_id.onchange_commission_type()
+
+    def test_type_change_blocked_by_posted_invoice(self):
+        """The type of an applied commission is protected from any write, not
+        only from the one of the form view."""
+        invoice = self._create_invoice(self.agent_rules, self.rules_commission_id)
+        invoice.action_post()
+        with self.assertRaises(ValidationError):
+            self.rules_commission_id.write({"commission_type": "fixed"})
+
+    def test_type_rewritten_with_same_value_is_allowed(self):
+        """Rewriting the type with the value it already holds is not a change,
+        so an import or a data file reload is not rejected."""
+        invoice = self._create_invoice(self.agent_rules, self.rules_commission_id)
+        invoice.action_post()
+        self.rules_commission_id.write({"commission_type": "product"})
+        self.assertEqual(self.rules_commission_id.commission_type, "product")
+        # An actual change is still blocked
+        with self.assertRaises(ValidationError):
+            self.rules_commission_id.write({"commission_type": "fixed"})
+
+    def test_refund_commission_is_negative(self):
+        """A refund earns the opposite of the commission of an invoice."""
+        self.com_item_1.per_unit = True
+        refund = self._create_invoice_no_co(
+            self.product_1, self.partner, qty=3, move_type="out_refund"
+        )
+        agent_line = refund.invoice_line_ids.agent_ids
+        self.assertEqual(agent_line.applied_commission_item_id, self.com_item_1)
+        # 10 (fixed) x 3 (qty), given back on a refund
+        self.assertEqual(agent_line.amount, -30)
+
+    def test_commission_free_product_earns_nothing(self):
+        """Flagging a product commission free drops the commission of the
+        lines it is on, on orders as well as on invoices."""
+        so = self._create_sale_order_no_co(self.product_1, self.partner)
+        so.recompute_lines_agents()
+        invoice = self._create_invoice_no_co(self.product_1, self.partner)
+        so_agent_line = so.order_line.agent_ids
+        invoice_agent_line = invoice.invoice_line_ids.agent_ids
+        self.assertEqual(so_agent_line.amount, 10)
+        self.assertEqual(invoice_agent_line.amount, 10)
+        # The lines keep their agents, as their own flag only follows
+        # product_id, so the amount is what has to drop
+        self.product_1.commission_free = True
+        for agent_line in (so_agent_line, invoice_agent_line):
+            self.assertEqual(agent_line.amount, 0)
+            self.assertFalse(agent_line.applied_commission_item_id)
 
     def test_per_unit_fixed_amount(self):
         """Fixed amount with per_unit=True is multiplied by quantity."""
@@ -595,6 +639,38 @@ class TestSaleCommissionProductCriteria(TestSaleCommission):
                 }
             )
 
+    def test_applied_item_cleared_when_item_becomes_invalid(self):
+        """A previously applied item does not linger once it expires."""
+        so = self._create_sale_order_no_co(self.product_1, self.partner)
+        so.recompute_lines_agents()
+        agent_line = so.order_line.agent_ids
+        self.assertEqual(agent_line.amount, 10)
+        self.assertEqual(agent_line.applied_commission_item_id, self.com_item_1)
+        self.com_item_1.date_end = date(2020, 1, 1)  # expires before order date
+        so.order_line.product_uom_qty = 2  # retriggers the amount compute
+        self.assertEqual(agent_line.amount, 0)
+        self.assertFalse(agent_line.applied_commission_item_id)
+        self.assertFalse(agent_line.applied_commission_id)
+
+    def test_applied_item_cleared_on_non_product_commission(self):
+        """Applied item/commission are cleared when the line's commission is
+        no longer a product-criteria one (both sale and invoice lines)."""
+        so = self._create_sale_order_no_co(self.product_1, self.partner)
+        so.recompute_lines_agents()
+        invoice = self._create_invoice(self.agent_rules, self.rules_commission_id)
+        # 10% of the net amount: 1000 on the order line, 5 on the invoice line
+        for agent_line, net_amount in (
+            (so.order_line.agent_ids, 100),
+            (invoice.invoice_line_ids.agent_ids, 0.5),
+        ):
+            self.assertEqual(agent_line.amount, 10)
+            self.assertEqual(agent_line.applied_commission_item_id, self.com_item_1)
+            # Changing the commission retriggers the amount compute
+            agent_line.commission_id = self.commission_net_invoice
+            self.assertEqual(agent_line.amount, net_amount)
+            self.assertFalse(agent_line.applied_commission_item_id)
+            self.assertFalse(agent_line.applied_commission_id)
+
     def test_item_matching_scoped_to_document_company(self):
         """Only the rules of the company of the document apply to it, even when
         the user is allowed to see the rules of another company."""
@@ -633,12 +709,30 @@ class TestSaleCommissionProductCriteria(TestSaleCommission):
         self.assertIn(self.com_item_3, items)
 
     def test_settlement_report_shows_applied_value(self):
-        """The settlement report prints the value of the applied rule."""
+        """The settlement report prints the value of the applied rule, for the
+        invoicing user printing it as well: unlike the stored commission
+        amount, the value is read as the user and not as superuser."""
         self.com_item_1.per_unit = True
         self._process_invoice_and_settle(self.agent_rules, self.rules_commission_id, 1)
         settlements = self.settle_model.search([("agent_id", "=", self.agent_rules.id)])
         self.assertTrue(settlements)
-        html, _report_type = self.env["ir.actions.report"]._render_qweb_html(
-            "commission_oca.report_settlement", settlements.ids
+        user = self.env["res.users"].create(
+            {
+                "name": "Test invoicing user",
+                "login": "test_invoicing_user",
+                "company_id": self.company.id,
+                "company_ids": [Command.set([self.company.id])],
+                "group_ids": [
+                    Command.link(self.env.ref("account.group_account_invoice").id),
+                    Command.link(
+                        self.env.ref("commission_oca.group_commission_manager").id
+                    ),
+                ],
+            }
+        )
+        html, _report_type = (
+            self.env["ir.actions.report"]
+            .with_user(user)
+            ._render_qweb_html("commission_oca.report_settlement", settlements.ids)
         )
         self.assertIn(self.com_item_1.commission_value, html.decode())

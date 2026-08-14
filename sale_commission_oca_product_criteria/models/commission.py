@@ -26,15 +26,35 @@ class Commission(models.Model):
             items.action_unarchive()
         return res
 
-    @api.onchange("commission_type")
-    def onchange_commission_type(self):
-        # Prevent commission_type change in certain cases
+    def write(self, values):
+        if "commission_type" in values:
+            # Only the records whose type the write really changes: write()
+            # validates every key it is given, changed or not, so a constraint
+            # would also reject an import or a data file rewriting the type
+            # with the value it already holds.
+            self.filtered(
+                lambda x: x.commission_type != values["commission_type"]
+            )._check_type_change_allowed()
+        return super().write(values)
+
+    def _check_type_change_allowed(self):
+        """Prevent the type change once the commission has been applied.
+
+        Checked on write rather than through an onchange, as the amounts
+        already computed with the previous type are kept whatever writes the
+        field: the form, an import, an automation or another module.
+        """
         self.check_type_change_allowed_sale()
         self.check_type_change_allowed_moves()
 
     def check_type_change_allowed_sale(self):
-        sola_ids = self.env["sale.order.line.agent"].search(
-            [("commission_id", "=", self._origin.id)]
+        # Sudoed, as an applied commission has to block the type change even
+        # when the documents it is applied on belong to another company or to
+        # a salesperson the user writing the type is not allowed to see.
+        sola_ids = (
+            self.env["sale.order.line.agent"]
+            .sudo()
+            .search([("commission_id", "in", self.ids)])
         )
         done_so_ids = sola_ids.filtered(lambda x: x.object_id.state in ["done", "sale"])
         if done_so_ids:
@@ -46,10 +66,10 @@ class Commission(models.Model):
             )
 
     def check_type_change_allowed_moves(self):
-        if not self._origin:
-            return
-        aila_ids = self.env["account.invoice.line.agent"].search(
-            [("commission_id", "=", self._origin.id)]
+        aila_ids = (
+            self.env["account.invoice.line.agent"]
+            .sudo()
+            .search([("commission_id", "in", self.ids)])
         )
         done_move_ids = aila_ids.filtered(
             lambda x: x.object_id.parent_state == "posted"
@@ -218,7 +238,7 @@ class CommissionItem(models.Model):
                     if item.per_unit
                     else value
                 )
-            elif item.commission_type == "percentage":
+            else:
                 item.commission_value = f"{item.percent_amount} %"
 
     @api.constrains("date_start", "date_end")
@@ -229,7 +249,7 @@ class CommissionItem(models.Model):
                     self.env._("The start date cannot be after the end date.")
                 )
 
-    @api.constrains("product_id", "product_tmpl_id", "categ_id")
+    @api.constrains("applied_on", "product_id", "product_tmpl_id", "categ_id")
     def _check_product_consistency(self):
         for item in self:
             if item.applied_on == "2_product_category" and not item.categ_id:

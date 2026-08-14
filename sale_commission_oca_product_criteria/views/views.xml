@@ -231,16 +231,6 @@
         </field>
     </record>
 
-    <record id="commission_item_action" model="ir.actions.act_window">
-        <field name="name">Commission Items</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">commission.item</field>
-        <field name="view_mode">list,form</field>
-        <field name="context">
-            {"hide_commission_id":1, 'search_default_group_by_commission': 1,}
-        </field>
-    </record>
-
     <record id="commission_item_action_tree" model="ir.actions.act_window">
         <field name="name">Commission Items</field>
         <field name="type">ir.actions.act_window</field>
