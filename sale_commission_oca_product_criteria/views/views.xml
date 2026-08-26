@@ -137,7 +137,7 @@
                     <group
                         string="Commission Computation"
                         name="commission_computation"
-                        groups="sales_team.group_sale_manager"
+                        groups="sales_team.group_sale_manager,commission_oca.group_commission_manager"
                     >
                         <group name="commission_rule_method">
                             <field
@@ -170,7 +170,7 @@
                     <group
                         string="Conditions"
                         name="conditions_group"
-                        groups="sales_team.group_sale_manager"
+                        groups="sales_team.group_sale_manager,commission_oca.group_commission_manager"
                     >
                         <group>
                             <field name="min_qty" />
@@ -252,7 +252,7 @@
         id="menu_sale_commissions_items"
         action="commission_item_action_tree"
         parent="commission_oca.menu_commission_management"
-        groups="sales_team.group_sale_manager"
+        groups="sales_team.group_sale_manager,commission_oca.group_commission_manager"
         sequence="10"
     />
 </odoo>
