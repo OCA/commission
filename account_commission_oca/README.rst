@@ -132,6 +132,7 @@ Contributors
 
   - Pedro M. Baeza
   - Manuel Calero
+  - Carlos Dauden
 
 - `Quartile <https://www.quartile.co>`__:
 
