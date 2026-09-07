@@ -21,6 +21,7 @@
         "views/commission_settlement_views.xml",
         "views/commission_views.xml",
         "views/report_settlement_templates.xml",
+        "views/grouped_report_settlement_templates.xml",
         "report/commission_analysis_view.xml",
         "wizards/wizard_invoice.xml",
     ],
