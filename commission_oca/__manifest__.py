@@ -21,6 +21,7 @@
         "views/res_partner_views.xml",
         "reports/commission_settlement_report.xml",
         "reports/report_settlement_templates.xml",
+        "reports/grouped_report_settlement_templates.xml",
         "wizards/commission_make_settle_views.xml",
     ],
     "demo": ["demo/commission_and_agent_demo.xml"],
