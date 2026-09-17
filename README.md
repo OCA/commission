@@ -28,7 +28,7 @@ addon | version | maintainers | summary
 [commission_formula](commission_formula/) | 16.0.1.0.0 |  | Commissions computed by formulas
 [hr_commission](hr_commission/) | 16.0.1.0.0 |  | HR commissions
 [sale_commission](sale_commission/) | 16.0.1.0.3 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Sales commissions
-[sale_commission_agent_restrict](sale_commission_agent_restrict/) | 16.0.1.0.0 | <a href='https://github.com/aleuffre'><img src='https://github.com/aleuffre.png' width='32' height='32' style='border-radius:50%;' alt='aleuffre'/></a> | Sales Commissions Agent Restrict
+[sale_commission_agent_restrict](sale_commission_agent_restrict/) | 16.0.1.0.1 | <a href='https://github.com/aleuffre'><img src='https://github.com/aleuffre.png' width='32' height='32' style='border-radius:50%;' alt='aleuffre'/></a> | Sales Commissions Agent Restrict
 [sale_commission_margin](sale_commission_margin/) | 16.0.1.0.0 |  | This addons allows commissions to be deducted from the margin.
 [sale_commission_product_criteria](sale_commission_product_criteria/) | 16.0.2.0.0 | <a href='https://github.com/ilyasProgrammer'><img src='https://github.com/ilyasProgrammer.png' width='32' height='32' style='border-radius:50%;' alt='ilyasProgrammer'/></a> | Advanced commissions rules
 [sale_commission_product_criteria_country](sale_commission_product_criteria_country/) | 16.0.1.0.0 | <a href='https://github.com/tisho99'><img src='https://github.com/tisho99.png' width='32' height='32' style='border-radius:50%;' alt='tisho99'/></a> | Sale Commission Product Criteria Country

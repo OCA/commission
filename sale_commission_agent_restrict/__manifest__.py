@@ -3,7 +3,7 @@
 
 {
     "name": "Sales Commissions Agent Restrict",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "author": "Ooops404, Ilyas, Odoo Community Association (OCA)",
     "maintainers": ["aleuffre"],
     "category": "Sales",
