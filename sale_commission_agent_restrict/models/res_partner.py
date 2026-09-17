@@ -4,6 +4,8 @@
 from odoo import Command, _, api, models
 from odoo.exceptions import UserError
 
+AGENT_GROUP = "sale_commission_agent_restrict.group_agent_own_commissions"
+
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
@@ -96,3 +98,33 @@ class ResPartner(models.Model):
                         res.pop("agent_ids")
                         return res
         return res
+
+    @api.model
+    def _get_view_cache_key(self, view_id=None, view_type="form", **options):
+        """The architecture depends on whether the user is an agent.
+
+        ``_get_view`` removes the contact pages for agents, so the cached
+        architecture must be distinguished by that membership.
+        """
+        key = super()._get_view_cache_key(view_id, view_type, **options)
+        return key + (self.env.user.has_group(AGENT_GROUP),)
+
+    @api.model
+    def _get_view(self, view_id=None, view_type="form", **options):
+        """Remove the sales and notes pages from the contact form for agents.
+
+        Done here rather than with a ``groups`` attribute on the pages: that
+        attribute removes the node from the stored architecture as well, which
+        makes any other module that places a field inside the page and uses it
+        outside it impossible to validate.
+        """
+        arch, view = super()._get_view(view_id, view_type, **options)
+        if view_type == "form" and self.env.user.has_group(AGENT_GROUP):
+            nodes = arch.xpath(
+                "//page[@name='sales_purchases'] | //page[@name='internal_notes']"
+            )
+            for node in nodes:
+                parent = node.getparent()
+                if parent is not None:
+                    parent.remove(node)
+        return arch, view
