@@ -62,6 +62,7 @@
                         states="settled"
                         type="object"
                         name="action_cancel"
+                        groups="commission.group_commission_manager"
                     />
                     <field name="state" widget="statusbar" />
                 </header>
