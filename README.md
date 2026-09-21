@@ -21,9 +21,9 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[account_commission_oca](account_commission_oca/) | 18.0.1.0.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Account commissions OCA
+[account_commission_oca](account_commission_oca/) | 18.0.1.1.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Account commissions OCA
 [commission_formula_oca](commission_formula_oca/) | 18.0.1.0.0 |  | Commissions computed by formulas
-[commission_oca](commission_oca/) | 18.0.1.0.3 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Commissions OCA
+[commission_oca](commission_oca/) | 18.0.1.1.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Commissions OCA
 [hr_commission_oca](hr_commission_oca/) | 18.0.1.0.0 |  | HR commissions OCA
 [sale_commission_margin_oca](sale_commission_margin_oca/) | 18.0.1.0.0 |  | This addons allows commissions to be deducted from the margin.
 [sale_commission_oca](sale_commission_oca/) | 18.0.1.0.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Sales commissions OCA
