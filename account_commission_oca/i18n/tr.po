@@ -27,9 +27,29 @@ msgid "(keep empty for invoicing all the pending settlements)"
 msgstr "(bekleyen tüm mutabakatları faturalandırmak için boş bırakın)"
 
 #. module: account_commission_oca
+#: model_terms:ir.ui.view,arch_db:account_commission_oca.grouped_report_settlement_document
+msgid "<strong>Invoice</strong>"
+msgstr ""
+
+#. module: account_commission_oca
+#: model_terms:ir.ui.view,arch_db:account_commission_oca.grouped_report_settlement_document
+msgid "<strong>Partner</strong>"
+msgstr ""
+
+#. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.report_settlement_document
 msgid "<strong>Settlement invoice:</strong>"
 msgstr "<strong>Mutabakat Faturası:</strong>"
+
+#. module: account_commission_oca
+#: model_terms:ir.ui.view,arch_db:account_commission_oca.grouped_report_settlement_document
+msgid "<strong>Subtotal</strong>"
+msgstr ""
+
+#. module: account_commission_oca
+#: model_terms:ir.ui.view,arch_db:account_commission_oca.grouped_report_settlement_document
+msgid "<strong>Total</strong>"
+msgstr ""
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_invoice_line_agent__agent_id
@@ -46,7 +66,6 @@ msgstr "Fatura satırlarındaki komisyon satırı aracı detayı"
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_bank_statement_line__partner_agent_ids
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_move__partner_agent_ids
-#: model:ir.model.fields,field_description:account_commission_oca.field_account_payment__partner_agent_ids
 msgid "Agents"
 msgstr "Aracılar"
 
@@ -83,7 +102,6 @@ msgstr "İptal"
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/commission_settlement.py:0
-#, python-format
 msgid "Cannot cancel an invoiced settlement."
 msgstr "Faturalandırılmış mutabakat iptal edilemez."
 
@@ -120,7 +138,6 @@ msgstr "Komisyon Analizi"
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_bank_statement_line__commission_total
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_move__commission_total
-#: model:ir.model.fields,field_description:account_commission_oca.field_account_payment__commission_total
 #: model:ir.ui.menu,name:account_commission_oca.menu_invoicing_commission
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_move_line_form
 msgid "Commissions"
@@ -153,7 +170,6 @@ msgstr "Faturaları oluştur"
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/wizards/wizard_invoice.py:0
-#, python-format
 msgid "Created Invoices"
 msgstr "Oluşturulan Faturalar"
 
@@ -342,7 +358,6 @@ msgstr "Komisyon mutabakat satırı"
 #. odoo-python
 #: code:addons/account_commission_oca/models/commission_settlement.py:0
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_settlement_form
-#, python-format
 msgid "Make invoice"
 msgstr "Fatura oluştur"
 
@@ -359,7 +374,6 @@ msgstr "Fatura komisyonlarını yönet"
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/wizards/wizard_invoice.py:0
-#, python-format
 msgid "No valid settlements to invoice."
 msgstr "Faturalandırılacak geçerli mutabakat yok."
 
@@ -391,7 +405,6 @@ msgstr "Komisyon yüzdesi"
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/commission_settlement.py:0
-#, python-format
 msgid "Period: from %(date_from)s to %(date_to)s"
 msgstr "Dönem: %(date_from)s - %(date_to)s"
 
@@ -455,7 +468,6 @@ msgstr "Mutabakat"
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_bank_statement_line__settlement_count
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_move__settlement_count
-#: model:ir.model.fields,field_description:account_commission_oca.field_account_payment__settlement_count
 msgid "Settlement Count"
 msgstr "Mutabakat Sayısı"
 
@@ -478,7 +490,6 @@ msgstr "Bu fatura satırını oluşturan mutabakat"
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_bank_statement_line__settlement_ids
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_move__settlement_ids
-#: model:ir.model.fields,field_description:account_commission_oca.field_account_payment__settlement_ids
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.commission_make_invoice_form
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_in_invoice_bill_tree_inherit
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_move_form
@@ -508,8 +519,8 @@ msgstr "Ara Toplam"
 #. module: account_commission_oca
 #: model:ir.model.fields,help:account_commission_oca.field_commission_settlement__settlement_type
 msgid ""
-"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase"
-" order'..."
+"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase "
+"order'..."
 msgstr ""
 "Mutabakatın kaynağı, örn. 'Satış faturası', 'Satış siparişi', 'Satın alma "
 "siparişi'..."
@@ -555,21 +566,18 @@ msgstr "Komisyonları mutabakat yapmak için sihirbaz"
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/account_move.py:0
-#, python-format
 msgid "You can't cancel an invoice with settled lines"
 msgstr "Mutabakat yapılmış satırları olan fatura iptal edilemez"
 
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/commission_settlement.py:0
-#, python-format
 msgid "You can't delete invoiced settlements."
 msgstr "Faturalandırılmış mutabakatlar silinemez."
 
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/account_move.py:0
-#, python-format
 msgid "You can't modify a settled line"
 msgstr "Mutabakat yapılmış bir satır değiştirilemez"
 

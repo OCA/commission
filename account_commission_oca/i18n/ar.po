@@ -28,9 +28,29 @@ msgid "(keep empty for invoicing all the pending settlements)"
 msgstr "(اتركه فارغاً لفوترة جميع التسويات المعلقة)"
 
 #. module: account_commission_oca
+#: model_terms:ir.ui.view,arch_db:account_commission_oca.grouped_report_settlement_document
+msgid "<strong>Invoice</strong>"
+msgstr ""
+
+#. module: account_commission_oca
+#: model_terms:ir.ui.view,arch_db:account_commission_oca.grouped_report_settlement_document
+msgid "<strong>Partner</strong>"
+msgstr ""
+
+#. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.report_settlement_document
 msgid "<strong>Settlement invoice:</strong>"
 msgstr "<strong>فاتورة التسوية:</strong>"
+
+#. module: account_commission_oca
+#: model_terms:ir.ui.view,arch_db:account_commission_oca.grouped_report_settlement_document
+msgid "<strong>Subtotal</strong>"
+msgstr ""
+
+#. module: account_commission_oca
+#: model_terms:ir.ui.view,arch_db:account_commission_oca.grouped_report_settlement_document
+msgid "<strong>Total</strong>"
+msgstr ""
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_invoice_line_agent__agent_id
@@ -500,9 +520,10 @@ msgstr "المجموع الفرعي"
 #. module: account_commission_oca
 #: model:ir.model.fields,help:account_commission_oca.field_commission_settlement__settlement_type
 msgid ""
-"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase"
-" order'..."
-msgstr "مصدر التسوية، على سبيل المثال 'فاتورة مبيعات'، 'أمر بيع'، 'أمر شراء'..."
+"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase "
+"order'..."
+msgstr ""
+"مصدر التسوية، على سبيل المثال 'فاتورة مبيعات'، 'أمر بيع'، 'أمر شراء'..."
 
 #. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_invoice_commission_analysis_search

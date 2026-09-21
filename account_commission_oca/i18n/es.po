@@ -27,9 +27,29 @@ msgid "(keep empty for invoicing all the pending settlements)"
 msgstr "(mantener vacío para facturar todas las liquidaciones pendientes)"
 
 #. module: account_commission_oca
+#: model_terms:ir.ui.view,arch_db:account_commission_oca.grouped_report_settlement_document
+msgid "<strong>Invoice</strong>"
+msgstr ""
+
+#. module: account_commission_oca
+#: model_terms:ir.ui.view,arch_db:account_commission_oca.grouped_report_settlement_document
+msgid "<strong>Partner</strong>"
+msgstr ""
+
+#. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.report_settlement_document
 msgid "<strong>Settlement invoice:</strong>"
 msgstr "<strong>Factura de liquidación:</strong>"
+
+#. module: account_commission_oca
+#: model_terms:ir.ui.view,arch_db:account_commission_oca.grouped_report_settlement_document
+msgid "<strong>Subtotal</strong>"
+msgstr ""
+
+#. module: account_commission_oca
+#: model_terms:ir.ui.view,arch_db:account_commission_oca.grouped_report_settlement_document
+msgid "<strong>Total</strong>"
+msgstr ""
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_invoice_line_agent__agent_id
@@ -46,7 +66,6 @@ msgstr "Detalle de agente de línea de comisión en líneas de pedido"
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_bank_statement_line__partner_agent_ids
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_move__partner_agent_ids
-#: model:ir.model.fields,field_description:account_commission_oca.field_account_payment__partner_agent_ids
 msgid "Agents"
 msgstr "Agentes"
 
@@ -83,7 +102,6 @@ msgstr "Cancelar"
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/commission_settlement.py:0
-#, python-format
 msgid "Cannot cancel an invoiced settlement."
 msgstr "No se puede cancelar una liquidación facturada."
 
@@ -120,7 +138,6 @@ msgstr "Análisis de comisión"
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_bank_statement_line__commission_total
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_move__commission_total
-#: model:ir.model.fields,field_description:account_commission_oca.field_account_payment__commission_total
 #: model:ir.ui.menu,name:account_commission_oca.menu_invoicing_commission
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_move_line_form
 msgid "Commissions"
@@ -153,7 +170,6 @@ msgstr "Crear Facturas"
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/wizards/wizard_invoice.py:0
-#, python-format
 msgid "Created Invoices"
 msgstr "Facturas creadas"
 
@@ -342,7 +358,6 @@ msgstr "Línea de liquidación de comisiones"
 #. odoo-python
 #: code:addons/account_commission_oca/models/commission_settlement.py:0
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_settlement_form
-#, python-format
 msgid "Make invoice"
 msgstr "Crear factura"
 
@@ -359,7 +374,6 @@ msgstr "Gestionar las comisiones de facturas"
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/wizards/wizard_invoice.py:0
-#, python-format
 msgid "No valid settlements to invoice."
 msgstr "No hay liquidaciones válidas para facturar."
 
@@ -391,7 +405,6 @@ msgstr "Porcentaje de comisión"
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/commission_settlement.py:0
-#, python-format
 msgid "Period: from %(date_from)s to %(date_to)s"
 msgstr "Período: de %(date_from)s a %(date_to)s"
 
@@ -456,7 +469,6 @@ msgstr "Liquidación"
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_bank_statement_line__settlement_count
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_move__settlement_count
-#: model:ir.model.fields,field_description:account_commission_oca.field_account_payment__settlement_count
 msgid "Settlement Count"
 msgstr "Recuento de liquidación"
 
@@ -479,7 +491,6 @@ msgstr "Liquidación que genera esta línea de factura"
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_bank_statement_line__settlement_ids
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_move__settlement_ids
-#: model:ir.model.fields,field_description:account_commission_oca.field_account_payment__settlement_ids
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.commission_make_invoice_form
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_in_invoice_bill_tree_inherit
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_move_form
@@ -557,21 +568,18 @@ msgstr "Asistente para liquidación de comisiones"
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/account_move.py:0
-#, python-format
 msgid "You can't cancel an invoice with settled lines"
 msgstr "No se puede cancelar una factura con líneas liquidadas"
 
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/commission_settlement.py:0
-#, python-format
 msgid "You can't delete invoiced settlements."
 msgstr "No se pueden borrar liquidaciones facturadas."
 
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/account_move.py:0
-#, python-format
 msgid "You can't modify a settled line"
 msgstr "No puede modificar una línea liquidada"
 

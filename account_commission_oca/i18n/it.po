@@ -27,9 +27,29 @@ msgid "(keep empty for invoicing all the pending settlements)"
 msgstr "(lasciare vuoto per fatturare tutte le liquidazioni pendenti)"
 
 #. module: account_commission_oca
+#: model_terms:ir.ui.view,arch_db:account_commission_oca.grouped_report_settlement_document
+msgid "<strong>Invoice</strong>"
+msgstr ""
+
+#. module: account_commission_oca
+#: model_terms:ir.ui.view,arch_db:account_commission_oca.grouped_report_settlement_document
+msgid "<strong>Partner</strong>"
+msgstr ""
+
+#. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.report_settlement_document
 msgid "<strong>Settlement invoice:</strong>"
 msgstr "<strong>Fattura provvigione:</strong>"
+
+#. module: account_commission_oca
+#: model_terms:ir.ui.view,arch_db:account_commission_oca.grouped_report_settlement_document
+msgid "<strong>Subtotal</strong>"
+msgstr ""
+
+#. module: account_commission_oca
+#: model_terms:ir.ui.view,arch_db:account_commission_oca.grouped_report_settlement_document
+msgid "<strong>Total</strong>"
+msgstr ""
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_invoice_line_agent__agent_id
@@ -46,7 +66,6 @@ msgstr "Dettaglio riga provvigione agente nelle righe fattura"
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_bank_statement_line__partner_agent_ids
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_move__partner_agent_ids
-#: model:ir.model.fields,field_description:account_commission_oca.field_account_payment__partner_agent_ids
 msgid "Agents"
 msgstr "Agenti"
 
@@ -83,7 +102,6 @@ msgstr "Annulla"
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/commission_settlement.py:0
-#, python-format
 msgid "Cannot cancel an invoiced settlement."
 msgstr "Impossibile annullare una liquidazione provvigioni fatturata."
 
@@ -120,7 +138,6 @@ msgstr "Analisi provvigioni"
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_bank_statement_line__commission_total
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_move__commission_total
-#: model:ir.model.fields,field_description:account_commission_oca.field_account_payment__commission_total
 #: model:ir.ui.menu,name:account_commission_oca.menu_invoicing_commission
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_move_line_form
 msgid "Commissions"
@@ -153,7 +170,6 @@ msgstr "Crea fatture"
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/wizards/wizard_invoice.py:0
-#, python-format
 msgid "Created Invoices"
 msgstr "Fatture create"
 
@@ -342,7 +358,6 @@ msgstr "Riga di liquidazione provvigione"
 #. odoo-python
 #: code:addons/account_commission_oca/models/commission_settlement.py:0
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_settlement_form
-#, python-format
 msgid "Make invoice"
 msgstr "Crea fattura"
 
@@ -359,7 +374,6 @@ msgstr "Gestisci fatture provvigioni"
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/wizards/wizard_invoice.py:0
-#, python-format
 msgid "No valid settlements to invoice."
 msgstr "Nessuna liquidazione valida da fatturare."
 
@@ -391,7 +405,6 @@ msgstr "Percentuale di provvigione"
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/commission_settlement.py:0
-#, python-format
 msgid "Period: from %(date_from)s to %(date_to)s"
 msgstr "Periodo: da %(date_from)s a %(date_to)s"
 
@@ -457,7 +470,6 @@ msgstr "Liquidazione"
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_bank_statement_line__settlement_count
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_move__settlement_count
-#: model:ir.model.fields,field_description:account_commission_oca.field_account_payment__settlement_count
 msgid "Settlement Count"
 msgstr "Conteggio liquidazioni"
 
@@ -480,7 +492,6 @@ msgstr "Liquidazione che genera questa riga fattura"
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_bank_statement_line__settlement_ids
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_move__settlement_ids
-#: model:ir.model.fields,field_description:account_commission_oca.field_account_payment__settlement_ids
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.commission_make_invoice_form
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_in_invoice_bill_tree_inherit
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_move_form
@@ -557,21 +568,18 @@ msgstr "Wizard per la liquidazione delle provvigioni"
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/account_move.py:0
-#, python-format
 msgid "You can't cancel an invoice with settled lines"
 msgstr "Non è possibile annullare una fattura collegata a righe liquidazione"
 
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/commission_settlement.py:0
-#, python-format
 msgid "You can't delete invoiced settlements."
 msgstr "Non è possibile eliminare liquidazioni fatturate."
 
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/account_move.py:0
-#, python-format
 msgid "You can't modify a settled line"
 msgstr "Non è possibile modificare una riga liquidata"
 
