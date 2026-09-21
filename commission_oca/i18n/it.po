@@ -49,16 +49,34 @@ msgstr ""
 "                    </span>"
 
 #. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.grouped_report_settlement_document
+msgid "<strong>Amount settled</strong>"
+msgstr ""
+
+#. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.grouped_report_settlement_document
+msgid "<strong>Commission</strong>"
+msgstr ""
+
+#. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.grouped_report_settlement_document
+msgid "<strong>Date</strong>"
+msgstr ""
+
+#. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission_oca.report_settlement_document
 msgid "<strong>From:</strong>"
 msgstr "<strong>Da:</strong>"
 
 #. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission_oca.report_settlement_document
 msgid "<strong>To:</strong>"
 msgstr "<strong>A:</strong>"
 
 #. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission_oca.report_settlement_document
 msgid "<strong>Total</strong>"
 msgstr "<strong>Totale</strong>"
@@ -381,6 +399,16 @@ msgstr "Informazioni generali"
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_search
 msgid "Group By"
 msgstr "Raggruppa per"
+
+#. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.grouped_report_settlement_document
+msgid "Grouped Settlement"
+msgstr ""
+
+#. module: commission_oca
+#: model:ir.actions.report,name:commission_oca.action_grouped_report_settlement
+msgid "Grouped settlement report"
+msgstr ""
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__has_message

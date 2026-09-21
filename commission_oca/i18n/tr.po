@@ -49,16 +49,34 @@ msgstr ""
 "                    </span>"
 
 #. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.grouped_report_settlement_document
+msgid "<strong>Amount settled</strong>"
+msgstr ""
+
+#. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.grouped_report_settlement_document
+msgid "<strong>Commission</strong>"
+msgstr ""
+
+#. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.grouped_report_settlement_document
+msgid "<strong>Date</strong>"
+msgstr ""
+
+#. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission_oca.report_settlement_document
 msgid "<strong>From:</strong>"
 msgstr "<strong>Tarafından:</strong>"
 
 #. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission_oca.report_settlement_document
 msgid "<strong>To:</strong>"
 msgstr "<strong>'a:</strong>"
 
 #. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.grouped_report_settlement_document
 #: model_terms:ir.ui.view,arch_db:commission_oca.report_settlement_document
 msgid "<strong>Total</strong>"
 msgstr "<strong>Toplam</strong>"
@@ -383,6 +401,16 @@ msgid "Group By"
 msgstr "Grupla"
 
 #. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.grouped_report_settlement_document
+msgid "Grouped Settlement"
+msgstr ""
+
+#. module: commission_oca
+#: model:ir.actions.report,name:commission_oca.action_grouped_report_settlement
+msgid "Grouped settlement report"
+msgstr ""
+
+#. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__has_message
 msgid "Has Message"
 msgstr "Mesajı Var"
@@ -622,8 +650,8 @@ msgid ""
 "intervals and percentages in the section \"Rate definition\"."
 msgstr ""
 "Komisyonun oran türünü seçin:\n"
-"* 'Sabit Oran': Tüm komisyonlar sabit oranla hesaplanır. Oranı \\"
-"\"Sabit oran\\\" alanına girebilirsiniz.\n"
+"* 'Sabit Oran': Tüm komisyonlar sabit oranla hesaplanır. Oranı \\\"Sabit "
+"oran\\\" alanına girebilirsiniz.\n"
 "\"* 'Bölümlere göre': Oran miktar aralıklarına bağlı olarak değişir. Miktar "
 "aralıklarını ve oranları \\\"Oran tanımı\\\" alanına girebilirsiniz ."
 
