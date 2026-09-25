@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-07-27 11:46+0000\n"
+"PO-Revision-Date: 2026-09-25 21:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -51,17 +51,17 @@ msgstr ""
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.grouped_report_settlement_document
 msgid "<strong>Amount settled</strong>"
-msgstr ""
+msgstr "<strong>Importo liquidato</strong>"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.grouped_report_settlement_document
 msgid "<strong>Commission</strong>"
-msgstr ""
+msgstr "<strong>Commissione</strong>"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.grouped_report_settlement_document
 msgid "<strong>Date</strong>"
-msgstr ""
+msgstr "<strong>Data</strong>"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.grouped_report_settlement_document
@@ -403,12 +403,12 @@ msgstr "Raggruppa per"
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.grouped_report_settlement_document
 msgid "Grouped Settlement"
-msgstr ""
+msgstr "Provvigione raggruppata"
 
 #. module: commission_oca
 #: model:ir.actions.report,name:commission_oca.action_grouped_report_settlement
 msgid "Grouped settlement report"
-msgstr ""
+msgstr "Resoconto provvigione raggruppata"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__has_message
