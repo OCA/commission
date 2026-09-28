@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="commission_item_form_view_inherit_sections">
+        <field name="name">commission.item.form.inherit.sections</field>
+        <field name="model">commission.item</field>
+        <field
+            name="inherit_id"
+            ref="sale_commission_product_criteria.commission_item_form_view"
+        />
+        <field name="arch" type="xml">
+            <group name="commission_computation" position="after">
+                <group
+                    name="commission_rule_sections"
+                    string="Rate definition"
+                    groups="sales_team.group_sale_manager"
+                    attrs="{'invisible': [('commission_type', '!=', 'section')]}"
+                >
+                    <field name="section_ids" nolabel="1" colspan="2">
+                        <tree editable="bottom">
+                            <field name="amount_from" />
+                            <field name="amount_to" />
+                            <field name="percent" />
+                        </tree>
+                    </field>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
