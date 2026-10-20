@@ -66,9 +66,83 @@
                     domain="[('agent', '=', 1)]"
                     help="Agent Partners"
                 />
+                <filter
+                    string="With Agents Assigned"
+                    name="with_agents"
+                    domain="[('commission_agent_ids', '!=', False)]"
+                    help="Partners with commission agents assigned"
+                />
                 <separator />
             </filter>
         </field>
+    </record>
+    <record id="view_partner_list_commission" model="ir.ui.view">
+        <field name="name">res.partner.list.commission</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <list string="Customers" sample="1" multi_edit="1">
+                <field
+                    name="avatar_128"
+                    widget="image"
+                    options="{'size': [24, 24], 'img_class': 'o_avatar rounded'}"
+                    width="30"
+                    nolabel="1"
+                />
+                <field name="complete_name" string="Name" />
+                <field name="vat" optional="hide" readonly="1" />
+                <field name="email" optional="show" />
+                <field name="phone" class="o_force_ltr" optional="show" />
+                <field
+                    name="user_id"
+                    optional="hide"
+                    widget="many2one_avatar_user"
+                    domain="[('share', '=', False)]"
+                />
+                <field
+                    name="commission_agent_ids"
+                    widget="many2many_tags"
+                    context="{'default_agent': True}"
+                    optional="show"
+                />
+                <field name="street" optional="hide" />
+                <field name="city" optional="hide" />
+                <field name="state_id" optional="hide" readonly="1" />
+                <field name="country_id" optional="show" readonly="1" />
+                <field
+                    name="application_statistics"
+                    widget="contact_statistics"
+                    nolabel="1"
+                    optional="show"
+                    width="270"
+                />
+                <field
+                    name="category_id"
+                    optional="hide"
+                    widget="many2many_tags"
+                    options="{'color_field': 'color'}"
+                />
+                <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                    readonly="1"
+                    optional="hide"
+                />
+                <field name="properties" optional="hide" />
+            </list>
+        </field>
+    </record>
+    <record id="action_partner_commission" model="ir.actions.act_window">
+        <field name="name">Customers with agents</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('parent_id', '=', False), ('agent', '=', False)]</field>
+        <field name="context">{'search_default_with_agents': 1}</field>
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0), (0, 0, {'view_mode': 'list', 'view_id': ref('view_partner_list_commission')})]"
+        />
+        <field name="search_view_id" ref="res_partner_view_search" />
     </record>
     <record id="action_agent_form" model="ir.actions.act_window">
         <field name="name">Agents</field>
@@ -83,5 +157,12 @@
         parent="menu_commission"
         action="action_agent_form"
         sequence="10"
+    />
+    <menuitem
+        id="menu_partner_commission"
+        name="Customers with agents"
+        parent="menu_commission"
+        action="action_partner_commission"
+        sequence="15"
     />
 </odoo>
