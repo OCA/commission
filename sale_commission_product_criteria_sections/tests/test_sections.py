@@ -252,12 +252,10 @@ class TestSaleCommissionProductCriteriaSections(TransactionCase):
     def test_section_order_by_sequence(self):
         # Sections are evaluated by sequence, so overlapping sections should
         # not be left to the creation order.
-        self.section_item.section_ids.write(
-            {
-                "sequence": 10,
-            }
-        )
-        self.section_item.section_ids[0].write(
+        sections = self.section_item.section_ids
+        first_section = sections[0]
+        second_section = sections[1]
+        first_section.write(
             {
                 "amount_from": 0.0,
                 "amount_to": 1000.0,
@@ -265,7 +263,7 @@ class TestSaleCommissionProductCriteriaSections(TransactionCase):
                 "sequence": 20,
             }
         )
-        self.section_item.section_ids[1].write(
+        second_section.write(
             {
                 "amount_from": 0.0,
                 "amount_to": 1000.0,
@@ -273,7 +271,8 @@ class TestSaleCommissionProductCriteriaSections(TransactionCase):
                 "sequence": 10,
             }
         )
-        # The second section, with the lower sequence, matches first
+        # The section with the lower sequence matches first, although it was
+        # created after the other one
         self.assertAlmostEqual(
             self.section_item._calculate_section_amount(500.0), 50.0, places=2
         )

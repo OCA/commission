@@ -39,7 +39,7 @@ class CommissionItem(models.Model):
         self.ensure_one()
         section = self.section_ids.filtered(
             lambda x: x.amount_from <= base <= x.amount_to
-        )[:1]
+        ).sorted(key=lambda x: x.sequence)[:1]
         if not section:
             return 0.0
         return base * section.percent / 100.0
@@ -70,3 +70,11 @@ class CommissionSection(models.Model):
                         "commission item, but not to both of them."
                     )
                 )
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        # The constraint is not triggered on creation when the parent is not
+        # part of the values, so it is checked explicitly.
+        sections = super().create(vals_list)
+        sections._check_section_parent()
+        return sections
