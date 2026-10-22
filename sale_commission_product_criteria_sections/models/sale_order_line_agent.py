@@ -24,7 +24,5 @@ class SaleOrderLineAgent(models.Model):
         if commission_item.commission_type != "section":
             return amount
         return commission_item._calculate_section_amount(
-            self._get_commission_base_amount(
-                commission, subtotal, product, quantity
-            )
+            self._get_commission_base_amount(commission, subtotal, product, quantity)
         )
