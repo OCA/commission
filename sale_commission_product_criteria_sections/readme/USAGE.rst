@@ -2,6 +2,9 @@ The commission base amount of the line is matched against the rate sections
 of the rule, which are closed intervals: the first section whose limits
 contain the base amount is applied, so sections should not overlap.
 
+The sections are evaluated by sequence, so the precedence between the
+overlapping ones is explicit and can be changed by the user.
+
 For example, a rule with these sections:
 
 * 0 - 100: 5%

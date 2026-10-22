@@ -17,6 +17,7 @@
                 >
                     <field name="section_ids" nolabel="1" colspan="2">
                         <tree editable="bottom">
+                            <field name="sequence" widget="handle" />
                             <field name="amount_from" />
                             <field name="amount_to" />
                             <field name="percent" />

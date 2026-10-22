@@ -7,3 +7,5 @@ rate sections on the "Rate definition" group:
 * From: lower limit of the amount range, included
 * To: upper limit of the amount range, included
 * Percent: commission percentage applied to the whole base amount
+* Sequence: order in which the sections are evaluated, the lower sequence
+  is applied first when several sections match the same amount

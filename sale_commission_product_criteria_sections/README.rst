@@ -56,6 +56,8 @@ rate sections on the "Rate definition" group:
 * From: lower limit of the amount range, included
 * To: upper limit of the amount range, included
 * Percent: commission percentage applied to the whole base amount
+* Sequence: order in which the sections are evaluated, the lower sequence
+  is applied first when several sections match the same amount
 
 Usage
 =====
@@ -63,6 +65,9 @@ Usage
 The commission base amount of the line is matched against the rate sections
 of the rule, which are closed intervals: the first section whose limits
 contain the base amount is applied, so sections should not overlap.
+
+The sections are evaluated by sequence, so the precedence between the
+overlapping ones is explicit and can be changed by the user.
 
 For example, a rule with these sections:
 

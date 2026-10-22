@@ -1,6 +1,7 @@
 # Copyright 2025 Madooit
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 
 
@@ -247,3 +248,75 @@ class TestSaleCommissionProductCriteriaSections(TransactionCase):
         self.section_item.unlink()
         sections = self.env["commission.section"].browse(section_ids).exists()
         self.assertFalse(sections)
+
+    def test_section_order_by_sequence(self):
+        # Sections are evaluated by sequence, so overlapping sections should
+        # not be left to the creation order.
+        self.section_item.section_ids.write(
+            {
+                "sequence": 10,
+            }
+        )
+        self.section_item.section_ids[0].write(
+            {
+                "amount_from": 0.0,
+                "amount_to": 1000.0,
+                "percent": 20.0,
+                "sequence": 20,
+            }
+        )
+        self.section_item.section_ids[1].write(
+            {
+                "amount_from": 0.0,
+                "amount_to": 1000.0,
+                "percent": 10.0,
+                "sequence": 10,
+            }
+        )
+        # The second section, with the lower sequence, matches first
+        self.assertAlmostEqual(
+            self.section_item._calculate_section_amount(500.0), 50.0, places=2
+        )
+
+    def test_section_parent_constraint(self):
+        section_model = self.env["commission.section"]
+        # A section without any parent is not allowed
+        with self.assertRaises(ValidationError):
+            section_model.create(
+                {
+                    "amount_from": 0.0,
+                    "amount_to": 100.0,
+                    "percent": 5.0,
+                }
+            )
+        # A section with both parents is not allowed
+        with self.assertRaises(ValidationError):
+            section_model.create(
+                {
+                    "commission_id": self.section_commission.id,
+                    "commission_item_id": self.section_item.id,
+                    "amount_from": 0.0,
+                    "amount_to": 100.0,
+                    "percent": 5.0,
+                }
+            )
+        # A section with a commission item is allowed
+        section_item_section = section_model.create(
+            {
+                "commission_item_id": self.section_item.id,
+                "amount_from": 0.0,
+                "amount_to": 100.0,
+                "percent": 5.0,
+            }
+        )
+        self.assertTrue(section_item_section)
+        # A section with a commission is allowed
+        commission_section = section_model.create(
+            {
+                "commission_id": self.section_commission.id,
+                "amount_from": 0.0,
+                "amount_to": 100.0,
+                "percent": 5.0,
+            }
+        )
+        self.assertTrue(commission_section)
