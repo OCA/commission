@@ -399,3 +399,68 @@ class TestSaleCommissionProductCriteria(TestSaleCommission):
         self.product_1.commission_free = True
         self.assertEqual(line.agent_ids.amount, 0)
         self.assertFalse(line.agent_ids.applied_commission_item_id)
+
+    def _reverse_invoice(self, invoice, reversal_date):
+        """Return the credit note of the reversal wizard for an invoice."""
+        self.env["account.move.reversal"].with_context(
+            active_model="account.move", active_ids=invoice.ids
+        ).create(
+            {"date": reversal_date, "journal_id": invoice.journal_id.id}
+        ).refund_moves()
+        return invoice.reversal_move_ids
+
+    def test_refund_keeps_invoice_item(self):
+        """A credit note gives back the commission at the item the refunded
+        line earned, not at the one matching its own date and quantity."""
+        self.com_item_1.per_unit = True
+        volume_item = self.env["commission.item"].create(
+            {
+                "commission_id": self.rules_commission_id.id,
+                "based_on": "sol",
+                "applied_on": "3_global",
+                "commission_type": "fixed",
+                "fixed_amount": 8,
+                "per_unit": True,
+                "min_qty": 10,
+                "date_end": date(2026, 1, 31),
+            }
+        )
+        invoice = self._create_invoice_no_co(
+            self.product_1, self.partner, qty=3, invoice_date=date(2026, 1, 15)
+        )
+        invoice.invoice_line_ids = [
+            Command.create(
+                {
+                    "product_id": self.product_1.id,
+                    "quantity": 12,
+                    "price_unit": 1000,
+                    "agent_ids": [
+                        Command.create(
+                            {
+                                "agent_id": self.agent_rules.id,
+                                "commission_id": self.rules_commission_id.id,
+                            }
+                        )
+                    ],
+                }
+            )
+        ]
+        invoice.action_post()
+        self.assertEqual(invoice.invoice_line_ids.agent_ids.mapped("amount"), [30, 96])
+        # Dated after the volume item expired, below its minimum quantity, and
+        # without the other line of the same product
+        refund = self._reverse_invoice(invoice, date(2026, 6, 1))
+        refund.invoice_line_ids = [Command.unlink(refund.invoice_line_ids[0].id)]
+        refund.invoice_line_ids.quantity = 3
+        agent_line = refund.invoice_line_ids.agent_ids
+        self.assertEqual(agent_line.applied_commission_item_id, volume_item)
+        self.assertEqual(agent_line.amount, -24)
+        # A line added to the credit note has no item to reuse
+        refund.invoice_line_ids = [
+            Command.create(
+                {"product_id": self.product_1.id, "quantity": 2, "price_unit": 1000}
+            )
+        ]
+        added_agent_line = refund.invoice_line_ids.agent_ids - agent_line
+        self.assertEqual(added_agent_line.applied_commission_item_id, self.com_item_1)
+        self.assertEqual(added_agent_line.amount, -20)

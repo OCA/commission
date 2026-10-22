@@ -1,17 +1,28 @@
 # © 2023 ooops404
 # Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
-from odoo import api, models
+from odoo import api, fields, models
 
 
 class AccountInvoiceLineAgent(models.Model):
     _inherit = "account.invoice.line.agent"
+
+    applied_commission_item_id = fields.Many2one(copy=True)
 
     def _get_line_uom(self):
         return self.object_id.product_uom_id
 
     def _get_commission_date(self):
         return self.invoice_date or super()._get_commission_date()
+
+    def _get_commission_item(self, commission, product, quantity=0.0, date=None):
+        # A reversal gives back the commission at the item the invoice line
+        # earned, copied with its agent line, not at the one matching its own
+        # date and quantity, the same way it keeps the invoiced price
+        item = self.applied_commission_item_id
+        if self.invoice_id.reversed_entry_id and item.commission_id == commission:
+            return item
+        return super()._get_commission_item(commission, product, quantity, date)
 
     @api.depends(
         "object_id.price_subtotal",
