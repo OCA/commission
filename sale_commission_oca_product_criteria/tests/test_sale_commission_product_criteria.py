@@ -366,6 +366,102 @@ class TestSaleCommissionProductCriteria(TestSaleCommission):
         # 10 (fixed) x 3 (qty), given back on a refund
         self.assertEqual(agent_line.amount, -30)
 
+    def _reverse_invoice(self, invoice, reversal_date):
+        """Return the credit note of the reversal wizard for an invoice."""
+        self.env["account.move.reversal"].with_context(
+            active_model="account.move", active_ids=invoice.ids
+        ).create(
+            {"date": reversal_date, "journal_id": invoice.journal_id.id}
+        ).refund_moves()
+        return invoice.reversal_move_ids
+
+    def _add_volume_item(self):
+        """Make the global rule 10 per unit, and 8 per unit from 10 units."""
+        self.com_item_1.per_unit = True
+        return self.env["commission.item"].create(
+            {
+                "commission_id": self.rules_commission_id.id,
+                "applied_on": "3_global",
+                "commission_type": "fixed",
+                "fixed_amount": 8,
+                "per_unit": True,
+                "min_qty": 10,
+            }
+        )
+
+    def test_refund_keeps_item_valid_on_invoice_date(self):
+        """A credit note dated after the item expired gives back the
+        commission the invoice earned."""
+        self.com_item_1.date_end = date(2026, 1, 31)
+        invoice = self._create_invoice_no_co(
+            self.product_1, self.partner, invoice_date=date(2026, 1, 15)
+        )
+        invoice.action_post()
+        refund = self._reverse_invoice(invoice, date(2026, 6, 1))
+        agent_line = refund.invoice_line_ids.agent_ids
+        self.assertEqual(agent_line.applied_commission_item_id, self.com_item_1)
+        self.assertEqual(agent_line.amount, -10)
+
+    def test_refund_keeps_item_of_invoiced_quantity(self):
+        """A partial credit note gives back the commission at the item of the
+        invoiced quantity, not at the one of the returned quantity."""
+        volume_item = self._add_volume_item()
+        invoice = self._create_invoice_no_co(self.product_1, self.partner, qty=12)
+        invoice.action_post()
+        self.assertEqual(invoice.invoice_line_ids.agent_ids.amount, 96)
+        refund = self._reverse_invoice(invoice, date.today())
+        refund.invoice_line_ids.quantity = 3
+        agent_line = refund.invoice_line_ids.agent_ids
+        self.assertEqual(agent_line.applied_commission_item_id, volume_item)
+        self.assertEqual(agent_line.amount, -24)
+
+    def test_refund_of_partial_invoice_keeps_invoice_item(self):
+        """The item comes from the refunded invoice rather than the order,
+        whose quantity can reach a minimum quantity the invoice doesn't."""
+        volume_item = self._add_volume_item()
+        so = self._create_sale_order_no_co(self.product_1, self.partner, qty=12)
+        so.recompute_lines_agents()
+        so.action_confirm()
+        self.assertEqual(
+            so.order_line.agent_ids.applied_commission_item_id, volume_item
+        )
+        self._invoice_sale_order(so)
+        invoice = so.invoice_ids
+        invoice.invoice_line_ids.quantity = 3
+        invoice.action_post()
+        self.assertEqual(invoice.invoice_line_ids.agent_ids.amount, 30)
+        refund = self._reverse_invoice(invoice, date.today())
+        agent_line = refund.invoice_line_ids.agent_ids
+        self.assertEqual(agent_line.applied_commission_item_id, self.com_item_1)
+        self.assertEqual(agent_line.amount, -30)
+
+    def test_refund_without_reversed_invoice_keeps_order_item(self):
+        """A credit note invoicing a return from the order, which reverses no
+        invoice, gives back the commission at the item of the order."""
+        volume_item = self._add_volume_item()
+        so = self._create_sale_order_no_co(self.product_1, self.partner, qty=12)
+        so.recompute_lines_agents()
+        so.action_confirm()
+        refund = self.env["account.move"].create(
+            {
+                "move_type": "out_refund",
+                "partner_id": self.partner.id,
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "product_id": self.product_1.id,
+                            "quantity": 3,
+                            "price_unit": 1000,
+                            "sale_line_ids": [Command.set(so.order_line.ids)],
+                        }
+                    )
+                ],
+            }
+        )
+        agent_line = refund.invoice_line_ids.agent_ids
+        self.assertEqual(agent_line.applied_commission_item_id, volume_item)
+        self.assertEqual(agent_line.amount, -24)
+
     def test_commission_free_product_earns_nothing(self):
         """Flagging a product commission free drops the commission of the
         lines it is on, on orders as well as on invoices."""
