@@ -9,7 +9,7 @@ from ..models.account_move import PAID_STATES
 class CommissionMakeSettle(models.TransientModel):
     _inherit = "commission.make.settle"
 
-    def _get_paid_later_invoices_query(self, date_to_agent):
+    def _get_paid_later_invoice_domain(self, date_to_agent):
         """Invoices with a payment on or after the date limit.
 
         The payment date is the date of the reconciliation, or the due date of
@@ -17,31 +17,37 @@ class CommissionMakeSettle(models.TransientModel):
         today to be collected on a later date keeps that date as due date.
         Refunds keep the reconciliation date, as their due date isn't a payment.
         """
-        later_payment_lines = self.env["account.move.line"]._search(
-            [
-                ("move_id.move_type", "=", "entry"),
-                ("date_maturity", ">=", date_to_agent),
-            ]
-        )
-        return self.env["account.move"]._search(
-            [
-                "|",
-                "|",
-                "|",
-                ("line_ids.matched_credit_ids.max_date", ">=", date_to_agent),
-                ("line_ids.matched_debit_ids.max_date", ">=", date_to_agent),
-                (
-                    "line_ids.matched_credit_ids.credit_move_id",
-                    "in",
-                    later_payment_lines,
-                ),
-                (
-                    "line_ids.matched_debit_ids.debit_move_id",
-                    "in",
-                    later_payment_lines,
-                ),
-            ]
-        )
+        later_payment_line = [
+            ("move_id.move_type", "=", "entry"),
+            ("date_maturity", ">=", date_to_agent),
+        ]
+        return [
+            (
+                "line_ids",
+                "any",
+                [
+                    "|",
+                    (
+                        "matched_credit_ids",
+                        "any",
+                        [
+                            "|",
+                            ("max_date", ">=", date_to_agent),
+                            ("credit_move_id", "any", later_payment_line),
+                        ],
+                    ),
+                    (
+                        "matched_debit_ids",
+                        "any",
+                        [
+                            "|",
+                            ("max_date", ">=", date_to_agent),
+                            ("debit_move_id", "any", later_payment_line),
+                        ],
+                    ),
+                ],
+            )
+        ]
 
     def _get_account_settle_domain(self, agent, date_to_agent):
         """Settle payment based commissions only when the invoice is paid before
@@ -50,10 +56,13 @@ class CommissionMakeSettle(models.TransientModel):
         payment was undone before that limit, or paid again before it.
         """
         domain = super()._get_account_settle_domain(agent, date_to_agent)
-        paid_later_invoices = self._get_paid_later_invoices_query(date_to_agent)
         paid_in_period = [
             ("invoice_id.payment_state", "in", PAID_STATES),
-            ("invoice_id", "not in", paid_later_invoices),
+            (
+                "invoice_id",
+                "not any",
+                self._get_paid_later_invoice_domain(date_to_agent),
+            ),
         ]
         unsettled_domain = expression.AND(
             [
@@ -63,14 +72,15 @@ class CommissionMakeSettle(models.TransientModel):
                 ),
             ]
         )
+        # The same conditions for the settled lines with an amount to regularize
+        settled_domain = [
+            ("settled", "=", True) if leaf == ("settled", "=", False) else leaf
+            for leaf in domain
+        ]
         regularization_domain = expression.AND(
             [
-                [
-                    ("invoice_date", "<", date_to_agent),
-                    ("agent_id", "=", agent.id),
-                    ("settled", "=", True),
-                    ("pending_amount", "!=", 0),
-                ],
+                settled_domain,
+                [("pending_amount", "!=", 0)],
                 expression.OR(
                     [
                         paid_in_period,

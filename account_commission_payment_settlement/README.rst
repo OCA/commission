@@ -38,6 +38,9 @@ of the invoices:
 - A payment counts on its due date when it is later than its date, as a
   payment order confirmed before its collection date. Refunds count on
   the reconciliation date.
+- Invoices *In Payment* (paid but not matched with the bank yet, as the
+  ones included in a payment order) count as paid, as in the base
+  module.
 - When a payment of an invoice with settled commissions is undone (a
   payment return, removing the payment from the invoice, resetting the
   payment or the invoice to draft), the next settlement includes a
@@ -63,9 +66,9 @@ Usage
 =====
 
 1. Go to *Commissions > Settlements > Settle Commissions*.
-2. Set the *Up to* date. The limit isn't included: to settle July, set
-   the 1st of August. For agents with a settlement period, the limit is
-   the start of the period containing that date.
+2. Set the *Up to* date. The limit is the start of the agent's
+   settlement period containing that date, and it isn't included: to
+   settle July for a monthly agent, set any day of August.
 3. Payment based commissions of invoices paid before the limit are
    settled. Invoices with a payment on or after the limit wait for a
    later settlement.
@@ -75,6 +78,16 @@ Usage
 
 If a settlement is cancelled, its amounts are pending again and the next
 settlement includes them.
+
+Known issues / Roadmap
+======================
+
+- Payments without journal entry (Odoo Enterprise accounting, or
+  ``account_in_payment`` with payment methods without outstanding
+  account) have no reconciliation with the invoice until the bank
+  statement line is reconciled. Until then their date doesn't limit the
+  settlement, and undoing them doesn't set the reversal date, so the
+  negative line takes the invoice date.
 
 Bug Tracker
 ===========

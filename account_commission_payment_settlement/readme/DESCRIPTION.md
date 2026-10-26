@@ -8,6 +8,9 @@ of the invoices:
 - A payment counts on its due date when it is later than its date, as a
   payment order confirmed before its collection date. Refunds count on
   the reconciliation date.
+- Invoices *In Payment* (paid but not matched with the bank yet, as the
+  ones included in a payment order) count as paid, as in the base
+  module.
 - When a payment of an invoice with settled commissions is undone (a
   payment return, removing the payment from the invoice, resetting the
   payment or the invoice to draft), the next settlement includes a

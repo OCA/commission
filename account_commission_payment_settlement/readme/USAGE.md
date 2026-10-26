@@ -1,7 +1,7 @@
 1.  Go to *Commissions \> Settlements \> Settle Commissions*.
-2.  Set the *Up to* date. The limit isn't included: to settle July, set
-    the 1st of August. For agents with a settlement period, the limit is
-    the start of the period containing that date.
+2.  Set the *Up to* date. The limit is the start of the agent's
+    settlement period containing that date, and it isn't included: to
+    settle July for a monthly agent, set any day of August.
 3.  Payment based commissions of invoices paid before the limit are
     settled. Invoices with a payment on or after the limit wait for a
     later settlement.

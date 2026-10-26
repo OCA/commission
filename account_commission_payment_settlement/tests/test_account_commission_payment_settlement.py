@@ -2,10 +2,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from dateutil.relativedelta import relativedelta
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.tests import Form, tagged
 
-from odoo.addons.commission.tests.test_commission import TestCommissionBase
+from odoo.addons.commission_oca.tests.test_commission import TestCommissionBase
 
 
 @tagged("post_install", "-at_install")
@@ -36,7 +36,7 @@ class TestAccountCommissionPaymentSettlement(TestCommissionBase):
             line_form.product_id = self.product
         invoice = invoice_form.save()
         invoice.invoice_line_ids.agent_ids = [
-            (0, 0, {"agent_id": agent.id, "commission_id": commission.id})
+            Command.create({"agent_id": agent.id, "commission_id": commission.id})
         ]
         invoice.action_post()
         return invoice
@@ -89,6 +89,8 @@ class TestAccountCommissionPaymentSettlement(TestCommissionBase):
         invoice = self._create_invoice(
             self.agent_monthly, self.commission_net_paid, "2024-01-10"
         )
+        # The journal items of an entry are shown with full accounting features
+        self.env.user.groups_id += self.env.ref("account.group_account_user")
         entry_form = Form(
             self.env["account.move"].with_context(default_move_type="entry")
         )
