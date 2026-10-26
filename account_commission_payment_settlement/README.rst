@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =====================================
 Account Commission Payment Settlement
 =====================================
@@ -17,35 +13,37 @@ Account Commission Payment Settlement
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fcommission-lightgray.png?logo=github
-    :target: https://github.com/OCA/commission/tree/15.0/account_commission_payment_settlement
+    :target: https://github.com/OCA/commission/tree/18.0/account_commission_payment_settlement
     :alt: OCA/commission
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/commission-15-0/commission-15-0-account_commission_payment_settlement
+    :target: https://translation.odoo-community.org/projects/commission-18-0/commission-18-0-account_commission_payment_settlement
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/commission&target_branch=15.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/commission&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module settles payment based commissions according to the payments of the
-invoices:
+This module settles payment based commissions according to the payments
+of the invoices:
 
-* An invoice is settled only when its last payment is before the date limit of
-  the settlement wizard, the same limit applied to the invoice date. Settling a
-  past period later doesn't include the invoices paid after that period.
-* A payment counts on its due date when it is later than its date, as a payment
-  order confirmed before its collection date. Refunds count on the
-  reconciliation date.
-* When a payment of an invoice with settled commissions is undone (a payment
-  return, removing the payment from the invoice, resetting the payment or the
-  invoice to draft), the next settlement includes a negative line for the
-  settled amount, dated on the day the payment was undone. When the invoice is
-  paid again, a later settlement includes the commission again.
+- An invoice is settled only when its last payment is before the date
+  limit of the settlement wizard, the same limit applied to the invoice
+  date. Settling a past period later doesn't include the invoices paid
+  after that period.
+- A payment counts on its due date when it is later than its date, as a
+  payment order confirmed before its collection date. Refunds count on
+  the reconciliation date.
+- When a payment of an invoice with settled commissions is undone (a
+  payment return, removing the payment from the invoice, resetting the
+  payment or the invoice to draft), the next settlement includes a
+  negative line for the settled amount, dated on the day the payment was
+  undone. When the invoice is paid again, a later settlement includes
+  the commission again.
 
 **Table of contents**
 
@@ -55,24 +53,25 @@ invoices:
 Configuration
 =============
 
-#. Go to *Commissions > Configuration > Commission types*.
-#. Set *Invoice Status* to *Payment Based* on the commission types to settle
-   according to the payments.
+1. Go to *Commissions > Configuration > Commission types*.
+2. Set *Invoice Status* to *Payment Based* on the commission types to
+   settle according to the payments.
 
 Commission types based on the invoice are not affected by this module.
 
 Usage
 =====
 
-#. Go to *Commissions > Settlements > Settle Commissions*.
-#. Set the *Up to* date. The limit isn't included: to settle July, set the 1st
-   of August. For agents with a settlement period, the limit is the start of the
-   period containing that date.
-#. Payment based commissions of invoices paid before the limit are settled.
-   Invoices with a payment on or after the limit wait for a later settlement.
-#. Settlements of invoices whose payment was undone before the limit get a
-   negative line, and a positive one when the invoice is paid again before a
-   later limit.
+1. Go to *Commissions > Settlements > Settle Commissions*.
+2. Set the *Up to* date. The limit isn't included: to settle July, set
+   the 1st of August. For agents with a settlement period, the limit is
+   the start of the period containing that date.
+3. Payment based commissions of invoices paid before the limit are
+   settled. Invoices with a payment on or after the limit wait for a
+   later settlement.
+4. Settlements of invoices whose payment was undone before the limit get
+   a negative line, and a positive one when the invoice is paid again
+   before a later limit.
 
 If a settlement is cancelled, its amounts are pending again and the next
 settlement includes them.
@@ -83,7 +82,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/commission/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/commission/issues/new?body=module:%20account_commission_payment_settlement%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/commission/issues/new?body=module:%20account_commission_payment_settlement%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -91,19 +90,19 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`__:
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Carlos Dauden
+  - Carlos Dauden
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -123,6 +122,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-carlosdauden| 
 
-This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/15.0/account_commission_payment_settlement>`_ project on GitHub.
+This module is part of the `OCA/commission <https://github.com/OCA/commission/tree/18.0/account_commission_payment_settlement>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
