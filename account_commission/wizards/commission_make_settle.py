@@ -14,16 +14,19 @@ class CommissionMakeSettle(models.TransientModel):
         ondelete={"sale_invoice": "cascade"},
     )
 
+    def _get_account_settle_domain(self, agent, date_to_agent):
+        return [
+            ("invoice_date", "<", date_to_agent),
+            ("agent_id", "=", agent.id),
+            ("settled", "=", False),
+        ]
+
     def _get_agent_lines(self, agent, date_to_agent):
         """Filter sales invoice agent lines for this type of settlement."""
         if self.settlement_type != "sale_invoice":
             return super()._get_agent_lines(agent, date_to_agent)
         return self.env["account.invoice.line.agent"].search(
-            [
-                ("invoice_date", "<", date_to_agent),
-                ("agent_id", "=", agent.id),
-                ("settled", "=", False),
-            ],
+            self._get_account_settle_domain(agent, date_to_agent),
             order="invoice_date",
         )
 
