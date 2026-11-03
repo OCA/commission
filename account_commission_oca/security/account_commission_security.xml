@@ -4,12 +4,12 @@
 <odoo>
     <data>
         <record
-            model="res.groups.privilege"
             id="res_groups_privilege_account_commission"
+            model="res.groups.privilege"
         >
             <field name="name">Account Commissions</field>
             <field name="category_id" ref="base.module_category_hidden" />
-            <field name="sequence">8</field>
+            <field name="sequence" eval="8" />
         </record>
         <record id="group_invoicing_commission" model="res.groups">
             <field name="name">Manage invoices commissions</field>

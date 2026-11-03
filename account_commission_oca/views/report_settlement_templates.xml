@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template
         id="report_settlement_document"
         inherit_id="commission_oca.report_settlement_document"
     >
         <xpath expr="//div[@id='informations']" position="inside">
-            <div class="col-auto col-3 mw-100 mb-2" t-if="o.invoice_id">
+            <div t-if="o.invoice_id" class="col-auto col-3 mw-100 mb-2">
                 <strong>Settlement invoice:</strong>
                 <p t-field="o.invoice_id" />
             </div>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_invoice_commission_analysis_pivot" model="ir.ui.view">
         <field name="name">invoice.commission.analysis.pivot</field>
@@ -114,8 +114,8 @@
         >This report performs analysis on your commissions added in invoice lines. You can check the amount and lines that will be settled by date, product, product category, aget, etc. Use this report to perform analysis on invoice lines agents not beeing settled yet.</field>
     </record>
     <menuitem
-        action="action_invoice_commission_analysis_report"
         id="menu_invoice_commissions_analysis"
+        action="action_invoice_commission_analysis_report"
         parent="account.account_reports_management_menu"
         sequence="15"
     />
