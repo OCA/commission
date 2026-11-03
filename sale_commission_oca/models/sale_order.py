@@ -1,6 +1,8 @@
 # Copyright 2014-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from typing import ClassVar
+
 from odoo import api, fields, models
 from odoo.fields import Command, Domain
 
@@ -45,7 +47,7 @@ class SaleOrder(models.Model):
 
 
 class SaleOrderLine(models.Model):
-    _inherit = [
+    _inherit: ClassVar = [
         "sale.order.line",
         "commission.mixin",
     ]

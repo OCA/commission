@@ -5,14 +5,11 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath
-                expr="//field[@name='order_line']/list//field[@name='price_subtotal']"
-                position="after"
-            >
+            <xpath expr="//field[@name='order_line']/list" position="inside">
                 <button
                     name="button_edit_agents"
                     title="Edit agents"
-                    icon="fa-users"
+                    icon="groups"
                     invisible="commission_free or invoice_lines"
                     type="object"
                 />
