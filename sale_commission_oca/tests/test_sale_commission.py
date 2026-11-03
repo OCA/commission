@@ -44,7 +44,6 @@ class TestSaleCommission(TestAccountCommission):
         if date:
             invoice.invoice_date = date
             invoice.date = date
-        return
 
     def _create_order_and_invoice(self, agent, commission):
         sale_order = self._create_sale_order(agent, commission)

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_order_agent_form_inherit" model="ir.ui.view">
         <field name="name">sale.agent.order.inherit.form</field>
@@ -51,7 +51,7 @@
         </field>
     </record>
     <!-- This view is needed for proper visualization of the popup / embedded one2many -->
-    <record model="ir.ui.view" id="view_sale_order_line_tree">
+    <record id="view_sale_order_line_tree" model="ir.ui.view">
         <field name="name">sale.order.line.agent.tree</field>
         <field name="model">sale.order.line.agent</field>
         <field name="arch" type="xml">
