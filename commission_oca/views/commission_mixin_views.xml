@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_commission_mixin_agent_only" model="ir.ui.view">
+        <field name="model">commission.mixin</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="agent_ids" readonly="commission_free" />
+                <footer class="oe_edit_only">
+                    <button string="Save" special="save" class="oe_highlight" />
+                    <button string="Discard" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
