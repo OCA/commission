@@ -6,12 +6,12 @@
         <record id="module_category_commission" model="ir.module.category">
             <field name="name">Commissions</field>
             <field name="description">Allows to handle commission related stuff.</field>
-            <field name="sequence">8</field>
+            <field name="sequence" eval="8" />
         </record>
-        <record model="res.groups.privilege" id="res_groups_privilege_commission">
+        <record id="res_groups_privilege_commission" model="res.groups.privilege">
             <field name="name">Commissions</field>
             <field name="category_id" ref="commission_oca.module_category_commission" />
-            <field name="sequence">8</field>
+            <field name="sequence" eval="8" />
         </record>
         <record id="group_commission_user" model="res.groups">
             <field name="name">User</field>
