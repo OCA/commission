@@ -195,3 +195,13 @@ class TestCommission(TestCommissionBase):
         )
         # Agent must be in the followers
         self.assertIn(self.agent_monthly, settlement.message_partner_ids)
+
+    def test_settlement_report(self):
+        settlement = self._create_settlement(
+            self.agent_monthly, self.commission_net_paid
+        )
+        content, report_type = self.env["ir.actions.report"]._render_qweb_html(
+            "commission_oca.action_report_settlement", settlement.ids
+        )
+        self.assertEqual(report_type, "html")
+        self.assertIn(self.agent_monthly.name.encode(), content)

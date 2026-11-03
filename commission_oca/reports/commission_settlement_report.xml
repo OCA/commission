@@ -5,7 +5,6 @@
         <field name="model">commission.settlement</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">commission_oca.report_settlement</field>
-        <field name="report_file">commission_oca.report_settlement</field>
         <field name="binding_model_id" ref="model_commission_settlement" />
         <field name="binding_type">report</field>
     </record>

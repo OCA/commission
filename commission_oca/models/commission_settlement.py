@@ -10,7 +10,7 @@ from odoo import api, fields, models
 class CommissionSettlement(models.Model):
     _name = "commission.settlement"
     _description = "Settlement"
-    _inherit = ["mail.thread", "mail.activity.mixin"]
+    _inherit = ("mail.thread", "mail.activity.mixin")
 
     name = fields.Char()
     total = fields.Float(compute="_compute_total", readonly=True, store=True)
