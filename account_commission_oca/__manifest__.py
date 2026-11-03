@@ -3,7 +3,7 @@
 # Copyright 2014-2022 Tecnativa - Pedro M. Baeza
 {
     "name": "Account commissions OCA",
-    "version": "19.0.1.0.1",
+    "version": "20.0.1.0.0",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "category": "Sales Management",
     "license": "AGPL-3",
@@ -15,7 +15,7 @@
     "maintainers": ["pedrobaeza"],
     "data": [
         "security/account_commission_security.xml",
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "data/menuitem_data.xml",
         "views/account_move_views.xml",
         "views/commission_settlement_views.xml",

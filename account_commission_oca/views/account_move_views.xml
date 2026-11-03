@@ -45,7 +45,7 @@
                     name="action_view_settlement"
                     type="object"
                     class="oe_stat_button"
-                    icon="fa-pencil-square-o"
+                    icon="edit_square"
                     invisible="(settlement_count == 0)"
                 >
                     <field
@@ -63,7 +63,7 @@
                 <button
                     name="button_edit_agents"
                     title="Edit agents"
-                    icon="fa-users"
+                    icon="groups"
                     invisible="commission_free or any_settled"
                     column_invisible="(parent.move_type not in ('out_invoice', 'out_refund'))"
                     type="object"
@@ -106,7 +106,7 @@
                     name="action_view_settlement"
                     type="object"
                     class="oe_stat_button"
-                    icon="fa-pencil-square-o"
+                    icon="edit_square"
                     string="Settlements"
                     invisible="(settlement_count == 0)"
                 />
