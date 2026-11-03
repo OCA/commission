@@ -1,0 +1,8 @@
+id,name,model_id,group_id/id,operation,domain
+access_account_invoice_line_agent,access_account_invoice_line_agent,account.invoice.line.agent,account.group_account_invoice,crud,
+access_commission,access_commission,commission,account.group_account_invoice,r,
+access_commission_section_user,access_commission_section_user,commission.section,account.group_account_invoice,r,
+access_commission_make_invoice,access_commission_make_invoice,commission.make.invoice,group_invoicing_commission,cru,
+access_commission_settlement_user,access_commission_settlement_user,commission.settlement,group_invoicing_commission,crud,"[('settlement_type', '=', 'sale_invoice')]"
+access_invoice_commission_analysis_report,access_invoice_commission_analysis_report,invoice.commission.analysis.report,group_invoicing_commission,r,
+rule_invoice_line_agent_multi_company,Invoice commission line multi-company,account.invoice.line.agent,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
