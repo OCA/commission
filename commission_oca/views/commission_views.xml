@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record model="ir.ui.view" id="commission_tree">
+    <record id="commission_tree" model="ir.ui.view">
         <field name="name">commissions list</field>
         <field name="model">commission</field>
         <field name="arch" type="xml">
@@ -12,7 +12,7 @@
             </list>
         </field>
     </record>
-    <record model="ir.ui.view" id="commission_form">
+    <record id="commission_form" model="ir.ui.view">
         <field name="name">commissions form</field>
         <field name="model">commission</field>
         <field name="arch" type="xml">
@@ -59,15 +59,15 @@
             </form>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="action_commission">
+    <record id="action_commission" model="ir.actions.act_window">
         <field name="name">Commission types</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">commission</field>
         <field name="binding_view_types">form,list</field>
     </record>
     <menuitem
-        name="Commission types"
         id="menu_commission_type"
+        name="Commission types"
         parent="commission_oca.menu_commission_management"
         action="action_commission"
     />

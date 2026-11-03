@@ -40,8 +40,10 @@ class CommissionMixin(models.AbstractModel):
         agents = partner.commission_agent_ids
         if settlement_type:
             agents = agents.filtered(
-                lambda x: not x.commission_id.settlement_type
-                or x.commission_id.settlement_type == settlement_type
+                lambda x: (
+                    not x.commission_id.settlement_type
+                    or x.commission_id.settlement_type == settlement_type
+                )
             )
         return [(0, 0, self._prepare_agent_vals(agent)) for agent in agents]
 

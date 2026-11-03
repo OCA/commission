@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <menuitem
-        name="Commissions"
         id="menu_commission"
+        name="Commissions"
         groups="group_commission_user"
         web_icon="commission_oca,static/description/icon.png"
         sequence="50"
     />
     <menuitem
-        name="Configuration"
         id="menu_commission_management"
+        name="Configuration"
         parent="menu_commission"
         groups="group_commission_manager"
         sequence="100"

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template id="report_settlement_document">
         <t t-set="o" t-value="o.with_context(lang=o.agent_id.lang)" />
@@ -18,11 +18,11 @@
                 <div class="page">
                     <h2>Settlement</h2>
                     <div id="informations" class="row mt-4 mb-4">
-                        <div class="col-auto col-3 mw-100 mb-2" t-if="o.date_from">
+                        <div t-if="o.date_from" class="col-auto col-3 mw-100 mb-2">
                             <strong>From:</strong>
                             <p t-field="o.date_from" />
                         </div>
-                        <div class="col-auto col-3 mw-100 mb-2" t-if="o.date_to">
+                        <div t-if="o.date_to" class="col-auto col-3 mw-100 mb-2">
                             <strong>To:</strong>
                             <p t-field="o.date_to" />
                         </div>
