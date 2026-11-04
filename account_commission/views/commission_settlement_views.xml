@@ -18,6 +18,13 @@
         <field name="model">commission.settlement</field>
         <field name="inherit_id" ref="commission.view_settlement_form" />
         <field name="arch" type="xml">
+            <button name="action_cancel" position="attributes">
+                <attribute
+                    name="groups"
+                    add="account.group_account_invoice,account_commission.group_invoicing_commission"
+                    separator=","
+                />
+            </button>
             <button name="action_cancel" position="before">
                 <button
                     string="Make invoice"
@@ -25,21 +32,21 @@
                     class="oe_highlight"
                     type="object"
                     name="action_invoice"
-                    groups="account.group_account_invoice"
+                    groups="account.group_account_invoice,account_commission.group_invoicing_commission"
                 />
                 <button
                     string="Reset to draft"
                     attrs="{'invisible': [('state', '!=', 'except_invoice')]}"
                     type="object"
                     name="action_draft"
-                    groups="account.group_account_invoice"
+                    groups="account.group_account_invoice,account_commission.group_invoicing_commission"
                 />
             </button>
             <field name="settlement_type" position="after">
                 <field
                     name="invoice_id"
                     attrs="{'invisible': [('state', '!=', 'invoiced')]}"
-                    groups="account.group_account_invoice"
+                    groups="account.group_account_invoice,account_commission.group_invoicing_commission"
                 />
             </field>
             <xpath
@@ -49,7 +56,7 @@
                 <field
                     name="invoice_line_id"
                     attrs="{'column_invisible': [('parent.settlement_type', '!=', 'sale_invoice')]}"
-                    groups="account.group_account_invoice"
+                    groups="account.group_account_invoice,account_commission.group_invoicing_commission"
                 />
             </xpath>
         </field>
