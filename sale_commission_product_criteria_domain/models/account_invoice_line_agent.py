@@ -25,6 +25,9 @@ class AccountInvoiceLineAgent(models.Model):
                     inv_line.product_id,
                     inv_line.quantity,
                 )
+                # Refunds commissions are negative
+                if inv_line.move_type and "refund" in inv_line.move_type:
+                    line.amount = -line.amount
             else:
                 res = super(AccountInvoiceLineAgent, line)._compute_amount()
         return res
