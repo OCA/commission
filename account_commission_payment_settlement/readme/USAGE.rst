@@ -1,0 +1,12 @@
+#. Go to *Commissions > Settlements > Settle Commissions*.
+#. Set the *Up to* date. The limit isn't included: to settle July, set the 1st
+   of August. For agents with a settlement period, the limit is the start of the
+   period containing that date.
+#. Payment based commissions of invoices paid before the limit are settled.
+   Invoices with a payment on or after the limit wait for a later settlement.
+#. Settlements of invoices whose payment was undone before the limit get a
+   negative line, and a positive one when the invoice is paid again before a
+   later limit.
+
+If a settlement is cancelled, its amounts are pending again and the next
+settlement includes them.
