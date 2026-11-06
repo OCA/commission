@@ -86,6 +86,25 @@ class CommissionSettlement(models.Model):
             res.append((updated_values["agent_id"], subtype_ids, False))
         return res
 
+    def grouped_report_lines(self):
+        self.ensure_one()
+        grouped_lines = self.env["commission.settlement.line"].read_group(
+            domain=[("settlement_id", "=", self.id)],
+            fields=["date", "commission_id", "settled_amount:sum"],
+            groupby=["date:day", "commission_id"],
+            lazy=False,
+        )
+        res = []
+        for gl in grouped_lines:
+            res.append(
+                {
+                    "date": gl["date:day"],
+                    "commission": gl["commission_id"][-1],
+                    "settled_amount": gl["settled_amount"],
+                }
+            )
+        return res
+
 
 class SettlementLine(models.Model):
     _name = "commission.settlement.line"
