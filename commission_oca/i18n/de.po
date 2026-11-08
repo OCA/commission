@@ -37,7 +37,8 @@ msgstr "1 Provisionsvermittler"
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
 msgid ""
 "<span>\n"
-"                        No automatic settlements can be made. Install any extra\n"
+"                        No automatic settlements can be made. Install any "
+"extra\n"
 "                        commission module for having this feature enabled.\n"
 "                    </span>"
 msgstr ""
@@ -307,6 +308,17 @@ msgid "Currency"
 msgstr "Währung"
 
 #. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.view_partner_list_commission
+msgid "Customers"
+msgstr ""
+
+#. module: commission_oca
+#: model:ir.actions.act_window,name:commission_oca.action_partner_commission
+#: model:ir.ui.menu,name:commission_oca.menu_partner_commission
+msgid "Customers with agents"
+msgstr ""
+
+#. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__date
 #: model_terms:ir.ui.view,arch_db:commission_oca.report_settlement_document
 msgid "Date"
@@ -414,7 +426,8 @@ msgstr "Symbol zur Kennzeichnung einer Ausnahmeaktivität."
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Wenn dies markiert ist, erfordern neue Nachrichten Ihre Aufmerksamkeit."
+msgstr ""
+"Wenn dies markiert ist, erfordern neue Nachrichten Ihre Aufmerksamkeit."
 
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__message_has_error
@@ -481,8 +494,7 @@ msgstr "Nachrichten"
 
 #. module: commission_oca
 #: model:ir.model,name:commission_oca.model_commission_mixin
-msgid ""
-"Mixin model for applying to any object that wants to handle commissions"
+msgid "Mixin model for applying to any object that wants to handle commissions"
 msgstr ""
 "Mixin-Modell zur Anwendung auf jedes beliebige Objekt, das Provisionen "
 "verarbeiten soll"
@@ -509,6 +521,7 @@ msgstr "Frist für meine Aktivität"
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__name
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__name
+#: model_terms:ir.ui.view,arch_db:commission_oca.view_partner_list_commission
 msgid "Name"
 msgstr "Name"
 
@@ -559,6 +572,11 @@ msgid "Parent"
 msgstr "Elternteil"
 
 #. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.res_partner_view_search
+msgid "Partners with commission agents assigned"
+msgstr ""
+
+#. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_section__percent
 msgid "Percent"
 msgstr "Prozent"
@@ -603,8 +621,10 @@ msgstr "Abschnitte"
 #: model:ir.model.fields,help:commission_oca.field_commission__amount_base_type
 msgid ""
 "Select the base amount for computing the percentage:\n"
-"* 'Sale/Invoice Amount': percentage is computed from the amount put on sales order/invoice.\n"
-"* 'Margin (Amount - Cost)': percentage is computed from the profit only, taken the cost from the product."
+"* 'Sale/Invoice Amount': percentage is computed from the amount put on sales "
+"order/invoice.\n"
+"* 'Margin (Amount - Cost)': percentage is computed from the profit only, "
+"taken the cost from the product."
 msgstr ""
 "Wählen Sie den Basisbetrag für die Berechnung des Prozentsatzes aus.:\n"
 "* 'Verkaufs-/Rechnungsbetrag': Der Prozentsatz wird auf Basis des im "
@@ -622,8 +642,10 @@ msgstr ""
 #: model:ir.model.fields,help:commission_oca.field_commission__commission_type
 msgid ""
 "Select the percentage type of the commission:\n"
-"* 'Fixed percentage': all commissions are computed with a fixed percentage. You can fill the percentage in the field \"Fixed percentage\".\n"
-"* 'By sections': percentage varies depending amount intervals. You can fill intervals and percentages in the section \"Rate definition\"."
+"* 'Fixed percentage': all commissions are computed with a fixed percentage. "
+"You can fill the percentage in the field \"Fixed percentage\".\n"
+"* 'By sections': percentage varies depending amount intervals. You can fill "
+"intervals and percentages in the section \"Rate definition\"."
 msgstr ""
 "Wählen Sie die Art des Provisionsprozentsatzes aus:\n"
 "* 'Fester Prozentsatz': Alle Provisionen werden auf Basis eines festen "
@@ -763,8 +785,8 @@ msgstr "Die Untergrenze kann nicht größer als die Obergrenze sein."
 #. module: commission_oca
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__settlement_type
 msgid ""
-"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase"
-" order'..."
+"The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase "
+"order'..."
 msgstr ""
 "Der Ursprung der Abrechnung z. B. 'Verkaufsrechnung', 'Verkaufsauftrag', "
 "'Einkaufsbestellung'..."
@@ -829,6 +851,11 @@ msgstr "Website Nachrichten"
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__website_message_ids
 msgid "Website communication history"
 msgstr "Kommunikationshistorie auf der Website"
+
+#. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.res_partner_view_search
+msgid "With Agents Assigned"
+msgstr ""
 
 #. module: commission_oca
 #: model:ir.model,name:commission_oca.model_commission_make_settle

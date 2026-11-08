@@ -43,8 +43,8 @@ msgid ""
 "                    </span>"
 msgstr ""
 "<span>\n"
-"                        自動精算は実行できません。この機能を有効にするには"
-"、\n"
+"                        自動精算は実行できません。この機能を有効にするに"
+"は、\n"
 "                        追加のコミッションモジュールをインストールしてくださ"
 "い。\n"
 "                    </span>"
@@ -202,7 +202,8 @@ msgstr "取消済"
 #: model:ir.model.fields,help:commission_oca.field_res_partner__agent
 #: model:ir.model.fields,help:commission_oca.field_res_users__agent
 msgid "Check this field if the partner is a creditor or an agent."
-msgstr "取引先が債権者またはエージェントの場合、このフィールドをチェックします。"
+msgstr ""
+"取引先が債権者またはエージェントの場合、このフィールドをチェックします。"
 
 #. module: commission_oca
 #. odoo-python
@@ -304,6 +305,17 @@ msgstr "債権者/エージェント"
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__currency_id
 msgid "Currency"
 msgstr "通貨"
+
+#. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.view_partner_list_commission
+msgid "Customers"
+msgstr ""
+
+#. module: commission_oca
+#: model:ir.actions.act_window,name:commission_oca.action_partner_commission
+#: model:ir.ui.menu,name:commission_oca.menu_partner_commission
+msgid "Customers with agents"
+msgstr ""
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__date
@@ -505,6 +517,7 @@ msgstr "活動期限"
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__name
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__name
+#: model_terms:ir.ui.view,arch_db:commission_oca.view_partner_list_commission
 msgid "Name"
 msgstr "名称"
 
@@ -553,6 +566,11 @@ msgstr "配信エラーが発生されたメッセージ数"
 #: model:ir.model.fields,field_description:commission_oca.field_commission_line_mixin__object_id
 msgid "Parent"
 msgstr "親"
+
+#. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.res_partner_view_search
+msgid "Partners with commission agents assigned"
+msgstr ""
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_section__percent
@@ -627,8 +645,8 @@ msgstr ""
 "コミッションのパーセンテージタイプを選択します:\n"
 "* '固定パーセンテージ': すべてのコミッションは固定パーセンテージで計算されま"
 "す。「固定パーセンテージ」フィールドにパーセンテージを入力できます。\n"
-"* 'セクション別': パーセンテージは金額の範囲に応じて変動します。「レート定義"
-"」セクションで範囲とパーセンテージを入力できます。"
+"* 'セクション別': パーセンテージは金額の範囲に応じて変動します。「レート定"
+"義」セクションで範囲とパーセンテージを入力できます。"
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__res_partner__settlement__semi
@@ -770,8 +788,8 @@ msgid ""
 "This is the default commission used in the sales where this agent is "
 "assigned. It can be changed on each operation if needed."
 msgstr ""
-"これはこのエージェントが割り当てられた販売で使用されるデフォルトの"
-"コミッションです。必要に応じて各操作で変更できます。"
+"これはこのエージェントが割り当てられた販売で使用されるデフォルトのコミッショ"
+"ンです。必要に応じて各操作で変更できます。"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settlement_line_search
@@ -822,6 +840,11 @@ msgstr "ウェブサイトメッセージ"
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__website_message_ids
 msgid "Website communication history"
 msgstr "ウェブサイト通信履歴"
+
+#. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.res_partner_view_search
+msgid "With Agents Assigned"
+msgstr ""
 
 #. module: commission_oca
 #: model:ir.model,name:commission_oca.model_commission_make_settle

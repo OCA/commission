@@ -305,6 +305,17 @@ msgid "Currency"
 msgstr "Para Birimi"
 
 #. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.view_partner_list_commission
+msgid "Customers"
+msgstr ""
+
+#. module: commission_oca
+#: model:ir.actions.act_window,name:commission_oca.action_partner_commission
+#: model:ir.ui.menu,name:commission_oca.menu_partner_commission
+msgid "Customers with agents"
+msgstr ""
+
+#. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__date
 #: model_terms:ir.ui.view,arch_db:commission_oca.report_settlement_document
 msgid "Date"
@@ -505,6 +516,7 @@ msgstr "Son Etkinlik Tarihi"
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__name
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__name
+#: model_terms:ir.ui.view,arch_db:commission_oca.view_partner_list_commission
 msgid "Name"
 msgstr "Adı"
 
@@ -553,6 +565,11 @@ msgstr "Teslim Hatası Olan Mesaj Sayısı"
 #: model:ir.model.fields,field_description:commission_oca.field_commission_line_mixin__object_id
 msgid "Parent"
 msgstr "Üst"
+
+#. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.res_partner_view_search
+msgid "Partners with commission agents assigned"
+msgstr ""
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_section__percent
@@ -823,6 +840,11 @@ msgstr "Website Mesajları"
 #: model:ir.model.fields,help:commission_oca.field_commission_settlement__website_message_ids
 msgid "Website communication history"
 msgstr "Website iletişim geçmişi"
+
+#. module: commission_oca
+#: model_terms:ir.ui.view,arch_db:commission_oca.res_partner_view_search
+msgid "With Agents Assigned"
+msgstr ""
 
 #. module: commission_oca
 #: model:ir.model,name:commission_oca.model_commission_make_settle
