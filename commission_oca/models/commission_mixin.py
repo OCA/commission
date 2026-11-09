@@ -20,7 +20,7 @@ class CommissionMixin(models.AbstractModel):
         store=True,
         copy=True,
     )
-    product_id = fields.Many2one(comodel_name="product.product", string="Product")
+    product_id = fields.Many2one(comodel_name="product.product")
     commission_free = fields.Boolean(
         string="Comm. free",
         compute="_compute_commission_free",

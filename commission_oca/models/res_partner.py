@@ -30,7 +30,6 @@ class ResPartner(models.Model):
         default="agent",
     )
     commission_id = fields.Many2one(
-        string="Commission",
         comodel_name="commission",
         help="This is the default commission used in the sales where this "
         "agent is assigned. It can be changed on each operation if "
