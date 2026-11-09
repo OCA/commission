@@ -9,7 +9,6 @@ class ProductPricelist(models.Model):
 
     commission_id = fields.Many2one(
         comodel_name="commission",
-        string="Commission",
         ondelete="restrict",
         help="Default commission applied to lines sold under this pricelist "
         "when the matched pricelist rule has no commission of its own.",
@@ -19,6 +18,4 @@ class ProductPricelist(models.Model):
 class ProductPricelistItem(models.Model):
     _inherit = "product.pricelist.item"
 
-    commission_id = fields.Many2one(
-        comodel_name="commission", string="Commission", ondelete="restrict"
-    )
+    commission_id = fields.Many2one(comodel_name="commission", ondelete="restrict")
