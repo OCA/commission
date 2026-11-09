@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-11-04 13:46+0000\n"
+"PO-Revision-Date: 2026-11-09 15:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -307,13 +307,13 @@ msgstr "Valuta"
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_partner_list_commission
 msgid "Customers"
-msgstr ""
+msgstr "Clienti"
 
 #. module: commission_oca
 #: model:ir.actions.act_window,name:commission_oca.action_partner_commission
 #: model:ir.ui.menu,name:commission_oca.menu_partner_commission
 msgid "Customers with agents"
-msgstr ""
+msgstr "Clienti con agenti"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__date
@@ -570,7 +570,7 @@ msgstr "Padre"
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.res_partner_view_search
 msgid "Partners with commission agents assigned"
-msgstr ""
+msgstr "Partner con commissione agenti assegnata"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_section__percent
@@ -848,7 +848,7 @@ msgstr "Cronologia comunicazioni sito web"
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.res_partner_view_search
 msgid "With Agents Assigned"
-msgstr ""
+msgstr "Con agenti assegnati"
 
 #. module: commission_oca
 #: model:ir.model,name:commission_oca.model_commission_make_settle
