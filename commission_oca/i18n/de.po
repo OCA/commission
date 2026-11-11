@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-11-11 06:54+0000\n"
+"PO-Revision-Date: 2026-11-11 09:46+0000\n"
 "Last-Translator: intero-chd <c.dominiak@intero-technologies.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -25,7 +25,7 @@ msgstr "%s Provisionsvermittler"
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
 msgid "(keep empty for making the settlement of all agents)"
-msgstr "(leer lassen, um die Abrechnung für alle Agenten zu erstellen)"
+msgstr "(leer lassen, um die Abrechnung für alle Vermittler zu erstellen)"
 
 #. module: commission_oca
 #. odoo-python
@@ -224,7 +224,7 @@ msgstr "Provisionsfrei"
 #: model_terms:ir.ui.view,arch_db:commission_oca.commission_form
 #: model_terms:ir.ui.view,arch_db:commission_oca.report_settlement_document
 msgid "Commission"
-msgstr "Provision"
+msgstr "Provisionsart"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_line_mixin__amount
@@ -388,7 +388,7 @@ msgstr "Provisionsfrei"
 #: model:ir.model.fields,field_description:commission_oca.field_commission_section__amount_from
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__date_from
 msgid "From"
-msgstr "Von"
+msgstr "Vom"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.commission_form
@@ -678,7 +678,7 @@ msgstr "Abgerechnet"
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__settled_amount
 msgid "Settled Amount"
-msgstr "Abgerechneter Betrag"
+msgstr "Provision"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_partner_form_agent
@@ -835,7 +835,7 @@ msgstr "Art der im Datensatz erfassten Ausnahmeaktivität."
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_make_settle__date_to
 msgid "Up to"
-msgstr "Bis zu"
+msgstr "Bis zum"
 
 #. module: commission_oca
 #: model:res.groups,name:commission_oca.group_commission_user
@@ -867,7 +867,7 @@ msgstr "Assistent zur Provisionsabrechnung"
 #: model:ir.model.constraint,message:commission_oca.constraint_commission_line_mixin_unique_agent
 #: model:ir.model.constraint,message:commission_oca.constraint_sale_order_line_agent_unique_agent
 msgid "You can only add one time each agent."
-msgstr "Sie können jeden Agenten jeweils nur einmal hinzufügen."
+msgstr "Sie können jeden Vermittler jeweils nur einmal hinzufügen."
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
