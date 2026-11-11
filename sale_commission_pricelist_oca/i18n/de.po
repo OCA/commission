@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-10-16 12:57+0000\n"
+"PO-Revision-Date: 2026-11-11 06:54+0000\n"
 "Last-Translator: intero-chd <c.dominiak@intero-technologies.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -41,9 +41,8 @@ msgstr "Zuletzt geändert am"
 
 #. module: sale_commission_pricelist_oca
 #: model:ir.model,name:sale_commission_pricelist_oca.model_product_pricelist_item
-#, fuzzy
 msgid "Pricelist Rule"
-msgstr "Preislistenposition"
+msgstr "Preislistenregel"
 
 #. module: sale_commission_pricelist_oca
 #: model:ir.model,name:sale_commission_pricelist_oca.model_sale_order_line
