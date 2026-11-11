@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-10-28 18:46+0000\n"
-"Last-Translator: Nils Coenen <nils.coenen@nico-solutions.de>\n"
+"PO-Revision-Date: 2026-11-11 06:54+0000\n"
+"Last-Translator: intero-chd <c.dominiak@intero-technologies.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -165,7 +165,7 @@ msgstr "Anzahl an Anhängen"
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission__amount_base_type
 msgid "Base"
-msgstr ""
+msgstr "Basis"
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__res_partner__settlement__biweekly
@@ -310,13 +310,13 @@ msgstr "Währung"
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_partner_list_commission
 msgid "Customers"
-msgstr ""
+msgstr "Kunden"
 
 #. module: commission_oca
 #: model:ir.actions.act_window,name:commission_oca.action_partner_commission
 #: model:ir.ui.menu,name:commission_oca.menu_partner_commission
 msgid "Customers with agents"
-msgstr ""
+msgstr "Kunden mit Vermittlern"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__date
@@ -470,7 +470,7 @@ msgstr "Zahlungen leisten"
 #. module: commission_oca
 #: model:res.groups,name:commission_oca.group_commission_manager
 msgid "Manager"
-msgstr ""
+msgstr "Manager"
 
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__commission_settlement__settlement_type__manual
@@ -574,7 +574,7 @@ msgstr "Elternteil"
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.res_partner_view_search
 msgid "Partners with commission agents assigned"
-msgstr ""
+msgstr "Kunden mit eingetragenen Vermittlern"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_section__percent
@@ -855,7 +855,7 @@ msgstr "Kommunikationshistorie auf der Website"
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.res_partner_view_search
 msgid "With Agents Assigned"
-msgstr ""
+msgstr "eingetragene Vermittler"
 
 #. module: commission_oca
 #: model:ir.model,name:commission_oca.model_commission_make_settle
