@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-11-11 09:46+0000\n"
+"PO-Revision-Date: 2026-11-11 15:46+0000\n"
 "Last-Translator: intero-chd <c.dominiak@intero-technologies.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -388,7 +388,7 @@ msgstr "Provisionsfrei"
 #: model:ir.model.fields,field_description:commission_oca.field_commission_section__amount_from
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__date_from
 msgid "From"
-msgstr "Vom"
+msgstr "Von"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.commission_form
@@ -673,7 +673,7 @@ msgstr "Provisionen abrechnen"
 #. module: commission_oca
 #: model:ir.model.fields.selection,name:commission_oca.selection__commission_settlement__state__settled
 msgid "Settled"
-msgstr "Abgerechnet"
+msgstr "Entwurf"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement_line__settled_amount
