@@ -6,98 +6,101 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-11-11 09:46+0000\n"
+"Last-Translator: intero-chd <c.dominiak@intero-technologies.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_invoice_commission_analysis_report__quantity
 msgid "# of Qty"
-msgstr ""
+msgstr "# von Anzahl"
 
 #. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.commission_make_invoice_form
 msgid "(keep empty for invoicing all the pending settlements)"
-msgstr ""
+msgstr "(leer lassen, um die Abrechnung für alle Vermittler zu erstellen)"
 
 #. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.report_settlement_document
 msgid "<strong>Settlement invoice:</strong>"
-msgstr ""
+msgstr "<strong>Abrechnung:</strong>"
 
 #. module: account_commission_oca
 #: model:res.groups.privilege,name:account_commission_oca.res_groups_privilege_account_commission
 msgid "Account Commissions"
-msgstr ""
+msgstr "Konto-Provisionen"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_invoice_line_agent__agent_id
 #: model:ir.model.fields,field_description:account_commission_oca.field_invoice_commission_analysis_report__agent_id
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_invoice_commission_analysis_search
 msgid "Agent"
-msgstr ""
+msgstr "Vermittler"
 
 #. module: account_commission_oca
 #: model:ir.model,name:account_commission_oca.model_account_invoice_line_agent
 msgid "Agent detail of commission line in invoice lines"
-msgstr ""
+msgstr "Vermittlerangaben für Provisionszeile in Rechnungszeilen"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_bank_statement_line__partner_agent_ids
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_move__partner_agent_ids
 msgid "Agents"
-msgstr ""
+msgstr "Vermittler"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_move_line__agent_ids
 msgid "Agents & commissions"
-msgstr ""
+msgstr "Vermittler und Provisionen"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,help:account_commission_oca.field_account_move_line__agent_ids
 msgid "Agents/Commissions related to the invoice line."
-msgstr ""
+msgstr "Vermittler/Provisionen verbunden mit Rechnungszeile."
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_invoice_commission_analysis_report__amount
 msgid "Amount"
-msgstr ""
+msgstr "Betrag"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_move_line__any_settled
 msgid "Any Settled"
-msgstr ""
+msgstr "Alle abgerechnet"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_invoice_commission_analysis_report__balance
 msgid "Balance"
-msgstr ""
+msgstr "Saldo"
 
 #. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.commission_make_invoice_form
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/commission_settlement.py:0
 msgid "Cannot cancel an invoiced settlement."
 msgstr ""
+"Eine bereits in Rechnung gestellte Abrechnung kann nicht storniert werden."
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_invoice_commission_analysis_report__categ_id
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_invoice_commission_analysis_search
 msgid "Category of Product"
-msgstr ""
+msgstr "Produktkategorie"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_move_line__commission_free
 msgid "Comm. free"
-msgstr ""
+msgstr "Provisionsfrei"
 
 #. module: account_commission_oca
 #: model:ir.model,name:account_commission_oca.model_commission
@@ -105,18 +108,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_move_line__commission_status
 #: model:ir.model.fields,field_description:account_commission_oca.field_invoice_commission_analysis_report__commission_id
 msgid "Commission"
-msgstr ""
+msgstr "Provision"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_invoice_line_agent__amount
 msgid "Commission Amount"
-msgstr ""
+msgstr "Provisionsbetrag"
 
 #. module: account_commission_oca
 #: model:ir.actions.act_window,name:account_commission_oca.action_invoice_commission_analysis_report
 #: model:ir.ui.menu,name:account_commission_oca.menu_invoice_commissions_analysis
 msgid "Commission Analysis"
-msgstr ""
+msgstr "Provisionsanalyse"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_bank_statement_line__commission_total
@@ -124,7 +127,7 @@ msgstr ""
 #: model:ir.ui.menu,name:account_commission_oca.menu_invoicing_commission
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_move_line_form
 msgid "Commissions"
-msgstr ""
+msgstr "Provisionen"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_invoice_line_agent__company_id
@@ -132,56 +135,56 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_commission_oca.field_invoice_commission_analysis_report__company_id
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_invoice_commission_analysis_search
 msgid "Company"
-msgstr ""
+msgstr "Unternehmen"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,help:account_commission_oca.field_commission_make_invoice__company_id
 msgid "Company related to this journal"
-msgstr ""
+msgstr "Unternehmen des Journals"
 
 #. module: account_commission_oca
 #: model:ir.actions.act_window,name:account_commission_oca.action_commission_make_invoices
 #: model:ir.ui.menu,name:account_commission_oca.menu_invoicing_settlements_make_invoice
 msgid "Create Commission Invoices"
-msgstr ""
+msgstr "Provisionsrechnungen erstellen"
 
 #. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.commission_make_invoice_form
 msgid "Create invoices"
-msgstr ""
+msgstr "Rechnungen erstellen"
 
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/wizards/wizard_invoice.py:0
 msgid "Created Invoices"
-msgstr ""
+msgstr "Erstellte Rechnungen"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_invoice_line_agent__create_uid
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission_make_invoice__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Erstellt von"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_invoice_line_agent__create_date
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission_make_invoice__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Erstellt am"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_invoice_line_agent__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Währung"
 
 #. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_invoice_commission_analysis_search
 msgid "Customer"
-msgstr ""
+msgstr "Kunde"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission_make_invoice__date
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_invoice_line_agent__display_name
@@ -194,37 +197,37 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission_settlement_line__display_name
 #: model:ir.model.fields,field_description:account_commission_oca.field_invoice_commission_analysis_report__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Anzeigename"
 
 #. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_invoice_commission_analysis_search
 msgid "Draft"
-msgstr ""
+msgstr "Entwurf"
 
 #. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_move_form
 msgid "Edit agents"
-msgstr ""
+msgstr "Vermittler bearbeiten"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission_make_invoice__from_settlement
 msgid "From Settlement"
-msgstr ""
+msgstr "Von Abrechnung"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission_settlement__invoice_id
 msgid "Generated Invoice"
-msgstr ""
+msgstr "Erstellte Rechnung"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission_settlement__invoice_line_ids
 msgid "Generated invoice lines"
-msgstr ""
+msgstr "Erstellte Rechnungszeilen"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission_make_invoice__grouped
 msgid "Group invoices"
-msgstr ""
+msgstr "Sammelrechnungen"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_invoice_line_agent__id
@@ -237,193 +240,193 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission_settlement_line__id
 #: model:ir.model.fields,field_description:account_commission_oca.field_invoice_commission_analysis_report__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_invoice_line_agent__invoice_id
 msgid "Invoice"
-msgstr ""
+msgstr "Rechnung"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission_settlement_line__invoice_agent_line_id
 msgid "Invoice Agent Line"
-msgstr ""
+msgstr "Vermittlerrechnungszeile"
 
 #. module: account_commission_oca
 #: model:ir.model.fields.selection,name:account_commission_oca.selection__commission__invoice_state__open
 msgid "Invoice Based"
-msgstr ""
+msgstr "Auf Rechnungsbasis"
 
 #. module: account_commission_oca
 #: model:ir.model,name:account_commission_oca.model_invoice_commission_analysis_report
 msgid "Invoice Commission Analysis Report"
-msgstr ""
+msgstr "Analyse der Rechnungsprovisionen"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_invoice_commission_analysis_report__date_invoice
 msgid "Invoice Date"
-msgstr ""
+msgstr "Rechnungsdatum"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_invoice_commission_analysis_report__invoice_line_id
 msgid "Invoice Line"
-msgstr ""
+msgstr "Rechnungszeile"
 
 #. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_invoice_commission_analysis_search
 msgid "Invoice Month"
-msgstr ""
+msgstr "Rechnungsmonat"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission__invoice_state
 #: model:ir.model.fields,field_description:account_commission_oca.field_invoice_commission_analysis_report__invoice_state
 msgid "Invoice Status"
-msgstr ""
+msgstr "Rechnungsstatus"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_invoice_line_agent__invoice_date
 msgid "Invoice date"
-msgstr ""
+msgstr "Rechnungsdatum"
 
 #. module: account_commission_oca
 #: model:ir.model.fields.selection,name:account_commission_oca.selection__commission_settlement__state__except_invoice
 msgid "Invoice exception"
-msgstr ""
+msgstr "Rechnungsabweichung"
 
 #. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.report_settlement_document
 msgid "Invoice line"
-msgstr ""
+msgstr "Rechnungszeile"
 
 #. module: account_commission_oca
 #: model:ir.model.fields.selection,name:account_commission_oca.selection__commission_settlement__state__invoiced
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_invoice_commission_analysis_search
 msgid "Invoiced"
-msgstr ""
+msgstr "Abgerechnet"
 
 #. module: account_commission_oca
 #: model:ir.actions.act_window,name:account_commission_oca.action_invoicing_commission_settlement
 #: model:ir.ui.menu,name:account_commission_oca.menu_invoicing_settlements
 msgid "Invoices Settlements"
-msgstr ""
+msgstr "Rechnungsabwicklung"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission_make_invoice__journal_id
 msgid "Journal"
-msgstr ""
+msgstr "Journal"
 
 #. module: account_commission_oca
 #: model:ir.model,name:account_commission_oca.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Journaleintrag"
 
 #. module: account_commission_oca
 #: model:ir.model,name:account_commission_oca.model_account_move_line
 msgid "Journal Item"
-msgstr ""
+msgstr "Journaldatensatz"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_invoice_line_agent__write_uid
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission_make_invoice__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zuletzt geändert von"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_invoice_line_agent__write_date
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission_make_invoice__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zuletzt aktualisiert am"
 
 #. module: account_commission_oca
 #: model:ir.model,name:account_commission_oca.model_commission_settlement_line
 msgid "Line of a commission settlement"
-msgstr ""
+msgstr "Zeile einer Provisionsabrechnung"
 
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/commission_settlement.py:0
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_settlement_form
 msgid "Make invoice"
-msgstr ""
+msgstr "Rechnung erstellen"
 
 #. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.commission_make_invoice_form
 msgid "Make invoices"
-msgstr ""
+msgstr "Rechnungen erstellen"
 
 #. module: account_commission_oca
 #: model:res.groups,name:account_commission_oca.group_invoicing_commission
 msgid "Manage invoices commissions"
-msgstr ""
+msgstr "Rechnungsprovisionen verwalten"
 
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/wizards/wizard_invoice.py:0
 msgid "No valid settlements to invoice."
-msgstr ""
+msgstr "Es liegen keine gültigen Abrechnungen zur Rechnungsstellung vor."
 
 #. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_invoice_commission_analysis_search
 msgid "Not Settled"
-msgstr ""
+msgstr "Nicht abgerechnet"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_invoice_line_agent__object_id
 msgid "Parent"
-msgstr ""
+msgstr "Übergeordnetes Element"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_invoice_commission_analysis_report__partner_id
 msgid "Partner"
-msgstr ""
+msgstr "Kunde"
 
 #. module: account_commission_oca
 #: model:ir.model.fields.selection,name:account_commission_oca.selection__commission__invoice_state__paid
 msgid "Payment Based"
-msgstr ""
+msgstr "Auf Zahlungsbasis"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_invoice_commission_analysis_report__percentage
 msgid "Percentage of commission"
-msgstr ""
+msgstr "Provisionssatz"
 
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/commission_settlement.py:0
 msgid "Period: from %(date_from)s to %(date_to)s"
-msgstr ""
+msgstr "Zeitraum: vom %(date_from)s bis zum %(date_to)s"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_move_line__product_id
 #: model:ir.model.fields,field_description:account_commission_oca.field_invoice_commission_analysis_report__product_id
 msgid "Product"
-msgstr ""
+msgstr "Produkt"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission_make_invoice__product_id
 msgid "Product for invoicing"
-msgstr ""
+msgstr "Produkt für die Rechnungsstellung"
 
 #. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.report_settlement_document
 msgid "Quantity"
-msgstr ""
+msgstr "Menge"
 
 #. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_move_form
 msgid "Regenerate agents"
-msgstr ""
+msgstr "Vermittler neu berechnen"
 
 #. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_settlement_form
 msgid "Reset to draft"
-msgstr ""
+msgstr "Zurücksetzen in Entwurf"
 
 #. module: account_commission_oca
 #: model:ir.model.fields.selection,name:account_commission_oca.selection__commission_make_settle__settlement_type__sale_invoice
 #: model:ir.model.fields.selection,name:account_commission_oca.selection__commission_settlement__settlement_type__sale_invoice
 msgid "Sales Invoices"
-msgstr ""
+msgstr "Ausgangsrechnungen"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,help:account_commission_oca.field_commission__invoice_state
@@ -432,42 +435,47 @@ msgid ""
 "* 'Invoice Based': Commissions are settled when the invoice is issued.\n"
 "* 'Payment Based': Commissions are settled when the invoice is paid."
 msgstr ""
+"Wählen Sie den Rechnungsstatus für die Abrechnung der Provisionen aus:\n"
+"* 'Auf Rechnungsbasis': Die Provisionen werden bei Ausstellung der Rechnung "
+"abgerechnet.\n"
+"* 'Auf Zahlungsbasis': Die Provisionen werden bei Zahlung der Rechnung "
+"abgerechnet."
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_invoice_line_agent__settled
 #: model:ir.model.fields,field_description:account_commission_oca.field_invoice_commission_analysis_report__settled
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_invoice_commission_analysis_search
 msgid "Settled"
-msgstr ""
+msgstr "Entwurf"
 
 #. module: account_commission_oca
 #: model:ir.model,name:account_commission_oca.model_commission_settlement
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_move_line__settlement_id
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission_make_invoice__settlement_ids
 msgid "Settlement"
-msgstr ""
+msgstr "Abrechnung"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_bank_statement_line__settlement_count
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_move__settlement_count
 msgid "Settlement Count"
-msgstr ""
+msgstr "Anzahl der Abrechnungen"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_invoice_line_agent__settlement_line_ids
 msgid "Settlement Line"
-msgstr ""
+msgstr "Abrechnungsposition"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission_make_settle__settlement_type
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission_settlement__settlement_type
 msgid "Settlement Type"
-msgstr ""
+msgstr "Abrechnungsart"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,help:account_commission_oca.field_account_move_line__settlement_id
 msgid "Settlement that generates this invoice line"
-msgstr ""
+msgstr "Abrechnung, aus der diese Rechnungsposition stammt"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_account_bank_statement_line__settlement_ids
@@ -476,27 +484,27 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_in_invoice_bill_tree_inherit
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_move_form
 msgid "Settlements"
-msgstr ""
+msgstr "Abrechnungen"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission_settlement_line__invoice_line_id
 msgid "Source invoice line"
-msgstr ""
+msgstr "Quelle der Rechnungszeile"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_commission_settlement__state
 msgid "State"
-msgstr ""
+msgstr "Status"
 
 #. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_invoice_commission_analysis_search
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_invoice_commission_analysis_report__price_subtotal
 msgid "Subtotal"
-msgstr ""
+msgstr "Zwischensumme"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,help:account_commission_oca.field_commission_settlement__settlement_type
@@ -504,11 +512,13 @@ msgid ""
 "The source of the settlement, e.g. 'Sales invoice', 'Sales order', 'Purchase"
 " order'..."
 msgstr ""
+"Die Quelle der Abrechnung, z. B. „Abrechnung“, „Verkaufsauftrag“, „Bestellung"
+"“..."
 
 #. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_invoice_commission_analysis_search
 msgid "This Year"
-msgstr ""
+msgstr "In diesem Jahr"
 
 #. module: account_commission_oca
 #: model_terms:ir.actions.act_window,help:account_commission_oca.action_invoice_commission_analysis_report
@@ -518,52 +528,59 @@ msgid ""
 "product category, aget, etc. Use this report to perform analysis on invoice "
 "lines agents not beeing settled yet."
 msgstr ""
+"Dieser Bericht enthält eine Auswertung Ihrer in Rechnungszeilen "
+"ausgewiesenen Provisionen. Sie können den Betrag und die Zeilen, die "
+"abgerechnet werden, nach Datum, Produkt, Produktkategorie, Vermittler usw. "
+"einsehen. Nutzen Sie diesen Bericht, um eine Auswertung der Rechnungszeilen "
+"durchzuführen, für die noch keine Abrechnung durch den Vermittler erfolgt "
+"ist."
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_invoice_commission_analysis_report__price_unit
 msgid "Unit Price"
-msgstr ""
+msgstr "Stückpreis"
 
 #. module: account_commission_oca
 #: model:ir.model.fields,field_description:account_commission_oca.field_invoice_commission_analysis_report__uom_id
 msgid "Unit of Measure"
-msgstr ""
+msgstr "Mengeneinheit"
 
 #. module: account_commission_oca
 #: model:ir.model,name:account_commission_oca.model_commission_make_invoice
 msgid "Wizard for making an invoice from a settlement"
-msgstr ""
+msgstr "Assistent zum Erstellen einer Rechnung aus einer Abrechnung"
 
 #. module: account_commission_oca
 #: model:ir.model,name:account_commission_oca.model_commission_make_settle
 msgid "Wizard for settling commissions"
-msgstr ""
+msgstr "Assistent zur Abrechnung von Provisionen"
 
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/account_move.py:0
 msgid "You can't cancel an invoice with settled lines"
-msgstr ""
+msgstr "Eine Rechnung mit abgerechneten Positionen kann nicht storniert werden"
 
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/commission_settlement.py:0
 msgid "You can't delete invoiced settlement"
 msgstr ""
+"Eine bereits in Rechnung gestellte Abrechnung kann nicht gelöscht werden"
 
 #. module: account_commission_oca
 #. odoo-python
 #: code:addons/account_commission_oca/models/account_move.py:0
 msgid "You can't modify a settled line"
-msgstr ""
+msgstr "Eine abgerechnete Zeile kann nicht geändert werden"
 
 #. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_invoice_commission_analysis_graph
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_invoice_commission_analysis_pivot
 msgid "invoice Commission Analysis"
-msgstr ""
+msgstr "Analyse der Provision"
 
 #. module: account_commission_oca
 #: model_terms:ir.ui.view,arch_db:account_commission_oca.view_invoice_commission_analysis_search
 msgid "invoices Commission Analysis"
-msgstr ""
+msgstr "Analyse der Provisionen"
