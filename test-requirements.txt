@@ -1,0 +1,2 @@
+odoo-addon-commission_oca @ git+https://github.com/OCA/commission.git@refs/pull/695/head#subdirectory=commission_oca
+odoo-addon-account_commission_oca @ git+https://github.com/OCA/commission.git@refs/pull/697/head#subdirectory=account_commission_oca
