@@ -1,0 +1,12 @@
+.fields-table {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.fields-table * td {
+    width: 200px;
+}
+.instructions {
+    white-space: pre-wrap;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
