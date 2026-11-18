@@ -303,6 +303,18 @@ class TestAccountCommission(TestCommissionBase):
             invoice.invoice_line_ids.agent_ids.agent_id,
             refund.invoice_line_ids.agent_ids.agent_id,
         )
+        refunded_agent_lines = invoice.invoice_line_ids.agent_ids
+        refund_agent_lines = refund.invoice_line_ids.agent_ids
+        self.assertEqual(
+            refund_agent_lines._get_refunded_agent_lines(commission),
+            refunded_agent_lines,
+        )
+        # A credit note reversed before the line link existed
+        refund.invoice_line_ids.commission_origin_line_id = False
+        self.assertEqual(
+            refund_agent_lines._get_refunded_agent_lines(commission),
+            refunded_agent_lines,
+        )
         refund.invoice_line_ids.agent_ids._compute_amount()
         refund.action_post()
         self._settle_agent_invoice(agent, 1)

@@ -110,6 +110,12 @@ class AccountMoveLine(models.Model):
         help="Settlement that generates this invoice line",
         copy=False,
     )
+    commission_origin_line_id = fields.Many2one(
+        "account.move.line",
+        copy=False,
+        readonly=True,
+        help="Invoice line this line was copied from by a reversal.",
+    )
 
     @api.depends("agent_ids", "agent_ids.settled")
     def _compute_any_settled(self):
@@ -136,6 +142,7 @@ class AccountMoveLine(models.Model):
         everytime, we will add the data when a context key is passed.
         """
         res = super()._copy_data_extend_business_fields(values)
+        values["commission_origin_line_id"] = self.id
         if self.settlement_id and self.env.context.get("include_settlement", False):
             values["settlement_id"] = self.settlement_id.id
         return res
@@ -228,3 +235,23 @@ class AccountInvoiceLineAgent(models.Model):
             self.commission_id.invoice_state == "paid"
             and self.invoice_id.payment_state not in ["in_payment", "paid", "reversed"]
         ) or self.invoice_id.state != "posted"
+
+    def _get_agent_lines_of(self, lines, commission):
+        """Return the agent lines of ``lines`` with the product, agent and
+        commission of this line. Used by ``_get_refunded_agent_lines``."""
+        lines = lines.filtered(lambda x: x.product_id == self.object_id.product_id)
+        return lines.agent_ids.filtered(
+            lambda x: x.agent_id == self.agent_id and x.commission_id == commission
+        )
+
+    def _get_refunded_agent_lines(self, commission):
+        """Hook returning the agent lines this credit note line refunds, for
+        rules giving back what the sale earned (e.g. date or quantity based).
+        Not used here."""
+        refund_line = self.object_id
+        # Credit notes reversed before the link existed have only the move
+        origin_lines = (
+            refund_line.commission_origin_line_id
+            or refund_line.move_id.reversed_entry_id.invoice_line_ids
+        )
+        return self._get_agent_lines_of(origin_lines, commission)
