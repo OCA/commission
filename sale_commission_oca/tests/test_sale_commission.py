@@ -54,6 +54,31 @@ class TestSaleCommission(TestAccountCommission):
         invoices.invoice_line_ids.agent_ids._compute_amount()
         return sale_order
 
+    def _create_order_refund(self, sale_order, agent, commission):
+        refund = self.env["account.move"].create(
+            {
+                "move_type": "out_refund",
+                "partner_id": self.partner.id,
+                "invoice_line_ids": [
+                    Command.create(
+                        {
+                            "product_id": self.product.id,
+                            "sale_line_ids": [Command.set(sale_order.order_line.ids)],
+                            "agent_ids": [
+                                Command.create(
+                                    {
+                                        "agent_id": agent.id,
+                                        "commission_id": commission.id,
+                                    }
+                                )
+                            ],
+                        }
+                    )
+                ],
+            }
+        )
+        return refund.invoice_line_ids.agent_ids
+
     def _check_full(self, agent, commission, period, initial_count):
         sale_order = self._create_order_and_invoice(agent, commission)
         settlements = self._check_invoice_thru_settle(
@@ -135,3 +160,25 @@ class TestSaleCommission(TestAccountCommission):
             inv_line.agent_ids[0].commission_id, self.commission_section_invoice
         )
         self.assertTrue(inv_line.agent_ids[0].agent_id, self.agent_monthly)
+
+    def test_refund_from_order_refunded_agent_lines(self):
+        """A credit note reversing no invoice refunds the latest posted invoice
+        of its order lines, or the order lines when not invoiced yet."""
+        agent = self.agent_monthly
+        commission = self.commission_net_invoice
+        sale_order = self._create_sale_order(agent, commission)
+        sale_order.action_confirm()
+        agent_line = self._create_order_refund(sale_order, agent, commission)
+        self.assertEqual(
+            agent_line._get_refunded_agent_lines(commission),
+            sale_order.order_line.agent_ids,
+        )
+        agent_line.invoice_id.unlink()
+        self._invoice_sale_order(sale_order)
+        invoice = sale_order.invoice_ids
+        invoice.action_post()
+        agent_line = self._create_order_refund(sale_order, agent, commission)
+        self.assertEqual(
+            agent_line._get_refunded_agent_lines(commission),
+            invoice.invoice_line_ids.agent_ids,
+        )
