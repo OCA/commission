@@ -303,6 +303,10 @@ class TestAccountCommission(TestCommissionBase):
             invoice.invoice_line_ids.agent_ids.agent_id,
             refund.invoice_line_ids.agent_ids.agent_id,
         )
+        self.assertEqual(
+            refund.invoice_line_ids.agent_ids.origin_agent_line_id,
+            invoice.invoice_line_ids.agent_ids,
+        )
         refund.invoice_line_ids.agent_ids._compute_amount()
         refund.action_post()
         self._settle_agent_invoice(agent, 1)

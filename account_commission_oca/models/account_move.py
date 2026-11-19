@@ -172,6 +172,14 @@ class AccountInvoiceLineAgent(models.Model):
     currency_id = fields.Many2one(
         related="object_id.currency_id",
     )
+    origin_agent_line_id = fields.Many2one(
+        comodel_name="account.invoice.line.agent",
+        copy=False,
+        readonly=True,
+        index="btree_not_null",
+        help="Agent line this one is copied from by a reversal or a correction "
+        "of its invoice.",
+    )
 
     @api.depends(
         "object_id.price_subtotal",
@@ -217,6 +225,14 @@ class AccountInvoiceLineAgent(models.Model):
                 raise exceptions.ValidationError(
                     record.env._("You can't modify a settled line"),
                 )
+
+    def copy_data(self, default=None):
+        vals_list = super().copy_data(default=default)
+        if self.env.context.get("include_business_fields"):
+            for line, vals in zip(self, vals_list, strict=True):
+                if vals:
+                    vals["origin_agent_line_id"] = line.id
+        return vals_list
 
     def _skip_settlement(self):
         """This function should return False if the commission can be paid.
