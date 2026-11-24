@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-11-11 15:46+0000\n"
+"PO-Revision-Date: 2026-11-24 09:46+0000\n"
 "Last-Translator: intero-chd <c.dominiak@intero-technologies.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -14,13 +14,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 2026.11.2\n"
 
 #. module: commission_oca
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
 msgid "%s commission agents"
-msgstr "%s Provisionsvermittler"
+msgstr "%s Vermittler"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
@@ -31,7 +31,7 @@ msgstr "(leer lassen, um die Abrechnung für alle Vermittler zu erstellen)"
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
 msgid "1 commission agent"
-msgstr "1 Provisionsvermittler"
+msgstr "1 Vermittler"
 
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
@@ -465,7 +465,7 @@ msgstr "Position einer Provisionsabrechnung"
 #. module: commission_oca
 #: model_terms:ir.ui.view,arch_db:commission_oca.view_settled_wizard
 msgid "Make settlements"
-msgstr "Zahlungen leisten"
+msgstr "Abrechnung erstellen"
 
 #. module: commission_oca
 #: model:res.groups,name:commission_oca.group_commission_manager
@@ -544,7 +544,7 @@ msgstr "Nächster Aktivitätstyp"
 #. odoo-python
 #: code:addons/commission_oca/models/commission_mixin.py:0
 msgid "No commission agents"
-msgstr "Keine Provisionsvermittler"
+msgstr "Keine Vermittler"
 
 #. module: commission_oca
 #: model:ir.model.fields,field_description:commission_oca.field_commission_settlement__message_needaction_counter
